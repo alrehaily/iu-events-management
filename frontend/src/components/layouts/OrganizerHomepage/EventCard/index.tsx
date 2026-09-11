@@ -13,6 +13,7 @@ import dayjs from "dayjs";
 import {IconCalendar, IconClock, IconMapPin, IconTicket, IconWifi} from '@tabler/icons-react';
 import {summariseEventLocations} from "../../../../utilites/effectiveLocation.ts";
 import {formatAddress} from "../../../../utilites/addressUtilities.ts";
+import {IU_COLORS} from "../../../../constants/iuTheme.ts";
 
 interface EventCardProps {
     event: Event;
@@ -21,7 +22,7 @@ interface EventCardProps {
 
 const placeholderEmojis = ['🎉', '🎪', '🎸', '🎨', '🌟'];
 
-export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = '#8b5cf6'}) => {
+export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = IU_COLORS.green900}) => {
     const dateTextColor = isLightColor(primaryColor) ? '#000000' : '#ffffff';
 
     const emojiIndex = event.id ? Number(event.id) % placeholderEmojis.length : 0;

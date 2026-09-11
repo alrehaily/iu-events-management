@@ -529,11 +529,11 @@ const Welcome = () => {
             <Container size="sm" className={classes.welcomeContent}>
                 <div className={classes.welcomeHeader}>
                     <div className={classes.logo}>
-                        <img src={getConfig("VITE_APP_LOGO_LIGHT", "/logos/hi-events-text-dark.svg")} alt={`${getConfig("VITE_APP_NAME", "Hi.Events")} logo`} className={classes.logo}/>
+                        <img src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`} className={classes.logo} style={{maxHeight: 52, width: "auto"}}/>
                     </div>
                     <h1 className={classes.welcomeTitle}>
                         <Trans>
-                            Welcome to {getConfig("VITE_APP_NAME", "Hi.Events")}, {userData?.first_name} 👋
+                            مرحباً بك في منصة فعاليات الجامعة الإسلامية، {userData?.first_name}
                         </Trans>
                     </h1>
                 </div>

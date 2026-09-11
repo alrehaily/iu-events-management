@@ -1,0 +1,94 @@
+.btn {
+  padding: 12px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
+  line-height: 1.2;
+}
+
+.btn.solid {
+  background: var(--green-700);
+  color: #ffffff;
+  border-color: var(--green-700);
+  box-shadow: 0 4px 14px rgba(27, 117, 75, 0.25);
+}
+
+.btn.solid:hover {
+  background: var(--green-900);
+  border-color: var(--green-900);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(8, 75, 47, 0.3);
+}
+
+.btn.solid:active {
+  transform: translateY(0);
+}
+
+.btn.outline {
+  background: #ffffff;
+  border-color: var(--green-700);
+  color: var(--green-700);
+}
+
+.btn.outline:hover {
+  background: var(--green-200);
+  transform: translateY(-2px);
+}
+
+.btn.outline:active {
+  transform: translateY(0);
+}
+
+.btn.disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 16px;
+  font-family: inherit;
+  border-radius: 999px;
+  border: 1px solid var(--iu-line);
+  background: #ffffff;
+  color: var(--iu-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  border-color: var(--green-700);
+  color: var(--green-700);
+  background: var(--green-200);
+  transform: translateY(-1px);
+}
+
+.pill.active {
+  background: var(--green-700);
+  border-color: var(--green-700);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(27, 117, 75, 0.2);
+}
+
+.pill.active:hover {
+  background: var(--green-900);
+  border-color: var(--green-900);
+}

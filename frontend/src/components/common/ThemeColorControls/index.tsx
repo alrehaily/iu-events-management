@@ -4,6 +4,7 @@ import {HomepageThemeSettings} from "../../../types.ts";
 import {detectMode, validateThemeSettings, hasContrastIssues} from "../../../utilites/themeUtils.ts";
 import {IconSun, IconMoon, IconEyeCheck, IconEyeExclamation} from "@tabler/icons-react";
 import {useEffect, useMemo} from "react";
+import {IU_COLORS} from "../../../constants/iuTheme.ts";
 
 interface ThemeColorControlsProps {
     values: Partial<HomepageThemeSettings>;
@@ -51,7 +52,7 @@ export const ThemeColorControls = ({
                 label={t`Accent Color`}
                 description={t`The primary brand color used for buttons and highlights`}
                 size="sm"
-                value={values.accent || '#8b5cf6'}
+                value={values.accent || IU_COLORS.green900}
                 onChange={handleAccentChange}
                 disabled={disabled}
             />
@@ -61,7 +62,7 @@ export const ThemeColorControls = ({
                 label={t`Background Color`}
                 description={t`The background color of the page. When using cover image, this is applied as an overlay.`}
                 size="sm"
-                value={values.background || '#f5f3ff'}
+                value={values.background || IU_COLORS.bg}
                 onChange={handleBackgroundChange}
                 disabled={disabled}
             />

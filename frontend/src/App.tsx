@@ -8,6 +8,7 @@ import {DatesProvider} from "@mantine/dates";
 import {DehydratedState, HydrationBoundary, QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import type {ThemeColors} from "./utilites/themeColors.ts";
+import {IU_TYPOGRAPHY} from "./constants/iuTheme.ts";
 
 import "@mantine/core/styles/global.css";
 import "@mantine/core/styles.css";
@@ -58,19 +59,39 @@ export const App: FC<
                     width: "100vw",
                     height: "100vh",
                     position: "fixed",
-                    background: "#ffffff",
-                    zIndex: 1000,
-                    display: isLoadedOnBrowser ? "none" : "block",
+                    background: "#fcfdfc",
+                    zIndex: 99999,
+                    display: isLoadedOnBrowser ? "none" : "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                 }}
-            />
+            >
+                <div style={{display: "flex", flexDirection: "column", alignItems: "center", gap: "16px"}}>
+                    <img
+                        src="/images/IUEvent2.png"
+                        alt="الجامعة الإسلامية بالمدينة المنورة"
+                        style={{height: 72, width: "auto"}}
+                    />
+                    <div
+                        style={{
+                            width: 36,
+                            height: 36,
+                            border: "3px solid var(--iu-green-200)",
+                            borderTop: "3px solid var(--iu-green-900)",
+                            borderRadius: "50%",
+                            animation: "iu-spin 0.8s linear infinite"
+                        }}
+                    />
+                </div>
+            </div>
             <MantineProvider
                 cssVariablesResolver={v8CssVariablesResolver}
                 theme={{
                     colors: props.themeColors,
                     primaryColor: "primary",
-                    fontFamily: "Outfit, sans-serif",
+                    fontFamily: IU_TYPOGRAPHY.fontFamily,
                     primaryShade: 8,
-                    defaultRadius: "sm",
+                    defaultRadius: "md",
                 }}
             >
                 <HelmetProvider context={props.helmetContext}>
@@ -82,10 +103,10 @@ export const App: FC<
                                 <ThirdPartyScripts/>
                                 <ModalsProvider>
                                     <Helmet>
-                                        <title>{getConfig("VITE_APP_NAME", "Hi.Events")}</title>
+                                        <title>{getConfig("VITE_APP_NAME", "منصة إدارة الفعاليات - الجامعة الإسلامية بالمدينة المنورة")}</title>
                                         <link rel="icon"
-                                              type="image/svg+xml"
-                                              href={getConfig("VITE_APP_FAVICON", "/favicon.svg")}
+                                              type="image/png"
+                                              href={getConfig("VITE_APP_FAVICON", "/images/IUEvent2.png")}
                                         />
                                     </Helmet>
                                     {props.children}

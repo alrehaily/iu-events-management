@@ -1,48 +1,54 @@
 @use "mixins";
+@import "./iu/tokens.css";
 
 :root {
-  --hi-text: var(--mantine-color-primary-9);
-  --hi-primary: var(--mantine-color-primary-9);
-  --hi-secondary:  var(--mantine-color-secondary-1);
-  --hi-secondary-text: var(--mantine-color-primary-8);
-  --hi-color-gray: #f7f6f8;
-  --hi-color-gray-2: #e2e2e2;
-  --hi-color-gray-dark: #838383;
-  --hi-color-money-green: #00b894;
-  --hi-color-blue: var(--mantine-color-primary-4);
-  --hi-link-color: var(--hi-primary);
-  --hi-pink: var(--mantine-color-primary-5);
-  --hi-primary-alt: var(--mantine-color-primary-6);
-  --hi-gradient: linear-gradient(135deg, var(--hi-primary), var(--hi-primary-alt));
-  --hi-scrollbar-thumb: #e1e1e1;
+  /* Legacy token mapping to centralized IU Design Tokens */
+  --hi-text: var(--iu-text);
+  --hi-primary: var(--iu-green-900);
+  --hi-secondary: var(--iu-green-700);
+  --hi-secondary-text: var(--iu-text);
+  --hi-color-gray: var(--iu-bg);
+  --hi-color-gray-2: var(--iu-border);
+  --hi-color-gray-dark: var(--iu-text-subtle);
+  --hi-color-money-green: var(--iu-green-700);
+  --hi-color-blue: var(--iu-green-900);
+  --hi-link-color: var(--iu-green-700);
+  --hi-pink: var(--iu-green-700);
+  --hi-primary-alt: var(--iu-green-700);
+  --hi-gradient: var(--iu-gradient-brand);
+  --hi-scrollbar-thumb: var(--iu-border);
 
-  --hi-color-white: #ffffff;
+  --hi-color-white: var(--iu-surface);
   --hi-color-black: #000000;
 
-  --hi-spacing-xs: 3px;
-  --hi-spacing-sm: 5px;
-  --hi-spacing-md: 10px;
-  --hi-spacing-lg: 20px;
-  --hi-spacing-xl: 25px;
+  --hi-spacing-xs: var(--iu-spacing-xs);
+  --hi-spacing-sm: var(--iu-spacing-sm);
+  --hi-spacing-md: var(--iu-spacing-md);
+  --hi-spacing-lg: var(--iu-spacing-lg);
+  --hi-spacing-xl: var(--iu-spacing-xl);
 
-  --hi-radius-xs: 3px;
-  --hi-radius-sm: 5px;
-  --hi-radius-md: 7px;
-  --hi-radius-lg: 10px;
-  --hi-radius-xl: 15px;
+  --hi-radius-xs: var(--iu-radius-xs);
+  --hi-radius-sm: var(--iu-radius-sm);
+  --hi-radius-md: var(--iu-radius-md);
+  --hi-radius-lg: var(--iu-radius-lg);
+  --hi-radius-xl: var(--iu-radius-xl);
 
-  --hi-color-border: rgba(0, 0, 0, 0.08);
-  --hi-color-success: #15803d;
-  --hi-color-success-soft: rgba(21, 128, 61, 0.1);
-  --hi-color-warning: #d97706;
-  --hi-color-danger: #b91c1c;
-  --hi-color-text-muted: #6b7280;
-  --hi-color-text-tertiary: #9ca3af;
-  --hi-accent-brand-soft: rgba(228, 70, 137, 0.12);
-  --hi-accent-brand-soft: color-mix(in srgb, var(--mantine-color-primary-5) 12%, transparent);
-  --hi-radius-card: 12px;
-  --hi-ink: color-mix(in srgb, var(--mantine-color-primary-9) 88%, black);
-  --hi-ink-deep: color-mix(in srgb, var(--mantine-color-primary-9) 70%, black);
+  --hi-color-border: var(--iu-border);
+  --hi-color-success: var(--iu-success);
+  --hi-color-success-soft: var(--iu-success-soft);
+  --hi-color-warning: var(--iu-warning);
+  --hi-color-danger: var(--iu-danger);
+  --hi-color-text-muted: var(--iu-text-muted);
+  --hi-color-text-tertiary: var(--iu-text-subtle);
+  --hi-accent-brand-soft: var(--iu-green-200);
+  --hi-radius-card: var(--iu-radius-lg);
+  --hi-ink: var(--iu-green-900);
+  --hi-ink-deep: var(--iu-green-900);
+}
+
+@keyframes iu-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 * {
@@ -51,19 +57,38 @@
 
 html {
   height: auto;
+  direction: rtl;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
-  color: var(--hi-text);
-  background-color: var(--checkout-background, var(--hi-color-gray)) !important;
+  font-family: var(--iu-font-family);
+  color: var(--iu-text);
+  background-color: var(--page-bg, var(--iu-bg));
   height: auto;
   letter-spacing: 0.2px;
+  direction: rtl;
+  text-align: right;
+  overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--iu-font-family);
+  color: var(--iu-green-900);
   letter-spacing: 0.3px;
+  text-align: start;
 }
+
+/* Ensure headings inside Hero sections, dark banners, and CTAs retain pure white contrast */
+.hero,
+[class*="hero"],
+[class*="Hero"],
+.cta {
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+  }
+}
+
 
 fieldset {
   border: none;
@@ -73,12 +98,20 @@ fieldset {
 
 a {
   text-decoration: none;
-  color: var(--hi-link-color);
+  color: var(--iu-green-700);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--iu-green-900);
+  }
 }
 
-// Mantine overrides
+/* ==========================================================================
+   Mantine Theme Overrides with Centralized IU Tokens
+   ========================================================================== */
+
 .mantine-InputWrapper-root, .mantine-Switch-root {
-  margin-bottom: var(--hi-spacing-lg);
+  margin-bottom: var(--iu-spacing-lg);
 }
 
 .mantine-ScrollArea-viewport {
@@ -87,11 +120,60 @@ a {
 
 .mantine-Modal-content {
   @include mixins.scrollbar();
+  border-radius: var(--iu-radius-lg);
+  box-shadow: var(--iu-shadow-xl);
+  font-family: var(--iu-font-family);
 }
 
-.mantine-SimpleGrid-root {
-  .mantine-InputWrapper-root, .mantine-Switch-root {
-    //margin-bottom: 0;
+.mantine-Modal-header {
+  font-weight: 700;
+  color: var(--iu-text);
+}
+
+.mantine-Modal-overlay {
+  background-color: var(--iu-modal-overlay);
+  backdrop-filter: blur(4px);
+}
+
+.mantine-TextInput-input,
+.mantine-PasswordInput-innerInput,
+.mantine-Select-input,
+.mantine-Textarea-input {
+  border-radius: var(--iu-radius-md);
+  border: 1px solid var(--iu-border-input);
+  background: var(--iu-surface);
+  color: var(--iu-text);
+  font-family: var(--iu-font-family);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus, &:focus-within {
+    border-color: var(--iu-green-700);
+    box-shadow: var(--iu-shadow-focus);
   }
 }
 
+.mantine-Card-root {
+  border-radius: var(--iu-radius-lg);
+  border: 1px solid var(--iu-border);
+  box-shadow: var(--iu-shadow-sm);
+  background: var(--iu-surface);
+}
+
+.mantine-Table-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--iu-border);
+  border-radius: var(--iu-radius-md);
+  overflow: hidden;
+
+  thead tr th {
+    background-color: var(--iu-table-head-bg);
+    color: var(--iu-table-head-color);
+    font-weight: 700;
+    border-bottom: 1px solid var(--iu-border);
+  }
+
+  tbody tr:hover {
+    background-color: var(--iu-table-row-hover);
+  }
+}

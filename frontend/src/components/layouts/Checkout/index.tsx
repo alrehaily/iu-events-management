@@ -26,8 +26,9 @@ import {useOrganizerTrackingPixels} from "../../../hooks/useOrganizerTrackingPix
 import {trackPixelEvent, hasActivePixels} from "../../../utilites/trackingPixels";
 import {CookieSettingsLink} from "../../common/CookieSettingsLink";
 import {useGetEventPublic} from "../../../queries/useGetEventPublic.ts";
+import {IU_COLORS} from "../../../constants/iuTheme.ts";
 
-const DEFAULT_ACCENT = '#8b5cf6';
+const DEFAULT_ACCENT = IU_COLORS.green900;
 
 const Checkout = () => {
     const {eventId, orderShortId} = useParams();

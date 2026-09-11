@@ -1,0 +1,61 @@
+.hero {
+  background: var(
+    --iu-gradient-hero,
+    linear-gradient(
+      var(--hero-angle, 110deg),
+      var(--hero-from, var(--iu-green-900, #084b2f)),
+      var(--hero-mid, var(--iu-green-700, #1b754b)),
+      var(--hero-to, var(--iu-green-600, #1d8a51))
+    )
+  );
+  color: #ffffff;
+  min-height: var(--hero-height, 280px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 48px 0;
+  width: 100%;
+  direction: rtl;
+  text-align: right;
+
+  > :global(.container) {
+    width: 100%;
+  }
+}
+
+.heroContent {
+  max-width: 900px;
+  text-align: right;
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+
+.heroTitle {
+  font-size: 38px;
+  font-weight: 800;
+  color: #ffffff !important;
+  margin: 0 0 16px;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.heroDescription {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 220px;
+    padding: 36px 0;
+  }
+  .heroTitle {
+    font-size: 28px;
+  }
+  .heroDescription {
+    font-size: 16px;
+  }
+}

@@ -21,6 +21,13 @@ export const StartupChecks = () => {
     };
 
     useEffect(() => {
+        if (typeof document !== "undefined") {
+            document.documentElement.dir = "rtl";
+            document.documentElement.lang = "ar";
+        }
+    }, []);
+
+    useEffect(() => {
         if (!meQuery.isSuccess) {
             return;
         }
@@ -29,4 +36,4 @@ export const StartupChecks = () => {
     }, [meQuery.isSuccess]);
 
     return <></>;
-}
+};

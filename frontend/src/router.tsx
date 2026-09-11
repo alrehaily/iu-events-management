@@ -1,33 +1,61 @@
 import { Navigate, RouteObject } from "react-router";
 import ErrorPage from "./error-page.tsx";
-import { useEffect, useState } from "react";
-import { useGetMe } from "./queries/useGetMe.ts";
 import { publicEventRouteLoader } from "./routeLoaders/publicEventRouteLoader.ts";
 import { publicOrganizerRouteLoader } from "./routeLoaders/publicOrganizerRouteLoader.ts";
 import { organizerPreviewRouteLoader } from "./routeLoaders/organizerPreviewRouteLoader.ts";
 
-const Root = () => {
-    const [redirectPath, setRedirectPath] = useState<string | null>(null);
-    const me = useGetMe();
-
-    useEffect(() => {
-        if (me.isFetched) {
-            const searchParams = typeof window !== 'undefined' ? window.location.search : '';
-            const basePath = me.isSuccess ? "/manage/events" : "/auth/login";
-            setRedirectPath(basePath + searchParams);
-        }
-    }, [me.isFetched]);
-
-    if (redirectPath) {
-        return <Navigate to={redirectPath} replace={true} />;
-    }
-};
-
 export const router: RouteObject[] = [
     {
-        path: "",
-        element: <Root />,
-        errorElement: <ErrorPage />
+        path: "/",
+        async lazy() {
+            const SiteLayout = await import("./components/layouts/IUSiteLayout");
+            return { Component: SiteLayout.default };
+        },
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                index: true,
+                async lazy() {
+                    const Home = await import("./components/routes/home");
+                    return { Component: Home.default };
+                }
+            },
+            {
+                path: "events",
+                async lazy() {
+                    const EventsCatalog = await import("./components/routes/events-catalog");
+                    return { Component: EventsCatalog.default };
+                }
+            },
+            {
+                path: "about",
+                async lazy() {
+                    const About = await import("./components/routes/about");
+                    return { Component: About.default };
+                }
+            },
+            {
+                path: "my-registrations",
+                async lazy() {
+                    const MyRegistrations = await import("./components/routes/my-registrations");
+                    return { Component: MyRegistrations.default };
+                }
+            },
+            {
+                path: "login",
+                async lazy() {
+                    const AttendeeLogin = await import("./components/routes/attendee-auth/AttendeeLogin");
+                    return { Component: AttendeeLogin.default };
+                }
+            },
+            {
+                path: "register",
+                async lazy() {
+                    const AttendeeRegister = await import("./components/routes/attendee-auth/AttendeeRegister");
+                    return { Component: AttendeeRegister.default };
+                }
+            },
+        ]
     },
     {
         path: "auth",
@@ -572,6 +600,15 @@ export const router: RouteObject[] = [
             const OrganizerHomepagePreview = await import("./components/layouts/OrganizerHomepagePreview");
             return { Component: OrganizerHomepagePreview.default };
         },
+    },
+    {
+        path: "/event/:eventId",
+        loader: publicEventRouteLoader,
+        async lazy() {
+            const PublicEvent = await import("./components/layouts/PublicEvent");
+            return { Component: PublicEvent.default };
+        },
+        errorElement: <ErrorPage />,
     },
     {
         path: "/event/:eventId/:eventSlug",

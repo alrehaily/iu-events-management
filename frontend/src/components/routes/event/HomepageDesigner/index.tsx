@@ -29,6 +29,8 @@ interface FormValues {
     get_tickets_button_text: string;
 }
 
+import {IU_COLORS} from "../../../../constants/iuTheme.ts";
+
 const HomepageDesigner = () => {
     const {eventId} = useParams();
     const eventSettingsQuery = useGetEventSettings(eventId);
@@ -48,8 +50,8 @@ const HomepageDesigner = () => {
     const form = useForm<FormValues>({
         initialValues: {
             homepage_theme_settings: {
-                accent: '#8b5cf6',
-                background: '#f5f3ff',
+                accent: IU_COLORS.green900,
+                background: IU_COLORS.bg,
                 mode: 'light',
                 background_type: 'COLOR',
                 font_family: DEFAULT_HOMEPAGE_FONT,

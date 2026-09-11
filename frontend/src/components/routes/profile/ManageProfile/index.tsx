@@ -193,7 +193,7 @@ export const ManageProfile = () => {
                                                 required
                                                 data={localeSelectData}
                                                 value={profileForm.values.locale || ''}
-                                                onChange={(e) => profileForm.setFieldValue('locale', e.target.value)}
+                                                onChange={(e) => profileForm.setFieldValue('locale', e.target.value as SupportedLocales)}
                                                 label={t`Language`}
                                             />
                                         </InputGroup>

@@ -278,7 +278,7 @@ export const SortableProduct = ({product, currencyCode, category, categories}: S
                                     <Badge
                                         leftSection={<IconTicket size={12}/>}
                                         variant="light"
-                                        color="violet"
+                                        color="primary"
                                         size="sm"
                                     >
                                         {t`Ticket`}

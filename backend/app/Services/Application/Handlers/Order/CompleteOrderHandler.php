@@ -85,6 +85,21 @@ class CompleteOrderHandler
 
             $this->occurrenceStatusValidator->assertOrderOccurrencesArePurchasable($order);
 
+            $buyerEmail = strtolower($orderDTO->email ?? '');
+            if ($buyerEmail !== '') {
+                $alreadyRegistered = DB::table('orders')
+                    ->where('event_id', $order->getEventId())
+                    ->whereRaw('LOWER(email) = ?', [$buyerEmail])
+                    ->where('status', OrderStatus::COMPLETED->name)
+                    ->where('short_id', '!=', $orderShortId)
+                    ->whereNull('deleted_at')
+                    ->exists();
+
+                if ($alreadyRegistered) {
+                    throw new ResourceConflictException(__('لقد قمت بالتسجيل مسبقاً في هذه الفعالية. لا يُسمح بالتسجيل المكرر.'));
+                }
+            }
+
             $updatedOrder = $this->updateOrder($order, $orderDTO);
 
             $this->createAttendees($orderData->products, $order, $orderDTO, $eventSettings);

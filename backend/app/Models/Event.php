@@ -108,6 +108,7 @@ class Event extends BaseModel
         return [
             EventDomainObjectAbstract::ATTRIBUTES => 'array',
             EventDomainObjectAbstract::RECURRENCE_RULE => 'array',
+            'is_certificate_eligible' => 'boolean',
         ];
     }
 }

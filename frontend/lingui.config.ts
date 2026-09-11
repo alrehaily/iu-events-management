@@ -2,6 +2,7 @@ import type {LinguiConfig} from "@lingui/conf";
 
 const config: LinguiConfig = {
     locales: [
+        "ar", // Arabic
         "en", // English
         "zh-cn", // Mandarin Chinese (Simplified)
         "es", // Spanish

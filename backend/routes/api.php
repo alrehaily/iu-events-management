@@ -125,6 +125,7 @@ use HiEvents\Http\Actions\Events\GetEventAction;
 use HiEvents\Http\Actions\Events\GetEventDeletionStatusAction;
 use HiEvents\Http\Actions\Events\GetEventPublicAction;
 use HiEvents\Http\Actions\Events\GetEventsAction;
+use HiEvents\Http\Actions\Events\GetEventsPublicAction;
 use HiEvents\Http\Actions\Events\GetOrganizerEventsPublicAction;
 use HiEvents\Http\Actions\Events\Images\CreateEventImageAction;
 use HiEvents\Http\Actions\Events\Images\DeleteEventImageAction;
@@ -605,6 +606,7 @@ $router->prefix('/admin')->middleware(['auth:api'])->group(
 $router->prefix('/public')->group(
     function (Router $router): void {
         // Events
+        $router->get('/events', GetEventsPublicAction::class);
         $router->get('/events/{event_id}', GetEventPublicAction::class);
         $router->get('/events/{event_id}/occurrences', GetEventOccurrencesPublicAction::class)
             ->middleware('throttle:60,1');
@@ -628,6 +630,19 @@ $router->prefix('/public')->group(
 
         // Attendees
         $router->get('/events/{event_id}/attendees/{attendee_short_id}', GetAttendeeActionPublic::class);
+        $router->get('/attendees/{attendee_identifier}/certificate', \HiEvents\Http\Actions\Attendees\GetAttendeeCertificateActionPublic::class)
+            ->middleware('auth:api');
+        $router->get('/certificates/verify/{certificate_code}', \HiEvents\Http\Actions\Attendees\VerifyCertificateActionPublic::class);
+
+        // Attendee Auth & Registrations Portal
+        $router->post('/attendee/register', \HiEvents\Http\Actions\Auth\AttendeeRegisterActionPublic::class);
+        $router->post('/attendee/login', \HiEvents\Http\Actions\Auth\AttendeeLoginActionPublic::class);
+        $router->get('/attendee/me', \HiEvents\Http\Actions\Auth\GetAttendeeProfileActionPublic::class)
+            ->middleware('auth:api');
+        $router->get('/attendee/registrations', \HiEvents\Http\Actions\Attendees\GetAttendeeRegistrationsActionPublic::class)
+            ->middleware('auth:api');
+        $router->post('/attendee/registrations/{order_short_id}/cancel', \HiEvents\Http\Actions\Attendees\CancelAttendeeRegistrationActionPublic::class)
+            ->middleware('auth:api');
 
         // Waitlist
         $router->post('/events/{event_id}/waitlist', CreateWaitlistEntryActionPublic::class)

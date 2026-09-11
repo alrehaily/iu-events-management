@@ -46,6 +46,7 @@ interface OrganizerReportProps<T> {
     showCurrencyFilter?: boolean;
     availableCurrencies?: string[];
     eventId?: number | null;
+    downloadFileName?: string;
 }
 
 const TIME_PERIODS = [

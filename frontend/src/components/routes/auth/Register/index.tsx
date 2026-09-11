@@ -68,15 +68,16 @@ export const Register = () => {
     return (
         <>
             <header className={classes.header}>
-                <h2>{t`Get started`}</h2>
+                <h2>{t`إنشاء حساب منظم فعاليات جديد`}</h2>
                 <p>
-                    <Trans>
-                        Already have an account?{' '}
-                        <NavLink to={`/auth/login${location.search}`}>
-                            {t`Log in`}
-                        </NavLink>
-                    </Trans>
+                    مخصص للكليات والعمادات والجهات المنظمة.{' '}
+                    <NavLink to={`/auth/login${location.search}`}>
+                        تسجيل الدخول
+                    </NavLink>
                 </p>
+                <div style={{marginTop: 8, fontSize: 13, background: "#f0fdf4", padding: "8px 12px", borderRadius: 10, border: "1px solid #bbf7d0"}}>
+                    هل أنت طالب أو زائر ترغب بالتسجيل في الفعاليات؟ <NavLink to="/register" style={{fontWeight: 700, color: "var(--iu-green-900)"}}>سجل من بوابة الطلاب والمشاركين ←</NavLink>
+                </div>
             </header>
 
             <div className={classes.registerCard}>

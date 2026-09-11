@@ -1,7 +1,8 @@
 import {i18n} from "@lingui/core";
 
 export type SupportedLocales =
-    "en"
+    "ar"
+    | "en"
     | "de"
     | "fr"
     | "it"
@@ -19,9 +20,10 @@ export type SupportedLocales =
     | "sk"
     | "el";
 
-export const availableLocales = ["en", "de", "fr", "it", "nl", "pt", "es", "zh-cn", "zh-hk", "pt-br", "vi", "tr", "hu", "pl", "se", "sk", "el"];
+export const availableLocales = ["ar", "en", "de", "fr", "it", "nl", "pt", "es", "zh-cn", "zh-hk", "pt-br", "vi", "tr", "hu", "pl", "se", "sk", "el"];
 
 export const localeToFlagEmojiMap: Record<SupportedLocales, string> = {
+    ar: '🇸🇦',
     en: '🇬🇧',
     de: '🇩🇪',
     fr: '🇫🇷',
@@ -42,6 +44,7 @@ export const localeToFlagEmojiMap: Record<SupportedLocales, string> = {
 };
 
 export const localeToNameMap: Record<SupportedLocales, string> = {
+    ar: `العربية`,
     en: `English`,
     de: `German`,
     fr: `French`,
@@ -77,13 +80,14 @@ export const getClientLocale = () => {
             return getSupportedLocale(storedLocale);
         }
 
-        return getSupportedLocale(window.navigator.language);
+        return "ar";
     }
 
-    return "en";
+    return "ar";
 };
 
 const dayjsLocaleLoaders: Partial<Record<SupportedLocales, () => Promise<unknown>>> = {
+    ar: () => import("dayjs/locale/ar"),
     de: () => import("dayjs/locale/de"),
     fr: () => import("dayjs/locale/fr"),
     it: () => import("dayjs/locale/it"),
@@ -102,16 +106,19 @@ const dayjsLocaleLoaders: Partial<Record<SupportedLocales, () => Promise<unknown
 
 export async function dynamicActivateLocale(locale: string) {
     try {
-        locale = availableLocales.includes(locale) ? locale : "en";
+        locale = availableLocales.includes(locale) ? locale : "ar";
         const [module] = await Promise.all([
             import(`./locales/${locale}.po`),
             dayjsLocaleLoaders[locale as SupportedLocales]?.().catch((error) => console.error("Error loading dayjs locale:", error)),
         ]);
         i18n.load(locale, module.messages);
         i18n.activate(locale);
+        if (typeof document !== "undefined") {
+            document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
+            document.documentElement.lang = locale;
+        }
     } catch (error) {
         console.error("Error loading locale:", error);
-        // i18n.activate("en");
     }
 }
 
@@ -128,5 +135,5 @@ export const getSupportedLocale = (userLocale: string) => {
         return mainLocale;
     }
 
-    return "en";
+    return "ar";
 };

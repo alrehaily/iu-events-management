@@ -1,0 +1,45 @@
+.card,
+.eventCard,
+.featureCard,
+.statCard {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid var(--iu-line);
+  box-shadow: 0 4px 18px var(--iu-shadow);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.card:hover,
+.eventCard:hover,
+.featureCard:hover,
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(8, 75, 47, 0.14);
+  border-color: rgba(27, 117, 75, 0.3);
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+  transition: opacity var(--card-reveal-duration) var(--card-reveal-ease),
+              transform var(--card-reveal-duration) var(--card-reveal-ease),
+              filter var(--card-reveal-duration) var(--card-reveal-ease);
+  transition-delay: calc(var(--stagger-index, 0) * var(--card-stagger-step));
+  will-change: transform, opacity, filter;
+}
+
+.reveal-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-card {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}

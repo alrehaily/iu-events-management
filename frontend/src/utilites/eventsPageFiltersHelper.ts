@@ -11,7 +11,7 @@ export const getEventQueryFiltersWithParams = (
     eventsState?: string, 
     organizerId?: string
 ) => {
-    let filter = {};
+    let filter: Partial<QueryFilters> = {};
     if (eventsState === 'upcoming' || !eventsState) {
         filter = {
             additionalParams: {

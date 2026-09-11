@@ -23,7 +23,12 @@ const ALLOWED_UNAUTHENTICATED_PATHS = [
     'widget',
     '/product/',
     'check-in',
-    '/events/',
+    '/events',
+    'about',
+    'my-registrations',
+    'login',
+    'register',
+    'public',
     'my-tickets',
 ];
 

@@ -7,7 +7,7 @@ import {LoginData, LoginResponse} from "../../../../types.ts";
 import {useForm} from "@mantine/form";
 import {redirectToPreviousUrl} from "../../../../api/client.ts";
 import classes from "./Login.module.scss";
-import {t, Trans} from "@lingui/macro";
+import {t} from "@lingui/macro";
 import {useEffect, useState} from "react";
 import {ChooseAccountModal} from "../../../modals/ChooseAccountModal";
 import {useSendTicketLookupEmail} from "../../../../mutations/useSendTicketLookupEmail.ts";
@@ -77,15 +77,16 @@ const Login = () => {
     return (
         <>
             <header className={classes.header}>
-                <h2>{t`Welcome back`}</h2>
+                <h2>{t`تسجيل الدخول — المنظمون والمسؤولون`}</h2>
                 <p>
-                    <Trans>
-                        Don't have an account?{' '}
-                        <NavLink to={`/auth/register${location.search}`}>
-                            Sign up
-                        </NavLink>
-                    </Trans>
+                    مخصص للجهات واللجان المنظمة بالجامعة.{' '}
+                    <NavLink to={`/auth/register${location.search}`}>
+                        إنشاء حساب منظم جديد
+                    </NavLink>
                 </p>
+                <div style={{marginTop: 8, fontSize: 13, background: "#f0fdf4", padding: "8px 12px", borderRadius: 10, border: "1px solid #bbf7d0"}}>
+                    هل أنت طالب أو زائر ترغب بالوصول لتذاكرك؟ <NavLink to="/login" style={{fontWeight: 700, color: "var(--iu-green-900)"}}>الدخول من بوابة الطلاب والمشاركين ←</NavLink>
+                </div>
             </header>
             <div className={classes.loginCard}>
                 <form onSubmit={form.onSubmit((values) => loginUser(values))}>

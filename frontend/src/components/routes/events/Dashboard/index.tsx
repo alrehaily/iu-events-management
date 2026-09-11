@@ -26,7 +26,6 @@ import {getEventQueryFilters} from "../../../../utilites/eventsPageFiltersHelper
 import {EventsDashboardStatusButtons} from "../../../common/EventsDashboardStatusButtons";
 import {NoEventsBlankSlate} from "../../../common/NoEventsBlankSlate";
 import {useState} from "react";
-import {getConfig} from "../../../../utilites/config.ts";
 
 const DashboardSkeleton = () => {
     return (
@@ -58,6 +57,30 @@ export function Dashboard() {
     const events = eventData?.data;
     const organizers = organizersQuery?.data?.data;
 
+    // While organizers query is loading, show clean IU loading state to eliminate redirect flash
+    if (!organizersQuery.isFetched) {
+        return (
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: '60vh',
+                gap: 16
+            }}>
+                <div style={{
+                    width: 38,
+                    height: 38,
+                    border: "3px solid var(--iu-green-200)",
+                    borderTop: "3px solid var(--iu-green-900)",
+                    borderRadius: "50%",
+                    animation: "iu-spin 0.8s linear infinite"
+                }} />
+                <span style={{color: 'var(--iu-green-900)', fontWeight: 600, fontSize: 15}}>جاري تحميل لوحة التحكم...</span>
+            </div>
+        );
+    }
+
     // If there are no organizers, redirect to the welcome page
     if (organizersQuery.isFetched && organizers?.length === 0) {
         return <Navigate to={'/welcome'}/>
@@ -84,7 +107,7 @@ export function Dashboard() {
                 <div className={classes.headerContent}>
                     <h1 className={classes.pageTitle}>{getHeading()}</h1>
                     <p className={classes.welcomeMessage}>
-                        <Trans>Welcome to {getConfig('VITE_APP_NAME', 'Hi.Events')}, here's a listing of all your events</Trans>
+                        <Trans>مرحباً بك في منصة فعاليات الجامعة الإسلامية بالمدينة المنورة</Trans>
                     </p>
                 </div>
 

@@ -31,3 +31,7 @@ test_results/
 
 /release-notes/**
 /release-notes/
+
+# Composer binary (downloaded tool, not source)
+composer.phar
+backend/composer.phar

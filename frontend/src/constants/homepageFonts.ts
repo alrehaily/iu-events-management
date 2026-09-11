@@ -7,9 +7,9 @@ export interface HomepageFontDefinition {
     stack: string;
 }
 
-const sansStack = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
-const serifStack = `Georgia, 'Times New Roman', Times, serif`;
-const displayStack = `Impact, 'Helvetica Neue', sans-serif`;
+const sansStack = `'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`;
+const serifStack = `'Tajawal', Georgia, 'Times New Roman', Times, serif`;
+const displayStack = `'Tajawal', Impact, 'Helvetica Neue', sans-serif`;
 
 /**
  * Curated set of fonts offered in the homepage designer.

@@ -1,0 +1,164 @@
+/* ==========================================================================
+   ISLAMIC UNIVERSITY OF MADINAH (IU) DESIGN TOKENS
+   Source of Truth extracted directly from UI-Event design specifications.
+   ========================================================================== */
+
+:root {
+  /* --- Primary Brand Greens --- */
+  --iu-green-900: #084b2f; /* Deep Official IU Green (Headings, primary buttons hover, footer) */
+  --iu-green-800: #105f3c; /* Intermediate Deep Green */
+  --iu-green-700: #1b754b; /* Primary UI Action Green (Buttons, active pills, highlights) */
+  --iu-green-600: #1d8a51; /* Mid Vibrance Green (Gradient transitions) */
+  --iu-green-500: #168551; /* Vibrant Accent Green (Button shadows, glows) */
+  --iu-green-200: #dff3e8; /* Soft Green Tint (Outline button hover, badges, stat icons) */
+  --iu-green-100: #edf8f2; /* Light Surface Tint */
+  --iu-green-50:  #f4fbf7; /* Ultra-light Tint (Row hover, subtle backdrops) */
+
+  /* --- Canvas, Surfaces & Backgrounds --- */
+  --iu-bg: #f4f6f8;        /* Page background (UI-Event default) */
+  --iu-bg-auth: #f3f7f4;   /* Auth page backdrop */
+  --iu-surface: #ffffff;   /* Card, modal, dropdown canvas */
+  --iu-surface-alt: #f8faf9; /* Secondary card/section canvas */
+
+  /* --- Text & Content Typography --- */
+  --iu-text: #0f172a;          /* Primary dark text (High contrast, clean legibility) */
+  --iu-text-muted: #555555;    /* Secondary/Muted descriptive text */
+  --iu-text-subtle: #64748b;   /* Tertiary labels, timestamps, meta info */
+  --iu-text-inverse: #ffffff;  /* High contrast text on dark green surfaces */
+
+  /* --- Borders & Dividers --- */
+  --iu-border: #e5e7eb;        /* Standard element border (Cards, nav, dividers) */
+  --iu-border-light: #e9e9e9;  /* Subtle pill/item border */
+  --iu-border-input: #d8dde6;  /* Form field and input border */
+
+  /* --- Status & Feedback --- */
+  --iu-success: #1b754b;
+  --iu-success-soft: #dff3e8;
+  --iu-warning: #d97706;
+  --iu-warning-soft: #fef3c7;
+  --iu-danger: #dc2626;
+  --iu-danger-soft: #fee2e2;
+  --iu-info: #0284c7;
+  --iu-info-soft: #e0f2fe;
+
+  /* --- Shadows & Elevations --- */
+  --iu-shadow-color: #cfcfcf;
+  --iu-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --iu-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --iu-shadow-md: 0 6px 16px rgba(22, 133, 81, 0.18);
+  --iu-shadow-lg: 0 12px 26px rgba(8, 75, 47, 0.12);
+  --iu-shadow-xl: 0 18px 36px rgba(8, 75, 47, 0.22);
+  --iu-shadow-card: 0 0 10px var(--iu-shadow-color);
+  --iu-shadow-focus: 0 0 0 3px rgba(22, 133, 81, 0.15);
+
+  /* --- Border Radii --- */
+  --iu-radius-xs: 4px;
+  --iu-radius-sm: 8px;
+  --iu-radius-md: 12px;   /* Standard form fields, cards */
+  --iu-radius-lg: 16px;   /* Modals, prominent cards */
+  --iu-radius-xl: 24px;   /* Auth cards */
+  --iu-radius-2xl: 32px;  /* Floating search boxes */
+  --iu-radius-pill: 999px; /* Buttons, pills, badges */
+
+  /* --- Spacing --- */
+  --iu-spacing-xs: 4px;
+  --iu-spacing-sm: 8px;
+  --iu-spacing-md: 16px;
+  --iu-spacing-lg: 24px;
+  --iu-spacing-xl: 32px;
+  --iu-spacing-2xl: 48px;
+
+  /* --- Typography --- */
+  --iu-font-family: "Tajawal", "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --iu-font-size-xs: 12px;
+  --iu-font-size-sm: 14px;
+  --iu-font-size-md: 16px;
+  --iu-font-size-lg: 18px;
+  --iu-font-size-xl: 22px;
+  --iu-font-size-2xl: 28px;
+  --iu-font-size-3xl: 36px;
+  --iu-line-height-tight: 1.2;
+  --iu-line-height-normal: 1.5;
+  --iu-line-height-relaxed: 1.8;
+
+  /* --- Buttons --- */
+  --iu-btn-solid-bg: var(--iu-green-700);
+  --iu-btn-solid-color: #ffffff;
+  --iu-btn-solid-hover-bg: var(--iu-green-900);
+  --iu-btn-solid-shadow: 0 6px 16px rgba(22, 133, 81, 0.18);
+  --iu-btn-solid-hover-shadow: 0 10px 22px rgba(8, 75, 47, 0.28);
+  --iu-btn-outline-border: var(--iu-green-700);
+  --iu-btn-outline-color: var(--iu-green-700);
+  --iu-btn-outline-hover-bg: var(--iu-green-200);
+
+  /* --- Forms & Inputs --- */
+  --iu-input-bg: var(--iu-surface);
+  --iu-input-border: 1px solid var(--iu-border-input);
+  --iu-input-radius: var(--iu-radius-md);
+  --iu-input-padding: 12px 14px;
+  --iu-input-focus-border: var(--iu-green-700);
+  --iu-input-focus-shadow: var(--iu-shadow-focus);
+
+  /* --- Modals --- */
+  --iu-modal-bg: var(--iu-surface);
+  --iu-modal-radius: var(--iu-radius-lg);
+  --iu-modal-shadow: var(--iu-shadow-xl);
+  --iu-modal-overlay: rgba(8, 75, 47, 0.35);
+
+  /* --- Tables --- */
+  --iu-table-head-bg: var(--iu-bg);
+  --iu-table-head-color: var(--iu-text);
+  --iu-table-border: var(--iu-border);
+  --iu-table-row-hover: var(--iu-green-50);
+
+  /* --- Navigation --- */
+  --iu-nav-bg: #ffffff;
+  --iu-nav-border: var(--iu-border);
+  --iu-nav-link: #6f6f6f;
+  --iu-nav-link-hover: var(--iu-green-900);
+  --iu-nav-indicator: linear-gradient(90deg, var(--iu-green-700), var(--iu-green-900));
+
+  /* --- Hero & Banner Specifications (Direct from UI-Event) --- */
+  --hero-angle: 110deg;
+  --hero-from: var(--iu-green-900);
+  --hero-mid: var(--iu-green-700);
+  --hero-to: var(--iu-green-600); /* #1d8a51 */
+  --hero-height: 280px;
+  --hero-card-bg: rgba(255, 255, 255, 0.1);
+  --hero-title-color: #ffffff;
+  --hero-meta-color: rgba(255, 255, 255, 0.85);
+  --hero-logo-bg: #0f5132;
+
+  /* --- Canvas Defaults --- */
+  --iu-page-bg: #ffffff;
+
+  /* --- Gradients --- */
+  --iu-gradient-brand: linear-gradient(135deg, var(--iu-green-900) 0%, var(--iu-green-700) 100%);
+  --iu-gradient-hero: linear-gradient(
+    var(--hero-angle, 110deg),
+    var(--hero-from, var(--iu-green-900)),
+    var(--hero-mid, var(--iu-green-700)),
+    var(--hero-to, var(--iu-green-600))
+  );
+
+  /* ==========================================================================
+     UI-Event Direct Aliases (Ensures UI-Event exact CSS rules work everywhere)
+     ========================================================================== */
+  --green-900: var(--iu-green-900);
+  --green-800: var(--iu-green-800);
+  --green-700: var(--iu-green-700);
+  --green-600: var(--iu-green-600);
+  --green-200: var(--iu-green-200);
+  --green-100: var(--iu-green-100);
+  --green-50:  var(--iu-green-50);
+  --bg: var(--iu-bg);
+  --line: var(--iu-border);
+  --text: var(--iu-text);
+  --shadow: var(--iu-shadow-color);
+  --page-bg: #ffffff;
+  --font-primary: var(--iu-font-family);
+  --nav-font-size: 15px;
+  --nav-font-weight: 600;
+  --container-max: 1500px;
+}
+

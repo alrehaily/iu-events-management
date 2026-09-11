@@ -1,0 +1,50 @@
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.infoCard {
+  background: #f8fafc;
+  border: 1px solid var(--iu-line);
+  border-radius: 16px;
+  padding: 18px 20px;
+  transition: all 0.2s ease;
+}
+
+.infoCard:hover {
+  background: var(--green-50);
+  border-color: rgba(27, 117, 75, 0.25);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green-900);
+  margin-bottom: 8px;
+}
+
+.cardValue {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--iu-text);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -96,7 +96,7 @@
       width: calc(100% - 24px);
       background: none;
       border: none;
-      text-align: left;
+      text-align: right;
 
       .navBadge {
         background: var(--mantine-color-secondary-5);
@@ -105,11 +105,13 @@
         border-radius: 12px;
         font-size: 0.75em;
         font-weight: 600;
-        margin-left: auto;
+        margin-right: auto;
+        margin-left: 0;
       }
 
       .navBadgeAlert {
-        margin-left: auto;
+        margin-right: auto;
+        margin-left: 0;
         background: #d97706;
         color: white;
       }
@@ -136,7 +138,7 @@
         &::before {
           content: '';
           position: absolute;
-          left: 0;
+          right: 0;
           top: 50%;
           transform: translateY(-50%);
           width: 3px;
@@ -156,7 +158,8 @@
       }
 
       svg {
-        margin-right: 12px;
+        margin-left: 12px;
+        margin-right: 0;
         min-width: 20px;
         color: color-mix(in srgb, white 55%, transparent);
         transition: color 0.15s ease;
@@ -182,9 +185,10 @@
     height: 100vh;
     height: 100dvh;
     z-index: 200;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     top: 0;
-    left: 0;
+    right: 0;
+    left: auto;
 
     &.open {
       transform: translateX(0);
@@ -199,7 +203,8 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: -2px;
+    left: -2px;
+    right: auto;
     top: 50%;
     transform: translateY(-50%);
     transition: color 0.15s ease, transform 0.15s ease;
@@ -212,7 +217,8 @@
     }
 
     @media (max-width: 767px) {
-      right: 16px;
+      left: 16px;
+      right: auto;
       top: 28px;
       transform: none;
 

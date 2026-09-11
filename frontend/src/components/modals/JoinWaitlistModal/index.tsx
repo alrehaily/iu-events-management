@@ -11,8 +11,9 @@ import {detectMode} from "../../../utilites/themeUtils.ts";
 import {BouncingEmoji} from "../../common/BouncingEmoji";
 import {formatDateWithLocale, getSafeLocale} from "../../../utilites/dates.ts";
 import {getClientLocale} from "../../../locales.ts";
+import {IU_COLORS} from "../../../constants/iuTheme.ts";
 
-const DEFAULT_ACCENT = '#8b5cf6';
+const DEFAULT_ACCENT = IU_COLORS.green900;
 
 interface JoinWaitlistModalProps extends GenericModalProps {
     product: Product;

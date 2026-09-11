@@ -1,0 +1,223 @@
+/* ========== IU AUTH STYLES ========== */
+
+.iu-auth-page {
+  min-height: 80vh;
+  padding: 48px 0 80px;
+  background:
+    radial-gradient(600px 240px at 85% -10%, rgba(27, 117, 75, 0.18), transparent 60%),
+    radial-gradient(520px 220px at 10% 10%, rgba(8, 75, 47, 0.1), transparent 55%),
+    var(--iu-page-bg, #f3f7f4);
+}
+
+.iu-auth-shell {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  align-items: stretch;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.iu-auth-intro {
+  position: relative;
+  border-radius: 28px;
+  padding: 44px;
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    #053320 0%,
+    #084b2f 50%,
+    #1b754b 100%
+  );
+  box-shadow: 0 18px 40px rgba(8, 75, 47, 0.22);
+  overflow: hidden;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.iu-auth-intro::after {
+  content: "";
+  position: absolute;
+  inset: -40% -20% auto auto;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 65%);
+  pointer-events: none;
+}
+
+.iu-auth-logo {
+  width: 110px;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+  margin-bottom: 24px;
+}
+
+.iu-auth-introTitle {
+  font-size: clamp(24px, 2.6vw, 34px);
+  margin: 0 0 14px;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #fff;
+}
+
+.iu-auth-introText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.iu-auth-introMeta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.iu-auth-pill {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.iu-auth-card {
+  background: #fff;
+  border: 1px solid #e4ece8;
+  border-radius: 28px;
+  padding: 36px 40px;
+  box-shadow: 0 16px 36px rgba(8, 75, 47, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.iu-auth-cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.iu-auth-cardHeader h2 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.iu-auth-cardHeader p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.iu-auth-form {
+  display: grid;
+  gap: 16px;
+}
+
+.iu-auth-field {
+  display: grid;
+  gap: 6px;
+}
+
+.iu-auth-field label {
+  font-size: 13px;
+  color: #374151;
+  font-weight: 700;
+}
+
+.iu-auth-field input,
+.iu-auth-field select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #d8dde6;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.iu-auth-field input:focus,
+.iu-auth-field select:focus {
+  border-color: var(--iu-primary, #084b2f);
+  box-shadow: 0 0 0 3px rgba(27, 117, 75, 0.15);
+}
+
+.iu-auth-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.iu-auth-row a {
+  color: var(--iu-primary, #084b2f);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.iu-auth-row a:hover {
+  text-decoration: underline;
+}
+
+.iu-auth-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.iu-auth-actions .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.iu-auth-alt {
+  font-size: 13px;
+  color: #6b7280;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+.iu-auth-alt a {
+  color: var(--iu-primary, #084b2f);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.iu-auth-note {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: center;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .iu-auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .iu-auth-intro {
+    min-height: auto;
+    padding: 32px;
+  }
+
+  .iu-auth-card {
+    padding: 28px 24px;
+  }
+}

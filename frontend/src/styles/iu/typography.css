@@ -1,0 +1,20 @@
+body, input, button, select, textarea {
+  font-family: var(--font-primary);
+}
+
+[dir="rtl"] {
+  text-align: right;
+  direction: rtl;
+}
+
+[dir="ltr"] {
+  text-align: left;
+  direction: ltr;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  color: var(--iu-text);
+  font-weight: 700;
+  margin-top: 0;
+}

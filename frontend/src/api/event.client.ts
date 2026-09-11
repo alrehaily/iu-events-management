@@ -126,8 +126,10 @@ export const eventsClient = {
 }
 
 export const eventsClientPublic = {
-    all: async () => {
-        const response = await publicApi.get<GenericPaginatedResponse<Event>>('events');
+    all: async (pagination?: QueryFilters) => {
+        const response = await publicApi.get<GenericPaginatedResponse<Event>>(
+            'events' + (pagination ? queryParamsHelper.buildQueryString(pagination) : '')
+        );
         return response.data;
     },
 

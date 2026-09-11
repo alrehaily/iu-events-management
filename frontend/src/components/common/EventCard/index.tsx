@@ -27,14 +27,10 @@ import {summariseEventLocations} from "../../../utilites/effectiveLocation.ts";
 import {formatAddress} from "../../../utilites/addressUtilities.ts";
 
 const placeholderGradients = [
-    'linear-gradient(135deg, var(--mantine-color-violet-5) 0%, var(--mantine-color-indigo-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-pink-5) 0%, var(--mantine-color-grape-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-blue-5) 0%, var(--mantine-color-cyan-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-teal-5) 0%, var(--mantine-color-green-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-orange-5) 0%, var(--mantine-color-yellow-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-indigo-5) 0%, var(--mantine-color-blue-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-grape-5) 0%, var(--mantine-color-violet-5) 100%)',
-    'linear-gradient(135deg, var(--mantine-color-cyan-5) 0%, var(--mantine-color-teal-5) 100%)',
+    'linear-gradient(110deg, var(--iu-green-900) 0%, var(--iu-green-700) 100%)',
+    'linear-gradient(135deg, var(--iu-green-800) 0%, var(--iu-green-600) 100%)',
+    'linear-gradient(120deg, var(--iu-green-900) 0%, #168551 100%)',
+    'linear-gradient(140deg, #105f3c 0%, var(--iu-green-700) 100%)',
 ];
 
 interface EventCardProps {
