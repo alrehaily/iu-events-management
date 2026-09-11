@@ -22,7 +22,7 @@
     "@dnd-kit/sortable": "^7.0.2",
     "@dnd-kit/utilities": "^3.2.1",
     "@lingui/core": "4.14.1",
-    "@lingui/macro": "^4.7.0",
+    "@lingui/macro": "^5.9.5",
     "@lingui/react": "^4.7.0",
     "@mantine/carousel": "^9.2.2",
     "@mantine/charts": "^9.2.2",
