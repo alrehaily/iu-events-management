@@ -1,6 +1,7 @@
 import {useLoaderData} from "react-router";
 import EventHomepage from "../EventHomepage";
 import {Event} from "../../../types";
+import classes from "./PublicEvent.module.scss";
 
 export const PublicEvent = () => {
     const loaderData = useLoaderData();
@@ -13,12 +14,14 @@ export const PublicEvent = () => {
     };
 
     return (
-        <EventHomepage
-            event={event}
-            promoCodeValid={promoCodeValid}
-            promoCode={promoCode}
-            initialOccurrenceId={occurrenceId}
-        />
+        <div className={classes.page}>
+            <EventHomepage
+                event={event}
+                promoCodeValid={promoCodeValid}
+                promoCode={promoCode}
+                initialOccurrenceId={occurrenceId}
+            />
+        </div>
     );
 };
 
