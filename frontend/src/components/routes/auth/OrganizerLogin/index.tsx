@@ -16,7 +16,7 @@ export const OrganizerLogin = () => {
     const me = useGetMe();
     const location = useLocation();
     const navigate = useNavigate();
-    const {t} = useIULanguage();
+    const {isArabic} = useIULanguage();
     const form = useForm({
         initialValues: {
             email: '',
@@ -25,6 +25,26 @@ export const OrganizerLogin = () => {
         }
     });
     const [showChooseAccount, setShowChooseAccount] = useState(false);
+
+    const text = {
+        error: isArabic
+            ? "يرجى التحقق من صحة البريد الإلكتروني وكلمة المرور والمحاولة مرة أخرى."
+            : "Please check your email and password and try again.",
+        badge: isArabic ? "بوابة المنظمين والمسؤولين" : "Organizer & Staff Portal",
+        title: isArabic ? "تسجيل الدخول لإدارة الفعاليات" : "Sign in to manage events",
+        description: isArabic
+            ? "مخصص للجهات واللجان المنظمة للفعاليات بالجامعة الإسلامية."
+            : "For university departments and authorized event organizing teams.",
+        email: isArabic ? "البريد الإلكتروني المؤسسي" : "Institutional Email",
+        password: isArabic ? "كلمة المرور" : "Password",
+        forgotPassword: isArabic ? "نسيت كلمة المرور؟" : "Forgot password?",
+        loggingIn: isArabic ? "جاري تسجيل الدخول..." : "Logging in...",
+        login: isArabic ? "تسجيل الدخول كمنظم" : "Log In as Organizer",
+        attendeePrompt: isArabic
+            ? "هل ترغب بحضور الفعاليات والتسجيل فيها فقط؟"
+            : "Are you here to browse and register for events?",
+        attendeeLink: isArabic ? "دخول المستفيدين والزوار ←" : "Attendee & visitor login →",
+    };
 
     const {mutate: loginUser, isPending, data} = useMutation({
         mutationFn: (userData: LoginData) => authClient.login(userData),
@@ -43,7 +63,7 @@ export const OrganizerLogin = () => {
 
         onError: () => {
             notifications.show({
-                message: t("organizer_login_error", "يرجى التحقق من صحة البريد الإلكتروني وكلمة المرور والمحاولة مرة أخرى."),
+                message: text.error,
                 color: 'red',
                 position: 'top-center',
             });
@@ -65,22 +85,20 @@ export const OrganizerLogin = () => {
             <div className={classes.badgeWrapper}>
                 <span className={classes.badge}>
                     <IconShieldLock size={14} />
-                    {t("organizer_portal_badge", "بوابة المنظمين والمسؤولين")}
+                    {text.badge}
                 </span>
             </div>
 
             <header className={classes.header}>
-                <h2>{t("organizer_login_title", "تسجيل الدخول لإدارة الفعاليات")}</h2>
-                <p>
-                    {t("organizer_login_desc", "مخصص لمنسوبي الكليات والعمادات واللجان المنظمة بالجامعة الإسلامية.")}
-                </p>
+                <h2>{text.title}</h2>
+                <p>{text.description}</p>
             </header>
 
             <div className={classes.organizerCard}>
                 <form onSubmit={form.onSubmit((values) => loginUser(values))}>
                     <TextInput
                         {...form.getInputProps('email')}
-                        label={t("organizer_email_label", "البريد الإلكتروني المؤسسي")}
+                        label={text.email}
                         placeholder="organizer@iu.edu.sa"
                         type="email"
                         required
@@ -88,11 +106,9 @@ export const OrganizerLogin = () => {
 
                     <div>
                         <div className={classes.passwordRow}>
-                            <label htmlFor="organizer-password">
-                                {t("password_label", "كلمة المرور")}
-                            </label>
+                            <label htmlFor="organizer-password">{text.password}</label>
                             <NavLink to={`/auth/forgot-password${location.search}`} tabIndex={-1}>
-                                {t("forgot_password_link", "نسيت كلمة المرور؟")}
+                                {text.forgotPassword}
                             </NavLink>
                         </div>
                         <PasswordInput
@@ -110,17 +126,15 @@ export const OrganizerLogin = () => {
                         disabled={isPending}
                         mt="lg"
                     >
-                        {isPending ? t("logging_in", "جاري تسجيل الدخول...") : t("organizer_login_button", "تسجيل الدخول كمنظم")}
+                        {isPending ? text.loggingIn : text.login}
                     </Button>
                 </form>
             </div>
 
             <div className={classes.bottomPrompt}>
-                <span>
-                    {t("organizer_attendee_prompt", "هل ترغب بحضور الفعاليات والتسجيل فيها فقط؟")}
-                </span>
+                <span>{text.attendeePrompt}</span>
                 <NavLink to={`/auth/login${location.search}`}>
-                    {t("organizer_attendee_link", "دخول المستفيدين والزوار ←")}
+                    {text.attendeeLink}
                 </NavLink>
             </div>
 
