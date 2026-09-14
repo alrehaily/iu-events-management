@@ -5,6 +5,14 @@
 
 /* Reset & Page Canvas */
 .iu-page {
+  --iu-anim-page: 0.78s;
+  --iu-anim-hero: 0.92s;
+  --iu-anim-body: 0.86s;
+  --iu-anim-card-in: 0.82s;
+  --iu-anim-reveal: 0.82s;
+  --iu-anim-stagger-step: 110ms;
+  --iu-anim-hover: 0.38s;
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,11 +34,19 @@
   direction: rtl;
 }
 
-/* BDSN Ultra-Smooth Keyframes & Motion System */
+/* Keep the public shell visible at all times. Global main/page entrance fades can
+   otherwise stack with route animations and look like a browser refresh. */
+.iu-page,
+.iu-page .iu-main,
+.iu-page main {
+  animation: none !important;
+}
+
+/* Ultra-smooth motion system. Route transitions never fade to transparent. */
 @keyframes iuBdsnPageFade {
   0% {
-    opacity: 0;
-    transform: translateY(14px);
+    opacity: 0.985;
+    transform: translateY(7px);
   }
   100% {
     opacity: 1;
@@ -40,8 +56,8 @@
 
 @keyframes iuBdsnHeroContent {
   0% {
-    opacity: 0;
-    transform: translateY(14px);
+    opacity: 0.22;
+    transform: translateY(12px);
   }
   100% {
     opacity: 1;
@@ -51,8 +67,8 @@
 
 @keyframes iuBdsnPageBody {
   0% {
-    opacity: 0;
-    transform: translateY(18px);
+    opacity: 0.9;
+    transform: translateY(12px);
   }
   100% {
     opacity: 1;
@@ -62,8 +78,8 @@
 
 @keyframes iuBdsnCardIn {
   0% {
-    opacity: 0;
-    transform: translateY(16px);
+    opacity: 0.72;
+    transform: translateY(12px);
   }
   100% {
     opacity: 1;
@@ -75,14 +91,17 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: var(--iu-page-bg, #ffffff);
 }
 
 .iu-page-transition {
   flex: 1;
   display: flex;
   flex-direction: column;
-  animation: iuBdsnPageFade var(--iu-anim-page, 0.55s) var(--iu-ease-out) both;
-  will-change: opacity, transform;
+  background: var(--iu-page-bg, #ffffff);
+  animation: iuBdsnPageFade var(--iu-anim-page, 0.78s) var(--iu-ease-out) both;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -90,6 +109,7 @@
   .heroContent,
   .iu-page-body {
     animation: none !important;
+    transform: none !important;
   }
 }
 
@@ -107,17 +127,13 @@
 }
 
 /* ==========================================================================
-   Hero Section (Unified Height & Fixed Anchor Across All Pages)
+   Hero Section (Unified Height & Permanently Green Across All Public Pages)
    ========================================================================== */
 .hero {
-  background: var(
-    --iu-gradient-hero,
-    linear-gradient(
-      var(--hero-angle, 110deg),
-      var(--hero-from, var(--iu-green-900, #084b2f)),
-      var(--hero-mid, var(--iu-green-700, #1b754b)),
-      var(--hero-to, var(--iu-green-600, #1d8a51))
-    )
+  background-color: var(--iu-green-900, #084b2f);
+  background-image: var(
+    --iu-green-gradient,
+    linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%)
   );
   color: #ffffff;
   min-height: var(--hero-height, 280px);
@@ -130,6 +146,7 @@
   direction: inherit;
   text-align: start;
   overflow: visible;
+  isolation: isolate;
 }
 
 .hero > .container {
@@ -142,7 +159,7 @@
   text-align: start;
   margin-inline-start: 0;
   margin-inline-end: auto;
-  animation: iuBdsnHeroContent var(--iu-anim-hero, 0.7s) var(--iu-ease-out) both;
+  animation: iuBdsnHeroContent var(--iu-anim-hero, 0.92s) var(--iu-ease-out) both;
 }
 
 .heroContent h1 {
@@ -188,12 +205,13 @@
     min-height: var(--hero-height-mobile, 220px);
     height: var(--hero-height-mobile, 220px);
   }
+
   .heroContent h1 {
     font-size: 28px;
     margin-bottom: 10px;
   }
+
   .heroContent p {
     font-size: 15px;
   }
 }
-
