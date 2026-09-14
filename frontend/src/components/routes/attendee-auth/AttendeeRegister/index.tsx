@@ -8,7 +8,7 @@ import classes from "./AttendeeRegister.module.scss";
 export const AttendeeRegister: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useIULanguage();
+  const { isArabic } = useIULanguage();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,17 +17,46 @@ export const AttendeeRegister: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const text = {
+    title: isArabic ? "إنشاء حساب مستفيد جديد" : "Create a New Attendee Account",
+    description: isArabic
+      ? "مخصص لجميع المستفيدين والزوار والمشاركين الراغبين بحضور فعاليات الجامعة."
+      : "For all attendees, visitors, and participants joining university events.",
+    firstName: isArabic ? "الاسم الأول" : "First Name",
+    firstNamePlaceholder: isArabic ? "عبد الله" : "First name",
+    lastName: isArabic ? "اسم العائلة" : "Last Name",
+    lastNamePlaceholder: isArabic ? "المحمدي" : "Last name",
+    email: isArabic ? "البريد الإلكتروني (جامعي أو شخصي)" : "Email (University or Personal)",
+    password: isArabic ? "كلمة المرور (8 أحرف على الأقل)" : "Password (at least 8 characters)",
+    confirmPassword: isArabic ? "تأكيد كلمة المرور" : "Confirm Password",
+    loading: isArabic ? "جاري إنشاء الحساب..." : "Creating account...",
+    submit: isArabic ? "إنشاء الحساب ومتابعة الفعاليات" : "Create Account & Explore Events",
+    alreadyHaveAccount: isArabic ? "لديك حساب بالفعل؟" : "Already have an account?",
+    login: isArabic ? "تسجيل الدخول" : "Log In",
+    organizerPrompt: isArabic
+      ? "هل أنت منظم أو مسؤول فعالية بالجامعة؟"
+      : "Are you an organizer or event administrator?",
+    organizerLink: isArabic ? "دخول المنظمين والمسؤولين ←" : "Organizer & staff login →",
+    passwordMismatch: isArabic ? "كلمتا المرور غير متطابقتين." : "Passwords do not match.",
+    passwordLength: isArabic
+      ? "يجب أن تكون كلمة المرور 8 أحرف على الأقل."
+      : "Password must be at least 8 characters.",
+    error: isArabic
+      ? "تعذر إنشاء الحساب. تحقق من البيانات وحاول مرة أخرى."
+      : "Unable to create your account. Check your details and try again.",
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
     if (password !== confirmPassword) {
-      setError(t("reg_err_match", "كلمتا المرور غير متطابقتين."));
+      setError(text.passwordMismatch);
       return;
     }
 
     if (password.length < 8) {
-      setError(t("reg_err_length", "يجب أن تكون كلمة المرور 8 أحرف على الأقل."));
+      setError(text.passwordLength);
       return;
     }
 
@@ -45,7 +74,7 @@ export const AttendeeRegister: React.FC = () => {
       const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
       navigate(redirectUrl);
     } catch (err: any) {
-      const msg = err.response?.data?.message || t("reg_error_default");
+      const msg = err.response?.data?.message || text.error;
       setError(msg);
     } finally {
       setLoading(false);
@@ -55,10 +84,8 @@ export const AttendeeRegister: React.FC = () => {
   return (
     <>
       <header className={classes.header}>
-        <h2>{t("reg_card_title", "إنشاء حساب مستفيد جديد")}</h2>
-        <p>
-          {t("reg_card_desc", "مخصص لجميع المستفيدين والزوار والمشاركين الراغبين بحضور فعاليات الجامعة.")}
-        </p>
+        <h2>{text.title}</h2>
+        <p>{text.description}</p>
       </header>
 
       {error && (
@@ -80,15 +107,15 @@ export const AttendeeRegister: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <SimpleGrid cols={{ base: 1, sm: 2 }}>
             <TextInput
-              label={t("reg_first_name", "الاسم الأول")}
-              placeholder={t("first_name_ph", "عبد الله")}
+              label={text.firstName}
+              placeholder={text.firstNamePlaceholder}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
             <TextInput
-              label={t("reg_last_name", "اسم العائلة")}
-              placeholder={t("last_name_ph", "المحمدي")}
+              label={text.lastName}
+              placeholder={text.lastNamePlaceholder}
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
@@ -96,7 +123,7 @@ export const AttendeeRegister: React.FC = () => {
           </SimpleGrid>
 
           <TextInput
-            label={t("reg_email", "البريد الإلكتروني (جامعي أو شخصي)")}
+            label={text.email}
             placeholder="name@example.com"
             type="email"
             value={email}
@@ -106,14 +133,14 @@ export const AttendeeRegister: React.FC = () => {
 
           <SimpleGrid cols={{ base: 1, sm: 2 }}>
             <PasswordInput
-              label={t("reg_password", "كلمة المرور (8 أحرف على الأقل)")}
+              label={text.password}
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             <PasswordInput
-              label={t("reg_confirm_password", "تأكيد كلمة المرور")}
+              label={text.confirmPassword}
               placeholder="••••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -127,25 +154,22 @@ export const AttendeeRegister: React.FC = () => {
             loading={loading}
             disabled={loading}
           >
-            {loading ? t("reg_loading", "جاري إنشاء الحساب...") : t("reg_submit", "إنشاء الحساب ومتابعة الفعاليات")}
+            {loading ? text.loading : text.submit}
           </Button>
 
           <div className={classes.loginPrompt}>
-            <span>{t("already_have_account", "لديك حساب بالفعل؟")}</span>
+            <span>{text.alreadyHaveAccount}</span>
             <NavLink to={`/auth/login${location.search}`} className={classes.loginLink}>
-              {t("login_title", "تسجيل الدخول")}
+              {text.login}
             </NavLink>
           </div>
         </form>
-
       </div>
 
       <div className={classes.bottomPrompt}>
-        <span>
-          {t("attendee_reg_organizer_prompt", "هل أنت منظم أو مسؤول فعالية بالجامعة؟")}
-        </span>
+        <span>{text.organizerPrompt}</span>
         <NavLink to={`/manage/login${location.search}`}>
-          {t("attendee_reg_organizer_link", "دخول المنظمين والمسؤولين ←")}
+          {text.organizerLink}
         </NavLink>
       </div>
     </>
