@@ -152,6 +152,30 @@
 }
 
 /* ==========================================================================
+   Smooth staggered card entrance
+   Entrance motion only. Hover behavior stays untouched.
+   ========================================================================== */
+.iu-page .iu-reveal {
+  animation: none !important;
+  transition-duration: 0.86s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.iu-page .iu-reveal.iu-revealed {
+  transition-delay: 0s;
+}
+
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-1 { transition-delay: 0ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-2 { transition-delay: 90ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-3 { transition-delay: 180ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-4 { transition-delay: 270ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-5 { transition-delay: 360ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-6 { transition-delay: 450ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-7 { transition-delay: 540ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-8 { transition-delay: 630ms; }
+.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-9 { transition-delay: 720ms; }
+
+/* ==========================================================================
    Hero Section (Unified Height & Permanently Green Across All Public Pages)
    ========================================================================== */
 .hero {
