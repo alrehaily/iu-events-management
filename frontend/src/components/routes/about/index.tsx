@@ -33,7 +33,7 @@ export const IUAboutPage: React.FC = () => {
       {/* 2. Intro */}
       <section className={classes.section}>
         <div className="container">
-          <div className={`${classes.sectionHead} iu-reveal`}>
+          <div className={`${classes.sectionHead} iu-reveal iu-stagger-1`}>
             <h2>{t("about_why_title", "لماذا أنشأنا المنصة؟")}</h2>
             <p>
               {t("about_why_desc", "هدفنا هو توحيد رحلة الفعالية الجامعية من الإعلان والتسجيل وحتى التقييم وإصدار الشهادات المعتمدة، مع توفير لوحة عرض متكاملة لجميع الفعاليات والمؤتمرات والندوات، وربطها بمواعيدها وأماكنها واشتراطاتها بكل سهولة وشفافية.")}
@@ -46,7 +46,7 @@ export const IUAboutPage: React.FC = () => {
       <section className={`${classes.section} ${classes.sectionLight}`}>
         <div className="container">
           <div className={classes.split}>
-            <div className={`${classes.missionCard} iu-reveal iu-stagger-1 iu-hover-lift`}>
+            <div className={`${classes.missionCard} iu-reveal iu-stagger-2 iu-hover-lift`}>
               <h3 style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <IconTarget size={24} color="var(--iu-icon, #0f172a)" />
                 {t("about_mission_title", "رسالتنا")}
@@ -55,7 +55,7 @@ export const IUAboutPage: React.FC = () => {
                 {t("about_mission_desc", "تمكين المجتمع والباحثين والزوار وكافة الفئات المستفيدة من الوصول السريع للفعاليات، والارتقاء بجودة التنظيم والتنسيق عبر تجربة رقمية شاملة وموثوقة.")}
               </p>
             </div>
-            <div className={`${classes.missionCard} iu-reveal iu-stagger-2 iu-hover-lift`}>
+            <div className={`${classes.missionCard} iu-reveal iu-stagger-3 iu-hover-lift`}>
               <h3 style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 <IconEye size={24} color="var(--iu-icon, #0f172a)" />
                 {t("about_vision_title", "رؤيتنا")}
@@ -71,32 +71,32 @@ export const IUAboutPage: React.FC = () => {
       {/* 4. Features */}
       <section className={classes.section}>
         <div className="container">
-          <h2 className={`${classes.sectionTitle} iu-reveal`}>
+          <h2 className={`${classes.sectionTitle} iu-reveal iu-stagger-4`}>
             {t("about_what_we_offer", "ماذا تقدم المنصة؟")}
           </h2>
           <div className={classes.featureGrid}>
-            <div className={`${classes.featureCard} iu-reveal iu-stagger-1 iu-hover-lift`}>
+            <div className={`${classes.featureCard} iu-reveal iu-stagger-5 iu-hover-lift`}>
               <h4 style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <IconCalendar size={20} color="var(--iu-icon, #0f172a)" />
                 {t("feat_calendar_title", "تقويم موحد")}
               </h4>
               <p>{t("feat_calendar_desc", "استعراض كافة البرامج والفعاليات في مكان واحد مع مواعيد دقيقة وأماكن الانعقاد.")}</p>
             </div>
-            <div className={`${classes.featureCard} iu-reveal iu-stagger-2 iu-hover-lift`}>
+            <div className={`${classes.featureCard} iu-reveal iu-stagger-6 iu-hover-lift`}>
               <h4 style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <IconBolt size={20} color="var(--iu-icon, #0f172a)" />
                 {t("feat_reg_title", "تسجيل فوري وميسر")}
               </h4>
               <p>{t("feat_reg_desc", "خطوات بسيطة وسريعة لتسجيل الحضور وتأكيد المقعد بدون تعقيد.")}</p>
             </div>
-            <div className={`${classes.featureCard} iu-reveal iu-stagger-3 iu-hover-lift`}>
+            <div className={`${classes.featureCard} iu-reveal iu-stagger-7 iu-hover-lift`}>
               <h4 style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <IconMapPin size={20} color="var(--iu-icon, #0f172a)" />
                 {t("feat_info_title", "تفاصيل ومعلومات شاملة")}
               </h4>
               <p>{t("feat_info_desc", "معلومات دقيقة حول المتحدثين، الفئات المستهدفة، شروط الحضور، والخرائط الجغرافية.")}</p>
             </div>
-            <div className={`${classes.featureCard} iu-reveal iu-stagger-4 iu-hover-lift`}>
+            <div className={`${classes.featureCard} iu-reveal iu-stagger-8 iu-hover-lift`}>
               <h4 style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <IconCertificate size={20} color="var(--iu-icon, #0f172a)" />
                 {t("feat_cert_title", "شهادات حضور موثقة")}
@@ -110,23 +110,23 @@ export const IUAboutPage: React.FC = () => {
       {/* 5. Target Audience */}
       <section className={`${classes.section} ${classes.sectionLight}`}>
         <div className="container">
-          <h2 className={`${classes.sectionTitle} iu-reveal`}>
+          <h2 className={`${classes.sectionTitle} iu-reveal iu-stagger-9`}>
             {t("about_audience_title", "لمن صُممت المنصة؟")}
           </h2>
           <div className={classes.audienceList}>
-            <div className={`${classes.audienceItem} iu-reveal iu-stagger-1 iu-hover-lift`}>
+            <div className={`${classes.audienceItem} iu-reveal iu-stagger-10 iu-hover-lift`}>
               <IconSchool size={22} color="var(--iu-icon, #0f172a)" />
               <span>{t("aud_community", "كافة فئات المجتمع والمهتمين بالأنشطة والفعاليات داخل وخارج الجامعة.")}</span>
             </div>
-            <div className={`${classes.audienceItem} iu-reveal iu-stagger-2 iu-hover-lift`}>
+            <div className={`${classes.audienceItem} iu-reveal iu-stagger-11 iu-hover-lift`}>
               <IconUsers size={22} color="var(--iu-icon, #0f172a)" />
               <span>{t("aud_faculty", "أعضاء هيئة التدريس والباحثين ومنسوبي الكليات والمعاهد.")}</span>
             </div>
-            <div className={`${classes.audienceItem} iu-reveal iu-stagger-3 iu-hover-lift`}>
+            <div className={`${classes.audienceItem} iu-reveal iu-stagger-12 iu-hover-lift`}>
               <IconWorld size={22} color="var(--iu-icon, #0f172a)" />
               <span>{t("aud_guests", "الضيوف والزوار والمهتمون بالفعاليات والمؤتمرات الدولية.")}</span>
             </div>
-            <div className={`${classes.audienceItem} iu-reveal iu-stagger-4 iu-hover-lift`}>
+            <div className={`${classes.audienceItem} iu-reveal iu-stagger-13 iu-hover-lift`}>
               <IconBuildingCommunity size={22} color="var(--iu-icon, #0f172a)" />
               <span>{t("aud_deans", "العمادات والجهات المنظمة والمراكز البحثية داخل الجامعة.")}</span>
             </div>
@@ -137,7 +137,7 @@ export const IUAboutPage: React.FC = () => {
       {/* 6. CTA Banner */}
       <section className={classes.section}>
         <div className="container">
-          <div className={`${classes.cta} iu-reveal`}>
+          <div className={`${classes.cta} iu-reveal iu-stagger-14`}>
             <div className={classes.ctaText}>
               <h2>{t("about_cta_banner_title", "جاهز لاستكشاف فعاليات الجامعة؟")}</h2>
               <p>{t("about_cta_banner_desc", "تصفّح أحدث الفعاليات والأنشطة الأكاديمية وسجّل حضورك الآن بكل سهولة.")}</p>
