@@ -11,13 +11,44 @@ import {IconTicket, IconChevronDown} from "@tabler/icons-react";
 import {useIULanguage} from "../../../../context/IULanguageContext";
 
 export const Login = () => {
-    const {t} = useIULanguage();
+    const {isArabic} = useIULanguage();
     const location = useLocation();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [loginError, setLoginError] = useState<string | null>(null);
     const [ticketLookupOpen, setTicketLookupOpen] = useState(false);
     const [ticketLookupSuccess, setTicketLookupSuccess] = useState(false);
+
+    const text = {
+        title: isArabic ? "تسجيل الدخول إلى حسابك" : "Log in to your account",
+        description: isArabic
+            ? "سجل دخولك لاستعراض تذاكرك، متابعة تسجيلاتك، وتحميل شهادات الحضور المعتمدة."
+            : "Sign in to view your tickets, track your registrations, and download verified attendance certificates.",
+        email: isArabic ? "البريد الإلكتروني" : "Email",
+        password: isArabic ? "كلمة المرور" : "Password",
+        forgotPassword: isArabic ? "نسيت كلمة المرور؟" : "Forgot password?",
+        loggingIn: isArabic ? "جاري تسجيل الدخول..." : "Logging in...",
+        login: isArabic ? "تسجيل الدخول" : "Log In",
+        noAccount: isArabic ? "ليس لديك حساب بعد؟" : "Don't have an account?",
+        createAccount: isArabic ? "إنشاء حساب جديد" : "Create a new account",
+        loginError: isArabic
+            ? "تعذر تسجيل الدخول. تحقق من بياناتك وحاول مرة أخرى."
+            : "Unable to log in. Check your details and try again.",
+        ticketLookupTrigger: isArabic ? "تبحث عن تذاكرك فقط؟" : "Just looking for your tickets?",
+        ticketLookupPlaceholder: isArabic ? "أدخل بريدك الإلكتروني" : "Enter your email address",
+        ticketLookupSend: isArabic ? "إرسال رابط التذاكر" : "Send ticket link",
+        ticketLookupSuccess: isArabic
+            ? "تم إرسال رابط الوصول إلى تذاكرك إلى بريدك الإلكتروني."
+            : "A ticket access link has been sent to your email.",
+        ticketLookupAnother: isArabic ? "استخدام بريد إلكتروني آخر" : "Use another email",
+        ticketLookupError: isArabic
+            ? "تعذر إرسال رابط التذاكر. حاول مرة أخرى."
+            : "Unable to send the ticket link. Please try again.",
+        organizerPrompt: isArabic
+            ? "هل أنت منظم أو مسؤول فعالية بالجامعة؟"
+            : "Are you an organizer or event administrator?",
+        organizerLink: isArabic ? "دخول المنظمين والمسؤولين ←" : "Organizer & staff login →",
+    };
 
     const form = useForm({
         initialValues: {
@@ -45,7 +76,7 @@ export const Login = () => {
             const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
             navigate(redirectUrl);
         } catch (err: any) {
-            const msg = err.response?.data?.message || t("login_error_default");
+            const msg = err.response?.data?.message || text.loginError;
             setLoginError(msg);
             notifications.show({
                 message: msg,
@@ -63,7 +94,7 @@ export const Login = () => {
                 setTicketLookupSuccess(true);
             },
             onError: () => {
-                showError(t("ticket_lookup_error"));
+                showError(text.ticketLookupError);
             }
         });
     };
@@ -71,10 +102,8 @@ export const Login = () => {
     return (
         <>
             <header className={classes.header}>
-                <h2>{t("login_title", "تسجيل الدخول إلى حسابك")}</h2>
-                <p>
-                    {t("login_desc", "سجل دخولك لاستعراض تذاكرك، متابعة تسجيلاتك، وتحميل شهادات الحضور المعتمدة.")}
-                </p>
+                <h2>{text.title}</h2>
+                <p>{text.description}</p>
             </header>
 
             {loginError && (
@@ -96,18 +125,16 @@ export const Login = () => {
                 <form onSubmit={form.onSubmit(handleLogin)}>
                     <TextInput
                         {...form.getInputProps('email')}
-                        label={t("email_label", "البريد الإلكتروني")}
+                        label={text.email}
                         placeholder="name@example.com"
                         type="email"
                         required
                     />
 
                     <div className={classes.passwordLabelRow}>
-                        <label htmlFor="login-password">
-                            {t("password_label", "كلمة المرور")}
-                        </label>
+                        <label htmlFor="login-password">{text.password}</label>
                         <NavLink to={`/auth/forgot-password`} tabIndex={-1}>
-                            {t("forgot_password_link", "نسيت كلمة المرور؟")}
+                            {text.forgotPassword}
                         </NavLink>
                     </div>
 
@@ -125,13 +152,13 @@ export const Login = () => {
                         disabled={loading}
                         mt="lg"
                     >
-                        {loading ? t("logging_in", "جاري تسجيل الدخول...") : t("login_submit", "تسجيل الدخول")}
+                        {loading ? text.loggingIn : text.login}
                     </Button>
 
                     <div className={classes.createAccountPrompt}>
-                        <span>{t("dont_have_account", "ليس لديك حساب بعد؟")}</span>
+                        <span>{text.noAccount}</span>
                         <NavLink to={`/register${location.search}`} className={classes.createAccountLink}>
-                            {t("login_create_account", "إنشاء حساب جديد")}
+                            {text.createAccount}
                         </NavLink>
                     </div>
                 </form>
@@ -144,7 +171,7 @@ export const Login = () => {
                     data-expanded={ticketLookupOpen}
                 >
                     <IconTicket size={18} />
-                    <span>{t("ticket_lookup_trigger")}</span>
+                    <span>{text.ticketLookupTrigger}</span>
                     <IconChevronDown
                         size={16}
                         className={classes.chevron}
@@ -156,7 +183,7 @@ export const Login = () => {
                     <div className={classes.ticketLookupContent}>
                         {ticketLookupSuccess ? (
                             <div className={classes.successMessage}>
-                                <p>{t("ticket_lookup_success")}</p>
+                                <p>{text.ticketLookupSuccess}</p>
                                 <UnstyledButton
                                     className={classes.resetLink}
                                     onClick={() => {
@@ -164,7 +191,7 @@ export const Login = () => {
                                         ticketLookupForm.reset();
                                     }}
                                 >
-                                    {t("ticket_lookup_another_email")}
+                                    {text.ticketLookupAnother}
                                 </UnstyledButton>
                             </div>
                         ) : (
@@ -173,7 +200,7 @@ export const Login = () => {
                                     <TextInput
                                         {...ticketLookupForm.getInputProps('email')}
                                         type="email"
-                                        placeholder={t("ticket_lookup_placeholder")}
+                                        placeholder={text.ticketLookupPlaceholder}
                                         required
                                         className={classes.ticketEmailInput}
                                     />
@@ -182,7 +209,7 @@ export const Login = () => {
                                         loading={ticketLookupMutation.isPending}
                                         disabled={ticketLookupMutation.isPending}
                                     >
-                                        {t("ticket_lookup_send_btn")}
+                                        {text.ticketLookupSend}
                                     </Button>
                                 </div>
                             </form>
@@ -204,10 +231,10 @@ export const Login = () => {
                 gap: 8,
             }}>
                 <span style={{color: "var(--iu-text-secondary, #475569)"}}>
-                    {t("login_organizer_prompt", "هل أنت منظم أو مسؤول فعالية بالجامعة؟")}
+                    {text.organizerPrompt}
                 </span>
                 <NavLink to={`/manage/login${location.search}`} style={{fontWeight: 700, color: "var(--iu-green-secondary, #1b754b)", textDecoration: "none", whiteSpace: "nowrap"}}>
-                    {t("login_organizer_link", "دخول المنظمين والمسؤولين ←")}
+                    {text.organizerLink}
                 </NavLink>
             </div>
         </>
