@@ -30,8 +30,16 @@ export const IUEventsCatalogPage: React.FC = () => {
 
   const events = eventsResponse?.data || [];
   const totalPages = eventsResponse?.meta?.last_page || 1;
+  const eventsAnimationKey = [
+    selectedStatus,
+    selectedFormat,
+    selectedCategory,
+    query,
+    currentPage,
+    events.map((event) => event.id).join("-"),
+  ].join("|");
 
-  useScrollReveal([events.length, isLoading, currentPage]);
+  useScrollReveal([eventsAnimationKey, isLoading]);
 
   const handleQueryChange = (newQuery: string) => {
     setQuery(newQuery);
@@ -88,9 +96,9 @@ export const IUEventsCatalogPage: React.FC = () => {
           </div>
         ) : events.length > 0 ? (
           <>
-            <div className={classes.eventsGrid}>
+            <div key={eventsAnimationKey} className={classes.eventsGrid}>
               {events.map((event, idx) => (
-                <div key={event.id} className={`iu-reveal iu-stagger-${(idx % 3) + 1}`}>
+                <div key={event.id} className={`iu-reveal iu-stagger-${Math.min(idx + 1, 9)}`}>
                   <IUEventCard event={event} index={idx} />
                 </div>
               ))}
