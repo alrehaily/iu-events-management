@@ -168,10 +168,10 @@
    Hover behavior is intentionally untouched.
    ========================================================================== */
 .iu-page .iu-reveal {
-  opacity: 0;
-  transform: translateY(10px) scale(0.996);
+  opacity: 1;
+  transform: none;
   transition: none !important;
-  animation: iuSequenceEnter 0.78s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  animation: iuSequenceEnter 0.78s cubic-bezier(0.16, 1, 0.3, 1) backwards !important;
   animation-delay: 0ms !important;
   will-change: opacity, transform;
 }
