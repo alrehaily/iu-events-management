@@ -1,20 +1,12 @@
 @use "../../../styles/mixins.scss";
 
 .viewHomepageButton {
-  color: rgba(255, 255, 255, 0.9) !important;
-  font-weight: 500;
+  color: var(--iu-text, #334155) !important;
+  font-weight: 600;
   transition: color 0.2s ease;
 
   &:hover {
-    color: #ffffff !important;
-  }
-
-  @include mixins.respond-below(md) {
-    color: var(--mantine-color-dark-0) !important;
-
-    &:hover {
-      color: var(--mantine-color-dark-9) !important;
-    }
+    color: var(--iu-green-primary, #084b2f) !important;
   }
 
   .viewHomepageButtonTextDesktop {
@@ -28,7 +20,7 @@
 
 .createEventButton {
   @include mixins.respond-below(md) {
-    margin-left: 5px;
+    margin-inline-start: 5px;
   }
 
   .createEventButtonTextDesktop {
@@ -49,8 +41,8 @@
 }
 
 .calloutButton {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: var(--iu-green-gradient) !important;
+  border: none !important;
   color: white !important;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -58,9 +50,9 @@
   z-index: 1;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.25) !important;
+    background: var(--iu-green-gradient-hover) !important;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--iu-green-glow);
   }
 }
 
@@ -68,19 +60,19 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-left: 0px;
-  margin-right: auto;
+  margin-inline-start: 0;
+  margin-inline-end: auto;
   flex-shrink: 0;
 
   @include mixins.respond-below(md) {
-    margin-left: 8px;
+    margin-inline-start: 8px;
   }
 
   .statusAction {
-    margin-left: 4px;
-    font-weight: 400;
-    font-size: 0.85em;
-    opacity: 0.9;
+    margin-inline-start: 6px;
+    font-weight: 500;
+    font-size: 0.82em;
+    color: var(--iu-text-muted, #64748b);
 
     @include mixins.respond-below(md) {
       display: none;
@@ -90,15 +82,17 @@
 
 .createEventBreadcrumb {
   cursor: pointer;
-  opacity: 0.65;
+  opacity: 0.75;
   display: flex;
   align-items: center;
   gap: 4px;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease;
   font-weight: 500;
+  color: var(--iu-text-muted, #64748b);
 
   &:hover {
-    opacity: 0.85;
+    opacity: 1;
+    color: var(--iu-green-primary, #084b2f);
   }
 }
 

@@ -17,12 +17,16 @@
   white-space: nowrap;
 
   th {
-    background-color: #f2f0f5;
-    color: var(--hi-secondary-text) !important;
-    padding: 20px !important;
+    background-color: var(--iu-surface-alt, #f8faf9) !important;
+    color: var(--iu-text, #334155) !important;
+    font-weight: 700 !important;
+    font-size: 0.8125rem !important;
+    border-bottom: 1px solid var(--iu-border, #e5e7eb) !important;
+    padding: 14px 18px !important;
+    text-align: start;
 
     @include mixins.respond-below(sm) {
-      padding: 14px 12px !important;
+      padding: 12px 12px !important;
     }
   }
 }
@@ -30,6 +34,10 @@
 .card {
   padding: 0 !important;
   overflow: hidden;
+  background-color: var(--iu-surface, #ffffff);
+  border: 1px solid var(--iu-border, #e5e7eb) !important;
+  border-radius: var(--iu-radius-md, 12px) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
 
   :global(.mantine-ScrollArea-viewport) {
     padding-bottom: 0;
@@ -46,13 +54,22 @@
   }
 
   tbody tr {
+    transition: background-color 0.15s ease;
+    border-bottom: 1px solid var(--iu-border, #e5e7eb);
+
+    &:hover {
+      background-color: var(--iu-green-soft, #f4fbf7) !important;
+    }
 
     td {
-      padding: 20px !important;
+      padding: 14px 18px !important;
       white-space: nowrap;
+      color: var(--iu-text, #334155);
+      font-size: 0.875rem;
+      text-align: start;
 
       @include mixins.respond-below(sm) {
-        padding: 14px 12px !important;
+        padding: 12px 12px !important;
       }
     }
   }
@@ -64,7 +81,7 @@
   position: sticky;
   left: 0;
   z-index: 10;
-  background: var(--mantine-color-body);
+  background: var(--iu-surface, #ffffff);
 
   &::after {
     content: '';
@@ -75,9 +92,9 @@
     width: 18px;
     background: linear-gradient(
                     to right,
-                    rgba(20, 10, 40, 0.11),
-                    rgba(20, 10, 40, 0.045) 45%,
-                    rgba(20, 10, 40, 0)
+                    rgba(8, 75, 47, 0.08),
+                    rgba(8, 75, 47, 0.03) 45%,
+                    transparent
     );
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -89,7 +106,7 @@
   position: sticky;
   right: 0;
   z-index: 2;
-  background: var(--mantine-color-body);
+  background: var(--iu-surface, #ffffff);
 
   &::before {
     content: '';
@@ -100,9 +117,9 @@
     width: 18px;
     background: linear-gradient(
                     to left,
-                    rgba(20, 10, 40, 0.11),
-                    rgba(20, 10, 40, 0.045) 45%,
-                    rgba(20, 10, 40, 0)
+                    rgba(8, 75, 47, 0.08),
+                    rgba(8, 75, 47, 0.03) 45%,
+                    transparent
     );
     opacity: 0;
     transition: opacity 0.2s ease;
@@ -117,5 +134,5 @@
 
 .tableHead .stickyLeft,
 .tableHead .stickyRight {
-  background-color: #f2f0f5;
+  background-color: var(--iu-surface-alt, #f8faf9) !important;
 }

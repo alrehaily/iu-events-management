@@ -63,7 +63,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             borderTopRightRadius: 24,
           }}
         >
-          <div style={{display: "flex", alignItems: "center", gap: 8, color: "#084b2f", fontWeight: 700, fontSize: 15}}>
+          <div style={{display: "flex", alignItems: "center", gap: 8, color: "var(--iu-text)", fontWeight: 700, fontSize: 15}}>
             <IconShieldCheck size={20} />
             شهادة معتمدة موثقة رقمياً
           </div>
@@ -95,12 +95,12 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             maxWidth: 720,
             width: "100%",
             backgroundColor: "#ffffff",
-            border: "8px double #084b2f",
+            border: "8px double var(--iu-green-primary)",
             borderRadius: 16,
             position: "relative",
             textAlign: "center",
             boxSizing: "border-box",
-            background: "linear-gradient(180deg, #ffffff 0%, #f7faf8 100%)",
+            background: "linear-gradient(180deg, #ffffff 0%, var(--iu-green-soft) 100%)",
           }}
         >
           {/* Certificate Header */}
@@ -110,7 +110,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               alt="الجامعة الإسلامية"
               style={{height: 70, width: "auto", margin: "0 auto 12px", display: "block"}}
             />
-            <div style={{fontSize: 16, fontWeight: 800, color: "#084b2f", letterSpacing: 0.5}}>
+            <div style={{fontSize: 16, fontWeight: 800, color: "var(--iu-green-primary)", letterSpacing: 0.5}}>
               المملكة العربية السعودية
             </div>
             <div style={{fontSize: 18, fontWeight: 800, color: "#111827", marginTop: 2}}>
@@ -125,9 +125,9 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             style={{
               fontSize: 26,
               fontWeight: 900,
-              color: "#084b2f",
+              color: "var(--iu-green-primary)",
               margin: "24px 0 16px",
-              borderBottom: "2px solid #1b754b",
+              borderBottom: "2px solid var(--iu-green-secondary)",
               display: "inline-block",
               paddingBottom: 6,
               letterSpacing: 1,
@@ -144,13 +144,13 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             style={{
               fontSize: 28,
               fontWeight: 900,
-              color: "#053320",
+              color: "var(--iu-green-primary)",
               margin: "12px 0 20px",
               padding: "10px 24px",
-              background: "#eef7f2",
+              background: "var(--iu-green-soft)",
               borderRadius: 12,
               display: "inline-block",
-              border: "1px dashed #1b754b",
+              border: "1px dashed var(--iu-green-secondary)",
             }}
           >
             {certificate.attendee_name}
@@ -171,7 +171,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             style={{
               marginTop: 32,
               paddingTop: 20,
-              borderTop: "1px solid #d1fae5",
+              borderTop: "1px solid var(--iu-green-light)",
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
               gap: 20,
@@ -188,7 +188,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                   fontFamily: "monospace",
                   fontSize: 16,
                   fontWeight: 800,
-                  color: "#084b2f",
+                  color: "var(--iu-green-primary)",
                   letterSpacing: 1.5,
                   direction: "ltr",
                   display: "inline-block",
@@ -202,7 +202,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             </div>
 
             <div style={{textAlign: "left"}}>
-              <div style={{fontSize: 14, fontWeight: 800, color: "#084b2f"}}>
+              <div style={{fontSize: 14, fontWeight: 800, color: "var(--iu-green-primary)"}}>
                 الجامعة الإسلامية بالمدينة المنورة
               </div>
               <div style={{fontSize: 12, color: "#4b5563", marginTop: 2}}>

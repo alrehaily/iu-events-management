@@ -24,17 +24,17 @@
   align-items: center;
   gap: 8px;
   font-size: 15px;
-  font-weight: 700;
-  color: var(--green-900);
+  font-weight: 600;
+  color: var(--iu-heading, #0f172a);
   margin-bottom: 8px;
 }
 
 .cardValue {
   margin: 0;
   font-size: 15px;
-  font-weight: 500;
-  color: var(--iu-text);
-  line-height: 1.5;
+  font-weight: 400;
+  color: var(--iu-text-secondary, #475569);
+  line-height: 1.6;
 }
 
 @media (max-width: 900px) {

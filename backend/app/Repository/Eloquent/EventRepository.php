@@ -57,19 +57,56 @@ class EventRepository extends BaseRepository implements EventRepositoryInterface
     {
         if (! empty($params->query)) {
             $where[] = static function (Builder $builder) use ($params) {
-                $builder
-                    ->where(EventDomainObjectAbstract::TITLE, 'ilike', '%'.$params->query.'%');
+                $builder->where(function (Builder $q) use ($params) {
+                    $q->where(EventDomainObjectAbstract::TITLE, 'ilike', '%'.$params->query.'%')
+                      ->orWhere(EventDomainObjectAbstract::DESCRIPTION, 'ilike', '%'.$params->query.'%')
+                      ->orWhere(EventDomainObjectAbstract::LOCATION, 'ilike', '%'.$params->query.'%');
+                });
             };
         }
 
-        $upcomingEventsFilter = $params->query_params->get('eventsStatus') === 'upcoming';
-        $endedEventsFilter = $params->query_params->get('eventsStatus') === 'ended';
+        $rawStatus = $params->query_params->get('eventsStatus') ?? $params->query_params->get('events_status');
+        $upcomingEventsFilter = $rawStatus === 'upcoming';
+        $endedEventsFilter = $rawStatus === 'ended';
+        $availableEventsFilter = $rawStatus === 'available' || $rawStatus === 'live';
+
+        // Category Filter
+        $category = $params->query_params->get('category');
+        if (! empty($category) && $category !== 'all' && $category !== 'ALL') {
+            $where[] = static function (Builder $builder) use ($category) {
+                $builder->where(function (Builder $q) use ($category) {
+                    $q->where(EventDomainObjectAbstract::CATEGORY, $category)
+                      ->orWhereRaw('UPPER(events.category) = ?', [strtoupper($category)]);
+                });
+            };
+        }
+
+        // Attendance Format Filter (In-person vs Online)
+        $format = $params->query_params->get('format') ?? $params->query_params->get('attendance_type');
+        if (! empty($format) && $format !== 'all') {
+            if (strtolower($format) === 'online') {
+                $where[] = static function (Builder $builder) {
+                    $builder->whereHas('event_location', function (Builder $q) {
+                        $q->where('type', 'ONLINE');
+                    });
+                };
+            } elseif (strtolower($format) === 'in_person' || strtolower($format) === 'in-person') {
+                $where[] = static function (Builder $builder) {
+                    $builder->where(function (Builder $q) {
+                        $q->whereDoesntHave('event_location')
+                          ->orWhereHas('event_location', function (Builder $lq) {
+                              $lq->where('type', '!=', 'ONLINE');
+                          });
+                    });
+                };
+            }
+        }
 
         if (! empty($params->filter_fields)) {
             $this->applyFilterFields($params, EventDomainObject::getAllowedFilterFields());
         }
 
-        if ($upcomingEventsFilter) {
+        if ($upcomingEventsFilter || $availableEventsFilter) {
             $where[] = static function (Builder $builder) {
                 $builder
                     ->where(EventDomainObjectAbstract::STATUS, '!=', EventStatus::ARCHIVED->getName())

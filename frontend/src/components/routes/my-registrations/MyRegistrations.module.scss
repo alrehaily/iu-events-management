@@ -1,21 +1,25 @@
 .page {
-  padding: 48px 0 80px;
+  padding: var(--iu-section-spacing, 48px) 0 64px;
+  animation: iuBdsnPageBody var(--iu-anim-body, 0.75s) var(--iu-ease-out) 0.05s both;
 }
 
 .header {
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 .title {
   font-size: 32px;
-  font-weight: 800;
-  color: var(--green-900);
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  color: var(--iu-heading, #0f172a);
   margin: 0 0 12px;
 }
 
 .subtitle {
   font-size: 16px;
-  color: var(--iu-text-muted);
+  font-weight: var(--iu-body-weight, 400);
+  color: var(--iu-text-secondary, #475569);
+  line-height: 1.6;
   margin: 0;
 }
 
@@ -28,23 +32,34 @@
   text-align: center;
   max-width: 680px;
   margin: 0 auto;
+  transition: transform var(--iu-anim-hover, 0.3s) var(--iu-ease-out), box-shadow var(--iu-anim-hover, 0.3s) var(--iu-ease-out), border-color var(--iu-transition-normal);
+  animation: iuBdsnCardIn var(--iu-anim-card-in, 0.7s) var(--iu-ease-out) both;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(8, 75, 47, 0.12);
+  border-color: rgba(27, 117, 75, 0.35);
 }
 
 .icon {
   font-size: 48px;
   margin-bottom: 16px;
+  color: var(--iu-icon, #475569);
 }
 
 .cardTitle {
   font-size: 22px;
-  font-weight: 700;
-  color: var(--green-900);
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: 1.4;
+  color: var(--iu-heading, #0f172a);
   margin-bottom: 12px;
 }
 
 .cardText {
-  color: var(--iu-text-muted);
+  color: var(--iu-text-secondary, #475569);
   font-size: 15px;
-  line-height: 1.8;
+  font-weight: var(--iu-body-weight, 400);
+  line-height: var(--iu-line-height-body, 1.75);
   margin-bottom: 28px;
 }

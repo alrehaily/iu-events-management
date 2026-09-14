@@ -4,6 +4,8 @@
   min-height: 100vh;
   display: flex;
   position: relative;
+  animation: iuPageSmoothFade var(--iu-anim-page, 0.55s) var(--iu-ease-out) both;
+  will-change: opacity, transform;
 }
 
 .splitLayout {
@@ -79,6 +81,8 @@
   align-items: center;
   justify-content: center;
   padding: 2.5rem 0;
+  animation: iuPageSmoothFade var(--iu-anim-page, 0.55s) var(--iu-ease-out) both;
+  will-change: opacity, transform;
 
   @include mixins.respond-below(sm) {
     padding: 1.75rem 0;
@@ -87,7 +91,7 @@
 
 .wrapper {
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
 
   @include mixins.respond-below(sm) {
     max-width: 100%;
@@ -143,10 +147,18 @@
   height: 100dvh;
   overflow: hidden;
   isolation: isolate;
-  background:
-    radial-gradient(ellipse 85% 65% at 90% -12%, color-mix(in srgb, var(--mantine-color-secondary-5) 24%, transparent), transparent 60%),
-    radial-gradient(ellipse 75% 55% at -10% 110%, color-mix(in srgb, var(--mantine-color-primary-5) 20%, transparent), transparent 62%),
-    linear-gradient(180deg, color-mix(in srgb, var(--mantine-color-primary-9) 90%, black) 0%, color-mix(in srgb, var(--mantine-color-primary-9) 70%, black) 100%);
+  background-color: #084b2f;
+  background-image:
+    linear-gradient(
+      110deg,
+      rgba(8, 75, 47, 0.91) 0%,
+      rgba(27, 117, 75, 0.83) 55%,
+      rgba(29, 138, 81, 0.88) 100%
+    ),
+    url('/images/iu-campus-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   @include mixins.respond-below(lg) {
     width: 48%;
@@ -475,12 +487,25 @@
   flex-shrink: 0;
 }
 
+@keyframes iuPageSmoothFade {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .authLayout,
+  .formArea,
   .heroTitle,
   .ticketScene,
   .ticket,
   .stamp,
   .tickerTrack {
-    animation: none;
+    animation: none !important;
   }
 }

@@ -43,19 +43,48 @@ export const router: RouteObject[] = [
             },
             {
                 path: "login",
-                async lazy() {
-                    const AttendeeLogin = await import("./components/routes/attendee-auth/AttendeeLogin");
-                    return { Component: AttendeeLogin.default };
-                }
+                element: <Navigate to="/auth/login" replace />
             },
+        ]
+    },
+    {
+        path: "register",
+        errorElement: <ErrorPage />,
+        async lazy() {
+            const AuthLayout = await import("./components/layouts/AuthLayout");
+            return { Component: AuthLayout.default };
+        },
+        children: [
             {
-                path: "register",
+                index: true,
                 async lazy() {
                     const AttendeeRegister = await import("./components/routes/attendee-auth/AttendeeRegister");
                     return { Component: AttendeeRegister.default };
                 }
-            },
+            }
         ]
+    },
+    {
+        path: "manage/login",
+        errorElement: <ErrorPage />,
+        async lazy() {
+            const AuthLayout = await import("./components/layouts/AuthLayout");
+            return { Component: AuthLayout.default };
+        },
+        children: [
+            {
+                index: true,
+                async lazy() {
+                    const OrganizerLogin = await import("./components/routes/auth/OrganizerLogin");
+                    return { Component: OrganizerLogin.default };
+                }
+            }
+        ]
+    },
+    {
+        path: "auth/organizer-login",
+        errorElement: <ErrorPage />,
+        element: <Navigate to="/manage/login" replace />
     },
     {
         path: "auth",
@@ -74,10 +103,7 @@ export const router: RouteObject[] = [
             },
             {
                 path: "register",
-                async lazy() {
-                    const Register = await import("./components/routes/auth/Register");
-                    return { Component: Register.default };
-                }
+                element: <Navigate to="/manage/login" replace />
             },
             {
                 path: "forgot-password",

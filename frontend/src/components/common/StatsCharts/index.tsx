@@ -50,9 +50,9 @@ export const ProductSalesChartCard = ({dailyStats, timezone, dateRangeLabel, syn
                 attendees_registered: stat.attendees_registered,
             })) || []}
             series={[
-                {name: 'orders_created', color: 'blue.6', label: t`Completed Orders`},
-                {name: 'products_sold', color: 'blue.2', label: t`Products Sold`},
-                {name: 'attendees_registered', color: 'blue.4', label: t`Attendees Registered`},
+                {name: 'orders_created', color: 'primary.7', label: t`Completed Orders`},
+                {name: 'products_sold', color: 'teal.5', label: t`Products Sold`},
+                {name: 'attendees_registered', color: 'primary.4', label: t`Attendees Registered`},
             ]}
             curveType="bump"
             areaChartProps={{syncId}}
@@ -75,9 +75,9 @@ export const RevenueChartCard = ({dailyStats, timezone, dateRangeLabel, syncId, 
             })) || []}
             valueFormatter={(value) => formatCurrency(value, currency)}
             series={[
-                {name: 'total_fees', label: t`Total Fees`, color: 'primary.3'},
-                {name: 'total_sales_gross', label: t`Gross Sales`, color: 'grape.5'},
-                {name: 'total_tax', label: t`Total Tax`, color: 'grape.7'},
+                {name: 'total_sales_gross', label: t`Gross Sales`, color: 'primary.8'},
+                {name: 'total_fees', label: t`Total Fees`, color: 'teal.6'},
+                {name: 'total_tax', label: t`Total Tax`, color: 'orange.6'},
                 {name: 'total_refunded', label: t`Total Refunded`, color: 'red.6'},
             ]}
             curveType="natural"
@@ -85,3 +85,4 @@ export const RevenueChartCard = ({dailyStats, timezone, dateRangeLabel, syncId, 
         />
     </ChartCard>
 );
+

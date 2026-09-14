@@ -46,7 +46,7 @@
 
 .iconWrapper {
     flex-shrink: 0;
-    color: var(--event-primary-color, var(--organizer-primary-color, #084b2f));
+    color: var(--iu-icon, #475569);
     margin-top: 1px;
 }
 
@@ -123,7 +123,7 @@
 }
 
 .primaryButton {
-    background: var(--event-primary-color, var(--organizer-primary-color, #084b2f));
+    background: var(--event-primary-color, var(--organizer-primary-color, var(--iu-green-gradient)));
     color: var(--event-accent-contrast, var(--organizer-accent-contrast, #ffffff));
 }
 

@@ -11,8 +11,8 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 16px 20px;
   margin-bottom: 24px;
   border-radius: $radius-sm;
-  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-  border: 1px solid #a7f3d0;
+  background: var(--iu-green-soft);
+  border: 1px solid var(--iu-green-light);
 }
 
 .waitlistBannerIcon {
@@ -20,7 +20,7 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #059669;
+  background: var(--iu-green-gradient);
   color: white;
   display: flex;
   align-items: center;
@@ -32,13 +32,13 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: $font-display;
   font-size: 15px;
   font-weight: 600;
-  color: #065f46;
+  color: var(--iu-text, #334155);
   margin: 0 0 4px 0;
 }
 
 .waitlistBannerText {
   font-size: 13px;
-  color: #047857;
+  color: var(--iu-text-muted, #64748b);
   margin: 0;
   line-height: 1.5;
 }
@@ -149,8 +149,8 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .copiedBadge {
-  background: var(--checkout-accent-soft, #D1FAE5);
-  color: var(--checkout-accent, #065F46);
+  background: var(--checkout-accent-soft, var(--iu-green-light));
+  color: var(--checkout-accent, var(--iu-green-primary));
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 12px;

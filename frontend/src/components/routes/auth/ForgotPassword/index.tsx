@@ -5,11 +5,12 @@ import {showError} from "../../../../utilites/notifications.tsx";
 import {authClient} from "../../../../api/auth.client.ts";
 import {useState} from "react";
 import {NavLink} from "react-router";
-import {t} from "@lingui/macro";
 import classes from "./ForgotPassword.module.scss";
-import {IconArrowLeft, IconCheck} from "@tabler/icons-react";
+import {IconArrowRight, IconCheck} from "@tabler/icons-react";
+import {useIULanguage} from "../../../../context/IULanguageContext";
 
 export const ForgotPassword = () => {
+    const {t, dir, isArabic} = useIULanguage();
     const form = useForm({
         initialValues: {
             email: '',
@@ -29,52 +30,52 @@ export const ForgotPassword = () => {
         },
 
         onError: () => {
-            showError(t`Something went wrong, please try again, or contact support if the problem persists`);
+            showError(t("forgot_password_error", "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة مرة أخرى."));
         }
     });
 
     if (showSuccessMessage) {
         return (
-            <div className={classes.successMessage}>
+            <div className={classes.successMessage} dir={dir}>
                 <div className={classes.successIcon}>
-                    <IconCheck size={24} />
+                    <IconCheck size={26} />
                 </div>
-                <h3>{t`Check your email`}</h3>
+                <h3>{t("forgot_success_title", "تحقق من بريدك الإلكتروني")}</h3>
                 <p>
-                    {t`If you have an account with us, you will receive an email with instructions on how to reset your password.`}
+                    {t("forgot_success_desc", "إذا كان لديك حساب مسجل لدينا، فستصلك رسالة تحتوي على تعليمات إعادة تعيين كلمة المرور.")}
                 </p>
                 <NavLink to={'/auth/login'}>
-                    <IconArrowLeft size={14} />
-                    {t`Back to login`}
+                    <IconArrowRight size={16} style={{transform: isArabic ? "rotate(180deg)" : "none"}} />
+                    {t("back_to_login", "العودة لتسجيل الدخول")}
                 </NavLink>
             </div>
         );
     }
 
     return (
-        <>
+        <div dir={dir}>
             <header className={classes.header}>
-                <h2>{t`Reset password`}</h2>
-                <p>{t`Enter your email and we'll send you instructions to reset your password.`}</p>
+                <h2>{t("forgot_password_title", "استعادة كلمة المرور")}</h2>
+                <p>{t("forgot_password_desc", "أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور الخاصة بك.")}</p>
             </header>
             <div className={classes.forgotPasswordCard}>
                 <form onSubmit={form.onSubmit((values) => mutate.mutate(values.email))}>
                     <TextInput
                         type="email"
                         {...form.getInputProps('email')}
-                        label={t`Email`}
-                        placeholder="you@example.com"
+                        label={t("email_label", "البريد الإلكتروني")}
+                        placeholder="name@example.com"
                         required
                     />
-                    <Button color="secondary.5" type="submit" fullWidth loading={mutate.isPending} disabled={mutate.isPending}>
-                        {mutate.isPending ? t`Sending...` : t`Send reset link`}
+                    <Button type="submit" fullWidth loading={mutate.isPending} disabled={mutate.isPending} mt="md">
+                        {mutate.isPending ? t("sending", "جاري الإرسال...") : t("send_reset_link", "إرسال رابط الاستعادة")}
                     </Button>
                 </form>
                 <footer>
-                    <NavLink to={'/auth/login'}>{t`Back to login`}</NavLink>
+                    <NavLink to={'/auth/login'}>{t("back_to_login", "العودة لتسجيل الدخول")}</NavLink>
                 </footer>
             </div>
-        </>
+        </div>
     );
 }
 

@@ -2,19 +2,21 @@
 
 .topBar {
   grid-area: topbar;
-  background: var(--hi-ink);
+  background: var(--iu-surface, #ffffff);
   display: flex;
   flex-direction: column;
   transition: box-shadow 0.3s ease;
   position: sticky;
   top: 0;
   z-index: 10;
+  border-bottom: 1px solid var(--iu-border, #e5e7eb);
 
   .topBarMain {
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 20px;
     height: 60px;
+    background: var(--iu-surface, #ffffff);
 
     @include mixins.respond-below(md) {
       padding: 0 12px;
@@ -22,21 +24,19 @@
   }
 
   .breadcrumbsRow {
-    padding: 10px 20px;
-    background-color: var(--hi-color-white);
+    padding: 9px 20px;
+    background-color: var(--iu-surface-alt, #f8faf9);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    border-top-left-radius: var(--hi-radius-lg);
-    border-bottom: 1px solid var(--hi-color-border);
+    border-bottom: 1px solid var(--iu-border, #e5e7eb);
     position: relative;
     z-index: 5;
-    min-height: 44px;
+    min-height: 42px;
 
     @include mixins.respond-below(md) {
-      border-top-left-radius: 0;
-      padding: 10px 16px;
+      padding: 8px 14px;
     }
   }
 
@@ -59,7 +59,7 @@
     display: flex;
     align-items: center;
     font-size: 0.8125rem;
-    color: var(--hi-color-text-muted);
+    color: var(--iu-text-muted, #64748b);
     flex: 1;
     min-width: 0;
     overflow-x: auto;
@@ -78,14 +78,14 @@
 
     :global(.mantine-Breadcrumbs-breadcrumb) {
       @include mixins.ellipsis();
-      max-width: 200px;
+      max-width: 220px;
 
       @include mixins.respond-below(md) {
-        max-width: 120px;
+        max-width: 140px;
       }
 
       @include mixins.respond-below(sm) {
-        max-width: 80px;
+        max-width: 90px;
       }
 
       &:last-child {
@@ -95,17 +95,17 @@
     }
 
     a {
-      color: var(--hi-color-text-muted);
+      color: var(--iu-text-muted, #64748b);
       transition: color 0.2s ease;
       position: relative;
       @include mixins.ellipsis();
 
       &:hover {
-        color: var(--hi-text);
+        color: var(--iu-green-primary, #084b2f);
       }
 
       &:last-child {
-        color: var(--hi-text);
+        color: var(--iu-heading, #0f172a);
         font-weight: 600;
       }
 
@@ -113,11 +113,11 @@
         content: '';
         position: absolute;
         bottom: -2px;
-        left: 0;
+        inset-inline-start: 0;
         width: 0;
-        height: 1px;
-        background-color: var(--hi-primary);
-        transition: width 0.2s ease;
+        height: 1.5px;
+        background-color: var(--iu-green-secondary, #1b754b);
+        transition: width var(--iu-transition-fast);
       }
 
       &:hover::after {
@@ -129,16 +129,22 @@
   .actionGroup {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    margin-inline-start: auto;
     flex-shrink: 0;
+    gap: 8px;
+  }
+
+  .languageSwitcher {
+    display: flex;
+    align-items: center;
   }
 
   &.withShadow {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   }
 
   .burger {
-    --burger-color: var(--hi-color-white);
+    --burger-color: var(--iu-heading, #0f172a);
     flex-shrink: 0;
     @include mixins.respond-above(md) {
       display: none;
@@ -146,8 +152,8 @@
   }
 
   .logo {
-    color: var(--hi-color-white);
-    font-weight: bold;
+    color: var(--iu-heading, #0f172a);
+    font-weight: var(--iu-heading-weight, 700);
     font-size: 1.2em;
     display: flex;
     justify-content: center;
@@ -160,10 +166,10 @@
     }
 
     img {
-      max-width: min(120px, 100%);
+      max-width: min(130px, 100%);
 
       @include mixins.respond-below(sm) {
-        max-width: min(100px, 100%);
+        max-width: min(105px, 100%);
       }
     }
 
@@ -175,6 +181,6 @@
   .menu {
     display: flex;
     align-items: center;
-    color: var(--hi-color-white);
+    color: var(--iu-text-secondary, #475569);
   }
 }

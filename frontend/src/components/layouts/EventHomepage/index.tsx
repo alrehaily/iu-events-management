@@ -7,9 +7,14 @@ import {Event, EventOccurrence} from "../../../types.ts";
 import {EventNotAvailable} from "./EventNotAvailable";
 import {
     IconCalendar,
+    IconCertificate,
+    IconClock,
     IconMail,
     IconMapPin,
-    IconTicket
+    IconReceipt,
+    IconTag,
+    IconTicket,
+    IconUsers
 } from "@tabler/icons-react";
 import {IUNavbar} from "../../iu/IUNavbar";
 import {IUFooter} from "../../iu/IUFooter";
@@ -21,6 +26,7 @@ import {trackPixelEvent, hasActivePixels} from "../../../utilites/trackingPixels
 import {EventDateRange} from "../../common/EventDateRange";
 import {formatCurrency} from "../../../utilites/currency.ts";
 import {UserGeneratedContent} from "../../common/UserGeneratedContent";
+import {IU_COLORS} from "../../../constants/iuTheme.ts";
 import "../../../styles/iu/common.css";
 import "../../../styles/iu/event-details.css";
 
@@ -194,9 +200,9 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                 <div className="iu-event-meta">
                                     <span className="iu-meta-pill">{isFree ? "فعالية مجانية" : `مدفوعة (${formatCurrency(minPrice || 0, event.currency)})`}</span>
                                     <span className="iu-meta-pill">{isOnlineEvent ? "عن بُعد" : "حضورياً بالجامعة"}</span>
-                                    <span className="iu-meta-pill">متاح لجميع الطلاب والمنسوبين</span>
+                                    <span className="iu-meta-pill">متاح لكافة المستفيدين والزوار والمنسوبين</span>
                                     {(event as any).is_certificate_eligible && (
-                                        <span className="iu-meta-pill" style={{background: "#e8f5e9", color: "#2e7d32", borderColor: "#a5d6a7"}}>
+                                        <span className="iu-meta-pill" style={{background: "var(--iu-green-soft)", color: "var(--iu-green-secondary)", borderColor: "var(--iu-green-light)"}}>
                                             شهادة حضور معتمدة
                                         </span>
                                     )}
@@ -217,27 +223,27 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                 {/* 6 Info Cards Grid */}
                                 <div className="iu-event-infoGrid">
                                     <div className="iu-info-card">
-                                        <h4>📅 الموعد</h4>
+                                        <h4><IconCalendar size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> الموعد</h4>
                                         <p><EventDateRange event={event} occurrence={selectedOccurrence}/></p>
                                     </div>
                                     <div className="iu-info-card">
-                                        <h4>🕒 الوقت</h4>
+                                        <h4><IconClock size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> الوقت</h4>
                                         <p>{heroTime}</p>
                                     </div>
                                     <div className="iu-info-card">
-                                        <h4>🏷️ التصنيف</h4>
+                                        <h4><IconTag size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> التصنيف</h4>
                                         <p>{(event as any).format || "تقني / تعليمي"}</p>
                                     </div>
                                     <div className="iu-info-card">
-                                        <h4>👥 الفئة المستهدفة</h4>
-                                        <p>الطلاب، الباحثون، والمهتمون بالتقنية</p>
+                                        <h4><IconUsers size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> الفئة المستهدفة</h4>
+                                        <p>كافة المستفيدين، الباحثون، والمهتمون</p>
                                     </div>
                                     <div className="iu-info-card">
-                                        <h4>✅ شهادة حضور</h4>
+                                        <h4><IconCertificate size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> شهادة حضور</h4>
                                         <p>{(event as any).is_certificate_eligible ? "تمنح شهادة حضور معتمدة فور إتمام الحضور" : "تمنح شهادة وفقاً لمعايير الحضور"}</p>
                                     </div>
                                     <div className="iu-info-card">
-                                        <h4>🧾 المتطلبات</h4>
+                                        <h4><IconReceipt size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> المتطلبات</h4>
                                         <p>التسجيل المسبق وتأكيد الحضور عبر المنصة</p>
                                     </div>
                                 </div>
@@ -277,9 +283,9 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                         <SelectProducts
                                             colors={{
                                                 background: "transparent",
-                                                primary: "#084b2f",
+                                                primary: IU_COLORS.greenPrimary,
                                                 primaryText: "#ffffff",
-                                                secondary: "#1b754b",
+                                                secondary: IU_COLORS.greenSecondary,
                                                 secondaryText: "#ffffff",
                                                 bodyBackground: "#ffffff",
                                             }}
@@ -299,9 +305,9 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                     {/* Location Display */}
                                     <div style={{background: "#f8fafc", borderRadius: 14, padding: "16px 18px", marginTop: 16, border: "1px solid #e2e8f0"}}>
                                         <div style={{display: "flex", alignItems: "flex-start", gap: 10}}>
-                                            <IconMapPin size={20} style={{color: "#084b2f", flexShrink: 0, marginTop: 2}} />
+                                            <IconMapPin size={20} style={{color: "var(--iu-text)", flexShrink: 0, marginTop: 2}} />
                                             <div>
-                                                <div style={{fontWeight: 700, fontSize: 14, color: "#0f172a", marginBottom: 4}}>
+                                                <div style={{fontWeight: 700, fontSize: 14, color: "var(--iu-text)", marginBottom: 4}}>
                                                     {isOnlineEvent ? "فعالية عن بُعد" : venueName}
                                                 </div>
                                                 {formattedAddress && (

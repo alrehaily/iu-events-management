@@ -1,19 +1,54 @@
-import React from "react";
-import {NavLink, Link} from "react-router";
+import React, {useState, useEffect} from "react";
+import {NavLink, Link, useLocation, useNavigate} from "react-router";
 import classes from "./IUNavbar.module.scss";
 import {useGetMe} from "../../../queries/useGetMe";
-import {dynamicActivateLocale, getClientLocale} from "../../../locales";
+import {attendeeClient} from "../../../api/attendee.client";
+import {authClient} from "../../../api/auth.client";
+import {useIULanguage} from "../../../context/IULanguageContext";
 
 export const IUNavbar: React.FC = () => {
   const me = useGetMe();
-  const currentLocale = getClientLocale();
+  const {locale, toggleLanguage, t} = useIULanguage();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const toggleLanguage = () => {
-    const nextLocale = currentLocale === "ar" ? "en" : "ar";
-    if (typeof document !== "undefined") {
-      document.cookie = `locale=${nextLocale}; path=/; max-age=31536000`;
+  const [hasAttendeeToken, setHasAttendeeToken] = useState(() => {
+    if (typeof window !== "undefined") {
+      return Boolean(localStorage.getItem("iu_attendee_token") || localStorage.getItem("token"));
     }
-    dynamicActivateLocale(nextLocale);
+    return false;
+  });
+
+  useEffect(() => {
+    const checkAuth = () => {
+      const token = Boolean(
+        localStorage.getItem("iu_attendee_token") || localStorage.getItem("token")
+      );
+      setHasAttendeeToken(token);
+    };
+
+    checkAuth();
+    window.addEventListener("storage", checkAuth);
+    return () => window.removeEventListener("storage", checkAuth);
+  }, [location.pathname]);
+
+  const isLoggedIn = hasAttendeeToken || Boolean(me.data);
+
+  const handleLogout = async () => {
+    attendeeClient.logout();
+    if (me.data) {
+      try {
+        await authClient.logout();
+      } catch {
+        // ignore
+      }
+      localStorage.removeItem("token");
+    }
+    setHasAttendeeToken(false);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("storage"));
+      navigate("/");
+    }
   };
 
   return (
@@ -24,11 +59,11 @@ export const IUNavbar: React.FC = () => {
             <Link to="/">
               <img
                 src="/images/IUEvent2.png"
-                alt="الجامعة الإسلامية بالمدينة المنورة"
+                alt={t("brand_title", "الجامعة الإسلامية بالمدينة المنورة")}
               />
             </Link>
           </div>
-          <nav className={classes.navLinks} aria-label="القائمة الرئيسية">
+          <nav className={classes.navLinks} aria-label={t("brand_title", "القائمة الرئيسية")}>
             <NavLink
               to="/"
               className={({isActive}) =>
@@ -36,7 +71,7 @@ export const IUNavbar: React.FC = () => {
               }
               end
             >
-              الرئيسية
+              {t("nav_home", "الرئيسية")}
             </NavLink>
             <NavLink
               to="/events"
@@ -44,7 +79,7 @@ export const IUNavbar: React.FC = () => {
                 `${classes.navLink} ${isActive ? classes.active : ""}`
               }
             >
-              الفعاليات
+              {t("nav_events", "الفعاليات")}
             </NavLink>
             <NavLink
               to="/about"
@@ -52,16 +87,18 @@ export const IUNavbar: React.FC = () => {
                 `${classes.navLink} ${isActive ? classes.active : ""}`
               }
             >
-              عن المنصة
+              {t("nav_about", "عن المنصة")}
             </NavLink>
-            <NavLink
-              to="/my-registrations"
-              className={({isActive}) =>
-                `${classes.navLink} ${isActive ? classes.active : ""}`
-              }
-            >
-              تسجيلاتي
-            </NavLink>
+            {isLoggedIn && (
+              <NavLink
+                to="/my-registrations"
+                className={({isActive}) =>
+                  `${classes.navLink} ${isActive ? classes.active : ""}`
+                }
+              >
+                {t("nav_my_registrations", "تسجيلاتي")}
+              </NavLink>
+            )}
           </nav>
         </div>
 
@@ -71,38 +108,39 @@ export const IUNavbar: React.FC = () => {
             type="button"
             onClick={toggleLanguage}
             style={{padding: "8px 18px", fontSize: "14px"}}
+            title={locale === "ar" ? "Switch to English" : "التحويل إلى العربية"}
           >
-            {currentLocale === "ar" ? "English" : "العربية"}
+            {locale === "ar" ? "English" : "العربية"}
           </button>
 
-          {me.isSuccess ? (
+          {isLoggedIn ? (
             <div style={{display: "flex", gap: "8px", alignItems: "center"}}>
-              <Link
-                to="/manage/events"
+              {me.isSuccess && (
+                <Link
+                  to="/manage/events"
+                  className="btn outline"
+                  style={{padding: "8px 18px", fontSize: "14px"}}
+                >
+                  {t("nav_organizer_dashboard", "لوحة المنظم")}
+                </Link>
+              )}
+              <button
+                type="button"
+                onClick={handleLogout}
                 className="btn solid"
-                style={{padding: "8px 20px", fontSize: "14px"}}
+                style={{padding: "8px 18px", fontSize: "14px", cursor: "pointer"}}
               >
-                لوحة المنظم
-              </Link>
-            </div>
-          ) : typeof window !== "undefined" && localStorage.getItem("iu_attendee_token") ? (
-            <div style={{display: "flex", gap: "8px", alignItems: "center"}}>
-              <Link
-                to="/my-registrations"
-                className="btn solid"
-                style={{padding: "8px 18px", fontSize: "14px"}}
-              >
-                تذاكري وحسابي
-              </Link>
+                {t("nav_logout", "تسجيل خروج")}
+              </button>
             </div>
           ) : (
             <div style={{display: "flex", gap: "8px"}}>
               <Link
-                to="/login"
+                to="/auth/login"
                 className="btn solid"
                 style={{padding: "8px 20px", fontSize: "14px"}}
               >
-                تسجيل الدخول
+                {t("nav_login", "تسجيل الدخول")}
               </Link>
             </div>
           )}

@@ -1,36 +1,54 @@
-import {Link, Navigate, Outlet} from "react-router";
+import {Link, Navigate, Outlet, useLocation} from "react-router";
 import classes from "./Auth.module.scss";
 import {useGetMe} from "../../../queries/useGetMe.ts";
-import {PoweredByFooter} from "../../common/PoweredByFooter";
 import {LanguageSwitcher} from "../../common/LanguageSwitcher";
 import {useCallback, useEffect, useRef} from "react";
-import {isHiEvents} from "../../../utilites/helpers.ts";
 import {showInfo} from "../../../utilites/notifications.tsx";
 import {captureUtmData} from "../../../utilites/utm.ts";
+import "../../../styles/iu/common.css";
 
-const tickerFeatures = [
-    "إصدار تذاكر وحجوزات ذكية",
-    "شهادات حضور معتمدة وموثقة",
-    "التحقق السريع عبر رمز QR",
-    "إدارة السعة والقاعات الجامعية",
-    "تحليلات وتقارير الحضور الفورية",
+import {useIULanguage} from "../../../context/IULanguageContext";
+
+const tickerFeaturesAr = [
+    "استعراض وحجز الفعاليات بسهولة",
+    "شهادات حضور فورية ومعتمدة",
+    "تذاكر رقمية مع رمز التحقق السريع QR",
+    "متابعة كافة أنشطة ومؤتمرات الجامعة",
+    "إدارة مرنة لجميع تسجيلاتك",
+    "إشعارات وتحديثات المواعيد أولاً بأول",
+    "تأكيد فوري لحجوزات المقاعد",
     "تكامل الهوية المؤسسية للجامعة",
-    "بوابة مخصصة لمنظمي الكليات",
-    "تواصل آلي عبر البريد الإلكتروني",
+];
+
+const tickerFeaturesEn = [
+    "Seamless event discovery & booking",
+    "Instant accredited certificates",
+    "Digital tickets with live QR check-in",
+    "Official university activities & forums",
+    "Full control over your registrations",
+    "Real-time alerts & schedule updates",
+    "Instant guaranteed seat confirmation",
+    "Accredited Islamic University identity",
 ];
 
 const FeaturePanel = () => {
-    const tickerLoop = [...tickerFeatures, ...tickerFeatures];
+    const {dir, isArabic} = useIULanguage();
+    const features = isArabic ? tickerFeaturesAr : tickerFeaturesEn;
+    const tickerLoop = [...features, ...features];
 
     return (
-        <div className={classes.rightPanel} dir="rtl">
+        <div className={classes.rightPanel} dir={dir}>
             <div className={classes.noise}/>
             <div className={classes.rings}/>
 
             <div className={classes.panelInner}>
                 <h1 className={classes.heroTitle}>
-                    <span className={classes.heroBold}>إدارة احترافية لفعاليات الجامعة.</span>
-                    <span className={classes.heroLight}>الجامعة الإسلامية بالمدينة المنورة</span>
+                    <span className={classes.heroBold}>
+                        {isArabic ? "بوابتكم لكافة فعاليات الجامعة." : "Your Gateway to University Events."}
+                    </span>
+                    <span className={classes.heroLight}>
+                        {isArabic ? "الجامعة الإسلامية بالمدينة المنورة" : "Islamic University of Madinah"}
+                    </span>
                 </h1>
 
                 <div className={classes.ticketScene} aria-hidden="true">
@@ -39,29 +57,33 @@ const FeaturePanel = () => {
                         <div className={classes.ticketInner}>
                             <div className={classes.ticketMain}>
                                 <div className={classes.ticketTop}>
-                                    <span>تذكرة دخول معتمدة</span>
+                                    <span>{isArabic ? "تذكرة دخول معتمدة" : "Accredited Event Pass"}</span>
                                     <span>№ 000482</span>
                                 </div>
-                                <div className={classes.ticketTitle}>المؤتمر التقني السنوي للذكاء الاصطناعي</div>
-                                <div className={classes.ticketMeta}>المدينة المنورة · قاعة الملك سعود · 9:00 ص</div>
+                                <div className={classes.ticketTitle}>
+                                    {isArabic ? "المؤتمر التقني السنوي للذكاء الاصطناعي" : "Annual Tech & AI Conference"}
+                                </div>
+                                <div className={classes.ticketMeta}>
+                                    {isArabic ? "المدينة المنورة · قاعة الملك سعود · 9:00 ص" : "Madinah · King Saud Hall · 9:00 AM"}
+                                </div>
                                 <div className={classes.ticketFields}>
                                     <div className={classes.ticketField}>
-                                        <span>البوابة</span>
+                                        <span>{isArabic ? "البوابة" : "Gate"}</span>
                                         <strong>1</strong>
                                     </div>
                                     <div className={classes.ticketField}>
-                                        <span>القاعة</span>
-                                        <strong>المدرج الرئيسي</strong>
+                                        <span>{isArabic ? "القاعة" : "Hall"}</span>
+                                        <strong>{isArabic ? "المدرج الرئيسي" : "Auditorium"}</strong>
                                     </div>
                                     <div className={classes.ticketField}>
-                                        <span>الحالة</span>
-                                        <strong>مؤكد ✓</strong>
+                                        <span>{isArabic ? "الحالة" : "Status"}</span>
+                                        <strong>{isArabic ? "مؤكد ✓" : "Confirmed ✓"}</strong>
                                     </div>
                                 </div>
                                 <div className={classes.barcode}/>
                             </div>
                             <div className={classes.ticketStub}>
-                                <span className={classes.stubLabel}>IU Event</span>
+                                <span className={classes.stubLabel}>{isArabic ? "فعاليات الجامعة" : "IU Events"}</span>
                                 <svg className={classes.stubQr} viewBox="0 0 25 25">
                                     <path fillRule="evenodd" d="M0 0h7v7H0zm1 1v5h5V1z"/>
                                     <rect x="2" y="2" width="3" height="3"/>
@@ -91,11 +113,11 @@ const FeaturePanel = () => {
                                     <rect x="10" y="22" width="3" height="2"/>
                                     <rect x="16" y="22" width="2" height="2"/>
                                 </svg>
-                                <span className={classes.stubSeat}>معتمد ✓</span>
+                                <span className={classes.stubSeat}>{isArabic ? "معتمد ✓" : "Verified ✓"}</span>
                             </div>
                         </div>
                     </div>
-                    <div className={classes.stamp}>الجامعة الإسلامية</div>
+                    <div className={classes.stamp}>{isArabic ? "الجامعة الإسلامية" : "Islamic University"}</div>
                 </div>
             </div>
 
@@ -115,6 +137,8 @@ const FeaturePanel = () => {
 
 const AuthLayout = () => {
     const me = useGetMe();
+    const location = useLocation();
+    const {dir, isArabic, t, locale} = useIULanguage();
     const clickCountRef = useRef(0);
     const clickTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -129,51 +153,42 @@ const AuthLayout = () => {
 
         if (clickCountRef.current >= 5) {
             clickCountRef.current = 0;
-            showInfo(`HiEvents v${__APP_VERSION__}`);
+            showInfo(isArabic ? `منصة فعاليات الجامعة الإسلامية بالمدينة المنورة` : `Islamic University Events Platform`);
         }
-    }, []);
+    }, [isArabic]);
 
     if (me.isSuccess) {
         return <Navigate to={'/manage/events'} />
     }
 
+    const isAttendeeAuth = location.pathname === '/auth/login' || location.pathname === '/register' || location.pathname === '/login';
+    if (isAttendeeAuth && typeof window !== "undefined" && localStorage.getItem("iu_attendee_token")) {
+        return <Navigate to={'/'} />
+    }
+
     return (
-        <div className={classes.authLayout} dir="rtl">
+        <div className={classes.authLayout} dir={dir}>
             <div className={classes.splitLayout}>
                 <div className={classes.leftPanel}>
                     <main className={classes.container}>
                         <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20}}>
-                            <div className={classes.logo} onClick={handleLogoClick} style={{cursor: 'pointer'}}>
+                            <Link to="/" className={classes.logo} onClick={handleLogoClick} style={{cursor: 'pointer', display: 'flex'}}>
                                 <img
                                     src="/images/IUEvent2.png"
                                     alt="شعار الجامعة الإسلامية بالمدينة المنورة"
                                     style={{height: 48, width: "auto"}}
                                 />
-                            </div>
-                            <Link to="/login" style={{fontSize: 13, color: "var(--iu-green-900)", fontWeight: 700, textDecoration: "none"}}>
-                                بوابة الطلاب والمشاركين ←
+                            </Link>
+                            <Link to="/" style={{fontSize: 13, color: "var(--iu-green-800, #105f3c)", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6}}>
+                                {t("auth_back_home")}
                             </Link>
                         </div>
-                        <div className={classes.formArea}>
+                        <div className={classes.formArea} key={`${location.pathname}_${locale}`}>
                             <div className={classes.wrapper}>
                                 <Outlet />
                             </div>
                         </div>
                         <div className={classes.panelFooter}>
-                            {/*
-                             * (c) Hi.Events Ltd 2025
-                             *
-                             * PLEASE NOTE:
-                             *
-                             * Hi.Events is licensed under the GNU Affero General Public License (AGPL) version 3.
-                             *
-                             * You can find the full license text at: https://github.com/HiEventsDev/hi.events/blob/main/LICENCE
-                             *
-                             * In accordance with Section 7(b) of the AGPL, we ask that you retain the "Powered by Hi.Events" notice.
-                             *
-                             * If you wish to remove this notice, a commercial license is available at: https://hi.events/licensing
-                             */}
-                            {!isHiEvents() && <PoweredByFooter />}
                             <div className={classes.languageSwitcher}>
                                 <LanguageSwitcher />
                             </div>

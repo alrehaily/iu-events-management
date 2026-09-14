@@ -23,12 +23,7 @@
   border-radius: 28px;
   padding: 44px;
   color: #fff;
-  background: linear-gradient(
-    135deg,
-    #053320 0%,
-    #084b2f 50%,
-    #1b754b 100%
-  );
+  background: var(--iu-green-gradient);
   box-shadow: 0 18px 40px rgba(8, 75, 47, 0.22);
   overflow: hidden;
   min-height: 460px;
@@ -58,15 +53,16 @@
 .iu-auth-introTitle {
   font-size: clamp(24px, 2.6vw, 34px);
   margin: 0 0 14px;
-  line-height: 1.35;
-  font-weight: 800;
+  line-height: var(--iu-line-height-heading, 1.35);
+  font-weight: var(--iu-heading-weight, 700);
   color: #fff;
 }
 
 .iu-auth-introText {
   margin: 0;
   font-size: 15px;
-  line-height: 1.8;
+  font-weight: var(--iu-body-weight, 400);
+  line-height: var(--iu-line-height-body, 1.75);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -108,14 +104,17 @@
 .iu-auth-cardHeader h2 {
   margin: 0 0 4px;
   font-size: 24px;
-  font-weight: 800;
-  color: #111827;
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  color: var(--iu-heading, #0f172a);
 }
 
 .iu-auth-cardHeader p {
   margin: 0;
-  color: #6b7280;
+  color: var(--iu-text-muted, #64748b);
   font-size: 14px;
+  font-weight: var(--iu-body-weight, 400);
+  line-height: 1.6;
 }
 
 .iu-auth-form {
@@ -129,9 +128,9 @@
 }
 
 .iu-auth-field label {
-  font-size: 13px;
-  color: #374151;
-  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--iu-text, #0f172a);
+  font-weight: 500;
 }
 
 .iu-auth-field input,
@@ -144,14 +143,14 @@
   font-family: inherit;
   outline: none;
   background: #fff;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color var(--iu-transition-normal), box-shadow var(--iu-transition-normal);
   box-sizing: border-box;
 }
 
 .iu-auth-field input:focus,
 .iu-auth-field select:focus {
-  border-color: var(--iu-primary, #084b2f);
-  box-shadow: 0 0 0 3px rgba(27, 117, 75, 0.15);
+  border-color: var(--iu-green-secondary);
+  box-shadow: var(--iu-green-focus-ring);
 }
 
 .iu-auth-row {
@@ -160,16 +159,17 @@
   justify-content: space-between;
   gap: 12px;
   font-size: 13px;
-  color: #4b5563;
+  color: var(--iu-text-secondary, #475569);
 }
 
 .iu-auth-row a {
-  color: var(--iu-primary, #084b2f);
+  color: var(--iu-green-secondary);
   text-decoration: none;
   font-weight: 600;
 }
 
 .iu-auth-row a:hover {
+  color: var(--iu-green-primary);
   text-decoration: underline;
 }
 
@@ -188,20 +188,20 @@
 
 .iu-auth-alt {
   font-size: 13px;
-  color: #6b7280;
+  color: var(--iu-text-muted, #64748b);
   text-align: center;
   margin: 8px 0 0;
 }
 
 .iu-auth-alt a {
-  color: var(--iu-primary, #084b2f);
+  color: var(--iu-green-secondary);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .iu-auth-note {
   font-size: 12px;
-  color: #9ca3af;
+  color: var(--iu-text-subtle, #94a3b8);
   text-align: center;
   margin: 0;
   line-height: 1.6;

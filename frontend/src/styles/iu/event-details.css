@@ -8,7 +8,7 @@
   --event-overlap: 80px;
   --event-card-radius: 36px;
   --event-shadow: 0 20px 48px rgba(8, 75, 47, 0.12);
-  --event-muted: #6b7280;
+  --event-muted: var(--iu-text-muted, #64748b);
   --event-bg: #f8faf9;
   background-color: var(--event-bg);
   min-height: 100vh;
@@ -19,7 +19,7 @@
   position: relative;
   padding: 40px 0 110px;
   min-height: var(--event-hero-height);
-  background: linear-gradient(135deg, #053320 0%, #084b2f 50%, #1b754b 100%);
+  background: var(--iu-green-gradient);
   color: #fff;
   overflow: hidden;
 }
@@ -51,7 +51,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  text-align: right;
+  text-align: start;
 }
 
 .iu-event-typeBadge {
@@ -69,15 +69,16 @@
 .iu-event-heroText h1 {
   margin: 0;
   font-size: clamp(26px, 3.2vw, 42px);
-  line-height: 1.35;
+  line-height: var(--iu-line-height-heading, 1.35);
   color: #fff;
-  font-weight: 800;
+  font-weight: var(--iu-heading-weight, 700);
 }
 
 .iu-event-heroText p {
   margin: 0;
   font-size: 16px;
-  line-height: 1.8;
+  font-weight: var(--iu-body-weight, 400);
+  line-height: var(--iu-line-height-body, 1.75);
   color: rgba(255, 255, 255, 0.88);
 }
 
@@ -138,15 +139,15 @@
 
 .iu-event-dateBadge .day {
   font-size: 26px;
-  font-weight: 800;
-  color: var(--event-accent);
+  font-weight: 700;
+  color: var(--iu-heading, #0f172a);
   line-height: 1;
 }
 
 .iu-event-dateBadge .month {
   font-size: 13px;
   font-weight: 600;
-  color: #475569;
+  color: var(--iu-text-secondary, #475569);
 }
 
 /* Details Section */
@@ -189,7 +190,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 18px;
   border: 4px solid #fff;
   box-shadow: 0 8px 20px rgba(8, 75, 47, 0.2);
@@ -198,8 +199,9 @@
 .iu-event-summaryTitle {
   margin: 0 0 14px;
   font-size: clamp(22px, 2.6vw, 28px);
-  color: #111827;
-  font-weight: 800;
+  color: var(--iu-heading, #0f172a);
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
 }
 
 .iu-event-meta {
@@ -216,21 +218,23 @@
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .iu-event-sectionTitle {
   margin: 0 0 14px;
   font-size: 20px;
-  font-weight: 700;
-  color: #111827;
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  color: var(--iu-heading, #0f172a);
 }
 
 .iu-event-description {
   margin: 0 0 24px;
-  color: #4b5563;
-  line-height: 1.9;
+  color: var(--iu-text-secondary, #475569);
+  line-height: var(--iu-line-height-body, 1.8);
   font-size: 15px;
+  font-weight: var(--iu-body-weight, 400);
 }
 
 /* 6 Info Cards Grid */
@@ -247,7 +251,7 @@
   border-inline-start: 4px solid var(--event-accent);
   border-radius: 18px;
   padding: 16px 18px;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-fast);
 }
 
 .iu-info-card:hover {
@@ -258,15 +262,24 @@
 .iu-info-card h4 {
   margin: 0 0 6px;
   font-size: 14px;
-  font-weight: 700;
-  color: #1f2937;
+  font-weight: 600;
+  color: var(--iu-heading, #0f172a);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iu-info-card h4 svg {
+  color: var(--iu-icon, #0f172a);
+  flex-shrink: 0;
 }
 
 .iu-info-card p {
   margin: 0;
   font-size: 13px;
-  color: #4b5563;
-  line-height: 1.5;
+  color: var(--iu-text-secondary, #475569);
+  line-height: 1.6;
+  font-weight: var(--iu-body-weight, 400);
 }
 
 /* Section divider & rules/highlights */
@@ -300,7 +313,7 @@
 .iu-event-checklist li::before {
   content: "✓";
   color: var(--event-accent);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 16px;
 }
 
@@ -321,7 +334,7 @@
 
 .iu-event-priceBanner {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--event-accent);
   margin-bottom: 12px;
   text-align: center;
@@ -378,14 +391,14 @@
 .iu-organizer-info h4 {
   margin: 0 0 4px;
   font-size: 15px;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 600;
+  color: var(--iu-heading, #0f172a);
 }
 
 .iu-organizer-info p {
   margin: 0;
   font-size: 13px;
-  color: #6b7280;
+  color: var(--iu-text-muted, #64748b);
 }
 
 /* Responsive adjustments */

@@ -28,42 +28,6 @@
   }
 }
 
-// Floating background emojis
-.floatingEmojis {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.floatingEmoji {
-  position: absolute;
-  font-size: 2rem;
-  opacity: 0.3;
-  animation: float 6s ease-in-out infinite;
-  
-  @include mixins.respond-below(sm) {
-    font-size: 1.5rem;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-20px) rotate(5deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-5deg);
-  }
-  75% {
-    transform: translateY(-25px) rotate(3deg);
-  }
-}
 
 
 // Main modal container
@@ -138,15 +102,15 @@
 
 // Modal header
 .modalHeader {
-  background: var(--hi-gradient);
-  padding: 1.5rem 2rem 1rem;
+  background: var(--iu-green-gradient, linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%));
+  padding: 1.75rem 2rem 1.25rem;
   text-align: center;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
 
   @include mixins.respond-below(md) {
-    padding: 1.25rem 1rem 0.75rem;
+    padding: 1.25rem 1rem 1rem;
   }
 }
 
@@ -156,37 +120,19 @@
 }
 
 .magicWand {
-  font-size: 1.75rem;
-  display: inline-block;
-  margin-bottom: 0.25rem;
-  animation: sparkle 2s ease-in-out infinite;
-  
-  @include mixins.respond-below(sm) {
-    font-size: 1.25rem;
-  }
-}
-
-@keyframes sparkle {
-  0%, 100% {
-    transform: rotate(0deg) scale(1);
-  }
-  25% {
-    transform: rotate(-10deg) scale(1.1);
-  }
-  50% {
-    transform: rotate(10deg) scale(1.05);
-  }
-  75% {
-    transform: rotate(-5deg) scale(1.1);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
 }
 
 .headerTitle {
   font-size: 1.5rem;
-  font-weight: 800;
+  font-weight: var(--iu-heading-weight, 700);
   color: white;
   margin: 0 0 0.125rem;
-  letter-spacing: -0.02em;
+  letter-spacing: normal;
+  line-height: var(--iu-line-height-heading, 1.35);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   
   @include mixins.respond-below(sm) {

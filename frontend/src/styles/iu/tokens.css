@@ -4,32 +4,78 @@
    ========================================================================== */
 
 :root {
-  /* --- Primary Brand Greens --- */
-  --iu-green-900: #084b2f; /* Deep Official IU Green (Headings, primary buttons hover, footer) */
-  --iu-green-800: #105f3c; /* Intermediate Deep Green */
-  --iu-green-700: #1b754b; /* Primary UI Action Green (Buttons, active pills, highlights) */
-  --iu-green-600: #1d8a51; /* Mid Vibrance Green (Gradient transitions) */
-  --iu-green-500: #168551; /* Vibrant Accent Green (Button shadows, glows) */
-  --iu-green-200: #dff3e8; /* Soft Green Tint (Outline button hover, badges, stat icons) */
-  --iu-green-100: #edf8f2; /* Light Surface Tint */
-  --iu-green-50:  #f4fbf7; /* Ultra-light Tint (Row hover, subtle backdrops) */
+  /* --- Centralized IU Green System (Source of Truth: Homepage Hero) --- */
+  --iu-green-primary: #084b2f;
+  /* Deep Official IU Green (Headings, primary buttons, footer) */
+  --iu-green-secondary: #1b754b;
+  /* Primary UI Action Green (Buttons, active states, highlights) */
+  --iu-green-accent: #1d8a51;
+  /* Mid Vibrancy Green (Hero gradient wave end stop) */
+  --iu-green-light: #dff3e8;
+  /* Soft Green Tint (Outline hover, badges, stat icons) */
+  --iu-green-soft: #f4fbf7;
+  /* Ultra-light Tint (Row hover, subtle backdrops) */
+  --iu-green-hover: #063823;
+  /* Deep Button Hover Tone */
+
+  /* Semantic Brand Aliases */
+  --iu-primary: var(--iu-green-primary);
+  --iu-secondary: var(--iu-green-secondary);
+
+  /* Primary Unified Gradient (Exact match to Homepage Hero) */
+  --iu-green-gradient: linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%);
+  --iu-green-gradient-hover: linear-gradient(110deg, #063823 0%, #16643f 55%, #177745 100%);
+  --iu-green-glow: 0 8px 24px rgba(8, 75, 47, 0.28);
+  --iu-green-focus-ring: 0 0 0 3px rgba(27, 117, 75, 0.2);
+
+  /* --- Primary Brand Greens Scale --- */
+  --iu-green-900: var(--iu-green-primary);
+  --iu-green-800: #105f3c;
+  /* Intermediate Deep Green */
+  --iu-green-700: var(--iu-green-secondary);
+  --iu-green-600: var(--iu-green-accent);
+  --iu-green-500: #168551;
+  /* Vibrant Accent Green (Button shadows, glows) */
+  --iu-green-200: var(--iu-green-light);
+  --iu-green-100: #edf8f2;
+  /* Light Surface Tint */
+  --iu-green-50: var(--iu-green-soft);
 
   /* --- Canvas, Surfaces & Backgrounds --- */
-  --iu-bg: #f4f6f8;        /* Page background (UI-Event default) */
-  --iu-bg-auth: #f3f7f4;   /* Auth page backdrop */
-  --iu-surface: #ffffff;   /* Card, modal, dropdown canvas */
-  --iu-surface-alt: #f8faf9; /* Secondary card/section canvas */
+  --iu-bg: #f4f6f8;
+  /* Page background (UI-Event default) */
+  --iu-bg-auth: #f3f7f4;
+  /* Auth page backdrop */
+  --iu-surface: #ffffff;
+  /* Card, modal, dropdown canvas */
+  --iu-surface-alt: #f8faf9;
+  /* Secondary card/section canvas */
 
   /* --- Text & Content Typography --- */
-  --iu-text: #0f172a;          /* Primary dark text (High contrast, clean legibility) */
-  --iu-text-muted: #555555;    /* Secondary/Muted descriptive text */
-  --iu-text-subtle: #64748b;   /* Tertiary labels, timestamps, meta info */
-  --iu-text-inverse: #ffffff;  /* High contrast text on dark green surfaces */
+  --iu-heading: #0f172a;
+  /* Primary heading color - deep, crisp, authoritative dark neutral */
+  --iu-text: #0f172a;
+  /* Primary text color (#0f172a) - bold, clear, readable */
+  --iu-text-secondary: #475569;
+  /* Readable secondary/body neutral text */
+  --iu-text-body: #475569;
+  /* Dedicated body token */
+  --iu-icon: #475569;
+  /* Comfortable dark gray informational icon color */
+  --iu-text-muted: #64748b;
+  /* Secondary/Muted descriptive helper text */
+  --iu-text-subtle: #94a3b8;
+  /* Tertiary labels, timestamps, meta info */
+  --iu-text-inverse: #ffffff;
+  /* High contrast text on dark green surfaces */
 
   /* --- Borders & Dividers --- */
-  --iu-border: #e5e7eb;        /* Standard element border (Cards, nav, dividers) */
-  --iu-border-light: #e9e9e9;  /* Subtle pill/item border */
-  --iu-border-input: #d8dde6;  /* Form field and input border */
+  --iu-border: #e5e7eb;
+  /* Standard element border (Cards, nav, dividers) */
+  --iu-border-light: #e9e9e9;
+  /* Subtle pill/item border */
+  --iu-border-input: #d8dde6;
+  /* Form field and input border */
 
   /* --- Status & Feedback --- */
   --iu-success: #1b754b;
@@ -54,11 +100,16 @@
   /* --- Border Radii --- */
   --iu-radius-xs: 4px;
   --iu-radius-sm: 8px;
-  --iu-radius-md: 12px;   /* Standard form fields, cards */
-  --iu-radius-lg: 16px;   /* Modals, prominent cards */
-  --iu-radius-xl: 24px;   /* Auth cards */
-  --iu-radius-2xl: 32px;  /* Floating search boxes */
-  --iu-radius-pill: 999px; /* Buttons, pills, badges */
+  --iu-radius-md: 12px;
+  /* Standard form fields, cards */
+  --iu-radius-lg: 16px;
+  /* Modals, prominent cards */
+  --iu-radius-xl: 24px;
+  /* Auth cards */
+  --iu-radius-2xl: 32px;
+  /* Floating search boxes */
+  --iu-radius-pill: 999px;
+  /* Buttons, pills, badges */
 
   /* --- Spacing --- */
   --iu-spacing-xs: 4px;
@@ -68,7 +119,41 @@
   --iu-spacing-xl: 32px;
   --iu-spacing-2xl: 48px;
 
-  /* --- Typography --- */
+  /* --- Semantic Section & Card Spacing --- */
+  --iu-section-spacing: 48px;
+  /* Standard vertical section padding (avoids excessive gaps) */
+  --iu-section-spacing-compact: 36px;
+  /* Connected / sub-section vertical padding */
+  --iu-section-spacing-lg: 60px;
+  /* Major standalone section padding */
+  --iu-card-gap: 20px;
+  /* Standard grid gap between cards */
+  --iu-card-padding: 24px;
+  /* Standard card internal padding */
+  --iu-card-padding-lg: 32px;
+  /* Prominent card padding */
+
+  /* --- Typography Weights --- */
+  --iu-weight-regular: 400;
+  --iu-weight-medium: 500;
+  --iu-weight-semibold: 600;
+  --iu-weight-bold: 700;
+
+  /* Semantic Typography Weights Hierarchy */
+  --iu-heading-weight: 700;
+  /* Section & page titles: strictly 700 (no 800/900) */
+  --iu-card-title-weight: 600;
+  /* Card & feature titles: 600–700 */
+  --iu-nav-weight: 500;
+  /* Navigation items: 500 */
+  --iu-nav-active-weight: 600;
+  /* Active navigation items: 600 */
+  --iu-body-weight: 400;
+  /* Standard body text: 400 */
+  --iu-body-important-weight: 500;
+  /* Emphasized/important body text: 500 */
+
+  /* --- Typography Sizing & Line Heights --- */
   --iu-font-family: "Tajawal", "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --iu-font-size-xs: 12px;
   --iu-font-size-sm: 14px;
@@ -77,9 +162,17 @@
   --iu-font-size-xl: 22px;
   --iu-font-size-2xl: 28px;
   --iu-font-size-3xl: 36px;
-  --iu-line-height-tight: 1.2;
+
+  /* Arabic-tailored Line Heights & Spacing */
+  --iu-line-height-heading: 1.35;
+  /* Headings: comfortable 1.3–1.4 */
+  --iu-line-height-body: 1.75;
+  /* Body: comfortable 1.7–1.9 */
+  --iu-line-height-tight: 1.3;
   --iu-line-height-normal: 1.5;
   --iu-line-height-relaxed: 1.8;
+  --iu-letter-spacing-arabic: normal;
+  /* Arabic cursive text requires normal letter-spacing */
 
   /* --- Buttons --- */
   --iu-btn-solid-bg: var(--iu-green-700);
@@ -114,7 +207,7 @@
   /* --- Navigation --- */
   --iu-nav-bg: #ffffff;
   --iu-nav-border: var(--iu-border);
-  --iu-nav-link: #6f6f6f;
+  --iu-nav-link: var(--iu-text-secondary, #475569);
   --iu-nav-link-hover: var(--iu-green-900);
   --iu-nav-indicator: linear-gradient(90deg, var(--iu-green-700), var(--iu-green-900));
 
@@ -122,7 +215,8 @@
   --hero-angle: 110deg;
   --hero-from: var(--iu-green-900);
   --hero-mid: var(--iu-green-700);
-  --hero-to: var(--iu-green-600); /* #1d8a51 */
+  --hero-to: var(--iu-green-600);
+  /* #1d8a51 */
   --hero-height: 280px;
   --hero-card-bg: rgba(255, 255, 255, 0.1);
   --hero-title-color: #ffffff;
@@ -134,12 +228,10 @@
 
   /* --- Gradients --- */
   --iu-gradient-brand: linear-gradient(135deg, var(--iu-green-900) 0%, var(--iu-green-700) 100%);
-  --iu-gradient-hero: linear-gradient(
-    var(--hero-angle, 110deg),
-    var(--hero-from, var(--iu-green-900)),
-    var(--hero-mid, var(--iu-green-700)),
-    var(--hero-to, var(--iu-green-600))
-  );
+  --iu-gradient-hero: linear-gradient(var(--hero-angle, 110deg),
+      var(--hero-from, var(--iu-green-900)),
+      var(--hero-mid, var(--iu-green-700)),
+      var(--hero-to, var(--iu-green-600)));
 
   /* ==========================================================================
      UI-Event Direct Aliases (Ensures UI-Event exact CSS rules work everywhere)
@@ -150,7 +242,7 @@
   --green-600: var(--iu-green-600);
   --green-200: var(--iu-green-200);
   --green-100: var(--iu-green-100);
-  --green-50:  var(--iu-green-50);
+  --green-50: var(--iu-green-50);
   --bg: var(--iu-bg);
   --line: var(--iu-border);
   --text: var(--iu-text);
@@ -158,7 +250,32 @@
   --page-bg: #ffffff;
   --font-primary: var(--iu-font-family);
   --nav-font-size: 15px;
-  --nav-font-weight: 600;
+  --nav-font-weight: var(--iu-nav-weight, 500);
   --container-max: 1500px;
+
+  /* --- Global Motion System --- */
+  --iu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --iu-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --iu-ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+
+  --iu-duration-fast: 140ms;
+  --iu-duration-normal: 220ms;
+  --iu-duration-slow: 320ms;
+
+  --iu-transition-fast: 140ms cubic-bezier(0.22, 1, 0.36, 1);
+  --iu-transition-normal: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  --iu-transition-slow: 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.5ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.5ms !important;
+    scroll-behavior: auto !important;
+  }
+}

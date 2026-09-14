@@ -10,10 +10,10 @@
   h2 {
     margin: 0 0 0.5rem;
     font-size: 2rem;
-    font-weight: 800;
-    color: var(--hi-text);
-    letter-spacing: -0.035em;
-    line-height: 1.1;
+    font-weight: var(--iu-heading-weight, 700);
+    color: var(--iu-heading, var(--hi-text));
+    letter-spacing: normal;
+    line-height: var(--iu-line-height-heading, 1.35);
 
     @include mixins.respond-below(sm) {
       font-size: 1.625rem;
@@ -23,8 +23,8 @@
   p {
     margin: 0;
     font-size: 0.9375rem;
-    color: var(--hi-color-text-muted);
-    line-height: 1.55;
+    color: var(--iu-text-secondary, var(--hi-color-text-muted));
+    line-height: var(--iu-line-height-body, 1.7);
 
     a {
       color: var(--mantine-color-secondary-5);
@@ -106,14 +106,14 @@
 
 @mixin auth-button($margin-top: 0) {
   :global(.mantine-Button-root) {
-    height: 46px;
+    height: 48px;
     border-radius: var(--hi-radius-lg);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.9375rem;
-    border: none;
-    background-image: linear-gradient(135deg, var(--mantine-color-secondary-4) 0%, var(--mantine-color-secondary-6) 100%);
-    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--mantine-color-secondary-5) 50%, transparent);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    background: var(--iu-green-gradient);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(27, 117, 75, 0.25);
+    transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal), filter var(--iu-transition-fast);
 
     @if $margin-top != 0 {
       margin-top: $margin-top;
@@ -124,13 +124,15 @@
     }
 
     &:hover:not(:disabled) {
-      transform: translateY(-1px);
-      filter: brightness(1.04);
-      box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--mantine-color-secondary-5) 60%, transparent);
+      transform: translateY(-1.5px);
+      background: var(--iu-green-gradient-hover);
+      box-shadow: var(--iu-green-glow);
+      filter: brightness(1.05);
     }
 
     &:active:not(:disabled) {
       transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(8, 75, 47, 0.25);
     }
   }
 }

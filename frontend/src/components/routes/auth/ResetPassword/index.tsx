@@ -7,10 +7,11 @@ import {showError, showSuccess} from "../../../../utilites/notifications.tsx";
 import {useEffect} from "react";
 import {ResetPasswordRequest} from "../../../../types.ts";
 import {useFormErrorResponseHandler} from "../../../../hooks/useFormErrorResponseHandler.tsx";
-import {t} from "@lingui/macro";
 import classes from "./ResetPassword.module.scss";
+import {useIULanguage} from "../../../../context/IULanguageContext";
 
 export const ResetPassword = () => {
+    const {t, dir} = useIULanguage();
     const form = useForm({
         initialValues: {
             password: '',
@@ -25,7 +26,7 @@ export const ResetPassword = () => {
 
     useEffect(() => {
         if (verifyQuery.isError) {
-            showError(t`This reset password link is invalid or expired.`);
+            showError(t("reset_invalid_token", "رابط إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية."));
             navigate('/auth/login');
         }
     }, [verifyQuery.isError]);
@@ -46,40 +47,41 @@ export const ResetPassword = () => {
             errorHandler(form, error);
         },
         onSuccess: () => {
-            showSuccess(t`Password reset successfully. Please login with your new password.`);
+            showSuccess(t("reset_success", "تمت إعادة تعيين كلمة المرور بنجاح. يرجى تسجيل الدخول بكلمة المرور الجديدة."));
             navigate('/auth/login');
         },
     });
 
     return (
-        <>
+        <div dir={dir}>
             <header className={classes.header}>
-                <h2>{t`Create new password`}</h2>
-                <p>{t`Your new password must be at least 8 characters long.`}</p>
+                <h2>{t("reset_title", "إنشاء كلمة مرور جديدة")}</h2>
+                <p>{t("reset_desc", "يجب أن تتكون كلمة المرور الجديدة من 8 أحرف على الأقل.")}</p>
             </header>
             <div className={classes.resetPasswordCard}>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                     <PasswordInput
                         {...form.getInputProps('password')}
-                        label={t`New Password`}
-                        placeholder={t`Enter new password`}
+                        label={t("new_password_label", "كلمة المرور الجديدة")}
+                        placeholder="••••••••"
                         required
                     />
                     <PasswordInput
                         {...form.getInputProps('password_confirmation')}
-                        label={t`Confirm Password`}
-                        placeholder={t`Confirm new password`}
+                        label={t("confirm_password_label", "تأكيد كلمة المرور الجديدة")}
+                        placeholder="••••••••"
                         required
+                        mt="md"
                     />
-                    <Button color="secondary.5" type="submit" fullWidth loading={mutate.isPending} disabled={mutate.isPending}>
-                        {mutate.isPending ? t`Resetting...` : t`Reset password`}
+                    <Button type="submit" fullWidth loading={mutate.isPending} disabled={mutate.isPending} mt="lg">
+                        {mutate.isPending ? t("resetting", "جاري إعادة التعيين...") : t("reset_submit", "إعادة تعيين كلمة المرور")}
                     </Button>
                 </form>
                 <footer>
-                    <NavLink to={'/auth/login'}>{t`Back to login`}</NavLink>
+                    <NavLink to={'/auth/login'}>{t("back_to_login", "العودة لتسجيل الدخول")}</NavLink>
                 </footer>
             </div>
-        </>
+        </div>
     );
 }
 

@@ -1,67 +1,61 @@
 import {Button, PasswordInput, TextInput, Collapse, UnstyledButton} from "@mantine/core";
-import {NavLink, useLocation} from "react-router";
-import {useMutation} from "@tanstack/react-query";
+import {NavLink, useLocation, useNavigate} from "react-router";
 import {notifications} from '@mantine/notifications';
-import {authClient} from "../../../../api/auth.client.ts";
-import {LoginData, LoginResponse} from "../../../../types.ts";
+import {attendeeClient} from "../../../../api/attendee.client.ts";
 import {useForm} from "@mantine/form";
-import {redirectToPreviousUrl} from "../../../../api/client.ts";
 import classes from "./Login.module.scss";
-import {t} from "@lingui/macro";
-import {useEffect, useState} from "react";
-import {ChooseAccountModal} from "../../../modals/ChooseAccountModal";
+import {useState} from "react";
 import {useSendTicketLookupEmail} from "../../../../mutations/useSendTicketLookupEmail.ts";
 import {showError} from "../../../../utilites/notifications.tsx";
 import {IconTicket, IconChevronDown} from "@tabler/icons-react";
+import {useIULanguage} from "../../../../context/IULanguageContext";
 
-const Login = () => {
+export const Login = () => {
+    const {t} = useIULanguage();
     const location = useLocation();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [loginError, setLoginError] = useState<string | null>(null);
+    const [ticketLookupOpen, setTicketLookupOpen] = useState(false);
+    const [ticketLookupSuccess, setTicketLookupSuccess] = useState(false);
+
     const form = useForm({
         initialValues: {
             email: '',
             password: '',
-            account_id: '',
         }
     });
-    const [showChooseAccount, setShowChooseAccount] = useState(false);
-    const [ticketLookupOpen, setTicketLookupOpen] = useState(false);
 
     const ticketLookupForm = useForm({
         initialValues: {
             email: '',
         }
     });
-    const [ticketLookupSuccess, setTicketLookupSuccess] = useState(false);
-
-    const {mutate: loginUser, isPending, data} = useMutation({
-        mutationFn: (userData: LoginData) => authClient.login(userData),
-
-        onSuccess: (response: LoginResponse) => {
-            if (response.token) {
-                redirectToPreviousUrl();
-                return;
-            }
-
-            if (response.accounts.length > 1) {
-                setShowChooseAccount(true);
-                return;
-            }
-        },
-
-        onError: () => {
-            notifications.show({
-                message: t`Please check your email and password and try again`,
-                color: 'red',
-                position: 'top-center',
-            });
-        }
-    });
 
     const ticketLookupMutation = useSendTicketLookupEmail();
 
-    useEffect(() => {
-        form.values.account_id && loginUser(form.values);
-    }, [form.values.account_id]);
+    const handleLogin = async (values: typeof form.values) => {
+        setLoginError(null);
+        setLoading(true);
+
+        try {
+            await attendeeClient.login(values);
+            const searchParams = new URLSearchParams(location.search);
+            const redirectParam = searchParams.get('redirect');
+            const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
+            navigate(redirectUrl);
+        } catch (err: any) {
+            const msg = err.response?.data?.message || t("login_error_default");
+            setLoginError(msg);
+            notifications.show({
+                message: msg,
+                color: 'red',
+                position: 'top-center',
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleTicketLookup = (values: { email: string }) => {
         ticketLookupMutation.mutate(values.email, {
@@ -69,7 +63,7 @@ const Login = () => {
                 setTicketLookupSuccess(true);
             },
             onError: () => {
-                showError(t`Something went wrong. Please try again.`);
+                showError(t("ticket_lookup_error"));
             }
         });
     };
@@ -77,38 +71,69 @@ const Login = () => {
     return (
         <>
             <header className={classes.header}>
-                <h2>{t`تسجيل الدخول — المنظمون والمسؤولون`}</h2>
+                <h2>{t("login_title", "تسجيل الدخول إلى حسابك")}</h2>
                 <p>
-                    مخصص للجهات واللجان المنظمة بالجامعة.{' '}
-                    <NavLink to={`/auth/register${location.search}`}>
-                        إنشاء حساب منظم جديد
-                    </NavLink>
+                    {t("login_desc", "سجل دخولك لاستعراض تذاكرك، متابعة تسجيلاتك، وتحميل شهادات الحضور المعتمدة.")}
                 </p>
-                <div style={{marginTop: 8, fontSize: 13, background: "#f0fdf4", padding: "8px 12px", borderRadius: 10, border: "1px solid #bbf7d0"}}>
-                    هل أنت طالب أو زائر ترغب بالوصول لتذاكرك؟ <NavLink to="/login" style={{fontWeight: 700, color: "var(--iu-green-900)"}}>الدخول من بوابة الطلاب والمشاركين ←</NavLink>
-                </div>
             </header>
+
+            {loginError && (
+                <div style={{
+                    background: "#fef2f2",
+                    border: "1px solid #fecaca",
+                    color: "#b91c1c",
+                    padding: "10px 14px",
+                    borderRadius: 12,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    marginBottom: 16,
+                }}>
+                    {loginError}
+                </div>
+            )}
+
             <div className={classes.loginCard}>
-                <form onSubmit={form.onSubmit((values) => loginUser(values))}>
-                    <TextInput {...form.getInputProps('email')}
-                               label={t`Email`}
-                               placeholder="you@example.com"
-                               required
+                <form onSubmit={form.onSubmit(handleLogin)}>
+                    <TextInput
+                        {...form.getInputProps('email')}
+                        label={t("email_label", "البريد الإلكتروني")}
+                        placeholder="name@example.com"
+                        type="email"
+                        required
                     />
+
                     <div className={classes.passwordLabelRow}>
-                        <label htmlFor="login-password">{t`Password`}</label>
+                        <label htmlFor="login-password">
+                            {t("password_label", "كلمة المرور")}
+                        </label>
                         <NavLink to={`/auth/forgot-password`} tabIndex={-1}>
-                            {t`Forgot password?`}
+                            {t("forgot_password_link", "نسيت كلمة المرور؟")}
                         </NavLink>
                     </div>
-                    <PasswordInput {...form.getInputProps('password')}
-                                   id="login-password"
-                                   placeholder={t`Your password`}
-                                   required
+
+                    <PasswordInput
+                        {...form.getInputProps('password')}
+                        id="login-password"
+                        placeholder="••••••••"
+                        required
                     />
-                    <Button color="secondary.5" type="submit" fullWidth loading={isPending} disabled={isPending} mt="lg">
-                        {isPending ? t`Logging in` : t`Log in`}
+
+                    <Button
+                        type="submit"
+                        fullWidth
+                        loading={loading}
+                        disabled={loading}
+                        mt="lg"
+                    >
+                        {loading ? t("logging_in", "جاري تسجيل الدخول...") : t("login_submit", "تسجيل الدخول")}
                     </Button>
+
+                    <div className={classes.createAccountPrompt}>
+                        <span>{t("dont_have_account", "ليس لديك حساب بعد؟")}</span>
+                        <NavLink to={`/register${location.search}`} className={classes.createAccountLink}>
+                            {t("login_create_account", "إنشاء حساب جديد")}
+                        </NavLink>
+                    </div>
                 </form>
             </div>
 
@@ -119,7 +144,7 @@ const Login = () => {
                     data-expanded={ticketLookupOpen}
                 >
                     <IconTicket size={18} />
-                    <span>{t`Just looking for your tickets?`}</span>
+                    <span>{t("ticket_lookup_trigger")}</span>
                     <IconChevronDown
                         size={16}
                         className={classes.chevron}
@@ -131,7 +156,7 @@ const Login = () => {
                     <div className={classes.ticketLookupContent}>
                         {ticketLookupSuccess ? (
                             <div className={classes.successMessage}>
-                                <p>{t`Check your inbox! If tickets are associated with this email, you'll receive a link to view them.`}</p>
+                                <p>{t("ticket_lookup_success")}</p>
                                 <UnstyledButton
                                     className={classes.resetLink}
                                     onClick={() => {
@@ -139,7 +164,7 @@ const Login = () => {
                                         ticketLookupForm.reset();
                                     }}
                                 >
-                                    {t`Try another email`}
+                                    {t("ticket_lookup_another_email")}
                                 </UnstyledButton>
                             </div>
                         ) : (
@@ -148,17 +173,16 @@ const Login = () => {
                                     <TextInput
                                         {...ticketLookupForm.getInputProps('email')}
                                         type="email"
-                                        placeholder={t`Enter your email`}
+                                        placeholder={t("ticket_lookup_placeholder")}
                                         required
                                         className={classes.ticketEmailInput}
                                     />
                                     <Button
                                         type="submit"
-                                        color="secondary.5"
                                         loading={ticketLookupMutation.isPending}
                                         disabled={ticketLookupMutation.isPending}
                                     >
-                                        {t`Send`}
+                                        {t("ticket_lookup_send_btn")}
                                     </Button>
                                 </div>
                             </form>
@@ -167,12 +191,27 @@ const Login = () => {
                 </Collapse>
             </div>
 
-            {(showChooseAccount && data) && <ChooseAccountModal onAccountChosen={(accountId) => {
-                form.setFieldValue('account_id', accountId as string);
-            }
-            } accounts={data.accounts}/>}
+            <div style={{
+                marginTop: 20,
+                fontSize: 13,
+                background: "var(--iu-green-soft, #f4fbf7)",
+                padding: "12px 16px",
+                borderRadius: 14,
+                border: "1px solid var(--iu-green-light, #dff3e8)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 8,
+            }}>
+                <span style={{color: "var(--iu-text-secondary, #475569)"}}>
+                    {t("login_organizer_prompt", "هل أنت منظم أو مسؤول فعالية بالجامعة؟")}
+                </span>
+                <NavLink to={`/manage/login${location.search}`} style={{fontWeight: 700, color: "var(--iu-green-secondary, #1b754b)", textDecoration: "none", whiteSpace: "nowrap"}}>
+                    {t("login_organizer_link", "دخول المنظمين والمسؤولين ←")}
+                </NavLink>
+            </div>
         </>
-    )
-}
+    );
+};
 
 export default Login;

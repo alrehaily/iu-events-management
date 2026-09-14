@@ -1,5 +1,5 @@
 .section {
-  padding: 64px 0;
+  padding: var(--iu-section-spacing, 48px) 0;
 }
 
 .sectionLight {
@@ -10,25 +10,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: var(--iu-spacing-lg, 24px);
 }
 
 .sectionHead h2 {
   font-size: 28px;
-  font-weight: 800;
-  color: var(--green-900);
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  color: var(--iu-heading, #0f172a);
   margin: 0;
 }
 
 .moreLink {
   color: var(--green-700);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.2s ease;
+  transition: all var(--iu-transition-normal);
 }
 
 .moreLink:hover {
@@ -38,9 +39,10 @@
 
 /* Stats Section */
 .stats {
-  padding: 56px 0;
+  padding: var(--iu-section-spacing, 48px) 0 var(--iu-section-spacing-compact, 36px);
   background: #ffffff;
   border-bottom: 1px solid var(--iu-line);
+  animation: iuBdsnPageBody var(--iu-anim-body, 0.75s) var(--iu-ease-out) 0.05s both;
 }
 
 .statsTop {
@@ -48,79 +50,112 @@
   justify-content: space-between;
   align-items: center;
   gap: 32px;
-  margin-bottom: 36px;
-  direction: rtl;
+  margin-bottom: 32px;
+  direction: inherit;
+}
+
+.aboutMoreBtn {
+  text-decoration: none !important;
+  outline: none;
+  border-radius: 999px;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+
+  &:hover {
+    text-decoration: none !important;
+    transform: translate3d(0, -2px, 0);
+    box-shadow: none;
+    outline: none;
+  }
 }
 
 .statsTopText {
-  text-align: right;
+  text-align: start;
 }
 
 .statsTopText h2 {
   font-size: 28px;
-  font-weight: 800;
-  color: var(--green-900);
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  color: var(--iu-heading, #0f172a);
   margin: 0 0 12px;
-  text-align: right;
+  text-align: start;
 }
 
 .statsTopText p {
-  color: var(--iu-text-muted);
+  color: var(--iu-text-secondary, #475569);
   font-size: 16px;
-  line-height: 1.8;
+  font-weight: var(--iu-body-weight, 400);
+  line-height: var(--iu-line-height-body, 1.75);
   max-width: 800px;
   margin: 0;
-  text-align: right;
+  text-align: start;
 }
 
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: var(--iu-card-gap, 20px);
 }
 
 .statCard {
-  background: var(--green-50);
-  border: 1px solid rgba(27, 117, 75, 0.15);
+  background: #ffffff;
+  border: 1px solid var(--iu-line);
   border-radius: 20px;
-  padding: 24px;
+  padding: 28px var(--iu-card-padding, 24px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   text-align: center;
+  transition: transform var(--iu-anim-hover, 0.3s) var(--iu-ease-out), box-shadow var(--iu-anim-hover, 0.3s) var(--iu-ease-out), border-color var(--iu-transition-normal);
+  animation: iuBdsnCardIn var(--iu-anim-card-in, 0.7s) var(--iu-ease-out) both;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--green-700);
+  box-shadow: 0 14px 28px rgba(8, 75, 47, 0.12);
 }
 
 .statIcon {
   font-size: 32px;
   margin-bottom: 8px;
+  color: var(--iu-icon, #0f172a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .statValue {
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--green-900);
-  line-height: 1.2;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--iu-heading, #0f172a);
+  line-height: 1.4;
 }
 
 .statLabel {
   font-size: 14px;
-  font-weight: 600;
-  color: var(--iu-text-muted);
-  margin-top: 4px;
+  font-weight: 400;
+  color: var(--iu-text-secondary, #475569);
+  line-height: 1.6;
+  margin-top: 6px;
 }
 
 /* Services Grid */
 .servicesGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: var(--iu-card-gap, 20px);
 }
 
 .serviceCard {
   background: #ffffff;
   border: 1px solid var(--iu-line);
   border-radius: 20px;
-  padding: 28px 24px;
+  padding: 28px var(--iu-card-padding, 24px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  text-align: right;
+  transition: transform var(--iu-anim-hover, 0.3s) var(--iu-ease-out), box-shadow var(--iu-anim-hover, 0.3s) var(--iu-ease-out), border-color var(--iu-transition-normal);
+  text-align: center;
+  animation: iuBdsnCardIn var(--iu-anim-card-in, 0.7s) var(--iu-ease-out) both;
 }
 
 .serviceCard:hover {
@@ -132,20 +167,28 @@
 .serviceIcon {
   font-size: 32px;
   margin-bottom: 12px;
+  color: var(--iu-icon, #0f172a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .serviceCard h4 {
   font-size: 18px;
   font-weight: 700;
-  color: var(--green-900);
+  color: var(--iu-heading, #0f172a);
   margin: 0 0 8px;
+  line-height: 1.4;
+  text-align: center;
 }
 
 .serviceCard p {
   font-size: 14px;
-  color: var(--iu-text-muted);
+  font-weight: 400;
+  color: var(--iu-text-secondary, #475569);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.7;
+  text-align: center;
 }
 
 /* Events Grid */
@@ -166,10 +209,12 @@
 }
 
 @media (max-width: 1024px) {
+
   .statsGrid,
   .servicesGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .eventsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -181,6 +226,7 @@
     align-items: flex-start;
     gap: 20px;
   }
+
   .statsGrid,
   .servicesGrid,
   .eventsGrid {

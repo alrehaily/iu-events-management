@@ -18,25 +18,25 @@ const Reports = () => {
             id: ReportTypes.ProductSales,
             title: t`Product Sales`,
             description: t`Product sales, revenue, and tax breakdown`,
-            icon: <Avatar size={40} color={'#831781'}><IconReportMoney/></Avatar>
+            icon: <Avatar size={40} color={'green'} radius="md"><IconReportMoney/></Avatar>
         },
         {
             id: ReportTypes.DailySales,
             title: t`Daily Sales Report`,
             description: t`Daily sales, tax, and fee breakdown`,
-            icon: <Avatar size={40} color={'#00a3e0'}><IconChartBar/></Avatar>
+            icon: <Avatar size={40} color={'teal'} radius="md"><IconChartBar/></Avatar>
         },
         {
             id: ReportTypes.PromoCodes,
             title: t`Promo Codes Report`,
             description: t`Promo code usage and discount breakdown`,
-            icon: <Avatar size={40} color={'#634fc0'}><IconReportMoney/></Avatar>
+            icon: <Avatar size={40} color={'gray'} radius="md"><IconReportMoney/></Avatar>
         },
         ...(event?.type === EventType.RECURRING ? [{
             id: ReportTypes.OccurrenceSummary,
             title: t`Occurrence Summary`,
             description: t`Sales, attendance, and check-in breakdown per occurrence`,
-            icon: <Avatar size={40} color={'#e07000'}><IconCalendarEvent/></Avatar>
+            icon: <Avatar size={40} color={'orange'} radius="md"><IconCalendarEvent/></Avatar>
         }] : []),
     ];
 

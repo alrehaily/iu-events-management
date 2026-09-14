@@ -22,20 +22,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all var(--iu-transition-fast);
 }
 
 .pageBtn:hover:not(:disabled) {
-  border-color: var(--green-700);
-  color: var(--green-700);
-  background: var(--green-100);
+  border-color: var(--iu-green-secondary);
+  color: var(--iu-green-primary);
+  background: var(--iu-green-light);
 }
 
 .pageBtn.active {
-  background: var(--green-700);
-  border-color: var(--green-700);
+  background: var(--iu-green-gradient);
+  border-color: transparent;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(27, 117, 75, 0.2);
+  box-shadow: 0 4px 12px rgba(27, 117, 75, 0.25);
 }
 
 .navBtn {
@@ -50,13 +50,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all var(--iu-transition-fast);
 }
 
 .navBtn:hover:not(:disabled) {
-  border-color: var(--green-700);
-  color: var(--green-700);
-  background: var(--green-100);
+  border-color: var(--iu-green-secondary);
+  color: var(--iu-green-primary);
+  background: var(--iu-green-light);
 }
 
 .navBtn:disabled,

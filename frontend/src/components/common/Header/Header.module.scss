@@ -1,21 +1,27 @@
 .header {
-  height: 56px;
-  background-color: var(--hi-primary);
-  border-bottom: 1px solid var(--mantine-color-gray-3);
-
+  height: 58px;
+  background-color: var(--iu-surface, #ffffff);
+  border-bottom: 1px solid var(--iu-border, #e5e7eb);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 
   .logo {
     display: flex;
     align-items: center;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
     img {
-      max-height: 40px;
+      max-height: 38px;
       width: auto;
     }
   }
 }
 
 .inner {
-  height: 56px;
+  height: 58px;
   display: flex;
   justify-content: space-between;
   align-items: center;

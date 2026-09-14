@@ -98,23 +98,6 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
 
     return (
         <div className={classes.modalOverlay} onClick={onClose}>
-            {/* Floating background emojis */}
-            <div className={classes.floatingEmojis}>
-                <span className={classes.floatingEmoji} style={{top: '10%', left: '15%', animationDelay: '0s'}}>🎉</span>
-                <span className={classes.floatingEmoji}
-                      style={{top: '20%', right: '20%', animationDelay: '2s'}}>✨</span>
-                <span className={classes.floatingEmoji} style={{top: '60%', left: '10%', animationDelay: '4s'}}>🥳</span>
-                <span className={classes.floatingEmoji}
-                      style={{bottom: '30%', right: '15%', animationDelay: '1s'}}>🎪</span>
-                <span className={classes.floatingEmoji}
-                      style={{bottom: '15%', left: '25%', animationDelay: '3s'}}>🌟</span>
-                <span className={classes.floatingEmoji} style={{top: '40%', right: '8%', animationDelay: '5s'}}>🎭</span>
-                <span className={classes.floatingEmoji}
-                      style={{top: '70%', left: '70%', animationDelay: '2.5s'}}>🎨</span>
-                <span className={classes.floatingEmoji}
-                      style={{top: '25%', left: '60%', animationDelay: '1.5s'}}>🎯</span>
-            </div>
-
             <div className={classes.modalContainer} onClick={(e) => e.stopPropagation()}>
                 <button
                     className={classes.closeButton}
@@ -126,7 +109,9 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
 
                 <div className={classes.modalHeader}>
                     <div className={classes.headerContent}>
-                        <div className={classes.magicWand}>✨</div>
+                        <div className={classes.magicWand}>
+                            <IconCalendarEvent size={32} stroke={1.75} color="#ffffff"/>
+                        </div>
                         <h1 className={classes.headerTitle}>{t`Create Your Event`}</h1>
                         <p className={classes.headerSubtitle}>{t`Tell us about your event`}</p>
                     </div>

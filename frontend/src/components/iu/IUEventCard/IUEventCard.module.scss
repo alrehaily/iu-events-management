@@ -2,24 +2,32 @@
   text-decoration: none;
   color: inherit;
   display: block;
+  height: 100%;
+  border-radius: 20px;
+  outline: none;
 }
 
 .eventCard {
   background: #ffffff;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
   border: 1px solid var(--iu-line);
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   height: 100%;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s ease;
+  animation: iuBdsnCardIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, box-shadow;
 }
 
+.cardLink:hover .eventCard,
 .eventCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(8, 75, 47, 0.16);
-  border-color: rgba(27, 117, 75, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px -4px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  border-color: rgba(27, 117, 75, 0.28);
 }
 
 .eventImage {
@@ -39,14 +47,15 @@
   transition: transform 0.35s ease;
 }
 
+.cardLink:hover .eventImage img,
 .eventCard:hover .eventImage img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .categoryBadge {
   position: absolute;
   top: 12px;
-  right: 12px;
+  inset-inline-end: 12px;
   background: rgba(8, 75, 47, 0.85);
   backdrop-filter: blur(8px);
   color: #ffffff;
@@ -82,10 +91,10 @@
 
 .eventTitle {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: var(--iu-heading-weight, 700);
   margin: 0 0 12px;
-  line-height: 1.5;
-  color: var(--iu-text);
+  line-height: var(--iu-line-height-heading, 1.4);
+  color: var(--iu-heading, #0f172a);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -98,7 +107,8 @@
   align-items: center;
   gap: 16px;
   font-size: 14px;
-  color: var(--iu-text-muted);
+  font-weight: 500;
+  color: var(--iu-text-muted, #64748b);
   margin-top: auto;
   padding-top: 12px;
   border-top: 1px solid #f1f5f9;
@@ -108,4 +118,26 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+
+  svg {
+    color: var(--iu-icon, #0f172a);
+    flex-shrink: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eventCard {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .cardLink:hover .eventCard,
+  .eventCard:hover {
+    transform: none !important;
+  }
+
+  .cardLink:hover .eventImage img,
+  .eventCard:hover .eventImage img {
+    transform: none !important;
+  }
 }

@@ -35,7 +35,7 @@ const DARK_PALETTE = {
 function createColorPalette(accentColor: string): MantineColorsTuple {
     const rgb = hexToRgb(accentColor);
     if (!rgb) {
-        return ['#f3e8ff', '#e9d5ff', '#d8b4fe', '#c084fc', '#a855f7', '#9333ea', '#7c3aed', '#6d28d9', '#5b21b6', '#4c1d95'];
+        return ['#edf8f2', '#dff3e8', '#bde5d0', '#8fd2b0', '#56ba8a', '#1d8a51', '#1b754b', '#105f3c', '#084b2f', '#052c1c'];
     }
 
     const {r, g, b} = rgb;
@@ -140,11 +140,11 @@ function createCSSVariablesResolver(accentColor: string, mode: 'light' | 'dark')
 
         const accentSoft = rgb
             ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${mode === 'light' ? 0.1 : 0.2})`
-            : mode === 'light' ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.2)';
+            : mode === 'light' ? 'rgba(27, 117, 75, 0.1)' : 'rgba(27, 117, 75, 0.2)';
 
         const accentMuted = rgb
             ? `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${mode === 'light' ? 0.6 : 0.7})`
-            : mode === 'light' ? 'rgba(139, 92, 246, 0.6)' : 'rgba(139, 92, 246, 0.7)';
+            : mode === 'light' ? 'rgba(27, 117, 75, 0.6)' : 'rgba(27, 117, 75, 0.7)';
 
         return {
             variables: {

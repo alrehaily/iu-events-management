@@ -1,12 +1,13 @@
 @use "mixins";
 @import "./iu/tokens.css";
+@import "./iu/dashboard.css";
 
 :root {
   /* Legacy token mapping to centralized IU Design Tokens */
   --hi-text: var(--iu-text);
   --hi-primary: var(--iu-green-900);
   --hi-secondary: var(--iu-green-700);
-  --hi-secondary-text: var(--iu-text);
+  --hi-secondary-text: var(--iu-text-secondary);
   --hi-color-gray: var(--iu-bg);
   --hi-color-gray-2: var(--iu-border);
   --hi-color-gray-dark: var(--iu-text-subtle);
@@ -42,8 +43,8 @@
   --hi-color-text-tertiary: var(--iu-text-subtle);
   --hi-accent-brand-soft: var(--iu-green-200);
   --hi-radius-card: var(--iu-radius-lg);
-  --hi-ink: var(--iu-green-900);
-  --hi-ink-deep: var(--iu-green-900);
+  --hi-ink: var(--iu-text);
+  --hi-ink-deep: var(--iu-heading);
 }
 
 @keyframes iu-spin {
@@ -57,8 +58,12 @@
 
 html {
   height: auto;
-  direction: rtl;
   overflow-x: hidden;
+  direction: rtl;
+}
+
+html[dir="ltr"] {
+  direction: ltr;
 }
 
 body {
@@ -66,17 +71,31 @@ body {
   color: var(--iu-text);
   background-color: var(--page-bg, var(--iu-bg));
   height: auto;
-  letter-spacing: 0.2px;
+  letter-spacing: normal;
+  line-height: var(--iu-line-height-body, 1.75);
   direction: rtl;
   text-align: right;
   overflow-x: hidden;
 }
 
+html[dir="ltr"] body {
+  direction: ltr;
+  text-align: left;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--iu-font-family);
-  color: var(--iu-green-900);
-  letter-spacing: 0.3px;
+  color: var(--iu-heading, var(--iu-text));
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  letter-spacing: normal;
   text-align: start;
+}
+
+p {
+  color: var(--iu-text-secondary, #475569);
+  line-height: var(--iu-line-height-body, 1.75);
+  letter-spacing: normal;
 }
 
 /* Ensure headings inside Hero sections, dark banners, and CTAs retain pure white contrast */
@@ -118,11 +137,24 @@ a {
   padding-bottom: 0 !important;
 }
 
+/* Modals */
 .mantine-Modal-content {
   @include mixins.scrollbar();
   border-radius: var(--iu-radius-lg);
   box-shadow: var(--iu-shadow-xl);
   font-family: var(--iu-font-family);
+  animation: iuModalIn var(--iu-duration-normal) var(--iu-ease) both;
+}
+
+@keyframes iuModalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .mantine-Modal-header {
@@ -135,6 +167,7 @@ a {
   backdrop-filter: blur(4px);
 }
 
+/* Inputs & Form Controls */
 .mantine-TextInput-input,
 .mantine-PasswordInput-innerInput,
 .mantine-Select-input,
@@ -144,21 +177,181 @@ a {
   background: var(--iu-surface);
   color: var(--iu-text);
   font-family: var(--iu-font-family);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color var(--iu-transition-fast), box-shadow var(--iu-transition-fast);
 
   &:focus, &:focus-within {
-    border-color: var(--iu-green-700);
-    box-shadow: var(--iu-shadow-focus);
+    border-color: var(--iu-green-secondary);
+    box-shadow: var(--iu-green-focus-ring);
   }
 }
 
+/* Mantine Primary Buttons (Hero Gradient & Motion System) */
+.mantine-Button-root {
+  font-family: var(--iu-font-family);
+  transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal), background var(--iu-transition-normal), filter var(--iu-transition-fast);
+
+  &[data-variant="filled"] {
+    background: var(--iu-green-gradient);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 14px rgba(27, 117, 75, 0.22);
+
+    &:hover:not(:disabled) {
+      background: var(--iu-green-gradient-hover);
+      transform: translateY(-1.5px);
+      box-shadow: var(--iu-green-glow);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(8, 75, 47, 0.2);
+    }
+  }
+
+  &[data-variant="outline"] {
+    border-color: var(--iu-green-secondary);
+    color: var(--iu-green-secondary);
+    background: #ffffff;
+
+    &:hover:not(:disabled) {
+      background: var(--iu-green-light);
+      color: var(--iu-green-primary);
+      border-color: var(--iu-green-secondary);
+      transform: translateY(-1.5px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+
+  &[data-variant="light"] {
+    background: var(--iu-green-light);
+    color: var(--iu-green-primary);
+
+    &:hover:not(:disabled) {
+      background: rgba(27, 117, 75, 0.18);
+      color: var(--iu-green-hover);
+    }
+  }
+
+  &[data-variant="subtle"] {
+    color: var(--iu-green-secondary);
+
+    &:hover:not(:disabled) {
+      background: var(--iu-green-soft);
+      color: var(--iu-green-primary);
+    }
+  }
+}
+
+/* Checkboxes & Radios */
+.mantine-Checkbox-input:checked,
+.mantine-Radio-radio:checked {
+  background-color: var(--iu-green-secondary) !important;
+  border-color: var(--iu-green-secondary) !important;
+}
+
+.mantine-Checkbox-input:focus-visible,
+.mantine-Radio-radio:focus-visible {
+  outline: 2px solid var(--iu-green-secondary);
+  outline-offset: 2px;
+}
+
+/* Switch */
+.mantine-Switch-track[data-checked] {
+  background-color: var(--iu-green-secondary) !important;
+  border-color: var(--iu-green-secondary) !important;
+}
+
+/* Tabs */
+.mantine-Tabs-tab {
+  font-family: var(--iu-font-family);
+  font-weight: 500;
+  transition: color var(--iu-transition-fast), border-color var(--iu-transition-fast);
+
+  &[data-active] {
+    color: var(--iu-green-primary) !important;
+    border-color: var(--iu-green-secondary) !important;
+    font-weight: 600;
+  }
+
+  &:hover:not([data-active]) {
+    color: var(--iu-green-secondary);
+    background-color: var(--iu-green-soft);
+  }
+}
+
+/* Pagination */
+.mantine-Pagination-control {
+  transition: all var(--iu-transition-fast);
+
+  &[data-active] {
+    background: var(--iu-green-gradient) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 12px rgba(27, 117, 75, 0.25);
+  }
+
+  &:hover:not([data-active]):not(:disabled) {
+    background: var(--iu-green-light) !important;
+    color: var(--iu-green-primary) !important;
+    border-color: var(--iu-green-secondary) !important;
+  }
+}
+
+/* Progress Bars */
+.mantine-Progress-section {
+  background: var(--iu-green-gradient) !important;
+}
+
+/* Badges */
+.mantine-Badge-root {
+  font-family: var(--iu-font-family);
+
+  &[data-variant="filled"] {
+    background: var(--iu-green-gradient);
+    color: #ffffff;
+  }
+
+  &[data-variant="light"] {
+    background: var(--iu-green-light);
+    color: var(--iu-green-primary);
+    border: 1px solid rgba(27, 117, 75, 0.2);
+  }
+
+  &[data-variant="outline"] {
+    border-color: var(--iu-green-secondary);
+    color: var(--iu-green-secondary);
+  }
+}
+
+/* Dropdown Menu Items */
+.mantine-Menu-item {
+  font-family: var(--iu-font-family);
+  transition: background-color var(--iu-transition-fast), color var(--iu-transition-fast);
+
+  &:hover, &[data-hovered] {
+    background-color: var(--iu-green-soft) !important;
+    color: var(--iu-green-primary) !important;
+  }
+}
+
+/* Cards & Surfaces */
 .mantine-Card-root {
   border-radius: var(--iu-radius-lg);
   border: 1px solid var(--iu-border);
   box-shadow: var(--iu-shadow-sm);
   background: var(--iu-surface);
+  transition: transform var(--iu-transition-normal), box-shadow var(--iu-transition-normal), border-color var(--iu-transition-normal);
+
+  &:hover {
+    box-shadow: 0 10px 24px rgba(8, 75, 47, 0.1);
+    border-color: rgba(27, 117, 75, 0.22);
+  }
 }
 
+/* Tables */
 .mantine-Table-table {
   border-collapse: separate;
   border-spacing: 0;
@@ -168,12 +361,157 @@ a {
 
   thead tr th {
     background-color: var(--iu-table-head-bg);
-    color: var(--iu-table-head-color);
-    font-weight: 700;
+    color: var(--iu-text-secondary, #475569);
+    font-weight: 600;
     border-bottom: 1px solid var(--iu-border);
   }
 
-  tbody tr:hover {
-    background-color: var(--iu-table-row-hover);
+  tbody tr {
+    transition: background-color var(--iu-transition-fast);
+
+    &:hover {
+      background-color: var(--iu-table-row-hover);
+    }
   }
 }
+
+/* Page Entrance Animation */
+.iu-page,
+.mantine-AppShell-main,
+main {
+  animation: iuPageEntrance var(--iu-duration-normal) var(--iu-ease) both;
+}
+
+@keyframes iuPageEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Exclusive Unified Black / Dark Neutral Icon System (Tabler Icons)
+   Strictly standardized across the entire platform (#0f172a)
+   ========================================================================== */
+svg.tabler-icon,
+.tabler-icon {
+  color: var(--iu-icon, #0f172a);
+  stroke: currentColor;
+}
+
+/* Input and control icons (Search, Select, Date pickers, etc.) */
+.mantine-Input-section svg.tabler-icon,
+.mantine-TextInput-section svg.tabler-icon,
+.mantine-Select-section svg.tabler-icon,
+.mantine-DateTimePicker-section svg.tabler-icon {
+  color: var(--iu-icon, #0f172a);
+}
+
+/* Preserved white icons on high-contrast filled buttons & badges */
+.mantine-Button-root[data-variant="filled"] svg.tabler-icon,
+.mantine-Button-root[data-variant="filled"] .tabler-icon,
+.btn.solid svg.tabler-icon,
+.btn.solid .tabler-icon,
+button.solid svg.tabler-icon,
+button.solid .tabler-icon,
+.btn-primary svg.tabler-icon,
+.btn-primary .tabler-icon,
+.mantine-Badge-root[data-variant="filled"] svg.tabler-icon,
+.mantine-Badge-root[data-variant="filled"] .tabler-icon {
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Smooth Professional Animations & Micro-Interactions
+   Lightweight, consistent, non-exaggerated motions
+   ========================================================================== */
+
+/* Scroll reveal entrance for cards and text blocks */
+.iu-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--iu-anim-reveal, 0.6s) var(--iu-ease-out),
+              transform var(--iu-anim-reveal, 0.6s) var(--iu-ease-out);
+  will-change: opacity, transform;
+}
+
+.iu-reveal.iu-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for grid items */
+.iu-reveal.iu-stagger-1 {
+  transition-delay: calc(1 * var(--iu-anim-stagger-step, 80ms));
+}
+
+.iu-reveal.iu-stagger-2 {
+  transition-delay: calc(2 * var(--iu-anim-stagger-step, 80ms));
+}
+
+.iu-reveal.iu-stagger-3 {
+  transition-delay: calc(3 * var(--iu-anim-stagger-step, 80ms));
+}
+
+.iu-reveal.iu-stagger-4 {
+  transition-delay: calc(4 * var(--iu-anim-stagger-step, 80ms));
+}
+
+/* Card hover lift & soft elevation */
+.iu-hover-lift {
+  transition: transform var(--iu-anim-hover, 0.3s) var(--iu-ease-out),
+              box-shadow var(--iu-anim-hover, 0.3s) var(--iu-ease-out),
+              border-color var(--iu-anim-hover, 0.3s) ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+/* Smooth button & link micro-interactions */
+button,
+.mantine-Button-root,
+.iu-btn,
+.iu-interactive-pill {
+  transition: transform var(--iu-transition-fast),
+              box-shadow var(--iu-transition-fast),
+              background-color var(--iu-transition-fast),
+              border-color var(--iu-transition-fast),
+              color var(--iu-transition-fast);
+
+  &:active:not(:disabled) {
+    transform: scale(0.975);
+  }
+}
+
+/* Global support for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .iu-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .iu-hover-lift:hover {
+    transform: none !important;
+  }
+}
+

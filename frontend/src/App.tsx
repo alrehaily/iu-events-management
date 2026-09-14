@@ -24,6 +24,7 @@ import {ThirdPartyScripts} from "./components/common/ThirdPartyScripts";
 import {getConfig} from "./utilites/config.ts";
 import {CookieConsentBanner} from "./components/common/CookieConsentBanner";
 import {isConsentBannerEnabled} from "./utilites/cookieConsent";
+import {IULanguageProvider} from "./context/IULanguageContext";
 
 declare global {
     interface Window {
@@ -96,26 +97,28 @@ export const App: FC<
             >
                 <HelmetProvider context={props.helmetContext}>
                     <I18nProvider i18n={i18n}>
-                        <DatesProvider settings={{locale: props.locale}}>
-                        <QueryClientProvider client={props.queryClient}>
-                            <HydrationBoundary state={props.dehydratedState}>
-                                <StartupChecks/>
-                                <ThirdPartyScripts/>
-                                <ModalsProvider>
-                                    <Helmet>
-                                        <title>{getConfig("VITE_APP_NAME", "منصة إدارة الفعاليات - الجامعة الإسلامية بالمدينة المنورة")}</title>
-                                        <link rel="icon"
-                                              type="image/png"
-                                              href={getConfig("VITE_APP_FAVICON", "/images/IUEvent2.png")}
-                                        />
-                                    </Helmet>
-                                    {props.children}
-                                </ModalsProvider>
-                                <Notifications pauseResetOnHover="notification"/>
-                                {isConsentBannerEnabled() && <CookieConsentBanner/>}
-                            </HydrationBoundary>
-                        </QueryClientProvider>
-                        </DatesProvider>
+                        <IULanguageProvider initialLocale={props.locale as any}>
+                            <DatesProvider settings={{locale: props.locale}}>
+                            <QueryClientProvider client={props.queryClient}>
+                                <HydrationBoundary state={props.dehydratedState}>
+                                    <StartupChecks/>
+                                    <ThirdPartyScripts/>
+                                    <ModalsProvider>
+                                        <Helmet>
+                                            <title>{getConfig("VITE_APP_NAME", "منصة إدارة الفعاليات - الجامعة الإسلامية بالمدينة المنورة")}</title>
+                                            <link rel="icon"
+                                                  type="image/png"
+                                                  href={getConfig("VITE_APP_FAVICON", "/images/IUEvent2.png")}
+                                            />
+                                        </Helmet>
+                                        {props.children}
+                                    </ModalsProvider>
+                                    <Notifications pauseResetOnHover="notification"/>
+                                    {isConsentBannerEnabled() && <CookieConsentBanner/>}
+                                </HydrationBoundary>
+                            </QueryClientProvider>
+                            </DatesProvider>
+                        </IULanguageProvider>
                     </I18nProvider>
                 </HelmetProvider>
             </MantineProvider>

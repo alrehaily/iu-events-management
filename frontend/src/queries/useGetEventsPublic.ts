@@ -16,5 +16,7 @@ export const getEventsPublicQuery = (pagination?: QueryFilters) => ({
 
     queryFn: async () => {
         return await eventsClientPublic.all(pagination);
-    }
+    },
+    placeholderData: (previousData: any) => previousData,
+    staleTime: 1000 * 60 * 5,
 });

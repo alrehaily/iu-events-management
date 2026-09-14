@@ -11,10 +11,13 @@ import {useEffect} from "react";
 import {getUserCurrency} from "../../../../utilites/currency.ts";
 import {getConfig} from "../../../../utilites/config.ts";
 import {getStoredUtmData, clearStoredUtmData} from "../../../../utilites/utm.ts";
+import {IconShieldLock} from "@tabler/icons-react";
+import {useIULanguage} from "../../../../context/IULanguageContext";
 
 export const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const {t: i18nText} = useIULanguage();
 
     const form = useForm({
         validateInputOnBlur: true,
@@ -67,17 +70,21 @@ export const Register = () => {
 
     return (
         <>
+            <div className={classes.badgeWrapper}>
+                <span className={classes.badge}>
+                    <IconShieldLock size={14} />
+                    {i18nText("organizer_portal_badge", "بوابة المنظمين والمسؤولين")}
+                </span>
+            </div>
+
             <header className={classes.header}>
-                <h2>{t`إنشاء حساب منظم فعاليات جديد`}</h2>
+                <h2>{i18nText("reg_org_title", "إنشاء حساب جهة منظمة للفعاليات")}</h2>
                 <p>
-                    مخصص للكليات والعمادات والجهات المنظمة.{' '}
-                    <NavLink to={`/auth/login${location.search}`}>
-                        تسجيل الدخول
+                    {i18nText("reg_org_desc", "مخصص للكليات والعمادات والجهات واللجان المنظمة بالجامعة.")}{' '}
+                    <NavLink to={`/manage/login${location.search}`} style={{fontWeight: 600, color: "var(--iu-green-secondary, #1b754b)"}}>
+                        {i18nText("organizer_login_link", "تسجيل الدخول للمنظمين")}
                     </NavLink>
                 </p>
-                <div style={{marginTop: 8, fontSize: 13, background: "#f0fdf4", padding: "8px 12px", borderRadius: 10, border: "1px solid #bbf7d0"}}>
-                    هل أنت طالب أو زائر ترغب بالتسجيل في الفعاليات؟ <NavLink to="/register" style={{fontWeight: 700, color: "var(--iu-green-900)"}}>سجل من بوابة الطلاب والمشاركين ←</NavLink>
-                </div>
             </header>
 
             <div className={classes.registerCard}>
@@ -101,7 +108,7 @@ export const Register = () => {
                         mb={0}
                         {...form.getInputProps('email')}
                         label={t`Email`}
-                        placeholder={'your@email.com'}
+                        placeholder={'organizer@iu.edu.sa'}
                         required
                     />
 
@@ -129,22 +136,31 @@ export const Register = () => {
                     <Checkbox
                         mb="md"
                         {...form.getInputProps('marketing_opt_in', {type: 'checkbox'})}
-                        label={<Trans>Receive product updates from {getConfig("VITE_APP_NAME", "Hi.Events")}.</Trans>}
+                        label={<Trans>Receive product updates from {getConfig("VITE_APP_NAME", "الجامعة الإسلامية")}.</Trans>}
                     />
 
-                    <Button color="secondary.5" type="submit" fullWidth disabled={mutate.isPending}>
-                        {mutate.isPending ? t`Working...` : t`Register`}
+                    <Button type="submit" fullWidth disabled={mutate.isPending} loading={mutate.isPending}>
+                        {mutate.isPending ? t`Working...` : (form.values.invite_token ? t`Accept invitation` : i18nText("reg_org_submit", "إنشاء حساب جهة منظمة"))}
                     </Button>
                 </form>
                 <footer>
                     <Trans>
                         By registering you agree to our <NavLink target={'_blank'}
-                                                                 to={getConfig("VITE_TOS_URL", "https://hi.events/terms-of-service?utm_source=app-register-footer") as string}>Terms
+                                                                 to={getConfig("VITE_TOS_URL", "/about") as string}>Terms
                         of Service</NavLink> and <NavLink
                         target={'_blank'}
-                        to={getConfig("VITE_PRIVACY_URL", 'https://hi.events/privacy-policy?utm_source=app-register-footer') as string}>Privacy Policy</NavLink>.
+                        to={getConfig("VITE_PRIVACY_URL", '/about') as string}>Privacy Policy</NavLink>.
                     </Trans>
                 </footer>
+            </div>
+
+            <div className={classes.bottomPrompt}>
+                <span>
+                    {i18nText("organizer_attendee_prompt", "هل ترغب بحضور الفعاليات والتسجيل فيها فقط؟")}
+                </span>
+                <NavLink to={`/register${location.search}`}>
+                    {i18nText("reg_attendee_link", "التسجيل من بوابة المستفيدين والزوار ←")}
+                </NavLink>
             </div>
         </>
     )

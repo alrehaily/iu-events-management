@@ -16,8 +16,8 @@ $color-text-secondary: #6b7280;
 $color-text-muted: #9ca3af;
 $color-border: #e5e7eb;
 $color-border-light: #f3f4f6;
-$color-success: #10b981;
-$color-money: #059669;
+$color-success: var(--iu-success, #1b754b);
+$color-money: var(--iu-green-secondary, #1b754b);
 
 // ==========================================
 // Category Container Styles

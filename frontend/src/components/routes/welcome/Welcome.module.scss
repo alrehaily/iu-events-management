@@ -6,7 +6,7 @@
   }
 
   min-height: 100vh;
-  background: var(--hi-gradient);
+  background: radial-gradient(ellipse at 50% 0%, rgba(27, 117, 75, 0.08) 0%, #f8fafc 70%);
   padding: 3rem 1rem;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
 
 .logo {
   margin-bottom: 1rem;
-  opacity: 0.9;
+  opacity: 1;
 
   img {
     height: 55px;
@@ -62,9 +62,9 @@
 .welcomeTitle {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--hi-color-white);
+  color: var(--iu-heading, #0f172a);
   margin: 0;
-  line-height: 1.2;
+  line-height: 1.3;
 
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -73,30 +73,30 @@
 
 // Clean Main Card
 .welcomeCard {
-  background: var(--hi-color-white);
-  border-radius: 16px !important;
+  background: var(--iu-surface, #ffffff);
+  border-radius: 20px !important;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
-  border: none !important;
+  box-shadow: var(--iu-shadow-card, 0 8px 32px rgba(0, 0, 0, 0.06)) !important;
+  border: 1px solid var(--iu-line, #e2e8f0) !important;
 
   @media (max-width: 768px) {
-    border-radius: 12px !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
   }
 }
 
 // Clean focus styles
 .categoryCard:focus-visible {
-  outline: 2px solid var(--hi-primary);
+  outline: 2px solid var(--iu-green-secondary, #1b754b);
   outline-offset: 2px;
 }
 
 // Clean Step Layout
 .stepContainer {
-  padding: 1.5rem 2rem;
+  padding: 2rem 2.5rem;
 
   @media (max-width: 768px) {
-    padding: 1rem;
+    padding: 1.25rem;
   }
 }
 
@@ -113,16 +113,16 @@
 .progressBar {
   width: 100%;
   height: 6px;
-  background-color: var(--hi-color-gray-2);
-  border-radius: 3px;
+  background-color: var(--iu-green-soft, #e6f4ed);
+  border-radius: 999px;
   overflow: hidden;
   margin-bottom: 0.5rem;
 }
 
 .progressFill {
   height: 100%;
-  background: var(--hi-gradient);
-  border-radius: 3px;
+  background: var(--iu-green-gradient, linear-gradient(135deg, #105f3c 0%, #1b754b 100%));
+  border-radius: 999px;
   transition: width 0.3s ease;
 }
 
@@ -253,9 +253,9 @@
   min-height: 72px;
 
   &:hover {
-    border-color: var(--hi-primary);
+    border-color: var(--iu-green-secondary, #1b754b);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(27, 117, 75, 0.12);
   }
 
   &:disabled {
@@ -271,8 +271,8 @@
 }
 
 .categoryCardSelected {
-  border-color: var(--hi-primary) !important;
-  background: var(--hi-secondary) !important;
+  border-color: var(--iu-green-secondary, #1b754b) !important;
+  background: var(--iu-green-soft, #f0fdf4) !important;
 }
 
 .categoryEmoji {
@@ -286,7 +286,7 @@
 
 .categoryText {
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -300,16 +300,16 @@
 
 // Email Verification Specific
 .emailDisplay {
-  background: var(--hi-color-gray);
-  border: 1px solid var(--hi-color-gray-2);
-  border-radius: 8px;
+  background: var(--iu-green-soft, #f4fbf7);
+  border: 1px solid var(--iu-green-light, #dff3e8);
+  border-radius: 12px;
   padding: 1rem;
   margin-top: 1rem;
   margin-bottom: 0;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
   font-size: 0.9rem;
-  color: var(--hi-text);
-  font-weight: 500;
+  color: var(--iu-green-primary, #105f3c);
+  font-weight: 600;
   text-align: center;
   word-break: break-all;
   overflow-wrap: break-word;
@@ -325,15 +325,16 @@
 .pinInput {
   // Clean PinInput styling
   :global(.mantine-PinInput-input) {
-    border: 1px solid var(--hi-color-gray-2);
-    border-radius: 8px;
-    font-weight: 600;
+    border: 1px solid var(--iu-line, #cbd5e1);
+    border-radius: 12px;
+    font-weight: 700;
     text-align: center;
-    background: var(--hi-color-white);
-    color: var(--hi-text);
+    background: var(--iu-surface, #ffffff);
+    color: var(--iu-heading, #0f172a);
 
     &:focus {
-      border-color: var(--hi-primary);
+      border-color: var(--iu-green-secondary, #1b754b);
+      box-shadow: var(--iu-green-focus-ring);
       outline: none;
     }
 
@@ -479,19 +480,27 @@
 
 // Clean button
 .primaryButton {
-  background: var(--hi-primary) !important;
+  background: var(--iu-green-gradient) !important;
   border: none !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
+  border-radius: var(--hi-radius-lg, 12px) !important;
+  font-weight: 700 !important;
   font-size: 1rem !important;
   height: 48px !important;
-  transition: all 0.2s ease !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(27, 117, 75, 0.25) !important;
+  transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal), filter var(--iu-transition-fast) !important;
   margin-top: 1em;
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--hi-primary) 85%, var(--hi-primary-alt) 15%) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    background: var(--iu-green-gradient-hover) !important;
+    transform: translateY(-1.5px) !important;
+    box-shadow: var(--iu-green-glow) !important;
+    filter: brightness(1.05);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(8, 75, 47, 0.25) !important;
   }
 
   &:disabled {
@@ -509,17 +518,19 @@
   margin-top: 1.5rem;
 
   :global(.mantine-Button-root) {
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: var(--iu-text-secondary, #64748b) !important;
     font-size: 0.9rem !important;
+    font-weight: 600 !important;
     background: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    border-radius: 6px !important;
+    border: 1px solid var(--iu-line, #cbd5e1) !important;
+    border-radius: 10px !important;
     padding: 8px 16px !important;
-    transition: opacity 0.15s ease !important;
+    transition: all 0.15s ease !important;
 
     &:hover {
-      color: white !important;
-      opacity: 0.8 !important;
+      color: var(--iu-green-primary, #105f3c) !important;
+      border-color: var(--iu-green-light, #86efac) !important;
+      background: var(--iu-green-soft, #f4fbf7) !important;
     }
   }
 

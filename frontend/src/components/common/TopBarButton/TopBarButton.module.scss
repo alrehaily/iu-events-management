@@ -6,35 +6,22 @@
   padding: 0 16px;
   height: 36px;
   font-weight: 600;
-  border-radius: 18px;
-  color: white !important;
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: 0.8125rem;
+  border-radius: var(--iu-radius-pill, 999px);
+  color: var(--iu-text, #334155) !important;
+  background: var(--iu-surface, #ffffff) !important;
+  border: 1px solid var(--iu-border, #e5e7eb) !important;
+  box-shadow: var(--iu-shadow-xs);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    background: rgba(255, 255, 255, 0.2) !important;
-
-    &::before {
-      opacity: 1;
-    }
+    transform: translateY(-1px);
+    box-shadow: var(--iu-shadow-sm);
+    color: var(--iu-green-primary, #084b2f) !important;
+    border-color: var(--iu-green-secondary, #1b754b) !important;
+    background: var(--iu-green-soft, #f4fbf7) !important;
   }
 
   &:active {

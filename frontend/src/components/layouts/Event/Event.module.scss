@@ -4,19 +4,19 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-left: 0px;
-  margin-right: auto;
+  margin-inline-start: 0;
+  margin-inline-end: auto;
   flex-shrink: 0;
 
   @include mixins.respond-below(md) {
-    margin-left: 8px;
+    margin-inline-start: 8px;
   }
 
   .statusAction {
-    margin-left: 4px;
-    font-weight: 400;
-    font-size: 0.85em;
-    opacity: 0.9;
+    margin-inline-start: 6px;
+    font-weight: 500;
+    font-size: 0.82em;
+    color: var(--iu-text-muted, #64748b);
 
     @include mixins.respond-below(md) {
       display: none;
@@ -25,33 +25,39 @@
 }
 
 .eventPageButton {
-  margin-right: 8px;
+  margin-inline-end: 8px;
   display: flex;
   align-items: center;
-  font-weight: 500;
-  transition: transform 0.2s ease;
-  color: #fff;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  transition: all 0.2s ease;
+  color: var(--iu-text, #334155) !important;
+  background: var(--iu-surface, #ffffff);
+  border: 1px solid var(--iu-border, #e5e7eb);
+  border-radius: var(--iu-radius-pill, 999px);
+  padding: 0 14px;
+  height: 36px;
+  box-shadow: var(--iu-shadow-xs);
 
   &:hover {
     transform: translateY(-1px);
-    color: #fff;
+    color: var(--iu-green-primary, #084b2f) !important;
+    border-color: var(--iu-green-secondary, #1b754b);
+    background: var(--iu-green-soft, #f4fbf7);
   }
 
   .eventPageButtonText {
-    // Default: hide both
     .mobile,
     .desktop {
       display: none;
     }
 
-    // Show mobile text from sm and up
     @include mixins.respond-above(sm) {
       .mobile {
         display: block;
       }
     }
 
-    // Switch to desktop text at md and up
     @include mixins.respond-above(md) {
       .mobile {
         display: none;
@@ -65,11 +71,21 @@
 }
 
 .shareButton {
-  margin-left: 16px;
+  margin-inline-start: 16px;
   display: flex;
   align-items: center;
   font-weight: 500;
   transition: transform 0.2s ease;
+
+  :global(.mantine-Button-root) {
+    color: var(--iu-text, #334155);
+    font-weight: 600;
+
+    &:hover {
+      color: var(--iu-green-primary, #084b2f);
+      background: var(--iu-green-soft, #f4fbf7);
+    }
+  }
 
   &:hover {
     transform: translateY(-1px);

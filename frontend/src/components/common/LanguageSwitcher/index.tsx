@@ -1,80 +1,52 @@
 import {Select} from "@mantine/core";
-import {dynamicActivateLocale, getClientLocale, localeToNameMap, SupportedLocales} from "../../../locales.ts";
+import {dynamicActivateLocale, getClientLocale} from "../../../locales.ts";
 import {t} from "@lingui/macro";
 import {IconWorld} from "@tabler/icons-react";
 import {useLingui} from "@lingui/react";
 
-export const LanguageSwitcher = () => {
+export const LanguageSwitcher = ({width = 130}: {width?: number | string}) => {
     useLingui();
 
-    // Ideally these would be in the locales.ts file, but when they're there they don't translate
-    const getLocaleName = (locale: SupportedLocales): string => {
-        switch (locale) {
-            case "hu":
-                return t`Hungarian`;
-            case "de":
-                return t`German`;
-            case "en":
-                return t`English`;
-            case "es":
-                return t`Spanish`;
-            case "fr":
-                return t`French`;
-            case "it":
-                return t`Italian`;
-            case "nl":
-                return t`Dutch`;
-            case "pt":
-                return t`Portuguese`;
-            case "pt-br":
-                return t`Brazilian Portuguese`;
-            case "zh-cn":
-                return t`Chinese (Simplified)`;
-            case "zh-hk":
-                return t`Chinese (Traditional)`;
-            case "vi":
-                return t`Vietnamese`;
-            case "tr":
-                return t`Turkish`;
-            case "pl":
-                return t`Polish`;
-            case "se":
-                return t`Swedish`;
-            case "sk":
-                return t`Slovak`;
-            case "el":
-                return t`Greek`;
-            default:
-                // Defensive fallback: if a new locale is added to SupportedLocales
-                // but not handled here, return the locale code itself rather than
-                // undefined. An undefined label propagates into Mantine's Combobox
-                // `defaultOptionsFilter`, which calls `.toLowerCase()` on it and
-                // throws during SSR, 500-ing every auth page.
-                return locale;
+    const supportedLanguages = [
+        {
+            value: "ar",
+            label: "العربية",
+        },
+        {
+            value: "en",
+            label: "English",
         }
-    };
+    ];
+
+    const currentLocale = getClientLocale();
+    const effectiveLocale = supportedLanguages.some(l => l.value === currentLocale) ? currentLocale : "ar";
 
     return (
-        <>
-            <Select
-                leftSection={<IconWorld size={15} color={'#ccc'}/>}
-                width={180}
-                size={'xs'}
-                required
-                data={Object.keys(localeToNameMap).map(locale => ({
-                    value: locale,
-                    label: getLocaleName(locale as SupportedLocales),
-                }))}
-                defaultValue={getClientLocale()}
-                placeholder={t`English`}
-                onChange={(value) => {
-                    if (!value) return;
-                    document.cookie = `locale=${value};path=/;max-age=31536000`;
-                    dynamicActivateLocale(value).finally(() => {
-                        window.location.href = window.location.pathname + window.location.search;
-                    });
-                }}
-            />
-        </>
-    )
-}
+        <Select
+            leftSection={<IconWorld size={15} style={{color: 'var(--iu-green-secondary, #1b754b)'}}/>}
+            w={width}
+            size={'xs'}
+            required
+            data={supportedLanguages}
+            value={effectiveLocale}
+            placeholder={t`Language`}
+            styles={{
+                input: {
+                    borderRadius: 'var(--iu-radius-md, 12px)',
+                    borderColor: 'var(--iu-border, #e5e7eb)',
+                    fontWeight: 500,
+                    fontSize: '0.8125rem',
+                    color: 'var(--iu-heading, #0f172a)',
+                    backgroundColor: 'var(--iu-surface, #ffffff)',
+                }
+            }}
+            onChange={(value) => {
+                if (!value) return;
+                document.cookie = `locale=${value};path=/;max-age=31536000`;
+                dynamicActivateLocale(value).finally(() => {
+                    window.location.href = window.location.pathname + window.location.search;
+                });
+            }}
+        />
+    );
+};

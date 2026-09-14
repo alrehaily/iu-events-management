@@ -41,6 +41,10 @@
 .footerCol a:hover {
   color: #ffffff;
   transform: translateX(-4px);
+
+  :global([dir="ltr"]) & {
+    transform: translateX(4px);
+  }
 }
 
 .footerBottom {

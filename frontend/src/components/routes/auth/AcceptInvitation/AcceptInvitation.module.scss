@@ -18,6 +18,30 @@
     @include auth.auth-inputs;
     @include auth.auth-button;
 
+    :global(.mantine-Button-root) {
+      height: 48px;
+      border-radius: var(--hi-radius-lg);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      background: var(--iu-green-gradient) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(27, 117, 75, 0.25) !important;
+      transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal), filter var(--iu-transition-fast) !important;
+
+      &:hover:not(:disabled) {
+        background: var(--iu-green-gradient-hover) !important;
+        transform: translateY(-1.5px);
+        box-shadow: var(--iu-green-glow) !important;
+        filter: brightness(1.05);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(8, 75, 47, 0.25) !important;
+      }
+    }
+
     :global(.mantine-InputWrapper-root) {
       margin-bottom: 1rem;
     }

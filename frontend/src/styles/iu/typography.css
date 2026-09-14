@@ -14,7 +14,16 @@ body, input, button, select, textarea {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
-  color: var(--iu-text);
-  font-weight: 700;
+  color: var(--iu-heading, #0f172a);
+  font-weight: var(--iu-heading-weight, 700);
+  line-height: var(--iu-line-height-heading, 1.35);
+  letter-spacing: normal;
   margin-top: 0;
+}
+
+p {
+  color: var(--iu-text-secondary, #475569);
+  line-height: var(--iu-line-height-body, 1.75);
+  font-weight: var(--iu-body-weight, 400);
+  letter-spacing: normal;
 }

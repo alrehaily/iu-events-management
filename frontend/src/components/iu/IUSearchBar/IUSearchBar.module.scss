@@ -1,106 +1,383 @@
 .searchBox {
-  width: min(94%, var(--container-max));
-  max-width: var(--container-max);
+  width: min(94%, 1020px);
+  max-width: 1020px;
   background: #ffffff;
-  padding: 36px 44px;
+  padding: 22px 28px 20px;
   border-radius: 28px;
-  box-shadow: 0 12px 36px rgba(8, 75, 47, 0.12);
-  border: 1px solid var(--iu-line);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.08), 0 3px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .floating {
   position: absolute;
-  bottom: -80px;
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
+  transform: translate(-50%, -50%);
+  z-index: 120;
 }
 
 .searchBar {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   border: 1.5px solid #e2e8f0;
   border-radius: 999px;
-  padding: 12px 22px;
+  padding: 10px 20px;
   background: #f8fafc;
   transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .searchBar:focus-within {
-  border-color: var(--green-700);
+  border-color: var(--iu-green-secondary, #1b754b);
   background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(27, 117, 75, 0.15);
+  box-shadow: 0 0 0 3.5px rgba(27, 117, 75, 0.12);
 }
 
 .searchIcon {
-  font-size: 20px;
-  opacity: 0.6;
+  color: var(--iu-icon, #0f172a);
+  flex-shrink: 0;
 }
 
 .searchInput {
   border: none;
   outline: none;
   flex: 1;
-  font-size: 17px;
+  font-size: 15px;
   background: transparent;
   font-family: inherit;
-  color: var(--iu-text);
-  direction: rtl;
+  color: var(--iu-heading, #0f172a);
+  direction: inherit;
   text-align: start;
+  font-weight: 400;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
 }
 
-.searchInput::placeholder {
-  color: #94a3b8;
+.clearSearchBtn {
+  background: #e2e8f0;
+  border: none;
+  cursor: pointer;
+  color: #475569;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: #cbd5e1;
+    color: #0f172a;
+  }
 }
 
 .filters {
-  margin-top: 22px;
+  margin-top: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
+  direction: inherit;
   flex-wrap: wrap;
-  direction: rtl;
 }
 
-.filterGroup {
+.dropdownContainer {
+  position: relative;
+  display: inline-flex;
+}
+
+.dropdownTrigger {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: var(--iu-heading, #0f172a);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-width: 170px;
+  transition: all var(--iu-transition-fast);
+  direction: inherit;
+  user-select: none;
+
+  &:hover {
+    border-color: var(--iu-green-secondary, #1b754b);
+    background: var(--iu-green-soft, #f4fbf7);
+  }
+}
+
+.dropdownTriggerActive {
+  border-color: var(--iu-green-secondary, #1b754b);
+  background: var(--iu-green-soft, #f4fbf7);
+  color: var(--iu-green-primary, #084b2f);
+  font-weight: 600;
+}
+
+.dropdownTriggerOpen {
+  border-color: var(--iu-green-secondary, #1b754b);
+  box-shadow: 0 0 0 3px rgba(27, 117, 75, 0.12);
+}
+
+.triggerLead {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterIcon {
+  color: var(--iu-icon, #0f172a);
+  flex-shrink: 0;
+  transition: color var(--iu-transition-fast);
+}
+
+.selectedLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.triggerTrail {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.clearCategoryPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.08);
+  color: var(--iu-icon, #0f172a);
+  cursor: pointer;
+  transition: all var(--iu-transition-fast);
+
+  &:hover {
+    background: rgba(15, 23, 42, 0.18);
+    transform: scale(1.08);
+  }
+}
+
+.chevron {
+  color: var(--iu-icon, #0f172a);
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), color var(--iu-transition-fast);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  width: 215px;
+  min-width: 200px;
+  max-width: 230px;
+  max-height: 185px;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  padding: 5px;
+  box-shadow: 0 12px 30px -4px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  z-index: 99999;
+  direction: rtl;
+  transform-origin: top right;
+  animation: iuDropdownFadeSlide 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  :global([dir="ltr"]) & {
+    right: auto;
+    left: 0;
+    direction: ltr;
+    transform-origin: top left;
+  }
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+}
+
+@keyframes iuDropdownFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdownItem {
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
-}
-
-.filterSelect {
-  height: 48px;
-  padding: 0 20px;
-  font-size: 16px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 13.5px;
   font-family: inherit;
-  border-radius: 999px;
-  border: 1px solid var(--iu-line);
-  background: #ffffff;
-  color: var(--iu-text);
+  color: var(--iu-text-secondary, #475569);
+  font-weight: 500;
   cursor: pointer;
-  outline: none;
-  direction: rtl;
   text-align: start;
-  transition: border-color 0.2s ease;
+  direction: inherit;
+  transition: background-color var(--iu-transition-fast), color var(--iu-transition-fast);
+
+  &:hover {
+    background: var(--iu-green-soft, #f4fbf7);
+    color: var(--iu-green-primary, #084b2f);
+  }
 }
 
-.filterSelect:focus {
-  border-color: var(--green-700);
+.dropdownItemSelected {
+  background: var(--iu-green-light, #dff3e8) !important;
+  color: var(--iu-green-primary, #084b2f) !important;
+  font-weight: 600;
+}
+
+.itemLabel {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkIcon {
+  color: var(--iu-green-primary, #084b2f);
+  flex-shrink: 0;
+}
+
+/* Pills Groups & Filter Pills */
+.pillsGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.formatPillsGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pillsDivider {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background: #e2e8f0;
+  margin: 0 4px;
+}
+
+.filterPill {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: var(--iu-text-secondary, #475569);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  user-select: none;
+  white-space: nowrap;
+
+  &:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+    color: var(--iu-heading, #0f172a);
+  }
+}
+
+.pillActive,
+.pillActiveDark {
+  background: var(--iu-green-primary, #084b2f) !important;
+  border-color: var(--iu-green-primary, #084b2f) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(8, 75, 47, 0.22);
 }
 
 @media (max-width: 900px) {
   .searchBox {
-    padding: 24px;
+    padding: 18px 20px 16px;
   }
+
   .filters {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
   }
-  .filterGroup {
-    justify-content: flex-start;
-    flex-wrap: wrap;
+
+  .dropdownContainer {
+    width: 100%;
+  }
+
+  .dropdownTrigger {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .dropdownMenu {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .pillsGroup {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .formatPillsGroup {
+    width: 100%;
+  }
+
+  .pillsDivider {
+    display: none;
   }
 }

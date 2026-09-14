@@ -1,6 +1,25 @@
 @use "../auth-common" as auth;
 @use "../../../../styles/mixins.scss";
 
+.badgeWrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--iu-green-soft, #f4fbf7);
+  border: 1px solid var(--iu-green-light, #dff3e8);
+  border-radius: 999px;
+  color: var(--iu-green-primary, #105f3c);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
 .header {
   @include auth.auth-header;
 }
@@ -39,5 +58,33 @@
 
   footer {
     @include auth.auth-footer-terms;
+  }
+}
+
+.bottomPrompt {
+  margin-top: 20px;
+  font-size: 13px;
+  background: var(--iu-green-soft, #f4fbf7);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--iu-green-light, #dff3e8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  span {
+    color: var(--iu-text-secondary, #475569);
+  }
+
+  a {
+    font-weight: 700;
+    color: var(--iu-green-secondary, #1b754b);
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

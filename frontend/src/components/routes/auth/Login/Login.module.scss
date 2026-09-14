@@ -9,6 +9,53 @@
   form {
     @include auth.auth-inputs;
     @include auth.auth-button;
+
+    :global(.mantine-Button-root) {
+      height: 48px;
+      border-radius: var(--hi-radius-lg);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      background: var(--iu-green-gradient) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 14px rgba(27, 117, 75, 0.25) !important;
+      transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal), filter var(--iu-transition-fast) !important;
+
+      &:hover:not(:disabled) {
+        background: var(--iu-green-gradient-hover) !important;
+        transform: translateY(-1.5px);
+        box-shadow: var(--iu-green-glow) !important;
+        filter: brightness(1.05);
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(8, 75, 47, 0.25) !important;
+      }
+    }
+  }
+}
+
+.createAccountPrompt {
+  text-align: center;
+  margin-top: 1.125rem;
+  font-size: 0.875rem;
+  color: var(--iu-text-secondary, #64748b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+}
+
+.createAccountLink {
+  font-weight: 700;
+  color: var(--iu-green-secondary, #1b754b);
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--iu-green-primary, #105f3c);
+    text-decoration: underline;
   }
 }
 
@@ -68,7 +115,7 @@
 
   span {
     flex: 1;
-    text-align: right;
+    text-align: start;
   }
 
   &:hover {
@@ -136,11 +183,21 @@
   :global(.mantine-Button-root) {
     height: 38px;
     border-radius: var(--hi-radius-lg);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 0.8125rem;
     padding: 0 1.25rem;
     white-space: nowrap;
     border: none;
+    background: var(--iu-green-gradient) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(27, 117, 75, 0.22) !important;
+    transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal) !important;
+
+    &:hover:not(:disabled) {
+      background: var(--iu-green-gradient-hover) !important;
+      transform: translateY(-1px);
+      box-shadow: var(--iu-green-glow) !important;
+    }
 
     @include mixins.respond-below(sm) {
       height: 44px;

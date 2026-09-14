@@ -186,7 +186,11 @@ Sitemap: ${frontendUrl}/sitemap.xml
             `);
             }
 
+            const reqLocale = req.cookies?.locale === "en" ? "en" : "ar";
+            const reqDir = reqLocale === "ar" ? "rtl" : "ltr";
+
             const html = template
+                .replace(/<html[^>]*>/, `<html lang="${reqLocale}" dir="${reqDir}">`)
                 .replace("<!--head-snippets-->", () => headSnippets.join("\n"))
                 .replace("<!--app-html-->", () => appHtml)
                 .replace("<!--dehydrated-state-->", () => `<script>window.__REHYDRATED_STATE__ = ${stringifiedState};window.__THEME_COLORS__ = ${stringifiedThemeColors}</script>`)

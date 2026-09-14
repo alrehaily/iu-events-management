@@ -13,8 +13,9 @@ import {formatAddress} from "../../../utilites/addressUtilities.ts";
 import {PoweredByFooter} from "../PoweredByFooter";
 import {EventDateRange} from "../EventDateRange";
 import {ReactNode} from "react";
+import {getConfig} from "../../../utilites/config.ts";
 
-const DEFAULT_ACCENT_COLOR = '#6B46C1';
+const DEFAULT_ACCENT_COLOR = '#1b754b';
 
 interface TicketFieldProps {
     label: string;
@@ -77,7 +78,7 @@ export const AttendeeTicket = ({
         <div className={classes.ticketWrapper} style={{'--accent': accentColor} as React.CSSProperties}>
             <article className={`${classes.ticket} ${isVoid ? classes.ticketVoid : ''}`}>
                 <header className={classes.header}>
-                    {logoUrl && <img src={logoUrl} alt="" className={classes.logo}/>}
+                    <img src={logoUrl || getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt="" className={classes.logo}/>
 
                     <div className={classes.headline}>
                         {event?.organizer?.name && (

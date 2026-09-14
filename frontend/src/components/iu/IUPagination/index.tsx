@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./IUPagination.module.scss";
+import { useIULanguage } from "../../../context/IULanguageContext";
 
 interface IUPaginationProps {
   currentPage: number;
@@ -12,6 +13,8 @@ export const IUPagination: React.FC<IUPaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
+  const { isArabic, t } = useIULanguage();
+
   if (totalPages <= 1) return null;
 
   const pages = [];
@@ -19,17 +22,20 @@ export const IUPagination: React.FC<IUPaginationProps> = ({
     pages.push(p);
   }
 
+  const prevArrow = isArabic ? "›" : "‹";
+  const nextArrow = isArabic ? "‹" : "›";
+
   return (
-    <nav className={classes.pagination} aria-label="Pagination">
-      {/* Previous button (in RTL, > goes to previous) */}
+    <nav className={classes.pagination} aria-label={t("pagination_page", "الصفحة")}>
+      {/* Previous button */}
       <button
         type="button"
         className={classes.navBtn}
         disabled={currentPage <= 1}
         onClick={() => onPageChange(currentPage - 1)}
-        title="الصفحة السابقة"
+        title={t("pagination_prev", "الصفحة السابقة")}
       >
-        ›
+        {prevArrow}
       </button>
 
       {pages.map((p) => (
@@ -43,15 +49,15 @@ export const IUPagination: React.FC<IUPaginationProps> = ({
         </button>
       ))}
 
-      {/* Next button (in RTL, < goes to next) */}
+      {/* Next button */}
       <button
         type="button"
         className={classes.navBtn}
         disabled={currentPage >= totalPages}
         onClick={() => onPageChange(currentPage + 1)}
-        title="الصفحة التالية"
+        title={t("pagination_next", "الصفحة التالية")}
       >
-        ‹
+        {nextArrow}
       </button>
     </nav>
   );
