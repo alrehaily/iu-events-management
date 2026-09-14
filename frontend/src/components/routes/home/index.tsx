@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Link } from "react-router";
 import { IconTicket, IconSchool, IconQrcode, IconCertificate, IconSearch } from "@tabler/icons-react";
 import classes from "./Home.module.scss";
@@ -9,7 +9,10 @@ import { useIULanguage } from "../../../context/IULanguageContext";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
 
 export const IUHomePage: React.FC = () => {
-  const { t, dir } = useIULanguage();
+  const { t, dir, locale } = useIULanguage();
+  const [languageMotion, setLanguageMotion] = useState<"ar" | "en" | null>(null);
+  const previousLocaleRef = useRef(locale);
+
   const { data: eventsData, isLoading } = useGetEventsPublic({
     perPage: 6,
     additionalParams: {
@@ -21,8 +24,34 @@ export const IUHomePage: React.FC = () => {
 
   useScrollReveal([events.length, isLoading]);
 
+  useEffect(() => {
+    if (previousLocaleRef.current === locale) return;
+
+    previousLocaleRef.current = locale;
+    setLanguageMotion(null);
+
+    const frame = window.requestAnimationFrame(() => {
+      setLanguageMotion(locale);
+    });
+
+    const timer = window.setTimeout(() => {
+      setLanguageMotion(null);
+    }, 420);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [locale]);
+
+  const languageMotionClass = languageMotion === "ar"
+    ? classes.languageMotionAr
+    : languageMotion === "en"
+      ? classes.languageMotionEn
+      : "";
+
   return (
-    <div>
+    <div className={languageMotionClass}>
       {/* 1. Hero Section */}
       <IUHero
         title={t("home_hero_title", "منصة إدارة الفعاليات")}
