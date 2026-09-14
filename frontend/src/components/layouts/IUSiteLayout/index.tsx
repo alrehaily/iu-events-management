@@ -14,7 +14,7 @@ export const IUSiteLayout: React.FC = () => {
       document.documentElement.dir = dir;
       document.documentElement.lang = locale;
       if (window.scrollY > 0) {
-        window.scrollTo({ top: 0, behavior: "instant" });
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
     }
   }, [location.pathname, dir, locale]);
@@ -23,7 +23,7 @@ export const IUSiteLayout: React.FC = () => {
     <div className="iu-page" dir={dir}>
       <IUNavbar />
       <main className="iu-main">
-        <div key={`${location.pathname}_${locale}`} className="iu-page-transition">
+        <div key={location.pathname} className="iu-page-transition">
           <Outlet />
         </div>
       </main>
