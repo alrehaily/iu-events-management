@@ -8,13 +8,14 @@ import {useIULanguage} from "../../../context/IULanguageContext";
 export const IUSiteLayout: React.FC = () => {
   const location = useLocation();
   const {dir, locale} = useIULanguage();
+  const isEventDetail = /^\/event\/[^/]+(?:\/|$)/.test(location.pathname);
 
   useEffect(() => {
     if (typeof document !== "undefined") {
       document.documentElement.dir = dir;
       document.documentElement.lang = locale;
       if (window.scrollY > 0) {
-        window.scrollTo({ top: 0, behavior: "auto" });
+        window.scrollTo({top: 0, behavior: "auto"});
       }
     }
   }, [location.pathname, dir, locale]);
@@ -23,7 +24,10 @@ export const IUSiteLayout: React.FC = () => {
     <div className="iu-page" dir={dir}>
       <IUNavbar />
       <main className="iu-main">
-        <div key={location.pathname} className="iu-page-transition">
+        <div
+          key={location.pathname}
+          className={`iu-page-transition${isEventDetail ? " iu-event-entry" : ""}`}
+        >
           <Outlet />
         </div>
       </main>
