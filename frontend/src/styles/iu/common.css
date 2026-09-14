@@ -11,7 +11,7 @@
   --iu-anim-card-in: 0.82s;
   --iu-anim-reveal: 0.82s;
   --iu-anim-stagger-step: 110ms;
-  --iu-anim-hover: 0.38s;
+  --iu-anim-hover: 0.16s;
 
   min-height: 100vh;
   display: flex;
@@ -42,15 +42,14 @@
   animation: none !important;
 }
 
-/* Ultra-smooth motion system. Route transitions never fade to transparent. */
+/* The route shell itself does not move. Hero backgrounds therefore remain visually
+   anchored while each page animates only its own content. */
 @keyframes iuBdsnPageFade {
   0% {
-    opacity: 0.985;
-    transform: translateY(7px);
+    opacity: 0.995;
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -87,6 +86,24 @@
   }
 }
 
+/* Dedicated transition when opening an event from an event card. */
+@keyframes iuEventDetailEnter {
+  0% {
+    opacity: 0.38;
+    transform: scale(0.992);
+    filter: blur(2px);
+  }
+  55% {
+    opacity: 0.94;
+    filter: blur(0.35px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
 .iu-main {
   flex: 1;
   display: flex;
@@ -99,17 +116,25 @@
   display: flex;
   flex-direction: column;
   background: var(--iu-page-bg, #ffffff);
-  animation: iuBdsnPageFade var(--iu-anim-page, 0.78s) var(--iu-ease-out) both;
+  animation: none;
   transform: translateZ(0);
   backface-visibility: hidden;
+}
+
+.iu-page-transition.iu-event-entry {
+  transform-origin: 50% 18%;
+  animation: iuEventDetailEnter 0.68s var(--iu-ease-out) both;
+  will-change: opacity, transform, filter;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .iu-page-transition,
   .heroContent,
-  .iu-page-body {
+  .iu-page-body,
+  .iu-event-entry {
     animation: none !important;
     transform: none !important;
+    filter: none !important;
   }
 }
 
