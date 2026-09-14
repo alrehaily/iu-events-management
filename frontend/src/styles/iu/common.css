@@ -10,7 +10,7 @@
   --iu-anim-body: 0.86s;
   --iu-anim-card-in: 0.82s;
   --iu-anim-reveal: 0.82s;
-  --iu-anim-stagger-step: 110ms;
+  --iu-anim-stagger-step: 0ms;
   --iu-anim-hover: 0.16s;
 
   min-height: 100vh;
@@ -77,8 +77,8 @@
 
 @keyframes iuBdsnCardIn {
   0% {
-    opacity: 0.72;
-    transform: translateY(12px);
+    opacity: 0.92;
+    transform: translateY(6px);
   }
   100% {
     opacity: 1;
