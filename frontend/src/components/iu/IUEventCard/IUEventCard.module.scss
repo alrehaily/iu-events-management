@@ -5,6 +5,8 @@
   height: 100%;
   border-radius: 20px;
   outline: none;
+  animation: iuEventCardEnter 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
 }
 
 .eventCard {
@@ -20,7 +22,6 @@
               box-shadow 0.15s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.15s ease;
   transition-delay: 0s;
-  animation: iuBdsnCardIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: transform, box-shadow;
 }
 
@@ -127,9 +128,24 @@
   }
 }
 
+@keyframes iuEventCardEnter {
+  0% {
+    opacity: 0.88;
+    transform: translateY(10px) scale(0.995);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .eventCard {
+  .cardLink {
     animation: none !important;
+  }
+
+  .eventCard {
     transition: none !important;
   }
 
