@@ -2,19 +2,15 @@
   min-height: 100vh;
   background: var(--iu-page-bg, #ffffff);
   transform-origin: 50% 14%;
-  animation: publicEventEnter 0.84s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: publicEventEnter 0.76s cubic-bezier(0.16, 1, 0.3, 1) both;
   will-change: opacity, transform;
   backface-visibility: hidden;
 }
 
 @keyframes publicEventEnter {
   0% {
-    opacity: 0.94;
-    transform: translateY(10px) scale(0.995);
-  }
-
-  55% {
     opacity: 0.985;
+    transform: translateY(6px) scale(0.998);
   }
 
   100% {
