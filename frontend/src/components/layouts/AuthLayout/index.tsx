@@ -138,7 +138,7 @@ const FeaturePanel = () => {
 const AuthLayout = () => {
     const me = useGetMe();
     const location = useLocation();
-    const {dir, isArabic, t, locale} = useIULanguage();
+    const {dir, isArabic, locale} = useIULanguage();
     const clickCountRef = useRef(0);
     const clickTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -175,12 +175,12 @@ const AuthLayout = () => {
                             <Link to="/" className={classes.logo} onClick={handleLogoClick} style={{cursor: 'pointer', display: 'flex'}}>
                                 <img
                                     src="/images/IUEvent2.png"
-                                    alt="شعار الجامعة الإسلامية بالمدينة المنورة"
+                                    alt={isArabic ? "شعار الجامعة الإسلامية بالمدينة المنورة" : "Islamic University of Madinah logo"}
                                     style={{height: 48, width: "auto"}}
                                 />
                             </Link>
                             <Link to="/" style={{fontSize: 13, color: "var(--iu-green-800, #105f3c)", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6}}>
-                                {t("auth_back_home")}
+                                {isArabic ? "العودة للرئيسية ←" : "Back to Home →"}
                             </Link>
                         </div>
                         <div className={classes.formArea} key={`${location.pathname}_${locale}`}>
