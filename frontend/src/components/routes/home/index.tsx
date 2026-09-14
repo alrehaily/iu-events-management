@@ -141,7 +141,7 @@ export const IUHomePage: React.FC = () => {
           ) : events.length > 0 ? (
             <div className={classes.eventsGrid}>
               {events.map((event, idx) => (
-                <div key={event.id} className={`iu-reveal iu-stagger-${(idx % 3) + 1}`}>
+                <div key={event.id} className={`iu-reveal iu-stagger-${Math.min(idx + 1, 9)}`}>
                   <IUEventCard event={event} index={idx} />
                 </div>
               ))}
