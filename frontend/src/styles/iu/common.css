@@ -10,7 +10,7 @@
   --iu-anim-body: 0.86s;
   --iu-anim-card-in: 0.82s;
   --iu-anim-reveal: 0.82s;
-  --iu-anim-stagger-step: 0ms;
+  --iu-anim-stagger-step: 120ms;
   --iu-anim-hover: 0.16s;
 
   min-height: 100vh;
@@ -86,6 +86,17 @@
   }
 }
 
+@keyframes iuSequenceEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.996);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Dedicated transition when opening an event from an event card. */
 @keyframes iuEventDetailEnter {
   0% {
@@ -152,28 +163,35 @@
 }
 
 /* ==========================================================================
-   Smooth staggered card entrance
-   Entrance motion only. Hover behavior stays untouched.
+   Page-load sequence for cards and text
+   Runs immediately when the page renders, not when the user scrolls.
+   Hover behavior is intentionally untouched.
    ========================================================================== */
 .iu-page .iu-reveal {
-  animation: none !important;
-  transition-duration: 0.86s;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(10px) scale(0.996);
+  transition: none !important;
+  animation: iuSequenceEnter 0.78s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  animation-delay: 0ms !important;
+  will-change: opacity, transform;
 }
 
-.iu-page .iu-reveal.iu-revealed {
-  transition-delay: 0s;
-}
-
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-1 { transition-delay: 0ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-2 { transition-delay: 90ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-3 { transition-delay: 180ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-4 { transition-delay: 270ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-5 { transition-delay: 360ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-6 { transition-delay: 450ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-7 { transition-delay: 540ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-8 { transition-delay: 630ms; }
-.iu-page .iu-reveal:not(.iu-revealed).iu-stagger-9 { transition-delay: 720ms; }
+.iu-page .iu-reveal.iu-stagger-1 { animation-delay: 120ms !important; }
+.iu-page .iu-reveal.iu-stagger-2 { animation-delay: 240ms !important; }
+.iu-page .iu-reveal.iu-stagger-3 { animation-delay: 360ms !important; }
+.iu-page .iu-reveal.iu-stagger-4 { animation-delay: 480ms !important; }
+.iu-page .iu-reveal.iu-stagger-5 { animation-delay: 600ms !important; }
+.iu-page .iu-reveal.iu-stagger-6 { animation-delay: 720ms !important; }
+.iu-page .iu-reveal.iu-stagger-7 { animation-delay: 840ms !important; }
+.iu-page .iu-reveal.iu-stagger-8 { animation-delay: 960ms !important; }
+.iu-page .iu-reveal.iu-stagger-9 { animation-delay: 1080ms !important; }
+.iu-page .iu-reveal.iu-stagger-10 { animation-delay: 1200ms !important; }
+.iu-page .iu-reveal.iu-stagger-11 { animation-delay: 1320ms !important; }
+.iu-page .iu-reveal.iu-stagger-12 { animation-delay: 1440ms !important; }
+.iu-page .iu-reveal.iu-stagger-13 { animation-delay: 1560ms !important; }
+.iu-page .iu-reveal.iu-stagger-14 { animation-delay: 1680ms !important; }
+.iu-page .iu-reveal.iu-stagger-15 { animation-delay: 1800ms !important; }
+.iu-page .iu-reveal.iu-stagger-16 { animation-delay: 1920ms !important; }
 
 /* ==========================================================================
    Hero Section (Unified Height & Permanently Green Across All Public Pages)
