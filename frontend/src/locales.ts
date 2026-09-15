@@ -1,5 +1,6 @@
 import {i18n} from "@lingui/core";
 import {arabicMessageOverrides} from "./locales/ar-overrides.ts";
+import {arabicManagementMessageOverrides} from "./locales/ar-management-overrides.ts";
 
 export type SupportedLocales = "ar" | "en";
 
@@ -55,7 +56,11 @@ export async function dynamicActivateLocale(locale: string) {
             dayjsLocaleLoaders[validLocale]?.().catch((error) => console.error("Error loading dayjs locale:", error)),
         ]);
         const messages = validLocale === "ar"
-            ? {...module.messages, ...arabicMessageOverrides}
+            ? {
+                ...module.messages,
+                ...arabicMessageOverrides,
+                ...arabicManagementMessageOverrides,
+            }
             : module.messages;
         i18n.load(validLocale, messages);
         i18n.activate(validLocale);
