@@ -1,6 +1,7 @@
 import {i18n} from "@lingui/core";
 import {arabicMessageOverrides} from "./locales/ar-overrides.ts";
 import {arabicManagementMessageOverrides} from "./locales/ar-management-overrides.ts";
+import {arabicPolishMessageOverrides} from "./locales/ar-polish-overrides.ts";
 
 export type SupportedLocales = "ar" | "en";
 
@@ -60,6 +61,7 @@ export async function dynamicActivateLocale(locale: string) {
                 ...module.messages,
                 ...arabicMessageOverrides,
                 ...arabicManagementMessageOverrides,
+                ...arabicPolishMessageOverrides,
             }
             : module.messages;
         i18n.load(validLocale, messages);
