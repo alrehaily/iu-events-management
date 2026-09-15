@@ -5,6 +5,7 @@ import {arabicPolishMessageOverrides} from "./locales/ar-polish-overrides.ts";
 import {arabicUiFinalOverrides} from "./locales/ar-ui-final-overrides.ts";
 import {arabicDynamicMessageOverrides} from "./locales/ar-dynamic-overrides.ts";
 import {arabicSourceOverrides} from "./locales/ar-source-overrides.ts";
+import {arabicSourceExtraOverrides} from "./locales/ar-source-overrides-extra.ts";
 
 export type SupportedLocales = "ar" | "en";
 
@@ -60,7 +61,7 @@ const resolveArabicSourceOverrides = (englishMessages: Record<string, unknown>) 
             return;
         }
 
-        const translatedMessage = arabicSourceOverrides[sourceMessage];
+        const translatedMessage = arabicSourceExtraOverrides[sourceMessage] || arabicSourceOverrides[sourceMessage];
         if (translatedMessage) {
             resolved[id] = translatedMessage;
         }
