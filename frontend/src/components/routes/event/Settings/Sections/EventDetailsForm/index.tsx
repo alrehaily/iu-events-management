@@ -2,9 +2,10 @@ import {t} from "@lingui/macro";
 import {Button, Select, TextInput} from "@mantine/core";
 import {IconCalendarRepeat} from "@tabler/icons-react";
 import {useForm} from "@mantine/form";
+import {useLingui} from "@lingui/react";
 import {NavLink, useParams} from "react-router";
 import {useGetEvent} from "../../../../../../queries/useGetEvent.ts";
-import {useEffect} from "react";
+import {useEffect, useMemo} from "react";
 import {useUpdateEvent} from "../../../../../../mutations/useUpdateEvent.ts";
 import {Event, EventType} from "../../../../../../types.ts";
 import {InputGroup} from "../../../../../common/InputGroup";
@@ -19,11 +20,57 @@ import {timezones} from "../../../../../../../data/timezones.ts";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 import {getEventCategories} from "../../../../../../constants/eventCategories.ts";
 
+const getArabicCurrencyName = (currencyCode: string, fallback: string) => {
+    try {
+        const formatter = new Intl.NumberFormat('ar-SA', {
+            style: 'currency',
+            currency: currencyCode,
+            currencyDisplay: 'name',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        });
+        return formatter.formatToParts(0).find((part) => part.type === 'currency')?.value || fallback;
+    } catch {
+        return fallback;
+    }
+};
+
+const getArabicTimezoneName = (timezone: string) => {
+    try {
+        const formatter = new Intl.DateTimeFormat('ar-SA', {
+            timeZone: timezone,
+            timeZoneName: 'long',
+        });
+        return formatter.formatToParts(new Date()).find((part) => part.type === 'timeZoneName')?.value || timezone;
+    } catch {
+        return timezone;
+    }
+};
+
 export const EventDetailsForm = () => {
     const {eventId} = useParams();
+    const {i18n} = useLingui();
     const eventQuery = useGetEvent(eventId);
     const updateMutation = useUpdateEvent();
     const isRecurring = eventQuery.data?.type === EventType.RECURRING;
+    const isArabic = i18n.locale === 'ar';
+
+    const currencyOptions = useMemo(
+        () => currenciesMap.map((currency) => ({
+            ...currency,
+            label: isArabic ? getArabicCurrencyName(currency.value, currency.label) : currency.label,
+        })),
+        [isArabic],
+    );
+
+    const timezoneOptions = useMemo(
+        () => timezones.map((timezone) => ({
+            value: timezone,
+            label: isArabic ? getArabicTimezoneName(timezone) : timezone,
+        })),
+        [isArabic],
+    );
+
     const form = useForm({
         initialValues: {
             title: '',
@@ -81,7 +128,7 @@ export const EventDetailsForm = () => {
                         placeholder={t`Summer Music Festival ${new Date().getFullYear()}`}
                         required
                     />
-                    
+
                     <Select
                         {...form.getInputProps('category')}
                         label={t`Category`}
@@ -131,19 +178,19 @@ export const EventDetailsForm = () => {
                     <InputGroup>
                         <Select
                             searchable
-                            data={currenciesMap}
+                            data={currencyOptions}
                             {...form.getInputProps('currency')}
                             label={t`Currency`}
-                            placeholder={t`EUR`}
+                            placeholder={isArabic ? 'اليورو' : 'EUR'}
                             description={t`The currency used for this event's ticket prices.`}
                         />
 
                         <Select
                             searchable
-                            data={timezones}
+                            data={timezoneOptions}
                             {...form.getInputProps('timezone')}
                             label={t`Timezone`}
-                            placeholder={t`UTC`}
+                            placeholder={isArabic ? 'التوقيت العالمي المنسق' : 'UTC'}
                             description={t`The timezone used for this event's dates and times.`}
                         />
                     </InputGroup>
