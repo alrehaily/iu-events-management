@@ -7,7 +7,7 @@ export const arabicSourceExtraOverrides: Record<string, string> = {
     "Unpaid": "غير مدفوعة",
     "This ticket is no longer valid": "هذه التذكرة لم تعد صالحة",
     "Available once payment completes": "يتاح بعد اكتمال الدفع",
-    "Print to PDF": "طباعة بصيغة PDF",
+    "Print to PDF": "طباعة التذكرة",
     "Copied": "تم النسخ",
     "Copy Link": "نسخ الرابط",
 
@@ -44,6 +44,13 @@ export const arabicSourceExtraOverrides: Record<string, string> = {
     "Event Preview": "معاينة الفعالية",
     "Cover image will be displayed at the top of your event page.": "ستظهر صورة الغلاف في أعلى صفحة الفعالية.",
     "Logo will be displayed on the ticket.": "سيظهر الشعار على التذكرة.",
+    "Continue": "متابعة",
+    "Apply": "تطبيق",
+    "Show more": "عرض المزيد",
+    "Hide": "إخفاء",
+    "Have a promo code?": "هل لديك رمز ترويجي؟",
+    "Remove": "إزالة",
+    "Choose another date": "اختر موعدًا آخر",
 
     // Location wording without English brand names
     "If blank, the address will be used to generate a Google Maps link": "إذا تُرك فارغًا، فسيُستخدم العنوان لإنشاء رابط خرائط جوجل",
@@ -57,6 +64,9 @@ export const arabicSourceExtraOverrides: Record<string, string> = {
     "Invalid file type. Please upload an image.": "نوع الملف غير صالح. يرجى رفع صورة.",
 
     // Product editor extras
+    "Untitled ticket": "تذكرة بدون اسم",
+    "Untitled product": "منتج بدون اسم",
+    "Tickets": "التذاكر",
     "Sale Start Date": "تاريخ بدء البيع",
     "Sale End Date": "تاريخ انتهاء البيع",
     "Hide product before sale start date": "إخفاء العنصر قبل بدء البيع",
