@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Outlet } from "react-router";
+import { Outlet, useLocation } from "react-router";
 import classes from './AppLayout.module.scss';
 import { Topbar } from "./Topbar";
 import { Sidebar } from "./Sidebar";
@@ -50,6 +50,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     actionGroupContent = null,
     sidebarFooter = null,
 }) => {
+    const location = useLocation();
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
         if (typeof window === 'undefined') return true; // SSR default
         return window.innerWidth >= 768; // Desktop open, mobile closed
@@ -98,7 +99,13 @@ const AppLayout: React.FC<AppLayoutProps> = ({
                 />
 
                 <div className={classes.main} id={'app-manage-main'}>
-                    <Outlet />
+                    <div
+                        key={location.pathname}
+                        className="iu-dashboard-route-transition"
+                        data-dashboard-entity={entityType}
+                    >
+                        <Outlet />
+                    </div>
                 </div>
 
                 <Sidebar
