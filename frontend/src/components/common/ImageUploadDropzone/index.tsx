@@ -7,6 +7,7 @@ import {confirmationDialog} from "../../../utilites/confirmationDialog.tsx";
 import {ActionIcon, Button, Group, Loader, Text} from "@mantine/core";
 import {IconReplace, IconTrash, IconUpload} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
+import {useLingui} from "@lingui/react";
 import {IdParam, ImageType} from "../../../types.ts";
 import {
     extractImageUploadErrors,
@@ -39,6 +40,8 @@ export const ImageUploadDropzone = ({
                                         onDeleteSuccess,
                                         displayMode = 'normal'
                                     }: ImageUploadDropzoneProps) => {
+    const {i18n} = useLingui();
+    const isArabic = i18n.locale === 'ar';
     const [loading, setLoading] = useState(false);
     const [previewImage, setPreviewImage] = useState(existingImageData?.url || null);
     const [imageId, setImageId] = useState(existingImageData?.id || null);
@@ -146,7 +149,7 @@ export const ImageUploadDropzone = ({
                     <Loader size={displayMode === 'compact' ? 'sm' : 'md'}/>
                     {displayMode !== 'compact' && (
                         <Text size="sm" mt="xs" c="dimmed">
-                            Processing image...
+                            {isArabic ? 'جارٍ معالجة الصورة...' : 'Processing image...'}
                         </Text>
                     )}
                 </div>
@@ -156,7 +159,11 @@ export const ImageUploadDropzone = ({
         if (previewImage) {
             return (
                 <div className={classes.previewContainer}>
-                    <img src={previewImage} alt="Uploaded preview" className={classes.previewImage}/>
+                    <img
+                        src={previewImage}
+                        alt={isArabic ? 'معاينة الصورة المرفوعة' : 'Uploaded preview'}
+                        className={classes.previewImage}
+                    />
                     <Button
                         variant="light"
                         color="blue"
@@ -165,7 +172,7 @@ export const ImageUploadDropzone = ({
                         onClick={handleReplace}
                         className={classes.replaceButton}
                     >
-                        Replace Image
+                        {isArabic ? 'استبدال الصورة' : 'Replace Image'}
                     </Button>
                 </div>
             );
@@ -177,7 +184,7 @@ export const ImageUploadDropzone = ({
                     <Group justify="center" gap="xs">
                         <IconUpload size={20} stroke={1.5}/>
                         <Text size="sm" fw={500}>
-                            Click to upload
+                            {isArabic ? 'انقر لرفع الصورة' : 'Click to upload'}
                         </Text>
                     </Group>
                     {helpText && (
@@ -197,7 +204,7 @@ export const ImageUploadDropzone = ({
                     </div>
                 </Group>
                 <Text ta="center" fw={600} size="md" mt="md">
-                    Drag & drop or click to upload
+                    {isArabic ? 'اسحب الصورة وأفلتها أو انقر للرفع' : 'Drag & drop or click to upload'}
                 </Text>
                 {helpText && (
                     <Text ta="center" c="dimmed" size="sm" mt="xs">
@@ -205,7 +212,7 @@ export const ImageUploadDropzone = ({
                     </Text>
                 )}
                 <Text ta="center" c="dimmed" size="xs" mt="xs">
-                    Images only · Max 5MB
+                    {isArabic ? 'صور فقط · الحد الأقصى 5 ميجابايت' : 'Images only · Max 5MB'}
                 </Text>
             </div>
         );
