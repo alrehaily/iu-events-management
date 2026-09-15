@@ -1,0 +1,179 @@
+/* Unified IU button system for Mantine-powered management interfaces. */
+.mantine-Button-root {
+    border-radius: var(--iu-radius-pill, 999px) !important;
+    min-height: 44px;
+    padding-inline: 28px !important;
+    font-family: var(--iu-font-family, 'Tajawal', sans-serif) !important;
+    font-size: 15px;
+    font-weight: 600 !important;
+    line-height: 1.2;
+    letter-spacing: normal;
+    border-width: 1.5px !important;
+    border-style: solid !important;
+    cursor: pointer;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    transition:
+        transform var(--iu-transition-fast, 0.16s ease),
+        box-shadow var(--iu-transition-normal, 0.25s ease),
+        background var(--iu-transition-normal, 0.25s ease),
+        border-color var(--iu-transition-fast, 0.16s ease),
+        color var(--iu-transition-fast, 0.16s ease) !important;
+}
+
+.mantine-Button-root[data-size="xs"] {
+    min-height: 36px;
+    padding-inline: 18px !important;
+    font-size: 13px;
+}
+
+.mantine-Button-root[data-size="sm"] {
+    min-height: 40px;
+    padding-inline: 22px !important;
+    font-size: 14px;
+}
+
+.mantine-Button-root[data-size="lg"],
+.mantine-Button-root[data-size="xl"] {
+    min-height: 48px;
+    padding-inline: 30px !important;
+    font-size: 16px;
+}
+
+/* Primary action: same green gradient used by the attendee-facing public site. */
+.mantine-Button-root[data-variant="filled"] {
+    background: var(--iu-green-gradient) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 14px rgba(27, 117, 75, 0.22) !important;
+}
+
+.mantine-Button-root[data-variant="filled"]:hover:not(:disabled) {
+    background: var(--iu-green-gradient-hover) !important;
+    color: #ffffff !important;
+    transform: translate3d(0, -2px, 0);
+    box-shadow: var(--iu-green-glow) !important;
+}
+
+/* Secondary actions: light/default/outline now share the public outline button. */
+.mantine-Button-root[data-variant="light"],
+.mantine-Button-root[data-variant="outline"],
+.mantine-Button-root[data-variant="default"] {
+    background: #ffffff !important;
+    color: var(--iu-green-secondary) !important;
+    border-color: var(--iu-green-secondary) !important;
+    box-shadow: none !important;
+}
+
+.mantine-Button-root[data-variant="light"]:hover:not(:disabled),
+.mantine-Button-root[data-variant="outline"]:hover:not(:disabled),
+.mantine-Button-root[data-variant="default"]:hover:not(:disabled) {
+    background: var(--iu-green-light) !important;
+    color: var(--iu-green-primary) !important;
+    border-color: var(--iu-green-secondary) !important;
+    transform: translate3d(0, -2px, 0);
+}
+
+/* Text-level actions keep a transparent surface while using the same typography and motion. */
+.mantine-Button-root[data-variant="subtle"],
+.mantine-Button-root[data-variant="transparent"] {
+    background: transparent !important;
+    color: var(--iu-green-secondary) !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.mantine-Button-root[data-variant="subtle"]:hover:not(:disabled),
+.mantine-Button-root[data-variant="transparent"]:hover:not(:disabled) {
+    background: var(--iu-green-soft) !important;
+    color: var(--iu-green-primary) !important;
+    transform: translate3d(0, -1px, 0);
+}
+
+/* Destructive actions keep the same shape but retain red semantics. */
+.mantine-Button-root[data-color="red"][data-variant="filled"] {
+    background: var(--iu-danger, #dc2626) !important;
+    border-color: transparent !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.2) !important;
+}
+
+.mantine-Button-root[data-color="red"][data-variant="filled"]:hover:not(:disabled) {
+    background: #b91c1c !important;
+    box-shadow: 0 6px 18px rgba(220, 38, 38, 0.24) !important;
+}
+
+.mantine-Button-root[data-color="red"][data-variant="light"],
+.mantine-Button-root[data-color="red"][data-variant="outline"],
+.mantine-Button-root[data-color="red"][data-variant="default"] {
+    background: #ffffff !important;
+    border-color: var(--iu-danger, #dc2626) !important;
+    color: var(--iu-danger, #dc2626) !important;
+}
+
+.mantine-Button-root:active:not(:disabled) {
+    transform: translate3d(0, 0, 0) scale(0.97) !important;
+}
+
+.mantine-Button-root:focus-visible {
+    outline: none !important;
+    box-shadow: var(--iu-green-focus-ring) !important;
+}
+
+.mantine-Button-root:disabled,
+.mantine-Button-root[data-disabled] {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.mantine-Button-root .mantine-Button-inner,
+.mantine-Button-root .mantine-Button-label {
+    overflow: visible;
+}
+
+.mantine-Button-root[data-variant="filled"] svg.tabler-icon,
+.mantine-Button-root[data-variant="filled"] .tabler-icon {
+    color: #ffffff !important;
+}
+
+.mantine-Button-root[data-variant="light"] svg.tabler-icon,
+.mantine-Button-root[data-variant="outline"] svg.tabler-icon,
+.mantine-Button-root[data-variant="default"] svg.tabler-icon,
+.mantine-Button-root[data-variant="subtle"] svg.tabler-icon,
+.mantine-Button-root[data-variant="transparent"] svg.tabler-icon {
+    color: currentColor !important;
+}
+
+/* Choice controls use the same IU visual language instead of gray/purple variants. */
+.mantine-SegmentedControl-root {
+    padding: 4px !important;
+    border: 1px solid var(--iu-border, #dbe4df) !important;
+    border-radius: var(--iu-radius-pill, 999px) !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+}
+
+.mantine-SegmentedControl-indicator {
+    background: var(--iu-green-primary, #084b2f) !important;
+    border-radius: var(--iu-radius-pill, 999px) !important;
+    box-shadow: 0 3px 10px rgba(8, 75, 47, 0.18) !important;
+}
+
+.mantine-SegmentedControl-label {
+    border-radius: var(--iu-radius-pill, 999px) !important;
+    color: var(--iu-text-secondary, #475569);
+    font-family: var(--iu-font-family, 'Tajawal', sans-serif);
+    font-weight: 600;
+    transition: color var(--iu-transition-fast, 0.16s ease), background var(--iu-transition-fast, 0.16s ease);
+}
+
+.mantine-SegmentedControl-control[data-active] .mantine-SegmentedControl-label,
+.mantine-SegmentedControl-control:has(input:checked) .mantine-SegmentedControl-label {
+    color: #ffffff !important;
+}
+
+.mantine-SegmentedControl-label:hover {
+    color: var(--iu-green-primary, #084b2f);
+}

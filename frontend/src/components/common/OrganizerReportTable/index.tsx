@@ -1,5 +1,6 @@
 import {Button, ComboboxItem, Group, Select, Skeleton, Table as MantineTable, Text} from '@mantine/core';
 import {t} from '@lingui/macro';
+import {useLingui} from '@lingui/react';
 import {DatePickerInput} from "@mantine/dates";
 import {IconArrowDown, IconArrowsSort, IconArrowUp, IconCalendar, IconDownload} from "@tabler/icons-react";
 import {useMemo, useState} from "react";
@@ -64,6 +65,21 @@ const TIME_PERIODS = [
 
 const ROWS_PER_PAGE = 1000;
 
+const getArabicCurrencyName = (currencyCode: string) => {
+    try {
+        const formatter = new Intl.NumberFormat('ar-SA', {
+            style: 'currency',
+            currency: currencyCode,
+            currencyDisplay: 'name',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        });
+        return formatter.formatToParts(0).find((part) => part.type === 'currency')?.value || currencyCode;
+    } catch {
+        return currencyCode;
+    }
+};
+
 const OrganizerReportTable = <T extends Record<string, any>>({
                                                                  title,
                                                                  columns,
@@ -77,6 +93,7 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                                                                  availableCurrencies = [],
                                                                  eventId,
                                                              }: OrganizerReportProps<T>) => {
+    const {i18n} = useLingui();
     const tz = organizer.timezone || 'UTC';
     const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
         dayjs(defaultStartDate).tz(tz).toDate(),
@@ -290,7 +307,10 @@ const OrganizerReportTable = <T extends Record<string, any>>({
 
     const currencyOptions = [
         {value: '', label: t`All Currencies`},
-        ...availableCurrencies.map(curr => ({value: curr, label: curr}))
+        ...availableCurrencies.map((currency) => ({
+            value: currency,
+            label: i18n.locale === 'ar' ? getArabicCurrencyName(currency) : currency,
+        }))
     ];
 
     const totalPages = pagination?.last_page || 1;
@@ -329,7 +349,7 @@ const OrganizerReportTable = <T extends Record<string, any>>({
                             style={{minWidth: '305px', marginBottom: '0'}}
                             leftSection={<IconCalendar stroke={1.5} size={20}/>}
                             type="range"
-                            placeholder="Pick dates range"
+                            placeholder={t`Pick dates range`}
                             value={dateRange}
                             onChange={handleDateRangeChange}
                             minDate={dayjs().subtract(1, 'year').tz(tz).toDate()}

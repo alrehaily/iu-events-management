@@ -262,3 +262,199 @@
 #app-manage-main .mantine-Button-root[data-variant="filled"] .tabler-icon {
   color: #ffffff !important;
 }
+
+/* ==========================================================================
+   Organizer / Event Management Route Motion System
+   Replays on every route change and staggers the visible page blocks.
+   ========================================================================== */
+
+@keyframes iuDashboardRouteIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(1.5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes iuDashboardItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes iuDashboardRowIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.iu-dashboard-route-transition {
+  min-height: 100%;
+  animation: iuDashboardRouteIn 520ms var(--iu-ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+/* First two structural levels cover page titles, cards, forms, report blocks,
+   designer panes, settings sections and the main content groups without
+   animating every label/input independently. */
+.iu-dashboard-route-transition > *,
+.iu-dashboard-route-transition > * > * {
+  animation: iuDashboardItemIn 680ms var(--iu-ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  will-change: opacity, transform;
+}
+
+.iu-dashboard-route-transition > *:nth-child(1),
+.iu-dashboard-route-transition > * > *:nth-child(1) {
+  animation-delay: 50ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(2),
+.iu-dashboard-route-transition > * > *:nth-child(2) {
+  animation-delay: 120ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(3),
+.iu-dashboard-route-transition > * > *:nth-child(3) {
+  animation-delay: 190ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(4),
+.iu-dashboard-route-transition > * > *:nth-child(4) {
+  animation-delay: 260ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(5),
+.iu-dashboard-route-transition > * > *:nth-child(5) {
+  animation-delay: 330ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(6),
+.iu-dashboard-route-transition > * > *:nth-child(6) {
+  animation-delay: 400ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(7),
+.iu-dashboard-route-transition > * > *:nth-child(7) {
+  animation-delay: 470ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(8),
+.iu-dashboard-route-transition > * > *:nth-child(8) {
+  animation-delay: 540ms;
+}
+
+.iu-dashboard-route-transition > *:nth-child(n + 9),
+.iu-dashboard-route-transition > * > *:nth-child(n + 9) {
+  animation-delay: 610ms;
+}
+
+/* Mantine/custom cards can sit one level deeper in grids. Give those the same
+   cascading entrance so dashboard/stat/report cards never pop in solid. */
+.iu-dashboard-route-transition .mantine-Card-root,
+.iu-dashboard-route-transition .card,
+.iu-dashboard-route-transition .mantine-Paper-root,
+.iu-dashboard-route-transition .mantine-Accordion-item,
+.iu-dashboard-route-transition .mantine-Alert-root {
+  animation: iuDashboardItemIn 680ms var(--iu-ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+.iu-dashboard-route-transition .mantine-Card-root:nth-child(1),
+.iu-dashboard-route-transition .card:nth-child(1),
+.iu-dashboard-route-transition .mantine-Paper-root:nth-child(1),
+.iu-dashboard-route-transition .mantine-Accordion-item:nth-child(1) {
+  animation-delay: 100ms;
+}
+
+.iu-dashboard-route-transition .mantine-Card-root:nth-child(2),
+.iu-dashboard-route-transition .card:nth-child(2),
+.iu-dashboard-route-transition .mantine-Paper-root:nth-child(2),
+.iu-dashboard-route-transition .mantine-Accordion-item:nth-child(2) {
+  animation-delay: 180ms;
+}
+
+.iu-dashboard-route-transition .mantine-Card-root:nth-child(3),
+.iu-dashboard-route-transition .card:nth-child(3),
+.iu-dashboard-route-transition .mantine-Paper-root:nth-child(3),
+.iu-dashboard-route-transition .mantine-Accordion-item:nth-child(3) {
+  animation-delay: 260ms;
+}
+
+.iu-dashboard-route-transition .mantine-Card-root:nth-child(4),
+.iu-dashboard-route-transition .card:nth-child(4),
+.iu-dashboard-route-transition .mantine-Paper-root:nth-child(4),
+.iu-dashboard-route-transition .mantine-Accordion-item:nth-child(4) {
+  animation-delay: 340ms;
+}
+
+.iu-dashboard-route-transition .mantine-Card-root:nth-child(5),
+.iu-dashboard-route-transition .card:nth-child(5),
+.iu-dashboard-route-transition .mantine-Paper-root:nth-child(5),
+.iu-dashboard-route-transition .mantine-Accordion-item:nth-child(5) {
+  animation-delay: 420ms;
+}
+
+.iu-dashboard-route-transition .mantine-Card-root:nth-child(n + 6),
+.iu-dashboard-route-transition .card:nth-child(n + 6),
+.iu-dashboard-route-transition .mantine-Paper-root:nth-child(n + 6),
+.iu-dashboard-route-transition .mantine-Accordion-item:nth-child(n + 6) {
+  animation-delay: 500ms;
+}
+
+/* Report and list rows cascade after their container has entered. */
+.iu-dashboard-route-transition .mantine-Table-tbody > tr {
+  animation: iuDashboardRowIn 480ms var(--iu-ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+  animation-delay: 300ms;
+}
+
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(1) { animation-delay: 300ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(2) { animation-delay: 350ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(3) { animation-delay: 400ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(4) { animation-delay: 450ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(5) { animation-delay: 500ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(6) { animation-delay: 550ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(7) { animation-delay: 600ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(8) { animation-delay: 650ms; }
+.iu-dashboard-route-transition .mantine-Table-tbody > tr:nth-child(n + 9) { animation-delay: 700ms; }
+
+/* Accordion/collapse content should also feel alive when opened instead of
+   appearing instantly. */
+#app-manage-main .mantine-Accordion-panel,
+#app-manage-main .mantine-Collapse-root {
+  transform-origin: top center;
+}
+
+#app-manage-main .mantine-Accordion-content {
+  animation: iuDashboardRouteIn 360ms var(--iu-ease-out, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iu-dashboard-route-transition,
+  .iu-dashboard-route-transition > *,
+  .iu-dashboard-route-transition > * > *,
+  .iu-dashboard-route-transition .mantine-Card-root,
+  .iu-dashboard-route-transition .card,
+  .iu-dashboard-route-transition .mantine-Paper-root,
+  .iu-dashboard-route-transition .mantine-Accordion-item,
+  .iu-dashboard-route-transition .mantine-Alert-root,
+  .iu-dashboard-route-transition .mantine-Table-tbody > tr,
+  #app-manage-main .mantine-Accordion-content {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

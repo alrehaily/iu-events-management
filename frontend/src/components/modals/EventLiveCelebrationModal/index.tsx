@@ -2,6 +2,7 @@ import {Button, CopyButton, Modal, Text, TextInput, Tooltip} from '@mantine/core
 import {useDisclosure} from '@mantine/hooks';
 import {
     IconCheck,
+    IconCircleCheck,
     IconCode,
     IconCopy,
     IconExternalLink,
@@ -40,8 +41,12 @@ export const EventLiveCelebrationModal = ({
                 className={classes.modal}
             >
                 <div className={classes.content}>
-                    <div className={classes.celebrationEmoji}>
-                        🎉
+                    <div className={classes.celebrationEmoji} aria-hidden="true">
+                        <IconCircleCheck
+                            size={64}
+                            stroke={1.55}
+                            color="var(--iu-icon, #0f172a)"
+                        />
                     </div>
 
                     <Text className={classes.title}>

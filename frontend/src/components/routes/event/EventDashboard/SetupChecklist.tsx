@@ -1,8 +1,8 @@
 import {Button} from "@mantine/core";
 import {IconCheck, IconCircle, IconCircleCheck, IconX} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
+import {useLingui} from "@lingui/react";
 import {Account, Event, EventType, Image, Organizer, User} from "../../../../types.ts";
-import {BouncingEmoji} from "../../../common/BouncingEmoji";
 import {useResendEmailConfirmation} from "../../../../mutations/useResendEmailConfirmation.ts";
 import {showError, showSuccess} from "../../../../utilites/notifications.tsx";
 import classes from "./SetupChecklist.module.scss";
@@ -66,6 +66,9 @@ export const SetupChecklist = ({
                                    isDismissed,
                                    showCongratsHeader = false,
                                }: SetupChecklistProps) => {
+    const {i18n} = useLingui();
+    const isArabic = i18n.locale === 'ar';
+
     const payoutsButtonLabel = organizer?.stripe_account_id
         ? t`Finish setup`
         : t`Connect bank`;
@@ -190,8 +193,12 @@ export const SetupChecklist = ({
 
             {showCongratsHeader && (
                 <div className={classes.congratsHero}>
-                    <div className={classes.congratsEmoji}>
-                        <BouncingEmoji emoji="🎉" size={72}/>
+                    <div className={classes.congratsEmoji} aria-hidden="true">
+                        <IconCircleCheck
+                            size={68}
+                            stroke={1.55}
+                            color="var(--iu-icon, #0f172a)"
+                        />
                     </div>
                     <div className={classes.congratsEyebrow}>{t`Event created`}</div>
                     <h2 className={classes.congratsTitle}>{event.title}</h2>
@@ -207,7 +214,9 @@ export const SetupChecklist = ({
                         <div className={classes.title}>{t`Get your event ready`}</div>
                     )}
                     <div className={classes.subtitle}>
-                        {t`${completedCount} of ${totalCount} steps complete`}
+                        {isArabic
+                            ? `${completedCount} من ${totalCount} خطوات مكتملة`
+                            : t`${completedCount} of ${totalCount} steps complete`}
                     </div>
                 </div>
                 <div className={classes.headerRight}>
