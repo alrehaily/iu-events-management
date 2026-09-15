@@ -58,7 +58,7 @@ export const IUNavbar: React.FC = () => {
           <div className={classes.logo}>
             <Link to="/">
               <img
-                src="/images/IUEvent2.png"
+                src="/images/IUEvent2-transparent.png"
                 alt={t("brand_title", "الجامعة الإسلامية بالمدينة المنورة")}
               />
             </Link>

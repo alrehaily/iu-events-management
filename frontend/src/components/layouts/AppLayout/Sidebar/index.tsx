@@ -81,13 +81,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
     return (
         <div className={classNames(`${classes.sidebar} ${sidebarOpen ? classes.open : classes.closed}`)}>
             <div className={classes.logo}>
-                <NavLink to={`/manage/events`}>
-                    <img
-                        src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")}
-                        alt={t`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`}
-                        style={{maxHeight: 44, width: "auto"}}
-                    />
-                </NavLink>
+                <div className={classes.logoBadge}>
+                    <NavLink to={`/manage/events`}>
+                        <img
+                            src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")}
+                            alt={t`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`}
+                            className={classes.logoImg}
+                        />
+                    </NavLink>
+                </div>
             </div>
             <div className={classes.nav}>
                 {renderLinks()}

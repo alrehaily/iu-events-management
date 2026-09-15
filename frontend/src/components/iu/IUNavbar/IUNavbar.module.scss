@@ -11,7 +11,7 @@
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: 24px;
-  padding-block: 12px;
+  padding-block: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,10 +26,16 @@
 }
 
 .logo img {
-  height: 64px;
+  height: 40px;
+  max-height: 42px;
   width: auto;
   object-fit: contain;
   display: block;
+  transition: transform var(--iu-transition-fast, 0.2s ease);
+
+  &:hover {
+    transform: scale(1.03);
+  }
 }
 
 .navLinks {

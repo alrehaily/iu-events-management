@@ -1,22 +1,5 @@
 @use "../../../styles/mixins.scss";
 
-.viewHomepageButton {
-  color: var(--iu-text, #334155) !important;
-  font-weight: 600;
-  transition: color 0.2s ease;
-
-  &:hover {
-    color: var(--iu-green-primary, #084b2f) !important;
-  }
-
-  .viewHomepageButtonTextDesktop {
-    display: inline;
-
-    @include mixins.respond-below(md) {
-      display: none;
-    }
-  }
-}
 
 .createEventButton {
   @include mixins.respond-below(md) {
@@ -82,17 +65,18 @@
 
 .createEventBreadcrumb {
   cursor: pointer;
-  opacity: 0.75;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   gap: 4px;
   transition: opacity 0.2s ease, color 0.2s ease;
-  font-weight: 500;
-  color: var(--iu-text-muted, #64748b);
+  font-weight: 600;
+  color: #ffffff;
 
   &:hover {
     opacity: 1;
-    color: var(--iu-green-primary, #084b2f);
+    color: #ffffff;
+    text-decoration: underline;
   }
 }
 

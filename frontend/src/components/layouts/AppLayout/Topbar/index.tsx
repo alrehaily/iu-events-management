@@ -31,7 +31,7 @@ export const Topbar: React.FC<TopbarProps> = ({
             <div className={classes.topBarMain}>
                 <div className={classes.burger}>
                     <Burger
-                        color={'var(--iu-heading, #0f172a)'}
+                        color={'#ffffff'}
                         opened={sidebarOpen}
                         onClick={() => setSidebarOpen(!sidebarOpen)}
                         size={'sm'}
@@ -39,7 +39,9 @@ export const Topbar: React.FC<TopbarProps> = ({
                 </div>
                 <div className={classes.logo}>
                     <NavLink to={ `/manage/events` }>
-                        <img src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`} className={classes.logo} style={{height: 34, width: "auto"}}/>
+                        <div className={classes.logoBadge}>
+                            <img src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`} className={classes.logoImg}/>
+                        </div>
                     </NavLink>
                 </div>
 
@@ -48,7 +50,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                     {actionGroupContent}
 
                     <div className={classes.languageSwitcher}>
-                        <LanguageSwitcher width={120}/>
+                        <LanguageSwitcher width={120} variant="topbar"/>
                     </div>
 
                     <div className={classes.menu}>
@@ -59,7 +61,7 @@ export const Topbar: React.FC<TopbarProps> = ({
 
             <div className={classes.breadcrumbsRow}>
                 <div className={classes.breadcrumbs}>
-                    <Breadcrumbs separator={<span style={{margin: '0 6px', color: 'var(--iu-border)'}}>/</span>}>
+                    <Breadcrumbs separator={<span style={{margin: '0 6px', color: 'rgba(255, 255, 255, 0.45)'}}>/</span>}>
                         {breadcrumbItems.map((item, index) => (
                             <NavLink key={index} to={item.link ?? '#'}>
                                 {item.content}

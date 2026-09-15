@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from "react";
-import {Outlet} from "react-router";
+import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router";
 import classes from './AppLayout.module.scss';
-import {Topbar} from "./Topbar";
-import {Sidebar} from "./Sidebar";
-import {BreadcrumbItem, NavItem} from "./types.ts";
-import {IconLayoutSidebar} from "@tabler/icons-react";
-import {UnstyledButton, VisuallyHidden} from "@mantine/core";
-import {t} from "@lingui/macro";
+import { Topbar } from "./Topbar";
+import { Sidebar } from "./Sidebar";
+import { BreadcrumbItem, NavItem } from "./types.ts";
+import { IconLayoutSidebar } from "@tabler/icons-react";
+import { UnstyledButton, VisuallyHidden } from "@mantine/core";
+import { t } from "@lingui/macro";
 import ImpersonationBanner from "../../common/ImpersonationBanner";
 import PendingDeletionBanner from "../../common/PendingDeletionBanner";
 import AnnouncementDisplay from "../../common/AnnouncementDisplay";
@@ -26,7 +26,7 @@ interface SidebarToggleButtonProps {
     onClick: () => void;
 }
 
-const SidebarToggleButton: React.FC<SidebarToggleButtonProps> = ({open, onClick}) => {
+const SidebarToggleButton: React.FC<SidebarToggleButtonProps> = ({ open, onClick }) => {
     const Icon = IconLayoutSidebar;
     const label = t`Open sidebar`;
 
@@ -35,21 +35,21 @@ const SidebarToggleButton: React.FC<SidebarToggleButtonProps> = ({open, onClick}
             className={open ? classes.sidebarOpen : classes.sidebarClose}
             onClick={onClick}
         >
-            <Icon size={16}/>
+            <Icon size={16} />
             <VisuallyHidden>{label}</VisuallyHidden>
         </UnstyledButton>
     );
 };
 
 const AppLayout: React.FC<AppLayoutProps> = ({
-                                                 navItems,
-                                                 breadcrumbItems,
-                                                 entityType,
-                                                 topBarContent = null,
-                                                 breadcrumbContentRight = null,
-                                                 actionGroupContent = null,
-                                                 sidebarFooter = null,
-                                             }) => {
+    navItems,
+    breadcrumbItems,
+    entityType,
+    topBarContent = null,
+    breadcrumbContentRight = null,
+    actionGroupContent = null,
+    sidebarFooter = null,
+}) => {
     const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
         if (typeof window === 'undefined') return true; // SSR default
         return window.innerWidth >= 768; // Desktop open, mobile closed
@@ -86,7 +86,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
             <PendingDeletionBanner />
             <AnnouncementDisplay />
             <div id={`${entityType}-manage-container`}
-                 className={`${classes.container} ${sidebarOpen ? classes.open : classes.closed}`}>
+                className={`${classes.container} ${sidebarOpen ? classes.open : classes.closed}`}>
                 <Topbar
                     sidebarOpen={sidebarOpen}
                     setSidebarOpen={setSidebarOpen}
@@ -97,30 +97,30 @@ const AppLayout: React.FC<AppLayoutProps> = ({
                     actionGroupContent={actionGroupContent}
                 />
 
-            <div className={classes.main} id={'app-manage-main'}>
-                <Outlet/>
-            </div>
+                <div className={classes.main} id={'app-manage-main'}>
+                    <Outlet />
+                </div>
 
-            <Sidebar
-                sidebarOpen={sidebarOpen}
-                setSidebarOpen={setSidebarOpen}
-                navItems={navItems}
-                sidebarFooter={sidebarFooter}
-            />
-
-            {sidebarOpen && (
-                <div
-                    className={`${classes.overlay} ${sidebarOpen ? classes.open : ''}`}
-                    onClick={() => setSidebarOpen(false)}
+                <Sidebar
+                    sidebarOpen={sidebarOpen}
+                    setSidebarOpen={setSidebarOpen}
+                    navItems={navItems}
+                    sidebarFooter={sidebarFooter}
                 />
-            )}
 
-            {!sidebarOpen && (
-                <SidebarToggleButton
-                    open={false}
-                    onClick={() => setSidebarOpen(true)}
-                />
-            )}
+                {sidebarOpen && (
+                    <div
+                        className={`${classes.overlay} ${sidebarOpen ? classes.open : ''}`}
+                        onClick={() => setSidebarOpen(false)}
+                    />
+                )}
+
+                {!sidebarOpen && (
+                    <SidebarToggleButton
+                        open={false}
+                        onClick={() => setSidebarOpen(true)}
+                    />
+                )}
             </div>
         </>
     );

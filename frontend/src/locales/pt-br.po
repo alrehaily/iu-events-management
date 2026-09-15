@@ -14,12 +14,12 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/components/layouts/Event/index.tsx:224
-#: src/components/layouts/OrganizerLayout/index.tsx:218
+#: src/components/layouts/OrganizerLayout/index.tsx:217
 msgid "- Click to Publish"
 msgstr "- Clique para publicar"
 
 #: src/components/layouts/Event/index.tsx:226
-#: src/components/layouts/OrganizerLayout/index.tsx:220
+#: src/components/layouts/OrganizerLayout/index.tsx:219
 msgid "- Click to Unpublish"
 msgstr "- Clique para despublicar"
 
@@ -36,7 +36,7 @@ msgid "(none)"
 msgstr "(nenhum)"
 
 #: src/components/common/ReportTable/index.tsx:328
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:87
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:88
 msgid "{0}"
 msgstr "{0}"
 
@@ -1368,11 +1368,11 @@ msgstr "Tem certeza de que deseja sair?"
 msgid "Are you sure you want to make this event draft? This will make the event invisible to the public"
 msgstr "Tem certeza de que deseja tornar este evento um rascunho? Isso tornará o evento invisível para o público"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:150
+#: src/components/layouts/OrganizerLayout/index.tsx:149
 msgid "Are you sure you want to make this organizer draft? This will make the organizer page invisible to the public"
 msgstr "Tem certeza de que deseja definir este organizador como rascunho? Isso tornará a página do organizador invisível ao público."
 
-#: src/components/layouts/OrganizerLayout/index.tsx:151
+#: src/components/layouts/OrganizerLayout/index.tsx:150
 msgid "Are you sure you want to make this organizer public? This will make the organizer page visible to the public"
 msgstr "Tem certeza de que deseja tornar este organizador público? Isso tornará a página do organizador visível ao público."
 
@@ -1580,9 +1580,9 @@ msgstr "participantes"
 #: src/components/routes/event/attendees.tsx:205
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:55
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:61
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:119
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:145
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:279
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:121
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:147
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:282
 msgid "Attendees"
 msgstr "Participantes"
 
@@ -1696,7 +1696,7 @@ msgstr "Pagamento pendente"
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:117
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:225
 #: src/components/layouts/Checkout/index.tsx:323
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:434
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:438
 msgid "Awaiting payment"
 msgstr "Aguardando pagamento"
 
@@ -1755,7 +1755,7 @@ msgid "Background Color"
 msgstr "Cor de fundo"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:236
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:263
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:264
 msgid "Background Type"
 msgstr "Tipo de plano de fundo"
 
@@ -2018,7 +2018,7 @@ msgstr "Cancelar irá cancelar todos os participantes associados a este pedido e
 #: src/components/routes/event/orders.tsx:27
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:21
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:120
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:425
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:429
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:126
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:171
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:101
@@ -2315,7 +2315,7 @@ msgstr "Configurações de checkout"
 #~ msgstr "Chinês (Tradicional)"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:226
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:253
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:254
 msgid "Choose a color for your background"
 msgstr "Escolha uma cor para seu plano de fundo"
 
@@ -2427,7 +2427,7 @@ msgstr "Fechar"
 msgid "Close modal"
 msgstr "Fechar modal"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:105
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:107
 msgid "Close sidebar"
 msgstr "Fechar a barra lateral"
 
@@ -2460,7 +2460,7 @@ msgstr "O código deve ter entre 3 e 50 caracteres"
 msgid "Code must be no more than 20 characters"
 msgstr "O código não deve ter mais de 20 caracteres"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:189
+#: src/components/layouts/OrganizerLayout/index.tsx:188
 msgid "Collaborate with your team to create amazing events together."
 msgstr "Colabore com sua equipe para criar eventos incríveis juntos."
 
@@ -2482,7 +2482,7 @@ msgid "Collect details per ticket"
 msgstr "Coletar dados por ingresso"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:224
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:251
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:252
 msgid "Color"
 msgstr "Cor"
 
@@ -2676,7 +2676,7 @@ msgstr "Confirmar spam"
 msgid "Confirm your email to access all features."
 msgstr "Confirme seu e-mail para acessar todos os recursos."
 
-#: src/components/layouts/OrganizerLayout/index.tsx:314
+#: src/components/layouts/OrganizerLayout/index.tsx:298
 msgid "Confirmation email sent! Please check your inbox."
 msgstr "E-mail de confirmação enviado! Verifique sua caixa de entrada."
 
@@ -2956,7 +2956,7 @@ msgid "Cover"
 msgstr "Capa"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:189
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:194
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:195
 msgid "Cover Image"
 msgstr "Imagem de capa"
 
@@ -2968,7 +2968,7 @@ msgstr "Imagem de capa adicionada"
 msgid "Cover image will be displayed at the top of your event page"
 msgstr "A imagem de capa será exibida no topo da sua página de evento"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:209
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:210
 msgid "Cover image will be displayed at the top of your organizer page"
 msgstr "A imagem de capa será exibida no topo da página do organizador"
 
@@ -3096,12 +3096,12 @@ msgstr "Criar data"
 msgid "Create discounts, access codes for hidden tickets, and special offers."
 msgstr "Crie descontos, códigos de acesso para ingressos ocultos e ofertas especiais."
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:404
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:407
 msgid "Create event"
 msgstr "Criar evento"
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:27
-#: src/components/layouts/OrganizerLayout/index.tsx:179
+#: src/components/layouts/OrganizerLayout/index.tsx:178
 #: src/components/routes/organizer/Events/index.tsx:62
 msgid "Create Event"
 msgstr "Criar evento"
@@ -3171,7 +3171,7 @@ msgstr "Crie seu evento"
 msgid "Create your first event"
 msgstr "Crie o seu primeiro evento"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:396
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:399
 msgid "Create your first event to start selling tickets and managing attendees."
 msgstr "Crie seu primeiro evento para começar a vender ingressos e gerenciar participantes."
 
@@ -3335,7 +3335,7 @@ msgstr "Personalize seu modelo de e-mail usando modelos Liquid"
 msgid "Customize your event page"
 msgstr "Personalize a página do seu evento"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:176
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:177
 msgid "Customize your organizer page appearance"
 msgstr "Personalize a aparência da sua página de organizador"
 
@@ -3391,7 +3391,7 @@ msgstr "Escuro"
 #: src/components/layouts/Admin/index.tsx:13
 #: src/components/layouts/Event/index.tsx:101
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:54
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:155
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
 msgid "Dashboard"
 msgstr "Dashboard"
 
@@ -3692,6 +3692,10 @@ msgstr "Desselecionar tudo"
 msgid "Design Elements"
 msgstr "Elementos de Design"
 
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:331
+msgid "Desktop"
+msgstr ""
+
 #: src/components/common/ProgressStepper/index.tsx:18
 #: src/components/common/ProgressStepper/index.tsx:23
 #: src/components/modals/ManageAttendeeModal/index.tsx:242
@@ -3848,7 +3852,7 @@ msgstr "A baixar fatura"
 
 #: src/components/common/EventCard/index.tsx:92
 #: src/components/layouts/Event/index.tsx:223
-#: src/components/layouts/OrganizerLayout/index.tsx:217
+#: src/components/layouts/OrganizerLayout/index.tsx:216
 #: src/components/routes/admin/Announcements/index.tsx:183
 #: src/components/routes/admin/Announcements/index.tsx:472
 msgid "Draft"
@@ -4191,7 +4195,7 @@ msgid "Email confirmation resent"
 msgstr "Confirmação de e-mail reenviada"
 
 #: src/components/layouts/Event/index.tsx:87
-#: src/components/layouts/OrganizerLayout/index.tsx:123
+#: src/components/layouts/OrganizerLayout/index.tsx:122
 #: src/components/routes/profile/ManageProfile/index.tsx:101
 msgid "Email confirmation resent successfully"
 msgstr "Confirmação de e-mail reenviada com sucesso"
@@ -4219,7 +4223,7 @@ msgstr "Visualização do E-mail"
 msgid "Email Templates"
 msgstr "Modelos de E-mail"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:293
+#: src/components/layouts/OrganizerLayout/index.tsx:277
 msgid "Email Verification Required"
 msgstr "Verificação de e-mail necessária"
 
@@ -4634,7 +4638,7 @@ msgstr "Evento atualizado"
 
 #: src/components/common/AdminAccountsTable/index.tsx:82
 #: src/components/layouts/Admin/index.tsx:16
-#: src/components/layouts/OrganizerLayout/index.tsx:105
+#: src/components/layouts/OrganizerLayout/index.tsx:104
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:151
 #: src/components/routes/admin/Attribution/index.tsx:195
 #: src/components/routes/admin/Dashboard/index.tsx:403
@@ -5437,7 +5441,7 @@ msgstr "Gerar código"
 #~ msgid "Get Directions"
 #~ msgstr "Como chegar"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:82
+#: src/components/layouts/OrganizerLayout/index.tsx:81
 msgid "Get Paid"
 msgstr "Receber pagamentos"
 
@@ -5528,8 +5532,8 @@ msgid "Gross Revenue"
 msgstr "Receita Bruta"
 
 #: src/components/common/StatBoxes/index.tsx:94
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:116
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:265
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:118
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:268
 msgid "Gross sales"
 msgstr "Vendas brutas"
 
@@ -5542,7 +5546,7 @@ msgstr "Vendas brutas"
 msgid "Gross Sales"
 msgstr "Vendas brutas"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:334
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:337
 msgid "Guest"
 msgstr "Convidado"
 
@@ -5742,17 +5746,16 @@ msgid "Hobbies"
 msgstr "Hobbies"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:170
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:175
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:176
 msgid "Homepage Design"
 msgstr "Design da página inicial"
 
 #: src/components/layouts/Event/index.tsx:118
-#: src/components/layouts/OrganizerLayout/index.tsx:109
+#: src/components/layouts/OrganizerLayout/index.tsx:108
 msgid "Homepage Designer"
 msgstr "Designer de página inicial"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:313
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:313
 msgid "Homepage Preview"
 msgstr "Visualização da página inicial"
 
@@ -5863,7 +5866,7 @@ msgid "Image URL"
 msgstr "URL da imagem"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:183
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:188
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:189
 msgid "Images"
 msgstr "Imagens"
 
@@ -5994,7 +5997,7 @@ msgstr "Instagram"
 #~ msgstr "Repasses instantâneos do Stripe"
 
 #: src/components/layouts/Event/index.tsx:143
-#: src/components/layouts/OrganizerLayout/index.tsx:114
+#: src/components/layouts/OrganizerLayout/index.tsx:113
 msgid "Integrations"
 msgstr "Integrações"
 
@@ -6043,7 +6046,7 @@ msgstr "Convidar um membro da equipe"
 msgid "Invite Team Member"
 msgstr "Convidar membro da equipe"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:191
+#: src/components/layouts/OrganizerLayout/index.tsx:190
 msgid "Invite Team Members"
 msgstr "Convidar membros da equipe"
 
@@ -6051,7 +6054,7 @@ msgstr "Convidar membros da equipe"
 msgid "Invite User"
 msgstr "Convidar usuário"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:188
+#: src/components/layouts/OrganizerLayout/index.tsx:187
 msgid "Invite Your Team"
 msgstr "Convide sua equipe"
 
@@ -6211,7 +6214,7 @@ msgstr "Rótulo — ex.: Sessão da manhã"
 msgid "label updates"
 msgstr "atualizações de rótulo"
 
-#: src/components/common/LanguageSwitcher/index.tsx:32
+#: src/components/common/LanguageSwitcher/index.tsx:34
 #: src/components/modals/CreateAttendeeModal/index.tsx:235
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
@@ -6354,7 +6357,7 @@ msgstr "Avise-os sobre a alteração"
 msgid "Let them know about the changes"
 msgstr "Avise-os sobre as alterações"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:111
+#: src/components/layouts/OrganizerLayout/index.tsx:110
 msgid "Library"
 msgstr "Biblioteca"
 
@@ -6380,7 +6383,7 @@ msgstr "Lista"
 
 #: src/components/common/EventCard/index.tsx:95
 #: src/components/layouts/Event/index.tsx:225
-#: src/components/layouts/OrganizerLayout/index.tsx:219
+#: src/components/layouts/OrganizerLayout/index.tsx:218
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:115
 msgid "Live"
 msgstr "Ao vivo"
@@ -6460,7 +6463,7 @@ msgstr "atualizações de local"
 msgid "locations"
 msgstr "localizações"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:112
+#: src/components/layouts/OrganizerLayout/index.tsx:111
 #: src/components/routes/organizer/Locations/index.tsx:31
 msgid "Locations"
 msgstr "Localizações"
@@ -6474,7 +6477,7 @@ msgstr "Localizações"
 #~ msgstr "Login"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:142
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:216
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:217
 #: src/components/routes/organizer/Settings/Sections/ImageAssetSettings/index.tsx:26
 msgid "Logo"
 msgstr "Logo"
@@ -6487,7 +6490,7 @@ msgstr "Logo e Capa"
 msgid "Logo and cover image for your organizer"
 msgstr "Logo e imagem de capa para seu organizador"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:230
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:231
 msgid "Logo will be displayed in the header"
 msgstr "O logo será exibido no cabeçalho"
 
@@ -6531,7 +6534,7 @@ msgstr "Tornar essa pergunta obrigatória"
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:175
-#: src/components/layouts/OrganizerLayout/index.tsx:104
+#: src/components/layouts/OrganizerLayout/index.tsx:103
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:273
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:81
 msgid "Manage"
@@ -6767,6 +6770,10 @@ msgstr "Diversos"
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:70
 msgid "Miscellaneous Settings"
 msgstr "Configurações diversas"
+
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:349
+msgid "Mobile"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:178
 #: src/components/routes/admin/Announcements/index.tsx:375
@@ -7060,7 +7067,7 @@ msgid "No Capacity Assignments"
 msgstr "Sem Atribuições de Capacidade"
 
 #: src/components/common/KpiGrid/index.tsx:58
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:212
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:215
 msgid "No change"
 msgstr "Sem alterações"
 
@@ -7155,7 +7162,7 @@ msgstr "Nenhum evento começando nas próximas 24 horas"
 msgid "No events to show"
 msgstr "Nenhum evento para mostrar"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:393
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:396
 msgid "No events yet"
 msgstr "Nenhum evento ainda"
 
@@ -7216,7 +7223,7 @@ msgstr "Nenhum pedido encontrado"
 msgid "No orders to show"
 msgstr "Não há ordens para mostrar"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:364
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:367
 msgid "No orders yet"
 msgstr "Nenhum pedido ainda"
 
@@ -7960,8 +7967,8 @@ msgstr "pedidos"
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:56
 #: src/components/routes/event/orders.tsx:154
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:78
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:118
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:144
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:120
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:146
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:103
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:60
 #: src/components/routes/organizer/Reports/TaxSummaryReport/index.tsx:55
@@ -8020,8 +8027,8 @@ msgid "Organizer archived successfully"
 msgstr "Organizador arquivado com sucesso"
 
 #: src/components/layouts/Event/index.tsx:97
-#: src/components/layouts/OrganizerLayout/index.tsx:93
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:155
+#: src/components/layouts/OrganizerLayout/index.tsx:92
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
 msgid "Organizer Dashboard"
 msgstr "Painel do organizador"
 
@@ -8051,12 +8058,12 @@ msgid "Organizer Settings"
 msgstr "Configurações do organizador"
 
 #: src/components/common/StatusToggle/index.tsx:63
-#: src/components/layouts/OrganizerLayout/index.tsx:162
+#: src/components/layouts/OrganizerLayout/index.tsx:161
 msgid "Organizer status update failed. Please try again later"
 msgstr "Falha ao atualizar o status do organizador. Por favor, tente novamente mais tarde."
 
 #: src/components/common/StatusToggle/index.tsx:55
-#: src/components/layouts/OrganizerLayout/index.tsx:159
+#: src/components/layouts/OrganizerLayout/index.tsx:158
 msgid "Organizer status updated"
 msgstr "Status do organizador atualizado"
 
@@ -8111,7 +8118,7 @@ msgid "Override removed"
 msgstr "Personalização removida"
 
 #: src/components/layouts/Event/index.tsx:100
-#: src/components/layouts/OrganizerLayout/index.tsx:90
+#: src/components/layouts/OrganizerLayout/index.tsx:89
 msgid "Overview"
 msgstr "Visão geral"
 
@@ -8148,7 +8155,7 @@ msgid "paid"
 msgstr "pago"
 
 #: src/components/forms/ProductForm/index.tsx:274
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:431
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:435
 msgid "Paid"
 msgstr "Pago"
 
@@ -8326,7 +8333,7 @@ msgid "Payouts"
 msgstr "Repasses"
 
 #: src/components/routes/admin/DeletionRequests/index.tsx:85
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:437
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:441
 #: src/components/routes/organizer/Payments/CapabilityList.tsx:60
 msgid "Pending"
 msgstr "Pendente"
@@ -8831,7 +8838,7 @@ msgid "Products"
 msgstr "Produtos"
 
 #: src/components/common/StatBoxes/index.tsx:80
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:272
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:275
 msgid "Products sold"
 msgstr "Produtos vendidos"
 
@@ -9098,7 +9105,7 @@ msgstr "Participantes recentes"
 msgid "Recent check-ins"
 msgstr "Check-ins recentes"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:309
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:312
 msgid "Recent orders"
 msgstr "Pedidos recentes"
 
@@ -9223,7 +9230,7 @@ msgstr "Status do reembolso"
 #: src/components/common/OrderSummary/index.tsx:92
 #: src/components/common/StatBoxes/index.tsx:87
 #: src/components/routes/event/orders.tsx:32
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:428
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:432
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:73
 msgid "Refunded"
 msgstr "Reembolsado"
@@ -9305,7 +9312,7 @@ msgid "Report not found"
 msgstr "Relatório não encontrado"
 
 #: src/components/layouts/Event/index.tsx:104
-#: src/components/layouts/OrganizerLayout/index.tsx:99
+#: src/components/layouts/OrganizerLayout/index.tsx:98
 #: src/components/routes/event/Reports/index.tsx:47
 #: src/components/routes/organizer/Reports/index.tsx:51
 msgid "Reports"
@@ -9343,7 +9350,7 @@ msgstr "Reenviar código"
 msgid "Resend Confirmation"
 msgstr "Reenviar confirmação"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:310
+#: src/components/layouts/OrganizerLayout/index.tsx:294
 msgid "Resend Confirmation Email"
 msgstr "Reenviar e-mail de confirmação"
 
@@ -9550,7 +9557,7 @@ msgid "Sale window"
 msgstr "Período de venda"
 
 #: src/components/common/AffiliateTable/index.tsx:145
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:143
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:145
 msgid "Sales"
 msgstr "Vendas"
 
@@ -9637,7 +9644,7 @@ msgstr "Salvar"
 #: src/components/routes/event/HomepageDesigner/index.tsx:307
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:546
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:266
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:307
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:308
 msgid "Save Changes"
 msgstr "Salvar alterações"
 
@@ -10259,7 +10266,7 @@ msgstr "Configure uma programação recorrente para criar datas automaticamente 
 msgid "Set up check-in lists for different entrances, sessions, or days."
 msgstr "Configure listas de check-in para diferentes entradas, sessões ou dias."
 
-#: src/components/layouts/OrganizerLayout/index.tsx:85
+#: src/components/layouts/OrganizerLayout/index.tsx:84
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:126
 msgid "Set up payouts"
 msgstr "Configurar repasses"
@@ -10298,7 +10305,7 @@ msgstr "Definir, alterar ou remover o local ou os dados online da data"
 msgid "Setting updated"
 msgstr "Configuração atualizada"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:106
+#: src/components/layouts/OrganizerLayout/index.tsx:105
 #: src/components/modals/DuplicateEventModal/index.tsx:51
 msgid "Settings"
 msgstr "Configurações"
@@ -10312,7 +10319,7 @@ msgid "Setup takes just a few minutes — you don't need an existing Stripe acco
 msgstr "A configuração leva só alguns minutos — você não precisa ter uma conta Stripe. O Stripe cuida de cartões, carteiras digitais, formas de pagamento regionais e proteção antifraude, para você focar no seu evento."
 
 #: src/components/common/ShareIcon/index.tsx:30
-#: src/components/layouts/OrganizerLayout/index.tsx:239
+#: src/components/layouts/OrganizerLayout/index.tsx:238
 #: src/components/modals/ShareModal/index.tsx:37
 #: src/components/modals/ShareModal/index.tsx:165
 #: src/components/modals/ShareModal/index.tsx:186
@@ -10332,8 +10339,8 @@ msgstr "Partilhar link de afiliado"
 msgid "Share Event"
 msgstr "Compartilhar evento"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:236
-#: src/components/layouts/OrganizerLayout/index.tsx:278
+#: src/components/layouts/OrganizerLayout/index.tsx:235
+#: src/components/layouts/OrganizerLayout/index.tsx:262
 msgid "Share Organizer Page"
 msgstr "Compartilhar página do organizador"
 
@@ -10573,7 +10580,7 @@ msgid "Something went wrong. Please try again later."
 msgstr "Algo deu errado. Por favor, tente novamente mais tarde."
 
 #: src/components/layouts/Event/index.tsx:91
-#: src/components/layouts/OrganizerLayout/index.tsx:127
+#: src/components/layouts/OrganizerLayout/index.tsx:126
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:72
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/my-tickets/index.tsx:162
@@ -10892,7 +10899,7 @@ msgid "Successfully Updated Event Defaults"
 msgstr "Padrões de Evento Atualizados com Sucesso"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:110
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:97
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:98
 msgid "Successfully Updated Homepage Design"
 msgstr "Design da página inicial atualizado com sucesso"
 
@@ -10998,7 +11005,7 @@ msgstr "E-mail de suporte"
 #~ msgid "Swedish"
 #~ msgstr "Sueco"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:75
+#: src/components/layouts/OrganizerLayout/index.tsx:74
 #: src/components/modals/SwitchOrganizerModal/index.tsx:46
 msgid "Switch Organizer"
 msgstr "Trocar organizador"
@@ -11014,6 +11021,10 @@ msgstr "Camiseta"
 #: src/components/forms/ProductForm/index.tsx:214
 msgid "T-shirts, mugs and more"
 msgstr "Camisetas, canecas e muito mais"
+
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:340
+msgid "Tablet"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:960
 msgid "Tap dates like a calendar."
@@ -11322,7 +11333,7 @@ msgid "Theater"
 msgstr "Teatro"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:214
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:240
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:241
 msgid "Theme & Colors"
 msgstr "Tema e cores"
 
@@ -11908,7 +11919,7 @@ msgstr "Alternar colunas"
 msgid "Tomorrow"
 msgstr "Amanhã"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:108
+#: src/components/layouts/OrganizerLayout/index.tsx:107
 msgid "Tools"
 msgstr "Ferramentas"
 
@@ -11921,7 +11932,7 @@ msgstr "Melhores organizadores (Últimos 14 dias)"
 #: src/components/common/OrderSummary/index.tsx:104
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:113
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:352
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:355
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:91
 msgid "Total"
 msgstr "Total"
@@ -11955,7 +11966,7 @@ msgstr "Total de inscrições"
 msgid "Total Fee"
 msgstr "Taxa total"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:299
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:302
 msgid "Total fees"
 msgstr "Total de taxas"
 
@@ -11972,7 +11983,7 @@ msgstr "Total de vendas brutas"
 msgid "Total order amount"
 msgstr "Valor total do pedido"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:286
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:289
 msgid "Total orders"
 msgstr "Total de pedidos"
 
@@ -11991,7 +12002,7 @@ msgstr "Total reembolsado"
 msgid "Total Refunded"
 msgstr "Total Reembolsado"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:293
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:296
 msgid "Total tax"
 msgstr "Total de impostos"
 
@@ -12083,7 +12094,7 @@ msgid "Type to search..."
 msgstr "Digite para pesquisar..."
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:255
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:282
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:283
 msgid "Typography"
 msgstr "Tipografia"
 
@@ -12161,7 +12172,7 @@ msgstr ""
 #: src/components/common/MessageList/index.tsx:49
 #: src/components/routes/event/messages.tsx:27
 #: src/components/routes/event/messages.tsx:66
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:439
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:443
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -12246,7 +12257,7 @@ msgstr "Até {max} por pedido"
 msgid "Upcoming"
 msgstr "Próximos"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:375
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:378
 msgid "Upcoming events"
 msgstr "Próximos eventos"
 
@@ -12382,12 +12393,12 @@ msgid "Use <0>Liquid templating</0> to personalize your emails"
 msgstr "Use <0>templates Liquid</0> para personalizar seus emails"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:232
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:259
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:260
 msgid "Use a blurred version of the cover image as the background"
 msgstr "Use uma versão desfocada da imagem da capa como plano de fundo"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:230
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:257
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:258
 msgid "Use cover image"
 msgstr "Usar imagem de capa"
 
@@ -12599,7 +12610,7 @@ msgstr "A verificar..."
 msgid "View All"
 msgstr "Ver tudo"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:380
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:383
 msgid "View all →"
 msgstr "Ver tudo →"
 
@@ -12688,8 +12699,8 @@ msgstr "Veja detalhes de pedidos, emita reembolsos e reenvie confirmações."
 
 #: src/components/layouts/OrganizerLayout/index.tsx:254
 #: src/components/layouts/OrganizerLayout/index.tsx:257
-msgid "View Organizer Homepage"
-msgstr "Ver página inicial do organizador"
+#~ msgid "View Organizer Homepage"
+#~ msgstr "Ver página inicial do organizador"
 
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:59
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
@@ -12830,11 +12841,11 @@ msgid "We recommend a square logo with minimum dimensions of 200x200px"
 msgstr "Recomendamos um logo quadrado com dimensões mínimas de 200x200px"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:191
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:196
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:197
 msgid "We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB"
 msgstr "Recomendamos dimensões de 2160px por 1080px e um tamanho máximo de arquivo de 5 MB"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:217
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:218
 msgid "We recommend dimensions of 400px by 400px, and a maximum file size of 5MB"
 msgstr "Recomendamos dimensões de 400px por 400px e tamanho máximo de 5MB"
 
@@ -12928,7 +12939,7 @@ msgid "Webhook will send notifications"
 msgstr "O webhook enviará notificações"
 
 #: src/components/layouts/Event/index.tsx:145
-#: src/components/layouts/OrganizerLayout/index.tsx:115
+#: src/components/layouts/OrganizerLayout/index.tsx:114
 #: src/components/modals/DuplicateEventModal/index.tsx:57
 #: src/components/routes/event/Webhooks/index.tsx:32
 #: src/components/routes/organizer/Webhooks/index.tsx:30
@@ -13113,7 +13124,7 @@ msgstr "Quando fecha o check-in"
 msgid "When check-in opens"
 msgstr "Quando abre o check-in"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:367
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:370
 msgid "When customers purchase tickets, their orders will appear here."
 msgstr "Quando os clientes comprarem ingressos, os pedidos aparecerão aqui."
 
@@ -13352,7 +13363,7 @@ msgstr "Você deve criar um tíquete antes de adicionar manualmente um participa
 msgid "You must have at least one price tier"
 msgstr "Você deve ter pelo menos um nível de preço"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:299
+#: src/components/layouts/OrganizerLayout/index.tsx:283
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Você precisa verificar seu e-mail antes de atualizar o status do organizador."
 

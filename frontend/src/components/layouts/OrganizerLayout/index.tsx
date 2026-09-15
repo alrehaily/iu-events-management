@@ -6,7 +6,6 @@ import {
     IconChartPie,
     IconChevronRight,
     IconDashboard,
-    IconExternalLink,
     IconEye,
     IconEyeOff,
     IconMapPin,
@@ -19,7 +18,7 @@ import {
 import { t } from "@lingui/macro";
 import { BreadcrumbItem, NavItem } from "../AppLayout/types.ts";
 import AppLayout from "../AppLayout";
-import { NavLink, useLocation, useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useGetOrganizer } from "../../../queries/useGetOrganizer.ts";
 import { useGeoStatus } from "../../../queries/useGeoStatus.ts";
@@ -242,21 +241,6 @@ const OrganizerLayout = () => {
                             </>
                         )}
                     </>
-                )}
-                actionGroupContent={(
-                    <Button
-                        component={NavLink}
-                        to={`/events/${organizerId}/${organizer?.slug || ''}`}
-                        target={'_blank'}
-                        variant={'transparent'}
-                        className={classes.viewHomepageButton}
-                        leftSection={<IconExternalLink size={17} />}
-                        title={t`View Organizer Homepage`}
-                    >
-                        <span className={classes.viewHomepageButtonTextDesktop}>
-                            {t`View Organizer Homepage`}
-                        </span>
-                    </Button>
                 )}
                 sidebarFooter={<SidebarCalloutQueue callouts={callouts} />}
             />

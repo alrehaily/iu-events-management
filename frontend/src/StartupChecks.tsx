@@ -22,8 +22,9 @@ export const StartupChecks = () => {
 
     useEffect(() => {
         if (typeof document !== "undefined") {
-            document.documentElement.dir = "rtl";
-            document.documentElement.lang = "ar";
+            const loc = getClientLocale();
+            document.documentElement.dir = loc === "en" ? "ltr" : "rtl";
+            document.documentElement.lang = loc;
         }
     }, []);
 

@@ -14,14 +14,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #: src/components/layouts/Event/index.tsx:224
-#: src/components/layouts/OrganizerLayout/index.tsx:218
+#: src/components/layouts/OrganizerLayout/index.tsx:217
 msgid "- Click to Publish"
-msgstr "- Click to Publish"
+msgstr "- انقر للنشر"
 
 #: src/components/layouts/Event/index.tsx:226
-#: src/components/layouts/OrganizerLayout/index.tsx:220
+#: src/components/layouts/OrganizerLayout/index.tsx:219
 msgid "- Click to Unpublish"
-msgstr "- Click to Unpublish"
+msgstr "- انقر لإلغاء النشر"
 
 #: src/components/common/NoResultsSplash/index.tsx:14
 msgid "'There\\'s nothing to show yet'"
@@ -36,7 +36,7 @@ msgid "(none)"
 msgstr "(none)"
 
 #: src/components/common/ReportTable/index.tsx:328
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:87
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:88
 msgid "{0}"
 msgstr "{0}"
 
@@ -446,7 +446,7 @@ msgstr "Absorb Fee"
 #: src/components/common/ThemeColorControls/index.tsx:52
 #: src/components/routes/event/TicketDesigner/index.tsx:133
 msgid "Accent Color"
-msgstr "Accent Color"
+msgstr "اللون البارز"
 
 #: src/components/common/CookieConsentBanner/index.tsx:153
 msgid "Accept all"
@@ -529,7 +529,7 @@ msgstr "Account owner"
 #: src/components/common/GlobalMenu/index.tsx:45
 #: src/components/routes/account/ManageAccount/index.tsx:17
 msgid "Account Settings"
-msgstr "Account Settings"
+msgstr "إعدادات الحساب"
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:42
 msgid "Account updated successfully"
@@ -563,7 +563,7 @@ msgstr "Action Required: VAT Information Needed"
 #: src/components/common/WaitlistTable/index.tsx:234
 #: src/components/routes/admin/FailedJobs/index.tsx:167
 msgid "Actions"
-msgstr "Actions"
+msgstr "الإجراءات"
 
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "Activate"
@@ -588,7 +588,7 @@ msgstr "Activation date"
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:20
 #: src/components/routes/organizer/Payments/CapabilityList.tsx:57
 msgid "Active"
-msgstr "Active"
+msgstr "نشط"
 
 #: src/components/routes/admin/Dashboard/index.tsx:354
 msgid "Active Events"
@@ -695,7 +695,7 @@ msgstr "Add instructions for offline payments (e.g., bank transfer details, wher
 #: src/components/modals/LocationEditModal/index.tsx:162
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
-msgstr "Add Location"
+msgstr "إضافة موقع جديد"
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1047
 msgid "Add multiple times if you run several sessions per day."
@@ -758,7 +758,7 @@ msgstr "Add tracking pixels to your public event pages and organizer homepage. A
 #: src/components/routes/event/Webhooks/index.tsx:37
 #: src/components/routes/organizer/Webhooks/index.tsx:35
 msgid "Add Webhook"
-msgstr "Add Webhook"
+msgstr "إضافة خطاف ويب"
 
 #: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:185
 msgid "Add your social media handles and website URL. These will be displayed on your public organizer page."
@@ -838,7 +838,7 @@ msgstr "Admin Access Required"
 #: src/components/layouts/Admin/index.tsx:30
 #: src/components/routes/admin/Dashboard/index.tsx:70
 msgid "Admin Dashboard"
-msgstr "Admin Dashboard"
+msgstr "لوحة تحكم المسؤول"
 
 #: src/components/modals/EditUserModal/index.tsx:52
 #: src/components/modals/InviteUserModal/index.tsx:43
@@ -956,7 +956,7 @@ msgstr "All Ended Events"
 
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:33
 msgid "All Events"
-msgstr "All Events"
+msgstr "كافة الفعاليات"
 
 #: src/components/routes/admin/FailedJobs/index.tsx:90
 msgid "All failed jobs deleted"
@@ -1075,7 +1075,7 @@ msgstr "Amazing, Event, Keywords..."
 #: src/components/forms/TaxAndFeeForm/index.tsx:71
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:209
 msgid "Amount"
-msgstr "Amount"
+msgstr "المبلغ"
 
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:69
 msgid "Amount Paid"
@@ -1265,7 +1265,7 @@ msgstr "Archive this organizer. This will also archive all events belonging to t
 #: src/components/common/EventCard/index.tsx:83
 #: src/components/common/EventsDashboardStatusButtons/index.tsx:32
 msgid "Archived"
-msgstr "Archived"
+msgstr "مؤرشف"
 
 #: src/components/modals/SwitchOrganizerModal/index.tsx:106
 msgid "Archived Organizers"
@@ -1368,13 +1368,13 @@ msgstr "Are you sure you want to leave?"
 msgid "Are you sure you want to make this event draft? This will make the event invisible to the public"
 msgstr "Are you sure you want to make this event draft? This will make the event invisible to the public"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:150
+#: src/components/layouts/OrganizerLayout/index.tsx:149
 msgid "Are you sure you want to make this organizer draft? This will make the organizer page invisible to the public"
-msgstr "Are you sure you want to make this organizer draft? This will make the organizer page invisible to the public"
+msgstr "هل أنت متأكد من تحويل هذا المنظم إلى مسودة؟ سيجعل هذا صفحة المنظم مخفية عن الجمهور"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:151
+#: src/components/layouts/OrganizerLayout/index.tsx:150
 msgid "Are you sure you want to make this organizer public? This will make the organizer page visible to the public"
-msgstr "Are you sure you want to make this organizer public? This will make the organizer page visible to the public"
+msgstr "هل أنت متأكد من نشر هذا المنظم؟ سيجعل هذا صفحة المنظم مرئية للجمهور"
 
 #: src/components/common/WaitlistTable/index.tsx:120
 msgid "Are you sure you want to offer a spot to this person? They will receive an email notification."
@@ -1580,11 +1580,11 @@ msgstr "attendees"
 #: src/components/routes/event/attendees.tsx:205
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:55
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:61
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:119
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:145
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:279
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:121
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:147
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:282
 msgid "Attendees"
-msgstr "Attendees"
+msgstr "الحضور"
 
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:72
 msgid "attendees checked in"
@@ -1696,7 +1696,7 @@ msgstr "Awaiting pay"
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:117
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:225
 #: src/components/layouts/Checkout/index.tsx:323
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:434
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:438
 msgid "Awaiting payment"
 msgstr "Awaiting payment"
 
@@ -1752,12 +1752,12 @@ msgstr "Back to search"
 #: src/components/common/ThemeColorControls/index.tsx:62
 #: src/components/common/WidgetEditor/index.tsx:181
 msgid "Background Color"
-msgstr "Background Color"
+msgstr "لون الخلفية"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:236
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:263
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:264
 msgid "Background Type"
-msgstr "Background Type"
+msgstr "نوع الخلفية"
 
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:128
 msgid "Bank account connected"
@@ -1951,7 +1951,7 @@ msgstr "Can't check in"
 #: src/hooks/useAttendeeActions.tsx:104
 #: src/utilites/confirmationDialog.tsx:17
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "إلغاء"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:211
 #: src/components/routes/event/OccurrencesTab/index.tsx:223
@@ -2018,12 +2018,12 @@ msgstr "Canceling will cancel all attendees associated with this order, and rele
 #: src/components/routes/event/orders.tsx:27
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:21
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:120
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:425
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:429
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:126
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:171
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:101
 msgid "Cancelled"
-msgstr "Cancelled"
+msgstr "ملغى"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:237
 msgid "Cancelling {0} date(s). This may take a moment to complete."
@@ -2315,7 +2315,7 @@ msgstr "Checkout Settings"
 #~ msgstr "Chinese (Traditional)"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:226
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:253
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:254
 msgid "Choose a color for your background"
 msgstr "Choose a color for your background"
 
@@ -2421,15 +2421,15 @@ msgstr "close"
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:872
 #: src/components/routes/product-widget/SelectProducts/index.tsx:953
 msgid "Close"
-msgstr "Close"
+msgstr "إغلاق"
 
 #: src/components/modals/CreateEventModal/index.tsx:105
 msgid "Close modal"
 msgstr "Close modal"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:105
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:107
 msgid "Close sidebar"
-msgstr "Close sidebar"
+msgstr "إغلاق القائمة الجانبية"
 
 #: src/components/common/AffiliateTable/index.tsx:81
 #: src/components/common/PromoCodeTable/index.tsx:69
@@ -2460,9 +2460,9 @@ msgstr "Code must be between 3 and 50 characters long"
 msgid "Code must be no more than 20 characters"
 msgstr "Code must be no more than 20 characters"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:189
+#: src/components/layouts/OrganizerLayout/index.tsx:188
 msgid "Collaborate with your team to create amazing events together."
-msgstr "Collaborate with your team to create amazing events together."
+msgstr "تعاون مع فريقك لتنظيم فعاليات متميزة معاً."
 
 #: src/components/forms/ProductForm/index.tsx:453
 msgid "Collapse this product when the event page is initially loaded"
@@ -2482,13 +2482,13 @@ msgid "Collect details per ticket"
 msgstr "Collect details per ticket"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:224
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:251
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:252
 msgid "Color"
-msgstr "Color"
+msgstr "لون"
 
 #: src/components/common/ThemeColorControls/index.tsx:71
 msgid "Color Mode"
-msgstr "Color Mode"
+msgstr "نمط الألوان"
 
 #: src/components/common/WidgetEditor/index.tsx:19
 msgid "Color must be a valid hex color code. Example: #ffffff"
@@ -2508,7 +2508,7 @@ msgstr "Comedy"
 
 #: src/components/layouts/AppLayout/Sidebar/index.tsx:75
 msgid "Coming Soon"
-msgstr "Coming Soon"
+msgstr "قريباً"
 
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:75
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:75
@@ -2555,7 +2555,7 @@ msgstr "Complete your profile to join the team."
 #: src/components/routes/event/orders.tsx:26
 #: src/components/routes/my-tickets/index.tsx:35
 msgid "Completed"
-msgstr "Completed"
+msgstr "مكتمل"
 
 #: src/components/common/StatBoxes/index.tsx:108
 msgid "Completed orders"
@@ -2636,7 +2636,7 @@ msgstr "Configured Discount"
 
 #: src/utilites/confirmationDialog.tsx:16
 msgid "Confirm"
-msgstr "Confirm"
+msgstr "تأكيد"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:499
 #: src/components/routes/product-widget/CollectInformation/index.tsx:500
@@ -2676,9 +2676,9 @@ msgstr "Confirm Spam"
 msgid "Confirm your email to access all features."
 msgstr "Confirm your email to access all features."
 
-#: src/components/layouts/OrganizerLayout/index.tsx:314
+#: src/components/layouts/OrganizerLayout/index.tsx:298
 msgid "Confirmation email sent! Please check your inbox."
-msgstr "Confirmation email sent! Please check your inbox."
+msgstr "تم إرسال بريد التأكيد! يرجى التحقق من صندوق الوارد الخاص بك."
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:202
 msgid "Confirmation sent to"
@@ -2747,7 +2747,7 @@ msgstr "Connection details are required for online events"
 #: src/components/common/WaitlistTable/index.tsx:152
 #: src/components/layouts/OrganizerHomepage/index.tsx:259
 msgid "Contact"
-msgstr "Contact"
+msgstr "تواصل معنا"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:66
 msgid "Contact {0}"
@@ -2899,7 +2899,7 @@ msgstr "Copy link"
 #: src/components/common/AttendeeTicket/index.tsx:189
 #: src/components/modals/ShareModal/index.tsx:171
 msgid "Copy Link"
-msgstr "Copy Link"
+msgstr "نسخ الرابط"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
 msgid "Copy my details to:"
@@ -2956,9 +2956,9 @@ msgid "Cover"
 msgstr "Cover"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:189
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:194
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:195
 msgid "Cover Image"
-msgstr "Cover Image"
+msgstr "صورة الغلاف"
 
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:148
 msgid "Cover image added"
@@ -2968,9 +2968,9 @@ msgstr "Cover image added"
 msgid "Cover image will be displayed at the top of your event page"
 msgstr "Cover image will be displayed at the top of your event page"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:209
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:210
 msgid "Cover image will be displayed at the top of your organizer page"
-msgstr "Cover image will be displayed at the top of your organizer page"
+msgstr "ستظهر صورة الغلاف في الجزء العلوي من صفحة المنظم"
 
 #: src/components/common/CheckInListTable/index.tsx:83
 msgid "Covers every ticket"
@@ -3096,15 +3096,15 @@ msgstr "Create Date"
 msgid "Create discounts, access codes for hidden tickets, and special offers."
 msgstr "Create discounts, access codes for hidden tickets, and special offers."
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:404
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:407
 msgid "Create event"
 msgstr "Create event"
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:27
-#: src/components/layouts/OrganizerLayout/index.tsx:179
+#: src/components/layouts/OrganizerLayout/index.tsx:178
 #: src/components/routes/organizer/Events/index.tsx:62
 msgid "Create Event"
-msgstr "Create Event"
+msgstr "إنشاء فعالية"
 
 #: src/components/forms/ProductForm/index.tsx:559
 msgid "Create more tickets or products to offer them as add-ons"
@@ -3123,7 +3123,7 @@ msgstr "Create new"
 #: src/components/modals/CreateOrganizerModal/index.tsx:18
 #: src/components/modals/SwitchOrganizerModal/index.tsx:96
 msgid "Create Organizer"
-msgstr "Create Organizer"
+msgstr "إنشاء حساب منظم"
 
 #: src/components/modals/CreateProductModal/index.tsx:88
 msgid "Create Product"
@@ -3171,7 +3171,7 @@ msgstr "Create Your Event"
 msgid "Create your first event"
 msgstr "Create your first event"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:396
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:399
 msgid "Create your first event to start selling tickets and managing attendees."
 msgstr "Create your first event to start selling tickets and managing attendees."
 
@@ -3335,9 +3335,9 @@ msgstr "Customize your email template using Liquid templating"
 msgid "Customize your event page"
 msgstr "Customize your event page"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:176
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:177
 msgid "Customize your organizer page appearance"
-msgstr "Customize your organizer page appearance"
+msgstr "خصص مظهر وهوية صفحة المنظم الخاصة بك"
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:50
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:32
@@ -3386,14 +3386,14 @@ msgstr "Danger Zone"
 
 #: src/components/common/ThemeColorControls/index.tsx:94
 msgid "Dark"
-msgstr "Dark"
+msgstr "داكن"
 
 #: src/components/layouts/Admin/index.tsx:13
 #: src/components/layouts/Event/index.tsx:101
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:54
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:155
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr "لوحة التحكم"
 
 #: src/components/common/AdminOrdersTable/index.tsx:94
 #: src/components/common/CheckInListTable/index.tsx:98
@@ -3405,7 +3405,7 @@ msgstr "Dashboard"
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:56
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:24
 msgid "Date"
-msgstr "Date"
+msgstr "التاريخ"
 
 #: src/components/common/AttendeeTicket/index.tsx:111
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:433
@@ -3547,7 +3547,7 @@ msgstr "delete"
 #: src/components/routes/event/OccurrencesTab/index.tsx:512
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:62
 msgid "Delete"
-msgstr "Delete"
+msgstr "حذف"
 
 #: src/components/common/LocationsTable/index.tsx:34
 msgid "Delete \"{0}\"?"
@@ -3674,7 +3674,7 @@ msgstr "Deletion Requests"
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:98
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:86
 msgid "Description"
-msgstr "Description"
+msgstr "الوصف"
 
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:138
 msgid "Description and venue added"
@@ -3691,6 +3691,10 @@ msgstr "Deselect All"
 #: src/components/routes/event/TicketDesigner/index.tsx:126
 msgid "Design Elements"
 msgstr "Design Elements"
+
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:331
+msgid "Desktop"
+msgstr ""
 
 #: src/components/common/ProgressStepper/index.tsx:18
 #: src/components/common/ProgressStepper/index.tsx:23
@@ -3713,7 +3717,7 @@ msgstr "Different location"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:403
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:411
 msgid "Disabled"
-msgstr "Disabled"
+msgstr "معطل"
 
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:27
 msgid "Disabling this capacity will track sales but not stop them when the limit is reached"
@@ -3848,11 +3852,11 @@ msgstr "Downloading Invoice"
 
 #: src/components/common/EventCard/index.tsx:92
 #: src/components/layouts/Event/index.tsx:223
-#: src/components/layouts/OrganizerLayout/index.tsx:217
+#: src/components/layouts/OrganizerLayout/index.tsx:216
 #: src/components/routes/admin/Announcements/index.tsx:183
 #: src/components/routes/admin/Announcements/index.tsx:472
 msgid "Draft"
-msgstr "Draft"
+msgstr "مسودة"
 
 #: src/components/forms/QuestionForm/index.tsx:124
 msgid "Dropdown selection"
@@ -3964,7 +3968,7 @@ msgstr "Early bird"
 #: src/hooks/useAttendeeActions.tsx:82
 #: src/hooks/useOrderActions.tsx:104
 msgid "Edit"
-msgstr "Edit"
+msgstr "تعديل"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:522
 #: src/components/modals/EditTaxOrFeeModal/index.tsx:52
@@ -4036,7 +4040,7 @@ msgstr "Edit location"
 
 #: src/components/modals/LocationEditModal/index.tsx:125
 msgid "Edit Location"
-msgstr "Edit Location"
+msgstr "تعديل الموقع"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:45
 msgid "Edit Order Details"
@@ -4191,10 +4195,10 @@ msgid "Email confirmation resent"
 msgstr "Email confirmation resent"
 
 #: src/components/layouts/Event/index.tsx:87
-#: src/components/layouts/OrganizerLayout/index.tsx:123
+#: src/components/layouts/OrganizerLayout/index.tsx:122
 #: src/components/routes/profile/ManageProfile/index.tsx:101
 msgid "Email confirmation resent successfully"
-msgstr "Email confirmation resent successfully"
+msgstr "تمت إعادة إرسال بريد التأكيد بنجاح"
 
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:67
 msgid "Email footer message"
@@ -4219,9 +4223,9 @@ msgstr "Email Preview"
 msgid "Email Templates"
 msgstr "Email Templates"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:293
+#: src/components/layouts/OrganizerLayout/index.tsx:277
 msgid "Email Verification Required"
-msgstr "Email Verification Required"
+msgstr "يلزم التحقق من البريد الإلكتروني"
 
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:160
 msgid "Email verified"
@@ -4284,7 +4288,7 @@ msgstr "Enable Waitlist"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:402
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:410
 msgid "Enabled"
-msgstr "Enabled"
+msgstr "مفعل"
 
 #: src/components/common/AdminEventsTable/index.tsx:109
 #: src/components/modals/DuplicateEventModal/index.tsx:133
@@ -4439,7 +4443,7 @@ msgstr "Entries will appear here when customers join the waitlist for sold out p
 #: src/components/layouts/Checkout/index.tsx:195
 #: src/hooks/useOrderActions.tsx:84
 msgid "Error"
-msgstr "Error"
+msgstr "خطأ"
 
 #: src/components/routes/profile/ConfirmEmailAddress/index.tsx:27
 msgid "Error confirming email address"
@@ -4569,7 +4573,7 @@ msgstr "Event name"
 
 #: src/components/modals/CreateEventModal/index.tsx:164
 msgid "Event Name"
-msgstr "Event Name"
+msgstr "اسم الفعالية"
 
 #: src/components/routes/welcome/index.tsx:244
 msgid "Event name is required"
@@ -4634,14 +4638,14 @@ msgstr "Event Updated"
 
 #: src/components/common/AdminAccountsTable/index.tsx:82
 #: src/components/layouts/Admin/index.tsx:16
-#: src/components/layouts/OrganizerLayout/index.tsx:105
+#: src/components/layouts/OrganizerLayout/index.tsx:104
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:151
 #: src/components/routes/admin/Attribution/index.tsx:195
 #: src/components/routes/admin/Dashboard/index.tsx:403
 #: src/components/routes/admin/Events/index.tsx:77
 #: src/components/routes/organizer/Events/index.tsx:43
 msgid "Events"
-msgstr "Events"
+msgstr "الفعاليات"
 
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:120
 #: src/components/routes/organizer/Reports/index.tsx:23
@@ -5311,7 +5315,7 @@ msgstr "Flash on"
 
 #: src/components/common/ThemeFontControl/index.tsx:65
 msgid "Font Family"
-msgstr "Font Family"
+msgstr "نوع الخط"
 
 #: src/constants/eventCategories.ts:19
 msgid "Food & Drink"
@@ -5437,9 +5441,9 @@ msgstr "Generate code"
 #~ msgid "Get Directions"
 #~ msgstr "Get Directions"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:82
+#: src/components/layouts/OrganizerLayout/index.tsx:81
 msgid "Get Paid"
-msgstr "Get Paid"
+msgstr "استلام المدفوعات"
 
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:234
 msgid "Get paid with Stripe"
@@ -5528,8 +5532,8 @@ msgid "Gross Revenue"
 msgstr "Gross Revenue"
 
 #: src/components/common/StatBoxes/index.tsx:94
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:116
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:265
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:118
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:268
 msgid "Gross sales"
 msgstr "Gross sales"
 
@@ -5542,7 +5546,7 @@ msgstr "Gross sales"
 msgid "Gross Sales"
 msgstr "Gross Sales"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:334
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:337
 msgid "Guest"
 msgstr "Guest"
 
@@ -5742,17 +5746,16 @@ msgid "Hobbies"
 msgstr "Hobbies"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:170
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:175
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:176
 msgid "Homepage Design"
-msgstr "Homepage Design"
+msgstr "تصميم الصفحة الرئيسية"
 
 #: src/components/layouts/Event/index.tsx:118
-#: src/components/layouts/OrganizerLayout/index.tsx:109
+#: src/components/layouts/OrganizerLayout/index.tsx:108
 msgid "Homepage Designer"
-msgstr "Homepage Designer"
+msgstr "مصمم الصفحة الرئيسية"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:313
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:313
 msgid "Homepage Preview"
 msgstr "Homepage Preview"
 
@@ -5863,9 +5866,9 @@ msgid "Image URL"
 msgstr "Image URL"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:183
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:188
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:189
 msgid "Images"
-msgstr "Images"
+msgstr "الصور والوسائط"
 
 #: src/components/common/AdminAccountsTable/index.tsx:134
 #: src/components/common/AdminUsersTable/index.tsx:84
@@ -5994,9 +5997,9 @@ msgstr "Instagram"
 #~ msgstr "Instant Stripe payouts"
 
 #: src/components/layouts/Event/index.tsx:143
-#: src/components/layouts/OrganizerLayout/index.tsx:114
+#: src/components/layouts/OrganizerLayout/index.tsx:113
 msgid "Integrations"
-msgstr "Integrations"
+msgstr "التكامل والربط"
 
 #: src/components/forms/CheckInListForm/index.tsx:190
 msgid "Internal notes on the attendee's ticket"
@@ -6043,17 +6046,17 @@ msgstr "Invite a team member"
 msgid "Invite Team Member"
 msgstr "Invite Team Member"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:191
+#: src/components/layouts/OrganizerLayout/index.tsx:190
 msgid "Invite Team Members"
-msgstr "Invite Team Members"
+msgstr "دعوة أعضاء الفريق"
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:147
 msgid "Invite User"
 msgstr "Invite User"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:188
+#: src/components/layouts/OrganizerLayout/index.tsx:187
 msgid "Invite Your Team"
-msgstr "Invite Your Team"
+msgstr "ادعُ فريقك"
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:108
 msgid "Invited"
@@ -6211,7 +6214,7 @@ msgstr "Label — e.g. Morning session"
 msgid "label updates"
 msgstr "label updates"
 
-#: src/components/common/LanguageSwitcher/index.tsx:32
+#: src/components/common/LanguageSwitcher/index.tsx:34
 #: src/components/modals/CreateAttendeeModal/index.tsx:235
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
@@ -6354,13 +6357,13 @@ msgstr "Let them know about the change"
 msgid "Let them know about the changes"
 msgstr "Let them know about the changes"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:111
+#: src/components/layouts/OrganizerLayout/index.tsx:110
 msgid "Library"
-msgstr "Library"
+msgstr "المكتبة"
 
 #: src/components/common/ThemeColorControls/index.tsx:85
 msgid "Light"
-msgstr "Light"
+msgstr "فاتح"
 
 #: src/components/routes/my-tickets/index.tsx:177
 msgid "Link Expired or Invalid"
@@ -6380,10 +6383,10 @@ msgstr "List"
 
 #: src/components/common/EventCard/index.tsx:95
 #: src/components/layouts/Event/index.tsx:225
-#: src/components/layouts/OrganizerLayout/index.tsx:219
+#: src/components/layouts/OrganizerLayout/index.tsx:218
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:115
 msgid "Live"
-msgstr "Live"
+msgstr "نشط ومباشر"
 
 #: src/components/layouts/OrganizerHomepage/EventCard/index.tsx:122
 msgid "LIVE"
@@ -6425,7 +6428,7 @@ msgstr "Loading Webhooks"
 #: src/components/routes/event/Settings/Sections/DangerZoneSettings/index.tsx:89
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:94
 msgid "Loading..."
-msgstr "Loading..."
+msgstr "جاري التحميل..."
 
 #: src/components/common/AttendeeTicket/index.tsx:121
 #: src/components/common/AttendeeTicket/index.tsx:128
@@ -6438,7 +6441,7 @@ msgstr "Loading..."
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
 msgid "Location"
-msgstr "Location"
+msgstr "الموقع"
 
 #: src/components/common/LocationsTable/index.tsx:38
 msgid "Location deleted"
@@ -6460,10 +6463,10 @@ msgstr "location updates"
 msgid "locations"
 msgstr "locations"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:112
+#: src/components/layouts/OrganizerLayout/index.tsx:111
 #: src/components/routes/organizer/Locations/index.tsx:31
 msgid "Locations"
-msgstr "Locations"
+msgstr "المواقع والمقرات"
 
 #: src/components/routes/auth/Login/index.tsx:110
 #~ msgid "Log in"
@@ -6474,10 +6477,10 @@ msgstr "Locations"
 #~ msgstr "Logging in"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:142
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:216
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:217
 #: src/components/routes/organizer/Settings/Sections/ImageAssetSettings/index.tsx:26
 msgid "Logo"
-msgstr "Logo"
+msgstr "الشعار (اللوجو)"
 
 #: src/components/routes/organizer/Settings/Sections/ImageAssetSettings/index.tsx:23
 msgid "Logo & Cover"
@@ -6487,9 +6490,9 @@ msgstr "Logo & Cover"
 msgid "Logo and cover image for your organizer"
 msgstr "Logo and cover image for your organizer"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:230
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:231
 msgid "Logo will be displayed in the header"
-msgstr "Logo will be displayed in the header"
+msgstr "سيظهر الشعار في ترويسة الصفحة"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:157
 msgid "Logo will be displayed on the ticket"
@@ -6497,7 +6500,7 @@ msgstr "Logo will be displayed on the ticket"
 
 #: src/components/common/GlobalMenu/index.tsx:85
 msgid "Logout"
-msgstr "Logout"
+msgstr "تسجيل الخروج"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/LinkExpiredMessage/index.tsx:37
 msgid "Look Up My Tickets"
@@ -6531,11 +6534,11 @@ msgstr "Make this question mandatory"
 #: src/components/common/OrganizerWebhookTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:500
 #: src/components/common/PromoCodeTable/index.tsx:175
-#: src/components/layouts/OrganizerLayout/index.tsx:104
+#: src/components/layouts/OrganizerLayout/index.tsx:103
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:273
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:81
 msgid "Manage"
-msgstr "Manage"
+msgstr "إدارة"
 
 #: src/components/routes/admin/Accounts/AccountDetail/OrganizerAdminModal.tsx:101
 msgid "Manage {0}"
@@ -6666,7 +6669,7 @@ msgstr "Medium"
 #: src/components/modals/SendMessageModal/index.tsx:444
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:57
 msgid "Message"
-msgstr "Message"
+msgstr "الرسالة"
 
 #: src/components/routes/admin/Messages/index.tsx:36
 msgid "Message approved successfully"
@@ -6767,6 +6770,10 @@ msgstr "Miscellaneous"
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:70
 msgid "Miscellaneous Settings"
 msgstr "Miscellaneous Settings"
+
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:349
+msgid "Mobile"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:178
 #: src/components/routes/admin/Announcements/index.tsx:375
@@ -6877,7 +6884,7 @@ msgstr "My amazing event title..."
 
 #: src/components/common/GlobalMenu/index.tsx:40
 msgid "My Profile"
-msgstr "My Profile"
+msgstr "ملفي الشخصي"
 
 #: src/components/routes/my-tickets/index.tsx:253
 msgid "My Tickets"
@@ -6902,7 +6909,7 @@ msgstr "Nam placerat elementum..."
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:80
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:236
 msgid "Name"
-msgstr "Name"
+msgstr "الاسم"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:32
 #: src/components/modals/CreateAffiliateModal/index.tsx:28
@@ -7060,7 +7067,7 @@ msgid "No Capacity Assignments"
 msgstr "No Capacity Assignments"
 
 #: src/components/common/KpiGrid/index.tsx:58
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:212
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:215
 msgid "No change"
 msgstr "No change"
 
@@ -7155,7 +7162,7 @@ msgstr "No events starting in the next 24 hours"
 msgid "No events to show"
 msgstr "No events to show"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:393
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:396
 msgid "No events yet"
 msgstr "No events yet"
 
@@ -7216,7 +7223,7 @@ msgstr "No orders found"
 msgid "No orders to show"
 msgstr "No orders to show"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:364
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:367
 msgid "No orders yet"
 msgstr "No orders yet"
 
@@ -7242,7 +7249,7 @@ msgstr "No Paid Orders"
 
 #: src/components/layouts/OrganizerHomepage/index.tsx:300
 msgid "No past events"
-msgstr "No past events"
+msgstr "لا توجد فعاليات سابقة"
 
 #: src/components/routes/product-widget/Payment/index.tsx:89
 msgid "No payment methods are currently available. Please contact the event organizer for assistance."
@@ -7313,7 +7320,7 @@ msgstr "No results"
 
 #: src/components/routes/admin/Announcements/AnnouncementTargetPicker.tsx:62
 msgid "No results found"
-msgstr "No results found"
+msgstr "لم يتم العثور على نتائج"
 
 #: src/components/common/LocationsTable/index.tsx:84
 msgid "No Saved Locations"
@@ -7350,7 +7357,7 @@ msgstr "No upcoming dates"
 
 #: src/components/layouts/OrganizerHomepage/index.tsx:300
 msgid "No upcoming events"
-msgstr "No upcoming events"
+msgstr "لا توجد فعاليات قادمة حالياً"
 
 #: src/components/common/AdminUsersTable/index.tsx:18
 msgid "No users found"
@@ -7737,7 +7744,7 @@ msgstr "Open occurrence"
 
 #: src/components/layouts/AppLayout/index.tsx:31
 msgid "Open sidebar"
-msgstr "Open sidebar"
+msgstr "فتح القائمة الجانبية"
 
 #: src/components/forms/QuestionForm/index.tsx:45
 msgid "Option {i}"
@@ -7837,7 +7844,7 @@ msgstr "Order Created"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:273
 msgid "Order Date"
-msgstr "Order Date"
+msgstr "تاريخ الطلب"
 
 #: src/components/forms/CheckInListForm/index.tsx:222
 msgid "Order details"
@@ -7960,13 +7967,13 @@ msgstr "orders"
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:56
 #: src/components/routes/event/orders.tsx:154
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:78
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:118
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:144
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:120
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:146
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:103
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:60
 #: src/components/routes/organizer/Reports/TaxSummaryReport/index.tsx:55
 msgid "Orders"
-msgstr "Orders"
+msgstr "الطلبات"
 
 #: src/components/routes/admin/Dashboard/index.tsx:189
 msgid "Orders Completed"
@@ -8020,10 +8027,10 @@ msgid "Organizer archived successfully"
 msgstr "Organizer archived successfully"
 
 #: src/components/layouts/Event/index.tsx:97
-#: src/components/layouts/OrganizerLayout/index.tsx:93
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:155
+#: src/components/layouts/OrganizerLayout/index.tsx:92
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
 msgid "Organizer Dashboard"
-msgstr "Organizer Dashboard"
+msgstr "لوحة تحكم المنظم"
 
 #: src/components/routes/organizer/Settings/Sections/DangerZoneSettings/index.tsx:42
 msgid "Organizer deleted successfully"
@@ -8051,14 +8058,14 @@ msgid "Organizer Settings"
 msgstr "Organizer Settings"
 
 #: src/components/common/StatusToggle/index.tsx:63
-#: src/components/layouts/OrganizerLayout/index.tsx:162
+#: src/components/layouts/OrganizerLayout/index.tsx:161
 msgid "Organizer status update failed. Please try again later"
-msgstr "Organizer status update failed. Please try again later"
+msgstr "فشل تحديث حالة المنظم. يرجى المحاولة مرة أخرى لاحقاً"
 
 #: src/components/common/StatusToggle/index.tsx:55
-#: src/components/layouts/OrganizerLayout/index.tsx:159
+#: src/components/layouts/OrganizerLayout/index.tsx:158
 msgid "Organizer status updated"
-msgstr "Organizer status updated"
+msgstr "تم تحديث حالة المنظم"
 
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:224
 msgid "Organizer/default template will be used"
@@ -8111,9 +8118,9 @@ msgid "Override removed"
 msgstr "Override removed"
 
 #: src/components/layouts/Event/index.tsx:100
-#: src/components/layouts/OrganizerLayout/index.tsx:90
+#: src/components/layouts/OrganizerLayout/index.tsx:89
 msgid "Overview"
-msgstr "Overview"
+msgstr "نظرة عامة"
 
 #: src/components/common/WidgetEditor/index.tsx:227
 msgid "Padding"
@@ -8141,14 +8148,14 @@ msgstr "Page views"
 
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:113
 msgid "Page Views"
-msgstr "Page Views"
+msgstr "مشاهدات الصفحة"
 
 #: src/components/modals/CreateAttendeeModal/index.tsx:304
 msgid "paid"
 msgstr "paid"
 
 #: src/components/forms/ProductForm/index.tsx:274
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:431
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:435
 msgid "Paid"
 msgstr "Paid"
 
@@ -8205,7 +8212,7 @@ msgstr "Passwords are not the same"
 #: src/components/routes/event/OccurrencesTab/index.tsx:486
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:30
 msgid "Past"
-msgstr "Past"
+msgstr "السابقة"
 
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:317
 msgid "Past due"
@@ -8213,7 +8220,7 @@ msgstr "Past due"
 
 #: src/components/layouts/OrganizerHomepage/index.tsx:279
 msgid "Past Events"
-msgstr "Past Events"
+msgstr "الفعاليات السابقة"
 
 #: src/components/common/WidgetEditor/index.tsx:272
 msgid "Paste this where you want the widget to appear."
@@ -8326,7 +8333,7 @@ msgid "Payouts"
 msgstr "Payouts"
 
 #: src/components/routes/admin/DeletionRequests/index.tsx:85
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:437
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:441
 #: src/components/routes/organizer/Payments/CapabilityList.tsx:60
 msgid "Pending"
 msgstr "Pending"
@@ -8661,7 +8668,7 @@ msgstr "Prevent overselling by sharing inventory across multiple ticket types."
 #: src/components/routes/admin/Announcements/index.tsx:495
 #: src/components/routes/event/TicketDesigner/index.tsx:216
 msgid "Preview"
-msgstr "Preview"
+msgstr "معاينة"
 
 #: src/components/common/QuestionsTable/index.tsx:286
 msgid "Preview checkout form"
@@ -8705,7 +8712,7 @@ msgstr "Pricing"
 
 #: src/components/common/WidgetEditor/index.tsx:187
 msgid "Primary Color"
-msgstr "Primary Color"
+msgstr "اللون الرئيسي"
 
 #: src/components/common/WidgetEditor/index.tsx:193
 msgid "Primary Text Color"
@@ -8735,7 +8742,7 @@ msgstr "Print to PDF"
 #: src/components/common/CookieConsentBanner/index.tsx:82
 #: src/components/layouts/OrganizerHomepage/index.tsx:342
 msgid "Privacy Policy"
-msgstr "Privacy Policy"
+msgstr "سياسة الخصوصية"
 
 #: src/components/modals/RefundOrderModal/index.tsx:158
 msgid "Process Refund"
@@ -8831,7 +8838,7 @@ msgid "Products"
 msgstr "Products"
 
 #: src/components/common/StatBoxes/index.tsx:80
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:272
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:275
 msgid "Products sold"
 msgstr "Products sold"
 
@@ -8850,7 +8857,7 @@ msgstr "Products sorted successfully"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
-msgstr "Profile"
+msgstr "الملف الشخصي"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:70
 msgid "Profile updated successfully"
@@ -8939,7 +8946,7 @@ msgstr "Public"
 #: src/components/common/StatusToggle/index.tsx:107
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:117
 msgid "Publish"
-msgstr "Publish"
+msgstr "نشر"
 
 #: src/components/modals/PublishEventModal/index.tsx:199
 msgid "Publish Anyway"
@@ -9098,13 +9105,13 @@ msgstr "Recent Attendees"
 msgid "Recent check-ins"
 msgstr "Recent check-ins"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:309
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:312
 msgid "Recent orders"
 msgstr "Recent orders"
 
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:64
 msgid "Recent Orders"
-msgstr "Recent Orders"
+msgstr "أحدث الطلبات"
 
 #: src/components/modals/MessageRecipientsModal/index.tsx:62
 msgid "recipient"
@@ -9223,7 +9230,7 @@ msgstr "Refund Status"
 #: src/components/common/OrderSummary/index.tsx:92
 #: src/components/common/StatBoxes/index.tsx:87
 #: src/components/routes/event/orders.tsx:32
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:428
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:432
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:73
 msgid "Refunded"
 msgstr "Refunded"
@@ -9305,11 +9312,11 @@ msgid "Report not found"
 msgstr "Report not found"
 
 #: src/components/layouts/Event/index.tsx:104
-#: src/components/layouts/OrganizerLayout/index.tsx:99
+#: src/components/layouts/OrganizerLayout/index.tsx:98
 #: src/components/routes/event/Reports/index.tsx:47
 #: src/components/routes/organizer/Reports/index.tsx:51
 msgid "Reports"
-msgstr "Reports"
+msgstr "التقارير"
 
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
@@ -9343,9 +9350,9 @@ msgstr "Resend code"
 msgid "Resend Confirmation"
 msgstr "Resend Confirmation"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:310
+#: src/components/layouts/OrganizerLayout/index.tsx:294
 msgid "Resend Confirmation Email"
-msgstr "Resend Confirmation Email"
+msgstr "إعادة إرسال بريد التأكيد"
 
 #: src/components/layouts/Event/index.tsx:303
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:162
@@ -9486,7 +9493,7 @@ msgstr "Reuse a Stripe connection from another organizer in this account."
 #: src/components/common/StatsCharts/index.tsx:66
 #: src/components/routes/admin/Attribution/index.tsx:199
 msgid "Revenue"
-msgstr "Revenue"
+msgstr "الإيرادات"
 
 #: src/components/routes/organizer/Reports/index.tsx:17
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:67
@@ -9550,9 +9557,9 @@ msgid "Sale window"
 msgstr "Sale window"
 
 #: src/components/common/AffiliateTable/index.tsx:145
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:143
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:145
 msgid "Sales"
-msgstr "Sales"
+msgstr "المبيعات"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:110
 msgid "Sales are paused"
@@ -9627,7 +9634,7 @@ msgstr "Saturday"
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:86
 msgid "Save"
-msgstr "Save"
+msgstr "حفظ"
 
 #: src/components/modals/LocationEditModal/index.tsx:162
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
@@ -9637,9 +9644,9 @@ msgstr "Save"
 #: src/components/routes/event/HomepageDesigner/index.tsx:307
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:546
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:266
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:307
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:308
 msgid "Save Changes"
-msgstr "Save Changes"
+msgstr "حفظ التغييرات"
 
 #: src/components/common/CookieConsentBanner/index.tsx:125
 msgid "Save choices"
@@ -9758,7 +9765,7 @@ msgstr "Scheduled time"
 
 #: src/components/layouts/CheckIn/BottomNav.tsx:16
 msgid "Search"
-msgstr "Search"
+msgstr "بحث"
 
 #: src/components/routes/event/Affiliates/index.tsx:70
 msgid "Search affiliates..."
@@ -10098,7 +10105,7 @@ msgstr "Selling fast 🔥"
 
 #: src/components/routes/my-tickets/index.tsx:219
 msgid "Send"
-msgstr "Send"
+msgstr "إرسال"
 
 #: src/components/modals/SendMessageModal/index.tsx:270
 msgid "Send a message"
@@ -10119,7 +10126,7 @@ msgstr "Send me a copy"
 #: src/components/common/ContactOrganizerModal/index.tsx:112
 #: src/components/modals/SendMessageModal/index.tsx:542
 msgid "Send Message"
-msgstr "Send Message"
+msgstr "إرسال رسالة"
 
 #: src/components/modals/SendMessageModal/index.tsx:464
 msgid "Send now"
@@ -10259,10 +10266,10 @@ msgstr "Set up a recurring schedule to automatically create dates, or add them o
 msgid "Set up check-in lists for different entrances, sessions, or days."
 msgstr "Set up check-in lists for different entrances, sessions, or days."
 
-#: src/components/layouts/OrganizerLayout/index.tsx:85
+#: src/components/layouts/OrganizerLayout/index.tsx:84
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:126
 msgid "Set up payouts"
-msgstr "Set up payouts"
+msgstr "إعداد المدفوعات"
 
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:107
 msgid "Set up schedule"
@@ -10298,10 +10305,10 @@ msgstr "Set, change, or remove the date's location or online details"
 msgid "Setting updated"
 msgstr "Setting updated"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:106
+#: src/components/layouts/OrganizerLayout/index.tsx:105
 #: src/components/modals/DuplicateEventModal/index.tsx:51
 msgid "Settings"
-msgstr "Settings"
+msgstr "الإعدادات"
 
 #: src/components/layouts/Event/index.tsx:110
 msgid "Setup & Design"
@@ -10312,13 +10319,13 @@ msgid "Setup takes just a few minutes — you don't need an existing Stripe acco
 msgstr "Setup takes just a few minutes — you don't need an existing Stripe account. Stripe handles cards, wallets, regional payment methods, and fraud protection so you can focus on your event."
 
 #: src/components/common/ShareIcon/index.tsx:30
-#: src/components/layouts/OrganizerLayout/index.tsx:239
+#: src/components/layouts/OrganizerLayout/index.tsx:238
 #: src/components/modals/ShareModal/index.tsx:37
 #: src/components/modals/ShareModal/index.tsx:165
 #: src/components/modals/ShareModal/index.tsx:186
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:59
 msgid "Share"
-msgstr "Share"
+msgstr "مشاركة"
 
 #: src/components/common/AffiliateTable/index.tsx:190
 #: src/components/common/AffiliateTable/index.tsx:229
@@ -10332,10 +10339,10 @@ msgstr "Share Affiliate Link"
 msgid "Share Event"
 msgstr "Share Event"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:236
-#: src/components/layouts/OrganizerLayout/index.tsx:278
+#: src/components/layouts/OrganizerLayout/index.tsx:235
+#: src/components/layouts/OrganizerLayout/index.tsx:262
 msgid "Share Organizer Page"
-msgstr "Share Organizer Page"
+msgstr "مشاركة صفحة المنظم"
 
 #: src/components/routes/event/CapacityAssignments/index.tsx:35
 msgid "Shared Capacity Management"
@@ -10573,14 +10580,14 @@ msgid "Something went wrong. Please try again later."
 msgstr "Something went wrong. Please try again later."
 
 #: src/components/layouts/Event/index.tsx:91
-#: src/components/layouts/OrganizerLayout/index.tsx:127
+#: src/components/layouts/OrganizerLayout/index.tsx:126
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:72
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/my-tickets/index.tsx:162
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
 msgid "Something went wrong. Please try again."
-msgstr "Something went wrong. Please try again."
+msgstr "حدث خطأ ما. يرجى المحاولة مرة أخرى."
 
 #: src/components/routes/product-widget/SelectProducts/index.tsx:619
 msgid "Sorry, this promo code is not recognized"
@@ -10723,7 +10730,7 @@ msgstr "Stats"
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:88
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:62
 msgid "Status"
-msgstr "Status"
+msgstr "الحالة"
 
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:323
 msgid "Still needed"
@@ -10784,7 +10791,7 @@ msgstr "Stripe will walk you through a few quick questions to finish setup."
 #: src/components/routes/admin/Messages/index.tsx:162
 #: src/components/routes/admin/Messages/index.tsx:273
 msgid "Subject"
-msgstr "Subject"
+msgstr "الموضوع"
 
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:46
 msgid "Subject is required"
@@ -10807,7 +10814,7 @@ msgstr "Subtotal"
 #: src/components/layouts/Checkout/index.tsx:191
 #: src/hooks/useOrderActions.tsx:80
 msgid "Success"
-msgstr "Success"
+msgstr "تم بنجاح"
 
 #: src/components/modals/EditUserModal/index.tsx:41
 #: src/components/modals/InviteUserModal/index.tsx:32
@@ -10892,9 +10899,9 @@ msgid "Successfully Updated Event Defaults"
 msgstr "Successfully Updated Event Defaults"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:110
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:97
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:98
 msgid "Successfully Updated Homepage Design"
-msgstr "Successfully Updated Homepage Design"
+msgstr "تم تحديث تصميم الصفحة الرئيسية بنجاح"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:73
 msgid "Successfully Updated Homepage Settings"
@@ -10998,10 +11005,10 @@ msgstr "Support Email"
 #~ msgid "Swedish"
 #~ msgstr "Swedish"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:75
+#: src/components/layouts/OrganizerLayout/index.tsx:74
 #: src/components/modals/SwitchOrganizerModal/index.tsx:46
 msgid "Switch Organizer"
-msgstr "Switch Organizer"
+msgstr "تبديل المنظم"
 
 #: src/components/routes/admin/Configurations/index.tsx:81
 msgid "System Default"
@@ -11014,6 +11021,10 @@ msgstr "T-shirt"
 #: src/components/forms/ProductForm/index.tsx:214
 msgid "T-shirts, mugs and more"
 msgstr "T-shirts, mugs and more"
+
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:340
+msgid "Tablet"
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:960
 msgid "Tap dates like a calendar."
@@ -11152,7 +11163,7 @@ msgstr "Term"
 
 #: src/components/layouts/OrganizerHomepage/index.tsx:349
 msgid "Terms of Service"
-msgstr "Terms of Service"
+msgstr "شروط الخدمة"
 
 #: src/components/common/ThemeColorControls/index.tsx:108
 msgid "Text may be hard to read"
@@ -11322,9 +11333,9 @@ msgid "Theater"
 msgstr "Theater"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:214
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:240
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:241
 msgid "Theme & Colors"
-msgstr "Theme & Colors"
+msgstr "السمة والألوان"
 
 #: src/components/routes/product-widget/SelectProducts/index.tsx:966
 msgid "There are no products available for this date. Please choose another date."
@@ -11615,7 +11626,7 @@ msgstr "This order was paid offline. Refunding it will only update your reportin
 
 #: src/components/common/StatusToggle/index.tsx:93
 msgid "This organizer profile is not published yet"
-msgstr "This organizer profile is not published yet"
+msgstr "الملف التعريفي لهذا المنظم غير منشور بعد"
 
 #: src/components/forms/ProductForm/index.tsx:611
 msgid "This overrides all visibility settings and will hide the product from all customers."
@@ -11797,7 +11808,7 @@ msgstr "tickets"
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
 #: src/components/routes/my-tickets/index.tsx:101
 msgid "Tickets"
-msgstr "Tickets"
+msgstr "التذاكر"
 
 #: src/components/layouts/Event/index.tsx:124
 #: src/components/routes/event/products.tsx:48
@@ -11839,7 +11850,7 @@ msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:292
 msgid "Time"
-msgstr "Time"
+msgstr "الوقت"
 
 #: src/components/layouts/Checkout/index.tsx:339
 msgid "Time left"
@@ -11908,9 +11919,9 @@ msgstr "Toggle columns"
 msgid "Tomorrow"
 msgstr "Tomorrow"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:108
+#: src/components/layouts/OrganizerLayout/index.tsx:107
 msgid "Tools"
-msgstr "Tools"
+msgstr "الأدوات"
 
 #: src/components/routes/admin/Dashboard/index.tsx:341
 msgid "Top Organizers (Last 14 Days)"
@@ -11921,7 +11932,7 @@ msgstr "Top Organizers (Last 14 Days)"
 #: src/components/common/OrderSummary/index.tsx:104
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:113
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:352
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:355
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:91
 msgid "Total"
 msgstr "Total"
@@ -11932,7 +11943,7 @@ msgstr "Total Accounts"
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:35
 msgid "Total Attendees"
-msgstr "Total Attendees"
+msgstr "إجمالي الحضور"
 
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:52
 msgid "Total Before Discounts"
@@ -11955,7 +11966,7 @@ msgstr "Total Entries"
 msgid "Total Fee"
 msgstr "Total Fee"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:299
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:302
 msgid "Total fees"
 msgstr "Total fees"
 
@@ -11972,7 +11983,7 @@ msgstr "Total Gross Sales"
 msgid "Total order amount"
 msgstr "Total order amount"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:286
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:289
 msgid "Total orders"
 msgstr "Total orders"
 
@@ -11991,7 +12002,7 @@ msgstr "Total refunded"
 msgid "Total Refunded"
 msgstr "Total Refunded"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:293
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:296
 msgid "Total tax"
 msgstr "Total tax"
 
@@ -12083,9 +12094,9 @@ msgid "Type to search..."
 msgstr "Type to search..."
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:255
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:282
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:283
 msgid "Typography"
-msgstr "Typography"
+msgstr "الخطوط"
 
 #: src/components/layouts/CheckIn/index.tsx:271
 msgid "Unable to check in attendee"
@@ -12161,7 +12172,7 @@ msgstr ""
 #: src/components/common/MessageList/index.tsx:49
 #: src/components/routes/event/messages.tsx:27
 #: src/components/routes/event/messages.tsx:66
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:439
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:443
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -12244,15 +12255,15 @@ msgstr "Up to {max} per order"
 #: src/components/routes/event/OccurrencesTab/index.tsx:485
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:33
 msgid "Upcoming"
-msgstr "Upcoming"
+msgstr "القادمة"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:375
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:378
 msgid "Upcoming events"
 msgstr "Upcoming events"
 
 #: src/components/layouts/OrganizerHomepage/index.tsx:279
 msgid "Upcoming Events"
-msgstr "Upcoming Events"
+msgstr "الفعاليات القادمة"
 
 #: src/components/modals/EditTaxOrFeeModal/index.tsx:59
 msgid "Update {0}"
@@ -12382,12 +12393,12 @@ msgid "Use <0>Liquid templating</0> to personalize your emails"
 msgstr "Use <0>Liquid templating</0> to personalize your emails"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:232
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:259
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:260
 msgid "Use a blurred version of the cover image as the background"
 msgstr "Use a blurred version of the cover image as the background"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:230
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:257
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:258
 msgid "Use cover image"
 msgstr "Use cover image"
 
@@ -12423,7 +12434,7 @@ msgstr "User"
 #: src/components/common/GlobalMenu/index.tsx:53
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:145
 msgid "User Management"
-msgstr "User Management"
+msgstr "إدارة المستخدمين"
 
 #: src/components/common/AdminAccountsTable/index.tsx:89
 #: src/components/common/AdminAccountsTable/index.tsx:109
@@ -12599,7 +12610,7 @@ msgstr "Verifying..."
 msgid "View All"
 msgstr "View All"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:380
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:383
 msgid "View all →"
 msgstr "View all →"
 
@@ -12688,8 +12699,8 @@ msgstr "View order details, issue refunds, and resend confirmations."
 
 #: src/components/layouts/OrganizerLayout/index.tsx:254
 #: src/components/layouts/OrganizerLayout/index.tsx:257
-msgid "View Organizer Homepage"
-msgstr "View Organizer Homepage"
+#~ msgid "View Organizer Homepage"
+#~ msgstr "View Organizer Homepage"
 
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:59
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
@@ -12830,13 +12841,13 @@ msgid "We recommend a square logo with minimum dimensions of 200x200px"
 msgstr "We recommend a square logo with minimum dimensions of 200x200px"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:191
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:196
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:197
 msgid "We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB"
-msgstr "We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB"
+msgstr "نوصي بأبعاد 1950 × 650 بكسل، بنسبة 3:1، وبحد أقصى 5 ميجابايت"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:217
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:218
 msgid "We recommend dimensions of 400px by 400px, and a maximum file size of 5MB"
-msgstr "We recommend dimensions of 400px by 400px, and a maximum file size of 5MB"
+msgstr "نوصي بأبعاد 400 × 400 بكسل، وبحد أقصى 5 ميجابايت"
 
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:158
 msgid "We sent a verification link to {0}"
@@ -12917,7 +12928,7 @@ msgstr "Webhook Signing Secret"
 
 #: src/components/forms/WebhookForm/index.tsx:144
 msgid "Webhook URL"
-msgstr "Webhook URL"
+msgstr "رابط خطاف الويب (URL)"
 
 #: src/components/forms/WebhookForm/index.tsx:30
 msgid "Webhook will not send notifications"
@@ -12928,12 +12939,12 @@ msgid "Webhook will send notifications"
 msgstr "Webhook will send notifications"
 
 #: src/components/layouts/Event/index.tsx:145
-#: src/components/layouts/OrganizerLayout/index.tsx:115
+#: src/components/layouts/OrganizerLayout/index.tsx:114
 #: src/components/modals/DuplicateEventModal/index.tsx:57
 #: src/components/routes/event/Webhooks/index.tsx:32
 #: src/components/routes/organizer/Webhooks/index.tsx:30
 msgid "Webhooks"
-msgstr "Webhooks"
+msgstr "خطافات الويب (Webhooks)"
 
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
@@ -13113,7 +13124,7 @@ msgstr "When check-in closes"
 msgid "When check-in opens"
 msgstr "When check-in opens"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:367
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:370
 msgid "When customers purchase tickets, their orders will appear here."
 msgstr "When customers purchase tickets, their orders will appear here."
 
@@ -13352,9 +13363,9 @@ msgstr "You must create a ticket before you can manually add an attendee."
 msgid "You must have at least one price tier"
 msgstr "You must have at least one price tier"
 
-#: src/components/layouts/OrganizerLayout/index.tsx:299
+#: src/components/layouts/OrganizerLayout/index.tsx:283
 msgid "You must verify your email address before you can update the organizer status."
-msgstr "You must verify your email address before you can update the organizer status."
+msgstr "يجب عليك التحقق من عنوان بريدك الإلكتروني قبل أن تتمكن من تحديث حالة المنظم."
 
 #: src/components/modals/CreateAttendeeModal/index.tsx:186
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
@@ -13462,7 +13473,7 @@ msgstr "Your Details"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:79
 msgid "Your Email"
-msgstr "Your Email"
+msgstr "بريدك الإلكتروني"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:129
 msgid "Your email request change to <0>{0}</0> is pending. Please check your email to confirm"
@@ -13486,7 +13497,7 @@ msgstr "Your messages will appear here"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:73
 msgid "Your Name"
-msgstr "Your Name"
+msgstr "اسمك"
 
 #: src/components/routes/auth/ResetPassword/index.tsx:58
 #~ msgid "Your new password must be at least 8 characters long."

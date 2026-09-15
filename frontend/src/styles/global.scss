@@ -169,7 +169,7 @@ a {
 
 /* Inputs & Form Controls */
 .mantine-TextInput-input,
-.mantine-PasswordInput-innerInput,
+.mantine-PasswordInput-input,
 .mantine-Select-input,
 .mantine-Textarea-input {
   border-radius: var(--iu-radius-md);
@@ -183,6 +183,13 @@ a {
     border-color: var(--iu-green-secondary);
     box-shadow: var(--iu-green-focus-ring);
   }
+}
+
+.mantine-PasswordInput-innerInput {
+  color: var(--iu-text);
+  font-family: var(--iu-font-family);
+  background: transparent;
+  border: none;
 }
 
 /* Mantine Primary Buttons (Hero Gradient & Motion System) */

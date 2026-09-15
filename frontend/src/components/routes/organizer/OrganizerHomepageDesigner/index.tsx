@@ -1,36 +1,36 @@
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import classes from './OrganizerHomepageDesigner.module.scss';
-import {useParams} from "react-router";
-import {useGetOrganizerSettings} from "../../../../queries/useGetOrganizerSettings.ts";
-import {useUpdateOrganizerSettings} from "../../../../mutations/useUpdateOrganizerSettings.ts";
-import {useFormErrorResponseHandler} from "../../../../hooks/useFormErrorResponseHandler.tsx";
-import {HomepageThemeSettings, IdParam, OrganizerSettings} from "../../../../types.ts";
-import {showSuccess} from "../../../../utilites/notifications.tsx";
-import {t} from "@lingui/macro";
-import {useForm} from "@mantine/form";
-import {Accordion, Button, Group, Stack, Text} from "@mantine/core";
-import {IconColorPicker, IconHelp, IconPalette, IconPhoto, IconTypography} from "@tabler/icons-react";
-import {Tooltip} from "../../../common/Tooltip";
-import {LoadingMask} from "../../../common/LoadingMask";
-import {CustomSelect} from "../../../common/CustomSelect";
-import {GET_ORGANIZER_QUERY_KEY, useGetOrganizer} from "../../../../queries/useGetOrganizer.ts";
-import {ImageUploadDropzone} from "../../../common/ImageUploadDropzone";
-import {organizerPreviewPath} from "../../../../utilites/urlHelper.ts";
-import {queryClient} from "../../../../utilites/queryClient.ts";
-import {GET_ORGANIZER_PUBLIC_QUERY_KEY} from "../../../../queries/useGetOrganizerPublic.ts";
-import {ThemeColorControls} from "../../../common/ThemeColorControls";
-import {ThemeFontControl} from "../../../common/ThemeFontControl";
-import {computeThemeVariables, validateThemeSettings} from "../../../../utilites/themeUtils.ts";
-import {DEFAULT_HOMEPAGE_FONT} from "../../../../constants/homepageFonts.ts";
+import { useParams } from "react-router";
+import { useGetOrganizerSettings } from "../../../../queries/useGetOrganizerSettings.ts";
+import { useUpdateOrganizerSettings } from "../../../../mutations/useUpdateOrganizerSettings.ts";
+import { useFormErrorResponseHandler } from "../../../../hooks/useFormErrorResponseHandler.tsx";
+import { HomepageThemeSettings, IdParam, OrganizerSettings } from "../../../../types.ts";
+import { showSuccess } from "../../../../utilites/notifications.tsx";
+import { t } from "@lingui/macro";
+import { useForm } from "@mantine/form";
+import { Accordion, Button, Group, Stack, Text } from "@mantine/core";
+import { IconColorPicker, IconHelp, IconPalette, IconPhoto, IconTypography, IconDeviceDesktop, IconDeviceTablet, IconDeviceMobile, IconLock } from "@tabler/icons-react";
+import { Tooltip } from "../../../common/Tooltip";
+import { LoadingMask } from "../../../common/LoadingMask";
+import { CustomSelect } from "../../../common/CustomSelect";
+import { GET_ORGANIZER_QUERY_KEY, useGetOrganizer } from "../../../../queries/useGetOrganizer.ts";
+import { ImageUploadDropzone } from "../../../common/ImageUploadDropzone";
+import { organizerPreviewPath } from "../../../../utilites/urlHelper.ts";
+import { queryClient } from "../../../../utilites/queryClient.ts";
+import { GET_ORGANIZER_PUBLIC_QUERY_KEY } from "../../../../queries/useGetOrganizerPublic.ts";
+import { ThemeColorControls } from "../../../common/ThemeColorControls";
+import { ThemeFontControl } from "../../../common/ThemeFontControl";
+import { computeThemeVariables, validateThemeSettings } from "../../../../utilites/themeUtils.ts";
+import { DEFAULT_HOMEPAGE_FONT } from "../../../../constants/homepageFonts.ts";
 
 interface FormValues {
     homepage_theme_settings: Partial<HomepageThemeSettings>;
 }
 
-import {IU_COLORS} from "../../../../constants/iuTheme.ts";
+import { IU_COLORS } from "../../../../constants/iuTheme.ts";
 
 const OrganizerHomepageDesigner = () => {
-    const {organizerId} = useParams();
+    const { organizerId } = useParams();
     const organizerSettingsQuery = useGetOrganizerSettings(organizerId);
     const organizerQuery = useGetOrganizer(organizerId);
     const updateMutation = useUpdateOrganizerSettings();
@@ -45,6 +45,7 @@ const OrganizerHomepageDesigner = () => {
     const [accordionValue, setAccordionValue] = useState<string[]>(['images', 'theme', 'typography']);
     const [lastCoverId, setLastCoverId] = useState<IdParam | null>(null);
     const [lastLogoId, setLastLogoId] = useState<IdParam | null>(null);
+    const [viewMode, setViewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
     const existingLogo = organizerData?.images?.find((image) => image.type === 'ORGANIZER_LOGO');
     const existingCover = organizerData?.images?.find((image) => image.type === 'ORGANIZER_COVER');
@@ -125,7 +126,7 @@ const OrganizerHomepageDesigner = () => {
             const settingsJson = JSON.stringify(settingsToSend);
             if (settingsJson !== lastSentSettings.current) {
                 iframeRef.current.contentWindow.postMessage(
-                    {type: "UPDATE_ORGANIZER_SETTINGS", settings: settingsToSend},
+                    { type: "UPDATE_ORGANIZER_SETTINGS", settings: settingsToSend },
                     "*"
                 );
                 lastSentSettings.current = settingsJson;
@@ -184,7 +185,7 @@ const OrganizerHomepageDesigner = () => {
                         className={classes.accordion}
                     >
                         <Accordion.Item value="images" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconPhoto size={20}/>}>
+                            <Accordion.Control icon={<IconPhoto size={20} />}>
                                 <Text fw={500}>{t`Images`}</Text>
                             </Accordion.Control>
                             <Accordion.Panel>
@@ -194,7 +195,7 @@ const OrganizerHomepageDesigner = () => {
                                             <Text fw={500} size="sm">{t`Cover Image`}</Text>
                                             <Tooltip
                                                 label={t`We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB`}>
-                                                <IconHelp size={16} style={{color: 'var(--mantine-color-gray-6)'}}/>
+                                                <IconHelp size={16} style={{ color: 'var(--mantine-color-gray-6)' }} />
                                             </Tooltip>
                                         </Group>
                                         <ImageUploadDropzone
@@ -215,7 +216,7 @@ const OrganizerHomepageDesigner = () => {
                                         <Group justify={'space-between'} mb="xs">
                                             <Text fw={500} size="sm">{t`Logo`}</Text>
                                             <Tooltip label={t`We recommend dimensions of 400px by 400px, and a maximum file size of 5MB`}>
-                                                <IconHelp size={16} style={{color: 'var(--mantine-color-gray-6)'}}/>
+                                                <IconHelp size={16} style={{ color: 'var(--mantine-color-gray-6)' }} />
                                             </Tooltip>
                                         </Group>
                                         <ImageUploadDropzone
@@ -236,24 +237,24 @@ const OrganizerHomepageDesigner = () => {
                         </Accordion.Item>
 
                         <Accordion.Item value="theme" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconPalette size={20}/>}>
+                            <Accordion.Control icon={<IconPalette size={20} />}>
                                 <Text fw={500}>{t`Theme & Colors`}</Text>
                             </Accordion.Control>
                             <Accordion.Panel>
                                 <form onSubmit={form.onSubmit(handleSubmit)}>
                                     <fieldset disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}
-                                              className={classes.fieldset}>
+                                        className={classes.fieldset}>
                                         <Stack gap="md">
                                             <CustomSelect
                                                 optionList={[
                                                     {
-                                                        icon: <IconColorPicker/>,
+                                                        icon: <IconColorPicker />,
                                                         label: t`Color`,
                                                         value: 'COLOR',
                                                         description: t`Choose a color for your background`,
                                                     },
                                                     {
-                                                        icon: <IconPhoto/>,
+                                                        icon: <IconPhoto />,
                                                         label: t`Use cover image`,
                                                         value: 'MIRROR_COVER_IMAGE',
                                                         description: t`Use a blurred version of the cover image as the background`,
@@ -278,12 +279,12 @@ const OrganizerHomepageDesigner = () => {
                         </Accordion.Item>
 
                         <Accordion.Item value="typography" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconTypography size={20}/>}>
+                            <Accordion.Control icon={<IconTypography size={20} />}>
                                 <Text fw={500}>{t`Typography`}</Text>
                             </Accordion.Control>
                             <Accordion.Panel>
                                 <fieldset disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}
-                                          className={classes.fieldset}>
+                                    className={classes.fieldset}>
                                     <ThemeFontControl
                                         value={form.values.homepage_theme_settings.font_family}
                                         onChange={(fontFamily) => form.setFieldValue('homepage_theme_settings', {
@@ -310,18 +311,59 @@ const OrganizerHomepageDesigner = () => {
             </div>
 
             <div className={classes.previewContainer}>
-                <h2>{t`Homepage Preview`}</h2>
-                <div className={classes.iframeContainer}>
-                    {iframeSrc ? (
-                        <iframe
-                            ref={iframeRef}
-                            src={iframeSrc}
-                            title="Organizer Homepage Preview"
-                            onLoad={() => setIframeLoaded(true)}
-                        />
-                    ) : (
-                        <LoadingMask/>
-                    )}
+                <div className={classes.browserMockup} data-view={viewMode}>
+                    <div className={classes.browserHeader}>
+                        <div className={classes.windowControls}>
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+                        <div className={classes.browserUrlBar}>
+                            <IconLock size={13} />
+                            <span>iu-events.sa/{organizerData?.slug || organizerId}</span>
+                        </div>
+                        <div className={classes.viewModeGroup}>
+                            <button
+                                type="button"
+                                className={classes.viewBtn}
+                                data-active={viewMode === 'desktop'}
+                                onClick={() => setViewMode('desktop')}
+                                title={t`Desktop`}
+                            >
+                                <IconDeviceDesktop size={15} />
+                            </button>
+                            <button
+                                type="button"
+                                className={classes.viewBtn}
+                                data-active={viewMode === 'tablet'}
+                                onClick={() => setViewMode('tablet')}
+                                title={t`Tablet`}
+                            >
+                                <IconDeviceTablet size={15} />
+                            </button>
+                            <button
+                                type="button"
+                                className={classes.viewBtn}
+                                data-active={viewMode === 'mobile'}
+                                onClick={() => setViewMode('mobile')}
+                                title={t`Mobile`}
+                            >
+                                <IconDeviceMobile size={15} />
+                            </button>
+                        </div>
+                    </div>
+                    <div className={classes.iframeWrapper}>
+                        {iframeSrc ? (
+                            <iframe
+                                ref={iframeRef}
+                                src={iframeSrc}
+                                title="Organizer Homepage Preview"
+                                onLoad={() => setIframeLoaded(true)}
+                            />
+                        ) : (
+                            <LoadingMask />
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

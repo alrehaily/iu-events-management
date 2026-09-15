@@ -172,11 +172,11 @@ const AuthLayout = () => {
                 <div className={classes.leftPanel}>
                     <main className={classes.container}>
                         <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20}}>
-                            <Link to="/" className={classes.logo} onClick={handleLogoClick} style={{cursor: 'pointer', display: 'flex'}}>
+                            <Link to="/" className={classes.logo} onClick={handleLogoClick} style={{cursor: 'pointer', display: 'flex', alignItems: 'center'}}>
                                 <img
-                                    src="/images/IUEvent2.png"
+                                    src="/images/IUEvent2-transparent.png"
                                     alt={isArabic ? "شعار الجامعة الإسلامية بالمدينة المنورة" : "Islamic University of Madinah logo"}
-                                    style={{height: 48, width: "auto"}}
+                                    style={{height: 42, width: "auto", display: "block"}}
                                 />
                             </Link>
                             <Link to="/" style={{fontSize: 13, color: "var(--iu-green-800, #105f3c)", fontWeight: 700, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6}}>
