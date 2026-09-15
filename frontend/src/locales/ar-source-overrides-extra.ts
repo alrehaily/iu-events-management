@@ -1,0 +1,72 @@
+export const arabicSourceExtraOverrides: Record<string, string> = {
+    // Ticket preview
+    "Date & Time": "التاريخ والوقت",
+    "Ticket ID": "معرّف التذكرة",
+    "Online event": "فعالية عبر الإنترنت",
+    "Cancelled": "ملغاة",
+    "Unpaid": "غير مدفوعة",
+    "This ticket is no longer valid": "هذه التذكرة لم تعد صالحة",
+    "Available once payment completes": "يتاح بعد اكتمال الدفع",
+    "Print to PDF": "طباعة بصيغة PDF",
+    "Copied": "تم النسخ",
+    "Copy Link": "نسخ الرابط",
+
+    // Registration questions exact examples
+    "Examples: \"How did you hear about us?\", \"Company name for invoice\"": "أمثلة: «كيف تعرفت علينا؟» و«اسم الجهة للفاتورة»",
+    "Examples: \"T-shirt size\", \"Meal preference\", \"Job title\"": "أمثلة: «مقاس القميص» و«تفضيل الوجبة» و«المسمى الوظيفي»",
+
+    // Homepage designer
+    "Homepage Design": "تصميم الصفحة الرئيسية",
+    "Customize the layout, colors, and branding of your event homepage.": "خصص تخطيط وألوان وهوية صفحة الفعالية.",
+    "Images": "الصور والوسائط",
+    "Cover Image": "صورة الغلاف",
+    "We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB": "نوصي بأبعاد 1950×650 بكسل بنسبة 3:1 وبحجم ملف لا يتجاوز 5 ميجابايت",
+    "Theme & Colors": "السمة والألوان",
+    "Color": "لون",
+    "Choose a color for your background": "اختر لونًا لخلفية الصفحة",
+    "Use cover image": "استخدام صورة الغلاف",
+    "Use a blurred version of the cover image as the background": "استخدام نسخة ضبابية من صورة الغلاف كخلفية",
+    "Background Type": "نوع الخلفية",
+    "Typography": "الخطوط",
+    "Button Text": "نصوص الأزرار",
+    "Continue Button Text": "نص زر المتابعة",
+    "Customize the text shown on the continue button": "خصص النص الظاهر على زر المتابعة",
+    "e.g., Get Tickets, Register Now": "مثال: احصل على التذاكر، سجّل الآن",
+    "Get Tickets Button Text": "نص زر الحصول على التذاكر",
+    "Customize the text shown on the floating button that scrolls to the tickets section": "خصص النص الظاهر على الزر العائم الذي ينقلك إلى قسم التذاكر",
+    "Get Tickets": "احصل على التذاكر",
+    "Save Changes": "حفظ التغييرات",
+    "Homepage Preview": "معاينة الصفحة الرئيسية",
+    "Successfully Updated Homepage Design": "تم تحديث تصميم الصفحة الرئيسية بنجاح",
+
+    // Common UI language visible in management previews
+    "This event is not published yet.": "هذه الفعالية غير منشورة بعد.",
+    "Event Preview": "معاينة الفعالية",
+    "Cover image will be displayed at the top of your event page.": "ستظهر صورة الغلاف في أعلى صفحة الفعالية.",
+    "Logo will be displayed on the ticket.": "سيظهر الشعار على التذكرة.",
+
+    // Location wording without English brand names
+    "If blank, the address will be used to generate a Google Maps link": "إذا تُرك فارغًا، فسيُستخدم العنوان لإنشاء رابط خرائط جوجل",
+
+    // Designer and uploader helpers
+    "Image uploaded successfully": "تم رفع الصورة بنجاح",
+    "Image deleted successfully": "تم حذف الصورة بنجاح",
+    "Are you sure you want to delete this image?": "هل تريد حذف هذه الصورة؟",
+    "Something went wrong while deleting the image. Please try again.": "حدث خطأ أثناء حذف الصورة. حاول مرة أخرى.",
+    "File is too large. Maximum size is 5MB.": "حجم الملف كبير جدًا. الحد الأقصى 5 ميجابايت.",
+    "Invalid file type. Please upload an image.": "نوع الملف غير صالح. يرجى رفع صورة.",
+
+    // Product editor extras
+    "Sale Start Date": "تاريخ بدء البيع",
+    "Sale End Date": "تاريخ انتهاء البيع",
+    "Hide product before sale start date": "إخفاء العنصر قبل بدء البيع",
+    "Hide product after sale end date": "إخفاء العنصر بعد انتهاء البيع",
+    "Shows remaining": "إظهار الكمية المتبقية",
+    "Hides sold out": "إخفاء العنصر عند نفاد الكمية",
+    "Starts collapsed": "بدء العرض بشكل مطوي",
+    "Hidden from everyone": "مخفي عن الجميع",
+    "Promo code required": "يتطلب رمزًا ترويجيًا",
+    "Highlighted": "مميز",
+    "Add-on only": "إضافة فقط",
+    "No questions yet": "لا توجد أسئلة بعد",
+};
