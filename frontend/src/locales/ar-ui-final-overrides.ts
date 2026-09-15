@@ -31,7 +31,7 @@ export const arabicUiFinalOverrides: Record<string, string> = {
     'toutGW': 'رمز الاستجابة السريعة',
     'QIodqd': 'تنزيل رمز الاستجابة السريعة',
     'ovB7m2': 'مسح رمز الاستجابة السريعة',
-    'YWgSTy': 'إدارة الطلب',
+    'WVgSTy': 'إدارة الطلب',
     'ophZVW': 'إدارة التذاكر',
 
     // Statuses frequently shown in management screens
