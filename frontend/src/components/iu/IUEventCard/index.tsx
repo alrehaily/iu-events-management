@@ -15,6 +15,12 @@ interface IUEventCardProps {
 export const IUEventCard: React.FC<IUEventCardProps> = ({event, index = 0}) => {
   const {locale, isArabic, t, getCategoryLabel} = useIULanguage();
   const coverUrl = eventCoverImageUrl(event) || "/images/IUEvent2.png";
+  const [imgSrc, setImgSrc] = React.useState<string>(coverUrl);
+
+  React.useEffect(() => {
+    setImgSrc(coverUrl);
+  }, [coverUrl]);
+
   const slug = event.slug || "details";
   const isEnded = event.lifecycle_status === "ENDED";
   const isLive = event.status === "LIVE" && !isEnded;
@@ -34,7 +40,12 @@ export const IUEventCard: React.FC<IUEventCardProps> = ({event, index = 0}) => {
     >
       <div className={classes.eventCard}>
         <div className={classes.eventImage}>
-          <img src={coverUrl} alt={event.title} loading="lazy" />
+          <img
+            src={imgSrc}
+            alt={event.title}
+            loading="lazy"
+            onError={() => setImgSrc("/images/IUEvent2.png")}
+          />
           {event.category && (
             <span className={classes.categoryBadge}>
               {getCategoryLabel(event.category)}

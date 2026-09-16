@@ -170,21 +170,9 @@ export function getDefaultThemeSettings(): HomepageThemeSettings {
 }
 
 export function validateThemeSettings(
-    settings: Partial<HomepageThemeSettings> | null | undefined
+    _settings?: Partial<HomepageThemeSettings> | null | undefined
 ): HomepageThemeSettings {
-    const defaults = getDefaultThemeSettings();
-
-    if (!settings) {
-        return defaults;
-    }
-
-    return {
-        accent: settings.accent || defaults.accent,
-        background: settings.background || defaults.background,
-        mode: settings.mode || detectMode(settings.background || defaults.background),
-        background_type: settings.background_type || defaults.background_type,
-        font_family: settings.font_family || defaults.font_family,
-    };
+    return getDefaultThemeSettings();
 }
 
 /**

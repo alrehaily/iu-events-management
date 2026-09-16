@@ -26,28 +26,31 @@
     justify-content: center;
     position: relative;
     z-index: 1;
-    padding: 14px 16px 12px;
+    padding: 14px 12px 8px;
     border-bottom: none;
     flex-shrink: 0;
     background: transparent;
-    animation: iuBdsnCardIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+    width: 100%;
+    box-sizing: border-box;
 
     .logoBadge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       background: #ffffff;
-      padding: 5px 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 5px 14px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       border: none;
       width: fit-content;
-      max-width: 150px;
+      max-width: 90%;
+      height: auto;
+      box-sizing: border-box;
       transition: transform var(--iu-transition-normal, 0.25s ease), box-shadow var(--iu-transition-normal, 0.25s ease);
 
       &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
       }
     }
 
@@ -55,13 +58,14 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
+      width: auto;
+      height: auto;
     }
 
     .logoImg {
-      height: 38px;
-      max-height: 40px;
       width: auto;
-      max-width: 150px;
+      height: 44px;
+      max-height: 48px;
       object-fit: contain;
       display: block;
     }

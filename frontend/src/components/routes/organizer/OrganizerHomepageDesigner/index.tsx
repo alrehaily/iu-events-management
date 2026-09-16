@@ -20,7 +20,7 @@ import { queryClient } from "../../../../utilites/queryClient.ts";
 import { GET_ORGANIZER_PUBLIC_QUERY_KEY } from "../../../../queries/useGetOrganizerPublic.ts";
 import { ThemeColorControls } from "../../../common/ThemeColorControls";
 import { ThemeFontControl } from "../../../common/ThemeFontControl";
-import { computeThemeVariables, validateThemeSettings } from "../../../../utilites/themeUtils.ts";
+import { computeThemeVariables, getDefaultThemeSettings, validateThemeSettings } from "../../../../utilites/themeUtils.ts";
 import { DEFAULT_HOMEPAGE_FONT } from "../../../../constants/homepageFonts.ts";
 
 interface FormValues {
@@ -42,7 +42,7 @@ const OrganizerHomepageDesigner = () => {
 
     const [iframeSrc, setIframeSrc] = useState<string | null>(null);
     const [iframeLoaded, setIframeLoaded] = useState(false);
-    const [accordionValue, setAccordionValue] = useState<string[]>(['images', 'theme', 'typography']);
+    const [accordionValue, setAccordionValue] = useState<string[]>(['images']);
     const [lastCoverId, setLastCoverId] = useState<IdParam | null>(null);
     const [lastLogoId, setLastLogoId] = useState<IdParam | null>(null);
     const [viewMode, setViewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
@@ -52,13 +52,7 @@ const OrganizerHomepageDesigner = () => {
 
     const form = useForm<FormValues>({
         initialValues: {
-            homepage_theme_settings: {
-                accent: IU_COLORS.green900,
-                background: IU_COLORS.bg,
-                mode: 'light',
-                background_type: 'COLOR',
-                font_family: DEFAULT_HOMEPAGE_FONT,
-            },
+            homepage_theme_settings: getDefaultThemeSettings(),
         }
     });
 
@@ -113,7 +107,6 @@ const OrganizerHomepageDesigner = () => {
                 homepage_theme_settings: themeSettings,
                 logoUrl: existingLogo?.url,
                 coverUrl: existingCover?.url,
-                // Include legacy fields for backward compatibility with preview
                 homepage_background_color: themeSettings.background,
                 homepage_content_background_color: cssVars['--theme-surface'],
                 homepage_primary_color: themeSettings.accent,
@@ -156,25 +149,13 @@ const OrganizerHomepageDesigner = () => {
         });
     };
 
-    const handleThemeChange = (themeSettings: Partial<HomepageThemeSettings>) => {
-        form.setFieldValue('homepage_theme_settings', themeSettings);
-    };
-
-    const handleBackgroundTypeChange = (backgroundType: string | string[]) => {
-        const value = Array.isArray(backgroundType) ? backgroundType[0] : backgroundType;
-        form.setFieldValue('homepage_theme_settings', {
-            ...form.values.homepage_theme_settings,
-            background_type: value as 'COLOR' | 'MIRROR_COVER_IMAGE',
-        });
-    };
-
     return (
         <div className={classes.container}>
             <div className={classes.sidebar}>
                 <div className={classes.sticky}>
                     <div className={classes.header}>
                         <h2>{t`Homepage Design`}</h2>
-                        <Text c="dimmed" size="sm">{t`Customize your organizer page appearance`}</Text>
+                        <Text c="dimmed" size="sm">{t`Upload cover image and logo for your organizer page.`}</Text>
                     </div>
 
                     <Accordion
@@ -233,67 +214,6 @@ const OrganizerHomepageDesigner = () => {
                                         />
                                     </div>
                                 </Stack>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-
-                        <Accordion.Item value="theme" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconPalette size={20} />}>
-                                <Text fw={500}>{t`Theme & Colors`}</Text>
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <form onSubmit={form.onSubmit(handleSubmit)}>
-                                    <fieldset disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}
-                                        className={classes.fieldset}>
-                                        <Stack gap="md">
-                                            <CustomSelect
-                                                optionList={[
-                                                    {
-                                                        icon: <IconColorPicker />,
-                                                        label: t`Color`,
-                                                        value: 'COLOR',
-                                                        description: t`Choose a color for your background`,
-                                                    },
-                                                    {
-                                                        icon: <IconPhoto />,
-                                                        label: t`Use cover image`,
-                                                        value: 'MIRROR_COVER_IMAGE',
-                                                        description: t`Use a blurred version of the cover image as the background`,
-                                                        disabled: !existingCover,
-                                                    },
-                                                ]}
-                                                label={t`Background Type`}
-                                                name={'homepage_theme_settings.background_type'}
-                                                value={form.values.homepage_theme_settings.background_type || 'COLOR'}
-                                                onChange={handleBackgroundTypeChange}
-                                            />
-
-                                            <ThemeColorControls
-                                                values={form.values.homepage_theme_settings}
-                                                onChange={handleThemeChange}
-                                                disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}
-                                            />
-                                        </Stack>
-                                    </fieldset>
-                                </form>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-
-                        <Accordion.Item value="typography" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconTypography size={20} />}>
-                                <Text fw={500}>{t`Typography`}</Text>
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <fieldset disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}
-                                    className={classes.fieldset}>
-                                    <ThemeFontControl
-                                        value={form.values.homepage_theme_settings.font_family}
-                                        onChange={(fontFamily) => form.setFieldValue('homepage_theme_settings', {
-                                            ...form.values.homepage_theme_settings,
-                                            font_family: fontFamily,
-                                        })}
-                                        disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}
-                                    />
-                                </fieldset>
                             </Accordion.Panel>
                         </Accordion.Item>
                     </Accordion>

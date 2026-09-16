@@ -8,6 +8,7 @@ import {
   IconCheck,
 } from "@tabler/icons-react";
 import {useIULanguage} from "../../../context/IULanguageContext";
+import {getEventCategories} from "../../../constants/eventCategories";
 
 export interface CategoryItem {
   id: string;
@@ -45,15 +46,10 @@ export const IUSearchBar: React.FC<IUSearchBarProps> = ({
 
   const localizedCategories = useMemo<CategoryItem[]>(() => {
     if (customCategories) return customCategories;
+    const cats = getEventCategories();
     return [
       { id: "", label: t("filter_all_categories", "كل التصنيفات") },
-      { id: "EDUCATION", label: t("cat_education", "تعليمي وأكاديمي") },
-      { id: "WORKSHOP", label: t("cat_workshop", "ورش عمل وتدريب") },
-      { id: "TECH", label: t("cat_tech", "تقنية ومعلوماتية") },
-      { id: "BUSINESS", label: t("cat_business", "ريادة أعمال ومشاريع") },
-      { id: "SOCIAL", label: t("cat_social", "أنشطة مجتمعية") },
-      { id: "ART", label: t("cat_art", "فعاليات ثقافية ومعارض") },
-      { id: "OTHER", label: t("cat_other", "عام / أخرى") },
+      ...cats.map((c) => ({ id: c.id, label: c.name })),
     ];
   }, [customCategories, t]);
 

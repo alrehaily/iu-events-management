@@ -1,32 +1,49 @@
 import {t} from "@lingui/macro";
+import {
+  IconTools,
+  IconSchool,
+  IconDeviceLaptop,
+  IconBriefcase,
+  IconHeartHandshake,
+  IconCompass,
+  IconSparkles,
+  IconTrophy,
+  IconBuilding,
+  IconUsers,
+  IconPuzzle,
+  IconTrees,
+  IconCoffee,
+  IconCategory,
+  IconProps,
+} from "@tabler/icons-react";
+import React from "react";
 
-export const getEventCategories = () => [
-    {id: 'NIGHTLIFE', name: t`Nightlife`, emoji: '🪩'},
-    {id: 'FESTIVAL', name: t`Festival`, emoji: '🎪'},
-    {id: 'SEASONAL', name: t`Seasonal`, emoji: '🎊'},
+export interface EventCategoryOption {
+  id: string;
+  name: string;
+  Icon: React.ComponentType<IconProps>;
+  emoji?: string;
+}
 
-    {id: 'MUSIC', name: t`Music`, emoji: '🎵'},
-    {id: 'SPORTS', name: t`Sports`, emoji: '⚽'},
-    {id: 'COMEDY', name: t`Comedy`, emoji: '😂'},
-    {id: 'THEATER', name: t`Theater`, emoji: '🎭'},
-    {id: 'FILM', name: t`Film`, emoji: '🎬'},
-    {id: 'DANCE', name: t`Dance`, emoji: '💃'},
-    {id: 'ART', name: t`Art`, emoji: '🎨'},
-
-    {id: 'SOCIAL', name: t`Social`, emoji: '🤝'},
-    {id: 'FAMILY', name: t`Family`, emoji: '👨‍👩‍👧‍👦'},
-    {id: 'HOBBIES', name: t`Hobbies`, emoji: '🧩'},
-    {id: 'FOOD_DRINK', name: t`Food & Drink`, emoji: '🍽️'},
-    {id: 'WELLNESS', name: t`Wellness`, emoji: '🧘'},
-    {id: 'SPIRITUALITY', name: t`Spirituality`, emoji: '🙏'},
-    {id: 'OUTDOORS', name: t`Outdoors`, emoji: '🏞️'},
-    {id: 'TOURS', name: t`Tours`, emoji: '🗺️'},
-    {id: 'CHARITY', name: t`Charity`, emoji: '🎗️'},
-
-    {id: 'BUSINESS', name: t`Business`, emoji: '💼'},
-    {id: 'TECH', name: t`Tech`, emoji: '💻'},
-    {id: 'EDUCATION', name: t`Education`, emoji: '📚'},
-    {id: 'WORKSHOP', name: t`Workshop`, emoji: '🛠️'},
-
-    {id: 'OTHER', name: t`Other`, emoji: '🤔'},
+export const getEventCategories = (): EventCategoryOption[] => [
+  {id: 'WORKSHOP', name: t`Workshops & Training`, Icon: IconTools},
+  {id: 'EDUCATION', name: t`Education & Academic`, Icon: IconSchool},
+  {id: 'TECH', name: t`Tech & IT`, Icon: IconDeviceLaptop},
+  {id: 'BUSINESS', name: t`Business & Entrepreneurship`, Icon: IconBriefcase},
+  {id: 'CHARITY', name: t`Charity & Volunteer`, Icon: IconHeartHandshake},
+  {id: 'TOURS', name: t`Tours & Visits`, Icon: IconCompass},
+  {id: 'SPIRITUALITY', name: t`Islamic & Spiritual`, Icon: IconSparkles},
+  {id: 'SPORTS', name: t`Sports & Athletics`, Icon: IconTrophy},
+  {id: 'ART', name: t`Culture & Exhibitions`, Icon: IconBuilding},
+  {id: 'FAMILY', name: t`Family Activities`, Icon: IconUsers},
+  {id: 'HOBBIES', name: t`Skills & Hobbies`, Icon: IconPuzzle},
+  {id: 'OUTDOORS', name: t`Outdoor Activities`, Icon: IconTrees},
+  {id: 'FOOD_DRINK', name: t`Hospitality & Food`, Icon: IconCoffee},
+  {id: 'OTHER', name: t`General & Other`, Icon: IconCategory},
 ];
+
+export const getCategoryIcon = (categoryId?: string): React.ComponentType<IconProps> => {
+  const categories = getEventCategories();
+  const match = categories.find((c) => c.id === categoryId);
+  return match ? match.Icon : IconCategory;
+};

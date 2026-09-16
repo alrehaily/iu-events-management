@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { IconTicket, IconSchool, IconQrcode, IconCertificate, IconSearch } from "@tabler/icons-react";
 import classes from "./Home.module.scss";

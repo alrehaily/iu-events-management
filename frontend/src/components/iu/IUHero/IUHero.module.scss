@@ -18,9 +18,24 @@
   overflow: visible;
   isolation: isolate;
 
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/assets/iu/poly-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   > :global(.container) {
     width: 100%;
     position: relative;
+    z-index: 1;
   }
 }
 

@@ -50,16 +50,12 @@ class Url
      */
     public static function getCdnUrl(string $path): string
     {
-        // Fetch the CDN URL from environment variables
-        // Checking against the env variable instead of config() as config falls back to the default value
-        // and we want to ensure that if the env variable is not set, we do not use a default value.
+        $disk = config('filesystems.public', 'public');
         $envCDNUrl = env('APP_CDN_URL');
 
-        if ($envCDNUrl) {
-            return $envCDNUrl.'/'.$path;
+        if (! empty($envCDNUrl) && $disk !== 'public') {
+            return rtrim($envCDNUrl, '/').'/'.ltrim($path, '/');
         }
-
-        $disk = config('filesystems.public', 'public');
 
         return app('filesystem')->disk($disk)->url($path);
     }

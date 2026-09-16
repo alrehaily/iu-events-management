@@ -209,8 +209,8 @@
 }
 
 /* Light language-switch motion for text only. Card hover and entrance motion stay untouched. */
-.languageMotionAr > section:first-child h1,
-.languageMotionAr > section:first-child p,
+.languageMotionAr>section:first-child h1,
+.languageMotionAr>section:first-child p,
 .languageMotionAr .statsTopText,
 .languageMotionAr .aboutMoreBtn,
 .languageMotionAr .statValue,
@@ -222,8 +222,8 @@
   animation: homeLanguageSwitchAr 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.languageMotionEn > section:first-child h1,
-.languageMotionEn > section:first-child p,
+.languageMotionEn>section:first-child h1,
+.languageMotionEn>section:first-child p,
 .languageMotionEn .statsTopText,
 .languageMotionEn .aboutMoreBtn,
 .languageMotionEn .statValue,
@@ -240,6 +240,7 @@
     opacity: 0.62;
     transform: translateY(3px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -251,6 +252,7 @@
     opacity: 0.62;
     transform: translateY(3px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -258,8 +260,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .languageMotionAr > section:first-child h1,
-  .languageMotionAr > section:first-child p,
+
+  .languageMotionAr>section:first-child h1,
+  .languageMotionAr>section:first-child p,
   .languageMotionAr .statsTopText,
   .languageMotionAr .aboutMoreBtn,
   .languageMotionAr .statValue,
@@ -268,8 +271,8 @@
   .languageMotionAr .moreLink,
   .languageMotionAr .serviceCard h4,
   .languageMotionAr .serviceCard p,
-  .languageMotionEn > section:first-child h1,
-  .languageMotionEn > section:first-child p,
+  .languageMotionEn>section:first-child h1,
+  .languageMotionEn>section:first-child p,
   .languageMotionEn .statsTopText,
   .languageMotionEn .aboutMoreBtn,
   .languageMotionEn .statValue,

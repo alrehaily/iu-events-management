@@ -7,6 +7,7 @@ import {
   CertificateData,
 } from "../../../api/attendee.client";
 import {IUCertificateModal} from "../../iu/IUCertificateModal";
+import {IUConfirmModal} from "../../iu/IUConfirmModal";
 import {IUHero} from "../../iu/IUHero";
 import {
   IconCalendar,
@@ -15,10 +16,12 @@ import {
   IconMapPin,
   IconQrcode,
   IconTicket,
+  IconTicketOff,
 } from "@tabler/icons-react";
 import "../../../styles/iu/common.css";
 import {useIULanguage} from "../../../context/IULanguageContext";
 import {useScrollReveal} from "../../../hooks/useScrollReveal";
+import {showError, showSuccess} from "../../../utilites/notifications.tsx";
 
 export const MyRegistrationsPage: React.FC = () => {
   const {t, formatDate} = useIULanguage();
@@ -29,6 +32,10 @@ export const MyRegistrationsPage: React.FC = () => {
   const [certModalOpen, setCertModalOpen] = useState(false);
   const [certLoading, setCertLoading] = useState(false);
   const [activeTab, setActiveTab] = useState<"all" | "active" | "past">("all");
+
+  const [cancelModalOpen, setCancelModalOpen] = useState(false);
+  const [orderToCancel, setOrderToCancel] = useState<string | null>(null);
+  const [cancelling, setCancelling] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     if (typeof window !== "undefined") {
@@ -65,17 +72,24 @@ export const MyRegistrationsPage: React.FC = () => {
     }
   };
 
-  const handleCancelRegistration = async (orderShortId: string) => {
-    if (!window.confirm(t("confirm_cancel_msg", "هل أنت متأكد من رغبتك في إلغاء هذا التسجيل والتذكرة؟"))) {
-      return;
-    }
+  const promptCancelRegistration = (orderShortId: string) => {
+    setOrderToCancel(orderShortId);
+    setCancelModalOpen(true);
+  };
 
+  const handleConfirmCancel = async () => {
+    if (!orderToCancel) return;
+    setCancelling(true);
     try {
-      await attendeeClient.cancelRegistration(orderShortId);
-      alert(t("cancel_success_msg", "تم إلغاء التسجيل بنجاح."));
+      await attendeeClient.cancelRegistration(orderToCancel);
+      showSuccess(t("cancel_success_msg", "تم إلغاء الحجز والتذاكر بنجاح."));
+      setCancelModalOpen(false);
+      setOrderToCancel(null);
       loadRegistrations(user?.email);
     } catch (err: any) {
-      alert(err.response?.data?.message || "تعذر إلغاء التسجيل.");
+      showError(err.response?.data?.message || t("cancel_fail_msg", "تعذر إلغاء التسجيل. يرجى المحاولة لاحقاً."));
+    } finally {
+      setCancelling(false);
     }
   };
 
@@ -86,7 +100,7 @@ export const MyRegistrationsPage: React.FC = () => {
       setSelectedCert(cert);
       setCertModalOpen(true);
     } catch (err: any) {
-      alert(err.response?.data?.message || "غير مؤهل للشهادة: يلزم تأكيد حضور الفعالية أولاً.");
+      showError(err.response?.data?.message || t("cert_not_eligible", "غير مؤهل للشهادة: يلزم تأكيد حضور الفعالية أولاً."));
     } finally {
       setCertLoading(false);
     }
@@ -449,7 +463,7 @@ export const MyRegistrationsPage: React.FC = () => {
                           }}
                         >
                           <button
-                            onClick={() => handleCancelRegistration(reg.short_id)}
+                            onClick={() => promptCancelRegistration(reg.short_id)}
                             style={{
                               background: "none",
                               border: "none",
@@ -476,6 +490,21 @@ export const MyRegistrationsPage: React.FC = () => {
           opened={certModalOpen}
           onClose={() => setCertModalOpen(false)}
           certificate={selectedCert}
+        />
+
+        <IUConfirmModal
+          opened={cancelModalOpen}
+          onClose={() => {
+            if (!cancelling) {
+              setCancelModalOpen(false);
+              setOrderToCancel(null);
+            }
+          }}
+          onConfirm={handleConfirmCancel}
+          loading={cancelling}
+          title={t("confirm_cancel_msg", "هل أنت متأكد من رغبتك في إلغاء هذا التسجيل والتذكرة؟")}
+          confirmLabel={t("confirm_btn", "تأكيد")}
+          cancelLabel={t("cancel_btn", "إلغاء")}
         />
       </div>
     </div>

@@ -340,6 +340,10 @@ export const arabicSourceOverrides: Record<string, string> = {
     "Failed to update setting": "تعذر تحديث الإعداد",
 
     // Homepage designer and image helpers
+    "Homepage Designer": "معاينة صفحة الفعالية",
+    "Homepage Design": "معاينة صفحة الفعالية وغلافها",
+    "Customize cover image and action buttons.": "إضافة صورة الغلاف ومعاينة المظهر النهائي للفعالية للحضور.",
+    "Homepage Preview": "المعاينة المباشرة لصفحة الفعالية",
     "This event is not published yet": "هذه الفعالية غير منشورة بعد",
     "Cover image will be displayed at the top of your event page": "ستظهر صورة الغلاف في أعلى صفحة الفعالية",
     "Click to upload": "انقر لرفع الصورة",
@@ -347,4 +351,23 @@ export const arabicSourceOverrides: Record<string, string> = {
     "Replace Image": "استبدال الصورة",
     "Drag & drop or click to upload": "اسحب الصورة وأفلتها أو انقر للرفع",
     "Images only · Max 5MB": "صور فقط · الحد الأقصى 5 ميجابايت",
+
+    // Event Categories
+    "Workshops & Training": "ورش عمل وتدريب",
+    "Education & Academic": "تعليمي وأكاديمي",
+    "Tech & IT": "تقنية ومعلوماتية",
+    "Business & Entrepreneurship": "ريادة أعمال ومشاريع",
+    "Charity & Volunteer": "خيري وتطوعي",
+    "Tours & Visits": "جولات وزيارات",
+    "Islamic & Spiritual": "إسلامي وديني",
+    "Sports & Athletics": "رياضة وألعاب",
+    "Culture & Exhibitions": "ثقافة ومعارض",
+    "Family Activities": "أنشطة عائلية",
+    "Skills & Hobbies": "مهارات وهوايات",
+    "Outdoor Activities": "أنشطة خارجية",
+    "Hospitality & Food": "ضيافة وأغذية",
+    "General & Other": "عام / أخرى",
+    "Event Category": "تصنيف الفعالية",
+    "Select event category": "اختر تصنيف الفعالية",
+    "What type of event?": "ما هو نوع الفعالية؟",
 };

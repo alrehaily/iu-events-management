@@ -9,7 +9,6 @@ interface EventDateRangeProps {
 
 const formatRange = (startDate: string, endDate: string | undefined, tz: string) => {
     const isSameDay = !!endDate && isSameDayInTimezone(startDate, endDate, tz);
-    const timezone = formatDateWithLocale(startDate, "timezone", tz);
 
     if (isSameDay) {
         const dayFormatted = formatDateWithLocale(startDate, "dayName", tz);
@@ -18,7 +17,7 @@ const formatRange = (startDate: string, endDate: string | undefined, tz: string)
 
         return (
             <span>
-                {dayFormatted} · {startTime} - {endTime} {timezone}
+                {dayFormatted} · {startTime} - {endTime}
             </span>
         );
     }
@@ -31,7 +30,7 @@ const formatRange = (startDate: string, endDate: string | undefined, tz: string)
     return (
         <span>
             {startDateFormatted}
-            {endDateFormatted && ` - ${endDateFormatted}`} {timezone}
+            {endDateFormatted && ` - ${endDateFormatted}`}
         </span>
     );
 };

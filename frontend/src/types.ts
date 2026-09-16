@@ -300,6 +300,14 @@ export interface EventSettings {
 
     show_available_occurrence_capacity?: boolean;
     hide_sold_out_occurrences?: boolean;
+
+    // Custom homepage details & certificate configuration
+    is_certificate_eligible?: boolean;
+    target_audience?: string;
+    certificate_info?: string;
+    requirements_info?: string;
+    event_highlights?: string;
+    attendee_notice?: string;
 }
 
 export interface VenueAddress {
@@ -563,6 +571,7 @@ export interface Event extends EventBase {
     upcoming_occurrences_sold_out?: boolean;
     last_occurrence_date?: string | null;
     occurrences_month?: string | null;
+    is_certificate_eligible?: boolean;
 }
 
 export interface EventStatistics {

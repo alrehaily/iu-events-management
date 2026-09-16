@@ -15,8 +15,10 @@ import {OrganizerStatus} from "../../../../../../types.ts";
 import {IconTrash, IconArchive, IconArrowBackUp} from "@tabler/icons-react";
 import {useIsCurrentUserAdmin} from "../../../../../../hooks/useIsCurrentUserAdmin.ts";
 import {BouncingEmoji} from "../../../../../common/BouncingEmoji";
+import {useIULanguage} from "../../../../../../context/IULanguageContext";
 
 export const DangerZoneSettings = () => {
+    const {isArabic} = useIULanguage();
     const {organizerId} = useParams();
     const navigate = useNavigate();
     const isAdmin = useIsCurrentUserAdmin();
@@ -28,8 +30,10 @@ export const DangerZoneSettings = () => {
     const [deleteConfirmation, setDeleteConfirmation] = useState('');
 
     const isArchived = organizer?.status === OrganizerStatus.ARCHIVED;
-    const deleteConfirmationPhrase = t`delete`;
-    const isDeleteConfirmed = deleteConfirmation.trim().toLocaleLowerCase() === deleteConfirmationPhrase.toLocaleLowerCase();
+    const deleteConfirmationPhrase = isArabic ? "حذف" : "delete";
+    const isDeleteConfirmed =
+        deleteConfirmation.trim().toLowerCase() === "delete" ||
+        deleteConfirmation.trim() === "حذف";
 
     const activeOrganizerCount = organizers?.data?.filter(
         org => org.status !== OrganizerStatus.ARCHIVED
@@ -39,11 +43,11 @@ export const DangerZoneSettings = () => {
     const handleDelete = () => {
         deleteMutation.mutate({organizerId: organizerId!}, {
             onSuccess: () => {
-                showSuccess(t`Organizer deleted successfully`);
+                showSuccess(isArabic ? "تم حذف المنظم بنجاح" : t`Organizer deleted successfully`);
                 navigate('/manage/events');
             },
             onError: (error: any) => {
-                showError(error?.response?.data?.message || t`Failed to delete organizer`);
+                showError(error?.response?.data?.message || (isArabic ? "تعذر حذف المنظم" : t`Failed to delete organizer`));
             }
         });
     };
@@ -51,22 +55,29 @@ export const DangerZoneSettings = () => {
     const handleArchiveToggle = () => {
         const newStatus = isArchived ? OrganizerStatus.LIVE : OrganizerStatus.ARCHIVED;
         const message = isArchived
-            ? t`Are you sure you want to restore this organizer?`
-            : t`Are you sure you want to archive this organizer? This will also archive all events belonging to this organizer.`;
+            ? (isArabic ? "هل أنت متأكد من رغبتك في استعادة هذا المنظم؟" : t`Are you sure you want to restore this organizer?`)
+            : (isArabic ? "هل أنت متأكد من أرشفة هذا المنظم؟ سيؤدي هذا أيضاً إلى أرشفة كافة الفعاليات التابعة له." : t`Are you sure you want to archive this organizer? This will also archive all events belonging to this organizer.`);
 
         confirmationDialog(
             message,
             () => {
                 statusMutation.mutate({organizerId: organizerId!, status: newStatus}, {
                     onSuccess: () => {
-                        showSuccess(isArchived ? t`Organizer restored successfully` : t`Organizer archived successfully`);
+                        showSuccess(
+                            isArchived
+                                ? (isArabic ? "تمت استعادة المنظم بنجاح" : t`Organizer restored successfully`)
+                                : (isArabic ? "تمت أرشفة المنظم بنجاح" : t`Organizer archived successfully`)
+                        );
                     },
                     onError: (error: any) => {
-                        showError(error?.response?.data?.message || t`Failed to update organizer status`);
+                        showError(error?.response?.data?.message || (isArabic ? "تعذر تحديث حالة المنظم" : t`Failed to update organizer status`));
                     }
                 });
             },
-            {confirm: isArchived ? t`Restore` : t`Archive`, cancel: t`Cancel`}
+            {
+                confirm: isArchived ? (isArabic ? "استعادة" : t`Restore`) : (isArabic ? "أرشفة" : t`Archive`),
+                cancel: isArabic ? "إلغاء" : t`Cancel`
+            }
         );
     };
 
@@ -75,9 +86,11 @@ export const DangerZoneSettings = () => {
             <DangerZone>
                 <div style={{textAlign: 'center', padding: '20px 0'}}>
                     <BouncingEmoji emoji="✋"/>
-                    <h3>{t`Admin Access Required`}</h3>
+                    <h3>{isArabic ? "صلاحيات الأدمن مطلوبة" : t`Admin Access Required`}</h3>
                     <Text size="sm" c="dimmed">
-                        {t`Only account administrators can delete or archive organizers. Contact your account admin for assistance.`}
+                        {isArabic
+                            ? "يحق فقط لمديري الحسابات حذف المنظمين أو أرشفتهم. تواصل مع مدير الحساب للمساعدة."
+                            : t`Only account administrators can delete or archive organizers. Contact your account admin for assistance.`}
                     </Text>
                 </div>
             </DangerZone>
@@ -87,11 +100,11 @@ export const DangerZoneSettings = () => {
     return (
         <DangerZone>
             <DangerZoneSection
-                title={t`Delete Organizer`}
+                title={isArabic ? "حذف المنظم" : t`Delete Organizer`}
                 description={
                     deletionStatus?.can_delete
-                        ? t`Permanently delete this organizer and all its events.`
-                        : deletionStatus?.reason || t`Loading...`
+                        ? (isArabic ? "حذف هذا المنظم وكافة الفعاليات التابعة له نهائياً." : t`Permanently delete this organizer and all its events.`)
+                        : deletionStatus?.reason || (isArabic ? "جاري التحميل..." : t`Loading...`)
                 }
                 action={
                     <>
@@ -103,7 +116,7 @@ export const DangerZoneSettings = () => {
                         {deletionStatus?.can_delete && (
                             <Stack gap="xs" maw={400}>
                                 <Text size="sm" c="dimmed">
-                                    {t`Type "delete" to confirm`}
+                                    {isArabic ? 'اكتب "حذف" للتأكيد' : t`Type "delete" to confirm`}
                                 </Text>
                                 <TextInput
                                     placeholder={deleteConfirmationPhrase}
@@ -121,19 +134,23 @@ export const DangerZoneSettings = () => {
                             disabled={!deletionStatus?.can_delete || isDeletionStatusLoading || !isDeleteConfirmed}
                             leftSection={<IconTrash size={16}/>}
                         >
-                            {t`Delete Organizer`}
+                            {isArabic ? "حذف المنظم" : t`Delete Organizer`}
                         </Button>
                     </>
                 }
             />
             <DangerZoneSection
-                title={isArchived ? t`Restore Organizer` : t`Archive Organizer`}
+                title={
+                    isArchived
+                        ? (isArabic ? "استعادة المنظم" : t`Restore Organizer`)
+                        : (isArabic ? "أرشفة المنظم" : t`Archive Organizer`)
+                }
                 description={
                     isArchived
-                        ? t`Restore this organizer and make it active again.`
+                        ? (isArabic ? "استعادة هذا المنظم وتفعيله مجدداً." : t`Restore this organizer and make it active again.`)
                         : isLastActiveOrganizer
-                            ? t`You cannot archive the last active organizer on your account.`
-                            : t`Archive this organizer. This will also archive all events belonging to this organizer.`
+                            ? (isArabic ? "لا يمكنك أرشفة آخر منظم نشط في حسابك." : t`You cannot archive the last active organizer on your account.`)
+                            : (isArabic ? "أرشفة هذا المنظم. سيؤدي هذا أيضاً إلى أرشفة كافة الفعاليات التابعة له." : t`Archive this organizer. This will also archive all events belonging to this organizer.`)
                 }
                 action={
                     <Button
@@ -144,10 +161,11 @@ export const DangerZoneSettings = () => {
                         disabled={!isArchived && isLastActiveOrganizer}
                         leftSection={isArchived ? <IconArrowBackUp size={16}/> : <IconArchive size={16}/>}
                     >
-                        {isArchived ? t`Restore Organizer` : t`Archive Organizer`}
+                        {isArchived ? (isArabic ? "استعادة المنظم" : t`Restore Organizer`) : (isArabic ? "أرشفة المنظم" : t`Archive Organizer`)}
                     </Button>
                 }
             />
         </DangerZone>
     );
 };
+

@@ -80,26 +80,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
     return (
         <div className={classNames(`${classes.sidebar} ${sidebarOpen ? classes.open : classes.closed}`)}>
             <div className={classes.logo}>
-                <div
-                    className={classes.logoBadge}
-                    style={{
-                        width: '188px',
-                        maxWidth: 'calc(100% - 38px)',
-                        padding: '9px 14px',
-                        borderRadius: '13px',
-                    }}
-                >
-                    <NavLink to={`/manage/events`} style={{width: '100%'}}>
+                <div className={classes.logoBadge}>
+                    <NavLink to={`/manage/events`}>
                         <img
                             src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")}
                             alt={t`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`}
                             className={classes.logoImg}
-                            style={{
-                                width: '100%',
-                                height: 'auto',
-                                maxHeight: '58px',
-                                maxWidth: '180px',
-                            }}
                         />
                     </NavLink>
                 </div>

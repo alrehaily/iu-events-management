@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
 import { dynamicActivateLocale, getClientLocale, SupportedLocales } from "../locales";
+import { getEventCategories } from "../constants/eventCategories";
 
 export interface IULanguageContextType {
   locale: SupportedLocales;
@@ -183,6 +184,10 @@ const IU_TRANSLATIONS: Record<SupportedLocales, Record<string, string>> = {
     reg_err_match: "كلمتا المرور غير متطابقتين.",
     reg_err_length: "يجب أن تكون كلمة المرور 8 أحرف على الأقل.",
     reg_footer_note: "الجامعة الإسلامية بالمدينة المنورة — نحو تجربة جامعية رقمية متكاملة",
+    confirm_btn: "تأكيد",
+    cancel_btn: "إلغاء",
+    confirm_danger_title: "تأكيد الإجراء",
+    confirm_title: "تأكيد العملية",
   },
   en: {
     // Navigation
@@ -194,6 +199,13 @@ const IU_TRANSLATIONS: Record<SupportedLocales, Record<string, string>> = {
     nav_logout: "Log Out",
     nav_organizer_dashboard: "Organizer Dashboard",
     brand_title: "Islamic University of Madinah",
+
+    // Confirmation Modals
+    confirm_btn: "Confirm",
+    cancel_btn: "Cancel",
+    confirm_cancel_msg: "Are you sure you want to cancel this registration and tickets?",
+    confirm_danger_title: "Confirm Action",
+    confirm_title: "Confirmation",
 
     // Footer
     footer_desc: "The unified digital platform for organizing, booking, and documenting Islamic University events in Madinah, supporting scholarly and cultural vitality.",
@@ -325,8 +337,6 @@ const IU_TRANSLATIONS: Record<SupportedLocales, Record<string, string>> = {
     awaiting_checkin: "Awaiting Check-in Upon Arrival",
     cert_btn: "Attendance Certificate",
     view_ticket_qr: "View Ticket / QR",
-    cancel_booking_btn: "Cancel This Booking & Tickets",
-    confirm_cancel_msg: "Are you sure you want to cancel this registration and ticket?",
     cancel_success_msg: "Registration cancelled successfully.",
     no_registrations_title: "No Bookings Registered Currently",
     no_registrations_desc: "Explore upcoming events at the Islamic University and secure your ticket today.",
@@ -411,17 +421,11 @@ export const IULanguageProvider: React.FC<{ children: ReactNode; initialLocale?:
   }, [locale]);
 
   const getCategoryLabel = useCallback((categoryId: string): string => {
-    const map: Record<string, string> = {
-      EDUCATION: t("cat_education", "تعليمي وأكاديمي"),
-      WORKSHOP: t("cat_workshop", "ورش عمل وتدريب"),
-      TECH: t("cat_tech", "تقنية ومعلوماتية"),
-      BUSINESS: t("cat_business", "ريادة أعمال ومشاريع"),
-      SOCIAL: t("cat_social", "أنشطة مجتمعية"),
-      ART: t("cat_art", "فعاليات ثقافية ومعارض"),
-      OTHER: t("cat_other", "عام / أخرى"),
-      "": t("filter_all_categories", "كل التصنيفات"),
-    };
-    return map[categoryId] || categoryId || t("filter_category", "التصنيف");
+    if (!categoryId) return t("filter_all_categories", "كل التصنيفات");
+    const categories = getEventCategories();
+    const match = categories.find((c) => c.id === categoryId);
+    if (match) return match.name;
+    return categoryId || t("filter_category", "التصنيف");
   }, [t]);
 
   const formatDate = useCallback((dateStr?: string | null): string => {

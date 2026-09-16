@@ -8,34 +8,44 @@ import {EventSettings, HomepageThemeSettings, IdParam} from "../../../../types.t
 import {showSuccess} from "../../../../utilites/notifications.tsx";
 import {t} from "@lingui/macro";
 import {useForm} from "@mantine/form";
-import {Button, Group, TextInput, Accordion, Stack, Text} from "@mantine/core";
-import {IconColorPicker, IconHelp, IconPhoto, IconPalette, IconTypography} from "@tabler/icons-react";
+import {Accordion, Button, Group, Stack, Switch, Text, Textarea, TextInput} from "@mantine/core";
+import {
+    IconAdjustments, 
+    IconHelp, 
+    IconPhoto, 
+    IconTicket, 
+    IconLock, 
+    IconDeviceDesktop, 
+    IconDeviceTablet, 
+    IconDeviceMobile
+} from "@tabler/icons-react";
 import {Tooltip} from "../../../common/Tooltip";
-import {CustomSelect} from "../../../common/CustomSelect";
 import {GET_EVENT_IMAGES_QUERY_KEY, useGetEventImages} from "../../../../queries/useGetEventImages.ts";
 import {eventPreviewPath} from "../../../../utilites/urlHelper.ts";
 import {LoadingMask} from "../../../common/LoadingMask";
 import {ImageUploadDropzone} from "../../../common/ImageUploadDropzone";
 import {queryClient} from "../../../../utilites/queryClient.ts";
-import {GET_EVENT_PUBLIC_QUERY_KEY} from "../../../../queries/useGetEventPublic.ts";
-import {ThemeColorControls} from "../../../common/ThemeColorControls";
-import {ThemeFontControl} from "../../../common/ThemeFontControl";
-import {validateThemeSettings} from "../../../../utilites/themeUtils.ts";
-import {DEFAULT_HOMEPAGE_FONT} from "../../../../constants/homepageFonts.ts";
+import {GET_EVENT_PUBLIC_QUERY_KEY, useGetEventPublic} from "../../../../queries/useGetEventPublic.ts";
+import {getDefaultThemeSettings, validateThemeSettings} from "../../../../utilites/themeUtils.ts";
 
 interface FormValues {
     homepage_theme_settings: Partial<HomepageThemeSettings>;
-    continue_button_text: string;
-    get_tickets_button_text: string;
+    is_certificate_eligible: boolean;
+    target_audience: string;
+    certificate_info: string;
+    requirements_info: string;
+    event_highlights: string;
+    attendee_notice: string;
 }
-
-import {IU_COLORS} from "../../../../constants/iuTheme.ts";
 
 const HomepageDesigner = () => {
     const {eventId} = useParams();
     const eventSettingsQuery = useGetEventSettings(eventId);
     const eventImagesQuery = useGetEventImages(eventId);
+    const eventPublicQuery = useGetEventPublic(eventId);
     const updateMutation = useUpdateEventSettings();
+
+    const [viewMode, setViewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const lastSentSettings = useRef<string | null>(null);
@@ -43,21 +53,20 @@ const HomepageDesigner = () => {
     const [iframeSrc, setIframeSrc] = useState<string | null>(null);
     const [iframeLoaded, setIframeLoaded] = useState(false);
     const [lastCoverId, setLastCoverId] = useState<IdParam | null>(null);
-    const [accordionValue, setAccordionValue] = useState<string[]>(['images', 'colors', 'typography', 'button']);
+    const [accordionValue, setAccordionValue] = useState<string[]>(['images', 'details']);
 
     const existingCover = eventImagesQuery.data?.find((image) => image.type === 'EVENT_COVER');
+    const eventData = eventPublicQuery.data;
 
     const form = useForm<FormValues>({
         initialValues: {
-            homepage_theme_settings: {
-                accent: IU_COLORS.green900,
-                background: IU_COLORS.bg,
-                mode: 'light',
-                background_type: 'COLOR',
-                font_family: DEFAULT_HOMEPAGE_FONT,
-            },
-            continue_button_text: '',
-            get_tickets_button_text: '',
+            homepage_theme_settings: getDefaultThemeSettings(),
+            is_certificate_eligible: false,
+            target_audience: '',
+            certificate_info: '',
+            requirements_info: '',
+            event_highlights: '',
+            attendee_notice: '',
         }
     });
 
@@ -70,8 +79,12 @@ const HomepageDesigner = () => {
 
             form.setValues({
                 homepage_theme_settings: themeSettings,
-                continue_button_text: settings.continue_button_text,
-                get_tickets_button_text: settings.get_tickets_button_text || '',
+                is_certificate_eligible: Boolean(settings.is_certificate_eligible ?? false),
+                target_audience: settings.target_audience || '',
+                certificate_info: settings.certificate_info || '',
+                requirements_info: settings.requirements_info || '',
+                event_highlights: settings.event_highlights || '',
+                attendee_notice: settings.attendee_notice || '',
             });
         }
     }, [eventSettingsQuery.isFetched]);
@@ -95,9 +108,12 @@ const HomepageDesigner = () => {
 
         const eventSettings: Partial<EventSettings> = {
             homepage_theme_settings: validatedTheme,
-            continue_button_text: values.continue_button_text,
-            get_tickets_button_text: values.get_tickets_button_text,
-            // Also update legacy fields for backward compatibility during transition
+            is_certificate_eligible: values.is_certificate_eligible,
+            target_audience: values.target_audience,
+            certificate_info: values.certificate_info,
+            requirements_info: values.requirements_info,
+            event_highlights: values.event_highlights,
+            attendee_notice: values.attendee_notice,
             homepage_primary_color: validatedTheme.accent,
             homepage_body_background_color: validatedTheme.background,
             homepage_background_type: validatedTheme.background_type,
@@ -108,6 +124,9 @@ const HomepageDesigner = () => {
             {
                 onSuccess: () => {
                     showSuccess(t`Successfully Updated Homepage Design`);
+                    queryClient.invalidateQueries({
+                        queryKey: [GET_EVENT_PUBLIC_QUERY_KEY, eventId]
+                    });
                 },
                 onError: (error) => {
                     formErrorHandle(form, error);
@@ -131,8 +150,12 @@ const HomepageDesigner = () => {
 
             const settingsToSend = {
                 homepage_theme_settings: themeSettings,
-                continue_button_text: form.values.continue_button_text,
-                get_tickets_button_text: form.values.get_tickets_button_text,
+                is_certificate_eligible: form.values.is_certificate_eligible,
+                target_audience: form.values.target_audience,
+                certificate_info: form.values.certificate_info,
+                requirements_info: form.values.requirements_info,
+                event_highlights: form.values.event_highlights,
+                attendee_notice: form.values.attendee_notice,
             };
 
             const settingsJson = JSON.stringify(settingsToSend);
@@ -150,178 +173,181 @@ const HomepageDesigner = () => {
         sendSettingsToIframe();
     }, [iframeLoaded, form.values]);
 
-    const handleThemeChange = (themeSettings: Partial<HomepageThemeSettings>) => {
-        form.setFieldValue('homepage_theme_settings', themeSettings);
-    };
-
-    const handleBackgroundTypeChange = (backgroundType: string | string[]) => {
-        const value = Array.isArray(backgroundType) ? backgroundType[0] : backgroundType;
-        form.setFieldValue('homepage_theme_settings', {
-            ...form.values.homepage_theme_settings,
-            background_type: value as 'COLOR' | 'MIRROR_COVER_IMAGE',
-        });
-    };
-
     return (
         <div className={classes.container}>
             <div className={classes.sidebar}>
                 <div className={classes.sticky}>
                     <div className={classes.header}>
                         <h2>{t`Homepage Design`}</h2>
-                        <Text c="dimmed" size="sm">{t`Customize the layout, colors, and branding of your event homepage.`}</Text>
+                        <Text c="dimmed" size="sm">{t`Customize cover image and event information.`}</Text>
                     </div>
 
-                    <Accordion
-                        multiple
-                        value={accordionValue}
-                        onChange={setAccordionValue}
-                        variant="contained"
-                        className={classes.accordion}
-                    >
-                        <Accordion.Item value="images" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconPhoto size={20} />}>
-                                <Text fw={500}>{t`Images`}</Text>
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <Stack gap="lg">
-                                    <div>
-                                        <Group justify={'space-between'} mb="xs">
-                                            <Text fw={500} size="sm">{t`Cover Image`}</Text>
-                                            <Tooltip
-                                                label={t`We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB`}>
-                                                <IconHelp size={16} style={{ color: 'var(--mantine-color-gray-6)' }}/>
-                                            </Tooltip>
-                                        </Group>
-                                        <ImageUploadDropzone
-                                            imageType="EVENT_COVER"
-                                            entityId={eventId}
-                                            onUploadSuccess={handleImageChange}
-                                            onDeleteSuccess={handleImageChange}
-                                            existingImageData={{
-                                                url: existingCover?.url,
-                                                id: existingCover?.id,
-                                            }}
-                                            helpText={t`Cover image will be displayed at the top of your event page`}
-                                            displayMode="compact"
-                                        />
-                                    </div>
-                                </Stack>
-                            </Accordion.Panel>
-                        </Accordion.Item>
+                    <form onSubmit={form.onSubmit(handleSubmit)}>
+                        <Accordion
+                            multiple
+                            value={accordionValue}
+                            onChange={setAccordionValue}
+                            variant="contained"
+                            className={classes.accordion}
+                        >
+                            <Accordion.Item value="images" className={classes.accordionItem}>
+                                <Accordion.Control icon={<IconPhoto size={20} />}>
+                                    <Text fw={500}>{t`Cover Image`}</Text>
+                                </Accordion.Control>
+                                <Accordion.Panel>
+                                    <Stack gap="lg">
+                                        <div>
+                                            <Group justify={'space-between'} mb="xs">
+                                                <Text fw={500} size="sm">{t`Cover Image`}</Text>
+                                                <Tooltip
+                                                    label={t`We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB`}>
+                                                    <IconHelp size={16} style={{ color: 'var(--mantine-color-gray-6)' }}/>
+                                                </Tooltip>
+                                            </Group>
+                                            <ImageUploadDropzone
+                                                imageType="EVENT_COVER"
+                                                entityId={eventId}
+                                                onUploadSuccess={handleImageChange}
+                                                onDeleteSuccess={handleImageChange}
+                                                existingImageData={{
+                                                    url: existingCover?.url,
+                                                    id: existingCover?.id,
+                                                }}
+                                                helpText={t`Cover image will be displayed at the top of your event page`}
+                                                displayMode="compact"
+                                            />
+                                        </div>
+                                    </Stack>
+                                </Accordion.Panel>
+                            </Accordion.Item>
 
-                        <Accordion.Item value="colors" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconPalette size={20} />}>
-                                <Text fw={500}>{t`Theme & Colors`}</Text>
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <form onSubmit={form.onSubmit(handleSubmit)}>
+                            <Accordion.Item value="details" className={classes.accordionItem}>
+                                <Accordion.Control icon={<IconAdjustments size={20} />}>
+                                    <Text fw={500}>{t`تفاصيل ومعلومات الفعالية`}</Text>
+                                </Accordion.Control>
+                                <Accordion.Panel>
                                     <fieldset disabled={eventSettingsQuery.isLoading || updateMutation.isPending} className={classes.fieldset}>
                                         <Stack gap="md">
-                                            <CustomSelect
-                                                optionList={[
-                                                    {
-                                                        icon: <IconColorPicker/>,
-                                                        label: t`Color`,
-                                                        value: 'COLOR',
-                                                        description: t`Choose a color for your background`,
-                                                    },
-                                                    {
-                                                        icon: <IconPhoto/>,
-                                                        label: t`Use cover image`,
-                                                        value: 'MIRROR_COVER_IMAGE',
-                                                        description: t`Use a blurred version of the cover image as the background`,
-                                                        disabled: !existingCover,
-                                                    },
-                                                ]}
-                                                label={t`Background Type`}
-                                                name={'homepage_theme_settings.background_type'}
-                                                value={form.values.homepage_theme_settings.background_type || 'COLOR'}
-                                                onChange={handleBackgroundTypeChange}
+                                            <Switch
+                                                label={t`هل تتضمن الفعالية شهادة حضور؟`}
+                                                description={t`عند تفعيل هذا الخيار، سيتم عرض بطاقة شهادة الحضور وشعار الاعتماد في صفحة الفعالية`}
+                                                color="teal"
+                                                size="sm"
+                                                {...form.getInputProps('is_certificate_eligible', { type: 'checkbox' })}
+                                            />
+                                            <TextInput
+                                                label={t`الفئة المستهدفة`}
+                                                placeholder={t`كافة المستفيدين، الباحثون، والمهتمون`}
+                                                description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
+                                                size="sm"
+                                                {...form.getInputProps('target_audience')}
                                             />
 
-                                            <ThemeColorControls
-                                                values={form.values.homepage_theme_settings}
-                                                onChange={handleThemeChange}
-                                                disabled={eventSettingsQuery.isLoading || updateMutation.isPending}
+                                            <TextInput
+                                                label={t`تفاصيل شهادة الحضور`}
+                                                placeholder={t`تمنح شهادة وفقاً لمعايير الحضور`}
+                                                description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
+                                                size="sm"
+                                                {...form.getInputProps('certificate_info')}
+                                            />
+
+                                            <TextInput
+                                                label={t`متطلبات الفعالية`}
+                                                placeholder={t`التسجيل المسبق وتأكيد الحضور عبر المنصة`}
+                                                description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
+                                                size="sm"
+                                                {...form.getInputProps('requirements_info')}
+                                            />
+
+                                            <Textarea
+                                                label={t`محاور الفعالية وأهدافها (محور في كل سطر)`}
+                                                placeholder={`اكتساب المفاهيم والأسس العلمية والتطبيقية للموضوع المطروح.\nالتعرف على أفضل الممارسات والتطبيقات الحديثة في المجال.`}
+                                                rows={4}
+                                                description={t`اترك الحقل فارغاً لاستخدام المحاور الافتراضية`}
+                                                size="sm"
+                                                {...form.getInputProps('event_highlights')}
+                                            />
+
+                                            <Textarea
+                                                label={t`ملاحظات وتنبيهات الحضور`}
+                                                placeholder={t`يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة...`}
+                                                rows={3}
+                                                description={t`اترك الحقل فارغاً لاستخدام الملاحظات الافتراضية`}
+                                                size="sm"
+                                                {...form.getInputProps('attendee_notice')}
                                             />
                                         </Stack>
                                     </fieldset>
-                                </form>
-                            </Accordion.Panel>
-                        </Accordion.Item>
+                                </Accordion.Panel>
+                            </Accordion.Item>
+                        </Accordion>
 
-                        <Accordion.Item value="typography" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconTypography size={20} />}>
-                                <Text fw={500}>{t`Typography`}</Text>
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <fieldset disabled={eventSettingsQuery.isLoading || updateMutation.isPending} className={classes.fieldset}>
-                                    <ThemeFontControl
-                                        value={form.values.homepage_theme_settings.font_family}
-                                        onChange={(fontFamily) => form.setFieldValue('homepage_theme_settings', {
-                                            ...form.values.homepage_theme_settings,
-                                            font_family: fontFamily,
-                                        })}
-                                        disabled={eventSettingsQuery.isLoading || updateMutation.isPending}
-                                    />
-                                </fieldset>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-
-                        <Accordion.Item value="button" className={classes.accordionItem}>
-                            <Accordion.Control icon={<IconTypography size={20} />}>
-                                <Text fw={500}>{t`Button Text`}</Text>
-                            </Accordion.Control>
-                            <Accordion.Panel>
-                                <form onSubmit={form.onSubmit(handleSubmit)}>
-                                    <fieldset disabled={eventSettingsQuery.isLoading || updateMutation.isPending} className={classes.fieldset}>
-                                        <Stack gap="md">
-                                            <TextInput
-                                                label={t`Continue Button Text`}
-                                                description={t`Customize the text shown on the continue button`}
-                                                placeholder={t`e.g., Get Tickets, Register Now`}
-                                                size="sm"
-                                                {...form.getInputProps('continue_button_text')}
-                                            />
-                                            <TextInput
-                                                label={t`Get Tickets Button Text`}
-                                                description={t`Customize the text shown on the floating button that scrolls to the tickets section`}
-                                                placeholder={t`Get Tickets`}
-                                                size="sm"
-                                                {...form.getInputProps('get_tickets_button_text')}
-                                            />
-                                        </Stack>
-                                    </fieldset>
-                                </form>
-                            </Accordion.Panel>
-                        </Accordion.Item>
-                    </Accordion>
-
-                    <Button
-                        loading={updateMutation.isPending}
-                        type="submit"
-                        fullWidth
-                        mt="md"
-                        onClick={() => form.onSubmit(handleSubmit)()}
-                    >
-                        {t`Save Changes`}
-                    </Button>
+                        <Button
+                            loading={updateMutation.isPending}
+                            type="submit"
+                            fullWidth
+                            mt="md"
+                        >
+                            {t`Save Changes`}
+                        </Button>
+                    </form>
                 </div>
             </div>
 
             <div className={classes.previewContainer}>
-                <h2>{t`Homepage Preview`}</h2>
-                <div className={classes.iframeContainer}>
-                    {iframeSrc ? (
-                        <iframe
-                            ref={iframeRef}
-                            src={iframeSrc}
-                            title="Event Preview"
-                            onLoad={() => setIframeLoaded(true)}
-                        />
-                    ) : (
-                        <LoadingMask/>
-                    )}
+                <div className={classes.browserMockup} data-view={viewMode}>
+                    <div className={classes.browserHeader}>
+                        <div className={classes.windowControls}>
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+                        <div className={classes.browserUrlBar}>
+                            <IconLock size={13} />
+                            <span>iu-events.sa/event/{eventData?.slug || eventId}</span>
+                        </div>
+                        <div className={classes.viewModeGroup}>
+                            <button
+                                type="button"
+                                className={classes.viewBtn}
+                                data-active={viewMode === 'desktop'}
+                                onClick={() => setViewMode('desktop')}
+                                title={t`Desktop`}
+                            >
+                                <IconDeviceDesktop size={15} />
+                            </button>
+                            <button
+                                type="button"
+                                className={classes.viewBtn}
+                                data-active={viewMode === 'tablet'}
+                                onClick={() => setViewMode('tablet')}
+                                title={t`Tablet`}
+                            >
+                                <IconDeviceTablet size={15} />
+                            </button>
+                            <button
+                                type="button"
+                                className={classes.viewBtn}
+                                data-active={viewMode === 'mobile'}
+                                onClick={() => setViewMode('mobile')}
+                                title={t`Mobile`}
+                            >
+                                <IconDeviceMobile size={15} />
+                            </button>
+                        </div>
+                    </div>
+                    <div className={classes.iframeWrapper}>
+                        {iframeSrc ? (
+                            <iframe
+                                ref={iframeRef}
+                                src={iframeSrc}
+                                title="Event Preview"
+                                onLoad={() => setIframeLoaded(true)}
+                            />
+                        ) : (
+                            <LoadingMask/>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

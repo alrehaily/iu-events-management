@@ -1,29 +1,30 @@
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {Link} from "react-router";
 import SelectProducts from "../../routes/product-widget/SelectProducts";
 import {EventDocumentHead} from "../../common/EventDocumentHead";
-import {eventCoverImage, imageUrl} from "../../../utilites/urlHelper.ts";
+import {eventCoverImage} from "../../../utilites/urlHelper.ts";
 import {Event, EventOccurrence} from "../../../types.ts";
 import {EventNotAvailable} from "./EventNotAvailable";
 import {
+    IconArrowRight,
     IconCalendar,
     IconCertificate,
     IconClock,
-    IconMail,
+    IconExternalLink,
     IconMapPin,
     IconReceipt,
     IconTag,
-    IconTicket,
-    IconUsers
+    IconUsers,
 } from "@tabler/icons-react";
+import {Modal} from "@mantine/core";
 import {IUNavbar} from "../../iu/IUNavbar";
 import {IUFooter} from "../../iu/IUFooter";
+import {IUHero} from "../../iu/IUHero";
 import {ContactOrganizerModal} from "../../common/ContactOrganizerModal";
 import {buildEventLocationDisplay, summariseEventLocations} from "../../../utilites/effectiveLocation.ts";
 import {StatusToggle} from "../../common/StatusToggle";
 import {useOrganizerTrackingPixels} from "../../../hooks/useOrganizerTrackingPixels";
 import {trackPixelEvent, hasActivePixels} from "../../../utilites/trackingPixels";
-import {EventDateRange} from "../../common/EventDateRange";
 import {formatCurrency} from "../../../utilites/currency.ts";
 import {UserGeneratedContent} from "../../common/UserGeneratedContent";
 import {IU_COLORS} from "../../../constants/iuTheme.ts";
@@ -40,31 +41,15 @@ interface EventHomepageProps {
 export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const {event, promoCodeValid, promoCode, initialOccurrenceId} = loaderData;
     const [contactModalOpen, setContactModalOpen] = useState(false);
+    const [ticketsModalOpen, setTicketsModalOpen] = useState(false);
     const [selectedOccurrence, setSelectedOccurrence] = useState<EventOccurrence | undefined>();
     const [selectedCart, setSelectedCart] = useState({quantity: 0, total: 0});
     const [continueButtonNode, setContinueButtonNode] = useState<HTMLButtonElement | null>(null);
-    const [continueButtonInView, setContinueButtonInView] = useState(false);
-    const ticketsSectionRef = useRef<HTMLDivElement>(null);
 
     const handleCartChange = useCallback(
         (cart: {quantity: number; total: number}) => setSelectedCart(cart),
         [],
     );
-
-    useEffect(() => {
-        if (!continueButtonNode) {
-            setContinueButtonInView(false);
-            return;
-        }
-
-        const observer = new IntersectionObserver(
-            ([entry]) => setContinueButtonInView(entry.isIntersecting),
-            {threshold: 0.5},
-        );
-        observer.observe(continueButtonNode);
-
-        return () => observer.disconnect();
-    }, [continueButtonNode]);
 
     const {pixelsReady} = useOrganizerTrackingPixels(
         event?.organizer?.settings?.tracking_pixels
@@ -85,17 +70,15 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     }
 
     const coverImageData = eventCoverImage(event);
-    const coverImage = coverImageData?.url || "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&auto=format&fit=crop&q=80";
-    const organizer = event.organizer!;
-    const organizerLogo = imageUrl('ORGANIZER_LOGO', organizer?.images);
+    const coverImage = coverImageData?.url || null;
+    const organizer = event.organizer;
     const locationSummary = summariseEventLocations(event);
     const singleLocationDisplay = locationSummary.kind === 'single'
         ? buildEventLocationDisplay(event, locationSummary.eventLocation, locationSummary.isEventDefault)
         : null;
     const isOnlineEvent = singleLocationDisplay?.isOnline === true;
-    const venueName = singleLocationDisplay?.venueName ?? (isOnlineEvent ? "عبر الإنترنت" : (event.event_location?.location?.name || "مقر الفعالية"));
-    const formattedAddress = singleLocationDisplay?.full ?? singleLocationDisplay?.short ?? null;
-    const mapUrl = singleLocationDisplay?.mapsUrl ?? null;
+    const venueName = singleLocationDisplay?.venueName ?? (isOnlineEvent ? "عبر الإنترنت" : (event.event_location?.location?.name || "الجامعة الإسلامية بالمدينة المنورة"));
+    const mapUrl = singleLocationDisplay?.mapsUrl ?? `https://maps.google.com/?q=${encodeURIComponent(venueName + " المدينة المنورة")}`;
 
     const products = event.products || event.product_categories?.flatMap(c => c.products || []) || [];
     
@@ -110,14 +93,27 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
 
     // Date calculations for Badge
     const startDateObj = event.start_date ? new Date(event.start_date) : null;
-    const heroDay = startDateObj ? startDateObj.getDate() : "--";
-    const heroMonth = startDateObj ? startDateObj.toLocaleDateString("ar-SA", {month: "short"}) : "قريباً";
-    const heroTime = startDateObj ? startDateObj.toLocaleTimeString("ar-SA", {hour: "2-digit", minute: "2-digit"}) : "يُحدد لاحقاً";
+    const heroDay = startDateObj ? startDateObj.getDate() : "16";
+    const heroMonth = startDateObj ? startDateObj.toLocaleDateString("ar-SA", {month: "long"}) : "سبتمبر";
+    const heroTime = startDateObj ? startDateObj.toLocaleTimeString("ar-SA", {hour: "2-digit", minute: "2-digit"}) : "09:00 م";
 
-    const continueButtonText = event.settings?.continue_button_text || "متابعة الحجز";
-    const showFloatingCheckoutButton = selectedCart.quantity > 0 && !!continueButtonNode && !continueButtonInView;
+    // Timing Format badge (e.g. مسائي or صباحي)
+    const isEvening = startDateObj ? startDateObj.getHours() >= 12 : true;
+    const timingBadgeText = isEvening ? "مسائي" : "صباحي";
 
-    const eventTypeLabel = (event as any).format || (isOnlineEvent ? "عن بُعد" : "دورة / فعالية");
+    const isCertificateEligible = Boolean(event.settings?.is_certificate_eligible ?? event.is_certificate_eligible ?? false);
+
+    // Topics list
+    const defaultHighlights = [
+        "جلسات علمية ومحاضرات متخصصة",
+        "نقاشات مفتوحة مع الباحثين والخبراء",
+        "فرص للتعارف وبناء شراكات بحثية",
+        "مساحات نقاش قصيرة بعد كل محور"
+    ];
+    const rawHighlights = event.settings?.event_highlights || (event as any).event_highlights;
+    const topics = rawHighlights
+        ? rawHighlights.split('\n').map((s: string) => s.trim()).filter((s: string) => s.length > 0)
+        : defaultHighlights;
 
     return (
         <div className="iu-page iu-event-details-page" dir="rtl">
@@ -140,255 +136,234 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
             {/* IU Navbar */}
             <IUNavbar />
 
-            <main className="iu-main">
-                {/* Hero Section */}
-                <section className="iu-event-hero">
-                    <div className="container">
-                        <div className="iu-event-heroGrid">
-                            <div className="iu-event-heroText">
-                                <span className="iu-event-typeBadge">
-                                    {eventTypeLabel}
-                                </span>
-                                <h1>{event.title}</h1>
-                                <p>
-                                    {event.description
-                                        ? event.description.replace(/<[^>]*>/g, '').slice(0, 160) + '...'
-                                        : "فعالية مميزة تنظمها الجامعة الإسلامية بالمدينة المنورة لتعزيز المعرفة وتطوير المهارات."}
-                                </p>
-                                <div className="iu-event-heroMeta">
-                                    <span>
-                                        <IconCalendar size={16} />
-                                        <EventDateRange event={event} occurrence={selectedOccurrence}/>
-                                    </span>
-                                    <span>
-                                        <IconMapPin size={16} />
-                                        {isOnlineEvent ? "عبر الإنترنت" : venueName}
-                                    </span>
-                                </div>
-                            </div>
+            {/* IU Green Hero Backdrop (Pure green background without content) */}
+            <IUHero />
 
-                            <div className="iu-event-heroImage">
-                                <img
-                                    src={coverImage}
-                                    alt={event.title}
-                                />
-                                <div className="iu-event-dateBadge">
-                                    <span className="day">{heroDay}</span>
-                                    <span className="month">{heroMonth}</span>
-                                </div>
-                            </div>
+            {/* Main Page Content */}
+            <main className="iu-event-main-wrapper">
+                <div className="iu-event-card-container">
+                    
+                    {/* Top Banner Section (Full Event Cover Image without dark blue background) */}
+                    <section className="iu-event-banner-header">
+                        {/* Date Badge (Top Right) */}
+                        <div className="iu-event-top-date-badge">
+                            <IconCalendar size={18} className="icon" />
+                            <span className="day">{heroDay}</span>
+                            <span className="month">{heroMonth}</span>
                         </div>
-                    </div>
-                </section>
 
-                {/* Event Details Section */}
-                <section className="iu-event-detailsSection">
-                    <div className="container">
-                        <div className="iu-event-detailsGrid">
-                            {/* Main Details Column */}
-                            <div className="iu-event-detailsMain">
-                                <div className="iu-event-summaryTop">
-                                    <Link to="/events" className="btn outline backBtn" style={{padding: "8px 18px", fontSize: 13, textDecoration: "none"}}>
-                                        ← رجوع للفعاليات
-                                    </Link>
-                                    <div className="iu-event-logoBadge">
-                                        IU
-                                    </div>
-                                </div>
+                        {/* Full Cover Image */}
+                        {coverImage ? (
+                            <img
+                                src={coverImage}
+                                alt={event.title}
+                                className="iu-event-banner-img"
+                            />
+                        ) : (
+                            <div className="iu-banner-fallback-box">
+                                <h2 className="iu-banner-fallback-title">
+                                    {event.title}
+                                </h2>
+                            </div>
+                        )}
+                    </section>
 
-                                <h2 className="iu-event-summaryTitle">{event.title}</h2>
-                                <div className="iu-event-meta">
-                                    <span className="iu-meta-pill">{isFree ? "فعالية مجانية" : `مدفوعة (${formatCurrency(minPrice || 0, event.currency)})`}</span>
-                                    <span className="iu-meta-pill">{isOnlineEvent ? "عن بُعد" : "حضورياً بالجامعة"}</span>
-                                    <span className="iu-meta-pill">متاح لكافة المستفيدين والزوار والمنسوبين</span>
-                                    {(event as any).is_certificate_eligible && (
-                                        <span className="iu-meta-pill" style={{background: "var(--iu-green-soft)", color: "var(--iu-green-secondary)", borderColor: "var(--iu-green-light)"}}>
+                    {/* White Card Body */}
+                    <div className="iu-event-white-body">
+                        <div className="iu-event-content-grid">
+                            
+                            {/* Main Details Column (Right in RTL) */}
+                            <div className="iu-event-main-col">
+                                <h1 className="iu-event-main-title">{event.title}</h1>
+                                
+                                {/* Meta Badges Row */}
+                                <div className="iu-event-pills-row">
+                                    <span className="iu-meta-pill">{timingBadgeText}</span>
+                                    <span className="iu-meta-pill">
+                                        {isFree ? "فعالية مجانية" : `مدفوعة (${formatCurrency(minPrice || 0, event.currency)})`}
+                                    </span>
+                                    <span className="iu-meta-pill">
+                                        {isOnlineEvent ? "عن بُعد" : "حضوري"}
+                                    </span>
+                                    {isCertificateEligible && (
+                                        <span className="iu-meta-pill iu-meta-pill-cert">
                                             شهادة حضور معتمدة
                                         </span>
                                     )}
                                 </div>
 
-                                <h3 className="iu-event-sectionTitle">عن الفعالية</h3>
+                                {/* About Section */}
+                                <h3 className="iu-section-title">عن الفعالية</h3>
                                 {event.description ? (
                                     <UserGeneratedContent
-                                        className="iu-event-description"
+                                        className="iu-event-desc"
                                         html={event.description}
                                     />
                                 ) : (
-                                    <p className="iu-event-description">
-                                        تسعى هذه الفعالية لتقديم محتوى معرفي وتطبيقي متميز يسهم في إثراء المعرفة الأكاديمية والمهنية للحضور، بمشاركة نخبة من المتحدثين والخبراء.
-                                    </p>
+                                    <div className="iu-event-desc">
+                                        <p>
+                                            مؤتمر علمي دولي يناقش أحدث الأبحاث في اللغة العربية والعلوم التطبيقية، مع محاور متخصصة وجلسات معرفية متنوعة.
+                                        </p>
+                                        <p>
+                                            يضم المؤتمر جلسات علمية ومحاور متخصصة وفرصاً للتواصل مع الباحثين والخبراء. يُنصح بالاطلاع على محاور المؤتمر وتجهيز أسئلتك لضمان أقصى استفادة من النقاشات.
+                                        </p>
+                                    </div>
                                 )}
 
-                                {/* 6 Info Cards Grid */}
-                                <div className="iu-event-infoGrid">
-                                    <div className="iu-info-card">
-                                        <h4><IconCalendar size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> الموعد</h4>
-                                        <p><EventDateRange event={event} occurrence={selectedOccurrence}/></p>
-                                    </div>
-                                    <div className="iu-info-card">
-                                        <h4><IconClock size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> الوقت</h4>
-                                        <p>{heroTime}</p>
-                                    </div>
-                                    <div className="iu-info-card">
-                                        <h4><IconTag size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> التصنيف</h4>
-                                        <p>{(event as any).format || "تقني / تعليمي"}</p>
-                                    </div>
-                                    <div className="iu-info-card">
-                                        <h4><IconUsers size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> الفئة المستهدفة</h4>
-                                        <p>كافة المستفيدين، الباحثون، والمهتمون</p>
-                                    </div>
-                                    <div className="iu-info-card">
-                                        <h4><IconCertificate size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> شهادة حضور</h4>
-                                        <p>{(event as any).is_certificate_eligible ? "تمنح شهادة حضور معتمدة فور إتمام الحضور" : "تمنح شهادة وفقاً لمعايير الحضور"}</p>
-                                    </div>
-                                    <div className="iu-info-card">
-                                        <h4><IconReceipt size={18} stroke={1.75} color="var(--iu-icon, #0f172a)" /> المتطلبات</h4>
-                                        <p>التسجيل المسبق وتأكيد الحضور عبر المنصة</p>
-                                    </div>
-                                </div>
-
-                                {/* Learning Outcomes / Highlights */}
-                                <div className="iu-event-subSection">
-                                    <h3 className="iu-event-sectionTitle">محاور الفعالية وأهدافها</h3>
-                                    <ul className="iu-event-checklist">
-                                        <li>اكتساب المفاهيم والأسس العلمية والتطبيقية للموضوع المطروح.</li>
-                                        <li>التعرف على أفضل الممارسات والتطبيقات الحديثة في المجال.</li>
-                                        <li>التفاعل المباشر مع الخبراء والأساتذة المختصين وطرح الاستفسارات.</li>
-                                        <li>الحصول على مواد علمية وروابط مساعدة لإثراء التجربة التعليمية.</li>
-                                    </ul>
-                                </div>
-
-                                {/* Instructions / Notes */}
-                                <div className="iu-event-subSection">
-                                    <h3 className="iu-event-sectionTitle">ملاحظات وتنبيهات الحضور</h3>
-                                    <p className="iu-event-description">
-                                        يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة لإنهاء إجراءات التحقق من التذكرة وتسجيل الدخول. في حال الفعاليات الحضورية، يرجى إبراز رمز الاستجابة السريعة (QR Code) الموجود على تذكرتك لمسؤولي الاستقبال.
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Sidebar Column */}
-                            <aside className="iu-event-detailsSide">
-                                <div className="iu-event-sideCard">
-                                    <div className="iu-event-priceBanner">
-                                        {isFree ? "السعر: مجاني" : `السعر يبدأ من: ${formatCurrency(minPrice || 0, event.currency)}`}
-                                    </div>
-
-                                    {/* Action button if scrolled */}
-                                    <div className="iu-event-ticketsBox" ref={ticketsSectionRef} id="tickets">
-                                        <h4 style={{margin: "0 0 12px", fontSize: 16, fontWeight: 700, color: "#111"}}>
-                                            تسجيل وحجز التذاكر
-                                        </h4>
-                                        <SelectProducts
-                                            colors={{
-                                                background: "transparent",
-                                                primary: IU_COLORS.greenPrimary,
-                                                primaryText: "#ffffff",
-                                                secondary: IU_COLORS.greenSecondary,
-                                                secondaryText: "#ffffff",
-                                                bodyBackground: "#ffffff",
-                                            }}
-                                            continueButtonText={continueButtonText}
-                                            padding={"0px"}
-                                            event={event}
-                                            promoCodeValid={promoCodeValid}
-                                            promoCode={promoCode}
-                                            showPoweredBy={false}
-                                            initialOccurrenceId={initialOccurrenceId}
-                                            onSelectedOccurrenceChange={setSelectedOccurrence}
-                                            onCartChange={handleCartChange}
-                                            continueButtonRef={setContinueButtonNode}
-                                        />
-                                    </div>
-
-                                    {/* Location Display */}
-                                    <div style={{background: "#f8fafc", borderRadius: 14, padding: "16px 18px", marginTop: 16, border: "1px solid #e2e8f0"}}>
-                                        <div style={{display: "flex", alignItems: "flex-start", gap: 10}}>
-                                            <IconMapPin size={20} style={{color: "var(--iu-text)", flexShrink: 0, marginTop: 2}} />
-                                            <div>
-                                                <div style={{fontWeight: 700, fontSize: 14, color: "var(--iu-text)", marginBottom: 4}}>
-                                                    {isOnlineEvent ? "فعالية عن بُعد" : venueName}
-                                                </div>
-                                                {formattedAddress && (
-                                                    <div style={{fontSize: 13, color: "#64748b", lineHeight: 1.5, marginBottom: 8}}>
-                                                        {formattedAddress}
-                                                    </div>
-                                                )}
-                                                {mapUrl && (
-                                                    <a
-                                                        href={mapUrl}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="btn outline"
-                                                        style={{padding: "4px 12px", fontSize: 12, display: "inline-flex", alignItems: "center", gap: 6, textDecoration: "none"}}
-                                                    >
-                                                        <IconMapPin size={13} />
-                                                        فتح الموقع في Google Maps ↗
-                                                    </a>
-                                                )}
-                                            </div>
+                                {/* Info Cards Grid (Matching screenshot layout) */}
+                                <div className="iu-info-cards-3col">
+                                    <div className="iu-card-item">
+                                        <div className="iu-card-header">
+                                            <span className="iu-card-title">توقيت الفعالية</span>
+                                            <IconClock size={18} className="iu-card-icon" />
                                         </div>
+                                        <p className="iu-card-value">{heroDay} {heroMonth} - {heroTime}</p>
                                     </div>
-
-                                    {/* Organizer Info Box */}
-                                    {organizer && (
-                                        <div className="iu-organizer-box">
-                                            {organizerLogo ? (
-                                                <img
-                                                    src={organizerLogo}
-                                                    alt={organizer.name}
-                                                    className="iu-organizer-avatar"
-                                                />
-                                            ) : (
-                                                <div className="iu-organizer-avatar">
-                                                    {organizer.name ? organizer.name.charAt(0).toUpperCase() : "IU"}
-                                                </div>
-                                            )}
-                                            <div className="iu-organizer-info" style={{flex: 1}}>
-                                                <h4>{organizer.name || "الجامعة الإسلامية بالمدينة المنورة"}</h4>
-                                                <p>الجهة المنظمة للفعالية</p>
-                                                <button
-                                                    onClick={() => setContactModalOpen(true)}
-                                                    className="btn outline"
-                                                    style={{marginTop: 8, padding: "4px 12px", fontSize: 12, display: "inline-flex", alignItems: "center", gap: 6}}
-                                                >
-                                                    <IconMail size={14} />
-                                                    تواصل مع المنظم
-                                                </button>
+                                    <div className="iu-card-item">
+                                        <div className="iu-card-header">
+                                            <span className="iu-card-title">الموقع</span>
+                                            <IconMapPin size={18} className="iu-card-icon" />
+                                        </div>
+                                        <p className="iu-card-value">{isOnlineEvent ? "عبر الإنترنت" : venueName}</p>
+                                    </div>
+                                    <div className="iu-card-item">
+                                        <div className="iu-card-header">
+                                            <span className="iu-card-title">تصنيف الفعالية</span>
+                                            <IconTag size={18} className="iu-card-icon" />
+                                        </div>
+                                        <p className="iu-card-value">{(event as any).format || event.category || "WORKSHOP"}</p>
+                                    </div>
+                                    <div className="iu-card-item">
+                                        <div className="iu-card-header">
+                                            <span className="iu-card-title">شروط القبول</span>
+                                            <IconReceipt size={18} className="iu-card-icon" />
+                                        </div>
+                                        <p className="iu-card-value">{event.settings?.requirements_info || (event as any).requirements_info || "مخصصة للباحثين وأعضاء هيئة التدريس"}</p>
+                                    </div>
+                                    <div className="iu-card-item">
+                                        <div className="iu-card-header">
+                                            <span className="iu-card-title">الفئة المستهدفة</span>
+                                            <IconUsers size={18} className="iu-card-icon" />
+                                        </div>
+                                        <p className="iu-card-value">{event.settings?.target_audience || (event as any).target_audience || "أعضاء هيئة التدريس والباحثون"}</p>
+                                    </div>
+                                    {isCertificateEligible && (
+                                        <div className="iu-card-item">
+                                            <div className="iu-card-header">
+                                                <span className="iu-card-title">شهادة حضور</span>
+                                                <IconCertificate size={18} className="iu-card-icon" />
                                             </div>
+                                            <p className="iu-card-value">{event.settings?.certificate_info || (event as any).certificate_info || "متاحة"}</p>
                                         </div>
                                     )}
                                 </div>
+
+                                {/* Event Highlights / Topics */}
+                                <h3 className="iu-section-title">محاور المؤتمر</h3>
+                                <p className="iu-topics-intro">
+                                    يناقش المؤتمر موضوعات بحثية وتطبيقية تجمع بين اللغة العربية والعلوم التطبيقية، مع جلسات معرفية ومحاور متخصصة وفرص للتواصل الأكاديمي.
+                                </p>
+                                <p className="iu-topics-subintro">
+                                    هذا محتوى تجريبي لإظهار شكل الصفحة عند إضافة تفاصيل أكثر، يمكن لاحقاً إدراج جدول الجلسات، أسماء المتحدثين، أو روابط ملخصات الأبحاث.
+                                </p>
+                                <div className="iu-topics-list">
+                                    {topics.map((topic: string, idx: number) => (
+                                        <div key={idx} className="iu-topic-box">
+                                            {topic}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Sidebar Column (Left in RTL) */}
+                            <aside className="iu-event-sidebar-col">
+                                {/* Back to events text link (Corner left) */}
+                                <div className="iu-back-link-wrapper">
+                                    <Link to="/events" className="iu-back-text-link" dir="rtl">
+                                        <span>الرجوع للفعاليات</span>
+                                        <span className="iu-back-arrow">←</span>
+                                    </Link>
+                                </div>
+
+                                {/* Price banner */}
+                                <div className="iu-sidebar-price-text">
+                                    {isFree ? "السعر: مجاني" : `السعر: ${formatCurrency(minPrice || 0, event.currency)}`}
+                                </div>
+
+                                {/* Register Button */}
+                                <button
+                                    onClick={() => setTicketsModalOpen(true)}
+                                    className="iu-btn-register-main"
+                                >
+                                    سجل الآن
+                                </button>
+
+                                {/* Map Card */}
+                                <div className="iu-sidebar-map-wrapper">
+                                    <a
+                                        href={mapUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="iu-map-open-link"
+                                    >
+                                        Open in Maps <IconExternalLink size={11} />
+                                    </a>
+                                    <iframe
+                                        src={`https://maps.google.com/maps?q=${encodeURIComponent(isOnlineEvent ? "الجامعة الإسلامية بالمدينة المنورة" : venueName + " المدينة المنورة")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                                        title="Event Location Map"
+                                        loading="lazy"
+                                    />
+                                </div>
                             </aside>
+
                         </div>
                     </div>
-                </section>
+
+                </div>
             </main>
 
-            {/* Floating Checkout Button for Mobile / Scrolled View */}
-            {showFloatingCheckoutButton && (
-                <div style={{position: "fixed", bottom: 24, left: 24, right: 24, zIndex: 100, display: "flex", justifyContent: "center"}}>
-                    <button
-                        className="btn solid"
-                        style={{
-                            padding: "14px 28px",
-                            fontSize: 16,
-                            borderRadius: 999,
-                            boxShadow: "0 12px 32px rgba(8, 75, 47, 0.35)",
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 10
+            {/* Registration / Tickets Modal */}
+            <Modal
+                opened={ticketsModalOpen}
+                onClose={() => setTicketsModalOpen(false)}
+                title="تسجيل وحجز التذاكر"
+                size="lg"
+                centered
+                radius="lg"
+                styles={{
+                    header: {
+                        fontWeight: 700,
+                        borderBottom: "1px solid #f1f5f9",
+                        paddingBottom: 12,
+                    },
+                    body: {
+                        paddingTop: 16,
+                    }
+                }}
+            >
+                <div id="tickets">
+                    <SelectProducts
+                        colors={{
+                            background: "transparent",
+                            primary: IU_COLORS.greenPrimary,
+                            primaryText: "#0f172a",
+                            secondary: IU_COLORS.greenSecondary,
+                            secondaryText: "#ffffff",
+                            bodyBackground: "#ffffff",
                         }}
-                        onClick={() => continueButtonNode?.click()}
-                    >
-                        <IconTicket size={20}/>
-                        {selectedCart.total > 0
-                            ? `${continueButtonText} (${formatCurrency(selectedCart.total, event.currency)})`
-                            : continueButtonText}
-                    </button>
+                        continueButtonText="التسجيل في الفعالية"
+                        padding={"0px"}
+                        event={event}
+                        promoCodeValid={promoCodeValid}
+                        promoCode={promoCode}
+                        showPoweredBy={false}
+                        initialOccurrenceId={initialOccurrenceId}
+                        onSelectedOccurrenceChange={setSelectedOccurrence}
+                        onCartChange={handleCartChange}
+                        continueButtonRef={setContinueButtonNode}
+                    />
                 </div>
-            )}
+            </Modal>
 
             {/* Contact Modal */}
             <ContactOrganizerModal
@@ -397,7 +372,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                 organizer={organizer}
             />
 
-            {/* IU Footer (includes PoweredByFooter for AGPL compliance) */}
+            {/* IU Footer */}
             <IUFooter />
         </div>
     );

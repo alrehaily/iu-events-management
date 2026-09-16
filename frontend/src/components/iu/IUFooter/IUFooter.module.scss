@@ -1,10 +1,32 @@
 .footer {
   width: 100%;
   margin-top: auto;
-  background: var(--green-900);
+  background: var(--iu-green-900, #084b2f);
   color: #ffffff;
   padding: 56px 0 28px;
   font-family: var(--font-primary);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/assets/iu/poly-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.12;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  > :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .footerGrid {

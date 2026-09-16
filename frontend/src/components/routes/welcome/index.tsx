@@ -19,7 +19,7 @@ import {IconCalendarRepeat, IconClock, IconMailCheck, IconSparkles} from "@table
 import {showError, showSuccess} from "../../../utilites/notifications.tsx";
 import {DateTimePicker} from "@mantine/dates";
 import dayjs from "dayjs";
-import {getEventCategories} from "../../../constants/eventCategories.ts";
+import {getEventCategories, getCategoryIcon} from "../../../constants/eventCategories.ts";
 import {Callout} from "../../common/Callout";
 import {getConfig} from "../../../utilites/config.ts";
 import {trackEvent, AnalyticsEvents} from "../../../utilites/analytics.ts";
@@ -335,20 +335,25 @@ export const CreateEvent = ({progressInfo}: {
 
                                 {/* Desktop Grid */}
                                 <div className={classes.categoryGrid}>
-                                    {getEventCategories().map((category) => (
-                                        <button
-                                            key={category.id}
-                                            type="button"
-                                            className={`${classes.categoryCard} ${
-                                                selectedCategory === category.id ? classes.categoryCardSelected : ''
-                                            }`}
-                                            onClick={() => handleCategorySelect(category.id)}
-                                            disabled={eventMutation.isPending}
-                                        >
-                                            <div className={classes.categoryEmoji}>{category.emoji}</div>
-                                            <div className={classes.categoryText}>{category.name}</div>
-                                        </button>
-                                    ))}
+                                    {getEventCategories().map((category) => {
+                                        const CategoryIcon = category.Icon;
+                                        return (
+                                            <button
+                                                key={category.id}
+                                                type="button"
+                                                className={`${classes.categoryCard} ${
+                                                    selectedCategory === category.id ? classes.categoryCardSelected : ''
+                                                }`}
+                                                onClick={() => handleCategorySelect(category.id)}
+                                                disabled={eventMutation.isPending}
+                                            >
+                                                <div className={classes.categoryEmoji}>
+                                                    <CategoryIcon size={24} stroke={1.5} color="#0f172a" />
+                                                </div>
+                                                <div className={classes.categoryText}>{category.name}</div>
+                                            </button>
+                                        );
+                                    })}
                                 </div>
 
                                 {/* Mobile Dropdown */}
@@ -358,8 +363,21 @@ export const CreateEvent = ({progressInfo}: {
                                         onChange={(value) => handleCategorySelect(value || '')}
                                         data={getEventCategories().map((category) => ({
                                             value: category.id,
-                                            label: `${category.emoji} ${category.name}`,
+                                            label: category.name,
                                         }))}
+                                        renderOption={({ option }) => {
+                                            const Icon = getCategoryIcon(option.value);
+                                            return (
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                                    <Icon size={18} stroke={1.5} color="#0f172a" />
+                                                    <span>{option.label}</span>
+                                                </div>
+                                            );
+                                        }}
+                                        leftSection={selectedCategory ? (() => {
+                                            const Icon = getCategoryIcon(selectedCategory);
+                                            return <Icon size={18} stroke={1.5} color="#0f172a" />;
+                                        })() : null}
                                         placeholder={t`Select event category`}
                                         size="lg"
                                         required

@@ -276,11 +276,14 @@
 
     .logoBadge {
       background: #ffffff;
-      padding: 4px 10px;
-      border-radius: var(--iu-radius-md, 12px);
+      padding: 5px 14px;
+      border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
+      width: fit-content;
+      height: auto;
       transition: transform var(--iu-transition-fast);
 
       &:hover {
@@ -289,15 +292,15 @@
     }
 
     .logoImg {
-      max-height: 38px;
-      max-width: 150px;
       width: auto;
+      height: 42px;
+      max-height: 46px;
       object-fit: contain;
       display: block;
 
       @include mixins.respond-below(sm) {
-        max-height: 32px;
-        max-width: 120px;
+        height: 34px;
+        max-height: 38px;
       }
     }
 
