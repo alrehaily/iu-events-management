@@ -1,4 +1,5 @@
 @echo off
+chcp 65001 >nul
 setlocal EnableExtensions EnableDelayedExpansion
 title IU Events Platform -- Startup
 
@@ -131,6 +132,17 @@ if not "!_WINGET_RC!"=="0" (
 
 echo   [OK] %~2 installed.
 set "_WINGET_OK=1"
+
+:: Attempt to refresh PATH from registry so current session sees new binaries
+for /f "tokens=2*" %%a in ('reg query "HKLM\System\CurrentControlSet\Control\Session Manager\Environment" /v Path 2^>nul') do set "_REG_SYS_PATH=%%b"
+for /f "tokens=2*" %%a in ('reg query "HKCU\Environment" /v Path 2^>nul') do set "_REG_USR_PATH=%%b"
+if defined _REG_SYS_PATH (
+    if defined _REG_USR_PATH (
+        set "PATH=!_REG_SYS_PATH!;!_REG_USR_PATH!;!PATH!"
+    ) else (
+        set "PATH=!_REG_SYS_PATH!;!PATH!"
+    )
+)
 exit /b 0
 
 
@@ -382,6 +394,14 @@ exit /b 0
 set "PG_READY=0"
 set "PG_SVC_NAME="
 
+:: Fast TCP port 5432 check -- detects running PostgreSQL immediately regardless of service name
+powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $c = New-Object System.Net.Sockets.TcpClient('127.0.0.1', 5432); $c.Close(); exit 0 } catch { exit 1 }" >nul 2>&1
+if not errorlevel 1 (
+    set "PG_READY=1"
+    echo   [OK] PostgreSQL is listening on port 5432.
+    exit /b 0
+)
+
 where pg_isready >nul 2>&1
 if not errorlevel 1 (
     pg_isready -h 127.0.0.1 -p 5432 >nul 2>&1
@@ -401,6 +421,13 @@ if not "!PG_SVC_NAME!"=="" (
     powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Service -Name '!PG_SVC_NAME!' -ErrorAction Stop" >nul 2>&1
 
     ping 127.0.0.1 -n 3 >nul
+
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "try { $c = New-Object System.Net.Sockets.TcpClient('127.0.0.1', 5432); $c.Close(); exit 0 } catch { exit 1 }" >nul 2>&1
+    if not errorlevel 1 (
+        set "PG_READY=1"
+        echo   [OK] PostgreSQL service started successfully.
+        exit /b 0
+    )
 
     where pg_isready >nul 2>&1
     if not errorlevel 1 (
@@ -459,7 +486,7 @@ if errorlevel 1 (
 set "_ENV_FILE=%BACKEND%\.env"
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-    "$f=$env:_ENV_FILE; $lines=Get-Content -LiteralPath $f; $out=$lines | ForEach-Object { if ($_ -match '^APP_KEY=') { 'APP_KEY=' } elseif ($_ -match '^JWT_SECRET=') { 'JWT_SECRET=' } elseif ($_ -match '^APP_URL=') { 'APP_URL=http://127.0.0.1:8000' } elseif ($_ -match '^APP_FRONTEND_URL=') { 'APP_FRONTEND_URL=http://localhost:5678' } elseif ($_ -match '^APP_CDN_URL=') { 'APP_CDN_URL=' } elseif ($_ -match '^DB_HOST=') { 'DB_HOST=127.0.0.1' } elseif ($_ -match '^DB_USERNAME=') { 'DB_USERNAME=postgres' } elseif ($_ -match '^DB_PASSWORD=') { 'DB_PASSWORD=' } elseif ($_ -match '^FILESYSTEM_PUBLIC_DISK=') { 'FILESYSTEM_PUBLIC_DISK=public' } elseif ($_ -match '^FILESYSTEM_PRIVATE_DISK=') { 'FILESYSTEM_PRIVATE_DISK=local' } else { $_ } }; [IO.File]::WriteAllLines($f,[string[]]$out,(New-Object Text.UTF8Encoding($false)))"
+    "$f=$env:_ENV_FILE; $lines=Get-Content -LiteralPath $f; $out=$lines | ForEach-Object { if ($_ -match '^APP_KEY=') { 'APP_KEY=' } elseif ($_ -match '^JWT_SECRET=') { 'JWT_SECRET=' } elseif ($_ -match '^APP_URL=') { 'APP_URL=http://127.0.0.1:8000' } elseif ($_ -match '^APP_FRONTEND_URL=') { 'APP_FRONTEND_URL=http://localhost:5678' } elseif ($_ -match '^APP_CDN_URL=') { 'APP_CDN_URL=' } elseif ($_ -match '^DB_HOST=') { 'DB_HOST=127.0.0.1' } elseif ($_ -match '^DB_USERNAME=') { 'DB_USERNAME=postgres' } elseif ($_ -match '^DB_PASSWORD=') { 'DB_PASSWORD=' } elseif ($_ -match '^MAIL_MAILER=') { 'MAIL_MAILER=log' } elseif ($_ -match '^FILESYSTEM_PUBLIC_DISK=') { 'FILESYSTEM_PUBLIC_DISK=public' } elseif ($_ -match '^FILESYSTEM_PRIVATE_DISK=') { 'FILESYSTEM_PRIVATE_DISK=local' } else { $_ } }; [IO.File]::WriteAllLines($f,[string[]]$out,(New-Object Text.UTF8Encoding($false)))"
 if errorlevel 1 (
     echo   [ERROR] Could not configure backend\.env.
     exit /b 1
@@ -516,6 +543,10 @@ pushd "%FRONTEND%"
 if exist "!_NPM_LOCK!" (
     echo   Running npm ci --legacy-peer-deps...
     call npm ci --legacy-peer-deps
+    if not "!errorlevel!"=="0" (
+        echo   [WARNING] npm ci failed. Retrying with npm install --legacy-peer-deps...
+        call npm install --legacy-peer-deps
+    )
 ) else (
     echo   Running npm install --legacy-peer-deps...
     call npm install --legacy-peer-deps
@@ -562,6 +593,7 @@ if exist "%BACKEND%\vendor" (
 if "!_RUN_COMP!"=="1" (
     pushd "%BACKEND%"
     echo   Running composer install...
+    set "COMPOSER_MEMORY_LIMIT=-1"
 
     if "!COMPOSER_MODE!"=="local" (
         php "%BACKEND%\composer.phar" install --no-interaction --prefer-dist --optimize-autoloader
@@ -670,7 +702,19 @@ if exist "%BACKEND%\scripts\ensure-database.php" (
         echo   Please verify:
         echo     1. PostgreSQL service is running.
         echo     2. DB_PASSWORD in backend\.env is correct.
-        exit /b 1
+        echo.
+        choice /c YN /m "  Would you like to enter/update your PostgreSQL password now?"
+        if errorlevel 2 (
+            exit /b 1
+        )
+        powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+            "$p=Read-Host -Prompt '  New PostgreSQL password for postgres'; $f='%BACKEND%\.env'; $lines=Get-Content -LiteralPath $f; $out=$lines | ForEach-Object { if ($_ -match '^DB_PASSWORD=') { 'DB_PASSWORD=' + $p } else { $_ } }; [IO.File]::WriteAllLines($f,[string[]]$out,(New-Object Text.UTF8Encoding($false))); Write-Host '  [OK] Password updated in backend\.env.'"
+        echo   Re-testing database connection...
+        php "%BACKEND%\scripts\ensure-database.php"
+        if errorlevel 1 (
+            echo   [ERROR] Connection still failed. Check PostgreSQL credentials.
+            exit /b 1
+        )
     )
 ) else (
     pushd "%BACKEND%"

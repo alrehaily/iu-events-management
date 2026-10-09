@@ -33,7 +33,13 @@ $original = $contents;
 $contents = preg_replace('/^extension\s*=\s*xmlwriter\s*$/m', '', $contents);
 
 // Enable extension_dir = "ext"
-$contents = preg_replace('/^;?\s*extension_dir\s*=\s*"ext"/m', 'extension_dir = "ext"', $contents);
+if (!preg_match('/^extension_dir\s*=/m', $contents)) {
+    if (preg_match('/^;?\s*extension_dir\s*=\s*["\']?ext["\']?/m', $contents)) {
+        $contents = preg_replace('/^;?\s*extension_dir\s*=\s*["\']?ext["\']?/m', 'extension_dir = "ext"', $contents);
+    } else {
+        $contents .= "\nextension_dir = \"ext\"\n";
+    }
+}
 
 // Required external DLL extensions for Windows
 $extensions = [

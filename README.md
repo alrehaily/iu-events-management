@@ -51,7 +51,25 @@ See [LICENCE](LICENCE) for the full license text.
 
 ---
 
-## Local Development
+## التشغيل السريع بنقرة واحدة (Windows One-Click Quick Start) ⚡
+
+لتشغيل المشروع فوراً بعد تحميله (Clone) بدون أي إعداد يدوي معقد:
+1. انقر نقراً مزدوجاً على ملف **`Start All.cmd`** (أو شغّل `start_all.cmd` من الطرفية).
+2. سيقوم السكربت تلقائياً بـ:
+   - فحص بيئة العمل وتثبيت أو إرشاد تثبيت أي متطلبات ناقصة (Node.js, PHP, Composer, PostgreSQL).
+   - تفعيل إضافات PHP المطلوبة تلقائياً.
+   - إنشاء ملفات البيئة `.env` للباك إند والفرونت إند وضبط الإعدادات تلقائياً.
+   - تثبيت حزم npm وحزم Composer.
+   - توليد المفاتيح (`APP_KEY` و `JWT_SECRET`).
+   - فحص قاعدة البيانات وإنشائها تلقائياً إذا لم تكن موجودة ثم تشغيل المايجريشنز (`php artisan migrate`).
+   - إنشاء رابط التخزين (`storage:link`).
+   - تشغيل خادم الباك إند (Laravel) على `http://127.0.0.1:8000`.
+   - تشغيل واجهة الفرونت إند (React) على `http://localhost:5678`.
+   - فتح المتصفح تلقائياً على واجهة المنصة!
+
+---
+
+## Local Development (Manual Setup)
 
 ### Prerequisites
 - PHP ≥ 8.3
