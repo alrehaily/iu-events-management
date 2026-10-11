@@ -50,6 +50,7 @@ class Kernel extends HttpKernel
         ConvertEmptyStringsToNull::class,
         HandleDeprecatedTimezones::class,
         VaporBinaryResponseMiddleware::class,
+        \HiEvents\Http\Middleware\DemoFeatureGateMiddleware::class,
     ];
 
     /**

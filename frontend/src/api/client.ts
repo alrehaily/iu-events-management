@@ -96,6 +96,10 @@ api.interceptors.response.use(
         const isPublic = isPublicPath(currentPath);
         const isAuthError = status === 401 || status === 403;
 
+        if (status === 403 && (error.response.data?.error_code === 'DEMO_FEATURE_DISABLED' || (typeof error.response.data?.message === 'string' && error.response.data?.message.includes('unavailable in this demo')))) {
+            return Promise.reject(error);
+        }
+
         if (status === 403 && error.response.data?.error_code === 'ACCOUNT_PENDING_DELETION') {
             if (!currentPath.startsWith('/account')) {
                 window?.location?.replace('/account/danger-zone');

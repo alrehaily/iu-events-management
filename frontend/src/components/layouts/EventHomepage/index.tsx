@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useState} from "react";
-import {Link} from "react-router";
+import {Link, useNavigate} from "react-router";
 import SelectProducts from "../../routes/product-widget/SelectProducts";
 import {EventDocumentHead} from "../../common/EventDocumentHead";
 import {eventCoverImage} from "../../../utilites/urlHelper.ts";
@@ -16,6 +16,9 @@ import {
     IconTag,
     IconUsers,
 } from "@tabler/icons-react";
+import {
+    isMidtermDemoEnabled,
+} from "../../../utilites/demoGates.ts";
 import {Modal} from "@mantine/core";
 import {IUNavbar} from "../../iu/IUNavbar";
 import {IUFooter} from "../../iu/IUFooter";
@@ -40,6 +43,7 @@ interface EventHomepageProps {
 
 export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const {event, promoCodeValid, promoCode, initialOccurrenceId} = loaderData;
+    const navigate = useNavigate();
     const [contactModalOpen, setContactModalOpen] = useState(false);
     const [ticketsModalOpen, setTicketsModalOpen] = useState(false);
     const [selectedOccurrence, setSelectedOccurrence] = useState<EventOccurrence | undefined>();
@@ -292,7 +296,13 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
 
                                 {/* Register Button */}
                                 <button
-                                    onClick={() => setTicketsModalOpen(true)}
+                                    onClick={() => {
+                                        if (isMidtermDemoEnabled && event?.id) {
+                                            navigate(event.slug ? `/event/${event.id}/${event.slug}/register` : `/event/${event.id}/register`);
+                                        } else {
+                                            setTicketsModalOpen(true);
+                                        }
+                                    }}
                                     className="iu-btn-register-main"
                                 >
                                     سجل الآن
@@ -324,7 +334,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
 
             {/* Registration / Tickets Modal */}
             <Modal
-                opened={ticketsModalOpen}
+                opened={!isMidtermDemoEnabled && ticketsModalOpen}
                 onClose={() => setTicketsModalOpen(false)}
                 title="تسجيل وحجز التذاكر"
                 size="lg"

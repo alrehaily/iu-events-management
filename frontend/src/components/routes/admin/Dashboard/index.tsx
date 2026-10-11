@@ -17,6 +17,7 @@ import {useGetAdminStats} from "../../../../queries/useGetAdminStats";
 import {useGetUpcomingEvents} from "../../../../queries/useGetUpcomingEvents";
 import {useGetAdminDashboardData} from "../../../../queries/useGetAdminDashboardData";
 import {eventHomepageUrl} from "../../../../utilites/urlHelper";
+import {isMidtermDemoEnabled} from "../../../../utilites/demoGates";
 import dayjs from "dayjs";
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
@@ -139,7 +140,9 @@ const AdminDashboard = () => {
                                 <Text size="xs" c="dimmed" fw={500}>
                                     {t`Tickets Sold`}
                                 </Text>
-                                {isLoading ? (
+                                {isMidtermDemoEnabled ? (
+                                    <Text size="xl" fw={700}>—</Text>
+                                ) : isLoading ? (
                                     <Skeleton height={28} width={60} mt={4} />
                                 ) : (
                                     <Text size="xl" fw={700}>
@@ -151,12 +154,25 @@ const AdminDashboard = () => {
                     </Paper>
                 </SimpleGrid>
 
-                {/* Recent Activity Stats (Last 14 Days) */}
-                <div>
-                    <Title order={2} mb="xs">
-                        <Group gap="xs">
-                            <IconTrendingUp size={24} />
-                            <Trans>Last 14 Days</Trans>
+                {isMidtermDemoEnabled ? (
+                    <Paper shadow="sm" p="xl" radius="md" withBorder>
+                        <Stack align="center" gap="xs">
+                            <Text fw={600} size="md" c="dimmed">
+                                <Trans>No activity recorded yet</Trans>
+                            </Text>
+                            <Text size="sm" c="dimmed">
+                                <Trans>Platform statistics and financial activity will appear here once activity begins.</Trans>
+                            </Text>
+                        </Stack>
+                    </Paper>
+                ) : (
+                    <>
+                        {/* Recent Activity Stats (Last 14 Days) */}
+                        <div>
+                            <Title order={2} mb="xs">
+                                <Group gap="xs">
+                                    <IconTrendingUp size={24} />
+                                    <Trans>Last 14 Days</Trans>
                         </Group>
                     </Title>
                     <Text size="xs" c="dimmed" mb="md">
@@ -441,8 +457,10 @@ const AdminDashboard = () => {
                         </Paper>
                     )}
                 </div>
+            </>
+        )}
 
-                {/* Upcoming Events */}
+        {/* Upcoming Events */}
                 <div>
                     <Title order={2} mb="md">
                         <Group gap="xs">

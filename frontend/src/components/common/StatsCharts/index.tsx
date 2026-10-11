@@ -6,6 +6,7 @@ import {EventDailyStats} from "../../../types.ts";
 import {formatCurrency} from "../../../utilites/currency.ts";
 import {formatDateWithLocale} from "../../../utilites/dates.ts";
 import classes from "./StatsCharts.module.scss";
+import {isMidtermDemoEnabled} from "../../../utilites/demoGates.ts";
 
 interface StatsChartCardProps {
     dailyStats: EventDailyStats[] | undefined;
@@ -35,7 +36,13 @@ const ChartCard = ({title, dateRangeLabel, children}: {
             <h2>{title}</h2>
             {dateRangeLabel && <span className={classes.dateRange}>{dateRangeLabel}</span>}
         </div>
-        {children}
+        {isMidtermDemoEnabled ? (
+            <div style={{ padding: '48px 16px', textAlign: 'center' }}>
+                <div style={{ color: 'var(--mantine-color-dimmed)', fontSize: '0.875rem', fontWeight: 500 }}>
+                    {t`No data available yet`}
+                </div>
+            </div>
+        ) : children}
     </Card>
 );
 

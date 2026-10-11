@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  z-index: 10;
+  z-index: 2000;
   animation: fadeIn 0.3s ease-out;
   
   @include mixins.respond-below(md) {
@@ -245,24 +245,24 @@
   line-height: 1.45;
 }
 
-// Create button
 .createButton {
-  height: 64px;
+  height: 56px;
   font-weight: 700;
-  font-size: 1.25rem;
-  background: var(--hi-gradient);
+  font-size: 1.15rem;
+  background: var(--iu-green-gradient, linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%)) !important;
+  color: #ffffff !important;
   border: none;
-  border-radius: 16px;
+  border-radius: var(--iu-radius-pill, 999px) !important;
+  font-family: var(--iu-font-family, 'Tajawal', sans-serif) !important;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  letter-spacing: normal;
+  box-shadow: 0 4px 14px rgba(27, 117, 75, 0.25) !important;
   padding: 0 2rem;
 
   @include mixins.respond-below(sm) {
-    height: 56px;
+    height: 48px;
     font-size: 1rem;
     padding: 0 1.5rem;
   }
@@ -274,13 +274,14 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.6s ease;
   }
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(102, 126, 234, 0.4);
+    background: var(--iu-green-gradient-hover, linear-gradient(110deg, #063823 0%, #16643f 55%, #177745 100%)) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--iu-green-glow, 0 8px 24px rgba(8, 75, 47, 0.28)) !important;
 
     &::before {
       left: 100%;
@@ -288,22 +289,21 @@
   }
 
   &:active {
-    transform: translateY(-1px);
+    transform: translateY(0) scale(0.98);
   }
   
   &:focus-visible {
-    outline: 2px solid var(--mantine-color-blue-5);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: var(--iu-green-focus-ring) !important;
   }
 }
 
-// Organizer creation form
 .createOrganizerCard {
-  background: linear-gradient(135deg, #f8f9ff 0%, #f3f4f6 100%);
+  background: linear-gradient(135deg, #f0f7f3 0%, #f8fafc 100%);
   border-radius: 20px;
   padding: 2rem;
   margin-bottom: 2rem;
-  border: 2px dashed rgba(102, 126, 234, 0.3);
+  border: 2px dashed rgba(27, 117, 75, 0.3);
   animation: slideIn 0.3s ease-out;
   
   @include mixins.respond-below(sm) {

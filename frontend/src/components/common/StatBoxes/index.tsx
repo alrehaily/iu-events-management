@@ -14,6 +14,7 @@ import {useGetEvent} from "../../../queries/useGetEvent.ts";
 import {formatCurrency} from "../../../utilites/currency.ts";
 import {formatNumber} from "../../../utilites/helpers.ts";
 import {Event, EventStats, IdParam} from "../../../types.ts";
+import {isMidtermDemoEnabled} from "../../../utilites/demoGates.ts";
 
 export const StatBox = KpiCell;
 
@@ -121,10 +122,10 @@ export const StatBoxes = ({occurrenceId, dateRange, event}: StatBoxesProps = {})
                     key={cell.key}
                     testId={`event-stat-${cell.key}`}
                     label={cell.label}
-                    value={cell.value}
-                    sparkline={cell.sparkline}
-                    delta={cell.delta}
-                    isLoading={isLoading}
+                    value={isMidtermDemoEnabled ? "—" : cell.value}
+                    sparkline={isMidtermDemoEnabled ? undefined : cell.sparkline}
+                    delta={isMidtermDemoEnabled ? null : cell.delta}
+                    isLoading={!isMidtermDemoEnabled && isLoading}
                 />
             ))}
         </KpiGrid>

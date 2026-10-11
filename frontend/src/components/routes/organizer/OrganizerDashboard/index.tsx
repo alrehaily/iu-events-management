@@ -23,6 +23,7 @@ import { currenciesMap } from "../../../../../data/currencies.ts";
 import { CreateEventModal } from "../../../modals/CreateEventModal";
 import { getEventQueryFilters } from "../../../../utilites/eventsPageFiltersHelper.ts";
 import { EventCard } from "../../../common/EventCard";
+import { isMidtermDemoEnabled } from "../../../../utilites/demoGates.ts";
 
 type HeroTab = 'sales' | 'orders' | 'attendees';
 
@@ -206,9 +207,9 @@ export const OrganizerDashboard = () => {
                         <div>
                             <div className={classes.heroChartLabel}>{heroLabel}</div>
                             <div className={classes.heroChartValue}>
-                                {isStatsLoading ? <Skeleton height={24} width={140} /> : heroFormattedValue}
+                                {isMidtermDemoEnabled ? '—' : isStatsLoading ? <Skeleton height={24} width={140} /> : heroFormattedValue}
                             </div>
-                            {!isStatsLoading && !isPreviousLoading && heroDelta != null && (
+                            {!isMidtermDemoEnabled && !isStatsLoading && !isPreviousLoading && heroDelta != null && (
                                 <div>
                                     {heroDelta.trend === 'flat' ? (
                                         <span className={`${classes.heroChartDelta} ${classes.heroChartDeltaNone}`}>
@@ -241,7 +242,11 @@ export const OrganizerDashboard = () => {
                         />
                     </div>
                     <div className={classes.heroChartArea}>
-                        {heroChartData.length > 0 ? (
+                        {isMidtermDemoEnabled ? (
+                            <div style={{ padding: '24px 16px', textAlign: 'center', color: 'var(--mantine-color-dimmed)', fontSize: '0.875rem', fontWeight: 500 }}>
+                                {t`No data to display`}
+                            </div>
+                        ) : heroChartData.length > 0 ? (
                             <AreaChart
                                 h={64}
                                 data={heroChartData}
@@ -266,43 +271,43 @@ export const OrganizerDashboard = () => {
                 <KpiGrid>
                     <KpiCell
                         label={t`Gross sales`}
-                        value={stats ? formatCurrency(stats.total_gross_sales, selectedCurrency) : ''}
-                        sparkline={sparkline('total_sales_gross')}
-                        delta={computeDelta(stats?.total_gross_sales, previousStats?.total_gross_sales)}
-                        isLoading={isStatsLoading || isPreviousLoading}
+                        value={isMidtermDemoEnabled ? '—' : stats ? formatCurrency(stats.total_gross_sales, selectedCurrency) : ''}
+                        sparkline={isMidtermDemoEnabled ? undefined : sparkline('total_sales_gross')}
+                        delta={isMidtermDemoEnabled ? null : computeDelta(stats?.total_gross_sales, previousStats?.total_gross_sales)}
+                        isLoading={!isMidtermDemoEnabled && (isStatsLoading || isPreviousLoading)}
                     />
                     <KpiCell
                         label={t`Products sold`}
-                        value={stats ? formatNumber(stats.total_products_sold) : ''}
-                        sparkline={sparkline('products_sold')}
-                        delta={computeDelta(stats?.total_products_sold, previousStats?.total_products_sold)}
-                        isLoading={isStatsLoading || isPreviousLoading}
+                        value={isMidtermDemoEnabled ? '—' : stats ? formatNumber(stats.total_products_sold) : ''}
+                        sparkline={isMidtermDemoEnabled ? undefined : sparkline('products_sold')}
+                        delta={isMidtermDemoEnabled ? null : computeDelta(stats?.total_products_sold, previousStats?.total_products_sold)}
+                        isLoading={!isMidtermDemoEnabled && (isStatsLoading || isPreviousLoading)}
                     />
                     <KpiCell
                         label={t`Attendees`}
-                        value={stats ? formatNumber(stats.total_attendees_registered) : ''}
-                        sparkline={sparkline('attendees_registered')}
-                        delta={computeDelta(stats?.total_attendees_registered, previousStats?.total_attendees_registered)}
-                        isLoading={isStatsLoading || isPreviousLoading}
+                        value={isMidtermDemoEnabled ? '—' : stats ? formatNumber(stats.total_attendees_registered) : ''}
+                        sparkline={isMidtermDemoEnabled ? undefined : sparkline('attendees_registered')}
+                        delta={isMidtermDemoEnabled ? null : computeDelta(stats?.total_attendees_registered, previousStats?.total_attendees_registered)}
+                        isLoading={!isMidtermDemoEnabled && (isStatsLoading || isPreviousLoading)}
                     />
                     <KpiCell
                         label={t`Total orders`}
-                        value={stats ? formatNumber(stats.total_orders) : ''}
-                        sparkline={sparkline('orders_created')}
-                        delta={computeDelta(stats?.total_orders, previousStats?.total_orders)}
-                        isLoading={isStatsLoading || isPreviousLoading}
+                        value={isMidtermDemoEnabled ? '—' : stats ? formatNumber(stats.total_orders) : ''}
+                        sparkline={isMidtermDemoEnabled ? undefined : sparkline('orders_created')}
+                        delta={isMidtermDemoEnabled ? null : computeDelta(stats?.total_orders, previousStats?.total_orders)}
+                        isLoading={!isMidtermDemoEnabled && (isStatsLoading || isPreviousLoading)}
                     />
                     <KpiCell
                         label={t`Total tax`}
-                        value={stats ? formatCurrency(stats.total_tax, selectedCurrency) : ''}
-                        delta={computeDelta(stats?.total_tax, previousStats?.total_tax)}
-                        isLoading={isStatsLoading || isPreviousLoading}
+                        value={isMidtermDemoEnabled ? '—' : stats ? formatCurrency(stats.total_tax, selectedCurrency) : ''}
+                        delta={isMidtermDemoEnabled ? null : computeDelta(stats?.total_tax, previousStats?.total_tax)}
+                        isLoading={!isMidtermDemoEnabled && (isStatsLoading || isPreviousLoading)}
                     />
                     <KpiCell
                         label={t`Total fees`}
-                        value={stats ? formatCurrency(stats.total_fees, selectedCurrency) : ''}
-                        delta={computeDelta(stats?.total_fees, previousStats?.total_fees)}
-                        isLoading={isStatsLoading || isPreviousLoading}
+                        value={isMidtermDemoEnabled ? '—' : stats ? formatCurrency(stats.total_fees, selectedCurrency) : ''}
+                        delta={isMidtermDemoEnabled ? null : computeDelta(stats?.total_fees, previousStats?.total_fees)}
+                        isLoading={!isMidtermDemoEnabled && (isStatsLoading || isPreviousLoading)}
                     />
                 </KpiGrid>
 
@@ -311,7 +316,7 @@ export const OrganizerDashboard = () => {
                         <div className={classes.listCardHeader}>
                             <div className={classes.listCardTitle}>{t`Recent orders`}</div>
                         </div>
-                        {recentOrders && recentOrders.length > 0 ? (
+                        {!isMidtermDemoEnabled && recentOrders && recentOrders.length > 0 ? (
                             <div className={classes.orderCardList}>
                                 {recentOrders.map((order: Order) => {
                                     const customerName = [order.first_name, order.last_name].filter(Boolean).join(' ');

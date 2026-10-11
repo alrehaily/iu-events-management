@@ -4,7 +4,7 @@ import {useGetAccount} from "../../../queries/useGetAccount.ts";
 import {Event, EventType, GenericModalProps, IdParam, Organizer} from "../../../types.ts";
 import React, {useEffect, useState} from "react";
 import {t} from "@lingui/macro";
-import {Anchor, Button, SegmentedControl, Select, TextInput} from "@mantine/core";
+import {Anchor, Button, Portal, SegmentedControl, Select, TextInput} from "@mantine/core";
 import {hasLength, useForm} from "@mantine/form";
 import {useCreateEvent} from "../../../mutations/useCreateEvent.ts";
 import {Editor} from "../../common/Editor";
@@ -97,8 +97,9 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
     }
 
     return (
-        <div className={classes.modalOverlay} onClick={onClose}>
-            <div className={classes.modalContainer} onClick={(e) => e.stopPropagation()}>
+        <Portal>
+            <div className={classes.modalOverlay} onClick={onClose}>
+                <div className={classes.modalContainer} onClick={(e) => e.stopPropagation()}>
                 <button
                     className={classes.closeButton}
                     onClick={onClose}
@@ -314,5 +315,6 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                 </div>
             </div>
         </div>
+        </Portal>
     );
 }
