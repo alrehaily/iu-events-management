@@ -5,6 +5,7 @@ import {useGetMe} from "../../../queries/useGetMe";
 import {attendeeClient} from "../../../api/attendee.client";
 import {authClient} from "../../../api/auth.client";
 import {useIULanguage} from "../../../context/IULanguageContext";
+import {isMidtermDemoEnabled} from "../../../utilites/demoGates";
 
 export const IUNavbar: React.FC = () => {
   const me = useGetMe();
@@ -91,9 +92,24 @@ export const IUNavbar: React.FC = () => {
             </NavLink>
             {isLoggedIn && (
               <NavLink
-                to="/my-registrations"
+                to={isMidtermDemoEnabled ? "#" : "/my-registrations"}
+                onClick={(e) => {
+                  if (isMidtermDemoEnabled) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const el = e.currentTarget;
+                    el.style.transition = 'transform 0.12s ease, opacity 0.12s ease';
+                    el.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                      el.style.transform = '';
+                      setTimeout(() => {
+                        el.style.transition = '';
+                      }, 150);
+                    }, 180);
+                  }
+                }}
                 className={({isActive}) =>
-                  `${classes.navLink} ${isActive ? classes.active : ""}`
+                  `${classes.navLink} ${isActive && !isMidtermDemoEnabled ? classes.active : ""}`
                 }
               >
                 {t("nav_my_registrations", "تسجيلاتي")}

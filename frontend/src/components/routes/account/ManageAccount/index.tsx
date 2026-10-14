@@ -5,6 +5,7 @@ import {IconAdjustmentsCog, IconAlertTriangle, IconReceiptTax, IconUsers} from "
 import {Outlet, useLocation, useNavigate} from "react-router";
 import {t} from "@lingui/macro";
 import {useIsCurrentUserAdmin} from "../../../../hooks/useIsCurrentUserAdmin.ts";
+import {isMidtermDemoEnabled} from "../../../../utilites/demoGates.ts";
 
 export const ManageAccount = () => {
     const navigate = useNavigate();
@@ -16,7 +17,15 @@ export const ManageAccount = () => {
         <div className={classes.container}>
             <h1>{t`Account Settings`}</h1>
             <Card className={classes.tabsCard}>
-                <Tabs value={tabValue} onChange={(value) => navigate(`/account/${value}`)}>
+                <Tabs
+                    value={tabValue}
+                    onChange={(value) => {
+                        if (isMidtermDemoEnabled && (value === 'taxes-and-fees' || value === 'danger-zone')) {
+                            return;
+                        }
+                        navigate(`/account/${value}`);
+                    }}
+                >
                     <Tabs.List grow>
                         <Tabs.Tab value="settings" leftSection={<IconAdjustmentsCog/>}>
                             {t`Account`}

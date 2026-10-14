@@ -4,6 +4,7 @@ import {IconTrash} from "@tabler/icons-react";
 import {useNavigate} from "react-router";
 import {useGetAccount} from "../../../queries/useGetAccount.ts";
 import {prettyDate} from "../../../utilites/dates.ts";
+import {isMidtermDemoEnabled} from "../../../utilites/demoGates.ts";
 import classes from "./PendingDeletionBanner.module.scss";
 
 const PendingDeletionBanner = () => {
@@ -30,7 +31,10 @@ const PendingDeletionBanner = () => {
                 variant="white"
                 color="red"
                 size="sm"
-                onClick={() => navigate('/account/danger-zone')}
+                onClick={() => {
+                    if (isMidtermDemoEnabled) return;
+                    navigate('/account/danger-zone');
+                }}
                 className={classes.button}
                 data-testid="pending-deletion-banner-button"
             >

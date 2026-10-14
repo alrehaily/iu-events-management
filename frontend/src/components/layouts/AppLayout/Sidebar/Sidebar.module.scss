@@ -226,6 +226,13 @@
         }
       }
 
+      &:active,
+      &.itemPressed {
+        transform: scale(0.96) !important;
+        background: rgba(255, 255, 255, 0.24) !important;
+        transition: transform 0.12s ease, background 0.12s ease !important;
+      }
+
       .linkIcon,
       svg {
         margin-inline-end: 10px;

@@ -27,6 +27,8 @@ import {CookieConsentBanner} from "./components/common/CookieConsentBanner";
 import {isConsentBannerEnabled} from "./utilites/cookieConsent";
 import {IULanguageProvider} from "./context/IULanguageContext";
 
+import {setupGlobalDemoClickInterceptor} from "./utilites/demoGates.ts";
+
 declare global {
     interface Window {
         hievents: Record<string, string>;
@@ -45,6 +47,7 @@ export const App: FC<
     const [isLoadedOnBrowser, setIsLoadedOnBrowser] = React.useState(false);
     useEffect(() => {
         setIsLoadedOnBrowser(!isSsr());
+        setupGlobalDemoClickInterceptor();
     }, []);
 
     return (

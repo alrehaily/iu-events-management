@@ -28,6 +28,7 @@ import {hasEventDetails, SetupChecklist} from "./SetupChecklist";
 import {PublishEventModal} from "../../../modals/PublishEventModal";
 import {EventLiveCelebrationModal} from "../../../modals/EventLiveCelebrationModal";
 import {eventHomepageUrl} from "../../../../utilites/urlHelper.ts";
+import {isMidtermDemoEnabled} from "../../../../utilites/demoGates.ts";
 
 export const DashBoardSkeleton = () => {
     return (
@@ -126,6 +127,9 @@ export const EventDashboard = () => {
     };
 
     const handleConnectStripe = () => {
+        if (isMidtermDemoEnabled) {
+            return;
+        }
         if (!organizerId) {
             return;
         }

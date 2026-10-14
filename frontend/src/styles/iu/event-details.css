@@ -355,6 +355,14 @@
   box-shadow: 0 6px 18px rgba(27, 117, 75, 0.35);
 }
 
+.iu-btn-register-main:active,
+.iu-btn-register-main.iu-btn-pressed {
+  transform: scale(0.95) translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(27, 117, 75, 0.22) !important;
+  filter: brightness(0.92);
+  transition: transform 0.12s ease, filter 0.12s ease, box-shadow 0.12s ease;
+}
+
 #tickets .button-input input,
 #tickets input {
   color: #0f172a !important;

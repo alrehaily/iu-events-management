@@ -49,6 +49,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const [selectedOccurrence, setSelectedOccurrence] = useState<EventOccurrence | undefined>();
     const [selectedCart, setSelectedCart] = useState({quantity: 0, total: 0});
     const [continueButtonNode, setContinueButtonNode] = useState<HTMLButtonElement | null>(null);
+    const [isRegisterPressed, setIsRegisterPressed] = useState(false);
 
     const handleCartChange = useCallback(
         (cart: {quantity: number; total: number}) => setSelectedCart(cart),
@@ -297,13 +298,14 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                 {/* Register Button */}
                                 <button
                                     onClick={() => {
-                                        if (isMidtermDemoEnabled && event?.id) {
-                                            navigate(event.slug ? `/event/${event.id}/${event.slug}/register` : `/event/${event.id}/register`);
-                                        } else {
-                                            setTicketsModalOpen(true);
+                                        setIsRegisterPressed(true);
+                                        setTimeout(() => setIsRegisterPressed(false), 240);
+                                        if (isMidtermDemoEnabled) {
+                                            return;
                                         }
+                                        setTicketsModalOpen(true);
                                     }}
-                                    className="iu-btn-register-main"
+                                    className={`iu-btn-register-main ${isRegisterPressed ? 'iu-btn-pressed' : ''}`}
                                 >
                                     سجل الآن
                                 </button>

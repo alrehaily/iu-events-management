@@ -4,10 +4,11 @@ import {IconChevronLeft} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import classes from './Sidebar.module.scss';
 import {NavItem} from "../types";
-import {NavLink} from "react-router";
+import {NavLink, useLocation} from "react-router";
 import classNames from "classnames";
 import {useMediaQuery} from "@mantine/hooks";
 import {getConfig} from "../../../../utilites/config.ts";
+import {isDemoNavigationDisabled} from "../../../../utilites/demoGates.ts";
 
 interface SidebarProps {
     sidebarOpen: boolean;
@@ -23,6 +24,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                                     sidebarFooter,
                                                 }) => {
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const location = useLocation();
+    const [pressedItem, setPressedItem] = React.useState<string | null>(null);
 
     const renderLinks = () => {
         return navItems.map((item) => {
@@ -43,20 +46,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 return <a key={item.label} className={classNames(classes.loading, classes.link)}>&nbsp;</a>;
             }
 
+            const isGated = isDemoNavigationDisabled(item.link, location.pathname);
+
             return (
                 <NavLink
-                    to={item.comingSoon ? '#' : (item.link ?? '#')}
+                    to={item.comingSoon || isGated ? '#' : (item.link ?? '#')}
                     key={item.label}
-                    onClick={() => {
+                    onClick={(e) => {
+                        if (isGated) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setPressedItem(item.label);
+                            setTimeout(() => setPressedItem(null), 250);
+                            return;
+                        }
                         if (isMobile) {
                             setSidebarOpen(false);
                         }
                         if (item.onClick) item.onClick();
                     }}
                     className={({isActive}) =>
-                        `${((item.isActive ? item.isActive(isActive) : isActive) && !item.comingSoon)
+                        `${((item.isActive ? item.isActive(isActive) : isActive) && !item.comingSoon && !isGated)
                             ? classes.linkActive
-                            : ""} ${classes.link}`
+                            : ""} ${classes.link} ${pressedItem === item.label ? classes.itemPressed : ""}`
                     }
                 >
                     {item.icon && <item.icon size={20} className={classes.linkIcon} stroke={1.5}/>}

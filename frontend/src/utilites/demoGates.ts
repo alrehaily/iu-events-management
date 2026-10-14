@@ -101,3 +101,93 @@ export const isDemoPathDisabled = (pathname: string): boolean => {
 
     return false;
 };
+
+export const isDemoNavigationDisabled = (targetLink: string | undefined, currentPath: string): boolean => {
+    if (!isMidtermDemoEnabled || !targetLink || targetLink === '#' || targetLink === '') {
+        return false;
+    }
+
+    const cleanLink = targetLink.split('#')[0].split('?')[0];
+    if (!cleanLink) {
+        return false;
+    }
+
+    if (cleanLink.startsWith('/')) {
+        return isDemoPathDisabled(cleanLink);
+    }
+
+    const base = currentPath.replace(/\/+$/, '');
+
+    const eventMatch = base.match(/^(\/manage\/event\/[^/]+)/);
+    if (eventMatch) {
+        return isDemoPathDisabled(`${eventMatch[1]}/${cleanLink}`);
+    }
+
+    const organizerMatch = base.match(/^(\/manage\/organizer(?:\/[^/]+)?)/);
+    if (organizerMatch) {
+        return isDemoPathDisabled(`${organizerMatch[1]}/${cleanLink}`);
+    }
+
+    if (base.startsWith('/admin')) {
+        return isDemoPathDisabled(`/admin/${cleanLink}`);
+    }
+
+    if (base.startsWith('/account')) {
+        return isDemoPathDisabled(`/account/${cleanLink}`);
+    }
+
+    return isDemoPathDisabled(`${base}/${cleanLink}`);
+};
+
+let isInterceptorInstalled = false;
+
+export const setupGlobalDemoClickInterceptor = (): void => {
+    if (typeof window === 'undefined' || typeof document === 'undefined' || isInterceptorInstalled) {
+        return;
+    }
+
+    isInterceptorInstalled = true;
+
+    document.addEventListener('click', (event) => {
+        if (!isMidtermDemoEnabled) {
+            return;
+        }
+
+        const target = event.target as HTMLElement | null;
+        if (!target) {
+            return;
+        }
+
+        const anchor = target.closest('a');
+        if (!anchor) {
+            return;
+        }
+
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#' || href.startsWith('javascript:')) {
+            return;
+        }
+
+        try {
+            const url = new URL(anchor.href, window.location.href);
+            if (url.origin === window.location.origin && isDemoPathDisabled(url.pathname)) {
+                event.preventDefault();
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+
+                const originalTransition = anchor.style.transition;
+                const originalTransform = anchor.style.transform;
+                anchor.style.transition = 'transform 0.12s ease, opacity 0.12s ease';
+                anchor.style.transform = 'scale(0.96)';
+                setTimeout(() => {
+                    anchor.style.transform = originalTransform;
+                    setTimeout(() => {
+                        anchor.style.transition = originalTransition;
+                    }, 150);
+                }, 180);
+            }
+        } catch {
+            // ignore malformed URLs
+        }
+    }, true);
+};

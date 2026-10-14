@@ -8,6 +8,8 @@ import {dynamicActivateLocale, getClientLocale, getSupportedLocale,} from "./loc
 import type {ThemeColors} from "./utilites/themeColors.ts";
 import type {DehydratedState} from "@tanstack/react-query";
 
+import {setupGlobalDemoClickInterceptor} from "./utilites/demoGates.ts";
+
 declare global {
     interface Window {
         __REHYDRATED_STATE__?: DehydratedState;
@@ -18,6 +20,7 @@ declare global {
 const dehydratedState = window.__REHYDRATED_STATE__;
 
 async function initClientApp() {
+    setupGlobalDemoClickInterceptor();
     const rawLocale = getClientLocale();
     const locale = getSupportedLocale(rawLocale);
     await dynamicActivateLocale(locale);
