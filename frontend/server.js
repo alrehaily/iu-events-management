@@ -147,7 +147,7 @@ Sitemap: ${frontendUrl}/sitemap.xml
                 render = (await dynamicImport(path.join(__dirname, "./dist/server/entry.server.js"))).render;
             }
 
-            const { appHtml, dehydratedState, helmetContext, themeColors, statusCode, renderErrors } = await render(
+            const { appHtml, locale, direction, dehydratedState, helmetContext, themeColors, statusCode, renderErrors } = await render(
                 { req, res },
                 ssrManifest
             );
@@ -186,11 +186,8 @@ Sitemap: ${frontendUrl}/sitemap.xml
             `);
             }
 
-            const reqLocale = req.cookies?.locale === "en" ? "en" : "ar";
-            const reqDir = reqLocale === "ar" ? "rtl" : "ltr";
-
             const html = template
-                .replace(/<html[^>]*>/, `<html lang="${reqLocale}" dir="${reqDir}">`)
+                .replace(/<html[^>]*>/, `<html lang="${locale}" dir="${direction}">`)
                 .replace("<!--head-snippets-->", () => headSnippets.join("\n"))
                 .replace("<!--app-html-->", () => appHtml)
                 .replace("<!--dehydrated-state-->", () => `<script>window.__REHYDRATED_STATE__ = ${stringifiedState};window.__THEME_COLORS__ = ${stringifiedThemeColors}</script>`)

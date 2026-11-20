@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import { useEffect, useRef, useState } from "react";
 import classes from './OrganizerHomepageDesigner.module.scss';
 import { useParams } from "react-router";
@@ -30,6 +31,7 @@ interface FormValues {
 import { IU_COLORS } from "../../../../constants/iuTheme.ts";
 
 const OrganizerHomepageDesigner = () => {
+    useLingui();
     const { organizerId } = useParams();
     const organizerSettingsQuery = useGetOrganizerSettings(organizerId);
     const organizerQuery = useGetOrganizer(organizerId);

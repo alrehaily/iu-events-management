@@ -37,7 +37,7 @@ class AttendeeLoginActionPublic extends BaseAction
 
         if (! $token) {
             return $this->errorResponse(
-                message: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.',
+                message: __('Incorrect email or password.'),
                 statusCode: Response::HTTP_UNAUTHORIZED,
             );
         }
@@ -54,7 +54,7 @@ class AttendeeLoginActionPublic extends BaseAction
                 'email' => $user->email,
                 'role' => 'ATTENDEE',
             ],
-            'message' => 'تم تسجيل الدخول بنجاح.',
+            'message' => __('Signed in successfully.'),
         ]);
     }
 }

@@ -70,7 +70,7 @@
 .iu-event-top-date-badge {
   position: absolute;
   top: 24px;
-  right: 28px;
+  inset-inline-end: 28px;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
   border-radius: 18px;
@@ -299,17 +299,12 @@
 .iu-back-text-link:hover {
   color: #15803d;
   text-decoration: underline;
-  transform: translateX(-3px);
 }
 
 .iu-back-arrow {
   font-size: 16px;
   line-height: 1;
   transition: transform 0.15s ease;
-}
-
-.iu-back-text-link:hover .iu-back-arrow {
-  transform: translateX(-3px);
 }
 
 .iu-sidebar-price-text {

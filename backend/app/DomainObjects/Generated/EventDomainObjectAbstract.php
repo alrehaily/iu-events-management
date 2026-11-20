@@ -33,6 +33,7 @@ abstract class EventDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     final public const CATEGORY = 'category';
     final public const TYPE = 'type';
     final public const RECURRENCE_RULE = 'recurrence_rule';
+    final public const IS_CERTIFICATE_ELIGIBLE = 'is_certificate_eligible';
 
     protected int $id;
     protected int $account_id;
@@ -57,6 +58,7 @@ abstract class EventDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     protected string $category = 'OTHER';
     protected string $type = 'SINGLE';
     protected array|string|null $recurrence_rule = null;
+    protected bool $is_certificate_eligible = false;
 
     public function toArray(): array
     {
@@ -84,6 +86,7 @@ abstract class EventDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
                     'category' => $this->category ?? null,
                     'type' => $this->type ?? null,
                     'recurrence_rule' => $this->recurrence_rule ?? null,
+                    'is_certificate_eligible' => $this->is_certificate_eligible ?? null,
                 ];
     }
 
@@ -338,5 +341,16 @@ abstract class EventDomainObjectAbstract extends \HiEvents\DomainObjects\Abstrac
     public function getRecurrenceRule(): array|string|null
     {
         return $this->recurrence_rule;
+    }
+
+    public function setIsCertificateEligible(bool $is_certificate_eligible): self
+    {
+        $this->is_certificate_eligible = $is_certificate_eligible;
+        return $this;
+    }
+
+    public function getIsCertificateEligible(): bool
+    {
+        return $this->is_certificate_eligible;
     }
 }

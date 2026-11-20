@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {Container, Title, Text, Paper, Stack, Group, SimpleGrid, Skeleton, Badge, Anchor, Table} from "@mantine/core";
 import {t, Trans} from "@lingui/macro";
 import {
@@ -27,6 +28,7 @@ dayjs.extend(timezone);
 dayjs.extend(relativeTime);
 
 const AdminDashboard = () => {
+    useLingui();
     const {data: user} = useGetMe();
     const {data: stats, isLoading} = useGetAdminStats();
     const {data: upcomingEvents, isLoading: isLoadingEvents} = useGetUpcomingEvents(10);

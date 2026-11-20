@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {Event, QueryFilters} from "../../../../types.ts";
 import {useGetEvents} from "../../../../queries/useGetEvents.ts";
 import {EventCard} from "../../../common/EventCard";
@@ -38,6 +39,7 @@ const DashboardSkeleton = () => {
 }
 
 export function Dashboard() {
+    useLingui();
     const {eventsState} = useParams();
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useFilterQueryParamSync();
@@ -76,7 +78,7 @@ export function Dashboard() {
                     borderRadius: "50%",
                     animation: "iu-spin 0.8s linear infinite"
                 }} />
-                <span style={{color: 'var(--iu-green-900)', fontWeight: 600, fontSize: 15}}>جاري تحميل لوحة التحكم...</span>
+                <span style={{color: 'var(--iu-green-900)', fontWeight: 600, fontSize: 15}}>{t`Loading dashboard...`}</span>
             </div>
         );
     }
@@ -107,7 +109,7 @@ export function Dashboard() {
                 <div className={classes.headerContent}>
                     <h1 className={classes.pageTitle}>{getHeading()}</h1>
                     <p className={classes.welcomeMessage}>
-                        <Trans>مرحباً بك في منصة فعاليات الجامعة الإسلامية بالمدينة المنورة</Trans>
+                        <Trans>Welcome to the Islamic University of Madinah events platform</Trans>
                     </p>
                 </div>
 

@@ -1,11 +1,10 @@
 import {Select} from "@mantine/core";
-import {dynamicActivateLocale, getClientLocale} from "../../../locales.ts";
+import {useIULanguage} from "../../../context/IULanguageContext";
 import {t} from "@lingui/macro";
 import {IconWorld} from "@tabler/icons-react";
-import {useLingui} from "@lingui/react";
 
 export const LanguageSwitcher = ({width = 120, variant = 'default'}: {width?: number | string; variant?: 'default' | 'topbar'}) => {
-    useLingui();
+    const {locale, setLanguage} = useIULanguage();
 
     const supportedLanguages = [
         {
@@ -18,9 +17,6 @@ export const LanguageSwitcher = ({width = 120, variant = 'default'}: {width?: nu
         }
     ];
 
-    const currentLocale = getClientLocale();
-    const effectiveLocale = supportedLanguages.some(l => l.value === currentLocale) ? currentLocale : "ar";
-
     const isTopbar = variant === 'topbar';
 
     return (
@@ -30,7 +26,8 @@ export const LanguageSwitcher = ({width = 120, variant = 'default'}: {width?: nu
             size={'xs'}
             required
             data={supportedLanguages}
-            value={effectiveLocale}
+            value={locale}
+            aria-label={t`Language`}
             placeholder={t`Language`}
             styles={{
                 input: isTopbar ? {
@@ -54,11 +51,7 @@ export const LanguageSwitcher = ({width = 120, variant = 'default'}: {width?: nu
                 }
             }}
             onChange={(value) => {
-                if (!value) return;
-                document.cookie = `locale=${value};path=/;max-age=31536000`;
-                dynamicActivateLocale(value).finally(() => {
-                    window.location.href = window.location.pathname + window.location.search;
-                });
+                if (value === "ar" || value === "en") setLanguage(value);
             }}
         />
     );

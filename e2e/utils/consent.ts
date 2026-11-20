@@ -18,3 +18,9 @@ export const grantedConsentCookie = (): StorageCookie => ({
 });
 
 export const noStoredConsent: StorageState = { cookies: [], origins: [] };
+
+export const englishLocaleCookie = (): StorageCookie => ({
+  ...grantedConsentCookie(),
+  name: 'locale',
+  value: 'en',
+});

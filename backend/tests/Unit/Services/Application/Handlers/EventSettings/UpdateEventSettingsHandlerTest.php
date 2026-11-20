@@ -5,6 +5,7 @@ namespace Tests\Unit\Services\Application\Handlers\EventSettings;
 use HiEvents\DomainObjects\Enums\CapacityChangeDirection;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\Events\CapacityChangedEvent;
+use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventSettings\DTO\UpdateEventSettingsDTO;
 use HiEvents\Services\Application\Handlers\EventSettings\UpdateEventSettingsHandler;
@@ -21,6 +22,8 @@ class UpdateEventSettingsHandlerTest extends TestCase
 
     private EventSettingsRepositoryInterface $eventSettingsRepository;
 
+    private EventRepositoryInterface $eventRepository;
+
     private HtmlPurifierService $purifier;
 
     private DatabaseManager $databaseManager;
@@ -32,6 +35,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
         parent::setUp();
 
         $this->eventSettingsRepository = Mockery::mock(EventSettingsRepositoryInterface::class);
+        $this->eventRepository = Mockery::mock(EventRepositoryInterface::class);
         $this->purifier = Mockery::mock(HtmlPurifierService::class);
         $this->databaseManager = Mockery::mock(DatabaseManager::class);
 
@@ -45,6 +49,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
             eventSettingsRepository: $this->eventSettingsRepository,
             purifier: $this->purifier,
             databaseManager: $this->databaseManager,
+            eventRepository: $this->eventRepository,
         );
     }
 
@@ -217,14 +222,30 @@ class UpdateEventSettingsHandlerTest extends TestCase
         $this->assertSame([null], $captured);
     }
 
+    public function test_updates_certificate_eligibility_for_the_owned_event(): void
+    {
+        $settings = new EventSettingDomainObject;
+        $this->eventSettingsRepository->shouldReceive('findFirstWhere')->twice()->andReturn($settings);
+        $this->eventSettingsRepository->shouldReceive('updateWhere')->once();
+        $this->eventRepository->shouldReceive('updateWhere')
+            ->once()
+            ->with(['is_certificate_eligible' => false], ['id' => 1, 'account_id' => 1]);
+
+        $result = $this->handler->handle($this->createDTO(is_certificate_eligible: false));
+
+        $this->assertSame($settings, $result);
+    }
+
     private function createDTO(
         ?bool $waitlist_auto_process = null,
         bool $allow_copy_details_to_all_attendees = true,
         ?string $get_tickets_button_text = null,
+        ?bool $is_certificate_eligible = null,
     ): UpdateEventSettingsDTO {
         return UpdateEventSettingsDTO::fromArray([
             'account_id' => 1,
             'event_id' => 1,
+            'is_certificate_eligible' => $is_certificate_eligible,
             'post_checkout_message' => null,
             'pre_checkout_message' => null,
             'email_footer_message' => null,

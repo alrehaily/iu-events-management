@@ -1,7 +1,8 @@
 import React, {FC, PropsWithChildren, useEffect} from "react";
-import {MantineProvider, v8CssVariablesResolver} from "@mantine/core";
+import {DirectionProvider, MantineProvider, PasswordInput, v8CssVariablesResolver} from "@mantine/core";
 import {Notifications} from "@mantine/notifications";
 import {i18n} from "@lingui/core";
+import {t} from "@lingui/macro";
 import {I18nProvider} from "@lingui/react";
 import {ModalsProvider} from "@mantine/modals";
 import {DatesProvider} from "@mantine/dates";
@@ -20,12 +21,12 @@ import "@mantine/charts/styles.css";
 import "./styles/global.scss";
 import "./styles/iu/management-buttons.css";
 import {isSsr} from "./utilites/helpers.ts";
-import {StartupChecks} from "./StartupChecks.tsx";
 import {ThirdPartyScripts} from "./components/common/ThirdPartyScripts";
 import {getConfig} from "./utilites/config.ts";
 import {CookieConsentBanner} from "./components/common/CookieConsentBanner";
 import {isConsentBannerEnabled} from "./utilites/cookieConsent";
-import {IULanguageProvider} from "./context/IULanguageContext";
+import {IULanguageProvider, useIULanguage} from "./context/IULanguageContext";
+import {localeDirection, type SupportedLocales} from "./locales.ts";
 
 declare global {
     interface Window {
@@ -33,15 +34,56 @@ declare global {
     }
 }
 
-export const App: FC<
-    PropsWithChildren<{
-        queryClient: QueryClient;
-        locale: string;
-        themeColors: ThemeColors;
-        helmetContext?: any;
-        dehydratedState?: DehydratedState;
-    }>
-> = (props) => {
+type AppProps = PropsWithChildren<{
+    queryClient: QueryClient;
+    locale: SupportedLocales;
+    themeColors: ThemeColors;
+    helmetContext?: React.ComponentProps<typeof HelmetProvider>["context"];
+    dehydratedState?: DehydratedState;
+}>;
+
+const LocalizedProviders = (props: AppProps) => {
+    const {locale} = useIULanguage();
+
+    return (
+        <MantineProvider
+            cssVariablesResolver={v8CssVariablesResolver}
+            theme={{
+                colors: props.themeColors,
+                primaryColor: "primary",
+                fontFamily: IU_TYPOGRAPHY.fontFamily,
+                primaryShade: 8,
+                defaultRadius: "md",
+                components: {
+                    PasswordInput: PasswordInput.extend({
+                        defaultProps: {visibilityToggleButtonProps: {"aria-label": t`Toggle password visibility`}},
+                    }),
+                },
+            }}
+        >
+            <HelmetProvider context={props.helmetContext}>
+                <DatesProvider settings={{locale}}>
+                    <QueryClientProvider client={props.queryClient}>
+                        <HydrationBoundary state={props.dehydratedState}>
+                            <ThirdPartyScripts/>
+                            <ModalsProvider labels={{confirm: t`Confirm`, cancel: t`Cancel`}}>
+                                <Helmet>
+                                    <title>{getConfig("VITE_APP_NAME", t`IU Events Management Platform`)}</title>
+                                    <link rel="icon" type="image/png" href={getConfig("VITE_APP_FAVICON", "/images/IUEvent2.png")}/>
+                                </Helmet>
+                                {props.children}
+                            </ModalsProvider>
+                            <Notifications pauseResetOnHover="notification"/>
+                            {isConsentBannerEnabled() && <CookieConsentBanner/>}
+                        </HydrationBoundary>
+                    </QueryClientProvider>
+                </DatesProvider>
+            </HelmetProvider>
+        </MantineProvider>
+    );
+};
+
+export const App: FC<AppProps> = (props) => {
     const [isLoadedOnBrowser, setIsLoadedOnBrowser] = React.useState(false);
     useEffect(() => {
         setIsLoadedOnBrowser(!isSsr());
@@ -71,7 +113,7 @@ export const App: FC<
                 <div style={{display: "flex", flexDirection: "column", alignItems: "center", gap: "16px"}}>
                     <img
                         src="/images/IUEvent2.png"
-                        alt="الجامعة الإسلامية بالمدينة المنورة"
+                        alt=""
                         style={{height: 72, width: "auto"}}
                     />
                     <div
@@ -86,43 +128,13 @@ export const App: FC<
                     />
                 </div>
             </div>
-            <MantineProvider
-                cssVariablesResolver={v8CssVariablesResolver}
-                theme={{
-                    colors: props.themeColors,
-                    primaryColor: "primary",
-                    fontFamily: IU_TYPOGRAPHY.fontFamily,
-                    primaryShade: 8,
-                    defaultRadius: "md",
-                }}
-            >
-                <HelmetProvider context={props.helmetContext}>
-                    <I18nProvider i18n={i18n}>
-                        <IULanguageProvider initialLocale={props.locale as any}>
-                            <DatesProvider settings={{locale: props.locale}}>
-                            <QueryClientProvider client={props.queryClient}>
-                                <HydrationBoundary state={props.dehydratedState}>
-                                    <StartupChecks/>
-                                    <ThirdPartyScripts/>
-                                    <ModalsProvider>
-                                        <Helmet>
-                                            <title>{getConfig("VITE_APP_NAME", "منصة إدارة الفعاليات - الجامعة الإسلامية بالمدينة المنورة")}</title>
-                                            <link rel="icon"
-                                                  type="image/png"
-                                                  href={getConfig("VITE_APP_FAVICON", "/images/IUEvent2.png")}
-                                            />
-                                        </Helmet>
-                                        {props.children}
-                                    </ModalsProvider>
-                                    <Notifications pauseResetOnHover="notification"/>
-                                    {isConsentBannerEnabled() && <CookieConsentBanner/>}
-                                </HydrationBoundary>
-                            </QueryClientProvider>
-                            </DatesProvider>
-                        </IULanguageProvider>
-                    </I18nProvider>
-                </HelmetProvider>
-            </MantineProvider>
+            <I18nProvider i18n={i18n}>
+                <DirectionProvider initialDirection={localeDirection(props.locale)}>
+                    <IULanguageProvider>
+                        <LocalizedProviders {...props}/>
+                    </IULanguageProvider>
+                </DirectionProvider>
+            </I18nProvider>
         </React.StrictMode>
     );
 };

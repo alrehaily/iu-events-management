@@ -27,11 +27,11 @@ class SetUserLocaleMiddleware
             return;
         }
 
-        if ($this->setLocaleFromUser()) {
+        if ($this->setLocaleFromAcceptLanguage($request)) {
             return;
         }
 
-        $this->setLocaleFromAcceptLanguage($request);
+        $this->setLocaleFromUser();
     }
 
     protected function setLocaleFromCookie(Request $request): bool

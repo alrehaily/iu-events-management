@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {PageTitle} from "../../../common/PageTitle";
 import {t} from "@lingui/macro";
 import {PageBody} from "../../../common/PageBody";
@@ -9,6 +10,7 @@ import {Link, useParams} from "react-router";
 import {OrganizerReportTypes} from "../../../../types.ts";
 
 const OrganizerReports = () => {
+    useLingui();
     const {organizerId} = useParams();
 
     const reports = [

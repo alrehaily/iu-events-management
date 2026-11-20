@@ -90,6 +90,7 @@ class UpdateEventSettingsDTO extends BaseDTO
         public readonly ?int $waitlist_offer_timeout_minutes = null,
 
         public readonly ?string $get_tickets_button_text = null,
+        public readonly ?bool $is_certificate_eligible = null,
     ) {}
 
     public static function createWithDefaults(

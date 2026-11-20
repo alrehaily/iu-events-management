@@ -146,7 +146,6 @@ export const EventDetailsForm = () => {
         updateMutation.mutate({
             eventData: {
                 ...eventData,
-                is_certificate_eligible,
             },
             eventId: eventId,
         });
@@ -248,21 +247,21 @@ export const EventDetailsForm = () => {
                     <Accordion variant="contained" mt="md" mb="md">
                         <Accordion.Item value="custom-details">
                             <Accordion.Control icon={<IconAdjustments size={18} />}>
-                                <Text fw={600} size="sm">{t`تفاصيل ومعلومات إضافية للفعالية (اختياري)`}</Text>
+                                <Text fw={600} size="sm">{t`Additional event details (optional)`}</Text>
                             </Accordion.Control>
                             <Accordion.Panel>
                                 <Stack gap="sm">
                                     <Switch
                                         {...form.getInputProps('is_certificate_eligible', { type: 'checkbox' })}
-                                        label={t`هل تتضمن الفعالية شهادة حضور؟`}
-                                        description={t`عند تفعيل هذا الخيار، سيتم عرض بطاقة شهادة الحضور وشعار الاعتماد في صفحة الفعالية`}
+                                        label={t`Offer an attendance certificate`}
+                                        description={t`Shows a certificate badge on the event page.`}
                                         color="teal"
                                         size="md"
                                         mb="xs"
                                     />
                                     <TextInput
                                         {...form.getInputProps('target_audience')}
-                                        label={t`الفئة المستهدفة`}
+                                        label={t`Intended audience`}
                                         placeholder={t`كافة المستفيدين، الباحثون، والمهتمون`}
                                         description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
                                     />

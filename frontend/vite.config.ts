@@ -25,7 +25,7 @@ export default defineConfig({
     },
     server: {
         hmr: {
-            port: 24678,
+            port: Number(process.env.IU_HMR_PORT || 24678),
             protocol: "ws",
         },
     },
@@ -42,7 +42,6 @@ export default defineConfig({
         }),
     ],
     define: {
-        "process.env": process.env,
         "__APP_VERSION__": JSON.stringify(getVersion()),
     },
     ssr: {

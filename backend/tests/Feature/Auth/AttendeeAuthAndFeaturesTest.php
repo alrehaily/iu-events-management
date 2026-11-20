@@ -96,7 +96,11 @@ class AttendeeAuthAndFeaturesTest extends TestCase
         // Attendee has no organizer account, so accessing /users/me or /events should not authorize organizer actions
         $organizerAttempt = $this->withHeader('Authorization', 'Bearer ' . $token)
             ->getJson('/events');
-        $this->assertTrue(in_array($organizerAttempt->status(), [401, 403, 404, 500]));
+        $organizerAttempt->assertForbidden();
+
+        $this->withHeader('Authorization', 'Bearer ' . $token)
+            ->getJson('/admin/dashboard')
+            ->assertForbidden();
     }
 
     public function test_public_events_endpoint(): void

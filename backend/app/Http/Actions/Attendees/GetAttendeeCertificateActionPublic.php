@@ -23,7 +23,7 @@ class GetAttendeeCertificateActionPublic extends BaseAction
 
         if (! $user) {
             return $this->errorResponse(
-                message: 'يرجى تسجيل الدخول أولاً للتحقق من الأهلية وإصدار الشهادة المعتمدة.',
+                message: __('Sign in to check eligibility and request an attendance certificate.'),
                 statusCode: Response::HTTP_UNAUTHORIZED
             );
         }
@@ -47,7 +47,7 @@ class GetAttendeeCertificateActionPublic extends BaseAction
 
         if ($attendeeEmail !== $userEmail && $orderEmail !== $userEmail) {
             return $this->errorResponse(
-                message: 'ليس لديك صلاحية لطلب أو استعراض شهادة هذا المشارك.',
+                message: __('You are not allowed to view or request this certificate.'),
                 statusCode: Response::HTTP_FORBIDDEN
             );
         }
@@ -64,7 +64,7 @@ class GetAttendeeCertificateActionPublic extends BaseAction
         if (! $event->is_certificate_eligible) {
             return response()->json([
                 'eligible' => false,
-                'message' => 'هذه الفعالية غير مدرجة ضمن الفعاليات التي تمنح شهادات حضور معتمدة.',
+                'message' => __('This event does not offer attendance certificates.'),
                 'checked_in' => false,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
@@ -73,7 +73,7 @@ class GetAttendeeCertificateActionPublic extends BaseAction
         if ($attendee->status === AttendeeStatus::CANCELLED->name || $attendee->order?->status === OrderStatus::CANCELLED->name) {
             return response()->json([
                 'eligible' => false,
-                'message' => 'التسجيل ملغى، لا يمكن إصدار شهادة حضور لهذا السجل.',
+                'message' => __('This booking is cancelled and cannot receive an attendance certificate.'),
                 'checked_in' => false,
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
@@ -89,7 +89,7 @@ class GetAttendeeCertificateActionPublic extends BaseAction
         if (! $isCheckedIn) {
             return response()->json([
                 'eligible' => false,
-                'message' => 'غير مؤهل للحصول على الشهادة: يجب تسجيل وتأكيد الحضور أولاً في مقر الفعالية.',
+                'message' => __('Attendance must be recorded before a certificate can be issued.'),
                 'checked_in' => false,
                 'attendee_name' => trim($attendee->first_name . ' ' . $attendee->last_name),
                 'event_title' => $event->title,
@@ -117,11 +117,11 @@ class GetAttendeeCertificateActionPublic extends BaseAction
             'attendee_email' => $attendee->email,
             'event_title' => $event->title,
             'event_date' => $event->start_date ? date('Y-m-d', strtotime((string)$event->start_date)) : date('Y-m-d'),
-            'location' => $event->location ?? 'الجامعة الإسلامية بالمدينة المنورة',
+            'location' => $event->location ?? __('Islamic University of Madinah'),
             'issued_at' => $certificate->issued_at ? date('c', strtotime((string)$certificate->issued_at)) : now()->toIso8601String(),
-            'issuer' => 'الجامعة الإسلامية بالمدينة المنورة',
+            'issuer' => __('Islamic University of Madinah'),
             'checked_in' => true,
-            'verification_url' => url("/verify-certificate/{$certificate->certificate_code}"),
+            'verification_url' => url("/public/certificates/verify/{$certificate->certificate_code}"),
         ]);
     }
 }

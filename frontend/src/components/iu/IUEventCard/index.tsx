@@ -4,7 +4,7 @@ import classes from "./IUEventCard.module.scss";
 import {Event} from "../../../types";
 import {eventCoverImageUrl} from "../../../utilites/urlHelper";
 import {IconCalendar, IconClock} from "@tabler/icons-react";
-import dayjs from "dayjs";
+import {formatDateWithLocale} from "../../../utilites/dates.ts";
 import {useIULanguage} from "../../../context/IULanguageContext";
 
 interface IUEventCardProps {
@@ -13,7 +13,7 @@ interface IUEventCardProps {
 }
 
 export const IUEventCard: React.FC<IUEventCardProps> = ({event, index = 0}) => {
-  const {locale, isArabic, t, getCategoryLabel} = useIULanguage();
+  const {locale, t, getCategoryLabel} = useIULanguage();
   const coverUrl = eventCoverImageUrl(event) || "/images/IUEvent2.png";
   const [imgSrc, setImgSrc] = React.useState<string>(coverUrl);
 
@@ -25,11 +25,11 @@ export const IUEventCard: React.FC<IUEventCardProps> = ({event, index = 0}) => {
   const isEnded = event.lifecycle_status === "ENDED";
   const isLive = event.status === "LIVE" && !isEnded;
 
-  const startDate = event.start_date || (event.occurrences && event.occurrences[0]?.start_date);
+  const startDate = event.next_occurrence_start_date ?? event.start_date ?? event.occurrences?.[0]?.start_date;
   const formattedDate = startDate
-    ? dayjs(startDate).locale(locale).format(isArabic ? "DD MMMM YYYY" : "MMM DD, YYYY")
+    ? formatDateWithLocale(startDate, "shortDate", event.timezone, locale)
     : t("status_upcoming", "موعد مرتقب");
-  const formattedTime = startDate ? dayjs(startDate).locale(locale).format("h:mm A") : "";
+  const formattedTime = startDate ? formatDateWithLocale(startDate, "timeOnly", event.timezone, locale) : "";
 
   return (
     <Link

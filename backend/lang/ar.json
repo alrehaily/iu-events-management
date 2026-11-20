@@ -1,0 +1,19 @@
+{
+    "Incorrect email or password.": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "Signed in successfully.": "تم تسجيل الدخول بنجاح.",
+    "This email is already registered. Please log in.": "البريد الإلكتروني مسجل مسبقاً. يرجى تسجيل الدخول.",
+    "Attendee account created successfully.": "تم إنشاء حساب الطالب/المشارك بنجاح.",
+    "You have already registered for this event. Duplicate registrations are not allowed.": "لقد قمت بالتسجيل مسبقاً في هذه الفعالية. لا يُسمح بالتسجيل المكرر.",
+    "Sign in to access your bookings and tickets.": "يرجى تسجيل الدخول أولاً للوصول إلى حجوزاتك وتذاكرك.",
+    "Admission ticket": "تذكرة دخول",
+    "Sign in to check eligibility and request an attendance certificate.": "يرجى تسجيل الدخول أولاً للتحقق من الأهلية وإصدار الشهادة المعتمدة.",
+    "You are not allowed to view or request this certificate.": "ليس لديك صلاحية لطلب أو استعراض شهادة هذا المشارك.",
+    "This event does not offer attendance certificates.": "هذه الفعالية غير مدرجة ضمن الفعاليات التي تمنح شهادات حضور معتمدة.",
+    "This booking is cancelled and cannot receive an attendance certificate.": "التسجيل ملغى، لا يمكن إصدار شهادة حضور لهذا السجل.",
+    "Attendance must be recorded before a certificate can be issued.": "غير مؤهل للحصول على الشهادة: يجب تسجيل وتأكيد الحضور أولاً في مقر الفعالية.",
+    "Islamic University of Madinah": "الجامعة الإسلامية بالمدينة المنورة",
+    "You are not authorized to perform this action.": "ليس لديك صلاحية لتنفيذ هذا الإجراء.",
+    "No account ID found in token": "لا توجد بيانات حساب في رمز الدخول",
+    "Attendee not found": "لم يتم العثور على المشارك",
+    "Event not found": "لم يتم العثور على الفعالية"
+}

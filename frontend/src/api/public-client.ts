@@ -1,4 +1,5 @@
 import axios from "axios";
+import {setInterfaceRequestHeaders} from "../utilites/requestHeaders.ts";
 import {isSsr} from "../utilites/helpers";
 import {getConfig} from "../utilites/config";
 import {getCheckoutSessionIdentifier} from "../utilites/checkoutSession";
@@ -8,6 +9,7 @@ export const publicApi = axios.create({
 });
 
 publicApi.interceptors.request.use((config) => {
+    setInterfaceRequestHeaders(config.headers);
     const baseUrl = isSsr()
         ? getConfig('VITE_API_URL_SERVER')
         : getConfig('VITE_API_URL_CLIENT');

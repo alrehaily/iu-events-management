@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
-import { dynamicActivateLocale, getClientLocale, SupportedLocales } from "../locales";
+import React, { createContext, useContext, useRef, ReactNode, useCallback } from "react";
+import {useLingui} from "@lingui/react";
+import {useDirection} from "@mantine/core";
+import {applyDocumentLocale, getSupportedLocale, loadLocaleMessages, localeDirection, SupportedLocales} from "../locales";
 import { getEventCategories } from "../constants/eventCategories";
 
 export interface IULanguageContextType {
@@ -379,45 +381,36 @@ const IULanguageContext = createContext<IULanguageContextType>({
   formatDate: (d?: string | null) => d || "",
 });
 
-export const IULanguageProvider: React.FC<{ children: ReactNode; initialLocale?: SupportedLocales }> = ({ children, initialLocale }) => {
-  const [locale, setLocaleState] = useState<SupportedLocales>(() => {
-    return initialLocale || getClientLocale();
-  });
+export const IULanguageProvider: React.FC<{ children: ReactNode }> = ({children}) => {
+  const {i18n} = useLingui();
+  const {setDirection} = useDirection();
+  const locale = getSupportedLocale(i18n.locale);
+  const requestedLocale = useRef(locale);
 
-  const applyLocale = useCallback((newLocale: SupportedLocales) => {
-    setLocaleState(newLocale);
-    if (typeof document !== "undefined") {
-      document.cookie = `locale=${newLocale}; path=/; max-age=31536000`;
-      localStorage.setItem("locale", newLocale);
-      document.documentElement.dir = newLocale === "ar" ? "rtl" : "ltr";
-      document.documentElement.lang = newLocale;
+  const setLanguage = useCallback((language: SupportedLocales) => {
+    requestedLocale.current = language;
+    void loadLocaleMessages(language).then((messages) => {
+      if (requestedLocale.current !== language) return;
+
+      document.cookie = `locale=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
+      try {
+        localStorage.setItem("locale", language);
+      } catch {}
+      applyDocumentLocale(language);
+      setDirection(localeDirection(language));
+      i18n.loadAndActivate({locale: language, messages});
       window.dispatchEvent(new Event("iu_locale_changed"));
-    }
-    dynamicActivateLocale(newLocale);
-  }, []);
+    }).catch((error: unknown) => {
+      console.error("Unable to load interface language", error);
+    });
+  }, [i18n, setDirection]);
 
   const toggleLanguage = useCallback(() => {
-    const next = locale === "ar" ? "en" : "ar";
-    applyLocale(next);
-  }, [locale, applyLocale]);
-
-  const setLanguage = useCallback((lang: SupportedLocales) => {
-    applyLocale(lang);
-  }, [applyLocale]);
-
-  useEffect(() => {
-    // Initial sync
-    if (typeof document !== "undefined") {
-      document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-      document.documentElement.lang = locale;
-    }
-  }, [locale]);
+    setLanguage(requestedLocale.current === "ar" ? "en" : "ar");
+  }, [setLanguage]);
 
   const t = useCallback((key: string, defaultText?: string): string => {
-    const dict = IU_TRANSLATIONS[locale] || IU_TRANSLATIONS.ar;
-    if (dict[key]) return dict[key];
-    if (IU_TRANSLATIONS.ar[key]) return IU_TRANSLATIONS.ar[key];
-    return defaultText || key;
+    return IU_TRANSLATIONS[locale][key] || defaultText || key;
   }, [locale]);
 
   const getCategoryLabel = useCallback((categoryId: string): string => {
@@ -433,7 +426,7 @@ export const IULanguageProvider: React.FC<{ children: ReactNode; initialLocale?:
     try {
       const d = new Date(dateStr);
       if (isNaN(d.getTime())) return dateStr;
-      return d.toLocaleDateString(locale === "ar" ? "ar-SA" : "en-US", {
+      return d.toLocaleDateString(locale === "ar" ? "ar-SA-u-ca-gregory" : "en-US", {
         weekday: "short",
         year: "numeric",
         month: "short",
@@ -446,7 +439,7 @@ export const IULanguageProvider: React.FC<{ children: ReactNode; initialLocale?:
 
   const isArabic = locale === "ar";
   const isEnglish = locale === "en";
-  const dir = isArabic ? "rtl" : "ltr";
+  const dir = localeDirection(locale);
 
   return (
     <IULanguageContext.Provider

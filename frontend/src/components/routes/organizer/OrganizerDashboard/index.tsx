@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from "react-router";
 import { Button, Menu, SegmentedControl, Skeleton, UnstyledButton } from '@mantine/core';
@@ -46,6 +47,7 @@ export const DashboardSkeleton = () => {
 };
 
 export const OrganizerDashboard = () => {
+    useLingui();
     const { organizerId } = useParams<{ organizerId: string }>();
     const { data: organizer } = useGetOrganizer(organizerId);
     const [showCreateEventModal, setShowCreateEventModal] = useState(false);

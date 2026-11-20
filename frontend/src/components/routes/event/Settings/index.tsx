@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {PageBody} from "../../../common/PageBody";
 import {EventDetailsForm} from "./Sections/EventDetailsForm";
 import {LocationSettings} from "./Sections/LocationSettings";
@@ -35,6 +36,8 @@ import {useParams} from "react-router";
 import {EventType} from "../../../../types.ts";
 
 export const Settings = () => {
+    const {i18n} = useLingui();
+    const locale = i18n.locale;
     const {data: account} = useGetAccount();
     const isSaasMode = account?.is_saas_mode_enabled;
     const {eventId} = useParams();
@@ -116,7 +119,7 @@ export const Settings = () => {
         }
 
         return baseSections;
-    }, [isSaasMode, isRecurring]);
+    }, [isSaasMode, isRecurring, locale]);
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const [activeSection, setActiveSection] = useState(() => {

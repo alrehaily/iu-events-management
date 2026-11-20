@@ -1,6 +1,6 @@
 import {Button, PasswordInput, TextInput, Collapse, UnstyledButton} from "@mantine/core";
 import {NavLink, useLocation, useNavigate} from "react-router";
-import {notifications} from '@mantine/notifications';
+import {isAxiosError} from "axios";
 import {attendeeClient} from "../../../../api/attendee.client.ts";
 import {useForm} from "@mantine/form";
 import classes from "./Login.module.scss";
@@ -15,7 +15,7 @@ export const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [loginError, setLoginError] = useState<string | null>(null);
+    const [loginError, setLoginError] = useState<"loginError" | "invalidCredentials" | null>(null);
     const [ticketLookupOpen, setTicketLookupOpen] = useState(false);
     const [ticketLookupSuccess, setTicketLookupSuccess] = useState(false);
 
@@ -31,6 +31,7 @@ export const Login = () => {
         login: isArabic ? "تسجيل الدخول" : "Log In",
         noAccount: isArabic ? "ليس لديك حساب بعد؟" : "Don't have an account?",
         createAccount: isArabic ? "إنشاء حساب جديد" : "Create a new account",
+        invalidCredentials: isArabic ? "البريد الإلكتروني أو كلمة المرور غير صحيحة." : "Incorrect email or password.",
         loginError: isArabic
             ? "تعذر تسجيل الدخول. تحقق من بياناتك وحاول مرة أخرى."
             : "Unable to log in. Check your details and try again.",
@@ -75,14 +76,8 @@ export const Login = () => {
             const redirectParam = searchParams.get('redirect');
             const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
             navigate(redirectUrl);
-        } catch (err: any) {
-            const msg = err.response?.data?.message || text.loginError;
-            setLoginError(msg);
-            notifications.show({
-                message: msg,
-                color: 'red',
-                position: 'top-center',
-            });
+        } catch (error: unknown) {
+            setLoginError(isAxiosError(error) && error.response?.status === 401 ? "invalidCredentials" : "loginError");
         } finally {
             setLoading(false);
         }
@@ -117,7 +112,7 @@ export const Login = () => {
                     fontWeight: 600,
                     marginBottom: 16,
                 }}>
-                    {loginError}
+                    {text[loginError]}
                 </div>
             )}
 

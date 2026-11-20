@@ -9,6 +9,7 @@ enum Locale: string
     use BaseEnum;
 
     case EN = 'en';
+    case AR = 'ar';
     case DE = 'de';
     case FR = 'fr';
     case IT = 'it';

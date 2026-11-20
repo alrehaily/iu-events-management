@@ -21,7 +21,7 @@ class GetAttendeeRegistrationsActionPublic extends BaseAction
 
         if (! $user) {
             return $this->errorResponse(
-                message: 'يرجى تسجيل الدخول أولاً للوصول إلى حجوزاتك وتذاكرك.',
+                message: __('Sign in to access your bookings and tickets.'),
                 statusCode: Response::HTTP_UNAUTHORIZED,
             );
         }
@@ -55,7 +55,7 @@ class GetAttendeeRegistrationsActionPublic extends BaseAction
                     'last_name' => $attendee->last_name,
                     'email' => $attendee->email,
                     'status' => $attendee->status,
-                    'product_title' => $attendee->product?->title ?? 'تذكرة دخول',
+                    'product_title' => $attendee->product?->title ?? __('Admission ticket'),
                     'checked_in' => $isCheckedIn,
                     'checked_in_at' => $checkIn?->created_at ?? $attendee->checked_in_at,
                     'is_certificate_eligible' => $isCertEligible,

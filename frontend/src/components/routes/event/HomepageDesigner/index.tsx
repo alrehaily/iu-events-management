@@ -79,7 +79,7 @@ const HomepageDesigner = () => {
 
             form.setValues({
                 homepage_theme_settings: themeSettings,
-                is_certificate_eligible: Boolean(settings.is_certificate_eligible ?? false),
+                is_certificate_eligible: Boolean(eventData?.is_certificate_eligible ?? false),
                 target_audience: settings.target_audience || '',
                 certificate_info: settings.certificate_info || '',
                 requirements_info: settings.requirements_info || '',
@@ -87,7 +87,7 @@ const HomepageDesigner = () => {
                 attendee_notice: settings.attendee_notice || '',
             });
         }
-    }, [eventSettingsQuery.isFetched]);
+    }, [eventSettingsQuery.isFetched, eventData?.is_certificate_eligible]);
 
     useEffect(() => {
         if (eventSettingsQuery.isFetched && eventImagesQuery.isFetched && !iframeSrc) {

@@ -2,12 +2,13 @@ import {IconUsers, IconBuildingBank, IconLayoutDashboard, IconCalendar, IconRece
 import {t} from "@lingui/macro";
 import {NavItem, BreadcrumbItem} from "../AppLayout/types";
 import AppLayout from "../AppLayout";
-import {useIsCurrentUserSuperAdmin} from "../../../hooks/useIsCurrentUserAdmin.ts";
-import {useNavigate} from "react-router";
+import {useGetMe} from "../../../queries/useGetMe";
+import {Navigate} from "react-router";
+import {useLingui} from "@lingui/react";
 
 const AdminLayout = () => {
-    const isSuperAdmin = useIsCurrentUserSuperAdmin();
-    const navigate = useNavigate();
+    useLingui();
+    const {data: user, isFetched} = useGetMe();
     const navItems: NavItem[] = [
         {label: t`Admin`},
         {link: '', label: t`Dashboard`, icon: IconLayoutDashboard},
@@ -31,10 +32,8 @@ const AdminLayout = () => {
         }
     ];
 
-    if (!isSuperAdmin) {
-        navigate('/');
-        return ;
-    }
+    if (!isFetched) return null;
+    if (user?.role !== 'SUPERADMIN') return <Navigate to="/" replace />;
 
     return (
         <AppLayout

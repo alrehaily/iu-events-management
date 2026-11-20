@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {
     IconArrowsHorizontal,
     IconBrandStripe,
@@ -42,6 +43,7 @@ import { useResendEmailConfirmation } from "../../../mutations/useResendEmailCon
 import { useGetMe } from "../../../queries/useGetMe.ts";
 
 const OrganizerLayout = () => {
+    useLingui();
     const { organizerId } = useParams();
     const location = useLocation();
     const { data: organizer } = useGetOrganizer(organizerId);

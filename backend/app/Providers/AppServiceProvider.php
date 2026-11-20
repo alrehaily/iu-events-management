@@ -67,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
                     'user' => config('database.connections.pgsql.username'),
                     'password' => config('database.connections.pgsql.password'),
                     'host' => config('database.connections.pgsql.host'),
+                    'port' => config('database.connections.pgsql.port'),
                     'driver' => 'pdo_pgsql',
                 ];
 

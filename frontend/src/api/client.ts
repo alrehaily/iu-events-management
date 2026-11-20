@@ -1,4 +1,5 @@
 import axios from "axios";
+import {setInterfaceRequestHeaders} from "../utilites/requestHeaders.ts";
 import {isSsr} from "../utilites/helpers.ts";
 import {getConfig} from "../utilites/config.ts";
 
@@ -83,6 +84,11 @@ export const api = axios.create({
         'Content-Type': 'application/json'
     },
     withCredentials: true,
+});
+
+api.interceptors.request.use((config) => {
+    setInterfaceRequestHeaders(config.headers);
+    return config;
 });
 
 api.interceptors.response.use(

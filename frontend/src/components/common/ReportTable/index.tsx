@@ -147,10 +147,10 @@ const ReportTable = <T extends Record<string, any>>({
         onDateRangeChange?.(newRange);
     };
 
-    const handleDateRangeChange = (newRange: [Date | null, Date | null]) => {
+    const handleDateRangeChange = (newRange: [string | null, string | null]) => {
         const [start, end] = newRange;
-        const tzStart = start ? dayjs(start).tz(event.timezone) : null;
-        const tzEnd = end ? dayjs(end).tz(event.timezone) : null;
+        const tzStart = start ? dayjs.tz(start, event.timezone) : null;
+        const tzEnd = end ? dayjs.tz(end, event.timezone) : null;
 
         const tzRange: [Date | null, Date | null] = [
             tzStart?.toDate() || null,

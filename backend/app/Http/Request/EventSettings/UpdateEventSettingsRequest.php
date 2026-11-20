@@ -25,6 +25,7 @@ class UpdateEventSettingsRequest extends BaseRequest
             'continue_button_text' => ['string', 'nullable', 'max:100'],
             'get_tickets_button_text' => ['string', 'nullable', 'max:100'],
             'support_email' => ['email', 'nullable'],
+            'is_certificate_eligible' => ['boolean'],
             'require_attendee_details' => ['boolean'],
             'attendee_details_collection_method' => [Rule::in(AttendeeDetailsCollectionMethod::valuesArray())],
             'order_timeout_in_minutes' => ['numeric', 'min:1', 'max:120'],

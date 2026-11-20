@@ -32,7 +32,7 @@ export const clientBuildEnv: { [K in ConfigKeys]: string } = {
 export const getConfig = (key: ConfigKeys, fallback?: string): string | undefined => {
     if (isSsr()) {
         const serverEnv = typeof process !== "undefined" && process.env ? process.env : {};
-        return serverEnv[key] as string | undefined || fallback;
+        return serverEnv[key] || clientBuildEnv[key] || fallback;
     }
 
     const clientEnv = typeof window !== "undefined" && window.hievents ? window.hievents : {};

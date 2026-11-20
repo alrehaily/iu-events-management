@@ -33,6 +33,7 @@ use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
 use HiEvents\Services\Infrastructure\Session\CheckoutSessionManagementService;
 use Illuminate\Database\Connection;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
@@ -77,6 +78,10 @@ class CompleteOrderHandlerTest extends TestCase
         Mail::fake();
         Bus::fake();
         DB::shouldReceive('transaction')->andReturnUsing(fn ($callback) => $callback(Mockery::mock(Connection::class)));
+        $duplicateOrders = Mockery::mock(Builder::class);
+        $duplicateOrders->shouldReceive('where', 'whereRaw', 'whereNull')->andReturnSelf();
+        $duplicateOrders->shouldReceive('exists')->andReturnFalse();
+        DB::shouldReceive('table')->with('orders')->andReturn($duplicateOrders);
         $this->executedStatements = [];
         DB::shouldReceive('statement')->andReturnUsing(function (string $sql, array $bindings = []) {
             $this->executedStatements[] = [$sql, $bindings];

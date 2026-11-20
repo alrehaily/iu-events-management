@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {
     IconArrowLeft,
     IconCalendarRepeat,
@@ -55,6 +56,7 @@ import {useGetEventOccurrence} from "../../../queries/useGetEventOccurrence.ts";
 import {prettyDate} from "../../../utilites/dates.ts";
 
 const EventLayout = () => {
+    useLingui();
     const location = useLocation();
     const {eventId} = useParams();
 

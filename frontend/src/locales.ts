@@ -1,4 +1,4 @@
-import {i18n} from "@lingui/core";
+import {i18n, type Messages} from "@lingui/core";
 import {arabicMessageOverrides} from "./locales/ar-overrides.ts";
 import {arabicManagementMessageOverrides} from "./locales/ar-management-overrides.ts";
 import {arabicPolishMessageOverrides} from "./locales/ar-polish-overrides.ts";
@@ -45,7 +45,7 @@ export const getClientLocale = (): SupportedLocales => {
         return "ar";
     }
 
-    return "ar";
+    return getSupportedLocale(i18n.locale);
 };
 
 const dayjsLocaleLoaders: Record<SupportedLocales, () => Promise<unknown>> = {
@@ -70,41 +70,44 @@ const resolveArabicSourceOverrides = (englishMessages: Record<string, unknown>) 
     return resolved;
 };
 
-export async function dynamicActivateLocale(locale: string) {
-    try {
-        const validLocale: SupportedLocales = locale === "en" ? "en" : "ar";
-        const [module, englishModule] = await Promise.all([
-            import(`./locales/${validLocale}.po`),
-            validLocale === "ar" ? import("./locales/en.po") : Promise.resolve(null),
-            dayjsLocaleLoaders[validLocale]?.().catch((error) => console.error("Error loading dayjs locale:", error)),
-        ]);
+const localeMessages: Partial<Record<SupportedLocales, Promise<Messages>>> = {};
 
-        const sourceResolvedOverrides = validLocale === "ar" && englishModule
-            ? resolveArabicSourceOverrides(englishModule.messages as Record<string, unknown>)
-            : {};
+const fetchLocaleMessages = async (locale: SupportedLocales): Promise<Messages> => {
+    const [catalog, english] = await Promise.all([
+        locale === "ar" ? import("./locales/ar.po") : import("./locales/en.po"),
+        locale === "ar" ? import("./locales/en.po") : undefined,
+        dayjsLocaleLoaders[locale](),
+    ]);
 
-        const messages = validLocale === "ar"
-            ? {
-                ...module.messages,
-                ...sourceResolvedOverrides,
-                ...arabicMessageOverrides,
-                ...arabicManagementMessageOverrides,
-                ...arabicPolishMessageOverrides,
-                ...arabicUiFinalOverrides,
-                ...arabicDynamicMessageOverrides,
-            }
-            : module.messages;
-
-        i18n.load(validLocale, messages);
-        i18n.activate(validLocale);
-        if (typeof document !== "undefined") {
-            document.documentElement.dir = validLocale === "ar" ? "rtl" : "ltr";
-            document.documentElement.lang = validLocale;
-        }
-    } catch (error) {
-        console.error("Error loading locale:", error);
+    if (!english) {
+        return catalog.messages;
     }
-}
+
+    return {
+        ...catalog.messages,
+        ...resolveArabicSourceOverrides(english.messages),
+        ...arabicMessageOverrides,
+        ...arabicManagementMessageOverrides,
+        ...arabicPolishMessageOverrides,
+        ...arabicUiFinalOverrides,
+        ...arabicDynamicMessageOverrides,
+    };
+};
+
+export const loadLocaleMessages = (locale: SupportedLocales) => {
+    const pending = localeMessages[locale] ??= fetchLocaleMessages(locale).catch((error) => {
+        delete localeMessages[locale];
+        throw error;
+    });
+    return pending;
+};
+
+export const localeDirection = (locale: SupportedLocales) => locale === "ar" ? "rtl" : "ltr";
+
+export const applyDocumentLocale = (locale: SupportedLocales) => {
+    document.documentElement.dir = localeDirection(locale);
+    document.documentElement.lang = locale;
+};
 
 export const getSupportedLocale = (userLocale?: string): SupportedLocales => {
     if (!userLocale) return "ar";

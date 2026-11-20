@@ -4,28 +4,22 @@ import {dehydrate, QueryClient} from "@tanstack/react-query";
 
 import {router} from "./router";
 import {App} from "./App";
-import {setAuthToken} from "./utilites/apiClient.ts";
+import {AsyncLocalStorage} from "node:async_hooks";
 import {createStaticHandler, createStaticRouter, StaticRouterProvider} from "react-router";
-import {dynamicActivateLocale} from "./locales.ts";
-import {setSsrQueryClient} from "./utilites/ssrQueryClient.ts";
+import {i18n} from "@lingui/core";
+import {getSupportedLocale, loadLocaleMessages, localeDirection, type SupportedLocales} from "./locales.ts";
+import {configureSsrRequestContext} from "./utilites/ssrRequestContext.ts";
 import {generateThemeColors} from "./utilites/themeColors.ts";
 
 const themeColors = generateThemeColors();
-
-const getLocale = (req: express.Request): string => {
-    if (req.cookies.locale) {
-        return req.cookies.locale;
-    }
-
-    const acceptLanguage = req.headers['accept-language'];
-    return acceptLanguage ? acceptLanguage.split(',')[0].split('-')[0] : 'en';
-}
+const requestContext = new AsyncLocalStorage<{queryClient: QueryClient; locale: SupportedLocales; token?: string}>();
+configureSsrRequestContext(() => requestContext.getStore());
 
 export async function render(params: {
     req: express.Request;
     res: express.Response;
 }) {
-    setAuthToken(params.req.cookies.token);
+    const locale = getSupportedLocale(params.req.cookies.locale);
 
     const queryClient = new QueryClient({
         defaultOptions: {
@@ -40,8 +34,16 @@ export async function render(params: {
         },
     });
 
-    setSsrQueryClient(queryClient);
+    return requestContext.run({queryClient, locale, token: params.req.cookies.token}, () =>
+        renderRequest(params, locale, queryClient),
+    );
+}
 
+async function renderRequest(
+    params: {req: express.Request; res: express.Response},
+    locale: SupportedLocales,
+    queryClient: QueryClient,
+) {
     const helmetContext = {};
 
     const {query, dataRoutes} = createStaticHandler(router);
@@ -52,15 +54,15 @@ export async function render(params: {
         throw context;
     }
 
-    await dynamicActivateLocale(getLocale(params.req));
-
+    const messages = await loadLocaleMessages(locale);
     const routerWithContext = createStaticRouter(dataRoutes, context);
+    i18n.loadAndActivate({locale, messages});
     
     const appHtml = ReactDOMServer.renderToString(
         <App
             queryClient={queryClient}
             helmetContext={helmetContext}
-            locale={getLocale(params.req)}
+            locale={locale}
             themeColors={themeColors}
         >
             <StaticRouterProvider
@@ -72,10 +74,11 @@ export async function render(params: {
 
     const dehydratedState = dehydrate(queryClient);
 
-    setSsrQueryClient(null);
 
     return {
-        appHtml: appHtml,
+        appHtml,
+        locale,
+        direction: localeDirection(locale),
         dehydratedState,
         helmetContext,
         themeColors,

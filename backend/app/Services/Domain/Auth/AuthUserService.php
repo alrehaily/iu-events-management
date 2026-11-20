@@ -2,7 +2,6 @@
 
 namespace HiEvents\Services\Domain\Auth;
 
-use Exception;
 use HiEvents\DomainObjects\Enums\Role;
 use HiEvents\DomainObjects\Interfaces\DomainObjectInterface;
 use HiEvents\DomainObjects\UserDomainObject;
@@ -51,11 +50,9 @@ readonly class AuthUserService
             return null;
         }
 
-        try {
-            return Role::from($payload->get('role'));
-        } catch (Exception) {
-            return null;
-        }
+        $role = $payload->get('role');
+
+        return is_string($role) ? Role::tryFrom($role) : null;
     }
 
     public function getUser(): UserDomainObject|DomainObjectInterface|null

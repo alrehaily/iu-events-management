@@ -33,6 +33,7 @@ class PartialUpdateEventSettingsHandler
             UpdateEventSettingsDTO::fromArray([
                 'event_id' => $eventSettingsDTO->event_id,
                 'account_id' => $eventSettingsDTO->account_id,
+                'is_certificate_eligible' => $eventSettingsDTO->settings['is_certificate_eligible'] ?? null,
                 'post_checkout_message' => array_key_exists('post_checkout_message', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['post_checkout_message']
                     : $existingSettings->getPostCheckoutMessage(),

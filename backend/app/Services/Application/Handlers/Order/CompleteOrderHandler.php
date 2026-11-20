@@ -96,7 +96,7 @@ class CompleteOrderHandler
                     ->exists();
 
                 if ($alreadyRegistered) {
-                    throw new ResourceConflictException(__('لقد قمت بالتسجيل مسبقاً في هذه الفعالية. لا يُسمح بالتسجيل المكرر.'));
+                    throw new ResourceConflictException(__('You have already registered for this event. Duplicate registrations are not allowed.'));
                 }
             }
 

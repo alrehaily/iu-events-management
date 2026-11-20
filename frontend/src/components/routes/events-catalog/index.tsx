@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {t as lingui} from "@lingui/macro";
 import classes from "./EventsCatalog.module.scss";
 import {IUHero} from "../../iu/IUHero";
 import {IUSearchBar} from "../../iu/IUSearchBar";
@@ -17,7 +18,7 @@ export const IUEventsCatalogPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const {data: eventsResponse, isLoading} = useGetEventsPublic({
+  const {data: eventsResponse, isLoading, isError, refetch} = useGetEventsPublic({
     query: query || undefined,
     pageNumber: currentPage,
     perPage: 9,
@@ -93,6 +94,11 @@ export const IUEventsCatalogPage: React.FC = () => {
         {isLoading ? (
           <div className={classes.noResults}>
             <p>{t("loading_events", "جاري تحميل الفعاليات...")}</p>
+          </div>
+        ) : isError ? (
+          <div className={classes.noResults} role="alert">
+            <h3>{lingui`Unable to load events`}</h3>
+            <button type="button" className="btn outline" onClick={() => void refetch()}>{lingui`Try again`}</button>
           </div>
         ) : events.length > 0 ? (
           <>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router";
+import {isAxiosError} from "axios";
 import { Button, PasswordInput, SimpleGrid, TextInput } from "@mantine/core";
 import { attendeeClient } from "../../../../api/attendee.client";
 import { useIULanguage } from "../../../../context/IULanguageContext";
@@ -15,7 +16,7 @@ export const AttendeeRegister: React.FC = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<"passwordMismatch" | "passwordLength" | "duplicateEmail" | "error" | null>(null);
 
   const text = {
     title: isArabic ? "إنشاء حساب مستفيد جديد" : "Create a New Attendee Account",
@@ -38,6 +39,7 @@ export const AttendeeRegister: React.FC = () => {
       : "Are you an organizer or event administrator?",
     organizerLink: isArabic ? "دخول المنظمين والمسؤولين ←" : "Organizer & staff login →",
     passwordMismatch: isArabic ? "كلمتا المرور غير متطابقتين." : "Passwords do not match.",
+    duplicateEmail: isArabic ? "البريد الإلكتروني مسجل مسبقاً. يرجى تسجيل الدخول." : "This email is already registered. Please log in.",
     passwordLength: isArabic
       ? "يجب أن تكون كلمة المرور 8 أحرف على الأقل."
       : "Password must be at least 8 characters.",
@@ -51,12 +53,12 @@ export const AttendeeRegister: React.FC = () => {
     setError(null);
 
     if (password !== confirmPassword) {
-      setError(text.passwordMismatch);
+      setError("passwordMismatch");
       return;
     }
 
     if (password.length < 8) {
-      setError(text.passwordLength);
+      setError("passwordLength");
       return;
     }
 
@@ -73,9 +75,8 @@ export const AttendeeRegister: React.FC = () => {
       const redirectParam = searchParams.get('redirect');
       const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
       navigate(redirectUrl);
-    } catch (err: any) {
-      const msg = err.response?.data?.message || text.error;
-      setError(msg);
+    } catch (error: unknown) {
+      setError(isAxiosError(error) && error.response?.status === 409 ? "duplicateEmail" : "error");
     } finally {
       setLoading(false);
     }
@@ -99,7 +100,7 @@ export const AttendeeRegister: React.FC = () => {
           fontWeight: 600,
           marginBottom: 16,
         }}>
-          {error}
+          {text[error]}
         </div>
       )}
 

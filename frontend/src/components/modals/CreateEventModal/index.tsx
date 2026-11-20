@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {useFormErrorResponseHandler} from "../../../hooks/useFormErrorResponseHandler.tsx";
 import {useNavigate} from "react-router";
 import {useGetAccount} from "../../../queries/useGetAccount.ts";
@@ -23,6 +24,7 @@ interface CreateEventModalProps extends GenericModalProps {
 }
 
 export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) => {
+    useLingui();
     const errorHandler = useFormErrorResponseHandler();
     const navigate = useNavigate();
     const {data: account, isFetched: isAccountFetched} = useGetAccount();

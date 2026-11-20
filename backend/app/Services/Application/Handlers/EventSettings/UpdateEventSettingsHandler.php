@@ -5,6 +5,7 @@ namespace HiEvents\Services\Application\Handlers\EventSettings;
 use HiEvents\DomainObjects\Enums\CapacityChangeDirection;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\Events\CapacityChangedEvent;
+use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventSettings\DTO\UpdateEventSettingsDTO;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
@@ -17,6 +18,7 @@ class UpdateEventSettingsHandler
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly HtmlPurifierService $purifier,
         private readonly DatabaseManager $databaseManager,
+        private readonly EventRepositoryInterface $eventRepository,
     ) {}
 
     /**
@@ -110,6 +112,13 @@ class UpdateEventSettingsHandler
                     'event_id' => $settings->event_id,
                 ],
             );
+
+            if ($settings->is_certificate_eligible !== null) {
+                $this->eventRepository->updateWhere(
+                    attributes: ['is_certificate_eligible' => $settings->is_certificate_eligible],
+                    where: ['id' => $settings->event_id, 'account_id' => $settings->account_id],
+                );
+            }
 
             return $this->eventSettingsRepository
                 ->findFirstWhere([

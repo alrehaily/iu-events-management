@@ -12,12 +12,7 @@ export const IUNavbar: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [hasAttendeeToken, setHasAttendeeToken] = useState(() => {
-    if (typeof window !== "undefined") {
-      return Boolean(localStorage.getItem("iu_attendee_token") || localStorage.getItem("token"));
-    }
-    return false;
-  });
+  const [hasAttendeeToken, setHasAttendeeToken] = useState(false);
 
   useEffect(() => {
     const checkAuth = () => {

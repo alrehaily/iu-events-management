@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {useGetEvent} from "../../../../queries/useGetEvent.ts";
 import {useLocation, useNavigate, useParams} from "react-router";
 import {PageTitle} from "../../../common/PageTitle";
@@ -40,6 +41,7 @@ export const DashBoardSkeleton = () => {
 }
 
 export const EventDashboard = () => {
+    useLingui();
     const {eventId} = useParams();
     const navigate = useNavigate();
     const location = useLocation();

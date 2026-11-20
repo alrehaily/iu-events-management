@@ -1,11 +1,15 @@
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
+import {t} from "@lingui/macro";
+import {useIULanguage} from "../../../context/IULanguageContext";
+import {formatDateWithLocale, isValidDate} from "../../../utilites/dates.ts";
 import {Link} from "react-router";
 import SelectProducts from "../../routes/product-widget/SelectProducts";
 import {EventDocumentHead} from "../../common/EventDocumentHead";
 import {eventCoverImage} from "../../../utilites/urlHelper.ts";
-import {Event, EventOccurrence} from "../../../types.ts";
+import {Event, EventOccurrence, EventSettings} from "../../../types.ts";
 import {EventNotAvailable} from "./EventNotAvailable";
 import {
+    IconArrowLeft,
     IconArrowRight,
     IconCalendar,
     IconCertificate,
@@ -21,7 +25,7 @@ import {IUNavbar} from "../../iu/IUNavbar";
 import {IUFooter} from "../../iu/IUFooter";
 import {IUHero} from "../../iu/IUHero";
 import {ContactOrganizerModal} from "../../common/ContactOrganizerModal";
-import {buildEventLocationDisplay, summariseEventLocations} from "../../../utilites/effectiveLocation.ts";
+import {buildEventLocationDisplay, getEventLocationDisplay, summariseEventLocations} from "../../../utilites/effectiveLocation.ts";
 import {StatusToggle} from "../../common/StatusToggle";
 import {useOrganizerTrackingPixels} from "../../../hooks/useOrganizerTrackingPixels";
 import {trackPixelEvent, hasActivePixels} from "../../../utilites/trackingPixels";
@@ -40,17 +44,11 @@ interface EventHomepageProps {
 
 export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const {event, promoCodeValid, promoCode, initialOccurrenceId} = loaderData;
+    const {dir, locale, getCategoryLabel} = useIULanguage();
+    const BackArrow = dir === "rtl" ? IconArrowRight : IconArrowLeft;
     const [contactModalOpen, setContactModalOpen] = useState(false);
     const [ticketsModalOpen, setTicketsModalOpen] = useState(false);
     const [selectedOccurrence, setSelectedOccurrence] = useState<EventOccurrence | undefined>();
-    const [selectedCart, setSelectedCart] = useState({quantity: 0, total: 0});
-    const [continueButtonNode, setContinueButtonNode] = useState<HTMLButtonElement | null>(null);
-
-    const handleCartChange = useCallback(
-        (cart: {quantity: number; total: number}) => setSelectedCart(cart),
-        [],
-    );
-
     const {pixelsReady} = useOrganizerTrackingPixels(
         event?.organizer?.settings?.tracking_pixels
     );
@@ -73,50 +71,40 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const coverImage = coverImageData?.url || null;
     const organizer = event.organizer;
     const locationSummary = summariseEventLocations(event);
-    const singleLocationDisplay = locationSummary.kind === 'single'
-        ? buildEventLocationDisplay(event, locationSummary.eventLocation, locationSummary.isEventDefault)
-        : null;
-    const isOnlineEvent = singleLocationDisplay?.isOnline === true;
-    const venueName = singleLocationDisplay?.venueName ?? (isOnlineEvent ? "عبر الإنترنت" : (event.event_location?.location?.name || "الجامعة الإسلامية بالمدينة المنورة"));
-    const mapUrl = singleLocationDisplay?.mapsUrl ?? `https://maps.google.com/?q=${encodeURIComponent(venueName + " المدينة المنورة")}`;
+    const location = selectedOccurrence
+        ? getEventLocationDisplay(event, selectedOccurrence)
+        : locationSummary.kind === 'single'
+            ? buildEventLocationDisplay(event, locationSummary.eventLocation, locationSummary.isEventDefault)
+            : null;
+    const venue = location?.venueName ?? location?.short ?? location?.full;
+    const mapQuery = location?.full ?? venue;
+    const mapUrl = location?.mapsUrl ?? (mapQuery ? `https://maps.google.com/?q=${encodeURIComponent(mapQuery)}` : null);
+    const locationLabel = location?.isOnline ? t`Online` : venue
+        ?? (locationSummary.kind === 'varied' ? t`Varies by date` : t`Not specified`);
+    const formatLabel = location ? (location.isOnline ? t`Online` : t`In person`) : locationLabel;
 
-    const products = event.products || event.product_categories?.flatMap(c => c.products || []) || [];
-    
-    // Price calculation
-    let isFree = true;
-    let minPrice: number | null = null;
-    if (products.length > 0) {
-        const prices = products.map(p => Number(p.price || 0));
-        isFree = prices.every(p => p === 0);
-        minPrice = Math.min(...prices);
-    }
+    const products = event.products?.length ? event.products : event.product_categories?.flatMap(category => category.products ?? []) ?? [];
+    const prices = products
+        .filter(product => product.is_available !== false && !product.is_sold_out)
+        .flatMap(product => product.prices?.length
+            ? product.prices.filter(price => price.is_available !== false && !price.is_sold_out).map(price => Number(price.price))
+            : product.price == null ? [] : [Number(product.price)])
+        .filter(Number.isFinite);
+    const minimum = prices.length ? Math.min(...prices) : null;
+    const priceLabel = minimum === null
+        ? t`Not specified`
+        : prices.every(price => price === 0) ? t`Free` : t`From ${formatCurrency(minimum, event.currency, locale)}`;
 
-    // Date calculations for Badge
-    const startDateObj = event.start_date ? new Date(event.start_date) : null;
-    const heroDay = startDateObj ? startDateObj.getDate() : "16";
-    const heroMonth = startDateObj ? startDateObj.toLocaleDateString("ar-SA", {month: "long"}) : "سبتمبر";
-    const heroTime = startDateObj ? startDateObj.toLocaleTimeString("ar-SA", {hour: "2-digit", minute: "2-digit"}) : "09:00 م";
-
-    // Timing Format badge (e.g. مسائي or صباحي)
-    const isEvening = startDateObj ? startDateObj.getHours() >= 12 : true;
-    const timingBadgeText = isEvening ? "مسائي" : "صباحي";
-
+    const start = selectedOccurrence?.start_date ?? event.next_occurrence_start_date ?? event.start_date;
+    const formattedStart = start && isValidDate(start) ? start : null;
     const isCertificateEligible = Boolean(event.settings?.is_certificate_eligible ?? event.is_certificate_eligible ?? false);
-
-    // Topics list
-    const defaultHighlights = [
-        "جلسات علمية ومحاضرات متخصصة",
-        "نقاشات مفتوحة مع الباحثين والخبراء",
-        "فرص للتعارف وبناء شراكات بحثية",
-        "مساحات نقاش قصيرة بعد كل محور"
-    ];
-    const rawHighlights = event.settings?.event_highlights || (event as any).event_highlights;
-    const topics = rawHighlights
-        ? rawHighlights.split('\n').map((s: string) => s.trim()).filter((s: string) => s.length > 0)
-        : defaultHighlights;
+    const details = event.settings;
+    const legacyDetails = event as Event & Partial<EventSettings>;
+    const rawHighlights = details?.event_highlights || legacyDetails.event_highlights;
+    const topics = rawHighlights?.split('\n').map(topic => topic.trim()).filter(Boolean) ?? [];
 
     return (
-        <div className="iu-page iu-event-details-page" dir="rtl">
+        <div className="iu-page iu-event-details-page" dir={dir}>
             {event?.status && event?.id && (
                 <StatusToggle
                     entityType="event"
@@ -146,11 +134,11 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                     {/* Top Banner Section (Full Event Cover Image without dark blue background) */}
                     <section className="iu-event-banner-header">
                         {/* Date Badge (Top Right) */}
-                        <div className="iu-event-top-date-badge">
+                        {formattedStart && <div className="iu-event-top-date-badge">
                             <IconCalendar size={18} className="icon" />
-                            <span className="day">{heroDay}</span>
-                            <span className="month">{heroMonth}</span>
-                        </div>
+                            <span className="day">{formatDateWithLocale(formattedStart, "dayOfMonth", event.timezone, locale)}</span>
+                            <span className="month">{formatDateWithLocale(formattedStart, "monthShort", event.timezone, locale)}</span>
+                        </div>}
 
                         {/* Full Cover Image */}
                         {coverImage ? (
@@ -178,94 +166,74 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                 
                                 {/* Meta Badges Row */}
                                 <div className="iu-event-pills-row">
-                                    <span className="iu-meta-pill">{timingBadgeText}</span>
-                                    <span className="iu-meta-pill">
-                                        {isFree ? "فعالية مجانية" : `مدفوعة (${formatCurrency(minPrice || 0, event.currency)})`}
-                                    </span>
-                                    <span className="iu-meta-pill">
-                                        {isOnlineEvent ? "عن بُعد" : "حضوري"}
-                                    </span>
+                                    <span className="iu-meta-pill">{priceLabel}</span>
+                                    <span className="iu-meta-pill">{formatLabel}</span>
                                     {isCertificateEligible && (
                                         <span className="iu-meta-pill iu-meta-pill-cert">
-                                            شهادة حضور معتمدة
+                                            {t`Attendance certificate`}
                                         </span>
                                     )}
                                 </div>
 
                                 {/* About Section */}
-                                <h3 className="iu-section-title">عن الفعالية</h3>
+                                <h3 className="iu-section-title">{t`About the event`}</h3>
                                 {event.description ? (
                                     <UserGeneratedContent
                                         className="iu-event-desc"
                                         html={event.description}
                                     />
-                                ) : (
-                                    <div className="iu-event-desc">
-                                        <p>
-                                            مؤتمر علمي دولي يناقش أحدث الأبحاث في اللغة العربية والعلوم التطبيقية، مع محاور متخصصة وجلسات معرفية متنوعة.
-                                        </p>
-                                        <p>
-                                            يضم المؤتمر جلسات علمية ومحاور متخصصة وفرصاً للتواصل مع الباحثين والخبراء. يُنصح بالاطلاع على محاور المؤتمر وتجهيز أسئلتك لضمان أقصى استفادة من النقاشات.
-                                        </p>
-                                    </div>
-                                )}
+                                ) : <p className="iu-event-desc">{t`No description provided`}</p>}
 
                                 {/* Info Cards Grid (Matching screenshot layout) */}
                                 <div className="iu-info-cards-3col">
                                     <div className="iu-card-item">
                                         <div className="iu-card-header">
-                                            <span className="iu-card-title">توقيت الفعالية</span>
+                                            <span className="iu-card-title">{t`Event time`}</span>
                                             <IconClock size={18} className="iu-card-icon" />
                                         </div>
-                                        <p className="iu-card-value">{heroDay} {heroMonth} - {heroTime}</p>
+                                        <p className="iu-card-value">{formattedStart ? formatDateWithLocale(formattedStart, "fullDateTime", event.timezone, locale) : t`Not specified`}</p>
                                     </div>
                                     <div className="iu-card-item">
                                         <div className="iu-card-header">
-                                            <span className="iu-card-title">الموقع</span>
+                                            <span className="iu-card-title">{t`Location`}</span>
                                             <IconMapPin size={18} className="iu-card-icon" />
                                         </div>
-                                        <p className="iu-card-value">{isOnlineEvent ? "عبر الإنترنت" : venueName}</p>
+                                        <p className="iu-card-value">{locationLabel}</p>
                                     </div>
                                     <div className="iu-card-item">
                                         <div className="iu-card-header">
-                                            <span className="iu-card-title">تصنيف الفعالية</span>
+                                            <span className="iu-card-title">{t`Event category`}</span>
                                             <IconTag size={18} className="iu-card-icon" />
                                         </div>
-                                        <p className="iu-card-value">{(event as any).format || event.category || "WORKSHOP"}</p>
+                                        <p className="iu-card-value">{event.category ? getCategoryLabel(event.category) : t`Not specified`}</p>
                                     </div>
                                     <div className="iu-card-item">
                                         <div className="iu-card-header">
-                                            <span className="iu-card-title">شروط القبول</span>
+                                            <span className="iu-card-title">{t`Entry requirements`}</span>
                                             <IconReceipt size={18} className="iu-card-icon" />
                                         </div>
-                                        <p className="iu-card-value">{event.settings?.requirements_info || (event as any).requirements_info || "مخصصة للباحثين وأعضاء هيئة التدريس"}</p>
+                                        <p className="iu-card-value">{details?.requirements_info || legacyDetails.requirements_info || t`Not specified`}</p>
                                     </div>
                                     <div className="iu-card-item">
                                         <div className="iu-card-header">
-                                            <span className="iu-card-title">الفئة المستهدفة</span>
+                                            <span className="iu-card-title">{t`Intended audience`}</span>
                                             <IconUsers size={18} className="iu-card-icon" />
                                         </div>
-                                        <p className="iu-card-value">{event.settings?.target_audience || (event as any).target_audience || "أعضاء هيئة التدريس والباحثون"}</p>
+                                        <p className="iu-card-value">{details?.target_audience || legacyDetails.target_audience || t`Not specified`}</p>
                                     </div>
                                     {isCertificateEligible && (
                                         <div className="iu-card-item">
                                             <div className="iu-card-header">
-                                                <span className="iu-card-title">شهادة حضور</span>
+                                                <span className="iu-card-title">{t`Attendance certificate`}</span>
                                                 <IconCertificate size={18} className="iu-card-icon" />
                                             </div>
-                                            <p className="iu-card-value">{event.settings?.certificate_info || (event as any).certificate_info || "متاحة"}</p>
+                                            <p className="iu-card-value">{details?.certificate_info || legacyDetails.certificate_info || t`Available`}</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {/* Event Highlights / Topics */}
-                                <h3 className="iu-section-title">محاور المؤتمر</h3>
-                                <p className="iu-topics-intro">
-                                    يناقش المؤتمر موضوعات بحثية وتطبيقية تجمع بين اللغة العربية والعلوم التطبيقية، مع جلسات معرفية ومحاور متخصصة وفرص للتواصل الأكاديمي.
-                                </p>
-                                <p className="iu-topics-subintro">
-                                    هذا محتوى تجريبي لإظهار شكل الصفحة عند إضافة تفاصيل أكثر، يمكن لاحقاً إدراج جدول الجلسات، أسماء المتحدثين، أو روابط ملخصات الأبحاث.
-                                </p>
+                                {topics.length > 0 && <h3 className="iu-section-title">{t`Event highlights`}</h3>}
                                 <div className="iu-topics-list">
                                     {topics.map((topic: string, idx: number) => (
                                         <div key={idx} className="iu-topic-box">
@@ -279,15 +247,15 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                             <aside className="iu-event-sidebar-col">
                                 {/* Back to events text link (Corner left) */}
                                 <div className="iu-back-link-wrapper">
-                                    <Link to="/events" className="iu-back-text-link" dir="rtl">
-                                        <span>الرجوع للفعاليات</span>
-                                        <span className="iu-back-arrow">←</span>
+                                    <Link to="/events" className="iu-back-text-link">
+                                        <BackArrow className="iu-back-arrow" size={16} aria-hidden />
+                                        <span>{t`Back to events`}</span>
                                     </Link>
                                 </div>
 
                                 {/* Price banner */}
                                 <div className="iu-sidebar-price-text">
-                                    {isFree ? "السعر: مجاني" : `السعر: ${formatCurrency(minPrice || 0, event.currency)}`}
+                                    {priceLabel}
                                 </div>
 
                                 {/* Register Button */}
@@ -295,25 +263,25 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                     onClick={() => setTicketsModalOpen(true)}
                                     className="iu-btn-register-main"
                                 >
-                                    سجل الآن
+                                    {t`Register now`}
                                 </button>
 
                                 {/* Map Card */}
-                                <div className="iu-sidebar-map-wrapper">
+                                {mapUrl && mapQuery && !location?.isOnline && <div className="iu-sidebar-map-wrapper">
                                     <a
                                         href={mapUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="iu-map-open-link"
                                     >
-                                        Open in Maps <IconExternalLink size={11} />
+                                        {t`Open in Maps`} <IconExternalLink size={11} />
                                     </a>
                                     <iframe
-                                        src={`https://maps.google.com/maps?q=${encodeURIComponent(isOnlineEvent ? "الجامعة الإسلامية بالمدينة المنورة" : venueName + " المدينة المنورة")}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                                        title="Event Location Map"
+                                        src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                                        title={t`Event location map`}
                                         loading="lazy"
                                     />
-                                </div>
+                                </div>}
                             </aside>
 
                         </div>
@@ -326,7 +294,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
             <Modal
                 opened={ticketsModalOpen}
                 onClose={() => setTicketsModalOpen(false)}
-                title="تسجيل وحجز التذاكر"
+                title={t`Event registration`}
                 size="lg"
                 centered
                 radius="lg"
@@ -351,7 +319,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                             secondaryText: "#ffffff",
                             bodyBackground: "#ffffff",
                         }}
-                        continueButtonText="التسجيل في الفعالية"
+                        continueButtonText={t`Register for the event`}
                         padding={"0px"}
                         event={event}
                         promoCodeValid={promoCodeValid}
@@ -359,18 +327,16 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                         showPoweredBy={false}
                         initialOccurrenceId={initialOccurrenceId}
                         onSelectedOccurrenceChange={setSelectedOccurrence}
-                        onCartChange={handleCartChange}
-                        continueButtonRef={setContinueButtonNode}
                     />
                 </div>
             </Modal>
 
             {/* Contact Modal */}
-            <ContactOrganizerModal
+            {organizer && <ContactOrganizerModal
                 opened={contactModalOpen}
                 onClose={() => setContactModalOpen(false)}
                 organizer={organizer}
-            />
+            />}
 
             {/* IU Footer */}
             <IUFooter />

@@ -1,6 +1,9 @@
 import React from "react";
+import {t} from "@lingui/macro";
+import {QRCodeSVG} from "qrcode.react";
+import {useIULanguage} from "../../../context/IULanguageContext";
 import {CertificateData} from "../../../api/attendee.client";
-import {IconPrinter, IconX, IconCheck, IconShieldCheck, IconAward, IconQrcode} from "@tabler/icons-react";
+import {IconPrinter, IconX, IconCheck, IconShieldCheck, IconAward} from "@tabler/icons-react";
 
 interface IUCertificateModalProps {
   opened: boolean;
@@ -13,6 +16,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
   onClose,
   certificate,
 }) => {
+  const {dir, locale} = useIULanguage();
   if (!opened || !certificate) return null;
 
   const handlePrint = () => {
@@ -21,13 +25,14 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
     }
   };
 
-  const formattedDate = certificate.issued_at
-    ? new Date(certificate.issued_at).toLocaleDateString("ar-SA", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : certificate.event_date;
+  const formatter = new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "Asia/Riyadh",
+  });
+  const formattedDate = formatter.format(new Date(certificate.issued_at || certificate.event_date));
+  const eventDate = formatter.format(new Date(certificate.event_date));
 
   return (
     <div
@@ -42,7 +47,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
         zIndex: 9999,
         padding: 20,
       }}
-      dir="rtl"
+      dir={dir}
     >
       <style>{`
         @media print {
@@ -102,7 +107,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
         >
           <div style={{display: "flex", alignItems: "center", gap: 10, color: "var(--iu-green-primary, #084b2f)", fontWeight: 700, fontSize: 15}}>
             <IconShieldCheck size={22} color="#084b2f" />
-            <span>شهادة حضور معتمدة وموثقة إلكترونياً</span>
+            <span>{t`Verified attendance certificate`}</span>
           </div>
           <div style={{display: "flex", gap: 10}}>
             <button
@@ -123,10 +128,11 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               }}
             >
               <IconPrinter size={18} />
-              طباعة / حفظ PDF
+              {t`Print or save as PDF`}
             </button>
             <button
               onClick={onClose}
+              aria-label={t`Close`}
               className="btn outline"
               style={{
                 padding: "8px 14px",
@@ -170,17 +176,17 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
           <div style={{marginBottom: 24}}>
             <img
               src="/images/IUEvent2.png"
-              alt="الجامعة الإسلامية بالمدينة المنورة"
+              alt={t`Islamic University of Madinah`}
               style={{height: 76, width: "auto", margin: "0 auto 12px", display: "block"}}
             />
             <div style={{fontSize: 15, fontWeight: 700, color: "#084b2f", letterSpacing: 0.5}}>
-              المملكة العربية السعودية
+              {t`Kingdom of Saudi Arabia`}
             </div>
             <div style={{fontSize: 20, fontWeight: 900, color: "#0f172a", marginTop: 2}}>
-              الجامعة الإسلامية بالمدينة المنورة
+              {t`Islamic University of Madinah`}
             </div>
             <div style={{fontSize: 13, color: "#475569", marginTop: 2, fontWeight: 600}}>
-              وكالة الجامعة للشؤون الأكاديمية والتطوير • عمادة التعليم المستمر والتطوير
+              {t`University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development`}
             </div>
           </div>
 
@@ -207,12 +213,12 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               marginBottom: 24,
             }}
           >
-            شهادة حضور واجتياز
+            {t`Certificate of attendance and completion`}
           </div>
 
           {/* Declaration Statement */}
           <p style={{fontSize: 16, color: "#334155", margin: "16px 0 12px", lineHeight: 1.8}}>
-            تقر عمادة التطوير والتعليم المستمر بأن المشارك/ة:
+            {t`The Deanship of Continuing Education and Development certifies that`}
           </p>
 
           {/* Attendee Name Box */}
@@ -236,7 +242,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
 
           {/* Detailed Statement */}
           <p style={{fontSize: 16, color: "#334155", lineHeight: 2, margin: "0 auto 32px", maxWidth: 620}}>
-            قد حضر/ت وأتم/ت بكفاءة واقتدار كافة متطلبات الفعالية العلمية المقامة بعنوان:
+            {t`Attended and completed the requirements of the following event`}
             <br />
             <strong
               style={{
@@ -254,7 +260,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               « {certificate.event_title} »
             </strong>
             <br />
-            المنعقدة في <span style={{fontWeight: 700}}>{certificate.location}</span> بتاريخ <span style={{fontWeight: 700}}>{certificate.event_date}</span>.
+            {t`Held at ${certificate.location} on ${eventDate}.`}
           </p>
 
           {/* Footer Seals & Verification Row */}
@@ -273,11 +279,11 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             {/* Left Column: Verification Code & QR */}
             <div style={{display: "flex", alignItems: "center", gap: 16}}>
               <div style={{background: "#fff", padding: 8, borderRadius: 10, border: "1px solid #cbd5e1"}}>
-                <IconQrcode size={52} color="#084b2f" />
+                <QRCodeSVG value={certificate.verification_url} size={72} fgColor="#084b2f" title={t`Certificate verification QR code`} />
               </div>
               <div>
                 <div style={{fontSize: 12, color: "#64748b", fontWeight: 600, marginBottom: 2}}>
-                  رمز التوثيق الإلكتروني للشهادة:
+                  {t`Certificate verification code`}
                 </div>
                 <div
                   style={{
@@ -292,7 +298,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                   {certificate.certificate_code}
                 </div>
                 <div style={{fontSize: 11, color: "#94a3b8", marginTop: 4}}>
-                  تاريخ الإصدار: {formattedDate}
+                  {t`Issued on ${formattedDate}`}
                 </div>
               </div>
             </div>
@@ -317,8 +323,8 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                 }}
               >
                 <IconCheck size={22} color="#d4af37" />
-                <span style={{fontSize: 9, fontWeight: 900, marginTop: 2, letterSpacing: 0.5}}>الجامعة الإسلامية</span>
-                <span style={{fontSize: 8, opacity: 0.9}}>معتمدة رسمياً</span>
+                <span style={{fontSize: 9, fontWeight: 900, marginTop: 2, letterSpacing: 0.5}}>{t`Islamic University`}</span>
+                <span style={{fontSize: 8, opacity: 0.9}}>{t`Officially certified`}</span>
               </div>
               <div
                 style={{
@@ -336,7 +342,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                 }}
               >
                 <IconCheck size={14} />
-                تم التحقق من الحضور عبر المنصة الرسمية
+                {t`Attendance verified by the official platform`}
               </div>
             </div>
           </div>

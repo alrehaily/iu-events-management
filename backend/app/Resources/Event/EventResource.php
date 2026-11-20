@@ -22,6 +22,7 @@ class EventResource extends BaseResource
         return [
             'id' => $this->getId(),
             'title' => $this->getTitle(),
+            'is_certificate_eligible' => $this->getIsCertificateEligible(),
             'category' => $this->getCategory(),
             'description' => $this->getDescription(),
             'start_date' => $this->getStartDate(),

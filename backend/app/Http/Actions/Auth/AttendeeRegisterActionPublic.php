@@ -35,7 +35,7 @@ class AttendeeRegisterActionPublic extends BaseAction
         $existingUser = User::whereRaw('LOWER(email) = ?', [$email])->first();
         if ($existingUser) {
             return $this->errorResponse(
-                message: 'البريد الإلكتروني مسجل مسبقاً. يرجى تسجيل الدخول.',
+                message: __('This email is already registered. Please log in.'),
                 statusCode: Response::HTTP_CONFLICT,
             );
         }
@@ -59,7 +59,7 @@ class AttendeeRegisterActionPublic extends BaseAction
                 'email' => $user->email,
                 'role' => 'ATTENDEE',
             ],
-            'message' => 'تم إنشاء حساب الطالب/المشارك بنجاح.',
+            'message' => __('Attendee account created successfully.'),
         ], Response::HTTP_CREATED);
     }
 }
