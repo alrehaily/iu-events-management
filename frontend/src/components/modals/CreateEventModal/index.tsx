@@ -1,7 +1,7 @@
 import {useLingui} from "@lingui/react";
 import {useFormErrorResponseHandler} from "../../../hooks/useFormErrorResponseHandler.tsx";
 import {useNavigate} from "react-router";
-import {useGetAccount} from "../../../queries/useGetAccount.ts";
+import {SAUDI_TIMEZONE} from "../../../constants/institution.ts";
 import {Event, EventType, GenericModalProps, IdParam, Organizer} from "../../../types.ts";
 import {useEffect, useState} from "react";
 import {t} from "@lingui/macro";
@@ -27,7 +27,6 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
     useLingui();
     const errorHandler = useFormErrorResponseHandler();
     const navigate = useNavigate();
-    const {data: account, isFetched: isAccountFetched} = useGetAccount();
     const organizersQuery = useGetOrganizers();
 
     const form = useForm<Partial<Event>>({
@@ -35,7 +34,7 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
             title: '',
             status: undefined,
             type: EventType.SINGLE,
-            start_date: dayjs().add(1, 'day').hour(21).minute(0).second(0).toISOString(),
+            start_date: dayjs().tz(SAUDI_TIMEZONE).add(1, 'day').hour(21).startOf('hour').format('YYYY-MM-DD HH:mm:ss'),
             end_date: undefined,
             description: undefined,
             organizer_id: organizerId ? String(organizerId) : undefined,
@@ -71,22 +70,6 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
             form.setFieldValue('organizer_id', String(organizersQuery.data?.data[0].id));
         }
     }, [organizersQuery.isFetched]);
-
-    useEffect(() => {
-        if (isAccountFetched) {
-            form.setFieldValue('currency', account?.currency_code);
-            form.setFieldValue('timezone', account?.timezone);
-        }
-    }, [isAccountFetched]);
-
-    useEffect(() => {
-        if (form.values.organizer_id && organizersQuery.data) {
-            form.setFieldValue(
-                'currency',
-                organizersQuery.data.data
-                    .find((organizer) => organizer.id === Number(form.values.organizer_id))?.currency);
-        }
-    }, [form.values.organizer_id]);
 
     const handleCreate = (values: Partial<Event>) => {
         eventMutation.mutateAsync({
@@ -220,7 +203,7 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                             form.setFieldValue('start_date', undefined);
                                             form.setFieldValue('end_date', undefined);
                                         } else {
-                                            form.setFieldValue('start_date', dayjs().add(1, 'day').hour(21).minute(0).second(0).toISOString());
+                                            form.setFieldValue('start_date', dayjs().tz(SAUDI_TIMEZONE).add(1, 'day').hour(21).startOf('hour').format('YYYY-MM-DD HH:mm:ss'));
                                         }
                                     }}
                                     data={[
@@ -273,7 +256,7 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                             form.setFieldValue('start_date', value ?? undefined);
 
                                             if (form.values.end_date && value && dayjs(form.values.end_date).isBefore(dayjs(value))) {
-                                                form.setFieldValue('end_date', dayjs(value).add(2, 'hours').toISOString());
+                                                form.setFieldValue('end_date', dayjs(value).add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'));
                                             }
                                         }}
                                     />
@@ -293,7 +276,7 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                         onFocus={
                                             () => {
                                                 if (!form.values.end_date && form.values.start_date) {
-                                                    form.setFieldValue('end_date', dayjs(form.values.start_date).add(2, 'hours').toISOString());
+                                                    form.setFieldValue('end_date', dayjs(form.values.start_date).add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'));
                                                 }
                                             }
                                         }

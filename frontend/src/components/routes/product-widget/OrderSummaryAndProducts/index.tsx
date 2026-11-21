@@ -1,3 +1,4 @@
+import {SAUDI_TIMEZONE} from "../../../../constants/institution.ts";
 import {t} from "@lingui/macro";
 import {NavLink, useNavigate, useParams, useLocation} from "react-router";
 import {ActionIcon, Alert, Button, Group, SimpleGrid, Text, Tooltip} from "@mantine/core";
@@ -24,7 +25,7 @@ import {useQueryClient} from "@tanstack/react-query";
 
 import {useGetOrderPublic, GET_ORDER_PUBLIC_QUERY_KEY} from "../../../../queries/useGetOrderPublic.ts";
 import {eventCheckoutPath} from "../../../../utilites/urlHelper.ts";
-import {dateToBrowserTz} from "../../../../utilites/dates.ts";
+import {prettyDate} from "../../../../utilites/dates.ts";
 import {formatAddress} from "../../../../utilites/addressUtilities.ts";
 import {getEventLocationDisplay, resolveEventLocation} from "../../../../utilites/effectiveLocation.ts";
 import {getAttendeeProductTitle} from "../../../../utilites/products.ts";
@@ -218,13 +219,11 @@ const WelcomeHeader = ({order, event, allowSelfEdit}: { order: Order; event: Eve
 
 const OrderDetails = ({
     order,
-    event,
     allowSelfEdit,
     onEditClick,
     onResendClick,
 }: {
     order: Order;
-    event: Event;
     allowSelfEdit: boolean;
     onEditClick: () => void;
     onResendClick: () => void;
@@ -271,7 +270,7 @@ const OrderDetails = ({
             <DetailItem
                 icon={IconCalendar}
                 label={t`Order Date`}
-                value={dateToBrowserTz(order.created_at, event.timezone)}
+                value={prettyDate(order.created_at, SAUDI_TIMEZONE, true)}
             />
             {!!order.refund_status && (
                 <DetailItem
@@ -348,7 +347,7 @@ const EventDetails = ({event, order}: { event: Event; order: Order }) => {
                 <DetailItem
                     icon={IconClock}
                     label={t`Timezone`}
-                    value={event.timezone}
+                    value={SAUDI_TIMEZONE}
                 />
                 <DetailItem
                     icon={IconBuilding}
@@ -614,7 +613,6 @@ export const OrderSummaryAndProducts = () => {
 
                 <OrderDetails
                     order={order}
-                    event={event}
                     allowSelfEdit={allowSelfEdit}
                     onEditClick={() => setEditOrderModalOpened(true)}
                     onResendClick={handleResendOrderConfirmation}

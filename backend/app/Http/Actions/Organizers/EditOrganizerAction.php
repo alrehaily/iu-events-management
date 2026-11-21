@@ -26,6 +26,8 @@ class EditOrganizerAction extends BaseAction
             [
                 'id' => $organizerId,
                 'account_id' => $this->getAuthenticatedAccountId(),
+                'timezone' => config('app.default_timezone'),
+                'currency' => config('app.default_currency_code'),
             ]
         );
 

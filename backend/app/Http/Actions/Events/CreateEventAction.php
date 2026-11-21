@@ -3,6 +3,7 @@
 namespace HiEvents\Http\Actions\Events;
 
 use HiEvents\Exceptions\OrganizerNotFoundException;
+use HiEvents\Helper\DateHelper;
 use HiEvents\Http\Actions\BaseAction;
 use HiEvents\Http\Request\Event\CreateEventRequest;
 use HiEvents\Resources\Event\EventResource;
@@ -29,12 +30,20 @@ class CreateEventAction extends BaseAction
         $validated = $request->validated();
         $eventLocationPayload = $validated['event_location'] ?? null;
         unset($validated['event_location']);
+        $timezone = $validated['timezone'] ?? config('app.default_timezone');
+        foreach (['start_date', 'end_date'] as $dateField) {
+            if (isset($validated[$dateField])) {
+                $validated[$dateField] = DateHelper::convertToUTC($validated[$dateField], $timezone).'Z';
+            }
+        }
 
         $eventData = array_merge(
             $validated,
             [
                 'account_id' => $this->getAuthenticatedAccountId(),
                 'user_id' => $authorisedUser->getId(),
+                'timezone' => config('app.default_timezone'),
+                'currency' => config('app.default_currency_code'),
                 'event_location' => $eventLocationPayload !== null
                     ? EventLocationData::fromArray($eventLocationPayload)
                     : null,

@@ -6,7 +6,7 @@ import {useLingui} from "@lingui/react";
 import {NavLink, useParams} from "react-router";
 import {useGetEvent} from "../../../../../../queries/useGetEvent.ts";
 import {useGetEventSettings} from "../../../../../../queries/useGetEventSettings.ts";
-import {useEffect, useMemo} from "react";
+import {useEffect} from "react";
 import {useUpdateEvent} from "../../../../../../mutations/useUpdateEvent.ts";
 import {useUpdateEventSettings} from "../../../../../../mutations/useUpdateEventSettings.ts";
 import {EventType} from "../../../../../../types.ts";
@@ -17,8 +17,6 @@ import {Editor} from "../../../../../common/Editor";
 import {utcToTz} from "../../../../../../utilites/dates.ts";
 import {showSuccess} from "../../../../../../utilites/notifications.tsx";
 import {useFormErrorResponseHandler} from "../../../../../../hooks/useFormErrorResponseHandler.tsx";
-import {currenciesMap} from "../../../../../../../data/currencies.ts";
-import {timezones} from "../../../../../../../data/timezones.ts";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 import {getEventCategories, getCategoryIcon} from "../../../../../../constants/eventCategories.ts";
 import {GET_EVENT_IMAGES_QUERY_KEY, useGetEventImages} from "../../../../../../queries/useGetEventImages.ts";
@@ -27,43 +25,15 @@ import {queryClient} from "../../../../../../utilites/queryClient.ts";
 import {GET_EVENT_PUBLIC_QUERY_KEY} from "../../../../../../queries/useGetEventPublic.ts";
 import {Tooltip} from "../../../../../common/Tooltip";
 
-const getArabicCurrencyName = (currencyCode: string, fallback: string) => {
-    try {
-        const formatter = new Intl.NumberFormat('ar-SA', {
-            style: 'currency',
-            currency: currencyCode,
-            currencyDisplay: 'name',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
-        });
-        return formatter.formatToParts(0).find((part) => part.type === 'currency')?.value || fallback;
-    } catch {
-        return fallback;
-    }
-};
-
-const getArabicTimezoneName = (timezone: string) => {
-    try {
-        const formatter = new Intl.DateTimeFormat('ar-SA', {
-            timeZone: timezone,
-            timeZoneName: 'long',
-        });
-        return formatter.formatToParts(new Date()).find((part) => part.type === 'timeZoneName')?.value || timezone;
-    } catch {
-        return timezone;
-    }
-};
-
 export const EventDetailsForm = () => {
     const {eventId} = useParams();
-    const {i18n} = useLingui();
+    useLingui();
     const eventQuery = useGetEvent(eventId);
     const eventSettingsQuery = useGetEventSettings(eventId);
     const eventImagesQuery = useGetEventImages(eventId);
     const updateMutation = useUpdateEvent();
     const updateSettingsMutation = useUpdateEventSettings();
     const isRecurring = eventQuery.data?.type === EventType.RECURRING;
-    const isArabic = i18n.locale === 'ar';
 
     const existingCover = eventImagesQuery.data?.find((image) => image.type === 'EVENT_COVER');
 
@@ -76,30 +46,12 @@ export const EventDetailsForm = () => {
         });
     };
 
-    const currencyOptions = useMemo(
-        () => currenciesMap.map((currency) => ({
-            ...currency,
-            label: isArabic ? getArabicCurrencyName(currency.value, currency.label) : currency.label,
-        })),
-        [isArabic],
-    );
-
-    const timezoneOptions = useMemo(
-        () => timezones.map((timezone) => ({
-            value: timezone,
-            label: isArabic ? getArabicTimezoneName(timezone) : timezone,
-        })),
-        [isArabic],
-    );
-
     const form = useForm({
         initialValues: {
             title: '',
             description: '',
             start_date: '',
             end_date: '',
-            timezone: '',
-            currency: '',
             category: '',
             is_certificate_eligible: false,
             target_audience: '',
@@ -119,8 +71,6 @@ export const EventDetailsForm = () => {
                 description: eventQuery.data.description || '',
                 start_date: utcToTz(eventQuery.data.start_date, eventQuery.data.timezone),
                 end_date: utcToTz(eventQuery.data.end_date, eventQuery.data.timezone),
-                timezone: eventQuery.data.timezone || '',
-                currency: eventQuery.data.currency || '',
                 category: eventQuery.data.category || '',
                 is_certificate_eligible: Boolean(settings?.is_certificate_eligible ?? (eventQuery.data as any).is_certificate_eligible ?? false),
                 target_audience: settings?.target_audience || (eventQuery.data as any).target_audience || '',
@@ -327,25 +277,6 @@ export const EventDetailsForm = () => {
                             />
                         </InputGroup>
                     )}
-                    <InputGroup>
-                        <Select
-                            searchable
-                            data={currencyOptions}
-                            {...form.getInputProps('currency')}
-                            label={t`Currency`}
-                            placeholder={isArabic ? 'اليورو' : 'EUR'}
-                            description={t`The currency used for this event's ticket prices.`}
-                        />
-
-                        <Select
-                            searchable
-                            data={timezoneOptions}
-                            {...form.getInputProps('timezone')}
-                            label={t`Timezone`}
-                            placeholder={isArabic ? 'التوقيت العالمي المنسق' : 'UTC'}
-                            description={t`The timezone used for this event's dates and times.`}
-                        />
-                    </InputGroup>
                     <Button loading={updateMutation.isPending || updateSettingsMutation.isPending} type={'submit'}>
                         {t`Save`}
                     </Button>

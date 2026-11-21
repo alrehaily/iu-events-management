@@ -13,7 +13,7 @@ class UpdateAccountRequest extends FormRequest
 
         return [
             'name' => 'required|string',
-            'timezone' => 'required|timezone:all',
+            'timezone' => 'sometimes|timezone:all',
             'currency_code' => [Rule::in(array_values($currencies))],
         ];
     }

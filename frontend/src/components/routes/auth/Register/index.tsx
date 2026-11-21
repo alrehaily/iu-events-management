@@ -8,7 +8,7 @@ import {t, Trans} from "@lingui/macro";
 import classes from "./Register.module.scss";
 import {getClientLocale} from "../../../../locales.ts";
 import {useEffect} from "react";
-import {getUserCurrency} from "../../../../utilites/currency.ts";
+import {SAUDI_CURRENCY, SAUDI_TIMEZONE} from "../../../../constants/institution.ts";
 import {getConfig} from "../../../../utilites/config.ts";
 import {getStoredUtmData, clearStoredUtmData} from "../../../../utilites/utm.ts";
 import {IconShieldLock} from "@tabler/icons-react";
@@ -27,12 +27,10 @@ export const Register = () => {
             email: '',
             password: '',
             password_confirmation: '',
-            timezone: typeof window !== 'undefined'
-                ? Intl.DateTimeFormat().resolvedOptions().timeZone
-                : 'UTC',
+            timezone: SAUDI_TIMEZONE,
             locale: getClientLocale(),
             invite_token: '',
-            currency_code: getUserCurrency(),
+            currency_code: SAUDI_CURRENCY,
             marketing_opt_in: false,
         },
         validate: {

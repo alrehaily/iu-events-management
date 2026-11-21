@@ -13979,3 +13979,6 @@ msgstr "Incorrect email or password."
 #: src/components/routes/auth/OrganizerLogin/index.tsx:91
 msgid "Unable to start your session. Please try again."
 msgstr "Unable to start your session. Please try again."
+
+msgid "Saudi Arabia"
+msgstr "Saudi Arabia"

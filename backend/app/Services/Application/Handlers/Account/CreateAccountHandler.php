@@ -24,7 +24,6 @@ use HiEvents\Services\Domain\User\EmailConfirmationService;
 use Illuminate\Config\Repository;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Hashing\HashManager;
-use NumberFormatter;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
@@ -59,8 +58,8 @@ class CreateAccountHandler
 
         return $this->databaseManager->transaction(function () use ($isSaasMode, $passwordHash, $accountData) {
             $account = $this->accountRepository->create([
-                'timezone' => $this->getTimezone($accountData),
-                'currency_code' => $this->getCurrencyCode($accountData),
+                'timezone' => $this->config->get('app.default_timezone'),
+                'currency_code' => $this->config->get('app.default_currency_code'),
                 'name' => $accountData->first_name.($accountData->last_name ? ' '.$accountData->last_name : ''),
                 'email' => strtolower($accountData->email),
                 'short_id' => IdHelper::shortId(IdHelper::ACCOUNT_PREFIX),
@@ -74,7 +73,7 @@ class CreateAccountHandler
                 'email' => strtolower($accountData->email),
                 'first_name' => $accountData->first_name,
                 'last_name' => $accountData->last_name,
-                'timezone' => $this->getTimezone($accountData),
+                'timezone' => $this->config->get('app.default_timezone'),
                 'email_verified_at' => $isSaasMode ? null : now()->toDateTimeString(),
                 'locale' => $accountData->locale,
                 'marketing_opted_in_at' => $accountData->marketing_opt_in ? now()->toDateTimeString() : null,
@@ -115,31 +114,6 @@ class CreateAccountHandler
 
             return $account;
         });
-    }
-
-    private function getTimezone(CreateAccountDTO $accountData): ?string
-    {
-        return $accountData->timezone ?? $this->config->get('app.default_timezone');
-    }
-
-    private function getCurrencyCode(CreateAccountDTO $accountData): string
-    {
-        $defaultCurrency = $this->config->get('app.default_currency_code');
-
-        if ($accountData->currency_code !== null) {
-            return $accountData->currency_code;
-        }
-
-        if ($accountData->locale !== null) {
-            $numberFormatter = new NumberFormatter($accountData->locale, NumberFormatter::CURRENCY);
-            $guessedCode = $numberFormatter->getTextAttribute(NumberFormatter::CURRENCY_CODE);
-
-            if ($guessedCode && $guessedCode !== 'XXX') {
-                return $guessedCode;
-            }
-        }
-
-        return $defaultCurrency;
     }
 
     /**

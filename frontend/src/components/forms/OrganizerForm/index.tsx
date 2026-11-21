@@ -5,9 +5,7 @@ import {Organizer} from "../../../types.ts";
 import {useEffect} from "react";
 import {LoadingContainer} from "../../common/LoadingContainer";
 import {t} from "@lingui/macro";
-import {Button, Select, Stack, TextInput} from "@mantine/core";
-import {currencies} from "../../../../data/currencies.ts";
-import {timezones} from "../../../../data/timezones.ts";
+import {Button, Stack, TextInput} from "@mantine/core";
 import {useFormErrorResponseHandler} from "../../../hooks/useFormErrorResponseHandler.tsx";
 import {useGetMe} from "../../../queries/useGetMe.ts";
 import {IconBuilding} from "@tabler/icons-react";
@@ -37,44 +35,19 @@ export const OrganizerForm = ({form}: { form: UseFormReturnType<Partial<Organize
                 size="lg"
                 type="email"
             />
-
-            <div className={classes.dateTimeGrid}>
-                <Select
-                    {...form.getInputProps('currency')}
-                    searchable
-                    required
-                    data={Object.entries(currencies).map(([key, value]) => ({
-                        value: value,
-                        label: `${key} (${value})`,
-                    }))}
-                    label={t`Currency`}
-                    placeholder={t`Select currency`}
-                    size="lg"
-                />
-                <Select
-                    {...form.getInputProps('timezone')}
-                    searchable
-                    required
-                    data={timezones}
-                    label={t`Timezone`}
-                    placeholder={t`Select timezone`}
-                    size="lg"
-                />
-            </div>
         </Stack>
     )
 }
 
 export const OrganizerCreateForm = ({onSuccess}: OrganizerFormProps) => {
     const organizerMutation = useCreateOrganizer();
+    const handleFormError = useFormErrorResponseHandler();
     const {data: account, isFetched: accountFetched} = useGetAccount();
     const {data: me, isFetched: meFetched} = useGetMe();
     const form = useForm({
         initialValues: {
             name: '',
             email: '',
-            currency: '',
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }
     });
 
@@ -89,7 +62,7 @@ export const OrganizerCreateForm = ({onSuccess}: OrganizerFormProps) => {
                 }
             },
             onError: (error: any) => {
-                useFormErrorResponseHandler()(form, error);
+                handleFormError(form, error);
             }
         });
     }
@@ -98,7 +71,6 @@ export const OrganizerCreateForm = ({onSuccess}: OrganizerFormProps) => {
         if (!accountFetched) {
             return;
         }
-        form.setFieldValue('currency', account?.currency_code ?? '');
         form.setFieldValue('name', account?.name ?? '');
     }, [accountFetched]);
 
@@ -107,7 +79,6 @@ export const OrganizerCreateForm = ({onSuccess}: OrganizerFormProps) => {
             return;
         }
         form.setFieldValue('email', me?.email ?? '');
-        form.setFieldValue('timezone', me?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone);
     }, [meFetched]);
 
     return (

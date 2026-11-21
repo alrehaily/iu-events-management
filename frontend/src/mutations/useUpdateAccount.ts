@@ -5,7 +5,7 @@ import {accountClient} from "../api/account.client.ts";
 export const useUpdateAccount = () => {
     return useMutation({
         mutationFn: ({accountData}: {
-            accountData: Account,
+            accountData: Pick<Account, 'name'>,
         }) => accountClient.updateAccount(accountData)
     });
 }

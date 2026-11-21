@@ -11,6 +11,14 @@
 - Organizer localization now follows the Arabic create-event link and closes the English modal using its close control. An initial retest failed because the top bar intercepted the close control. The modal now mounts in a portal above the top bar. The post-fix result is pending.
 - Codex account usage reported 84% remaining in the five-hour window and 52% remaining in the weekly window during Phase A.
 
+### Phase B ? Saudi defaults
+
+- New account, organizer and event API writes apply SAR and Asia/Riyadh. The create-event API uses supplied timezones to interpret legacy wall-clock inputs and saves the converted instant in UTC. Existing event settings and order currencies remain stored as before. Event and account settings no longer expose currency/timezone selectors, and the public event views display Riyadh time.
+- New venues default to Saudi Arabia and the organizer contact field shows a Saudi phone example. Existing location values retain their stored country. Duplication of a historical foreign-currency event still preserves the original pricing and timezone.
+- **PASS** Chromium Saudi defaults and UTC conversion, TC-13 create, TC-14 edit. **PASS** TypeScript after follow-up corrections and focused PHPUnit (127 tests, 321 assertions, including OpenAPI).
+- **FAIL** TC-15 timed out waiting for publish or unpublish UI confirmation, and organizer localization timed out waiting for the Arabic dashboard data. The Chromium traces include incomplete API requests. Recheck these workflows on the final production build. Evidence is in `gp2-phase-b.json`, `gp2-phase-b-retest.json`, and `phpunit-phase-b.log`.
+- Codex usage showed 68% remaining over five hours and 49% over the week.
+
 ## 2026-11-21 continuation
 
 - Working branch `fix/gp2-demo-readiness-i18n-20261120`. Both local HEAD and the remote audit branch were at `18140f12cb8a8b2f59fc1e986470298c4436afe9` on recovery. Comparison base `ebfec454af3e22b697f30b703e19afed8e747307`.

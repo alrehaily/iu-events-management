@@ -3,6 +3,7 @@ import {Badge, Button, Combobox, Group, Input, Loader, Select, Text, TextInput, 
 import {useDebouncedValue} from "@mantine/hooks";
 import {ReactNode, useEffect, useRef, useState} from "react";
 import {IconArrowLeft, IconCheck, IconMapPin, IconPencil, IconSearch} from "@tabler/icons-react";
+import {SAUDI_COUNTRY} from "../../../constants/institution.ts";
 import countries from "../../../../data/countries.json";
 import {GeoPlace, IdParam, Location, VenueAddress} from "../../../types.ts";
 import {useGetOrganizerLocations} from "../../../queries/useGetOrganizerLocations.ts";
@@ -43,7 +44,7 @@ const emptyAddress = (): VenueAddress => ({
     city: "",
     state_or_region: "",
     zip_or_postal_code: "",
-    country: "",
+    country: SAUDI_COUNTRY,
 });
 
 const placeToValue = (place: GeoPlace): LocationPickerValue => ({
@@ -266,7 +267,7 @@ export const LocationPicker = ({organizerId, value, onChange, error, clearable =
                             searchable
                             data={countries}
                             label={t`Country`}
-                            placeholder={t`United States`}
+                            placeholder={t`Saudi Arabia`}
                             value={value.address.country || null}
                             onChange={(country) => updateAddress('country', country)}
                         />

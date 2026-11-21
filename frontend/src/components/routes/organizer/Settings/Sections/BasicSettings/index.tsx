@@ -1,5 +1,5 @@
 import {useForm} from "@mantine/form";
-import {Button, Select, TextInput} from "@mantine/core";
+import {Button, TextInput} from "@mantine/core";
 import {t} from "@lingui/macro";
 import {useEffect} from "react";
 import {useParams} from "react-router";
@@ -10,8 +10,6 @@ import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 import {Organizer} from "../../../../../../types.ts";
 import {useGetOrganizer} from "../../../../../../queries/useGetOrganizer.ts";
 import {InputGroup} from "../../../../../common/InputGroup";
-import {currencies} from "../../../../../../../data/currencies.ts";
-import {timezones} from "../../../../../../../data/timezones.ts";
 import {Editor} from "../../../../../common/Editor";
 import {useUpdateOrganizer} from "../../../../../../mutations/useUpdateOrganizer.ts";
 
@@ -19,6 +17,7 @@ const Settings = () => {
     const {organizerId} = useParams();
     const {data: organizer} = useGetOrganizer(organizerId);
     const organizerMutation = useUpdateOrganizer();
+    const handleFormError = useFormErrorResponseHandler();
     const form = useForm({
         initialValues: {
             name: '',
@@ -26,8 +25,6 @@ const Settings = () => {
             phone: '',
             website: '',
             description: '',
-            currency: '',
-            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         }
     });
 
@@ -40,7 +37,7 @@ const Settings = () => {
                 showSuccess(t`Successfully Updated Organizer`);
             },
             onError: (error: any) => {
-                useFormErrorResponseHandler()(form, error);
+                handleFormError(form, error);
             }
         });
     }
@@ -49,8 +46,6 @@ const Settings = () => {
         form.setValues({
             name: String(organizer?.name),
             email: String(organizer?.email),
-            currency: String(organizer?.currency),
-            timezone: String(organizer?.timezone),
             phone: String(organizer?.phone || ''),
             website: String(organizer?.website || ''),
             description: String(organizer?.description || ''),
@@ -95,36 +90,15 @@ const Settings = () => {
                         <TextInput
                             {...form.getInputProps('phone')}
                             label={t`Phone`}
-                            placeholder={t`+1 234 567 890`}
+                            type="tel"
+                            dir="ltr"
+                            placeholder="+966 5X XXX XXXX"
                         />
                         <TextInput
                             {...form.getInputProps('website')}
                             label={t`Website`}
                             type={'url'}
                             placeholder={t`https://awesome-events.com`}
-                        />
-                    </InputGroup>
-                    <InputGroup>
-                        <Select
-                            {...form.getInputProps('currency')}
-                            searchable
-                            required
-                            data={Object.entries(currencies).map(([key, value]) => ({
-                                value: value,
-                                label: key,
-                            }))}
-                            label={t`Currency`}
-                            placeholder={t`EUR`}
-                            description={t`The default currency for your events.`}
-                        />
-                        <Select
-                            {...form.getInputProps('timezone')}
-                            searchable
-                            required
-                            data={timezones}
-                            label={t`Timezone`}
-                            placeholder={t`UTC`}
-                            description={t`The default timezone for your events.`}
                         />
                     </InputGroup>
 

@@ -6,6 +6,7 @@ import {Modal} from "../../common/Modal";
 import {Button} from "../../common/Button";
 import {InputGroup} from "../../common/InputGroup";
 import {AddressAutocomplete} from "../../common/AddressAutocomplete";
+import {SAUDI_COUNTRY} from "../../../constants/institution.ts";
 import countries from "../../../../data/countries.json";
 import {GeoPlace, IdParam, Location, VenueAddress} from "../../../types.ts";
 import {useCreateLocation} from "../../../mutations/useCreateLocation.ts";
@@ -51,7 +52,7 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
                 city: location?.structured_address?.city ?? "",
                 state_or_region: location?.structured_address?.state_or_region ?? "",
                 zip_or_postal_code: location?.structured_address?.zip_or_postal_code ?? "",
-                country: location?.structured_address?.country ?? "",
+                country: location?.structured_address?.country ?? (isEditing ? "" : SAUDI_COUNTRY),
             },
         },
         validate: {
@@ -155,7 +156,7 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
                         data={countries}
                         {...form.getInputProps("structured_address.country")}
                         label={t`Country`}
-                        placeholder={t`United States`}
+                        placeholder={t`Saudi Arabia`}
                     />
                 </InputGroup>
                 <Button type="submit" fullWidth mt="xl" loading={isPending}>

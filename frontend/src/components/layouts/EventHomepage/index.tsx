@@ -1,3 +1,4 @@
+import {SAUDI_TIMEZONE} from "../../../constants/institution.ts";
 import {useEffect, useState} from "react";
 import {t} from "@lingui/macro";
 import {useIULanguage} from "../../../context/IULanguageContext";
@@ -136,8 +137,8 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                         {/* Date Badge (Top Right) */}
                         {formattedStart && <div className="iu-event-top-date-badge">
                             <IconCalendar size={18} className="icon" />
-                            <span className="day">{formatDateWithLocale(formattedStart, "dayOfMonth", event.timezone, locale)}</span>
-                            <span className="month">{formatDateWithLocale(formattedStart, "monthShort", event.timezone, locale)}</span>
+                            <span className="day">{formatDateWithLocale(formattedStart, "dayOfMonth", SAUDI_TIMEZONE, locale)}</span>
+                            <span className="month">{formatDateWithLocale(formattedStart, "monthShort", SAUDI_TIMEZONE, locale)}</span>
                         </div>}
 
                         {/* Full Cover Image */}
@@ -191,7 +192,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                             <span className="iu-card-title">{t`Event time`}</span>
                                             <IconClock size={18} className="iu-card-icon" />
                                         </div>
-                                        <p className="iu-card-value">{formattedStart ? formatDateWithLocale(formattedStart, "fullDateTime", event.timezone, locale) : t`Not specified`}</p>
+                                        <p className="iu-card-value">{formattedStart ? formatDateWithLocale(formattedStart, "fullDateTime", SAUDI_TIMEZONE, locale) : t`Not specified`}</p>
                                     </div>
                                     <div className="iu-card-item">
                                         <div className="iu-card-header">

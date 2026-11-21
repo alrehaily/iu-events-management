@@ -1,3 +1,4 @@
+import {SAUDI_TIMEZONE} from "../../../constants/institution.ts";
 import React from "react";
 import {Link} from "react-router";
 import classes from "./IUEventCard.module.scss";
@@ -27,9 +28,9 @@ export const IUEventCard: React.FC<IUEventCardProps> = ({event, index = 0}) => {
 
   const startDate = event.next_occurrence_start_date ?? event.start_date ?? event.occurrences?.[0]?.start_date;
   const formattedDate = startDate
-    ? formatDateWithLocale(startDate, "shortDate", event.timezone, locale)
+    ? formatDateWithLocale(startDate, "shortDate", SAUDI_TIMEZONE, locale)
     : t("status_upcoming", "موعد مرتقب");
-  const formattedTime = startDate ? formatDateWithLocale(startDate, "timeOnly", event.timezone, locale) : "";
+  const formattedTime = startDate ? formatDateWithLocale(startDate, "timeOnly", SAUDI_TIMEZONE, locale) : "";
 
   return (
     <Link

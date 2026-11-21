@@ -27,6 +27,8 @@ class UpdateAccountAction extends BaseAction
 
         $payload = array_merge($request->validated(), [
             'account_id' => $this->getAuthenticatedAccountId(),
+            'timezone' => config('app.default_timezone'),
+            'currency_code' => config('app.default_currency_code'),
             'updated_by_user_id' => $authUser->getId(),
         ]);
 

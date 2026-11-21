@@ -13977,3 +13977,6 @@ msgstr "البريد الإلكتروني أو كلمة المرور غير صح
 
 msgid "Unable to start your session. Please try again."
 msgstr "تعذّر بدء الجلسة. يرجى المحاولة مرة أخرى."
+
+msgid "Saudi Arabia"
+msgstr "المملكة العربية السعودية"

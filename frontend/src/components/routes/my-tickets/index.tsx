@@ -1,3 +1,4 @@
+import {SAUDI_TIMEZONE} from "../../../constants/institution.ts";
 import {t} from "@lingui/macro";
 import {NavLink, useParams} from "react-router";
 import {Badge, Button, Group, SimpleGrid, Text, TextInput} from "@mantine/core";
@@ -16,7 +17,7 @@ import {useState} from "react";
 
 import {useGetOrdersByLookupToken} from "../../../queries/useGetOrdersByLookupToken.ts";
 import {useSendTicketLookupEmail} from "../../../mutations/useSendTicketLookupEmail.ts";
-import {dateToBrowserTz} from "../../../utilites/dates.ts";
+import {prettyDate} from "../../../utilites/dates.ts";
 import {resolveEventLocation} from "../../../utilites/effectiveLocation.ts";
 import {formatAddress} from "../../../utilites/addressUtilities.ts";
 import {showError} from "../../../utilites/notifications.tsx";
@@ -109,7 +110,7 @@ const OrderCard = ({order}: { order: Order }) => {
                         <IconCalendar size={18} style={{color: 'var(--mantine-color-gray-6)'}}/>
                         <div>
                             <Text size="xs" c="dimmed">{t`Purchased`}</Text>
-                            <Text size="sm">{event && dateToBrowserTz(order.created_at, event.timezone)}</Text>
+                            <Text size="sm">{event && prettyDate(order.created_at, SAUDI_TIMEZONE, true)}</Text>
                         </div>
                     </Group>
                 </div>
