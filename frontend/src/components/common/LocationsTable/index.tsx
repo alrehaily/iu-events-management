@@ -1,3 +1,4 @@
+import {IconMapPin} from "@tabler/icons-react";
 import {Button, Group, Menu, Table as MantineTable, Text} from "@mantine/core";
 import {IconDotsVertical, IconPencil, IconPlus, IconTrash} from "@tabler/icons-react";
 import {useDisclosure} from "@mantine/hooks";
@@ -82,7 +83,7 @@ export const LocationsTable = ({locations, openCreateModal}: LocationsTableProps
         return (
             <NoResultsSplash
                 heading={t`No Saved Locations`}
-                imageHref={'/blank-slate/occurrence-schedule.svg'}
+                icon={IconMapPin}
                 subHeading={(
                     <>
                         <p>

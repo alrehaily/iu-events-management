@@ -320,7 +320,7 @@ export const Messages = () => {
                             {!isLoading && messages?.length === 0 ? (
                                 <NoResultsSplash
                                     heading={t`No messages to show`}
-                                    imageHref="/blank-slate/messages.svg"
+                                    icon={IconMail}
                                     subHeading={
                                         <p>{t`Send emails to attendees, ticket holders, or order owners. Messages can be sent immediately or scheduled for later.`}</p>
                                     }

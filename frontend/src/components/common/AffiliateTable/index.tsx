@@ -1,3 +1,4 @@
+import {IconLink} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {Badge, Button, Group, Table as MantineTable, Text} from '@mantine/core';
 import {IdParam} from "../../../types.ts";
@@ -53,7 +54,7 @@ export const AffiliateTable = ({affiliates, openCreateModal}: AffiliateTableProp
         return (
             <NoResultsSplash
                 heading={t`No Affiliates to show`}
-                imageHref={'/blank-slate/affiliates.png'}
+                icon={IconLink}
                 subHeading={(
                     <>
                         <p>

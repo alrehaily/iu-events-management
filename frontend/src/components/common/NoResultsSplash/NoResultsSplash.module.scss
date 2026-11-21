@@ -1,28 +1,29 @@
-@use "../../../styles/mixins";
-
 .container {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  max-width: 500px;
+  gap: 12px;
+  max-width: 520px;
+  padding: 24px 16px;
   text-align: center;
-  margin: 50px auto;
+  margin: 16px auto;
 
-  img {
-    max-width: 500px;
-    width: 240px;
-    height: 240px;
-
-    @include mixins.respond-below(md) {
-      width: 170px;
-      height: 170px;
-    }
+  h2,
+  p {
+    margin: 0;
   }
 
   h2 {
-    font-size: 1.3em;
-    margin-bottom: 0;
-    margin-top: 5px;
+    font-size: 1.2rem;
   }
+}
+
+.icon {
+  display: grid;
+  place-content: center;
+  inline-size: 52px;
+  block-size: 52px;
+  border-radius: var(--iu-radius-md);
+  background: var(--iu-green-light);
+  color: var(--iu-green-primary);
 }

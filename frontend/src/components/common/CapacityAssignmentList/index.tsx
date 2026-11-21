@@ -1,3 +1,4 @@
+import {IconLayoutGrid} from "@tabler/icons-react";
 import {CapacityAssignment, IdParam} from "../../../types";
 import {Badge, Button, Progress} from "@mantine/core";
 import {t, Trans} from "@lingui/macro";
@@ -40,7 +41,7 @@ export const CapacityAssignmentList = ({capacityAssignments, openCreateModal}: C
         return (
             <NoResultsSplash
                 heading={t`No Capacity Assignments`}
-                imageHref={'/blank-slate/capacity-assignments.svg'}
+                icon={IconLayoutGrid}
                 subHeading={(
                     <>
                         <p>

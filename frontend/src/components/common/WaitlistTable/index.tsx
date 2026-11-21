@@ -1,3 +1,4 @@
+import {IconListDetails} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {Button, Group, Menu, Text} from "@mantine/core";
 import {IconDotsVertical, IconEye, IconSend, IconTrash} from "@tabler/icons-react";
@@ -258,7 +259,7 @@ export const WaitlistTable = ({eventId, entries, event}: WaitlistTableProps) => 
         return (
             <NoResultsSplash
                 heading={t`No waitlist entries`}
-                imageHref={'/blank-slate/waitlist.svg'}
+                icon={IconListDetails}
                 subHeading={(
                     <p>
                         {t`Entries will appear here when customers join the waitlist for sold out products.`}

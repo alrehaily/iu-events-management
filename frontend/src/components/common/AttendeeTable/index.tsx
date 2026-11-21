@@ -1,3 +1,4 @@
+import {IconUsers} from "@tabler/icons-react";
 import {ActionIcon, Anchor, Avatar, Button, Group, Popover, Tooltip} from '@mantine/core';
 import {Attendee, IdParam} from "../../../types.ts";
 import {
@@ -344,7 +345,7 @@ export const AttendeeTable = ({attendees, openCreateModal, compact, occurrenceId
     if (attendees.length === 0) {
         return <NoResultsSplash
             heading={t`No Attendees to show`}
-            imageHref={'/blank-slate/attendees.svg'}
+            icon={IconUsers}
             subHeading={(
                 <>
                     <p>

@@ -1,3 +1,4 @@
+import {IconTicket} from "@tabler/icons-react";
 import {CheckInList, CheckInListRequest, EventType, GenericModalProps, ProductCategory} from "../../../types.ts";
 import {Modal} from "../../common/Modal";
 import {t} from "@lingui/macro";
@@ -55,7 +56,7 @@ export const CreateCheckInListModal = ({onClose, initialOccurrenceId}: CreateChe
     const NoProducts = () => {
         return (
             <NoResultsSplash
-                imageHref={'/blank-slate/tickets.svg'}
+                icon={IconTicket}
                 heading={t`Please create a ticket`}
                 subHeading={(
                     <>

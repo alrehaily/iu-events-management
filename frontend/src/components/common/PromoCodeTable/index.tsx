@@ -1,3 +1,4 @@
+import {IconTag} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {Event, PromoCode, PromoCodeDiscountAppliesTo, PromoCodeDiscountType} from "../../../types.ts";
 import {prettyDate, relativeDate} from "../../../utilites/dates.ts";
@@ -44,7 +45,7 @@ export const PromoCodeTable = ({event, promoCodes, openCreateModal}: PromoCodeTa
     if (promoCodes.length === 0) {
         return <NoResultsSplash
             heading={t`No Promo Codes to show`}
-            imageHref={'/blank-slate/promo-codes.svg'}
+            icon={IconTag}
             subHeading={(
                 <>
                     <p>

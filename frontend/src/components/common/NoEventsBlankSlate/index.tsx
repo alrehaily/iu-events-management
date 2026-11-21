@@ -1,3 +1,4 @@
+import {IconCalendarEvent} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {Button} from "@mantine/core";
 import {IconPlus} from "@tabler/icons-react";
@@ -12,7 +13,7 @@ export const NoEventsBlankSlate = ({eventsState, openCreateModal}: NoEventsBlank
     return (
         <NoResultsSplash
             heading={t`No events to show`}
-            imageHref={'/blank-slate/events.svg'}
+            icon={IconCalendarEvent}
             subHeading={(
                 <>
                     <p>

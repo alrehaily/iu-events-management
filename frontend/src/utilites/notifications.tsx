@@ -1,3 +1,4 @@
+import {t} from "@lingui/macro";
 import {notifications} from "@mantine/notifications";
 import {IconCheck, IconInfoSmall, IconX} from "@tabler/icons-react";
 import React, {ReactNode} from "react";
@@ -5,7 +6,7 @@ import React, {ReactNode} from "react";
 export const showSuccess = (message: ReactNode, icon: ReactNode = <IconCheck/>) => {
     notifications.show({
         message: message,
-        color: 'green',
+        color: 'primary.8',
         icon: icon,
         position: 'top-center',
     })
@@ -34,7 +35,7 @@ export const showSuccessWithUndo = (
     onUndo: () => void,
     options: { undoLabel?: string; autoClose?: number } = {},
 ) => {
-    const {undoLabel = 'Undo', autoClose = 5000} = options;
+    const {undoLabel = t`Undo`, autoClose = 5000} = options;
     const id = `undo-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 
     const handleUndo = () => {
@@ -44,7 +45,7 @@ export const showSuccessWithUndo = (
 
     notifications.show({
         id,
-        color: 'green',
+        color: 'primary.8',
         icon: <IconCheck/>,
         position: 'top-center',
         autoClose,

@@ -19,6 +19,11 @@
 - **FAIL** TC-15 timed out waiting for publish or unpublish UI confirmation, and organizer localization timed out waiting for the Arabic dashboard data. The Chromium traces include incomplete API requests. Recheck these workflows on the final production build. Evidence is in `gp2-phase-b.json`, `gp2-phase-b-retest.json`, and `phpunit-phase-b.log`.
 - Codex usage showed 68% remaining over five hours and 49% over the week.
 
+### Phase C — shared UI styling
+
+- Consolidated Mantine button sizing, focus, icon alignment and primary colors in the existing IU theme. Semantic colors continue through Mantine. Converted the shared blank states to compact Tabler outline icons and updated the attendance controls and messages background to use IU green.
+- **PASS** TypeScript and two Chromium cases, TC-08 mobile public layout and the signed-in free booking workflow with Mailpit delivery and Arabic ticket navigation. Evidence is in `gp2-phase-c.json`. Tablet and hardware scanner tests are pending.
+
 ## 2026-11-21 continuation
 
 - Working branch `fix/gp2-demo-readiness-i18n-20261120`. Both local HEAD and the remote audit branch were at `18140f12cb8a8b2f59fc1e986470298c4436afe9` on recovery. Comparison base `ebfec454af3e22b697f30b703e19afed8e747307`.

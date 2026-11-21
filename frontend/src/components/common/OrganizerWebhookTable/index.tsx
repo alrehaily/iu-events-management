@@ -1,3 +1,4 @@
+import {IconWebhook} from "@tabler/icons-react";
 import {
     Anchor,
     Badge,
@@ -199,7 +200,7 @@ export const OrganizerWebhookTable = ({ webhooks, openCreateModal }: OrganizerWe
         return (
             <NoResultsSplash
                 heading={t`No Webhooks`}
-                imageHref={'/blank-slate/webhooks.svg'}
+                icon={IconWebhook}
                 subHeading={(
                     <>
                         <Trans>

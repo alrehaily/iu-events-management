@@ -1,3 +1,4 @@
+import {IconTicket} from "@tabler/icons-react";
 import {NoResultsSplash} from "../../NoResultsSplash";
 import {Button} from "../../Button";
 import {IconPlus} from "@tabler/icons-react";
@@ -16,7 +17,7 @@ export const ProductsBlankSlate = ({openCreateModal, productCategories, searchTe
     if (searchTerm) {
         return (
             <NoResultsSplash
-                imageHref={'/blank-slate/tickets.svg'}
+                icon={IconTicket}
                 heading={t`No Search Results`}
                 subHeading={(
                     <>
@@ -35,7 +36,7 @@ export const ProductsBlankSlate = ({openCreateModal, productCategories, searchTe
     if (showLargeBlankSlate) {
         return (
             <NoResultsSplash
-                imageHref={'/blank-slate/tickets.svg'}
+                icon={IconTicket}
                 heading={t`No Products Yet`}
                 subHeading={(
                     <>

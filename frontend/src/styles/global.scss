@@ -192,66 +192,6 @@ a {
   border: none;
 }
 
-/* Mantine Primary Buttons (Hero Gradient & Motion System) */
-.mantine-Button-root {
-  font-family: var(--iu-font-family);
-  transition: transform var(--iu-transition-fast), box-shadow var(--iu-transition-normal), background var(--iu-transition-normal), filter var(--iu-transition-fast);
-
-  &[data-variant="filled"] {
-    background: var(--iu-green-gradient);
-    color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 14px rgba(27, 117, 75, 0.22);
-
-    &:hover:not(:disabled) {
-      background: var(--iu-green-gradient-hover);
-      transform: translateY(-1.5px);
-      box-shadow: var(--iu-green-glow);
-    }
-
-    &:active:not(:disabled) {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(8, 75, 47, 0.2);
-    }
-  }
-
-  &[data-variant="outline"] {
-    border-color: var(--iu-green-secondary);
-    color: var(--iu-green-secondary);
-    background: #ffffff;
-
-    &:hover:not(:disabled) {
-      background: var(--iu-green-light);
-      color: var(--iu-green-primary);
-      border-color: var(--iu-green-secondary);
-      transform: translateY(-1.5px);
-    }
-
-    &:active:not(:disabled) {
-      transform: translateY(0);
-    }
-  }
-
-  &[data-variant="light"] {
-    background: var(--iu-green-light);
-    color: var(--iu-green-primary);
-
-    &:hover:not(:disabled) {
-      background: rgba(27, 117, 75, 0.18);
-      color: var(--iu-green-hover);
-    }
-  }
-
-  &[data-variant="subtle"] {
-    color: var(--iu-green-secondary);
-
-    &:hover:not(:disabled) {
-      background: var(--iu-green-soft);
-      color: var(--iu-green-primary);
-    }
-  }
-}
-
 /* Checkboxes & Radios */
 .mantine-Checkbox-input:checked,
 .mantine-Radio-radio:checked {
@@ -294,7 +234,7 @@ a {
   transition: all var(--iu-transition-fast);
 
   &[data-active] {
-    background: var(--iu-green-gradient) !important;
+    background: var(--iu-green-secondary) !important;
     color: #ffffff !important;
     border-color: transparent !important;
     box-shadow: 0 4px 12px rgba(27, 117, 75, 0.25);
@@ -309,7 +249,7 @@ a {
 
 /* Progress Bars */
 .mantine-Progress-section {
-  background: var(--iu-green-gradient) !important;
+  background: var(--iu-green-secondary) !important;
 }
 
 /* Badges */

@@ -67,9 +67,9 @@
 }
 
 .active {
-  background: var(--hi-gradient);
+  background: var(--iu-green-secondary);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(64, 41, 108, 0.35);
+  box-shadow: var(--iu-shadow-sm);
 }
 
 @media (max-width: 480px) {

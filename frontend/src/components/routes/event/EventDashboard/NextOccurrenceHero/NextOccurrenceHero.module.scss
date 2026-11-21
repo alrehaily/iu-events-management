@@ -36,8 +36,8 @@
   color: var(--mantine-color-dimmed);
 }
 
-.labelIcon { color: var(--mantine-color-violet-6); }
-.state_future    .labelIcon { color: var(--mantine-color-violet-6); }
+.labelIcon { color: var(--iu-green-secondary); }
+.state_future    .labelIcon { color: var(--iu-green-secondary); }
 .state_imminent  .labelIcon { color: var(--mantine-color-orange-6); }
 .state_live      .labelIcon { color: var(--mantine-color-green-6); }
 .state_wrapping  .labelIcon { color: var(--mantine-color-gray-6); }
@@ -153,7 +153,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background: var(--mantine-color-violet-6);
+  background: var(--iu-green-secondary);
   border-radius: 999px;
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }

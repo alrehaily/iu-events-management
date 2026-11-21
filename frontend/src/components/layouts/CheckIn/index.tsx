@@ -1,3 +1,4 @@
+import {IconListCheck} from "@tabler/icons-react";
 import {useParams} from "react-router";
 import {useGetCheckInListPublic} from "../../../queries/useGetCheckInListPublic.ts";
 import {useCallback, useEffect, useRef, useState} from "react";
@@ -464,7 +465,7 @@ const CheckIn = () => {
         return (
             <NoResultsSplash
                 heading={t`Check-in list not found`}
-                imageHref={"/blank-slate/check-in-lists.svg"}
+                icon={IconListCheck}
                 subHeading={(
                     <>
                         <p>
@@ -479,7 +480,7 @@ const CheckIn = () => {
         return (
             <NoResultsSplash
                 heading={t`Check-in list has expired`}
-                imageHref={"/blank-slate/check-in-lists.svg"}
+                icon={IconListCheck}
                 subHeading={(
                     <>
                         <p>
@@ -496,7 +497,7 @@ const CheckIn = () => {
         return (
             <NoResultsSplash
                 heading={t`Session cancelled`}
-                imageHref={"/blank-slate/check-in-lists.svg"}
+                icon={IconListCheck}
                 subHeading={(
                     <>
                         <p>
@@ -518,7 +519,7 @@ const CheckIn = () => {
         return (
             <NoResultsSplash
                 heading={t`Check-in list is not active`}
-                imageHref={"/blank-slate/check-in-lists.svg"}
+                icon={IconListCheck}
                 subHeading={(
                     <>
                         <p>

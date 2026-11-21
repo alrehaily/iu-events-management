@@ -1,3 +1,4 @@
+import {IconListCheck} from "@tabler/icons-react";
 import {CheckInList, IdParam} from "../../../types";
 import {Badge, Button, Progress} from "@mantine/core";
 import {t, Trans} from "@lingui/macro";
@@ -42,7 +43,7 @@ export const CheckInListList = ({checkInLists, openCreateModal}: CheckInListList
         return (
             <NoResultsSplash
                 heading={t`No Check-In Lists`}
-                imageHref={'/blank-slate/check-in-lists.svg'}
+                icon={IconListCheck}
                 subHeading={(
                     <>
                         <p>

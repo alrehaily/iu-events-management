@@ -1,3 +1,4 @@
+import {IconReceipt} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {Anchor, Button, Group, Menu, Popover, Text, Tooltip} from '@mantine/core';
 import {Event, IdParam, Invoice, Order} from "../../../types.ts";
@@ -373,7 +374,7 @@ export const OrdersTable = ({orders, event, compact}: OrdersTableProps) => {
 
     if (orders.length === 0) {
         return <NoResultsSplash
-            imageHref={'/blank-slate/orders.svg'}
+            icon={IconReceipt}
             heading={t`No orders to show`}
             subHeading={(
                 <p>

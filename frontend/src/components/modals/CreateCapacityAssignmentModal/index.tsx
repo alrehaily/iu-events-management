@@ -1,3 +1,4 @@
+import {IconTicket} from "@tabler/icons-react";
 import {CapacityAssignmentRequest, GenericModalProps, ProductCategory} from "../../../types.ts";
 import {Modal} from "../../common/Modal";
 import {t} from "@lingui/macro";
@@ -43,7 +44,7 @@ export const CreateCapacityAssignmentModal = ({onClose}: GenericModalProps) => {
     const NoProducts = () => {
         return (
             <NoResultsSplash
-                imageHref={'/blank-slate/tickets.svg'}
+                icon={IconTicket}
                 heading={t`Please create a product`}
                 subHeading={(
                     <>

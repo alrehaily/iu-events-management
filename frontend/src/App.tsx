@@ -1,5 +1,5 @@
 import React, {FC, PropsWithChildren, useEffect} from "react";
-import {DirectionProvider, MantineProvider, PasswordInput, v8CssVariablesResolver} from "@mantine/core";
+import {Button, defaultVariantColorsResolver, DirectionProvider, MantineProvider, PasswordInput, v8CssVariablesResolver} from "@mantine/core";
 import {Notifications} from "@mantine/notifications";
 import {i18n} from "@lingui/core";
 import {t} from "@lingui/macro";
@@ -9,7 +9,7 @@ import {DatesProvider} from "@mantine/dates";
 import {DehydratedState, HydrationBoundary, QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import type {ThemeColors} from "./utilites/themeColors.ts";
-import {IU_TYPOGRAPHY} from "./constants/iuTheme.ts";
+import {IU_COLORS, IU_TYPOGRAPHY} from "./constants/iuTheme.ts";
 
 import "@mantine/core/styles/global.css";
 import "@mantine/core/styles.css";
@@ -54,7 +54,27 @@ const LocalizedProviders = (props: AppProps) => {
                 fontFamily: IU_TYPOGRAPHY.fontFamily,
                 primaryShade: 8,
                 defaultRadius: "md",
+                variantColorResolver: (input) => {
+                    const colors = defaultVariantColorsResolver(input);
+                    if (input.variant !== "filled") return colors;
+
+                    if (input.color === "white") {
+                        return {...colors, color: IU_COLORS.greenPrimary, hover: IU_COLORS.greenLight};
+                    }
+
+                    if (!input.color || ["primary", "green", "violet", "grape"].includes(input.color)) {
+                        return {
+                            ...colors,
+                            background: IU_COLORS.greenSecondary,
+                            hover: IU_COLORS.green800,
+                            color: IU_COLORS.textInverse,
+                        };
+                    }
+
+                    return colors;
+                },
                 components: {
+                    Button: Button.extend({defaultProps: {variant: "filled"}}),
                     PasswordInput: PasswordInput.extend({
                         defaultProps: {visibilityToggleButtonProps: {"aria-label": t`Toggle password visibility`}},
                     }),

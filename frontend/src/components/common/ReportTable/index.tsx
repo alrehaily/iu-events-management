@@ -1,3 +1,4 @@
+import {IconReportAnalytics} from "@tabler/icons-react";
 import {ComboboxItem, Group, Select, Skeleton, Table as MantineTable} from '@mantine/core';
 import {t} from '@lingui/macro';
 import {DatePickerInput} from "@mantine/dates";
@@ -253,7 +254,7 @@ const ReportTable = <T extends Record<string, any>>({
         return (
             <NoResultsSplash
                 heading={t`Nothing to show yet`}
-                imageHref={'/blank-slate/reports.svg'}
+                icon={IconReportAnalytics}
                 subHeading={(
                     <>
                         <p>
