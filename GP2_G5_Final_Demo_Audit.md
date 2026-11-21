@@ -38,6 +38,21 @@
 - Unified the web and printable ticket around the existing IU Events artwork and the official [Islamic University of Madinah website logo](https://cdn.iu.edu.sa/NDS-iu/assets/img/iu-logo.svg). Added a static confirmation icon and router scroll restoration.
 - **PASS** TypeScript, both production builds and four focused Chromium tests covering public and preview organizer behavior, web tickets and printable ticket pages. A new physical scan, exported ticket PDF inspection, scroll restoration regression, map picker and complete demo rehearsal remain pending.
 
+### Phase F — production verification and usage checkpoint
+
+| Check | Result | Evidence |
+|---|---|---|
+| Production client, server and HTTP startup | PASS | Both bundles built. Production SSR served HTTP 200 on loopback port 5680, replacing the audit development listener. |
+| GP2 production matrix | PASS | All 15 named cases passed. TC-15 published, showed the event publicly, and then unpublished it. |
+| Extended production scenarios | PASS | All six passed, including draft SSR isolation, printed certificate, registration limits, cancellation, duplicates and catalog retry. |
+| Additional production cases | PASS / FAIL / NOT RUN | Three check-in cases and public mobile localization passed. Organizer localization failed at the Arabic dashboard heading while user data was still absent. Remaining 12 cases did not record a result before cutoff. The interrupted runner did not produce its combined JSON. The failure trace and screenshot remain under `pw-production-20261122`. |
+| PHPUnit | PASS | 1,366 tests, 3,958 assertions, zero failures/errors, 2 skipped and 32 risky. One deprecation and 22 PHPUnit notices. |
+| TypeScript and Lingui | PASS | Zero TypeScript diagnostics. Arabic/English extraction and catalog compilation completed. Three Arabic entries were reported missing. This count does not include English strings assigned as translations. |
+| ESLint | FAIL | 1,338 findings (853 errors and 485 warnings) compared with the 1,419 baseline. Comparing by file, rule and message found 19 additions and 100 removals. |
+| Manual committee rehearsal, physical scanner, ticket PDF inspection and Excel reopen | NOT RUN | The ticket print page, check-in actions, printable certificate and CSV bytes were covered by the recorded automated tests. |
+
+Codex showed **8%** remaining in the five-hour window and **40%** for the week. Stopped the remaining browser tests, left the verified isolated application services running and saved the checkpoint. The calibration of a universal Saudi timezone, complete localization coverage, map picker, demo fixtures and manual verification are open. See `GP2_NEXT_SESSION.md` for the commands and prioritized follow-up.
+
 ## 2026-11-21 continuation
 
 - Working branch `fix/gp2-demo-readiness-i18n-20261120`. Both local HEAD and the remote audit branch were at `18140f12cb8a8b2f59fc1e986470298c4436afe9` on recovery. Comparison base `ebfec454af3e22b697f30b703e19afed8e747307`.

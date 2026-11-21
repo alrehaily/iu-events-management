@@ -2,6 +2,7 @@
 
 ## Current checkpoint
 
+- Phase F ran the built app on port 5680. The production matrix passed 15/15 and the extended set passed 6/6. Three check-in cases and public mobile localization also passed. Organizer localization failed at the Arabic dashboard heading. Twelve additional cases had no recorded result at the cutoff. Full PHPUnit passed with the existing skipped and risky counts. Both bundles, TypeScript and Lingui passed. ESLint reported 1,338 findings against the 1,419 baseline. The five-hour window reached 8% remaining, so verification stopped after the production run reached that cutoff.
 - Phase E removed obsolete designer and widget UI and added branded tickets, preview isolation and scroll restoration. Four organizer/ticket Chromium cases passed with `node.exe node_modules/@playwright/test/cli.js test tests/organizers/organizer-public-page.spec.ts tests/self-service/attendee-ticket-page.spec.ts --grep 'clicks through|designer|ticket' --workers=1 --reporter=list`.
 - Phase D added Arabic catalog coverage, order confirmation and template localization, and UTF-8 BOM report downloads. Run `node.exe node_modules/@playwright/test/cli.js test tests/gp2-localized-output.spec.ts --workers=1 --reporter=list`. Both locale-cookie cases passed. Header-only Arabic CSV and desktop Excel reopening remain unverified.
 - Phase C unified the shared Mantine controls and empty states. TC-08 and the free registration workflow passed. Rerun with `node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts tests/gp2-workflows.spec.ts --grep 'TC-08|books a free event' --workers=1 --reporter=list`.
@@ -78,17 +79,36 @@ node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts --work
 
 ## Exact remaining work
 
-1. Review the organizer failure in `$audit/gp2-focused-finish.log` and the snapshot in `$audit/pw-gp2-focused-finish`. Verify the create-event control's role and whether the form stays open through the locale switch. Correct the test interaction and rerun the organizer case. The deadline case passed, and the one-page certificate evidence is in `$audit/pw-gp2-certificate-single-page`. The focused commands were:
+1. Read the latest dated results in `GP2_G5_Final_Demo_Audit.md`. Check the exact local and remote hashes with `git rev-parse HEAD '@{upstream}'` and `git ls-remote --heads origin refs/heads/fix/gp2-demo-readiness-i18n-20261120`. Implementation checkpoint `612e1384b10cad3f4c251ea00bce21b7bf54d4e8` was verified on both local and remote before the final evidence commit.
+2. Finish the route-by-route Arabic and English audit. Expand checks to portal dialogs, event and organizer email settings, waitlist, capacity, messages, account deletion and XLSX. Follow up on Arabic CSV requests where only an Accept-Language header is available and audit all inherited Laravel mail types. Checkout locales are stored on orders and attendees.
+3. Finish the venue form and evaluate a map picker using an approved key-free tile provider or the existing optional geocoding integration. Finish manual address validation and test the Arabic country picker. Existing geocoding needs provider configuration, and map pin placement has not been implemented or tested.
+4. Decide how to handle legacy foreign-currency event duplication before extending currency enforcement to that workflow. Keep original financial data. Verify the remaining Riyadh display paths and calendar files. Retire the unused standalone widget script and fixture together once the published app and deployment references have been audited.
+5. Exercise scroll restoration on history Back and event navigation. Inspect a ticket PDF and scan its printed QR using physical hardware. Check both desktop and mobile free checkout and payment states, and check tablet layout. Reopen Arabic CSV and XLSX in Excel.
+6. Rehearse the committee presentation and curate a clean isolated set of real-looking university sample events with appropriate images. Keep E2E data clearly marked. Run focused and final checks before pushing another checkpoint.
 
-   ```powershell
-   node.exe node_modules/@playwright/test/cli.js test tests/gp2-workflows.spec.ts tests/gp2-localization.spec.ts --grep 'deadline|organizer forms' --workers=2 --reporter=list,json --output "$audit/pw-gp2-focused-finish"
-   node.exe node_modules/@playwright/test/cli.js test tests/gp2-extended.spec.ts --grep 'certificate' --workers=1 --reporter=list,json --output "$audit/pw-gp2-certificate-single-page"
-   ```
+## Final verification commands
 
-2. Finish bilingual inspection of remaining routes, dialogs, validation, empty states and date/time/report details. Run `tests/gp2-localization.spec.ts` with the local synthetic administrator variables from `$audit/superadmin-fixture.env`.
-3. Rerun Arabic/English extraction, compile, both production builds and lint after the latest refinements. Verify a production HTTP listener and browser hydration where allowed. Compare lint with `$audit/lint-baseline-ebfec454.json`.
-4. Repeat the complete matrix on the final code and run a curated committee rehearsal with stable local sample events. Record findings and leave the submitted PDF intact.
+Use the service environment above. Production SSR can run at the same loopback frontend port after verifying and stopping the audit development listener. From `frontend`:
+
+```powershell
+npm.cmd run messages:extract -- --locale ar --locale en
+npm.cmd run messages:compile
+node.exe node_modules/typescript/bin/tsc --noEmit --pretty false
+npm.cmd run build:ssr:client
+npm.cmd run build:ssr:server
+node.exe node_modules/eslint/bin/eslint.js src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --format json --output-file "$audit/lint-final-20261122.json"
+$env:NODE_ENV = 'production'
+$env:NODE_HOST = '127.0.0.1'
+node.exe --import ./instrument.mjs server.js --port 5680
+```
+
+From `backend`, use `php.exe -d memory_limit=1024M vendor/bin/phpunit --configuration "$audit/phpunit-isolated-20261121.xml" --colors=never`. Confirm the configuration points to `iu_gp2_test`. From `e2e`, load the local superadmin fixture privately if available and run:
+
+```powershell
+$env:PLAYWRIGHT_JSON_OUTPUT_FILE = Join-Path $audit 'gp2-production-20261122.json'
+node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts tests/gp2-extended.spec.ts tests/gp2-localization.spec.ts tests/gp2-workflows.spec.ts tests/gp2-organizer-credentials.spec.ts tests/gp2-saudi-settings.spec.ts tests/gp2-localized-output.spec.ts tests/check-in/check-in-app.spec.ts tests/self-service/attendee-ticket-page.spec.ts --workers=1 --reporter=list,json --output "$audit/pw-production-20261122"
+```
 
 ## Prompt for the next session
 
-> Continue the IU Events GP2 audit in `C:/Users/Administrator/Desktop/iu-events-gp2-audit` on `fix/gp2-demo-readiness-i18n-20261120`. Read AGENTS.md, CLAUDE.md, GP2_G5_Final_Demo_Audit.md and GP2_NEXT_SESSION.md. Confirm HEAD and service ownership, then resume the remaining work above. Use only the isolated demo/test databases and synthetic accounts. Preserve existing work, keep artifacts and credentials local, and commit reviewed changes to the audit branch. Push only a fast-forward to the existing audit branch. Update both audit documents with executed evidence and check the Codex rate limits when available.
+> Continue the IU Events GP2 final audit in `C:/Users/Administrator/Desktop/iu-events-gp2-audit` on `fix/gp2-demo-readiness-i18n-20261120`. Read AGENTS.md, CLAUDE.md, GP2_G5_Final_Demo_Audit.md and this handoff. Confirm local and remote HEAD, the owners of the loopback services, and the isolated database names. Use synthetic accounts only. Start with failures in the latest production verification, then complete the localization, venue, currency, checkout, QR/PDF and demo-data work above. Preserve the original checkout, local generated catalogs, lockfile, and temporary configuration. Save reviewed phase checkpoints to the audit branch with normal fast-forward pushes. Check the Codex five-hour and weekly remaining usage between phases.
