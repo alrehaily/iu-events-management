@@ -20,9 +20,9 @@
 - TypeScript subsequently passed with zero diagnostics. Arabic/English extraction and compilation passed, with 34 Arabic entries reported missing. Both production bundles built and the compiled renderer passed four Arabic/English structural render checks. Production HTTP startup on port 5681 was blocked by the execution environment.
 - Latest lint reported 1,386 findings (894 errors, 492 warnings). The comparison with the base found 11 additions and 44 removals.
 - Extended retest was 6/6, including concurrent draft SSR. A focused retest after the print fix passed. The one-page certificate was extracted and visually inspected.
-- Public/mobile and admin localization scenarios passed. The organizer scenario exposed the missing account/profile switcher, which was added for the focused retest. Translation completeness across all secondary screens is unverified.
+- Public/mobile and admin localization scenarios passed. After the account/profile switcher was added, the organizer localization retest reached the Arabic create-event step and failed on a 140-second timeout waiting for a button named `إنشاء فعالية`. The snapshot shows a link with that name and the Arabic form fields. Translation completeness across secondary screens is unverified.
 - Browser free checkout, signed-in mobile booking, Mailpit confirmation, Arabic ticket link, expired sales, attendee privacy, check-in and ticket views were exercised. PHPUnit ran 1,366 tests and 3,958 assertions with no failures/errors, 2 skipped and 32 risky.
-- The last usage check reported 10% remaining in the five-hour window and 56% for the week. Implementation stopped at that checkpoint. The organizer localization Playwright retest had started and had no terminal result at save time.
+- Implementation stopped at the requested usage threshold. The follow-up checkpoint recorded the completed retest from its existing log and artifacts.
 
 ## Restart the isolated Windows stack
 
@@ -68,7 +68,7 @@ node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts --work
 
 ## Exact remaining work
 
-1. Check the organizer localization result in `$audit/gp2-focused-finish.log`. The deadline case passed. The one-page certificate evidence is in `$audit/pw-gp2-certificate-single-page`. The focused commands were:
+1. Review the organizer failure in `$audit/gp2-focused-finish.log` and the snapshot in `$audit/pw-gp2-focused-finish`. Verify the create-event control's role and whether the form stays open through the locale switch. Correct the test interaction and rerun the organizer case. The deadline case passed, and the one-page certificate evidence is in `$audit/pw-gp2-certificate-single-page`. The focused commands were:
 
    ```powershell
    node.exe node_modules/@playwright/test/cli.js test tests/gp2-workflows.spec.ts tests/gp2-localization.spec.ts --grep 'deadline|organizer forms' --workers=2 --reporter=list,json --output "$audit/pw-gp2-focused-finish"
