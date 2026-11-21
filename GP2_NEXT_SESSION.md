@@ -5,15 +5,19 @@
 - Worktree `C:/Users/Administrator/Desktop/iu-events-gp2-audit`
 - Branch `fix/gp2-demo-readiness-i18n-20261120`
 - Recovered checkpoint `18140f12cb8a8b2f59fc1e986470298c4436afe9`
+- Verified auth checkpoint `51350f5cd538582f43d1ebbb24f3fa8aaddd24f5`, pushed to the audit branch.
 - Run `git rev-parse HEAD` to identify the commit containing this report. The audit log carries the dated verification history.
 - Local logs and Chromium artifacts live in `%TEMP%\iu-gp2-audit-20261120`. Keep them outside Git.
 
-## Verified at the auth checkpoint
+## Verified through the frontend checkpoint
 
 - TC-10 and TC-12 passed the expanded focused run, 2 executed with 0 failures and 0 skips. The prior full run had 13 passes and 2 failures. A new full run is pending.
 - Organizer logout now resets the navbar's current-user query. TC-10 covered both attendee languages, bad credentials, successful login, refresh and logout, with organizer login and logout in English.
 - TC-12 checked the actual admin and organizer routes and APIs for anonymous, attendee and organizer sessions.
 - Initial type check returned 49 diagnostics. The base returned 56. Initial lint returned 1,410 findings, including 10 additions compared with the 1,419-finding base.
+- TypeScript subsequently passed with zero diagnostics. Arabic/English extraction and compilation passed, with 34 Arabic entries reported missing. Both production bundles built and the compiled renderer passed four Arabic/English structural render checks. Production HTTP startup on port 5681 was blocked by the execution environment.
+- Latest lint reported 1,386 findings (894 errors, 492 warnings). The comparison with the base found 11 additions and 44 removals.
+- First extended run executed all six cases and returned 5 passes and 1 failure on the authorized draft SSR assertion. A retest checks explicit owner and unrelated organizer cookies.
 
 ## Restart the isolated Windows stack
 
@@ -52,9 +56,9 @@ node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts --work
 
 ## Remaining work
 
-1. Fix the certificate QR dependency and Arabic catalog types, then extract and compile catalogs, rerun TypeScript and ESLint, and build and serve production SSR.
-2. Inspect bilingual public, attendee, organizer and admin screens. Add focused regression coverage and verify hydration and navigation.
-3. Run the six extended cases and verify booking, confirmation, eligibility, ticket generation, privacy, deadline rules and concurrent SSR isolation on the isolated stack.
+1. Inspect bilingual public, attendee, organizer and admin screens. Add focused regression coverage and verify hydration and navigation. Check the Arabic catalog gaps and rerun build checks after changes.
+2. Finish the six extended cases and verify browser booking, confirmation, eligibility, ticket generation, privacy, deadline rules and concurrent SSR isolation on the isolated stack.
+3. Verify the production HTTP runtime and browser hydration where the environment permits it.
 4. Execute the complete TC-01–TC-15 matrix and the desktop/mobile demo. Record exact counts and unresolved issues. Leave the submitted PDF intact.
 
 ## Prompt for the next session

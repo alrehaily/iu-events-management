@@ -28,6 +28,23 @@ Final focused run **2 passed, 0 failed, 0 skipped** in 28.6 seconds. Local evide
 
 The same installed tools were run from this worktree and a temporary `git archive` of the base frontend. ESLint found **1,419** findings at the base (889 errors, 530 warnings) and **1,410** at the start of the continuation (893 errors, 517 warnings). Comparing counts by file, rule and message identified 10 added and 19 removed findings. TypeScript reported **56** diagnostics at the base and **49** at the start of the continuation. The certificate QR import and Arabic token overrides introduced two diagnostics. Production builds, the six extended scenarios and the final matrix remain pending.
 
+### Phase 2 frontend verification
+
+Auth checkpoint `51350f5cd538582f43d1ebbb24f3fa8aaddd24f5` was pushed to the audit branch. The frontend now uses the existing QR dependency, typed Arabic interpolation and valid Gettext placeholders. Corrected type and API payload mismatches in event creation, category ordering, attendee tax fields, check-in list creation, questions, social settings and ticket previews. Restored the existing Hi.Events attribution component, respecting the commercial-license setting and keeping university branding.
+
+| Check | Result | Evidence |
+|---|---|---|
+| Arabic and English extraction | PASS | `npm.cmd run messages:extract -- --locale ar` and the same command for `en`. Both catalogs have 3,151 entries. Lingui reported 34 missing Arabic entries. English is the source locale. |
+| Catalog compilation | PASS | `npm.cmd run messages:compile` exited 0. Generated non-demo locale files were excluded from the commit. |
+| TypeScript | PASS | `node.exe node_modules/typescript/bin/tsc --noEmit --pretty false` exited 0 with zero diagnostics. |
+| ESLint | FAIL | `node.exe node_modules/eslint/bin/eslint.js src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --format json --output-file <local-report>` found 1,386 findings (894 errors, 492 warnings). Comparison with the base identified 11 added and 44 removed findings. Added findings include Lingui interpolation, explicit bilingual literals, technical literals and a hook dependency. |
+| Production SSR build | PASS | `npm.cmd run build:ssr:client` and `npm.cmd run build:ssr:server` exited 0, producing the client manifest and server entry. Warnings include Sass deprecations, a browser externalization notice and large chunks. |
+| Production SSR renderer | PASS | `node.exe "$audit/render-ssr-smoke.mjs"` invoked the compiled render entry for four concurrent requests. Arabic and English homepage and login variants returned 200 with the expected locale, direction and text. |
+| Production HTTP listener | BLOCKED | The execution environment rejected both the direct Node startup and `npm.cmd run start -- --port 5681` with `blocked by policy`. The pre-existing port 5680 remains the development SSR listener. |
+| Browser hydration | Partial | Focused development SSR auth passed. Production HTTP hydration and broad screen coverage remain pending. |
+
+Evidence lives in the audit temp directory in `lingui-final-extract-*.log`, `lingui-final-compile.log`, `lint-build-20261121.json`, `build-client-final.log`, `build-server-final.log` and `production-render-smoke.log`. The first extended run executed all six scenarios (5 passed, 1 failed). The failure was the authenticated draft SSR request. The expanded retest uses explicit synthetic viewer cookies and validates Laravel's draft access for each viewer separately.
+
 ## Historical checkpoint of 2026-11-20
 
 Date: 2026-11-20 (Asia/Riyadh)

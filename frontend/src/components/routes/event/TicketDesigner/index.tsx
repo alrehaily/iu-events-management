@@ -19,7 +19,7 @@ import {TicketPreview} from "./TicketPreview";
 
 interface TicketDesignSettings {
     accent_color: string;
-    logo_image_id: IdParam;
+    logo_image_id: IdParam | null;
     footer_text: string | null;
     date_display_mode: 'START_DATE_TIME' | 'DATE_RANGE' | 'HIDDEN';
     enabled: boolean;

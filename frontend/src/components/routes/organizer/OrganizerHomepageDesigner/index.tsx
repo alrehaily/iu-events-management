@@ -10,25 +10,19 @@ import { showSuccess } from "../../../../utilites/notifications.tsx";
 import { t } from "@lingui/macro";
 import { useForm } from "@mantine/form";
 import { Accordion, Button, Group, Stack, Text } from "@mantine/core";
-import { IconColorPicker, IconHelp, IconPalette, IconPhoto, IconTypography, IconDeviceDesktop, IconDeviceTablet, IconDeviceMobile, IconLock } from "@tabler/icons-react";
+import { IconHelp, IconPhoto, IconDeviceDesktop, IconDeviceTablet, IconDeviceMobile, IconLock } from "@tabler/icons-react";
 import { Tooltip } from "../../../common/Tooltip";
 import { LoadingMask } from "../../../common/LoadingMask";
-import { CustomSelect } from "../../../common/CustomSelect";
 import { GET_ORGANIZER_QUERY_KEY, useGetOrganizer } from "../../../../queries/useGetOrganizer.ts";
 import { ImageUploadDropzone } from "../../../common/ImageUploadDropzone";
 import { organizerPreviewPath } from "../../../../utilites/urlHelper.ts";
 import { queryClient } from "../../../../utilites/queryClient.ts";
 import { GET_ORGANIZER_PUBLIC_QUERY_KEY } from "../../../../queries/useGetOrganizerPublic.ts";
-import { ThemeColorControls } from "../../../common/ThemeColorControls";
-import { ThemeFontControl } from "../../../common/ThemeFontControl";
 import { computeThemeVariables, getDefaultThemeSettings, validateThemeSettings } from "../../../../utilites/themeUtils.ts";
-import { DEFAULT_HOMEPAGE_FONT } from "../../../../constants/homepageFonts.ts";
 
 interface FormValues {
     homepage_theme_settings: Partial<HomepageThemeSettings>;
 }
-
-import { IU_COLORS } from "../../../../constants/iuTheme.ts";
 
 const OrganizerHomepageDesigner = () => {
     useLingui();

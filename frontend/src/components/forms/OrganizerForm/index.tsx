@@ -65,7 +65,7 @@ export const OrganizerForm = ({form}: { form: UseFormReturnType<Partial<Organize
     )
 }
 
-export const OrganizerCreateForm = ({onSuccess, onCancel}: OrganizerFormProps) => {
+export const OrganizerCreateForm = ({onSuccess}: OrganizerFormProps) => {
     const organizerMutation = useCreateOrganizer();
     const {data: account, isFetched: accountFetched} = useGetAccount();
     const {data: me, isFetched: meFetched} = useGetMe();

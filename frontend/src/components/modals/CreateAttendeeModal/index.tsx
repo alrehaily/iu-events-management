@@ -103,21 +103,9 @@ export const CreateAttendeeModal = ({onClose}: GenericModalProps) => {
                 ?.find(product => product.id == form.values.product_id)
                 ?.taxes_and_fees;
 
-            if (taxesAndFees?.length === 0) {
-                form.setFieldValue('taxes_and_fees', []);
-            }
-
-            taxesAndFees?.forEach((tax, index) => {
-                    form.setFieldValue(
-                        `taxes_and_fees.${index}`,
-                        {
-                            tax_or_fee_id: tax.id,
-                            amount: 0.00,
-                            name: tax.name,
-                        },
-                    );
-                }
-            );
+            form.setFieldValue('taxes_and_fees', (taxesAndFees ?? []).flatMap(tax =>
+                tax.id === undefined ? [] : [{tax_or_fee_id: tax.id, amount: 0, name: tax.name}]
+            ));
         }
     }, [form.values.product_id]);
 

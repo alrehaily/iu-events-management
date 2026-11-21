@@ -272,8 +272,8 @@ export interface EventSettings {
     // Ticket design settings
     ticket_design_settings?: {
         accent_color?: string;
-        logo_image_id?: IdParam;
-        footer_text?: string;
+        logo_image_id?: IdParam | null;
+        footer_text?: string | null;
         layout_type?: 'default' | 'modern';
         date_display_mode?: 'START_DATE_TIME' | 'DATE_RANGE' | 'HIDDEN';
         enabled?: boolean;

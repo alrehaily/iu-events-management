@@ -13,7 +13,6 @@ import {
     IconAdjustments, 
     IconHelp, 
     IconPhoto, 
-    IconTicket, 
     IconLock, 
     IconDeviceDesktop, 
     IconDeviceTablet, 

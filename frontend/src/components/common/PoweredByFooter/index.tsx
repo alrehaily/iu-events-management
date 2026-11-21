@@ -1,9 +1,9 @@
 import {t} from "@lingui/macro";
 import classes from "./FloatingPoweredBy.module.scss";
 import classNames from "classnames";
-import React, {useMemo} from "react";
-import {iHavePurchasedALicence, isHiEvents} from "../../../utilites/helpers.ts";
-import {getConfig} from "../../../utilites/config.ts";
+import type {ComponentPropsWithoutRef} from "react";
+import {useLingui} from "@lingui/react";
+import {iHavePurchasedALicence} from "../../../utilites/helpers.ts";
 
 /**
  * (c) Hi.Events Ltd 2025
@@ -18,8 +18,15 @@ import {getConfig} from "../../../utilites/config.ts";
  *
  * If you wish to remove this notice, a commercial license is available at: https://hi.events/licensing
  */
-export const PoweredByFooter = (
-    _props?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-) => {
-    return <></>;
+export const PoweredByFooter = ({className, ...props}: ComponentPropsWithoutRef<"div">) => {
+    useLingui();
+    if (iHavePurchasedALicence()) return null;
+
+    return (
+        <div {...props} className={classNames(classes.poweredBy, className)}>
+            <div className={classes.poweredByText}>
+                {t`Powered by`} <a href="https://hi.events" target="_blank" rel="noopener noreferrer">Hi.Events</a>
+            </div>
+        </div>
+    );
 };

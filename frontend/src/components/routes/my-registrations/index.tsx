@@ -16,7 +16,6 @@ import {
   IconMapPin,
   IconQrcode,
   IconTicket,
-  IconTicketOff,
 } from "@tabler/icons-react";
 import "../../../styles/iu/common.css";
 import {useIULanguage} from "../../../context/IULanguageContext";

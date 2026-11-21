@@ -1,6 +1,6 @@
 import React from "react";
 import {t} from "@lingui/macro";
-import {QRCodeSVG} from "qrcode.react";
+import QRCode from "react-qr-code";
 import {useIULanguage} from "../../../context/IULanguageContext";
 import {CertificateData} from "../../../api/attendee.client";
 import {IconPrinter, IconX, IconCheck, IconShieldCheck, IconAward} from "@tabler/icons-react";
@@ -279,7 +279,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             {/* Left Column: Verification Code & QR */}
             <div style={{display: "flex", alignItems: "center", gap: 16}}>
               <div style={{background: "#fff", padding: 8, borderRadius: 10, border: "1px solid #cbd5e1"}}>
-                <QRCodeSVG value={certificate.verification_url} size={72} fgColor="#084b2f" title={t`Certificate verification QR code`} />
+                  <QRCode value={certificate.verification_url} size={72} fgColor="#084b2f" title={t`Certificate verification QR code`} />
               </div>
               <div>
                 <div style={{fontSize: 12, color: "#64748b", fontWeight: 600, marginBottom: 2}}>

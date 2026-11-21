@@ -85,7 +85,7 @@ msgstr "{0} left"
 #~ msgid "{0} logo"
 #~ msgstr "{0} logo"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:272
+#: src/components/modals/CreateAttendeeModal/index.tsx:260
 msgid "{0} of {1} seats are taken."
 msgstr "{0} of {1} seats are taken."
 
@@ -317,8 +317,8 @@ msgstr "1 time available"
 msgid "1 week before event"
 msgstr "1 week before event"
 
-#: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:77
-#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:78
+#: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:64
+#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:69
 msgid "123 Sample Street"
 msgstr "123 Sample Street"
 
@@ -730,7 +730,7 @@ msgstr "Add Question"
 msgid "Add Tax or Fee"
 msgstr "Add Tax or Fee"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:276
+#: src/components/modals/CreateAttendeeModal/index.tsx:264
 msgid "Add this attendee anyway (override capacity)"
 msgstr "Add this attendee anyway (override capacity)"
 
@@ -764,7 +764,7 @@ msgstr "Add tracking pixels to your public event pages and organizer homepage. A
 msgid "Add Webhook"
 msgstr "Add Webhook"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:191
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:192
 msgid "Add your social media handles and website URL. These will be displayed on your public organizer page."
 msgstr "Add your social media handles and website URL. These will be displayed on your public organizer page."
 
@@ -1089,7 +1089,7 @@ msgstr "Amount"
 msgid "Amount Paid"
 msgstr "Amount Paid"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:289
+#: src/components/modals/CreateAttendeeModal/index.tsx:277
 msgid "Amount paid ({0})"
 msgstr "Amount paid ({0})"
 
@@ -3001,10 +3001,10 @@ msgstr "Counts include all upcoming dates. Each person is offered a spot for the
 msgid "Cover"
 msgstr "Cover"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:195
-#: src/components/routes/event/HomepageDesigner/index.tsx:201
+#: src/components/routes/event/HomepageDesigner/index.tsx:194
+#: src/components/routes/event/HomepageDesigner/index.tsx:200
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:195
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:178
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:172
 msgid "Cover Image"
 msgstr "Cover Image"
 
@@ -3012,12 +3012,12 @@ msgstr "Cover Image"
 msgid "Cover image added"
 msgstr "Cover image added"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:216
+#: src/components/routes/event/HomepageDesigner/index.tsx:215
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:210
 msgid "Cover image will be displayed at the top of your event page"
 msgstr "Cover image will be displayed at the top of your event page"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:193
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:187
 msgid "Cover image will be displayed at the top of your organizer page"
 msgstr "Cover image will be displayed at the top of your organizer page"
 
@@ -3062,7 +3062,7 @@ msgstr "Create a Product"
 msgid "Create a Promo Code"
 msgstr "Create a Promo Code"
 
-#: src/components/modals/CreateCheckInListModal/index.tsx:72
+#: src/components/modals/CreateCheckInListModal/index.tsx:71
 msgid "Create a Ticket"
 msgstr "Create a Ticket"
 
@@ -3095,7 +3095,7 @@ msgstr "Create and configure tickets and merchandise for sale."
 msgid "Create Announcement"
 msgstr "Create Announcement"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:320
+#: src/components/modals/CreateAttendeeModal/index.tsx:308
 msgid "Create Attendee"
 msgstr "Create Attendee"
 
@@ -3118,7 +3118,7 @@ msgstr "Create Category"
 
 #: src/components/common/CheckInListList/index.tsx:59
 #: src/components/common/CheckInListTable/index.tsx:293
-#: src/components/modals/CreateCheckInListModal/index.tsx:112
+#: src/components/modals/CreateCheckInListModal/index.tsx:111
 #: src/components/routes/event/CheckInLists/index.tsx:67
 msgid "Create Check-In List"
 msgstr "Create Check-In List"
@@ -3343,7 +3343,7 @@ msgstr "Customers"
 #~ msgid "Customize cover image and action buttons."
 #~ msgstr "Customize cover image and action buttons."
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:182
+#: src/components/routes/event/HomepageDesigner/index.tsx:181
 msgid "Customize cover image and event information."
 msgstr "Customize cover image and event information."
 
@@ -3753,8 +3753,8 @@ msgstr "Deselect All"
 msgid "Design Elements"
 msgstr "Design Elements"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:315
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:253
+#: src/components/routes/event/HomepageDesigner/index.tsx:314
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:247
 msgid "Desktop"
 msgstr "Desktop"
 
@@ -4221,7 +4221,7 @@ msgstr "Email & Notification Settings"
 msgid "Email & Templates"
 msgstr "Email & Templates"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4397,7 +4397,7 @@ msgstr "Ended {0}"
 msgid "Ends {0}"
 msgstr "Ends {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:236
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "English"
 msgstr "English"
 
@@ -4441,7 +4441,7 @@ msgstr "Enter affiliate email (optional)"
 msgid "Enter affiliate name"
 msgstr "Enter affiliate name"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:294
+#: src/components/modals/CreateAttendeeModal/index.tsx:282
 msgid "Enter an amount excluding taxes and fees."
 msgstr "Enter an amount excluding taxes and fees."
 
@@ -5324,7 +5324,7 @@ msgstr "First attendee"
 msgid "First Invoice Number"
 msgstr "First Invoice Number"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:209
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:473
@@ -5512,7 +5512,7 @@ msgid "General & Other"
 msgstr "General & Other"
 
 #: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:38
-#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:40
+#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:43
 msgid "General Admission"
 msgstr "General Admission"
 
@@ -5593,7 +5593,7 @@ msgstr "Go to Event Page"
 msgid "Go to home page"
 msgstr "Go to home page"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:196
+#: src/components/modals/CreateAttendeeModal/index.tsx:184
 msgid "Go to Schedule"
 msgstr "Go to Schedule"
 
@@ -5851,8 +5851,8 @@ msgstr "Highlighted products will have a different background color to make them
 #~ msgid "Hobbies"
 #~ msgstr "Hobbies"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:181
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:159
+#: src/components/routes/event/HomepageDesigner/index.tsx:180
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:153
 msgid "Homepage Design"
 msgstr "Homepage Design"
 
@@ -5975,7 +5975,7 @@ msgstr "Image uploaded successfully"
 msgid "Image URL"
 msgstr "Image URL"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:172
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:166
 msgid "Images"
 msgstr "Images"
 
@@ -6279,7 +6279,7 @@ msgstr "Job queued for retry"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:217
+#: src/components/modals/CreateAttendeeModal/index.tsx:205
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6362,7 +6362,7 @@ msgstr "label updates"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:235
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6427,7 +6427,7 @@ msgstr "Last 90 days"
 msgid "Last login"
 msgstr "Last login"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:216
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6556,7 +6556,7 @@ msgstr "Loaded dates"
 msgid "Loading dashboard..."
 msgstr "Loading dashboard..."
 
-#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:33
+#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:36
 msgid "Loading preview..."
 msgstr "Loading preview..."
 
@@ -6629,7 +6629,7 @@ msgstr "Locations"
 #~ msgstr "Logging in"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:142
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:200
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:194
 #: src/components/routes/organizer/Settings/Sections/ImageAssetSettings/index.tsx:26
 msgid "Logo"
 msgstr "Logo"
@@ -6642,7 +6642,7 @@ msgstr "Logo & Cover"
 msgid "Logo and cover image for your organizer"
 msgstr "Logo and cover image for your organizer"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:214
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:208
 msgid "Logo will be displayed in the header"
 msgstr "Logo will be displayed in the header"
 
@@ -6737,7 +6737,7 @@ msgstr "Manage Schedule"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Manage taxes and fees which can be applied to your products"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:159
 msgid "Manage tickets"
 msgstr "Manage tickets"
 
@@ -6765,9 +6765,9 @@ msgstr "Manual offer"
 msgid "Manually add an Attendee"
 msgstr "Manually add an Attendee"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:162
-#: src/components/modals/CreateAttendeeModal/index.tsx:179
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
+#: src/components/modals/CreateAttendeeModal/index.tsx:167
+#: src/components/modals/CreateAttendeeModal/index.tsx:192
 msgid "Manually Add Attendee"
 msgstr "Manually Add Attendee"
 
@@ -6923,8 +6923,8 @@ msgstr "Miscellaneous"
 msgid "Miscellaneous Settings"
 msgstr "Miscellaneous Settings"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:333
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:271
+#: src/components/routes/event/HomepageDesigner/index.tsx:332
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:265
 msgid "Mobile"
 msgstr "Mobile"
 
@@ -7360,7 +7360,7 @@ msgstr "No messages found"
 msgid "No messages to show"
 msgstr "No messages to show"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:183
+#: src/components/modals/CreateAttendeeModal/index.tsx:171
 msgid "No occurrences available"
 msgstr "No occurrences available"
 
@@ -7627,7 +7627,7 @@ msgstr "Number Prefix"
 
 #: src/components/common/OrderDetails/index.tsx:55
 #: src/components/forms/CheckInListForm/index.tsx:130
-#: src/components/modals/CreateAttendeeModal/index.tsx:253
+#: src/components/modals/CreateAttendeeModal/index.tsx:241
 #: src/components/modals/ManageOrderModal/index.tsx:140
 #: src/components/modals/SendMessageModal/index.tsx:357
 msgid "Occurrence"
@@ -8333,7 +8333,7 @@ msgstr "Page views"
 msgid "Page Views"
 msgstr "Page Views"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:304
+#: src/components/modals/CreateAttendeeModal/index.tsx:292
 msgid "paid"
 msgstr "paid"
 
@@ -8413,11 +8413,11 @@ msgstr "Paste this where you want the widget to appear."
 msgid "Paste URL"
 msgstr "Paste URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:210
+#: src/components/modals/CreateAttendeeModal/index.tsx:198
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:212
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -8731,7 +8731,7 @@ msgstr "Please continue in the new tab"
 msgid "Please create a product"
 msgstr "Please create a product"
 
-#: src/components/modals/CreateCheckInListModal/index.tsx:60
+#: src/components/modals/CreateCheckInListModal/index.tsx:59
 msgid "Please create a ticket"
 msgstr "Please create a ticket"
 
@@ -8839,9 +8839,9 @@ msgstr "Position"
 msgid "Post Checkout message"
 msgstr "Post Checkout message"
 
-#: src/components/common/PoweredByFooter/index.tsx:60
-#~ msgid "Powered by"
-#~ msgstr "Powered by"
+#: src/components/common/PoweredByFooter/index.tsx:28
+msgid "Powered by"
+msgstr "Powered by"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:90
 msgid "Pre Checkout message"
@@ -9798,8 +9798,8 @@ msgstr "Same as event"
 msgid "Sample ticket price"
 msgstr "Sample ticket price"
 
-#: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:76
-#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:77
+#: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:63
+#: src/components/routes/event/TicketDesigner/TicketPreview.tsx:68
 msgid "Sample Venue"
 msgstr "Sample Venue"
 
@@ -9840,10 +9840,10 @@ msgstr "Save"
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
 #: src/components/routes/admin/Configurations/index.tsx:273
-#: src/components/routes/event/HomepageDesigner/index.tsx:291
+#: src/components/routes/event/HomepageDesigner/index.tsx:290
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:546
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:266
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:230
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:224
 msgid "Save Changes"
 msgstr "Save Changes"
 
@@ -9867,7 +9867,7 @@ msgstr "Save schedule"
 msgid "Save Settings"
 msgstr "Save Settings"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:266
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:267
 msgid "Save Social Links"
 msgstr "Save Social Links"
 
@@ -10207,7 +10207,7 @@ msgid "Select event types"
 msgstr "Select event types"
 
 #: src/components/common/OccurrenceSelect/index.tsx:106
-#: src/components/modals/CreateAttendeeModal/index.tsx:254
+#: src/components/modals/CreateAttendeeModal/index.tsx:242
 msgid "Select occurrence"
 msgstr "Select occurrence"
 
@@ -10249,7 +10249,7 @@ msgstr "Select status"
 msgid "Select the messaging tier for this account. This controls message limits and link permissions."
 msgstr "Select the messaging tier for this account. This controls message limits and link permissions."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:241
+#: src/components/modals/CreateAttendeeModal/index.tsx:229
 msgid "Select Ticket"
 msgstr "Select Ticket"
 
@@ -10331,7 +10331,7 @@ msgstr "Send Message"
 msgid "Send now"
 msgstr "Send now"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:316
+#: src/components/modals/CreateAttendeeModal/index.tsx:304
 msgid "Send order confirmation and ticket email"
 msgstr "Send order confirmation and ticket email"
 
@@ -10563,7 +10563,7 @@ msgstr "Show"
 msgid "Show advanced options"
 msgstr "Show advanced options"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:236
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:237
 msgid "Show all platforms ({0} more with values)"
 msgstr "Show all platforms ({0} more with values)"
 
@@ -10579,7 +10579,7 @@ msgstr "Show available product quantity"
 msgid "Show entire date range"
 msgstr "Show entire date range"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:234
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:235
 msgid "Show fewer platforms"
 msgstr "Show fewer platforms"
 
@@ -10595,7 +10595,7 @@ msgstr "Show marketing opt-in checkbox by default"
 msgid "Show more"
 msgstr "Show more"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:237
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:238
 msgid "Show more platforms"
 msgstr "Show more platforms"
 
@@ -10714,7 +10714,7 @@ msgstr "Snapchat"
 msgid "Social Links"
 msgstr "Social Links"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:190
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:191
 msgid "Social Links & Website"
 msgstr "Social Links & Website"
 
@@ -11044,7 +11044,7 @@ msgstr "Successfully confirmed email address"
 msgid "Successfully confirmed email change"
 msgstr "Successfully confirmed email change"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:147
+#: src/components/modals/CreateAttendeeModal/index.tsx:135
 msgid "Successfully created attendee"
 msgstr "Successfully created attendee"
 
@@ -11109,8 +11109,8 @@ msgstr "Successfully Updated Event"
 msgid "Successfully Updated Event Defaults"
 msgstr "Successfully Updated Event Defaults"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:126
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:94
+#: src/components/routes/event/HomepageDesigner/index.tsx:125
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:88
 msgid "Successfully Updated Homepage Design"
 msgstr "Successfully Updated Homepage Design"
 
@@ -11170,7 +11170,7 @@ msgstr "Successfully Updated SEO Settings"
 msgid "Successfully Updated Settings"
 msgstr "Successfully Updated Settings"
 
-#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:176
+#: src/components/routes/organizer/Settings/Sections/SocialLinks/index.tsx:177
 msgid "Successfully Updated Social Links"
 msgstr "Successfully Updated Social Links"
 
@@ -11233,8 +11233,8 @@ msgstr "T-shirt"
 msgid "T-shirts, mugs and more"
 msgstr "T-shirts, mugs and more"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:324
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:262
+#: src/components/routes/event/HomepageDesigner/index.tsx:323
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:256
 msgid "Tablet"
 msgstr "Tablet"
 
@@ -11461,7 +11461,7 @@ msgstr "The event you're looking for is not available at the moment. It may have
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "The full order amount will be refunded to the customer's original payment method."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:237
+#: src/components/modals/CreateAttendeeModal/index.tsx:225
 msgid "The language the attendee will receive emails in."
 msgstr "The language the attendee will receive emails in."
 
@@ -11486,7 +11486,7 @@ msgstr "The order will be marked as refunded. You will need to return the paymen
 msgid "The organizer you're looking for could not be found. The page may have been moved, deleted, or the URL might be incorrect."
 msgstr "The organizer you're looking for could not be found. The page may have been moved, deleted, or the URL might be incorrect."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:277
+#: src/components/modals/CreateAttendeeModal/index.tsx:265
 msgid "The override is recorded in the order audit log."
 msgstr "The override is recorded in the order audit log."
 
@@ -11695,7 +11695,7 @@ msgstr "This date has been cancelled. You can still delete it to remove it perma
 msgid "This date is in the past. It will be created but won't be visible to attendees under upcoming dates."
 msgstr "This date is in the past. It will be created but won't be visible to attendees under upcoming dates."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:273
+#: src/components/modals/CreateAttendeeModal/index.tsx:261
 msgid "This date is marked sold out."
 msgstr "This date is marked sold out."
 
@@ -11800,7 +11800,7 @@ msgstr "This message will only be shown if order is completed successfully. Orde
 msgid "This name is visible to end users"
 msgstr "This name is visible to end users"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:267
+#: src/components/modals/CreateAttendeeModal/index.tsx:255
 msgid "This occurrence is at capacity"
 msgstr "This occurrence is at capacity"
 
@@ -11946,7 +11946,7 @@ msgstr "ticket"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:284
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:522
 #: src/components/forms/ProductForm/index.tsx:206
-#: src/components/modals/CreateAttendeeModal/index.tsx:242
+#: src/components/modals/CreateAttendeeModal/index.tsx:230
 #: src/components/modals/ManageAttendeeModal/index.tsx:129
 #: src/components/modals/ManageAttendeeModal/index.tsx:253
 msgid "Ticket"
@@ -11997,7 +11997,7 @@ msgstr "Ticket Not Found"
 msgid "Ticket or Product"
 msgstr "Ticket or Product"
 
-#: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:99
+#: src/components/routes/event/TicketDesigner/TicketDesignerPrint.tsx:83
 msgid "Ticket Preview for"
 msgstr "Ticket Preview for"
 
@@ -12581,7 +12581,7 @@ msgstr "Upload a cover image for your organizer"
 msgid "Upload a logo for your organizer"
 msgstr "Upload a logo for your organizer"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:160
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:154
 msgid "Upload cover image and logo for your organizer page."
 msgstr "Upload cover image and logo for your organizer page."
 
@@ -13091,13 +13091,13 @@ msgstr "We partner with Stripe to send payouts straight to your bank account."
 msgid "We recommend a square logo with minimum dimensions of 200x200px"
 msgstr "We recommend a square logo with minimum dimensions of 200x200px"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:203
+#: src/components/routes/event/HomepageDesigner/index.tsx:202
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:197
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:180
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:174
 msgid "We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB"
 msgstr "We recommend dimensions of 1950px by 650px, a ratio of 3:1, and a maximum file size of 5MB"
 
-#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:201
+#: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:195
 msgid "We recommend dimensions of 400px by 400px, and a maximum file size of 5MB"
 msgstr "We recommend dimensions of 400px by 400px, and a maximum file size of 5MB"
 
@@ -13436,7 +13436,7 @@ msgstr "Widget Preview"
 msgid "Widget Settings"
 msgstr "Widget Settings"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:320
+#: src/components/modals/CreateAttendeeModal/index.tsx:308
 msgid "Working"
 msgstr "Working"
 
@@ -13615,7 +13615,7 @@ msgstr "You must agree to receive messages"
 msgid "You must agree to the terms and conditions"
 msgstr "You must agree to the terms and conditions"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:163
+#: src/components/modals/CreateAttendeeModal/index.tsx:151
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "You must create a ticket before you can manually add an attendee."
 
@@ -13627,7 +13627,7 @@ msgstr "You must have at least one price tier"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "You must verify your email address before you can update the organizer status."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:186
+#: src/components/modals/CreateAttendeeModal/index.tsx:174
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "You need to create at least one occurrence before you can add attendees to this recurring event."
 
@@ -13651,7 +13651,7 @@ msgstr "You will have to mark an order as paid manually. This can be done on the
 msgid "You'll be able to set up dates, schedules, and recurrence rules in the next step."
 msgstr "You'll be able to set up dates, schedules, and recurrence rules in the next step."
 
-#: src/components/modals/CreateCheckInListModal/index.tsx:64
+#: src/components/modals/CreateCheckInListModal/index.tsx:63
 msgid "You'll need a ticket before you can create a check-in list."
 msgstr "You'll need a ticket before you can create a check-in list."
 
@@ -13873,31 +13873,31 @@ msgstr "ZIP or Postal Code"
 #~ msgid "إنشاء حساب منظم فعاليات جديد"
 #~ msgstr "إنشاء حساب منظم فعاليات جديد"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:266
+#: src/components/routes/event/HomepageDesigner/index.tsx:265
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:288
 msgid "اترك الحقل فارغاً لاستخدام المحاور الافتراضية"
 msgstr "Leave blank to use the default highlights"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:275
+#: src/components/routes/event/HomepageDesigner/index.tsx:274
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:296
 msgid "اترك الحقل فارغاً لاستخدام الملاحظات الافتراضية"
 msgstr "Leave blank to use the default notices"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:241
-#: src/components/routes/event/HomepageDesigner/index.tsx:249
-#: src/components/routes/event/HomepageDesigner/index.tsx:257
+#: src/components/routes/event/HomepageDesigner/index.tsx:240
+#: src/components/routes/event/HomepageDesigner/index.tsx:248
+#: src/components/routes/event/HomepageDesigner/index.tsx:256
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:266
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:273
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:280
 msgid "اترك الحقل فارغاً لاستخدام النص الافتراضي"
 msgstr "Leave blank to use the default text"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:256
+#: src/components/routes/event/HomepageDesigner/index.tsx:255
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:279
 msgid "التسجيل المسبق وتأكيد الحضور عبر المنصة"
 msgstr "Register in advance and confirm attendance on the platform"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:239
+#: src/components/routes/event/HomepageDesigner/index.tsx:238
 msgid "الفئة المستهدفة"
 msgstr "Intended audience"
 
@@ -13905,7 +13905,7 @@ msgstr "Intended audience"
 #~ msgid "تسجيل الدخول — المنظمون والمسؤولون"
 #~ msgstr "تسجيل الدخول — المنظمون والمسؤولون"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:247
+#: src/components/routes/event/HomepageDesigner/index.tsx:246
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:271
 msgid "تفاصيل شهادة الحضور"
 msgstr "Attendance certificate details"
@@ -13914,30 +13914,30 @@ msgstr "Attendance certificate details"
 #~ msgid "تفاصيل ومعلومات إضافية للفعالية (اختياري)"
 #~ msgstr "Additional event details (optional)"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:226
+#: src/components/routes/event/HomepageDesigner/index.tsx:225
 msgid "تفاصيل ومعلومات الفعالية"
 msgstr "Event information"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:248
+#: src/components/routes/event/HomepageDesigner/index.tsx:247
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:272
 msgid "تمنح شهادة وفقاً لمعايير الحضور"
 msgstr "A certificate is awarded when the attendance requirements are met"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:233
+#: src/components/routes/event/HomepageDesigner/index.tsx:232
 msgid "عند تفعيل هذا الخيار، سيتم عرض بطاقة شهادة الحضور وشعار الاعتماد في صفحة الفعالية"
 msgstr "Shows a certificate badge on the event page."
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:240
+#: src/components/routes/event/HomepageDesigner/index.tsx:239
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:265
 msgid "كافة المستفيدين، الباحثون، والمهتمون"
 msgstr "Attendees, researchers, and anyone interested"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:255
+#: src/components/routes/event/HomepageDesigner/index.tsx:254
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:278
 msgid "متطلبات الفعالية"
 msgstr "Event requirements"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:263
+#: src/components/routes/event/HomepageDesigner/index.tsx:262
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:285
 msgid "محاور الفعالية وأهدافها (محور في كل سطر)"
 msgstr "Event highlights and objectives (one per line)"
@@ -13950,16 +13950,16 @@ msgstr "Event highlights and objectives (one per line)"
 msgid "مرحباً بك في منصة فعاليات الجامعة الإسلامية، {0}"
 msgstr "Welcome to the Islamic University events platform, {0}"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:272
+#: src/components/routes/event/HomepageDesigner/index.tsx:271
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:293
 msgid "ملاحظات وتنبيهات الحضور"
 msgstr "Attendee notices"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:232
+#: src/components/routes/event/HomepageDesigner/index.tsx:231
 msgid "هل تتضمن الفعالية شهادة حضور؟"
 msgstr "Offer an attendance certificate"
 
-#: src/components/routes/event/HomepageDesigner/index.tsx:273
+#: src/components/routes/event/HomepageDesigner/index.tsx:272
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:294
 msgid "يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة..."
 msgstr "Please arrive 15 minutes before the event starts..."

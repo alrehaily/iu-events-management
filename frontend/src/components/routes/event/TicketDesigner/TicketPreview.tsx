@@ -1,7 +1,8 @@
 import {useGetEvent} from "../../../../queries/useGetEvent.ts";
 import {useGetMe} from "../../../../queries/useGetMe.ts";
+import {useGetEventSettings} from "../../../../queries/useGetEventSettings.ts";
 import {t} from "@lingui/macro";
-import {IdParam, LocationType} from "../../../../types.ts";
+import {IdParam, LocationType, ProductPriceType, ProductType} from "../../../../types.ts";
 import {AttendeeTicket} from "../../../common/AttendeeTicket";
 import {resolveEventLocation} from "../../../../utilites/effectiveLocation.ts";
 import classes from './TicketPreview.module.scss';
@@ -23,11 +24,13 @@ interface TicketPreviewProps {
 export const TicketPreview = ({settings, eventId, logoUrl}: TicketPreviewProps) => {
     const eventQuery = useGetEvent(eventId);
     const meQuery = useGetMe();
+    const eventSettingsQuery = useGetEventSettings(eventId);
 
     const event = eventQuery.data;
     const user = meQuery.data;
 
-    if (!event || !user) {
+    const eventSettings = eventSettingsQuery.data ?? event?.settings;
+    if (!event || !user || !eventSettings) {
         return (
             <div className={classes.loadingState}>
                 <p>{t`Loading preview...`}</p>
@@ -39,12 +42,8 @@ export const TicketPreview = ({settings, eventId, logoUrl}: TicketPreviewProps) 
         id: 1,
         title: t`General Admission`,
         price: 2500,
-        type: "TICKET" as const,
-        sale_start_date: null,
-        sale_end_date: null,
-        max_per_order: null,
-        min_per_order: null,
-        quantity_available: null,
+        type: ProductPriceType.Paid,
+        product_type: ProductType.Ticket,
         is_hidden: false,
         sort_order: 1,
         description: "",
@@ -59,18 +58,10 @@ export const TicketPreview = ({settings, eventId, logoUrl}: TicketPreviewProps) 
         last_name: user.last_name || "Doe",
         email: user.email || "john.doe@example.com",
         status: "ACTIVE" as const,
-        checked_in_at: null,
         product_id: mockProduct.id,
         product: mockProduct,
         product_price_id: 1,
         order_id: 1,
-        order: {
-            id: 1,
-            short_id: "ORD123",
-            created_at: new Date().toISOString(),
-            total_gross: 2500,
-            currency: event.currency || "USD",
-        }
     };
 
     const fallbackLocationDetails = {
@@ -89,11 +80,11 @@ export const TicketPreview = ({settings, eventId, logoUrl}: TicketPreviewProps) 
         ...event,
         event_location: resolvedEventLocation,
         settings: {
-            ...event.settings,
+            ...eventSettings,
             ticket_design_settings: {
                 accent_color: settings.accent_color,
-                logo_image_id: settings.logo_image_id,
-                footer_text: settings.footer_text,
+                logo_image_id: settings.logo_image_id ?? undefined,
+                footer_text: settings.footer_text ?? undefined,
                 date_display_mode: settings.date_display_mode,
                 enabled: settings.enabled
             },
@@ -104,8 +95,9 @@ export const TicketPreview = ({settings, eventId, logoUrl}: TicketPreviewProps) 
                 id: settings.logo_image_id,
                 type: 'TICKET_LOGO' as const,
                 url: logoUrl,
-                size_bytes: 0,
-                filename: ''
+                size: 0,
+                file_name: '',
+                mime_type: ''
             }
         ] : (event.images || []).filter(img => img.type !== 'TICKET_LOGO')
     };

@@ -140,12 +140,13 @@ export const SocialLinks = () => {
                 formValues.website_url = organizerSettingsQuery.data.website_url;
             }
 
-            if (organizerSettingsQuery.data.social_media_handles) {
+            const handles: Record<string, string | undefined> | undefined = organizerSettingsQuery.data.social_media_handles;
+            if (handles) {
                 socialPlatforms.forEach(platform => {
                     if (platform.field !== 'website_url') {
-                        const handle = platform.field.replace('_handle', '');
-                        if (organizerSettingsQuery.data.social_media_handles[handle]) {
-                            formValues[platform.field] = organizerSettingsQuery.data.social_media_handles[handle];
+                        const handle = handles[platform.field.replace('_handle', '')];
+                        if (handle) {
+                            formValues[platform.field] = handle;
                         }
                     }
                 });

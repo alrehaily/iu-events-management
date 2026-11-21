@@ -6,6 +6,16 @@ import { getConfig } from "../../../utilites/config.ts";
 
 const CHATWOOT_ROUTES = ["/manage", "/account", "/welcome"];
 
+declare global {
+    interface Window {
+        chatwootSDK?: {run(options: {websiteToken: string; baseUrl: string}): void};
+        $chatwoot?: {
+            setUser(id: string, attributes: {email: string; name: string; locale: string}): void;
+            setCustomAttributes(attributes: Record<string, unknown>): void;
+        };
+    }
+}
+
 const ChatwootWidget = () => {
     const scriptRef = useRef<HTMLScriptElement | null>(null);
     const { data: me, isLoading } = useGetMe();
@@ -28,7 +38,7 @@ const ChatwootWidget = () => {
                 script.defer = true;
                 script.async = true;
                 script.onload = () => {
-                    window.chatwootSDK.run({
+                    window.chatwootSDK?.run({
                         websiteToken: chatwootToken,
                         baseUrl: chatwootUrl
                     });
