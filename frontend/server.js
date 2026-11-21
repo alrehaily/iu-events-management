@@ -226,8 +226,9 @@ Sitemap: ${frontendUrl}/sitemap.xml
         return res.status(500).type("text/plain").send("Internal Server Error");
     });
 
-    app.listen(port, () => {
-        console.info(`SSR Serving at http://localhost:${port}`);
+    const host = process.env.NODE_HOST;
+    app.listen(port, host, () => {
+        console.info(`SSR Serving at http://${host || 'localhost'}:${port}`);
     });
 
     const dynamicImport = async (path) => {

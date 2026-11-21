@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from "react";
 import {NavLink, Link, useLocation, useNavigate} from "react-router";
+import {useQueryClient} from "@tanstack/react-query";
 import classes from "./IUNavbar.module.scss";
-import {useGetMe} from "../../../queries/useGetMe";
+import {GET_ME_QUERY_KEY, useGetMe} from "../../../queries/useGetMe";
 import {attendeeClient} from "../../../api/attendee.client";
 import {authClient} from "../../../api/auth.client";
 import {useIULanguage} from "../../../context/IULanguageContext";
 
 export const IUNavbar: React.FC = () => {
   const me = useGetMe();
+  const queryClient = useQueryClient();
   const {locale, toggleLanguage, t} = useIULanguage();
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ export const IUNavbar: React.FC = () => {
     if (me.data) {
       try {
         await authClient.logout();
+        await queryClient.resetQueries({queryKey: [GET_ME_QUERY_KEY], exact: true});
       } catch {
         // ignore
       }

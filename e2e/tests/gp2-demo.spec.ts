@@ -122,26 +122,70 @@ test('TC-09 switches Arabic and English in place and keeps the locale on reload'
   expect(errors).toEqual([]);
 });
 
-test('TC-10 signs in attendees and organizers and rejects an incorrect password', async ({page, publicApi, account}) => {
+test('TC-10 verifies bilingual login, session persistence and logout', async ({page, publicApi, account}) => {
   const user = attendee();
   expect((await publicApi.post('public/attendee/register', {data: user})).status()).toBe(201);
   await page.goto('/auth/login');
-  await page.getByRole('textbox', {name: 'Email', exact: true}).fill(user.email);
+  await expect(page.locator('.ssr-loader')).toBeHidden();
+  const attendeeLogin = (button: string) => Promise.all([
+    page.waitForResponse(response => new URL(response.url()).pathname.endsWith('/public/attendee/login')
+      && response.request().method() === 'POST'),
+    page.getByRole('button', {name: button, exact: true}).click(),
+  ]).then(([response]) => response);
+  const navigation = page.locator('header');
+  const bookings = navigation.getByRole('link', {name: 'My Bookings', exact: true});
+  const arabicBookings = navigation.getByRole('link', {name: 'تسجيلاتي', exact: true});
+
+  await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
+  await page.getByRole('textbox', {name: /^Email\b/}).fill(user.email);
   await page.getByLabel('Password', {exact: true}).fill(password + '-wrong');
-  await page.getByRole('button', {name: 'Log In', exact: true}).click();
-  await expect(page.getByText('Incorrect email or password.')).toBeVisible();
+  expect((await attendeeLogin('Log In')).status()).toBe(401);
+  await expect(page.getByText('Incorrect email or password.', {exact: true})).toBeVisible();
   await page.getByLabel('Password', {exact: true}).fill(password);
-  const attendeeLogin = page.waitForResponse(response => response.url().endsWith('/public/attendee/login'));
-  await page.getByRole('button', {name: 'Log In', exact: true}).click();
-  expect((await attendeeLogin).status()).toBe(200);
-  await expect(page.locator('header').getByRole('link', {name: 'My Bookings'})).toBeVisible();
+  expect((await attendeeLogin('Log In')).status()).toBe(200);
+  await expect(bookings).toBeVisible();
+  await page.reload();
+  await expect(bookings).toBeVisible();
+  await page.getByRole('button', {name: 'Log Out', exact: true}).click();
+  await expect(bookings).toHaveCount(0);
+  await navigation.getByRole('link', {name: 'Log In', exact: true}).click();
+  await page.getByRole('combobox', {name: 'Language', exact: true}).click();
+  await page.getByRole('option', {name: 'العربية', exact: true}).click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
+  await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  await page.getByRole('textbox', {name: /^البريد الإلكتروني/}).fill(user.email);
+  await page.getByLabel('كلمة المرور', {exact: true}).fill(password + '-wrong');
+  expect((await attendeeLogin('تسجيل الدخول')).status()).toBe(401);
+  await expect(page.getByText('البريد الإلكتروني أو كلمة المرور غير صحيحة.', {exact: true})).toBeVisible();
+  await page.getByLabel('كلمة المرور', {exact: true}).fill(password);
+  expect((await attendeeLogin('تسجيل الدخول')).status()).toBe(200);
+  await expect(arabicBookings).toBeVisible();
+  await page.reload();
+  await expect(arabicBookings).toBeVisible();
+  await page.getByRole('button', {name: 'تسجيل خروج', exact: true}).click();
+  await expect(arabicBookings).toHaveCount(0);
+  await page.getByRole('button', {name: 'English', exact: true}).click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+
   await page.goto('/manage/login');
-  await page.getByLabel('Institutional Email').fill(account.email);
+  await expect(page.locator('.ssr-loader')).toBeHidden();
+  await page.getByRole('textbox', {name: /^Institutional Email/}).fill(account.email);
   await page.getByLabel('Password', {exact: true}).fill(account.password);
   const organizerLogin = page.waitForResponse(response => new URL(response.url()).pathname.endsWith('/auth/login') && response.request().method() === 'POST');
   await page.getByRole('button', {name: 'Log In as Organizer'}).click();
   expect((await organizerLogin).status()).toBe(200);
   await expect(page).toHaveURL(/\/manage\/(?:events|organizer\/\d+)/);
+  const organizerProfile = page.waitForResponse(response => new URL(response.url()).pathname.endsWith('/users/me'));
+  await page.reload();
+  expect((await organizerProfile).status()).toBe(200);
+  await expect(page).toHaveURL(/\/manage\/(?:events|organizer\/\d+)/);
+  await page.goto('/');
+  const dashboard = navigation.getByRole('link', {name: 'Organizer Dashboard', exact: true});
+  await expect(dashboard).toBeVisible();
+  await page.getByRole('button', {name: 'Log Out', exact: true}).click();
+  await expect(dashboard).toHaveCount(0);
+  await page.reload();
+  await expect(navigation.getByRole('link', {name: 'Log In', exact: true})).toBeVisible();
 });
 
 test('TC-11 creates an attendee and validates missing and duplicate information', async ({page, publicApi}) => {
@@ -160,16 +204,42 @@ test('TC-11 creates an attendee and validates missing and duplicate information'
   expect((await publicApi.post('public/attendee/register', {data: user})).status()).toBe(409);
 });
 
-test('TC-12 denies attendee access to administration and organizer APIs', async ({page, publicApi, baseURL}) => {
+test('TC-12 enforces attendee, organizer and anonymous route access', async ({page, authedPage, publicApi, baseURL, account}) => {
+  const organizerPath = `/manage/organizer/${account.organizerId}/dashboard`;
+  const visit = async (browserPage: typeof page, path: string) => {
+    const response = await browserPage.goto(path);
+    expect(response?.status(), path).toBeLessThan(500);
+  };
+  const adminRoute = /\/admin\/?$/;
+  const organizerRoute = /\/manage\/organizer\/\d+\/dashboard\/?$/;
+  for (const path of ['admin/dashboard', 'events']) {
+    expect((await publicApi.get(path)).status(), path).toBe(401);
+  }
+  await visit(page, '/admin');
+  await expect(page).not.toHaveURL(adminRoute);
+  await visit(page, organizerPath);
+  await expect(page).not.toHaveURL(organizerRoute);
+
   const registration = await publicApi.post('public/attendee/register', {data: attendee()});
   expect(registration.status()).toBe(201);
   const {token} = await registration.json();
   await page.context().addCookies([{name: 'token', value: token, url: baseURL!}]);
-  await page.goto('/admin');
-  await expect(page).not.toHaveURL(/\/admin\/?$/);
   const headers = {Authorization: `Bearer ${token}`};
-  expect([401, 403]).toContain((await publicApi.get('admin/dashboard', {headers})).status());
-  expect([401, 403]).toContain((await publicApi.get('events', {headers})).status());
+  expect((await publicApi.get('admin/dashboard', {headers})).status()).toBe(403);
+  expect((await publicApi.get('events', {headers})).status()).toBe(403);
+  await visit(page, '/admin');
+  await expect(page).not.toHaveURL(adminRoute);
+  await visit(page, organizerPath);
+  await expect(page).not.toHaveURL(organizerRoute);
+
+  const organizerHeaders = {Authorization: `Bearer ${account.token}`};
+  expect((await publicApi.get('admin/dashboard', {headers: organizerHeaders})).status()).toBe(403);
+  expect((await publicApi.get('events', {headers: organizerHeaders})).status()).toBe(200);
+  await visit(authedPage, '/admin');
+  await expect(authedPage).not.toHaveURL(adminRoute);
+  await visit(authedPage, organizerPath);
+  await expect(authedPage.getByRole('link', {name: 'Settings', exact: true})).toBeVisible();
+  await expect(authedPage).toHaveURL(organizerRoute);
 });
 
 test('TC-13 creates an event through the organizer UI', async ({authedPage}) => {

@@ -1,5 +1,35 @@
 ﻿# GP2 G5 Final Demo Audit — WIP Checkpoint
 
+## 2026-11-21 continuation
+
+- Working branch `fix/gp2-demo-readiness-i18n-20261120`. Both local HEAD and the remote audit branch were at `18140f12cb8a8b2f59fc1e986470298c4436afe9` on recovery. Comparison base `ebfec454af3e22b697f30b703e19afed8e747307`.
+- Confirmed the previous PostgreSQL cluster directory and ownership of `iu_gp2_demo` and `iu_gp2_test` before reuse. Restarted PostgreSQL, Mailpit, Laravel and frontend SSR on loopback. Docker Desktop's Linux engine remained unavailable. The native Laravel server serves API routes at its root and the first retry using `/api/` failed during fixture setup with 404s.
+- Preserved the pre-existing unstaged non-Arabic/English compiled catalogs, line-ending-only lockfile status and untracked PHPUnit config. The temporary XML points at a different database by default. It was excluded from the checkpoint and was not used against that default.
+- Account usage was available at recovery. The Codex account endpoint reported 95% remaining in the five-hour window and 69% remaining for the week.
+
+### Phase 1 focused Chromium retest
+
+| ID | Result | Observed behavior |
+|---|---|---|
+| TC-10 | PASS | Attendee login returned 401 for incorrect credentials and 200 for valid credentials in both Arabic and English. The respective error messages and RTL/LTR directions were visible. My Bookings survived refresh and disappeared on logout. Organizer login and profile returned 200, the session survived refresh, and the navbar and reloaded page reflected logout. |
+| TC-12 | PASS | Anonymous API requests returned 401. An attendee token received 403 for the events and admin APIs. The organizer received 200 for the events API and 403 for admin. Browser navigation redirected denied viewers and rendered the organizer dashboard for an authorized organizer. No checked page response or API returned 500. |
+
+The test waits for hydration before filling the initial server-rendered form. A subsequent attempt revealed that organizer logout left the current user cached in the public navbar despite the logout response. Resetting the current-user query after successful logout fixed the stale session display. SSR startup now supports `NODE_HOST` to keep the audit listener on loopback.
+
+Executed in `e2e` with `E2E_BASE_URL=http://127.0.0.1:5680`, `E2E_API_BASE_URL=http://127.0.0.1:8010/`, `MAILPIT_URL=http://127.0.0.1:8225` and `E2E_SAAS_MODE=false`.
+
+```powershell
+node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts --grep 'TC-1[02]' --workers=1 --reporter=list,json --output "$audit/pw-auth-final-20261121"
+```
+
+Final focused run **2 passed, 0 failed, 0 skipped** in 28.6 seconds. Local evidence is in `%TEMP%\iu-gp2-audit-20261120\gp2-auth-final-20261121.log` and the corresponding JSON. Earlier attempts kept separate logs and their failure screenshots, videos and traces under `pw-auth-repro-20261121`, `pw-auth-expanded-20261121` and `pw-auth-retest-20261121`. The historical 13/15 and this 2/2 are separate runs. A fresh, complete matrix remains pending.
+
+### Initial frontend comparison
+
+The same installed tools were run from this worktree and a temporary `git archive` of the base frontend. ESLint found **1,419** findings at the base (889 errors, 530 warnings) and **1,410** at the start of the continuation (893 errors, 517 warnings). Comparing counts by file, rule and message identified 10 added and 19 removed findings. TypeScript reported **56** diagnostics at the base and **49** at the start of the continuation. The certificate QR import and Arabic token overrides introduced two diagnostics. Production builds, the six extended scenarios and the final matrix remain pending.
+
+## Historical checkpoint of 2026-11-20
+
 Date: 2026-11-20 (Asia/Riyadh)
 Branch: `fix/gp2-demo-readiness-i18n-20261120`
 Base: `origin/main` at `ebfec454af3e22b697f30b703e19afed8e747307`
@@ -87,7 +117,7 @@ The initial Playwright run executed all 15 scenarios. 13 passed and 2 failed. Th
 4. Finish Lingui compile, TypeScript, lint, SSR client/server builds and record exact command outputs.
 5. Run the six extended GP2 scenarios and relevant inherited Playwright coverage without treating unexecuted cases as passes.
 6. Verify booking, privacy, check-in and certificate workflows; document unsupported/partial behaviors honestly.
-7. Complete route-by-route Arabic/English checks, update this matrix and exact counts, then prepare a separate final commit for review. Do not push until requested.
+7. Complete route-by-route Arabic/English checks, update this matrix and exact counts, then commit and push to the existing audit branch as authorized in the continuation.
 
 ## Counts at checkpoint
 
