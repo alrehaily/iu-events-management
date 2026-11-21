@@ -49,6 +49,10 @@ readonly class LoginService
 
         $accounts = $userAccounts->map(fn ($accountUser) => $accountUser->getAccount());
 
+        if ($accounts->isEmpty()) {
+            throw new UnauthorizedException(__('Username or Password are incorrect'));
+        }
+
         $accountId = $this->getAccountId($accounts, $requestedAccountId);
 
         if ($accountId) {
@@ -73,10 +77,6 @@ readonly class LoginService
 
     private function getAccountId(Collection $accounts, ?int $requestedAccountId): ?int
     {
-        if ($accounts->count() === 1) {
-            return $accounts->first()->getId();
-        }
-
         if ($requestedAccountId) {
             $verifiedAccount = $accounts->firstWhere(fn (AccountDomainObject $account) => $account->getId() === $requestedAccountId);
 
@@ -87,7 +87,7 @@ readonly class LoginService
             return $verifiedAccount->getId();
         }
 
-        return null;
+        return $accounts->count() === 1 ? $accounts->first()->getId() : null;
     }
 
     private function getToken(

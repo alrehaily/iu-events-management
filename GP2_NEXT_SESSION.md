@@ -1,6 +1,12 @@
 # IU Events GP2 audit continuation
 
-## Repository and evidence
+## Current checkpoint
+
+- Phase A implements combined credential persistence and explicit localized organizer login feedback. The active upstream is `origin/fix/gp2-demo-readiness-i18n-20261120`. Run `git rev-parse HEAD @{upstream}` or compare `git rev-parse HEAD` with `git ls-remote --heads origin refs/heads/fix/gp2-demo-readiness-i18n-20261120` to retrieve the exact current hashes.
+- The focused credential cases, TC-10/TC-12, TypeScript, Lingui and focused PHPUnit passed. Retest the organizer localization flow and remaining phases as outlined in the audit. Historical build and matrix results below need final reruns.
+- Use the isolated service environment below. From `e2e`, run `node.exe node_modules/@playwright/test/cli.js test tests/gp2-organizer-credentials.spec.ts tests/gp2-localization.spec.ts tests/gp2-demo.spec.ts --grep 'changing |attendee credentials|organizer forms|TC-1[02]' --workers=2 --reporter=list`. From `backend`, run `php.exe -d memory_limit=1024M vendor/bin/phpunit --configuration "$audit/phpunit-isolated-20261121.xml" --filter 'Auth|UpdateMe|ConfirmEmailChange'`.
+
+## Repository and historical evidence
 
 - Worktree `C:/Users/Administrator/Desktop/iu-events-gp2-audit`
 - Branch `fix/gp2-demo-readiness-i18n-20261120`

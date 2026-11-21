@@ -1,5 +1,16 @@
 ﻿# GP2 G5 Final Demo Audit — WIP Checkpoint
 
+## 2026-11-22 final completion audit
+
+### Phase A — organizer credentials
+
+- Recovered local and remote HEAD at `3a08066f27bac80040bfd1d6864a70a280c140d8`. Corrected the audit branch's upstream from `origin/main` to the existing remote audit branch. Started and verified loopback PostgreSQL, Mailpit, Laravel and development SSR. Used `iu_gp2_demo` for browser fixtures and `iu_gp2_test` for PHPUnit.
+- Combined updates now persist the password hash alongside profile fields. Email changes retain the existing confirmation workflow, and the login form verifies the organizer session before redirecting. Organizer authentication rejects users without an account membership. The form shows localized errors for rejected credentials and sessions that fail to start.
+- **PASS** Four Chromium credential regressions covered email-only, password-only and combined changes, Mailpit confirmation, rejection of old credentials, fresh sign-in, authorized organizer events after reload, and Arabic rejection at the organizer portal. TC-10 and TC-12 also passed, covering login and attendee/organizer/admin access boundaries. Earlier retries are preserved in the phase A Playwright logs.
+- **PASS** TypeScript, Lingui extraction and compilation. The Arabic extractor reported three missing entries. **PASS** Focused PHPUnit, 24 tests and 102 assertions. Production build, full PHPUnit and final browser matrix are pending.
+- Organizer localization now follows the Arabic create-event link and closes the English modal using its close control. An initial retest failed because the top bar intercepted the close control. The modal now mounts in a portal above the top bar. The post-fix result is pending.
+- Codex account usage reported 84% remaining in the five-hour window and 52% remaining in the weekly window during Phase A.
+
 ## 2026-11-21 continuation
 
 - Working branch `fix/gp2-demo-readiness-i18n-20261120`. Both local HEAD and the remote audit branch were at `18140f12cb8a8b2f59fc1e986470298c4436afe9` on recovery. Comparison base `ebfec454af3e22b697f30b703e19afed8e747307`.

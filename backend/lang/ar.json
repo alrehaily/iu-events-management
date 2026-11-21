@@ -1,5 +1,9 @@
 {
     "Incorrect email or password.": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "Username or Password are incorrect": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "The current password does not match our records.": "كلمة المرور الحالية غير صحيحة.",
+    "User account is not active": "حساب المستخدم غير نشط.",
+    "Account not found": "لم يتم العثور على الحساب.",
     "Signed in successfully.": "تم تسجيل الدخول بنجاح.",
     "This email is already registered. Please log in.": "البريد الإلكتروني مسجل مسبقاً. يرجى تسجيل الدخول.",
     "Attendee account created successfully.": "تم إنشاء حساب الطالب/المشارك بنجاح.",

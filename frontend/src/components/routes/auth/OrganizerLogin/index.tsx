@@ -1,19 +1,21 @@
-import {Button, PasswordInput, TextInput} from "@mantine/core";
-import {NavLink, Navigate, useLocation, useNavigate} from "react-router";
-import {useMutation} from "@tanstack/react-query";
-import {notifications} from '@mantine/notifications';
+import {Alert, Button, PasswordInput, TextInput} from "@mantine/core";
+import {NavLink, useLocation, useNavigate} from "react-router";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {isAxiosError} from "axios";
+import {t} from "@lingui/macro";
 import {authClient} from "../../../../api/auth.client.ts";
 import {LoginData, LoginResponse} from "../../../../types.ts";
 import {useForm} from "@mantine/form";
 import classes from "./OrganizerLogin.module.scss";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {ChooseAccountModal} from "../../../modals/ChooseAccountModal";
-import {useGetMe} from "../../../../queries/useGetMe.ts";
+import {GET_ME_QUERY_KEY} from "../../../../queries/useGetMe.ts";
+import {userClient} from "../../../../api/user.client.ts";
 import {IconShieldLock} from "@tabler/icons-react";
 import {useIULanguage} from "../../../../context/IULanguageContext";
 
 export const OrganizerLogin = () => {
-    const me = useGetMe();
+    const queryClient = useQueryClient();
     const location = useLocation();
     const navigate = useNavigate();
     const {isArabic} = useIULanguage();
@@ -21,15 +23,12 @@ export const OrganizerLogin = () => {
         initialValues: {
             email: '',
             password: '',
-            account_id: '',
         }
     });
-    const [showChooseAccount, setShowChooseAccount] = useState(false);
+    const [accounts, setAccounts] = useState<LoginResponse['accounts']>([]);
+    const [error, setError] = useState<'credentials' | 'session' | null>(null);
 
     const text = {
-        error: isArabic
-            ? "يرجى التحقق من صحة البريد الإلكتروني وكلمة المرور والمحاولة مرة أخرى."
-            : "Please check your email and password and try again.",
         badge: isArabic ? "بوابة المنظمين والمسؤولين" : "Organizer & Staff Portal",
         title: isArabic ? "تسجيل الدخول لإدارة الفعاليات" : "Sign in to manage events",
         description: isArabic
@@ -46,39 +45,32 @@ export const OrganizerLogin = () => {
         attendeeLink: isArabic ? "دخول المستفيدين والزوار ←" : "Attendee & visitor login →",
     };
 
-    const {mutate: loginUser, isPending, data} = useMutation({
-        mutationFn: (userData: LoginData) => authClient.login(userData),
-
-        onSuccess: (response: LoginResponse) => {
+    const {mutate: loginUser, isPending} = useMutation({
+        mutationFn: async (userData: LoginData) => {
+            setError(null);
+            setAccounts([]);
+            const response = await authClient.login(userData);
             if (response.token) {
-                navigate('/manage/events');
+                const {data: user} = await userClient.me();
+                await queryClient.cancelQueries({queryKey: [GET_ME_QUERY_KEY]});
+                queryClient.setQueryData([GET_ME_QUERY_KEY], user);
+                navigate('/manage/events', {replace: true});
                 return;
             }
 
-            if (response.accounts && response.accounts.length > 1) {
-                setShowChooseAccount(true);
+            if (response.accounts?.length > 1) {
+                setAccounts(response.accounts);
                 return;
             }
+
+            setError('session');
         },
 
-        onError: () => {
-            notifications.show({
-                message: text.error,
-                color: 'red',
-                position: 'top-center',
-            });
+        onError: (failure) => {
+            setError(isAxiosError(failure) && failure.response?.status === 401 && failure.config?.url === 'auth/login'
+                ? 'credentials' : 'session');
         }
     });
-
-    useEffect(() => {
-        if (form.values.account_id) {
-            loginUser(form.values);
-        }
-    }, [form.values.account_id]);
-
-    if (me.isSuccess) {
-        return <Navigate to={'/manage/events'} replace />;
-    }
 
     return (
         <>
@@ -95,6 +87,9 @@ export const OrganizerLogin = () => {
             </header>
 
             <div className={classes.organizerCard}>
+                {error && <Alert role="alert" color="red" mb="md">
+                    {error === 'credentials' ? t`Incorrect email or password.` : t`Unable to start your session. Please try again.`}
+                </Alert>}
                 <form onSubmit={form.onSubmit((values) => loginUser(values))}>
                     <TextInput
                         {...form.getInputProps('email')}
@@ -138,12 +133,10 @@ export const OrganizerLogin = () => {
                 </NavLink>
             </div>
 
-            {(showChooseAccount && data) && (
+            {accounts.length > 0 && (
                 <ChooseAccountModal
-                    onAccountChosen={(accountId) => {
-                        form.setFieldValue('account_id', accountId as string);
-                    }}
-                    accounts={data.accounts}
+                    onAccountChosen={(accountId) => loginUser({...form.values, account_id: String(accountId)})}
+                    accounts={accounts}
                 />
             )}
         </>

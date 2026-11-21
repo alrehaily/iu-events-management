@@ -111,9 +111,10 @@ test('organizer forms and management screens render in Arabic and English', asyn
   await create.gotoDashboard(account.organizerId);
   await create.openCreateModal();
   await expect(page.getByRole('combobox', {name: 'Event Category'})).toBeVisible();
-  await page.keyboard.press('Escape');
+  await page.getByRole('button', {name: 'Close modal', exact: true}).click();
+  await expect(page.getByRole('combobox', {name: 'Event Category'})).toBeHidden();
   await switchManagementLocale(page, 'ar');
-  await page.getByRole('button', {name: 'إنشاء فعالية', exact: true}).first().click();
+  await page.getByRole('link', {name: 'إنشاء فعالية', exact: true}).first().click();
   await expect(page.getByLabel(/^اسم الفعالية/)).toBeVisible();
   await expect(page.getByRole('combobox', {name: 'تصنيف الفعالية'})).toBeVisible();
   await expect(page.getByRole('button', {name: 'متابعة الإعداد'})).toBeVisible();

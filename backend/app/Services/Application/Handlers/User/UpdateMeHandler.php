@@ -33,18 +33,17 @@ readonly class UpdateMeHandler
             $updateArray['password'] = $this->hasher->make($updateUserData->password);
         }
 
-        if ($this->isUpdatingDetails($updateUserData)) {
-            $updateArray = [
-                'first_name' => $updateUserData->first_name,
-                'last_name' => $updateUserData->last_name,
-                'timezone' => $updateUserData->timezone,
-                'locale' => $updateUserData->locale,
-            ];
+        $updateArray += array_filter([
+            'first_name' => $updateUserData->first_name,
+            'last_name' => $updateUserData->last_name,
+            'timezone' => $updateUserData->timezone,
+            'locale' => $updateUserData->locale,
+        ], static fn (?string $value) => $value !== null);
 
-            if ($this->isChangingEmail($updateUserData, $existingUser)) {
-                $updateArray['pending_email'] = $updateUserData->email;
-                $this->sendEmailChangeConfirmation($existingUser);
-            }
+        $email = $updateUserData->email === null ? null : strtolower($updateUserData->email);
+        $emailChanged = $email !== null && $email !== $existingUser->getEmail();
+        if ($emailChanged) {
+            $updateArray['pending_email'] = $email;
         }
 
         if ($updateUserData->marketing_opt_in !== null) {
@@ -59,6 +58,10 @@ readonly class UpdateMeHandler
                 'id' => $updateUserData->id,
             ]
         );
+
+        if ($emailChanged) {
+            $this->sendEmailChangeConfirmation($existingUser);
+        }
 
         return $this->userRepository->findByIdAndAccountId($updateUserData->id, $updateUserData->account_id);
     }
@@ -78,11 +81,6 @@ readonly class UpdateMeHandler
         }
     }
 
-    private function isChangingEmail(UpdateMeDTO $updateUserData, UserDomainObject $existingUser): bool
-    {
-        return $updateUserData->email !== $existingUser->getEmail();
-    }
-
     private function getExistingUser(UpdateMeDTO $updateUserData): UserDomainObject
     {
         return $this->userRepository->findByIdAndAccountId(
@@ -100,10 +98,5 @@ readonly class UpdateMeHandler
                 'id' => $existingUser->getId(),
             ]))
             );
-    }
-
-    private function isUpdatingDetails(UpdateMeDTO $updateUserData): bool
-    {
-        return $updateUserData->first_name !== null || $updateUserData->last_name !== null || $updateUserData->timezone !== null || $updateUserData->email !== null;
     }
 }

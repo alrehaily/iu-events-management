@@ -2022,7 +2022,7 @@ msgstr "إلغاء طلب الحذف"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:137
 msgid "Cancel email change"
-msgstr "Cancel email change"
+msgstr "إلغاء تغيير البريد الإلكتروني"
 
 #: src/hooks/useOrderActions.tsx:154
 msgid "Cancel order"
@@ -2703,7 +2703,7 @@ msgstr "Confirm Email Address"
 #: src/components/routes/profile/ConfirmEmailChange/index.tsx:51
 #: src/components/routes/profile/ConfirmEmailChange/index.tsx:56
 msgid "Confirm Email Change"
-msgstr "Confirm Email Change"
+msgstr "تأكيد تغيير البريد الإلكتروني"
 
 #: src/components/routes/auth/ResetPassword/index.tsx:71
 #~ msgid "Confirm new password"
@@ -4262,7 +4262,7 @@ msgstr "Email change cancelled successfully"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:127
 msgid "Email change pending"
-msgstr "Email change pending"
+msgstr "تغيير البريد الإلكتروني قيد التأكيد"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:170
 msgid "Email confirmation resent"
@@ -4529,7 +4529,7 @@ msgstr "Error confirming email address"
 
 #: src/components/routes/profile/ConfirmEmailChange/index.tsx:35
 msgid "Error confirming email change"
-msgstr "Error confirming email change"
+msgstr "تعذّر تأكيد تغيير البريد الإلكتروني."
 
 #: src/components/modals/OrganizerWebhookLogsModal/index.tsx:152
 #: src/components/modals/WebhookLogsModal/index.tsx:166
@@ -9060,7 +9060,7 @@ msgstr "الملف الشخصي"
 
 #: src/components/routes/profile/ManageProfile/index.tsx:70
 msgid "Profile updated successfully"
-msgstr "Profile updated successfully"
+msgstr "تم تحديث الملف الشخصي بنجاح."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:47
 msgid "Progress"
@@ -11050,7 +11050,7 @@ msgstr "Successfully confirmed email address"
 
 #: src/components/routes/profile/ConfirmEmailChange/index.tsx:31
 msgid "Successfully confirmed email change"
-msgstr "Successfully confirmed email change"
+msgstr "تم تأكيد تغيير البريد الإلكتروني بنجاح."
 
 #: src/components/modals/CreateAttendeeModal/index.tsx:135
 msgid "Successfully created attendee"
@@ -13971,3 +13971,9 @@ msgstr "هل تتضمن الفعالية شهادة حضور؟"
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:294
 msgid "يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة..."
 msgstr "يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة..."
+
+msgid "Incorrect email or password."
+msgstr "البريد الإلكتروني أو كلمة المرور غير صحيحة."
+
+msgid "Unable to start your session. Please try again."
+msgstr "تعذّر بدء الجلسة. يرجى المحاولة مرة أخرى."

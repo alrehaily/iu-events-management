@@ -14,10 +14,11 @@ import {useCancelEmailChange} from "../../../../mutations/useCancelEmailChange.t
 import {useFormErrorResponseHandler} from "../../../../hooks/useFormErrorResponseHandler.tsx";
 import {t, Trans} from "@lingui/macro";
 import {useResendEmailConfirmation} from "../../../../mutations/useResendEmailConfirmation.ts";
-import {localeToFlagEmojiMap, localeToNameMap, SupportedLocales} from "../../../../locales.ts";
+import {getSupportedLocale, localeToFlagEmojiMap, localeToNameMap, SupportedLocales} from "../../../../locales.ts";
 import {Fieldset} from "../../../common/Fieldset";
 import {InputGroup} from "../../../common/InputGroup";
 import {getConfig} from "../../../../utilites/config.ts";
+import {useIULanguage} from "../../../../context/IULanguageContext.tsx";
 
 const localeSelectData = Object.keys(localeToNameMap).map(locale => ({
     value: locale,
@@ -26,6 +27,7 @@ const localeSelectData = Object.keys(localeToNameMap).map(locale => ({
 
 export const ManageProfile = () => {
     const {data: me, isFetching} = useGetMe();
+    const {setLanguage} = useIULanguage();
     const mutation = useUpdateMe();
     const cancelEmailChangeMutation = useCancelEmailChange();
     const resendEmailConfirmationMutation = useResendEmailConfirmation();
@@ -68,10 +70,8 @@ export const ManageProfile = () => {
             onSuccess: () => {
                 form.reset();
                 showSuccess(t`Profile updated successfully`);
-                document.cookie = `locale=${formValues.locale};path=/;max-age=31536000`;
-
-                if (form.isDirty('locale')) {
-                    window.location.reload();
+                if (formValues.locale && formValues.locale !== me?.locale) {
+                    setLanguage(getSupportedLocale(formValues.locale));
                 }
             },
             onError: (error: any) => {

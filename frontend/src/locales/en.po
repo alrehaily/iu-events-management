@@ -13971,3 +13971,11 @@ msgstr "Offer an attendance certificate"
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:294
 msgid "يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة..."
 msgstr "Please arrive 15 minutes before the event starts..."
+
+#: src/components/routes/auth/OrganizerLogin/index.tsx:91
+msgid "Incorrect email or password."
+msgstr "Incorrect email or password."
+
+#: src/components/routes/auth/OrganizerLogin/index.tsx:91
+msgid "Unable to start your session. Please try again."
+msgstr "Unable to start your session. Please try again."
