@@ -5,7 +5,6 @@ import {
     IconChartPie,
     IconChevronRight,
     IconDashboard,
-    IconDeviceTabletCode,
     IconDiscount2,
     IconExternalLink,
     IconEye,
@@ -118,7 +117,6 @@ const EventLayout = () => {
         },
         {link: 'settings', label: t`Event Settings`, icon: IconSettings},
         {link: 'homepage-designer', label: t`Homepage Designer`, icon: IconPaint},
-        {link: 'ticket-designer', label: t`Ticket Designer`, icon: IconTicket},
         {link: 'questions', label: t`Registration Questions`, icon: IconUserQuestion},
 
         // 3. Ticketing & Sales
@@ -143,7 +141,6 @@ const EventLayout = () => {
 
         // 5. INTEGRATIONS
         {label: t`Integrations`},
-        {link: 'widget', label: t`Widget Embed`, icon: IconDeviceTabletCode},
         {link: 'webhooks', label: t`Webhooks`, icon: IconWebhook},
 
 
@@ -256,7 +253,6 @@ const EventLayout = () => {
                                 onClose={closeCelebration}
                                 url={eventHomepageUrl(event)}
                                 eventTitle={event.title}
-                                eventId={String(event.id)}
                             />
 
                             {publishModalOpened && (

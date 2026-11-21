@@ -116,7 +116,7 @@ const OrganizerHomepageDesigner = () => {
             if (settingsJson !== lastSentSettings.current) {
                 iframeRef.current.contentWindow.postMessage(
                     { type: "UPDATE_ORGANIZER_SETTINGS", settings: settingsToSend },
-                    "*"
+                    window.location.origin
                 );
                 lastSentSettings.current = settingsJson;
             }
@@ -273,7 +273,8 @@ const OrganizerHomepageDesigner = () => {
                             <iframe
                                 ref={iframeRef}
                                 src={iframeSrc}
-                                title="Organizer Homepage Preview"
+                                title={t`Organizer Homepage Preview`}
+                                sandbox="allow-scripts allow-same-origin"
                                 onLoad={() => setIframeLoaded(true)}
                             />
                         ) : (

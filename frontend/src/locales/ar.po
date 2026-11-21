@@ -13980,3 +13980,6 @@ msgstr "تعذّر بدء الجلسة. يرجى المحاولة مرة أخر�
 
 msgid "Saudi Arabia"
 msgstr "المملكة العربية السعودية"
+
+msgid "Organizer Homepage Preview"
+msgstr "معاينة الصفحة الرئيسية للمنظم"

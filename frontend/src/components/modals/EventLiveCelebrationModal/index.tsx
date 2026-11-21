@@ -3,13 +3,11 @@ import {useDisclosure} from '@mantine/hooks';
 import {
     IconCheck,
     IconCircleCheck,
-    IconCode,
     IconCopy,
     IconExternalLink,
     IconShare
 } from '@tabler/icons-react';
 import {t} from "@lingui/macro";
-import {NavLink} from "react-router";
 import {ShareModal} from "../ShareModal";
 import classes from './EventLiveCelebrationModal.module.scss';
 
@@ -18,7 +16,6 @@ interface EventLiveCelebrationModalProps {
     onClose: () => void;
     url: string;
     eventTitle: string;
-    eventId: string;
 }
 
 export const EventLiveCelebrationModal = ({
@@ -26,7 +23,6 @@ export const EventLiveCelebrationModal = ({
     onClose,
     url,
     eventTitle,
-    eventId
 }: EventLiveCelebrationModalProps) => {
     const [shareModalOpened, {open: openShareModal, close: closeShareModal}] = useDisclosure(false);
 
@@ -107,16 +103,6 @@ export const EventLiveCelebrationModal = ({
                             {t`Share Event`}
                         </Button>
 
-                        <Button
-                            component={NavLink}
-                            to={`/manage/event/${eventId}/widget`}
-                            variant="light"
-                            leftSection={<IconCode size={16}/>}
-                            onClick={onClose}
-                            className={classes.actionButton}
-                        >
-                            {t`Embed Widget`}
-                        </Button>
                     </div>
 
                     <Button

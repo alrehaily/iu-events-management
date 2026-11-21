@@ -18,6 +18,17 @@ test.describe('organizer public page', () => {
     await expect(page.getByRole('heading', { name: event.title })).toBeVisible();
   });
 
+  test('the homepage designer shows its event card without a booking link', async ({ authedPage, api }) => {
+    const organizer = await createFreshOrganizer(api, uniqueName('GP2 Preview'));
+    const event = await createLiveEventWithProduct(api, { organizerId: organizer.id });
+    await authedPage.goto(`/manage/organizer/${organizer.id}/organizer-homepage-designer`);
+    const preview = authedPage.frameLocator('iframe[title="Organizer Homepage Preview"]');
+    const card = preview.locator('article').filter({hasText: event.title});
+    await expect(card).toBeVisible();
+    await expect(card.locator('a, button, form')).toHaveCount(0);
+    await expect(preview.locator('main')).toHaveAttribute('inert', '');
+  });
+
   test('a visitor contacts the organizer and the message arrives by email', async ({ page, api, mailpit }) => {
     const organizerEmail = uniqueEmail('organizer');
     const organizer = await api.createOrganizer(uniqueName('E2E Contact Org'), { email: organizerEmail });

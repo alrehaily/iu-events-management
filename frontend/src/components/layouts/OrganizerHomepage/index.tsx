@@ -26,6 +26,7 @@ interface OrganizerHomepageProps {
     organizer?: Organizer;
     eventsData?: GenericPaginatedResponse<Event>
     isPastEvents?: boolean;
+    preview?: boolean;
     isPreview?: boolean;
 }
 
@@ -45,6 +46,7 @@ export const OrganizerHomepage = ({
                                       organizer,
                                       eventsData,
                                       isPastEvents = false,
+                                      preview = false,
                                   }: OrganizerHomepageProps) => {
     const navigate = useNavigate();
     const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -129,7 +131,7 @@ export const OrganizerHomepage = ({
             )}
 
             {organizer && <OrganizerDocumentHead organizer={organizer}/>}
-            <main className={classes.pageWrapper} style={themeStyles} data-mode={themeSettings.mode}>
+            <main inert={preview || undefined} className={classes.pageWrapper} style={themeStyles} data-mode={themeSettings.mode}>
                 <style>
                     {`
                         body, .ssr-loader {
@@ -303,6 +305,7 @@ export const OrganizerHomepage = ({
                                     <div className={classes.eventsContainer}>
                                         {events.map((event) => (
                                             <EventCard
+                                                preview={preview}
                                                 key={event.id}
                                                 event={event as Event}
                                                 primaryColor={themeSettings.accent}

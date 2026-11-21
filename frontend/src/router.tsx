@@ -1,10 +1,10 @@
-import { Navigate, RouteObject } from "react-router";
+import { Navigate, Outlet, RouteObject, ScrollRestoration } from "react-router";
 import ErrorPage from "./error-page.tsx";
 import { publicEventRouteLoader } from "./routeLoaders/publicEventRouteLoader.ts";
 import { publicOrganizerRouteLoader } from "./routeLoaders/publicOrganizerRouteLoader.ts";
 import { organizerPreviewRouteLoader } from "./routeLoaders/organizerPreviewRouteLoader.ts";
 
-export const router: RouteObject[] = [
+const routes: RouteObject[] = [
     {
         path: "/",
         async lazy() {
@@ -522,24 +522,10 @@ export const router: RouteObject[] = [
                 }
             },
             {
-                path: "widget",
-                async lazy() {
-                    const Widget = await import("./components/routes/event/widget");
-                    return { Component: Widget.default };
-                }
-            },
-            {
                 path: "homepage-designer",
                 async lazy() {
                     const HomepageDesigner = await import("./components/routes/event/HomepageDesigner");
                     return { Component: HomepageDesigner.default };
-                }
-            },
-            {
-                path: "ticket-designer",
-                async lazy() {
-                    const TicketDesigner = await import("./components/routes/event/TicketDesigner");
-                    return { Component: TicketDesigner.default };
                 }
             },
             {
@@ -646,14 +632,6 @@ export const router: RouteObject[] = [
         errorElement: <ErrorPage />,
     },
     {
-        path: "/widget/:eventId",
-        async lazy() {
-            const ProductWidget = await import("./components/layouts/ProductWidget");
-            return { Component: ProductWidget.default };
-        },
-        errorElement: <ErrorPage />,
-    },
-    {
         path: "/checkout/:eventId",
         async lazy() {
             const Checkout = await import("./components/layouts/Checkout");
@@ -708,14 +686,6 @@ export const router: RouteObject[] = [
         errorElement: <ErrorPage />
     },
     {
-        path: "/manage/event/:eventId/ticket-designer/print",
-        async lazy() {
-            const TicketDesignerPrint = await import("./components/routes/event/TicketDesigner/TicketDesignerPrint");
-            return { Component: TicketDesignerPrint.default };
-        },
-        errorElement: <ErrorPage />
-    },
-    {
         path: "/product/:eventId/:attendeeShortId",
         async lazy() {
             const AttendeeProductAndInformation = await import("./components/routes/product-widget/AttendeeProductAndInformation");
@@ -741,3 +711,7 @@ export const router: RouteObject[] = [
     }
 ];
 
+export const router: RouteObject[] = [{
+    element: <><Outlet/><ScrollRestoration/></>,
+    children: routes,
+}];

@@ -1,7 +1,6 @@
 import {Avatar, Menu, UnstyledButton} from "@mantine/core";
 import {getInitials} from "../../../utilites/helpers.ts";
 import {
-    IconLifebuoy,
     IconLogout,
     IconPlus,
     IconSettingsCog,
@@ -15,8 +14,6 @@ import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
 import {authClient} from "../../../api/auth.client.ts";
 import {useDisclosure} from "@mantine/hooks";
-import {AboutModal} from "../../modals/AboutModal";
-import {getConfig} from "../../../utilites/config.ts";
 import {CreateOrganizerModal} from "../../modals/CreateOrganizerModal";
 
 interface Link {
@@ -30,7 +27,6 @@ interface Link {
 export const GlobalMenu = () => {
     useLingui();
     const {data: me} = useGetMe();
-    const [aboutModalOpen, {open: openAboutModal, close: closeAboutModal}] = useDisclosure(false);
     const [createOrganizerModalOpen, {
         open: openCreateOrganizerModal,
         close: closeCreateOrganizerModal
@@ -66,13 +62,6 @@ export const GlobalMenu = () => {
         })
     }
 
-    if (!getConfig("VITE_HIDE_ABOUT_LINK")) {
-        links.push({
-            label: t`About & Support`,
-            icon: IconLifebuoy,
-            onClick: openAboutModal,
-        });
-    }
 
     links.push({
         label: t`Create Organizer`,
@@ -90,7 +79,7 @@ export const GlobalMenu = () => {
             event.preventDefault();
             await authClient.logout();
             localStorage.removeItem("token");
-            window.location.href = "/auth/login";
+            window.location.href = "/manage/login";
         },
     });
 
@@ -120,7 +109,6 @@ export const GlobalMenu = () => {
                     ))}
                 </Menu.Dropdown>
             </Menu>
-            {aboutModalOpen && <AboutModal onClose={closeAboutModal}/>}
             {createOrganizerModalOpen && <CreateOrganizerModal onClose={closeCreateOrganizerModal}/>}
         </>
     );

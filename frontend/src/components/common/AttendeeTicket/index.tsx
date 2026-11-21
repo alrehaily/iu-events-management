@@ -1,3 +1,4 @@
+import {SAUDI_TIMEZONE} from "../../../constants/institution.ts";
 import {getAttendeeProductPrice, getAttendeeProductTitle} from "../../../utilites/products.ts";
 import {Button, CopyButton} from "@mantine/core";
 import {formatCurrency} from "../../../utilites/currency.ts";
@@ -7,15 +8,10 @@ import QRCode from "react-qr-code";
 import {IconCopy, IconPrinter, IconLock, IconX} from "@tabler/icons-react";
 import {Attendee, Event, EventOccurrence, LocationType, Product} from "../../../types.ts";
 import classes from './AttendeeTicket.module.scss';
-import {imageUrl} from "../../../utilites/urlHelper.ts";
 import {resolveEventLocation} from "../../../utilites/effectiveLocation.ts";
 import {formatAddress} from "../../../utilites/addressUtilities.ts";
 import {PoweredByFooter} from "../PoweredByFooter";
-import {EventDateRange} from "../EventDateRange";
 import {ReactNode} from "react";
-import {getConfig} from "../../../utilites/config.ts";
-
-const DEFAULT_ACCENT_COLOR = '#1b754b';
 
 interface TicketFieldProps {
     label: string;
@@ -63,23 +59,19 @@ export const AttendeeTicket = ({
     const isInPerson = eventLocation?.type === LocationType.InPerson && Boolean(venueName || formattedAddress);
     const isOnline = eventLocation?.type === LocationType.Online;
 
-    const ticketDesignSettings = event?.settings?.ticket_design_settings;
-    const accentColor = ticketDesignSettings?.accent_color || DEFAULT_ACCENT_COLOR;
-    const footerText = ticketDesignSettings?.footer_text;
-    const dateDisplayMode = ticketDesignSettings?.date_display_mode || 'START_DATE_TIME';
-    const logoUrl = imageUrl('TICKET_LOGO', event?.images);
-
     const isCancelled = attendee.status === 'CANCELLED';
     const isAwaitingPayment = attendee.status === 'AWAITING_PAYMENT';
     const isVoid = isCancelled || isAwaitingPayment;
     const attendeeName = [attendee.first_name, attendee.last_name].filter(Boolean).join(' ');
 
     return (
-        <div className={classes.ticketWrapper} style={{'--accent': accentColor} as React.CSSProperties}>
+        <div className={classes.ticketWrapper}>
             <article className={`${classes.ticket} ${isVoid ? classes.ticketVoid : ''}`}>
+                <div className={classes.brandRow} dir="ltr">
+                    <img src="/assets/iu/iu-university-logo.svg" alt={t`Islamic University of Madinah`} className={classes.logo}/>
+                    <img src="/images/IUEvent2.png" alt="IU Events" className={classes.logo}/>
+                </div>
                 <header className={classes.header}>
-                    <img src={logoUrl || getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt="" className={classes.logo}/>
-
                     <div className={classes.headline}>
                         {event?.organizer?.name && (
                             <p className={classes.organizer}>{event.organizer.name}</p>
@@ -106,15 +98,13 @@ export const AttendeeTicket = ({
                                 emphasis
                             />
 
-                            {dateDisplayMode !== 'HIDDEN' && (
-                                <TicketField
-                                    label={t`Date & Time`}
-                                    value={dateDisplayMode === 'DATE_RANGE'
-                                        ? <EventDateRange event={event} occurrence={ticketOccurrence}/>
-                                        : prettyDate(ticketOccurrence?.start_date ?? event.start_date, event.timezone, true)}
-                                    meta={ticketOccurrence?.label}
-                                />
-                            )}
+                            <TicketField
+                                label={t`Date & Time`}
+                                value={ticketOccurrence?.start_date || event.start_date
+                                    ? prettyDate(ticketOccurrence?.start_date ?? event.start_date, SAUDI_TIMEZONE, true)
+                                    : t`Not specified`}
+                                meta={ticketOccurrence?.label}
+                            />
 
                             {isInPerson && (
                                 <TicketField
@@ -136,7 +126,6 @@ export const AttendeeTicket = ({
                             />
                         </dl>
 
-                        {footerText && <p className={classes.note}>{footerText}</p>}
                     </div>
 
                     <aside className={classes.stub}>

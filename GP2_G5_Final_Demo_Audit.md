@@ -31,6 +31,13 @@
 - Added Arabic defaults for the three Liquid template types, preserving executable variables and conditional syntax. Default confirmation email uses stored checkout locale, Riyadh dates, free totals and an RTL/LTR layout. Custom saved templates are preserved.
 - **PASS** Arabic and English Mailpit confirmation and authenticated organizer CSV header/BOM assertions with interface locale cookies. Header-only Arabic export requests returned English in the initial API retest. **PASS** TypeScript, Lingui compilation and focused PHPUnit, 51 tests and 554 assertions. Microsoft Excel reopening and broad route/portal localization checks remain pending.
 
+### Phase E — product simplification
+
+- Organizer Homepage Designer renders the event cards without booking links and blocks interaction with the preview. The public organizer page continues to route into event detail. Existing image controls and organizer settings remain available.
+- Removed the Ticket Designer and Widget Embedding entry points and routes, their editor components and the vendor About & Support panel. Preserved the required Hi.Events attribution. The standalone widget source and inherited widget test are still in the repository.
+- Unified the web and printable ticket around the existing IU Events artwork and the official [Islamic University of Madinah website logo](https://cdn.iu.edu.sa/NDS-iu/assets/img/iu-logo.svg). Added a static confirmation icon and router scroll restoration.
+- **PASS** TypeScript, both production builds and four focused Chromium tests covering public and preview organizer behavior, web tickets and printable ticket pages. A new physical scan, exported ticket PDF inspection, scroll restoration regression, map picker and complete demo rehearsal remain pending.
+
 ## 2026-11-21 continuation
 
 - Working branch `fix/gp2-demo-readiness-i18n-20261120`. Both local HEAD and the remote audit branch were at `18140f12cb8a8b2f59fc1e986470298c4436afe9` on recovery. Comparison base `ebfec454af3e22b697f30b703e19afed8e747307`.

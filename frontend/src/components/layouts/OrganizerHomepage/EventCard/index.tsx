@@ -18,15 +18,11 @@ import {IU_COLORS} from "../../../../constants/iuTheme.ts";
 interface EventCardProps {
     event: Event;
     primaryColor?: string;
+    preview?: boolean;
 }
 
-const placeholderEmojis = ['🎉', '🎪', '🎸', '🎨', '🌟'];
-
-export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = IU_COLORS.green900}) => {
+export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = IU_COLORS.green900, preview = false}) => {
     const dateTextColor = isLightColor(primaryColor) ? '#000000' : '#ffffff';
-
-    const emojiIndex = event.id ? Number(event.id) % placeholderEmojis.length : 0;
-    const placeholderEmoji = placeholderEmojis[emojiIndex];
 
     const hasStartDate = !!event.start_date;
     const startMonth = formatDateWithLocale(event.start_date, "monthShort", event.timezone);
@@ -90,117 +86,114 @@ export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = IU_CO
 
     const eventPath = eventHomepagePath(event);
 
-    return (
-        <Link to={eventPath} className={classes.eventCardLink}>
-            <article className={classes.eventCard}>
-                <div className={classes.eventImage}>
-                    <div className={classes.imageWrapper}>
-                        {coverImage ? (
-                            <img
-                                src={coverImage.url}
-                                alt={event.title}
-                                loading="lazy"
-                            />
-                        ) : (
-                            <div className={classes.placeholderImage}
-                                 style={{'--date-text-color': dateTextColor} as React.CSSProperties}>
-                                <div className={classes.placeholderContent}>
-                                    <span className={classes.placeholderIcon}>{placeholderEmoji}</span>
-                                    <div className={classes.sparkles}>
-                                        <span className={classes.sparkle}>✨</span>
-                                        <span className={classes.sparkle}>✨</span>
-                                        <span className={classes.sparkle}>✨</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        <div className={classes.imageOverlay}>
-                            {isLive && (
-                                <div className={classes.liveIndicator}>
-                                    <span className={classes.liveDot}></span>
-                                    <span className={classes.liveText}>{t`LIVE`}</span>
-                                </div>
-                            )}
-                            <div className={classes.shareButton} onClick={(e) => e.preventDefault()}>
-                                <ShareComponent
-                                    title={event.title}
-                                    text={event.description_preview || ''}
-                                    url={eventHomepageUrl(event)}
-                                    hideShareButtonText={true}
-                                    className={classes.shareIcon}
-                                />
+    const card = (
+        <article className={classes.eventCard}>
+            <div className={classes.eventImage}>
+                <div className={classes.imageWrapper}>
+                    {coverImage ? (
+                        <img
+                            src={coverImage.url}
+                            alt={event.title}
+                            loading="lazy"
+                        />
+                    ) : (
+                        <div className={classes.placeholderImage}
+                             style={{'--date-text-color': dateTextColor} as React.CSSProperties}>
+                            <div className={classes.placeholderContent}>
+                                <IconCalendar size={46} stroke={1.5} aria-hidden/>
                             </div>
                         </div>
-                    </div>
-
-                    <div className={classes.dateBadge}>
-                        <IconCalendar size={16}/>
-                        <span>{hasStartDate ? `${startMonth} ${startDay}` : t`Date TBA`}</span>
-                    </div>
-                </div>
-
-                <div className={classes.eventContent}>
-                    <div className={classes.eventHeader}>
-                        <h3 className={classes.eventTitle}>{event.title}</h3>
-
-                        {hasStartDate && (
-                            <div className={classes.eventDateTime}>
-                                <IconClock size={14}/>
-                                <span>
-                                    {startTime}
-                                    {endTime && (
-                                        <>
-                                            {!isSameDay
-                                                ? ` - ${endMonth} ${endDay}, ${endTime}`
-                                                : ` - ${endTime}`
-                                            }
-                                        </>
-                                    )}
-                                    {prettyTimezone && (
-                                        <span title={event.timezone} className={classes.timezone}> ({prettyTimezone})</span>
-                                    )}
-                                </span>
-                            </div>
-                        )}
-                    </div>
-
-                    {event.description_preview && (
-                        <p className={classes.eventDescription}>
-                            {event.description_preview}
-                        </p>
                     )}
 
-                    <div className={classes.eventFooter}>
-                        <div className={classes.eventMeta}>
-                            {(location || isOnlineEvent) && (
-                                <div className={classes.location}>
-                                    {isOnlineEvent ? (
-                                        <><IconWifi size={14}/><span>{t`Online Event`}</span></>
-                                    ) : (
-                                        <><IconMapPin size={14}/><span>{location}</span></>
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        {lowestPrice !== null && (
-                            <div className={classes.priceSection}>
-                                <IconTicket size={14}/>
-                                <span className={lowestPrice === 0 && highestPrice === 0 ? classes.free : classes.price}>
-                                    {lowestPrice === 0 && highestPrice === 0 ? (
-                                        t`Free`
-                                    ) : highestPrice !== null && highestPrice !== lowestPrice ? (
-                                        `${formatCurrency(lowestPrice, event.currency)} - ${formatCurrency(highestPrice, event.currency)}`
-                                    ) : (
-                                        formatCurrency(lowestPrice, event.currency)
-                                    )}
-                                </span>
+                    <div className={classes.imageOverlay}>
+                        {isLive && (
+                            <div className={classes.liveIndicator}>
+                                <span className={classes.liveDot}></span>
+                                <span className={classes.liveText}>{t`LIVE`}</span>
                             </div>
+                        )}
+                        {!preview && (
+                        <div className={classes.shareButton} onClick={(e) => e.preventDefault()}>
+                            <ShareComponent
+                                title={event.title}
+                                text={event.description_preview || ''}
+                                url={eventHomepageUrl(event)}
+                                hideShareButtonText={true}
+                                className={classes.shareIcon}
+                            />
+                        </div>
                         )}
                     </div>
                 </div>
-            </article>
-        </Link>
+
+                <div className={classes.dateBadge}>
+                    <IconCalendar size={16}/>
+                    <span>{hasStartDate ? `${startMonth} ${startDay}` : t`Date TBA`}</span>
+                </div>
+            </div>
+
+            <div className={classes.eventContent}>
+                <div className={classes.eventHeader}>
+                    <h3 className={classes.eventTitle}>{event.title}</h3>
+
+                    {hasStartDate && (
+                        <div className={classes.eventDateTime}>
+                            <IconClock size={14}/>
+                            <span>
+                                {startTime}
+                                {endTime && (
+                                    <>
+                                        {!isSameDay
+                                            ? ` - ${endMonth} ${endDay}, ${endTime}`
+                                            : ` - ${endTime}`
+                                        }
+                                    </>
+                                )}
+                                {prettyTimezone && (
+                                    <span title={event.timezone} className={classes.timezone}> ({prettyTimezone})</span>
+                                )}
+                            </span>
+                        </div>
+                    )}
+                </div>
+
+                {event.description_preview && (
+                    <p className={classes.eventDescription}>
+                        {event.description_preview}
+                    </p>
+                )}
+
+                <div className={classes.eventFooter}>
+                    <div className={classes.eventMeta}>
+                        {(location || isOnlineEvent) && (
+                            <div className={classes.location}>
+                                {isOnlineEvent ? (
+                                    <><IconWifi size={14}/><span>{t`Online Event`}</span></>
+                                ) : (
+                                    <><IconMapPin size={14}/><span>{location}</span></>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    {lowestPrice !== null && (
+                        <div className={classes.priceSection}>
+                            <IconTicket size={14}/>
+                            <span className={lowestPrice === 0 && highestPrice === 0 ? classes.free : classes.price}>
+                                {lowestPrice === 0 && highestPrice === 0 ? (
+                                    t`Free`
+                                ) : highestPrice !== null && highestPrice !== lowestPrice ? (
+                                    `${formatCurrency(lowestPrice, event.currency)} - ${formatCurrency(highestPrice, event.currency)}`
+                                ) : (
+                                    formatCurrency(lowestPrice, event.currency)
+                                )}
+                            </span>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </article>
     );
+
+    return preview ? <div className={classes.eventCardLink}>{card}</div> : <Link to={eventPath} className={classes.eventCardLink}>{card}</Link>;
 };

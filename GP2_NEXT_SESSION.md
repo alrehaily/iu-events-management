@@ -2,6 +2,7 @@
 
 ## Current checkpoint
 
+- Phase E removed obsolete designer and widget UI and added branded tickets, preview isolation and scroll restoration. Four organizer/ticket Chromium cases passed with `node.exe node_modules/@playwright/test/cli.js test tests/organizers/organizer-public-page.spec.ts tests/self-service/attendee-ticket-page.spec.ts --grep 'clicks through|designer|ticket' --workers=1 --reporter=list`.
 - Phase D added Arabic catalog coverage, order confirmation and template localization, and UTF-8 BOM report downloads. Run `node.exe node_modules/@playwright/test/cli.js test tests/gp2-localized-output.spec.ts --workers=1 --reporter=list`. Both locale-cookie cases passed. Header-only Arabic CSV and desktop Excel reopening remain unverified.
 - Phase C unified the shared Mantine controls and empty states. TC-08 and the free registration workflow passed. Rerun with `node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts tests/gp2-workflows.spec.ts --grep 'TC-08|books a free event' --workers=1 --reporter=list`.
 - Phase B applies Saudi defaults and fixed currency/timezone controls. The Saudi API regression, TC-13 and TC-14 passed, and TC-15 and organizer locale screen data timed out. Use `node.exe node_modules/@playwright/test/cli.js test tests/gp2-saudi-settings.spec.ts tests/gp2-demo.spec.ts tests/gp2-localization.spec.ts --grep 'Saudi defaults|TC-1[345]|organizer forms' --workers=1 --reporter=list`. Focused PHPUnit passed with `--filter 'OpenApi|UpdateEventHandler|Location'`.

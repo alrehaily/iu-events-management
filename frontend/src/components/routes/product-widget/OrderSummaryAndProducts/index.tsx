@@ -1,3 +1,4 @@
+import {IconCircleCheck, IconCircleX} from "@tabler/icons-react";
 import {SAUDI_TIMEZONE} from "../../../../constants/institution.ts";
 import {t} from "@lingui/macro";
 import {NavLink, useNavigate, useParams, useLocation} from "react-router";
@@ -162,7 +163,7 @@ const DetailItem = ({icon: Icon, label, value}: { icon: any, label: string, valu
     </div>
 );
 
-const WelcomeHeader = ({order, event, allowSelfEdit}: { order: Order; event: Event; allowSelfEdit: boolean }) => {
+const WelcomeHeader = ({order, event}: { order: Order; event: Event }) => {
     const isCompleted = order.status === 'COMPLETED';
     const isAwaitingPayment = order.status === 'AWAITING_OFFLINE_PAYMENT';
     const isCancelled = order.status === 'CANCELLED';
@@ -179,33 +180,15 @@ const WelcomeHeader = ({order, event, allowSelfEdit}: { order: Order; event: Eve
 
     return (
         <div className={classes.welcomeHeader}>
-            {isCompleted && (
-                <div className={classes.confettiIcon}>
-                    {/* eslint-disable-next-line lingui/no-unlocalized-strings */}
-                    <span>🎉</span>
-                </div>
-            )}
-            {isAwaitingPayment && (
-                <div className={classes.confettiIcon}>
-                    {/* eslint-disable-next-line lingui/no-unlocalized-strings */}
-                    <span>⏳</span>
-                </div>
-            )}
-            {isCancelled && (
-                <div className={classes.confettiIcon}>
-                    {/* eslint-disable-next-line lingui/no-unlocalized-strings */}
-                    <span>😔</span>
-                </div>
-            )}
+            <div className={classes.confirmationIcon} data-status={order.status}>
+                {isCompleted ? <IconCircleCheck size={42} stroke={1.5}/> :
+                    isAwaitingPayment ? <IconClock size={42} stroke={1.5}/> :
+                        <IconCircleX size={42} stroke={1.5}/>}
+            </div>
             <div className={classes.welcomeMessage}>{message}</div>
             {isCompleted && (
                 <div className={classes.confirmationText}>
                     {t`Confirmation sent to`} <strong>{order.email}</strong>
-                </div>
-            )}
-            {isCompleted && allowSelfEdit && (
-                <div className={classes.selfServiceHint}>
-                    {t`Bookmark this page to manage your order anytime.`}
                 </div>
             )}
             {isCancelled && (
@@ -581,7 +564,7 @@ export const OrderSummaryAndProducts = () => {
             <CheckoutContent>
                 <CheckoutStepTitle title={t`Summary`}/>
 
-                <WelcomeHeader order={order} event={event} allowSelfEdit={allowSelfEdit}/>
+                <WelcomeHeader order={order} event={event}/>
 
                 {emailUpdated && (
                     <Alert

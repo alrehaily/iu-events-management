@@ -19,7 +19,7 @@ const OrganizerHomepagePreview = () => {
 
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
-            if (event.data?.type === "UPDATE_ORGANIZER_SETTINGS") {
+            if (event.origin === window.location.origin && event.source === window.parent && event.data?.type === "UPDATE_ORGANIZER_SETTINGS") {
                 setPreviewSettings(event.data.settings);
             }
         };
@@ -58,6 +58,7 @@ const OrganizerHomepagePreview = () => {
         organizer={previewOrganizer}
         eventsData={eventsData}
         isPastEvents={false}
+        preview
     />;
 };
 
