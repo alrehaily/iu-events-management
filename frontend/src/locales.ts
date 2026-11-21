@@ -6,6 +6,7 @@ import {arabicUiFinalOverrides} from "./locales/ar-ui-final-overrides.ts";
 import {arabicDynamicMessageOverrides} from "./locales/ar-dynamic-overrides.ts";
 import {arabicSourceOverrides} from "./locales/ar-source-overrides.ts";
 import {arabicSourceExtraOverrides} from "./locales/ar-source-overrides-extra.ts";
+import {getSsrRequestContext} from "./utilites/ssrRequestContext.ts";
 
 export type SupportedLocales = "ar" | "en";
 
@@ -45,7 +46,7 @@ export const getClientLocale = (): SupportedLocales => {
         return "ar";
     }
 
-    return getSupportedLocale(i18n.locale);
+    return getSsrRequestContext()?.locale ?? getSupportedLocale(i18n.locale);
 };
 
 const dayjsLocaleLoaders: Record<SupportedLocales, () => Promise<unknown>> = {

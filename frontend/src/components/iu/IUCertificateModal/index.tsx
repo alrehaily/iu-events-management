@@ -1,4 +1,5 @@
 import React from "react";
+import {createPortal} from "react-dom";
 import {t} from "@lingui/macro";
 import QRCode from "react-qr-code";
 import {useIULanguage} from "../../../context/IULanguageContext";
@@ -17,7 +18,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
   certificate,
 }) => {
   const {dir, locale} = useIULanguage();
-  if (!opened || !certificate) return null;
+  if (!opened || !certificate || typeof document === "undefined") return null;
 
   const handlePrint = () => {
     if (typeof window !== "undefined") {
@@ -34,8 +35,9 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
   const formattedDate = formatter.format(new Date(certificate.issued_at || certificate.event_date));
   const eventDate = formatter.format(new Date(certificate.event_date));
 
-  return (
+  return createPortal(
     <div
+      id="iu-certificate-overlay"
       style={{
         position: "fixed",
         inset: 0,
@@ -50,25 +52,31 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
       dir={dir}
     >
       <style>{`
+        @page {
+          size: A4 landscape;
+          margin: 10mm;
+        }
         @media print {
-          body * {
-            visibility: hidden !important;
+          body > :not(#iu-certificate-overlay) {
+            display: none !important;
           }
-          #iu-certificate-printable, #iu-certificate-printable * {
-            visibility: visible !important;
-          }
-          #iu-certificate-printable {
-            position: absolute !important;
-            left: 0 !important;
-            top: 0 !important;
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 32px 40px !important;
+          #iu-certificate-overlay, #iu-certificate-shell {
+            position: static !important;
+            display: block !important;
+            max-width: none !important;
+            max-height: none !important;
+            overflow: visible !important;
+            padding: 0 !important;
             border-radius: 0 !important;
             box-shadow: none !important;
-            background: #ffffff !important;
-            -webkit-print-color-adjust: exact !important;
+            background: none !important;
+            backdrop-filter: none !important;
+          }
+          #iu-certificate-printable {
+            break-inside: avoid;
+            zoom: 0.75;
+            margin: 0 auto !important;
+            padding: 32px 40px !important;
             print-color-adjust: exact !important;
           }
           .iu-cert-modal-header {
@@ -78,6 +86,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
       `}</style>
 
       <div
+        id="iu-certificate-shell"
         style={{
           backgroundColor: "#ffffff",
           borderRadius: 24,
@@ -348,7 +357,8 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

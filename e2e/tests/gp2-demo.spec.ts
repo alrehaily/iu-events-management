@@ -242,10 +242,10 @@ test('TC-12 enforces attendee, organizer and anonymous route access', async ({pa
   await expect(authedPage).toHaveURL(organizerRoute);
 });
 
-test('TC-13 creates an event through the organizer UI', async ({authedPage}) => {
+test('TC-13 creates an event through the organizer UI', async ({authedPage, account}) => {
   const title = uniqueName('GP2 Created');
   const events = new EventCreatePage(authedPage);
-  await events.gotoDashboard();
+  await events.gotoDashboard(account.organizerId);
   await events.openCreateModal();
   await events.createSingleEvent({title, category: 'Workshops & Training'});
   await expect(authedPage.getByText(title).first()).toBeVisible();
@@ -263,7 +263,7 @@ test('TC-14 edits an event and retains the new name on reload', async ({authedPa
   await expect(settings.detailsNameInput).toHaveValue(title);
 });
 
-test('TC-15 publishes a draft and exposes it in the public catalog', async ({authedPage, page, api, account}) => {
+test('TC-15 publishes a draft, verifies public visibility and unpublishes it', async ({authedPage, page, api, account, publicApi}) => {
   const draft = await createDraftEvent(api, account.organizerId);
   await authedPage.goto(`/manage/event/${draft.eventId}/dashboard`);
   const status = authedPage.getByTestId('event-status-toggle');
@@ -276,4 +276,11 @@ test('TC-15 publishes a draft and exposes it in the public catalog', async ({aut
   await page.goto('/events');
   await page.getByRole('textbox', {name: /Search for an event/}).fill(draft.title);
   await expect(page.getByRole('heading', {name: draft.title})).toBeVisible();
+  await status.click();
+  await authedPage.getByRole('button', {name: 'Confirm', exact: true}).click();
+  await expect(status).toContainText('Draft');
+  expect((await publicApi.get(`public/events/${draft.eventId}`)).status()).toBe(404);
+  await page.reload();
+  await page.getByRole('textbox', {name: /Search for an event/}).fill(draft.title);
+  await expect(page.getByText('No events found matching your search')).toBeVisible();
 });

@@ -12,6 +12,7 @@ import {
 import {useGetMe} from "../../../queries/useGetMe.ts";
 import {NavLink} from "react-router";
 import {t} from "@lingui/macro";
+import {useLingui} from "@lingui/react";
 import {authClient} from "../../../api/auth.client.ts";
 import {useDisclosure} from "@mantine/hooks";
 import {AboutModal} from "../../modals/AboutModal";
@@ -27,6 +28,7 @@ interface Link {
 }
 
 export const GlobalMenu = () => {
+    useLingui();
     const {data: me} = useGetMe();
     const [aboutModalOpen, {open: openAboutModal, close: closeAboutModal}] = useDisclosure(false);
     const [createOrganizerModalOpen, {
@@ -66,7 +68,7 @@ export const GlobalMenu = () => {
 
     if (!getConfig("VITE_HIDE_ABOUT_LINK")) {
         links.push({
-            label: `About & Support`,
+            label: t`About & Support`,
             icon: IconLifebuoy,
             onClick: openAboutModal,
         });
@@ -96,7 +98,7 @@ export const GlobalMenu = () => {
         <>
             <Menu shadow="md" width={200}>
                 <Menu.Target>
-                    <UnstyledButton>
+                    <UnstyledButton aria-label={t`Account menu`}>
                         <Avatar color={"primary.1"} radius="xl">
                             {me ? getInitials(me.first_name + " " + me.last_name) : ".."}
                         </Avatar>

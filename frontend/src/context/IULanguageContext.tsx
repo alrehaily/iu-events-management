@@ -395,13 +395,14 @@ export const IULanguageProvider: React.FC<{ children: ReactNode }> = ({children}
       document.cookie = `locale=${language}; Path=/; Max-Age=31536000; SameSite=Lax`;
       try {
         localStorage.setItem("locale", language);
-      } catch {}
+      } catch (error) {
+        console.warn(error);
+      }
       applyDocumentLocale(language);
       setDirection(localeDirection(language));
       i18n.loadAndActivate({locale: language, messages});
-      window.dispatchEvent(new Event("iu_locale_changed"));
     }).catch((error: unknown) => {
-      console.error("Unable to load interface language", error);
+      console.error(error);
     });
   }, [i18n, setDirection]);
 

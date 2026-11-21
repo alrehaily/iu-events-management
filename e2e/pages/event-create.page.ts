@@ -3,8 +3,8 @@ import type { Page } from '@playwright/test';
 export class EventCreatePage {
   constructor(private readonly page: Page) {}
 
-  async gotoDashboard(): Promise<void> {
-    await this.page.goto('/manage/events');
+  async gotoDashboard(organizerId?: number): Promise<void> {
+    await this.page.goto(organizerId ? `/manage/organizer/${organizerId}/events` : '/manage/events');
     await this.page.waitForLoadState('networkidle');
   }
 

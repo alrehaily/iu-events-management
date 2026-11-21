@@ -45,6 +45,51 @@ Auth checkpoint `51350f5cd538582f43d1ebbb24f3fa8aaddd24f5` was pushed to the aud
 
 Evidence lives in the audit temp directory in `lingui-final-extract-*.log`, `lingui-final-compile.log`, `lint-build-20261121.json`, `build-client-final.log`, `build-server-final.log` and `production-render-smoke.log`. The first extended run executed all six scenarios (5 passed, 1 failed). The failure was the authenticated draft SSR request. The expanded retest uses explicit synthetic viewer cookies and validates Laravel's draft access for each viewer separately.
 
+### Latest complete GP2 matrix
+
+The first continuation run returned 14 passes and 1 failure. TC-13 followed the cross-organizer route, which redirected a one-organizer account to its dashboard. The browser helper now opens the organizer's event list. The second complete run executed **15 cases, 15 passed, 0 failed, 0 blocked, 0 not run** in approximately two minutes. This is evidence from the current audit and does not change the submitted PDF.
+
+From `e2e`, using the isolated environment in GP2_NEXT_SESSION.md:
+
+```powershell
+$env:PLAYWRIGHT_JSON_OUTPUT_FILE = Join-Path $audit 'gp2-matrix-20261121.json'
+node.exe node_modules/@playwright/test/cli.js test tests/gp2-demo.spec.ts --workers=2 --reporter=list,json --output "$audit/pw-gp2-matrix-20261121"
+```
+
+Every row below ran under that command. The list log and JSON map results to individual cases. The preceding TC-13 failure screenshot and trace are in `pw-gp2-matrix-initial-20261121`.
+
+| Case | Result | Observed behavior |
+|---|---|---|
+| TC-01 | PASS | HTTP 200 with IU branding and homepage headline |
+| TC-02 | PASS | Events and About navigation and return to Home |
+| TC-03 | PASS | Published synthetic event visible, draft absent |
+| TC-04 | PASS | Title search, no-results state and query reset |
+| TC-05 | PASS | Workshop category retained its event and excluded a technology event |
+| TC-06 | PASS | Public title, detail headings, time and category visible |
+| TC-07 | PASS | About objectives, audiences and Explore Events link visible |
+| TC-08 | PASS | Homepage, catalog and About fit a 390 × 844 viewport |
+| TC-09 | PASS | Arabic/English switch without a document reload, correct direction and persistence on navigation and refresh |
+| TC-10 | PASS | Bilingual attendee credentials, session and logout, plus English organizer session and logout |
+| TC-11 | PASS | Browser signup and HTTP 422/409 for incomplete and duplicate registrations |
+| TC-12 | PASS | Anonymous 401, attendee 403, organizer 200 on authorized events and 403 on admin, plus page guards |
+| TC-13 | PASS | Create event through the organizer's event list, entered title visible |
+| TC-14 | PASS | Updated title remained after reload |
+| TC-15 | PASS | Published draft appeared publicly, then unpublish restored Draft and public API returned 404 |
+
+### Localization, workflows and demo status
+
+Frontend build checkpoint `072ffd132b09198ff8900ebe4a1c13778e44c6c9` was pushed. The subsequent checkpoint localizes the account dropdown, admin headings, attribution, certificate labels and locale-sensitive numeric and currency presentation. It adds the language selector to the shared account/profile header. The public/mobile bilingual scenario and administration scenario passed, including checks for page exceptions, hydration errors and local 5xx responses. The first organizer localization scenario passed its English headings but could not switch on Account Settings because the header lacked a language control. A focused retest was started after adding it. Whole-app translation coverage remains incomplete, especially secondary states, validation, report detail pages and configuration-specific screens.
+
+- The six extended scenarios passed together in `gp2-extended-retest-20261121.json`. They covered menus, concurrent authenticated and anonymous draft isolation, attendance and eligibility, capacity and cancellation, duplicate registration and catalog retry.
+- Checking the first certificate artifact exposed a blank PDF. The print portal made the certificate render, but it spanned two pages. A compact print layout passed the focused Chromium retest. pypdf extracted the recipient and verification code from the single page, and the Poppler rendering showed the branded certificate, QR code and footer together. Evidence is in `pw-gp2-certificate-single-page` and `gp2-certificate-single-page.png`.
+- The inherited check-in and ticket run passed 5 cases, covering check-in, undo, totals and ticket/print views. Its free checkout case used a stale entry point. After updating the browser helper to open the registration dialog, free checkout and a signed-in mobile booking passed, including Mailpit confirmation and the Arabic ticket link in My Bookings. The registration deadline retest passed with HTTP 422, a closed-sales message and a disabled registration action.
+- Privacy checks used synthetic records and verified 401 for anonymous certificate access, 403 for another attendee's certificate and cancellation, and an empty result when another attendee supplied the owner's email to the bookings endpoint.
+- PHPUnit on `iu_gp2_test` exited 0 with **1,366 tests, 3,958 assertions**, 0 failures, 0 errors, 2 skipped, 32 risky, 1 deprecation and 22 PHPUnit notices. Command from `backend` was `php.exe -d memory_limit=1024M vendor/bin/phpunit --configuration "$audit/phpunit-isolated-20261121.xml" --colors=never`.
+- TypeScript and Lingui compilation passed again after the account header change. Client and server bundles passed before that last header and print refinement. Rebuild after resuming and verify production HTTP hydration in an environment that permits the listener. The latest retained ESLint comparison is the phase 2 run.
+- Evidence for these runs is in the audit temp directory under `gp2-localization-20261121`, `gp2-workflows-20261121`, `gp2-inherited-20261121`, `gp2-focused-finish`, `gp2-certificate-single-page` and `phpunit-20261121.log`. The Playwright commands use `--reporter=list,json` and the matching `pw-*` artifact directories. Check the continuation report for exact commands and any focused verification outstanding at save time.
+
+The development stack can demonstrate the tested public, booking and organizer workflows. The existing private synthetic organizer fixture was verified to log in and own an organizer. A separate curated committee rehearsal remains pending. At the final usage check before saving, the account had 17% remaining in the five-hour window and 57% for the week. Further broad work was deferred under the requested checkpoint rule.
+
 ## Historical checkpoint of 2026-11-20
 
 Date: 2026-11-20 (Asia/Riyadh)

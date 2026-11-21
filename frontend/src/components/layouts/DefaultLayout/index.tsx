@@ -1,7 +1,8 @@
 import {Outlet, useLocation} from "react-router";
 import {Header} from "../../common/Header";
-import {Container} from "@mantine/core";
+import {Container, Group} from "@mantine/core";
 import {GlobalMenu} from "../../common/GlobalMenu";
+import {LanguageSwitcher} from "../../common/LanguageSwitcher";
 import ImpersonationBanner from "../../common/ImpersonationBanner";
 import PendingDeletionBanner from "../../common/PendingDeletionBanner";
 import AnnouncementDisplay from "../../common/AnnouncementDisplay";
@@ -15,7 +16,12 @@ const DefaultLayout = () => {
             <ImpersonationBanner />
             <PendingDeletionBanner />
             <AnnouncementDisplay />
-            <Header rightContent={<GlobalMenu/>}/>
+            <Header rightContent={
+                <Group gap="sm" wrap="nowrap">
+                    <LanguageSwitcher/>
+                    <GlobalMenu/>
+                </Group>
+            }/>
             <Container>
                 <div key={location.pathname} className="iu-page-transition">
                     <Outlet/>

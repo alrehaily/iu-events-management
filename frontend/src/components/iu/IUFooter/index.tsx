@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router";
 import classes from "./IUFooter.module.scss";
 import {useIULanguage} from "../../../context/IULanguageContext";
+import {PoweredByFooter} from "../../common/PoweredByFooter";
 
 export const IUFooter: React.FC = () => {
   const {t} = useIULanguage();
@@ -57,6 +58,7 @@ export const IUFooter: React.FC = () => {
             © {new Date().getFullYear()} {t("footer_copyright", "جميع الحقوق محفوظة © الجامعة الإسلامية بالمدينة المنورة")}
           </div>
         </div>
+        <PoweredByFooter />
       </div>
     </footer>
   );

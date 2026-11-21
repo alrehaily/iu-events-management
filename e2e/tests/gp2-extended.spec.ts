@@ -27,19 +27,33 @@ test('organizer and administrator menus switch language without navigation', asy
   }
 });
 
-test('a draft stays private and SSR preview requests use the viewer session', async ({page, authedPage, api, account, publicApi}) => {
+test('a draft stays private and SSR preview requests use the viewer session', async ({page, api, account, publicApi, freshAccount}) => {
   const draft = await createDraftEvent(api, account.organizerId, {title: uniqueName('GP2 Private Draft')});
-  expect((await publicApi.get(`public/events/${draft.eventId}`)).status()).toBe(404);
+  const eventPath = `public/events/${draft.eventId}`;
+  expect((await publicApi.get(eventPath)).status()).toBe(404);
+  expect((await publicApi.get(eventPath, {headers: {Authorization: `Bearer ${account.token}`}})).status()).toBe(200);
+  expect((await publicApi.get(eventPath, {headers: {Authorization: `Bearer ${freshAccount.token}`}})).status()).toBe(404);
+
   const preview = `/event/${draft.eventId}/${draft.slug}`;
-  const [privateResponse, publicResponse] = await Promise.all([
-    authedPage.request.get(preview),
+  const [ownerResponse, otherResponse, publicResponse] = await Promise.all([
+    page.request.get(preview, {headers: {Cookie: `token=${account.token}; locale=ar`}}),
+    page.request.get(preview, {headers: {Cookie: `token=${freshAccount.token}; locale=en`}}),
     page.request.get(preview),
   ]);
-  expect(await privateResponse.text()).toContain(draft.title);
+  for (const response of [ownerResponse, otherResponse, publicResponse]) {
+    expect(response.status()).toBeLessThan(500);
+  }
+  const ownerHtml = await ownerResponse.text();
+  const otherHtml = await otherResponse.text();
+  expect(ownerHtml).toContain('<html lang="ar" dir="rtl">');
+  expect(ownerHtml).toContain(draft.title);
+  expect(otherHtml).toContain('<html lang="en" dir="ltr">');
+  expect(otherHtml).not.toContain(draft.title);
   expect(await publicResponse.text()).not.toContain(draft.title);
 });
 
-test('a checked-in attendee can open and print a certificate and log out', async ({page, api, publicApi, account}) => {
+test('a checked-in attendee can open and print a certificate and log out', async ({page, api, publicApi, account}, testInfo) => {
+  test.setTimeout(100_000);
   const attendee = user();
   const created = await publicApi.post('public/attendee/register', {data: attendee});
   expect(created.status()).toBe(201);
@@ -54,6 +68,19 @@ test('a checked-in attendee can open and print a certificate and log out', async
   });
   const participant = order.attendees[0];
   const certificatePath = `public/attendees/${participant.publicId}/certificate`;
+  const other = await publicApi.post('public/attendee/register', {data: user()});
+  expect(other.status()).toBe(201);
+  const otherHeaders = {Authorization: `Bearer ${(await other.json()).token}`};
+  expect((await publicApi.get(certificatePath)).status()).toBe(401);
+  expect((await publicApi.get(certificatePath, {headers: otherHeaders})).status()).toBe(403);
+  const otherBookings = await publicApi.get('public/attendee/registrations', {
+    headers: otherHeaders,
+    params: {email: attendee.email},
+  });
+  expect(otherBookings.status()).toBe(200);
+  expect((await otherBookings.json()).registrations).toEqual([]);
+  const cancelPath = `public/attendee/registrations/${order.orderShortId}/cancel`;
+  expect((await publicApi.post(cancelPath, {headers: otherHeaders})).status()).toBe(403);
   expect((await publicApi.get(certificatePath, {headers})).status()).toBe(422);
   const checkIn = await publicApi.post(`events/${event.eventId}/attendees/${participant.publicId}/check_in`, {
     headers: {Authorization: `Bearer ${account.token}`},
@@ -69,7 +96,8 @@ test('a checked-in attendee can open and print a certificate and log out', async
   expect(verify.status()).toBe(200);
 
   await page.goto('/auth/login');
-  await page.getByRole('textbox', {name: 'Email', exact: true}).fill(attendee.email);
+  await expect(page.locator('.ssr-loader')).toBeHidden();
+  await page.getByRole('textbox', {name: /^Email\b/}).fill(attendee.email);
   await page.getByLabel('Password', {exact: true}).fill(password);
   await page.getByRole('button', {name: 'Log In', exact: true}).click();
   const bookings = page.locator('header').getByRole('link', {name: 'My Bookings'});
@@ -79,10 +107,19 @@ test('a checked-in attendee can open and print a certificate and log out', async
   await expect(page.getByText(event.title, {exact: true})).toBeVisible();
   await page.getByRole('button', {name: 'Attendance Certificate', exact: true}).click();
   await expect(page.locator('#iu-certificate-printable')).toContainText(data.certificate_code);
-  await page.evaluate(() => { window.print = () => {}; });
+  await page.evaluate(() => {
+    window.print = () => document.body.setAttribute('data-certificate-print', 'requested');
+  });
   await page.getByRole('button', {name: /print.*PDF/i}).click();
-  const certificatePdf = await page.pdf({printBackground: true});
+  await expect(page.locator('body')).toHaveAttribute('data-certificate-print', 'requested');
+  await page.emulateMedia({media: 'print'});
+  await expect(page.locator('#iu-certificate-printable')).toBeVisible();
+  const certificatePdf = await page.pdf({printBackground: true, preferCSSPageSize: true, path: testInfo.outputPath('attendance-certificate.pdf')});
   expect(certificatePdf.subarray(0, 5).toString('ascii')).toBe('%PDF-');
+  expect(certificatePdf.length).toBeGreaterThan(8000);
+  expect(certificatePdf.toString('latin1').match(/\/Type\s*\/Page\b/g)).toHaveLength(1);
+  await page.emulateMedia({media: 'screen'});
+  await testInfo.attach('Attendance certificate', {body: certificatePdf, contentType: 'application/pdf'});
   await page.getByRole('button', {name: 'Close', exact: true}).click();
   await page.locator('header').getByRole('button', {name: /log ?out/i}).click();
   await expect(page.locator('header').getByRole('link', {name: 'My Bookings'})).toHaveCount(0);

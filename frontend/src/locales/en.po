@@ -435,6 +435,10 @@ msgstr "Abandoned"
 #~ msgid "About"
 #~ msgstr "About"
 
+#: src/components/common/GlobalMenu/index.tsx:71
+msgid "About & Support"
+msgstr "About & Support"
+
 #: src/components/layouts/EventHomepage/index.tsx:179
 msgid "About the event"
 msgstr "About the event"
@@ -514,6 +518,10 @@ msgstr "Account Information"
 msgid "Account marked as verified"
 msgstr "Account marked as verified"
 
+#: src/components/common/GlobalMenu/index.tsx:101
+msgid "Account menu"
+msgstr "Account menu"
+
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:165
 msgid "Account name"
 msgstr "Account name"
@@ -530,7 +538,7 @@ msgstr "Account not found"
 msgid "Account owner"
 msgstr "Account owner"
 
-#: src/components/common/GlobalMenu/index.tsx:45
+#: src/components/common/GlobalMenu/index.tsx:47
 #: src/components/routes/account/ManageAccount/index.tsx:17
 msgid "Account Settings"
 msgstr "Account Settings"
@@ -842,7 +850,7 @@ msgstr "Admin"
 msgid "Admin Access Required"
 msgstr "Admin Access Required"
 
-#: src/components/common/GlobalMenu/index.tsx:61
+#: src/components/common/GlobalMenu/index.tsx:63
 #: src/components/layouts/Admin/index.tsx:31
 #: src/components/routes/admin/Dashboard/index.tsx:72
 msgid "Admin Dashboard"
@@ -1504,11 +1512,11 @@ msgstr "Attendance and check-in rates across all events"
 msgid "Attendance certificate"
 msgstr "Attendance certificate"
 
-#: src/components/iu/IUCertificateModal/index.tsx:345
+#: src/components/iu/IUCertificateModal/index.tsx:352
 msgid "Attendance verified by the official platform"
 msgstr "Attendance verified by the official platform"
 
-#: src/components/iu/IUCertificateModal/index.tsx:245
+#: src/components/iu/IUCertificateModal/index.tsx:252
 msgid "Attended and completed the requirements of the following event"
 msgstr "Attended and completed the requirements of the following event"
 
@@ -2122,15 +2130,15 @@ msgstr "Category Created Successfully"
 msgid "Category deleted successfully"
 msgstr "Category deleted successfully"
 
-#: src/components/iu/IUCertificateModal/index.tsx:216
+#: src/components/iu/IUCertificateModal/index.tsx:223
 msgid "Certificate of attendance and completion"
 msgstr "Certificate of attendance and completion"
 
-#: src/components/iu/IUCertificateModal/index.tsx:286
+#: src/components/iu/IUCertificateModal/index.tsx:293
 msgid "Certificate verification code"
 msgstr "Certificate verification code"
 
-#: src/components/iu/IUCertificateModal/index.tsx:282
+#: src/components/iu/IUCertificateModal/index.tsx:289
 msgid "Certificate verification QR code"
 msgstr "Certificate verification QR code"
 
@@ -2460,7 +2468,7 @@ msgstr "close"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:135
+#: src/components/iu/IUCertificateModal/index.tsx:142
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -3167,7 +3175,7 @@ msgstr "Create new"
 #~ msgid "Create new password"
 #~ msgstr "Create new password"
 
-#: src/components/common/GlobalMenu/index.tsx:76
+#: src/components/common/GlobalMenu/index.tsx:78
 #: src/components/modals/CreateEventModal/index.tsx:128
 #: src/components/modals/CreateOrganizerModal/index.tsx:18
 #: src/components/modals/SwitchOrganizerModal/index.tsx:96
@@ -5673,7 +5681,7 @@ msgstr "Have a promo code?"
 #~ msgid "Held at {0} on {1}."
 #~ msgstr "Held at {0} on {1}."
 
-#: src/components/iu/IUCertificateModal/index.tsx:263
+#: src/components/iu/IUCertificateModal/index.tsx:270
 msgid "Held at {0} on {eventDate}."
 msgstr "Held at {0} on {eventDate}."
 
@@ -6205,19 +6213,19 @@ msgstr "Invoice Settings"
 msgid "Islamic & Spiritual"
 msgstr "Islamic & Spiritual"
 
-#: src/components/iu/IUCertificateModal/index.tsx:326
+#: src/components/iu/IUCertificateModal/index.tsx:333
 msgid "Islamic University"
 msgstr "Islamic University"
 
-#: src/components/iu/IUCertificateModal/index.tsx:179
 #: src/components/iu/IUCertificateModal/index.tsx:186
+#: src/components/iu/IUCertificateModal/index.tsx:193
 msgid "Islamic University of Madinah"
 msgstr "Islamic University of Madinah"
 
 #~ msgid "Issued on {0}"
 #~ msgstr "Issued on {0}"
 
-#: src/components/iu/IUCertificateModal/index.tsx:301
+#: src/components/iu/IUCertificateModal/index.tsx:308
 msgid "Issued on {formattedDate}"
 msgstr "Issued on {formattedDate}"
 
@@ -6341,7 +6349,7 @@ msgstr "Keep me updated on news and events from {0}"
 #~ msgid "Keep the profit."
 #~ msgstr "Keep the profit."
 
-#: src/components/iu/IUCertificateModal/index.tsx:183
+#: src/components/iu/IUCertificateModal/index.tsx:190
 msgid "Kingdom of Saudi Arabia"
 msgstr "Kingdom of Saudi Arabia"
 
@@ -6650,7 +6658,7 @@ msgstr "Logo will be displayed in the header"
 msgid "Logo will be displayed on the ticket"
 msgstr "Logo will be displayed on the ticket"
 
-#: src/components/common/GlobalMenu/index.tsx:85
+#: src/components/common/GlobalMenu/index.tsx:87
 msgid "Logout"
 msgstr "Logout"
 
@@ -7035,7 +7043,7 @@ msgstr "My amazing event description..."
 msgid "My amazing event title..."
 msgstr "My amazing event title..."
 
-#: src/components/common/GlobalMenu/index.tsx:40
+#: src/components/common/GlobalMenu/index.tsx:42
 msgid "My Profile"
 msgstr "My Profile"
 
@@ -7711,7 +7719,7 @@ msgstr "Offered"
 msgid "Offers expire after {timeoutHours} hours."
 msgstr "Offers expire after {timeoutHours} hours."
 
-#: src/components/iu/IUCertificateModal/index.tsx:327
+#: src/components/iu/IUCertificateModal/index.tsx:334
 msgid "Officially certified"
 msgstr "Officially certified"
 
@@ -8909,7 +8917,7 @@ msgstr "Primary Text Color"
 msgid "Print All Tickets"
 msgstr "Print All Tickets"
 
-#: src/components/iu/IUCertificateModal/index.tsx:131
+#: src/components/iu/IUCertificateModal/index.tsx:138
 msgid "Print or save as PDF"
 msgstr "Print or save as PDF"
 
@@ -11427,7 +11435,7 @@ msgstr "The currency in which the fixed fee is defined. It will be converted to 
 msgid "The currency used for this event's ticket prices."
 msgstr "The currency used for this event's ticket prices."
 
-#: src/components/iu/IUCertificateModal/index.tsx:221
+#: src/components/iu/IUCertificateModal/index.tsx:228
 msgid "The Deanship of Continuing Education and Development certifies that"
 msgstr "The Deanship of Continuing Education and Development certifies that"
 
@@ -12404,7 +12412,7 @@ msgstr "United States"
 msgid "Units Sold"
 msgstr "Units Sold"
 
-#: src/components/iu/IUCertificateModal/index.tsx:189
+#: src/components/iu/IUCertificateModal/index.tsx:196
 msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
 msgstr "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
 
@@ -12675,7 +12683,7 @@ msgstr "Used to measure and personalise ads."
 msgid "User"
 msgstr "User"
 
-#: src/components/common/GlobalMenu/index.tsx:53
+#: src/components/common/GlobalMenu/index.tsx:55
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:145
 msgid "User Management"
 msgstr "User Management"
@@ -12832,7 +12840,7 @@ msgstr "Verified"
 msgid "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 msgstr "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 
-#: src/components/iu/IUCertificateModal/index.tsx:110
+#: src/components/iu/IUCertificateModal/index.tsx:117
 msgid "Verified attendance certificate"
 msgstr "Verified attendance certificate"
 

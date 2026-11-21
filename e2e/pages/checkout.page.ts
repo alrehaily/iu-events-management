@@ -42,6 +42,7 @@ export class CheckoutPage {
   async gotoPublicEvent(eventId: number, slug: string): Promise<void> {
     await this.page.goto(`/event/${eventId}/${slug}`);
     await this.page.waitForLoadState('networkidle');
+    await this.page.getByRole('button', {name: 'Register now', exact: true}).click();
   }
 
   async setFirstProductQuantity(quantity: number): Promise<void> {
