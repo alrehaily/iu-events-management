@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {useParams} from "react-router";
 import {t} from "@lingui/macro";
 import {useGetEvent} from "../../../../../queries/useGetEvent.ts";
@@ -25,6 +26,7 @@ const statusLabel = (status: string) => {
 };
 
 const OccurrenceSummaryReport = () => {
+    useLingui();
     const {eventId} = useParams();
     const eventQuery = useGetEvent(eventId);
     const event = eventQuery.data;

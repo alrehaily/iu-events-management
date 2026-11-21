@@ -41,7 +41,7 @@ interface SocialPlatform {
     priority?: 'primary' | 'secondary';
 }
 
-const socialPlatforms: SocialPlatform[] = [
+const getSocialPlatforms = (): SocialPlatform[] => [
     {
         name: t`Facebook`,
         field: 'facebook_handle',
@@ -113,6 +113,7 @@ const ARABIC_PLACEHOLDERS: Record<string, string> = {
 export const SocialLinks = () => {
     const {organizerId} = useParams();
     const {i18n} = useLingui();
+    const socialPlatforms = getSocialPlatforms();
     const isArabic = i18n.locale === 'ar';
     const organizerSettingsQuery = useGetOrganizerSettings(organizerId);
     const updateMutation = useUpdateOrganizerSettings();

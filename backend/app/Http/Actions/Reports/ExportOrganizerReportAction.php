@@ -6,6 +6,7 @@ use HiEvents\DomainObjects\Enums\OrganizerReportTypes;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Http\Actions\BaseAction;
 use HiEvents\Http\Request\Report\GetOrganizerReportRequest;
+use HiEvents\Services\Application\Locale\LocaleService;
 use HiEvents\Services\Application\Handlers\Reports\DTO\GetOrganizerReportDTO;
 use HiEvents\Services\Application\Handlers\Reports\GetOrganizerReportHandler;
 use HiEvents\Services\Domain\Report\DTO\PaginatedReportDTO;
@@ -22,6 +23,7 @@ class ExportOrganizerReportAction extends BaseAction
     public function __construct(
         private readonly GetOrganizerReportHandler $reportHandler,
         private readonly SpreadsheetFormulaEscaper $formulaEscaper,
+        private readonly LocaleService $localeService,
     ) {}
 
     /**
@@ -56,20 +58,27 @@ class ExportOrganizerReportAction extends BaseAction
 
         $filename = $reportType.'_'.date('Y-m-d_H-i-s').'.csv';
 
-        return new StreamedResponse(function () use ($data, $reportType) {
+        $locale = $this->localeService->getLocaleOrDefault($request->cookie('locale') ?? $request->getPreferredLanguage());
+        $headers = array_map(
+            static fn (string $header) => __($header, [], $locale),
+            $this->getHeadersForReportType($reportType),
+        );
+
+        return new StreamedResponse(function () use ($data, $reportType, $headers) {
             $handle = fopen('php://output', 'w');
 
-            $headers = $this->getHeadersForReportType($reportType);
-            fputcsv($handle, $headers);
+            fwrite($handle, "\xEF\xBB\xBF");
+            fputcsv($handle, $headers, escape: '');
 
             foreach ($data as $row) {
                 $csvRow = $this->formatRowForReportType($row, $reportType);
-                fputcsv($handle, $this->formulaEscaper->escapeRow($csvRow));
+                fputcsv($handle, $this->formulaEscaper->escapeRow($csvRow), escape: '');
             }
 
             fclose($handle);
         }, 200, [
-            'Content-Type' => 'text/csv',
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Language' => $locale,
             'Content-Disposition' => "attachment; filename=\"$filename\"",
             'Cache-Control' => 'no-cache, no-store, must-revalidate',
             'Pragma' => 'no-cache',
@@ -85,7 +94,7 @@ class ExportOrganizerReportAction extends BaseAction
                 'Payment Date',
                 'Order Reference',
                 'Amount Paid',
-                'Hi.Events Fee',
+                'Platform Fee',
                 'VAT Rate',
                 'VAT on Fee',
                 'Total Fee',

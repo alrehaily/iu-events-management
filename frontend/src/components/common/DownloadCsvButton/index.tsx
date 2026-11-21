@@ -15,19 +15,14 @@ export const DownloadCsvButton = ({
                                       ...buttonProps
                                   }: DownloadCsvButtonProps) => {
     const handleDownloadCSV = () => {
-        const csvData = data.map(row =>
-            row.map(cell =>
-                typeof cell === 'string' ? `"${cell}"` : cell
-            ).join(',')
-        );
-
-        const csvContent = [
-            headers.join(','),
-            ...csvData
-        ].join('\n');
-
-        // Create and trigger download
-        const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+        const escapeCell = (value: string | number) => {
+            if (typeof value === 'number') return value.toString();
+            const safeText = /^\s*[=+@-]/.test(value) && !/^-?\d+(?:\.\d+)?$/.test(value)
+                ? "'" + value : value;
+            return '"' + safeText.replaceAll('"', '""') + '"';
+        };
+        const csv = [headers, ...data].map(row => row.map(escapeCell).join(',')).join('\r\n');
+        const blob = new Blob(['\uFEFF', csv], {type: 'text/csv;charset=utf-8'});
         const link = document.createElement('a');
         const url = URL.createObjectURL(blob);
         link.setAttribute('href', url);

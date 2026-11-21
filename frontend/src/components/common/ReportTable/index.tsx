@@ -207,10 +207,7 @@ const ReportTable = <T extends Record<string, any>>({
 
     const csvHeaders = columns.map(col => col.label);
     const csvData = sortedData.map(row =>
-        columns.map(col => {
-            const value = row[col.key];
-            return typeof value === 'number' ? value.toString() : value;
-        })
+        columns.map(col => row[col.key] ?? '')
     );
 
     const loadingMessage = () => {

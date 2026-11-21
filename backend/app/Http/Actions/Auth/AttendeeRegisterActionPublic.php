@@ -46,6 +46,7 @@ class AttendeeRegisterActionPublic extends BaseAction
         $user->email = $email;
         $user->password = Hash::make($request->input('password'));
         $user->timezone = 'Asia/Riyadh';
+        $user->locale = app()->getLocale();
         $user->save();
 
         $token = auth('api')->login($user);

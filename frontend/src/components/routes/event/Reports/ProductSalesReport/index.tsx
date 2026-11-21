@@ -1,3 +1,4 @@
+import {useLingui} from "@lingui/react";
 import {useParams} from "react-router";
 import {useGetEvent} from "../../../../../queries/useGetEvent.ts";
 import {formatCurrency} from "../../../../../utilites/currency.ts";
@@ -5,6 +6,7 @@ import ReportTable from "../../../../common/ReportTable";
 import {t} from "@lingui/macro";
 
 const ProductSalesReport = () => {
+    useLingui();
     const {eventId} = useParams();
     const eventQuery = useGetEvent(eventId);
     const event = eventQuery.data;

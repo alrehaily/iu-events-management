@@ -59,7 +59,7 @@ class EmailTemplateService
 
     public function getDefaultTemplate(EmailTemplateType $type): array
     {
-        $defaults = $this->getDefaultTemplates();
+        $defaults = app()->getLocale() === 'ar' ? $this->getArabicDefaultTemplates() : $this->getDefaultTemplates();
         $ctaDefaults = $this->getDefaultCTAs();
 
         $template = $defaults[$type->value] ?? throw new ResourceNotFoundException('No default template for type '.$type->value);
@@ -234,6 +234,67 @@ Please find your ticket details below.<br>
 
 If you have any questions or need assistance, please reply to this email or contact the event organizer at <a href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a>.<br>
 
+LIQUID
+            ],
+        ];
+    }
+
+    private function getArabicDefaultTemplates(): array
+    {
+        return [
+            EmailTemplateType::ORDER_CONFIRMATION->value => [
+                'subject' => 'تم تأكيد حجزك',
+                'body' => <<<'LIQUID'
+{% if order.is_awaiting_offline_payment %}
+<strong>طلبك بانتظار الدفع.</strong> تصبح التذاكر صالحة بعد استلام الدفعة.<br>
+{% if settings.offline_payment_instructions %}
+<strong>تعليمات الدفع</strong><br>
+{{ settings.offline_payment_instructions }}<br>
+{% endif %}
+{% else %}
+تم تأكيد حجزك لفعالية <strong>{{ event.title }}</strong>.<br>
+{% endif %}
+<strong>التاريخ والوقت:</strong> {{ event.date }} الساعة {{ event.time }}<br>
+{% if event.full_address %}<strong>الموقع:</strong> {{ event.full_address }}<br>{% endif %}
+{% if settings.post_checkout_message %}
+<strong>معلومات إضافية</strong><br>
+{{ settings.post_checkout_message }}<br>
+{% endif %}
+<strong>رقم الطلب:</strong> {{ order.number }}<br>
+<strong>الإجمالي:</strong> {{ order.total }}<br>
+للمساعدة، تواصل مع <a href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a>.<br>
+مع أطيب التحيات،<br>
+{{ organizer.name }}
+LIQUID
+            ],
+            EmailTemplateType::ATTENDEE_TICKET->value => [
+                'subject' => 'تذكرتك لفعالية {{ event.title }}',
+                'body' => <<<'LIQUID'
+مرحبًا {{ attendee.name }}،<br>
+{% if order.is_awaiting_offline_payment %}
+طلبك بانتظار الدفع. تصبح التذكرة صالحة بعد استلام الدفعة.<br>
+{% endif %}
+<strong>الفعالية:</strong> {{ event.title }}<br>
+<strong>التاريخ والوقت:</strong> {{ event.date }} الساعة {{ event.time }}<br>
+{% if event.full_address %}<strong>الموقع:</strong> {{ event.full_address }}<br>{% endif %}
+<strong>نوع التذكرة:</strong> {{ ticket.name }}<br>
+<strong>السعر:</strong> {{ ticket.price }}<br>
+أبرز تذكرتك عند الوصول إلى الفعالية.<br>
+للمساعدة، تواصل مع <a href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a>.
+LIQUID
+            ],
+            EmailTemplateType::OCCURRENCE_CANCELLATION->value => [
+                'subject' => 'أُلغي موعد فعالية {{ event.title }} بتاريخ {{ occurrence.start_date }}',
+                'body' => <<<'LIQUID'
+مرحبًا،<br>
+أُلغي موعد فعالية <strong>{{ event.title }}</strong> المقرر يوم {{ occurrence.start_date }} الساعة {{ occurrence.start_time }}.<br>
+{% if cancellation.refund_issued %}
+سيُسترد مبلغ طلبك تلقائيًا. قد يستغرق ظهوره في حسابك بضعة أيام عمل.<br>
+{% else %}
+للاستفسار عن طلبك، ردّ على هذه الرسالة أو تواصل مع <a href="mailto:{{ settings.support_email }}">{{ settings.support_email }}</a>.<br>
+{% endif %}
+مع أطيب التحيات،<br>
+{{ organizer.name }}
 LIQUID
             ],
         ];

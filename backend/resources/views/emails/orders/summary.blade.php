@@ -1,4 +1,4 @@
-@php use Carbon\Carbon; use HiEvents\Helper\Currency; use HiEvents\Helper\DateHelper; @endphp
+@php use Carbon\Carbon; use HiEvents\Helper\Currency; @endphp
 @php /** @var \HiEvents\DomainObjects\OrderDomainObject $order */ @endphp
 @php /** @var \HiEvents\DomainObjects\EventDomainObject $event */ @endphp
 @php /** @var \HiEvents\DomainObjects\OrganizerDomainObject $organizer */ @endphp
@@ -10,12 +10,13 @@
 
 @php
     $displayStart = $occurrence?->getStartDate() ?? $event->getStartDate();
-    $displayDate = (new Carbon(DateHelper::convertFromUTC($displayStart, $event->getTimezone())))->format('F j, Y');
-    $displayTime = (new Carbon(DateHelper::convertFromUTC($displayStart, $event->getTimezone())))->format('g:i A');
+    $dateTime = Carbon::parse($displayStart, 'UTC')->setTimezone(config('app.default_timezone'))->locale(app()->getLocale());
+    $displayDate = $dateTime->translatedFormat('F j, Y');
+    $displayTime = $dateTime->translatedFormat('g:i A');
 @endphp
 
 <x-mail::message>
-# {{ __('Your Order is Confirmed! ') }} 🎉
+# {{ __('Your Order is Confirmed!') }}
 
 @if($order->isOrderAwaitingOfflinePayment() === false)
 
@@ -64,7 +65,7 @@
 
 ## {{ __('Order Summary') }}
 - **{{ __('Order Number:') }}** {{ $order->getPublicId() }}
-- **{{ __('Total Amount:') }}** {{ Currency::format($order->getTotalGross(), $event->getCurrency()) }}
+- **{{ __('Total Amount:') }}** {{ $order->getTotalGross() > 0 ? Currency::format($order->getTotalGross(), $order->getCurrency(), app()->getLocale()) : __('Free') }}
 
 <x-mail::button :url="$orderUrl">
     {{ __('View Order Summary & Tickets') }}
