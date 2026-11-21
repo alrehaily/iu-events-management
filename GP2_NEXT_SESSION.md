@@ -7,6 +7,7 @@
 - Recovered checkpoint `18140f12cb8a8b2f59fc1e986470298c4436afe9`
 - Verified auth checkpoint `51350f5cd538582f43d1ebbb24f3fa8aaddd24f5`, pushed to the audit branch.
 - Verified frontend checkpoint `072ffd132b09198ff8900ebe4a1c13778e44c6c9`, pushed to the audit branch.
+- Latest implementation checkpoint `a109c81c9176bbbaee73b4c5fa0820432aa768ff`, pushed to the audit branch.
 - Run `git rev-parse HEAD` to identify the commit containing this report. The audit log carries the dated verification history.
 - Local logs and Chromium artifacts live in `%TEMP%\iu-gp2-audit-20261120`. Keep them outside Git.
 
@@ -21,6 +22,7 @@
 - Extended retest was 6/6, including concurrent draft SSR. A focused retest after the print fix passed. The one-page certificate was extracted and visually inspected.
 - Public/mobile and admin localization scenarios passed. The organizer scenario exposed the missing account/profile switcher, which was added for the focused retest. Translation completeness across all secondary screens is unverified.
 - Browser free checkout, signed-in mobile booking, Mailpit confirmation, Arabic ticket link, expired sales, attendee privacy, check-in and ticket views were exercised. PHPUnit ran 1,366 tests and 3,958 assertions with no failures/errors, 2 skipped and 32 risky.
+- The last usage check reported 10% remaining in the five-hour window and 56% for the week. Implementation stopped at that checkpoint. The organizer localization Playwright retest had started and had no terminal result at save time.
 
 ## Restart the isolated Windows stack
 
