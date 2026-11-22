@@ -14,13 +14,13 @@ export const IUHomePage: React.FC = () => {
   const previousLocaleRef = useRef(locale);
 
   const { data: eventsData, isLoading } = useGetEventsPublic({
-    perPage: 6,
+    perPage: 3,
     additionalParams: {
       events_status: "upcoming"
     }
   });
 
-  const events = eventsData?.data || [];
+  const events = (eventsData?.data || []).slice(0, 3);
 
   useScrollReveal([events.length, isLoading]);
 
