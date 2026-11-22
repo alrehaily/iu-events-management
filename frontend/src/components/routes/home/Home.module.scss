@@ -10,6 +10,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-bottom: var(--iu-spacing-lg, 24px);
 }
 
@@ -54,7 +56,8 @@
   direction: inherit;
 }
 
-.aboutMoreBtn {
+.aboutMoreBtn,
+.viewAllBtn {
   text-decoration: none !important;
   outline: none;
   border-radius: var(--iu-radius-sm, 8px);
@@ -213,6 +216,7 @@
 .languageMotionAr>section:first-child p,
 .languageMotionAr .statsTopText,
 .languageMotionAr .aboutMoreBtn,
+.languageMotionAr .viewAllBtn,
 .languageMotionAr .statValue,
 .languageMotionAr .statLabel,
 .languageMotionAr .sectionHead h2,
@@ -226,6 +230,7 @@
 .languageMotionEn>section:first-child p,
 .languageMotionEn .statsTopText,
 .languageMotionEn .aboutMoreBtn,
+.languageMotionEn .viewAllBtn,
 .languageMotionEn .statValue,
 .languageMotionEn .statLabel,
 .languageMotionEn .sectionHead h2,

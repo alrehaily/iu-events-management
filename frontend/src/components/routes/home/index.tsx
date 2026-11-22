@@ -157,8 +157,8 @@ export const IUHomePage: React.FC = () => {
         <div className="container">
           <div className={`${classes.sectionHead} iu-reveal iu-stagger-11`}>
             <h2>{t("home_upcoming_title", "الفعاليات القادمة والمتاحة للتسجيل")}</h2>
-            <Link to="/events" className={classes.moreLink}>
-              {t("home_view_all_events", "عرض كل الفعاليات")} {dir === "rtl" ? "‹" : "›"}
+            <Link to="/events" className={`btn outline iu-interactive-pill ${classes.viewAllBtn}`}>
+              {t("home_view_all_events", "عرض كافة الفعاليات")}
             </Link>
           </div>
 
