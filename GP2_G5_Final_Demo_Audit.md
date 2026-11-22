@@ -1,5 +1,12 @@
 ﻿# GP2 G5 Final Demo Audit — WIP Checkpoint
 
+## Committee readiness continuation
+
+- Started from `1dd2b7dbcfb8fdfa8e1fc9e855739d4396d82d30` on the authorized audit branch. The worktree already had local generated catalogs, a line-ending change, an untracked PHPUnit configuration and three missing launcher entry points. Restored the requested `Start All.cmd`. The other local changes are excluded from the checkpoint.
+- Reproduced the startup failure on loopback: the backend was listening, the audit PostgreSQL cluster was stopped, and a six-second GET against `/public/events` timed out without an HTTP response.
+- `Start All.cmd -NoBrowser` started the stopped isolated cluster and reached the configured API, SSR and Mailpit. A second launch exited zero and kept all five listener PIDs and both environment-file hashes unchanged. Evidence is in `%TEMP%\iu-gp2-audit-20261120\final-readiness`, in `startup-cold-verified.log` and `startup-warm-verified.log`. A full Windows reboot was not performed.
+- The focused pre-change browser run passed 3/3 for both live previews and the existing single-ticket recovery flow. Draft preview and the revised checkout have separate regression coverage in progress. Docker's Linux engine was unavailable, so this run used the native Windows audit services.
+
 ## 2026-11-22 Antigravity integration
 
 - The audit worktree and its upstream started at `94f479fc926f8eb18e206b74147c8b9137571377`. The local ref `refs/checkpoints/gp2-audit-before-antigravity` and the private `iu-gp2-pre-integration-*` temp backup preserve the starting commit and local edits.

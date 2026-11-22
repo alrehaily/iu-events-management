@@ -1,5 +1,11 @@
 # IU Events GP2 audit continuation
 
+## One-click audit stack
+
+- Double-click `Start All.cmd` from this audit worktree. For a terminal run without opening a browser, use `& '.\Start All.cmd' -NoBrowser`. The launcher validates the configured local stack, starts or reuses the existing isolated PostgreSQL cluster, waits for readiness, starts or reuses Mailpit and Laravel, and opens SSR after the API and frontend respond.
+- The prepared runtime directory defaults to `%TEMP%\iu-gp2-audit-20261120`. For a different location, set `GP2_RUNTIME_DIR` to the directory containing the existing `pgdata` and `mailpit\mailpit.exe`. Set `GP2_POSTGRES_BIN` if PostgreSQL is installed outside its standard Windows path. Retain the existing cluster and private runtime files. Service logs are in `backend\storage\logs`.
+- The launcher expects the local `iu_gp2_demo` configuration. Provisioning and schema work remain explicit. Use `iu_gp2_test` for PHPUnit. The separate terminal commands below are available for troubleshooting.
+
 ## Antigravity integration continuation
 
 - Use the audit branch `fix/gp2-demo-readiness-i18n-20261120` and keep the original and Antigravity checkouts separate. The implementation was integrated from the reviewed source delta. Avoid merging the incoming launcher history, which contains a hard-coded local database credential. Coordinate replacement of that credential before any further sharing of the Antigravity branch.
