@@ -247,9 +247,9 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
 
                             {/* Sidebar Column (Left in RTL) */}
                             <aside className="iu-event-sidebar-col">
-                                {/* Back to events text link (Corner left) */}
+                                {/* Back to events button */}
                                 <div className="iu-back-link-wrapper">
-                                    <Link to="/events" className="iu-back-text-link">
+                                    <Link to="/events" className="btn outline iu-interactive-pill iu-back-btn">
                                         <BackArrow className="iu-back-arrow" size={16} aria-hidden />
                                         <span>{t`Back to events`}</span>
                                     </Link>
