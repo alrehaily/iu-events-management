@@ -22,224 +22,173 @@ const COVERS = [
     key: 'ai-applications',
     titleEn: 'Artificial Intelligence Applications',
     titleAr: 'تطبيقات الذكاء الاصطناعي',
-    topicLabel: 'NEURAL NETWORKS & APPLIED MACHINE LEARNING',
-    bgStart: '#040b19',
-    bgEnd: '#091c38',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#07152d"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="glow-${c.key}" cx="50%" cy="46%" r="52%">
-          <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.32"/>
-          <stop offset="60%" stop-color="#0077b6" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#040b19" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="brain-grad-l" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00f0ff"/>
-          <stop offset="100%" stop-color="#0077b6"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#00f0ff" flood-opacity="0.4"/>
-        </filter>
-        <filter id="soft-glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="12" result="blur"/>
-          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-        </filter>
-      </defs>
+    topicLabel: 'DEEP LEARNING & APPLIED MODEL PIPELINE',
+    bgStart: '#050a14',
+    bgEnd: '#091629',
+    windowTitle: 'ai_pipeline.py — PyTorch & Transformers IDE (Python 3.12)',
+    accent: '#06b6d4',
+    renderWindow: () => `
+      <!-- IDE Window Chrome -->
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+      <!-- Window Titlebar -->
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#1e293b"/>
+      <!-- Window Controls -->
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#94a3b8" font-family="'Consolas', 'Courier New', monospace" font-size="14" text-anchor="middle">ai_pipeline.py — PyTorch &amp; Transformers IDE (Python 3.12)</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="330" r="460" fill="url(#glow-${c.key})"/>
+      <!-- IDE Sub-bar / Tabs -->
+      <rect x="506" y="112" width="1160" height="34" fill="#091122"/>
+      <rect x="516" y="114" width="180" height="32" rx="4" fill="#0f172a"/>
+      <text x="532" y="135" fill="#38bdf8" font-family="'Consolas', monospace" font-size="13">ai_pipeline.py</text>
+      <text x="716" y="135" fill="#64748b" font-family="'Consolas', monospace" font-size="13">dataset_loader.py</text>
+      <text x="866" y="135" fill="#64748b" font-family="'Consolas', monospace" font-size="13">model_config.json</text>
 
-      <!-- Delicate Technical Coordinate Grid -->
-      <g stroke="#00f0ff" stroke-opacity="0.07" stroke-width="1.5">
-        <line x1="0" y1="181" x2="${WIDTH}" y2="181"/>
-        <line x1="0" y1="362" x2="${WIDTH}" y2="362"/>
-        <line x1="0" y1="543" x2="${WIDTH}" y2="543"/>
-        <line x1="543" y1="0" x2="543" y2="${HEIGHT}"/>
-        <line x1="1629" y1="0" x2="1629" y2="${HEIGHT}"/>
+      <!-- Code Editor Body -->
+      <!-- Line Numbers Column -->
+      <rect x="506" y="146" width="55" height="360" fill="#091122"/>
+      <g fill="#475569" font-family="'Consolas', monospace" font-size="13" text-anchor="end">
+        <text x="548" y="174">1</text>
+        <text x="548" y="200">2</text>
+        <text x="548" y="226">3</text>
+        <text x="548" y="252">4</text>
+        <text x="548" y="278">5</text>
+        <text x="548" y="304">6</text>
+        <text x="548" y="330">7</text>
+        <text x="548" y="356">8</text>
+        <text x="548" y="382">9</text>
+        <text x="548" y="408">10</text>
+        <text x="548" y="434">11</text>
+        <text x="548" y="460">12</text>
+        <text x="548" y="486">13</text>
       </g>
 
-      <!-- Corner Framing Brackets -->
-      <g stroke="#00f0ff" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
+      <!-- Python AI Code with Syntax Highlighting -->
+      <g font-family="'Consolas', 'Fira Code', monospace" font-size="13.5" xml:space="preserve">
+        <text x="580" y="174"><tspan fill="#c084fc">import</tspan> <tspan fill="#e2e8f0">torch</tspan></text>
+        <text x="580" y="200"><tspan fill="#c084fc">from</tspan> <tspan fill="#e2e8f0">transformers</tspan> <tspan fill="#c084fc">import</tspan> <tspan fill="#67e8f9">AutoModelForCausalLM</tspan><tspan fill="#94a3b8">, </tspan><tspan fill="#67e8f9">AutoTokenizer</tspan></text>
+        <text x="580" y="226"><tspan fill="#64748b"># Load model pipeline on GPU accelerator</tspan></text>
+        <text x="580" y="252"><tspan fill="#e2e8f0">device = </tspan><tspan fill="#fef08a">"cuda"</tspan> <tspan fill="#c084fc">if</tspan> <tspan fill="#e2e8f0">torch.cuda.is_available() </tspan><tspan fill="#c084fc">else</tspan> <tspan fill="#fef08a">"cpu"</tspan></text>
+        <text x="580" y="278"><tspan fill="#e2e8f0">tokenizer = </tspan><tspan fill="#67e8f9">AutoTokenizer</tspan><tspan fill="#94a3b8">.from_pretrained(</tspan><tspan fill="#fde047">"iu-academic-arabic-llm"</tspan><tspan fill="#94a3b8">)</tspan></text>
+        <text x="580" y="304"><tspan fill="#e2e8f0">model = </tspan><tspan fill="#67e8f9">AutoModelForCausalLM</tspan><tspan fill="#94a3b8">.from_pretrained(</tspan><tspan fill="#fde047">"iu-academic-arabic-llm"</tspan><tspan fill="#94a3b8">).to(device)</tspan></text>
+        <text x="580" y="330"><tspan fill="#64748b"># Interactive token generation and evaluation</tspan></text>
+        <text x="580" y="356"><tspan fill="#e2e8f0">prompt = </tspan><tspan fill="#86efac">"كيف يدعم الذكاء الاصطناعي منظومة البحث العلمي الجامعي؟"</tspan></text>
+        <text x="580" y="382"><tspan fill="#e2e8f0">inputs = tokenizer(prompt, return_tensors=</tspan><tspan fill="#fef08a">"pt"</tspan><tspan fill="#e2e8f0">).to(device)</tspan></text>
+        <text x="580" y="408"><tspan fill="#e2e8f0">output = model.generate(**inputs, max_new_tokens=</tspan><tspan fill="#f97316">150</tspan><tspan fill="#e2e8f0">, temperature=</tspan><tspan fill="#f97316">0.7</tspan><tspan fill="#e2e8f0">)</tspan></text>
+        <text x="580" y="434"><tspan fill="#e2e8f0">response = tokenizer.decode(output[</tspan><tspan fill="#f97316">0</tspan><tspan fill="#e2e8f0">], skip_special_tokens=</tspan><tspan fill="#c084fc">True</tspan><tspan fill="#e2e8f0">)</tspan></text>
+        <text x="580" y="460"><tspan fill="#67e8f9">print</tspan><tspan fill="#e2e8f0">(response)</tspan></text>
       </g>
 
-      <!-- Left / Right Data Constellation Traces -->
-      <g opacity="0.35">
-        <path d="M 260 330 L 420 330 L 480 270 L 620 270" fill="none" stroke="#00f0ff" stroke-width="2" stroke-dasharray="4,6"/>
-        <circle cx="260" cy="330" r="5" fill="#00f0ff"/>
-        <circle cx="480" cy="270" r="4" fill="#00f0ff"/>
-        <circle cx="620" cy="270" r="6" fill="#4361ee"/>
-
-        <path d="M 360 480 L 520 480 L 580 420 L 700 420" fill="none" stroke="#00b4d8" stroke-width="2"/>
-        <circle cx="360" cy="480" r="4" fill="#00b4d8"/>
-        <circle cx="700" cy="420" r="5" fill="#00f0ff"/>
-
-        <path d="M 1912 330 L 1752 330 L 1692 270 L 1552 270" fill="none" stroke="#7209b7" stroke-width="2" stroke-dasharray="4,6"/>
-        <circle cx="1912" cy="330" r="5" fill="#7209b7"/>
-        <circle cx="1692" cy="270" r="4" fill="#7209b7"/>
-        <circle cx="1552" cy="270" r="6" fill="#00f0ff"/>
-
-        <path d="M 1812 480 L 1652 480 L 1592 420 L 1472 420" fill="none" stroke="#4361ee" stroke-width="2"/>
-        <circle cx="1812" cy="480" r="4" fill="#4361ee"/>
-        <circle cx="1472" cy="420" r="5" fill="#7209b7"/>
+      <!-- Terminal / Runtime Status Bar at Bottom -->
+      <rect x="506" y="506" width="1160" height="59" fill="#090f1d"/>
+      <line x1="506" y1="506" x2="1666" y2="506" stroke="#1e293b" stroke-width="1.5"/>
+      <g fill="#38bdf8" font-family="'Consolas', monospace" font-size="12.5">
+        <text x="526" y="528">[STATUS: MODEL LOADED]</text>
+        <text x="730" y="528">CUDA DEVICE: 0 (NVIDIA RTX)</text>
+        <text x="1000" y="528">LOSS: 0.0418</text>
+        <text x="1140" y="528">INFERENCE LATENCY: 38ms/tok</text>
+        <text x="1420" y="528" fill="#4ade80">MEMORY: 6.2GB / 16GB</text>
       </g>
-
-      <!-- Center AI Brain & Neural Synapse Core -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <!-- Concentric Neural Pulse Rings -->
-        <circle cx="0" cy="0" r="235" fill="none" stroke="#00f0ff" stroke-opacity="0.12" stroke-width="2" stroke-dasharray="6,8"/>
-        <circle cx="0" cy="0" r="185" fill="none" stroke="#4361ee" stroke-opacity="0.18" stroke-width="1.5"/>
-        <circle cx="0" cy="0" r="140" fill="none" stroke="#00f0ff" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="12,12"/>
-
-        <!-- Central Microchip Core Processor -->
-        <rect x="-42" y="-42" width="84" height="84" rx="14" fill="#050c1e" stroke="#00f0ff" stroke-width="3"/>
-        <rect x="-24" y="-24" width="48" height="48" rx="8" fill="url(#brain-grad-l)" opacity="0.85"/>
-        <circle cx="0" cy="0" r="9" fill="#ffffff" filter="url(#soft-glow)"/>
-
-        <!-- Left Hemisphere Synaptic Nodes & Arcs -->
-        <g stroke="#00f0ff" stroke-width="2.8" fill="none">
-          <path d="M -42 -20 C -90 -70, -160 -60, -170 10 C -180 80, -120 130, -50 140 C -45 140, -42 120, -42 100" stroke-linecap="round"/>
-          <path d="M -42 -40 C -80 -120, -150 -110, -150 -40 C -150 -20, -110 0, -50 0" stroke-linecap="round"/>
-          <path d="M -90 -60 L -120 -20 L -80 30 L -120 70 L -60 90"/>
-          <path d="M -130 20 L -60 20"/>
-        </g>
-        <g fill="#00f0ff">
-          <circle cx="-170" cy="10" r="6"/>
-          <circle cx="-150" cy="-40" r="5"/>
-          <circle cx="-120" cy="-20" r="5.5"/>
-          <circle cx="-90" cy="-60" r="6"/>
-          <circle cx="-80" cy="30" r="5"/>
-          <circle cx="-120" cy="70" r="6.5"/>
-          <circle cx="-50" cy="140" r="6"/>
-          <circle cx="-60" cy="90" r="5"/>
-        </g>
-
-        <!-- Right Hemisphere Synaptic Nodes & Arcs -->
-        <g stroke="#a855f7" stroke-width="2.8" fill="none">
-          <path d="M 42 -20 C 90 -70, 160 -60, 170 10 C 180 80, 120 130, 50 140 C 45 140, 42 120, 42 100" stroke-linecap="round"/>
-          <path d="M 42 -40 C 80 -120, 150 -110, 150 -40 C 150 -20, 110 0, 50 0" stroke-linecap="round"/>
-          <path d="M 90 -60 L 120 -20 L 80 30 L 120 70 L 60 90"/>
-          <path d="M 130 20 L 60 20"/>
-        </g>
-        <g fill="#a855f7">
-          <circle cx="170" cy="10" r="6"/>
-          <circle cx="150" cy="-40" r="5"/>
-          <circle cx="120" cy="-20" r="5.5"/>
-          <circle cx="90" cy="-60" r="6"/>
-          <circle cx="80" cy="30" r="5"/>
-          <circle cx="120" cy="70" r="6.5"/>
-          <circle cx="50" cy="140" r="6"/>
-          <circle cx="60" cy="90" r="5"/>
-        </g>
-
-        <!-- High-Intensity Synaptic Sparks -->
-        <circle cx="-105" cy="-40" r="3.5" fill="#ffffff"/>
-        <circle cx="105" cy="-40" r="3.5" fill="#ffffff"/>
-        <circle cx="-100" cy="50" r="3.5" fill="#ffffff"/>
-        <circle cx="100" cy="50" r="3.5" fill="#ffffff"/>
-      </g>
-
-      <!-- Clean Centered Typography -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
-      </g>
+      <text x="526" y="550" fill="#94a3b8" font-family="'Consolas', monospace" font-size="12">&gt; python ai_pipeline.py --eval-mode=academic --strict-citations=true [EXECUTION SUCCESSFUL]</text>
     `,
   },
   {
     key: 'cyber-awareness',
     titleEn: 'Cybersecurity Awareness Workshop',
     titleAr: 'ورشة التوعية بالأمن السيبراني',
-    topicLabel: 'NETWORK SECURITY & THREAT MITIGATION',
-    bgStart: '#060d19',
-    bgEnd: '#0a1a2e',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#081424"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="glow-${c.key}" cx="50%" cy="46%" r="52%">
-          <stop offset="0%" stop-color="#10b981" stop-opacity="0.32"/>
-          <stop offset="60%" stop-color="#047857" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#060d19" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#10b981"/>
-          <stop offset="50%" stop-color="#059669"/>
-          <stop offset="100%" stop-color="#047857"/>
-        </linearGradient>
-        <linearGradient id="lock-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="100%" stop-color="#a7f3d0"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#10b981" flood-opacity="0.4"/>
-        </filter>
-        <pattern id="hex-grid" width="40" height="69.282" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 20 11.547 L 0 0 L 0 23.094 L 20 34.641 L 40 23.094 Z M 0 34.641 L 20 46.188 L 40 34.641 L 40 57.735 L 20 69.282 L 0 57.735 Z" fill="none" stroke="#10b981" stroke-width="1" stroke-opacity="0.06"/>
-        </pattern>
-      </defs>
+    topicLabel: 'NETWORK DEFENSE & THREAT MITIGATION CONSOLE',
+    bgStart: '#040d16',
+    bgEnd: '#071828',
+    windowTitle: 'Enterprise Security Console — Threat Defense & Identity Protection v4.2',
+    accent: '#10b981',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#0b1322" stroke="#1e293b" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#132338"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#94a3b8" font-family="'Consolas', monospace" font-size="14" text-anchor="middle">Security Console — Active Threat Defense &amp; Identity Protection v4.2</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#hex-grid)"/>
-      <circle cx="1086" cy="305" r="440" fill="url(#glow-${c.key})"/>
+      <!-- 3 Metrics Cards -->
+      <g transform="translate(526, 126)">
+        <!-- Metric 1 -->
+        <rect width="360" height="68" rx="8" fill="#0f1f33" stroke="#10b981" stroke-width="1.5"/>
+        <text x="16" y="26" fill="#94a3b8" font-family="system-ui" font-size="12" font-weight="600">FIREWALL &amp; ENDPOINT STATUS</text>
+        <text x="16" y="52" fill="#34d399" font-family="'Consolas', monospace" font-size="17" font-weight="700">ACTIVE &amp; MONITORED</text>
+        <circle cx="330" cy="34" r="8" fill="#10b981"/>
 
-      <!-- Corner Framing Brackets -->
-      <g stroke="#10b981" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
+        <!-- Metric 2 -->
+        <rect x="380" width="360" height="68" rx="8" fill="#0f1f33" stroke="#38bdf8" stroke-width="1.5"/>
+        <text x="396" y="26" fill="#94a3b8" font-family="system-ui" font-size="12" font-weight="600">AUTHENTICATION (MFA / 2FA)</text>
+        <text x="396" y="52" fill="#38bdf8" font-family="'Consolas', monospace" font-size="17" font-weight="700">100% ENFORCED (ZERO-TRUST)</text>
+        <circle cx="710" cy="34" r="8" fill="#38bdf8"/>
+
+        <!-- Metric 3 -->
+        <rect x="760" width="360" height="68" rx="8" fill="#0f1f33" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="776" y="26" fill="#94a3b8" font-family="system-ui" font-size="12" font-weight="600">INCIDENT THREAT LEVEL</text>
+        <text x="776" y="52" fill="#fbbf24" font-family="'Consolas', monospace" font-size="17" font-weight="700">LOW (0 CRITICAL BREACHES)</text>
+        <circle cx="1090" cy="34" r="8" fill="#f59e0b"/>
       </g>
 
-      <!-- Defensive Grid Lines & Rings -->
-      <g stroke="#10b981" stroke-opacity="0.15" stroke-width="1.5">
-        <circle cx="1086" cy="305" r="285" fill="none" stroke-dasharray="8,10"/>
-        <circle cx="1086" cy="305" r="235" fill="none" stroke-dasharray="4,6"/>
-      </g>
+      <!-- Live Security Log Table -->
+      <g transform="translate(526, 212)">
+        <rect width="1120" height="280" rx="8" fill="#080f1a" stroke="#1e293b" stroke-width="1.5"/>
+        <!-- Table Header -->
+        <rect width="1120" height="36" rx="8" fill="#111d2e"/>
+        <text x="20" y="23" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">TIMESTAMP</text>
+        <text x="180" y="23" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">PROTOCOL / SERVICE</text>
+        <text x="440" y="23" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">SOURCE IP / IDENTIFIER</text>
+        <text x="750" y="23" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">SECURITY ACTION TAKEN</text>
+        <text x="1000" y="23" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">STATUS</text>
 
-      <!-- Side Data Panels (Vector Brackets) -->
-      <g opacity="0.35" stroke="#10b981" stroke-width="2" fill="none">
-        <path d="M 380 230 L 320 230 L 320 380 L 380 380"/>
-        <path d="M 340 305 L 480 305" stroke-dasharray="6,6"/>
-        <circle cx="480" cy="305" r="5" fill="#10b981"/>
-
-        <path d="M 1792 230 L 1852 230 L 1852 380 L 1792 380"/>
-        <path d="M 1832 305 L 1692 305" stroke-dasharray="6,6"/>
-        <circle cx="1692" cy="305" r="5" fill="#10b981"/>
-      </g>
-
-      <!-- Center Security Shield with Padlock -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <path d="M 0 -170 L 130 -115 C 130 20, 95 125, 0 175 C -95 125, -130 20, -130 -115 Z" fill="#080f1d" stroke="#10b981" stroke-width="3" stroke-opacity="0.4"/>
-        <path d="M 0 -150 L 112 -100 C 112 15, 82 105, 0 150 C -82 105, -112 15, -112 -100 Z" fill="url(#shield-grad)" fill-opacity="0.88" stroke="#34d399" stroke-width="3"/>
-        <path d="M 0 -150 L 112 -100 C 112 15, 82 105, 0 150 Z" fill="#ffffff" fill-opacity="0.12"/>
-
-        <!-- Center Sleek Padlock -->
-        <g transform="translate(0, 5)">
-          <path d="M -34 -15 L -34 -48 C -34 -72, 34 -72, 34 -48 L 34 -15" fill="none" stroke="url(#lock-grad)" stroke-width="11" stroke-linecap="round"/>
-          <rect x="-48" y="-15" width="96" height="82" rx="16" fill="#064e3b" stroke="#34d399" stroke-width="3.5"/>
-          <rect x="-42" y="-10" width="84" height="72" rx="12" fill="#047857" stroke="#10b981" stroke-width="1.5" opacity="0.6"/>
-          <circle cx="0" cy="18" r="9" fill="#a7f3d0"/>
-          <path d="M -4.5 21 L 4.5 21 L 6.5 40 L -6.5 40 Z" fill="#a7f3d0"/>
+        <!-- Row 1 -->
+        <g transform="translate(0, 36)" font-family="'Consolas', monospace" font-size="13">
+          <text x="20" y="28" fill="#94a3b8">10:14:02.148</text>
+          <text x="180" y="28" fill="#38bdf8">HTTPS / TLS 1.3</text>
+          <text x="440" y="28" fill="#e2e8f0">portal.iu.edu.sa [Student Auth]</text>
+          <text x="750" y="28" fill="#34d399">MFA Multi-Factor Token Verified</text>
+          <rect x="1000" y="12" width="75" height="22" rx="4" fill="#065f46"/>
+          <text x="1012" y="28" fill="#34d399" font-weight="700">PASSED</text>
         </g>
-      </g>
+        <line x1="0" y1="76" x2="1120" y2="76" stroke="#1e293b"/>
 
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#34d399" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
+        <!-- Row 2 -->
+        <g transform="translate(0, 76)" font-family="'Consolas', monospace" font-size="13">
+          <text x="20" y="28" fill="#94a3b8">10:12:45.902</text>
+          <text x="180" y="28" fill="#f87171">SMTP Phishing Filter</text>
+          <text x="440" y="28" fill="#fca5a5">mail.login-verify-account.xyz</text>
+          <text x="750" y="28" fill="#f87171">Malicious Link Quarantined &amp; Dropped</text>
+          <rect x="1000" y="12" width="75" height="22" rx="4" fill="#7f1d1d"/>
+          <text x="1008" y="28" fill="#fca5a5" font-weight="700">BLOCKED</text>
+        </g>
+        <line x1="0" y1="116" x2="1120" y2="116" stroke="#1e293b"/>
+
+        <!-- Row 3 -->
+        <g transform="translate(0, 116)" font-family="'Consolas', monospace" font-size="13">
+          <text x="20" y="28" fill="#94a3b8">10:10:11.320</text>
+          <text x="180" y="28" fill="#fbbf24">SSH Port Audit</text>
+          <text x="440" y="28" fill="#e2e8f0">Port 22 / Authorized Key Ring</text>
+          <text x="750" y="28" fill="#34d399">Key-Based Authentication Confirmed</text>
+          <rect x="1000" y="12" width="75" height="22" rx="4" fill="#065f46"/>
+          <text x="1012" y="28" fill="#34d399" font-weight="700">PASSED</text>
+        </g>
+        <line x1="0" y1="156" x2="1120" y2="156" stroke="#1e293b"/>
+
+        <!-- Row 4 -->
+        <g transform="translate(0, 156)" font-family="'Consolas', monospace" font-size="13">
+          <text x="20" y="28" fill="#94a3b8">10:07:54.018</text>
+          <text x="180" y="28" fill="#c084fc">Credential Vault</text>
+          <text x="440" y="28" fill="#e2e8f0">Hash Verification: SHA-256 + Salt</text>
+          <text x="750" y="28" fill="#34d399">Zero Plaintext / Strong Complexity Met</text>
+          <rect x="1000" y="12" width="75" height="22" rx="4" fill="#065f46"/>
+          <text x="1012" y="28" fill="#34d399" font-weight="700">PASSED</text>
+        </g>
+        <line x1="0" y1="196" x2="1120" y2="196" stroke="#1e293b"/>
+
+        <!-- Summary Footer -->
+        <rect y="235" width="1120" height="45" rx="8" fill="#0b1728"/>
+        <text x="20" y="262" fill="#34d399" font-family="'Consolas', monospace" font-size="13">&gt; [DEFENSE AUDIT COMPLETE]: 12,480 Network Events Inspected | Zero Credential Compromises</text>
       </g>
     `,
   },
@@ -247,103 +196,62 @@ const COVERS = [
     key: 'research-innovation',
     titleEn: 'University Innovation Forum',
     titleAr: 'ملتقى الابتكار الجامعي',
-    topicLabel: 'ACADEMIC RESEARCH & SCIENTIFIC INGENUITY',
-    bgStart: '#021a10',
-    bgEnd: '#063d26',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#042c1c"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="bulb-glow" cx="50%" cy="44%" r="52%">
-          <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.38"/>
-          <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.1"/>
-          <stop offset="100%" stop-color="#021a10" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="bulb-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fef3c7"/>
-          <stop offset="40%" stop-color="#fde047"/>
-          <stop offset="80%" stop-color="#fbbf24"/>
-          <stop offset="100%" stop-color="#f59e0b"/>
-        </linearGradient>
-        <linearGradient id="ray-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fef08a"/>
-          <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#fbbf24" flood-opacity="0.45"/>
-        </filter>
-      </defs>
+    topicLabel: 'ACADEMIC RESEARCH & PROTOTYPE VALIDATION',
+    bgStart: '#02160d',
+    bgEnd: '#06331e',
+    windowTitle: 'Academic Research & Innovation Lab — Project Milestone & Prototype Tracker',
+    accent: '#fbbf24',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#061e14" stroke="#084b2f" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#083823"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#86efac" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Academic Research &amp; Innovation Lab — Project Milestone &amp; Prototype Tracker</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="305" r="450" fill="url(#bulb-glow)"/>
-
-      <!-- Corner Framing Brackets -->
-      <g stroke="#fbbf24" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
+      <!-- Innovation Pipeline Stages Bar -->
+      <g transform="translate(526, 126)">
+        <rect width="1120" height="52" rx="8" fill="#032517" stroke="#084b2f" stroke-width="1.5"/>
+        <g font-family="'Cairo', system-ui" font-size="13.5" font-weight="700">
+          <text x="40" y="32" fill="#34d399">1. بلورة الفكرة والبحث الأدبي ✓</text>
+          <text x="320" y="32" fill="#34d399">2. بناء النموذج المخبري (Prototype) ✓</text>
+          <text x="660" y="32" fill="#fbbf24">3. التقييم الميداني والتحكيم الأكاديمي ●</text>
+          <text x="960" y="32" fill="#94a3b8">4. براءة الاختراع والنشر</text>
+        </g>
       </g>
 
-      <!-- Radiating Geometric Innovation Rays -->
-      <g stroke="url(#ray-grad)" stroke-width="2.5" stroke-linecap="round" opacity="0.65">
-        <line x1="1086" y1="95" x2="1086" y2="45"/>
-        <line x1="1235" y1="135" x2="1275" y2="100"/>
-        <line x1="1295" y1="260" x2="1345" y2="255"/>
-        <line x1="1265" y1="385" x2="1310" y2="410"/>
-        <line x1="937" y1="135" x2="897" y2="100"/>
-        <line x1="877" y1="260" x2="827" y2="255"/>
-        <line x1="907" y1="385" x2="862" y2="410"/>
+      <!-- Project Showcase Cards (2 Columns) -->
+      <g transform="translate(526, 194)">
+        <!-- Project 1 Card -->
+        <rect width="545" height="195" rx="8" fill="#04281a" stroke="#10b981" stroke-width="1.5"/>
+        <text x="24" y="35" fill="#fde047" font-family="'Cairo', system-ui" font-size="17" font-weight="800">مشروع 1: نظام التحليل الذكي لمصادر الطاقة الجامعية</text>
+        <text x="24" y="62" fill="#a7f3d0" font-family="system-ui" font-size="13">مجال البحث: الهندسة التطبيقية وإنترنت الأشياء (IoT)</text>
+        <text x="24" y="85" fill="#e2e8f0" font-family="system-ui" font-size="13">نسبة إنجاز النموذج الأولي: 94% | التجارب المخبرية: 18 جلسة ناجحة</text>
+        <!-- Progress bar -->
+        <rect x="24" y="102" width="497" height="10" rx="5" fill="#083823"/>
+        <rect x="24" y="102" width="467" height="10" rx="5" fill="#10b981"/>
+        <text x="24" y="140" fill="#94a3b8" font-family="'Consolas', monospace" font-size="12">الملكية الفكرية: إيداع رسمي برقم (IU-PAT-2026-04)</text>
+        <text x="24" y="165" fill="#34d399" font-family="'Cairo', system-ui" font-size="13" font-weight="700">جاهز للعرض أمام لجنة الابتكار والتحكيم الأكاديمي</text>
+
+        <!-- Project 2 Card -->
+        <rect x="575" width="545" height="195" rx="8" fill="#04281a" stroke="#084b2f" stroke-width="1.5"/>
+        <text x="599" y="35" fill="#fde047" font-family="'Cairo', system-ui" font-size="17" font-weight="800">مشروع 2: منصة التوثيق وحفظ التراث الرقمي بالمدينة</text>
+        <text x="599" y="62" fill="#a7f3d0" font-family="system-ui" font-size="13">مجال البحث: نظم المعلومات وعلوم البيانات المعرفية</text>
+        <text x="599" y="85" fill="#e2e8f0" font-family="system-ui" font-size="13">نسبة إنجاز النموذج الأولي: 88% | الدقة المعيارية: 96.5%</text>
+        <!-- Progress bar -->
+        <rect x="599" y="102" width="497" height="10" rx="5" fill="#083823"/>
+        <rect x="599" y="102" width="437" height="10" rx="5" fill="#fbbf24"/>
+        <text x="599" y="140" fill="#94a3b8" font-family="'Consolas', monospace" font-size="12">التكامل المجتمعي: شراكة معرفية مع مركز دراسات المدينة</text>
+        <text x="599" y="165" fill="#fbbf24" font-family="'Cairo', system-ui" font-size="13" font-weight="700">مرحلة الفحص التجريبي النهائي وقياس الأثر</text>
       </g>
 
-      <!-- Spark Stars -->
-      <g fill="#fef08a" opacity="0.75">
-        <polygon points="1086,30 1089,40 1099,43 1089,46 1086,56 1083,46 1073,43 1083,40"/>
-        <polygon points="1310,85 1312,92 1319,94 1312,96 1310,103 1308,96 1301,94 1308,92"/>
-        <polygon points="862,85 864,92 871,94 864,96 862,103 860,96 853,94 860,92"/>
-      </g>
-
-      <!-- Left / Right Research Constellation Triangles -->
-      <g opacity="0.3" stroke="#34d399" stroke-width="1.5" fill="none">
-        <polygon points="360,350 440,230 520,350" stroke-dasharray="4,4"/>
-        <circle cx="440" cy="230" r="5" fill="#34d399"/>
-        <circle cx="360" cy="350" r="5" fill="#fbbf24"/>
-        <circle cx="520" cy="350" r="5" fill="#34d399"/>
-        <line x1="320" y1="390" x2="560" y2="390"/>
-
-        <polygon points="1812,350 1732,230 1652,350" stroke-dasharray="4,4"/>
-        <circle cx="1732" cy="230" r="5" fill="#34d399"/>
-        <circle cx="1812" cy="350" r="5" fill="#fbbf24"/>
-        <circle cx="1652" cy="350" r="5" fill="#34d399"/>
-        <line x1="1612" y1="390" x2="1852" y2="390"/>
-      </g>
-
-      <!-- Center Faceted Geometric Lightbulb -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <path d="M 0 -150 C 75 -150, 115 -100, 115 -35 C 115 25, 65 75, 55 110 L -55 110 C -65 75, -115 25, -115 -35 C -115 -100, -75 -150, 0 -150 Z"
-              fill="url(#bulb-grad)" fill-opacity="0.9" stroke="#ffffff" stroke-width="3"/>
-        <path d="M 0 -150 C 75 -150, 115 -100, 115 -35 C 115 25, 65 75, 55 110 L 0 110 Z"
-              fill="#ffffff" fill-opacity="0.2"/>
-
-        <path d="M -30 70 L -25 -20 C -25 -60, -50 -70, -30 -95 C -15 -115, 15 -115, 30 -95 C 50 -70, 25 -60, 25 -20 L 30 70"
-              fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-        <circle cx="0" cy="-75" r="14" fill="#ffffff"/>
-
-        <!-- Base & Threads -->
-        <rect x="-48" y="115" width="96" height="15" rx="7" fill="#64748b" stroke="#cbd5e1" stroke-width="2"/>
-        <rect x="-42" y="135" width="84" height="15" rx="7" fill="#475569" stroke="#94a3b8" stroke-width="2"/>
-        <rect x="-34" y="155" width="68" height="15" rx="7" fill="#334155" stroke="#64748b" stroke-width="2"/>
-        <path d="M -22 173 C -22 185, 22 185, 22 173 Z" fill="#1e293b"/>
-      </g>
-
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#fde047" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
+      <!-- Bottom Metrics Ribbon -->
+      <g transform="translate(526, 405)">
+        <rect width="1120" height="70" rx="8" fill="#032517" stroke="#084b2f" stroke-width="1.5"/>
+        <text x="30" y="32" fill="#fde047" font-family="'Consolas', monospace" font-size="14" font-weight="700">LAB METRICS: 48 Registered Student Projects</text>
+        <text x="460" y="32" fill="#34d399" font-family="'Consolas', monospace" font-size="14" font-weight="700">12 Working Prototypes</text>
+        <text x="760" y="32" fill="#67e8f9" font-family="'Consolas', monospace" font-size="14" font-weight="700">8 Faculty Research Mentors</text>
+        <text x="30" y="55" fill="#a7f3d0" font-family="'Cairo', system-ui" font-size="13">معايير التحكيم: الابتكار الأصيل (35%)، الجدوى التقنية (30%)، الأثر المجتمعي (20%)، جودة العرض (15%)</text>
       </g>
     `,
   },
@@ -351,93 +259,103 @@ const COVERS = [
     key: 'cloud-fundamentals',
     titleEn: 'Cloud Computing Workshop',
     titleAr: 'ورشة الحوسبة السحابية',
-    topicLabel: 'CLOUD INFRASTRUCTURE & VIRTUALIZATION',
-    bgStart: '#06122c',
-    bgEnd: '#0f2c61',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#0a1d44"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="cloud-glow" cx="50%" cy="44%" r="52%">
-          <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.32"/>
-          <stop offset="65%" stop-color="#1d4ed8" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#06122c" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="cloud-body" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="40%" stop-color="#e0f2fe"/>
-          <stop offset="100%" stop-color="#38bdf8"/>
-        </linearGradient>
-        <linearGradient id="server-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#0f172a"/>
-          <stop offset="100%" stop-color="#1e293b"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#38bdf8" flood-opacity="0.4"/>
-        </filter>
-      </defs>
+    topicLabel: 'CLOUD INFRASTRUCTURE ARCHITECTURE & KUBERNETES CONSOLE',
+    bgStart: '#040d1a',
+    bgEnd: '#0a1d36',
+    windowTitle: 'Cloud Infrastructure Console — Multi-Region Kubernetes & Virtual Instances',
+    accent: '#38bdf8',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#0b172a" stroke="#1e293b" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#132742"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#94a3b8" font-family="'Consolas', monospace" font-size="14" text-anchor="middle">Cloud Infrastructure Console — Cluster Overview &amp; VPC Networks (Riyadh me-central-1)</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="305" r="440" fill="url(#cloud-glow)"/>
+      <!-- 4 Cloud Metrics KPI Widgets -->
+      <g transform="translate(526, 126)">
+        <rect width="265" height="66" rx="8" fill="#0f223d" stroke="#0284c7" stroke-width="1.5"/>
+        <text x="16" y="24" fill="#94a3b8" font-family="system-ui" font-size="11" font-weight="700">COMPUTE / K8S PODS</text>
+        <text x="16" y="48" fill="#38bdf8" font-family="'Consolas', monospace" font-size="16" font-weight="700">8 NODES (32 vCPU)</text>
 
-      <!-- Corner Framing Brackets -->
-      <g stroke="#38bdf8" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
+        <rect x="285" width="265" height="66" rx="8" fill="#0f223d" stroke="#0284c7" stroke-width="1.5"/>
+        <text x="301" y="24" fill="#94a3b8" font-family="system-ui" font-size="11" font-weight="700">OBJECT STORAGE (S3)</text>
+        <text x="301" y="48" fill="#38bdf8" font-family="'Consolas', monospace" font-size="16" font-weight="700">2.8 TB (AES-256)</text>
+
+        <rect x="570" width="265" height="66" rx="8" fill="#0f223d" stroke="#10b981" stroke-width="1.5"/>
+        <text x="586" y="24" fill="#94a3b8" font-family="system-ui" font-size="11" font-weight="700">CLUSTER UPTIME SLA</text>
+        <text x="586" y="48" fill="#34d399" font-family="'Consolas', monospace" font-size="16" font-weight="700">99.99% AVAILABLE</text>
+
+        <rect x="855" width="265" height="66" rx="8" fill="#0f223d" stroke="#c084fc" stroke-width="1.5"/>
+        <text x="871" y="24" fill="#94a3b8" font-family="system-ui" font-size="11" font-weight="700">NETWORK LATENCY</text>
+        <text x="871" y="48" fill="#c084fc" font-family="'Consolas', monospace" font-size="16" font-weight="700">14ms REGIONAL</text>
       </g>
 
-      <!-- Network Elevation & Data Stream Pathways -->
-      <g stroke="#38bdf8" stroke-opacity="0.12" stroke-width="1.5">
-        <circle cx="1086" cy="305" r="270" fill="none" stroke-dasharray="6,8"/>
-        <circle cx="1086" cy="305" r="220" fill="none" stroke-dasharray="12,12"/>
-      </g>
+      <!-- Cloud Topology & Service Nodes Grid -->
+      <g transform="translate(526, 208)">
+        <rect width="1120" height="275" rx="8" fill="#081322" stroke="#1e293b" stroke-width="1.5"/>
+        <rect width="1120" height="34" rx="8" fill="#102038"/>
+        <text x="24" y="22" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">INSTANCE NAME</text>
+        <text x="250" y="22" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">ZONE</text>
+        <text x="390" y="22" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">IP ADDRESS / VPC</text>
+        <text x="640" y="22" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">AUTOSCALING CPU LOAD</text>
+        <text x="960" y="22" fill="#64748b" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">HEALTH</text>
 
-      <!-- Side Data Panels -->
-      <g opacity="0.4">
-        <path d="M 320 305 L 480 305 L 540 245 L 660 245" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,6"/>
-        <rect x="280" y="290" width="40" height="30" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5"/>
-        <circle cx="295" cy="305" r="3" fill="#22c55e"/>
+        <!-- Node 1 -->
+        <g transform="translate(0, 34)" font-family="'Consolas', monospace" font-size="13">
+          <text x="24" y="26" fill="#e2e8f0">iu-web-cluster-prod-01</text>
+          <text x="250" y="26" fill="#94a3b8">me-central-1a</text>
+          <text x="390" y="26" fill="#38bdf8">10.0.1.14 (Private)</text>
+          <rect x="640" y="14" width="220" height="12" rx="4" fill="#1e293b"/>
+          <rect x="640" y="14" width="88" height="12" rx="4" fill="#38bdf8"/>
+          <text x="870" y="25" fill="#94a3b8" font-size="11">40%</text>
+          <rect x="960" y="10" width="80" height="20" rx="4" fill="#065f46"/>
+          <text x="975" y="24" fill="#34d399" font-weight="700">HEALTHY</text>
+        </g>
+        <line x1="0" y1="70" x2="1120" y2="70" stroke="#1e293b"/>
 
-        <path d="M 1852 305 L 1692 305 L 1632 245 L 1512 245" fill="none" stroke="#60a5fa" stroke-width="2" stroke-dasharray="4,6"/>
-        <rect x="1852" y="290" width="40" height="30" rx="6" fill="#1e293b" stroke="#60a5fa" stroke-width="1.5"/>
-        <circle cx="1875" cy="305" r="3" fill="#22c55e"/>
-      </g>
+        <!-- Node 2 -->
+        <g transform="translate(0, 70)" font-family="'Consolas', monospace" font-size="13">
+          <text x="24" y="26" fill="#e2e8f0">iu-web-cluster-prod-02</text>
+          <text x="250" y="26" fill="#94a3b8">me-central-1b</text>
+          <text x="390" y="26" fill="#38bdf8">10.0.1.18 (Private)</text>
+          <rect x="640" y="14" width="220" height="12" rx="4" fill="#1e293b"/>
+          <rect x="640" y="14" width="75" height="12" rx="4" fill="#38bdf8"/>
+          <text x="870" y="25" fill="#94a3b8" font-size="11">34%</text>
+          <rect x="960" y="10" width="80" height="20" rx="4" fill="#065f46"/>
+          <text x="975" y="24" fill="#34d399" font-weight="700">HEALTHY</text>
+        </g>
+        <line x1="0" y1="106" x2="1120" y2="106" stroke="#1e293b"/>
 
-      <!-- Center Vector Cloud + Server Blades -->
-      <g transform="translate(1086, 290)" filter="url(#shadow-${c.key})">
-        <path d="M -130 30 C -160 30, -185 5, -185 -25 C -185 -55, -160 -80, -130 -80 C -125 -80, -120 -78, -115 -75 C -105 -125, -60 -160, 0 -160 C 55 -160, 100 -130, 115 -85 C 122 -88, 128 -90, 135 -90 C 168 -90, 195 -63, 195 -30 C 195 5, 168 30, 135 30 Z"
-              fill="url(#cloud-body)" stroke="#ffffff" stroke-width="4"/>
+        <!-- Node 3 -->
+        <g transform="translate(0, 106)" font-family="'Consolas', monospace" font-size="13">
+          <text x="24" y="26" fill="#e2e8f0">iu-api-gateway-k8s</text>
+          <text x="250" y="26" fill="#94a3b8">me-central-1a</text>
+          <text x="390" y="26" fill="#38bdf8">10.0.2.05 (Public LB)</text>
+          <rect x="640" y="14" width="220" height="12" rx="4" fill="#1e293b"/>
+          <rect x="640" y="14" width="114" height="12" rx="4" fill="#38bdf8"/>
+          <text x="870" y="25" fill="#94a3b8" font-size="11">52%</text>
+          <rect x="960" y="10" width="80" height="20" rx="4" fill="#065f46"/>
+          <text x="975" y="24" fill="#34d399" font-weight="700">HEALTHY</text>
+        </g>
+        <line x1="0" y1="142" x2="1120" y2="142" stroke="#1e293b"/>
 
-        <!-- Server Blade 1 -->
-        <rect x="-110" y="55" width="220" height="32" rx="8" fill="url(#server-grad)" stroke="#38bdf8" stroke-width="2"/>
-        <circle cx="-85" cy="71" r="4" fill="#22c55e"/>
-        <circle cx="-70" cy="71" r="4" fill="#38bdf8"/>
-        <line x1="-50" y1="71" x2="50" y2="71" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-        <rect x="65" y="64" width="28" height="14" rx="3" fill="#334155"/>
+        <!-- Node 4 -->
+        <g transform="translate(0, 142)" font-family="'Consolas', monospace" font-size="13">
+          <text x="24" y="26" fill="#e2e8f0">iu-db-postgres-master</text>
+          <text x="250" y="26" fill="#94a3b8">me-central-1a</text>
+          <text x="390" y="26" fill="#38bdf8">10.0.3.10 (Isolated DB)</text>
+          <rect x="640" y="14" width="220" height="12" rx="4" fill="#1e293b"/>
+          <rect x="640" y="14" width="62" height="12" rx="4" fill="#38bdf8"/>
+          <text x="870" y="25" fill="#94a3b8" font-size="11">28%</text>
+          <rect x="960" y="10" width="80" height="20" rx="4" fill="#065f46"/>
+          <text x="975" y="24" fill="#34d399" font-weight="700">HEALTHY</text>
+        </g>
+        <line x1="0" y1="178" x2="1120" y2="178" stroke="#1e293b"/>
 
-        <!-- Server Blade 2 -->
-        <rect x="-110" y="95" width="220" height="32" rx="8" fill="url(#server-grad)" stroke="#38bdf8" stroke-width="2"/>
-        <circle cx="-85" cy="111" r="4" fill="#22c55e"/>
-        <circle cx="-70" cy="111" r="4" fill="#38bdf8"/>
-        <line x1="-50" y1="111" x2="50" y2="111" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-        <rect x="65" y="104" width="28" height="14" rx="3" fill="#334155"/>
-
-        <!-- Data Bus -->
-        <path d="M -50 30 L -50 55" stroke="#38bdf8" stroke-width="3"/>
-        <path d="M 0 30 L 0 55" stroke="#38bdf8" stroke-width="3"/>
-        <path d="M 50 30 L 50 55" stroke="#38bdf8" stroke-width="3"/>
-      </g>
-
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#7dd3fc" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
+        <!-- Console Message -->
+        <rect y="215" width="1120" height="60" rx="8" fill="#0c192c"/>
+        <text x="24" y="245" fill="#38bdf8" font-family="'Consolas', monospace" font-size="13">&gt; kubectl get pods -n production: 12/12 Pods Running | Ingress Controller: Zero Dropped Connections</text>
       </g>
     `,
   },
@@ -445,94 +363,80 @@ const COVERS = [
     key: 'career-workshop',
     titleEn: 'Career Preparation Workshop',
     titleAr: 'ورشة الاستعداد لسوق العمل',
-    topicLabel: 'CAREER EMPOWERMENT & PROFESSIONAL READINESS',
-    bgStart: '#0f0e26',
-    bgEnd: '#1e1a47',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#141334"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="career-glow" cx="50%" cy="44%" r="52%">
-          <stop offset="0%" stop-color="#818cf8" stop-opacity="0.3"/>
-          <stop offset="70%" stop-color="#4f46e5" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#0f0e26" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="briefcase-body" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#4338ca"/>
-          <stop offset="100%" stop-color="#312e81"/>
-        </linearGradient>
-        <linearGradient id="gold-accent" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fde047"/>
-          <stop offset="100%" stop-color="#f59e0b"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#818cf8" flood-opacity="0.38"/>
-        </filter>
-      </defs>
+    topicLabel: 'ATS RESUME OPTIMIZATION & INTERVIEW READINESS',
+    bgStart: '#0d0c22',
+    bgEnd: '#1a183b',
+    windowTitle: 'Career Readiness & ATS Resume Optimization Workbench',
+    accent: '#818cf8',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#11102b" stroke="#312e81" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#1e1b4b"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#c7d2fe" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Professional Resume &amp; ATS Career Readiness Audit System</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="305" r="440" fill="url(#career-glow)"/>
+      <!-- Two-Column Layout: Left Resume Preview, Right ATS Scorecard -->
+      <g transform="translate(526, 126)">
+        <!-- Left: Realistic CV Preview Box -->
+        <rect width="520" height="350" rx="8" fill="#ffffff" stroke="#c7d2fe" stroke-width="2"/>
+        <g transform="translate(24, 24)">
+          <!-- CV Header -->
+          <text x="0" y="20" fill="#1e1b4b" font-family="'Cairo', system-ui" font-size="18" font-weight="800">عبدالله محمد الجهني</text>
+          <text x="0" y="38" fill="#4338ca" font-family="system-ui" font-size="12" font-weight="600">مهندس برمجيات ونظم حاسوبية | بكالوريوس علوم الحاسب (مرتبة شرف)</text>
+          <text x="0" y="54" fill="#64748b" font-family="'Consolas', monospace" font-size="11">المدينة المنورة، المملكة العربية السعودية | linkedin.com/in/ajohani | github.com/ajohani</text>
+          <line x1="0" y1="65" x2="472" y2="65" stroke="#e0e7ff" stroke-width="1.5"/>
 
-      <!-- Corner Framing Brackets -->
-      <g stroke="#818cf8" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
-      </g>
+          <!-- Section 1 -->
+          <text x="0" y="85" fill="#312e81" font-family="system-ui" font-size="13" font-weight="700">TECHNICAL COMPETENCIES &amp; SKILLS</text>
+          <g transform="translate(0, 95)" font-family="system-ui" font-size="11">
+            <rect width="68" height="20" rx="4" fill="#e0e7ff"/>
+            <text x="8" y="14" fill="#3730a3">Python 3</text>
+            <rect x="74" width="78" height="20" rx="4" fill="#e0e7ff"/>
+            <text x="82" y="14" fill="#3730a3">PostgreSQL</text>
+            <rect x="158" width="60" height="20" rx="4" fill="#e0e7ff"/>
+            <text x="166" y="14" fill="#3730a3">FastAPI</text>
+            <rect x="224" width="60" height="20" rx="4" fill="#e0e7ff"/>
+            <text x="232" y="14" fill="#3730a3">Docker</text>
+            <rect x="290" width="78" height="20" rx="4" fill="#e0e7ff"/>
+            <text x="298" y="14" fill="#3730a3">Git Workflow</text>
+          </g>
 
-      <!-- Stepped Career Progression Lines -->
-      <g stroke="#818cf8" stroke-opacity="0.12" stroke-width="1.5">
-        <line x1="380" y1="420" x2="680" y2="420"/>
-        <line x1="530" y1="360" x2="830" y2="360"/>
-        <line x1="1792" y1="420" x2="1492" y2="420"/>
-        <line x1="1642" y1="360" x2="1342" y2="360"/>
-      </g>
+          <!-- Section 2 -->
+          <text x="0" y="142" fill="#312e81" font-family="system-ui" font-size="13" font-weight="700">PROFESSIONAL EXPERIENCE &amp; PROJECTS</text>
+          <text x="0" y="162" fill="#1e1b4b" font-family="system-ui" font-size="12" font-weight="700">قائد فريق مشروع التخرج — منصة إدارة الفعاليات الجامعية</text>
+          <text x="0" y="178" fill="#475569" font-family="system-ui" font-size="11.5">• تصميم بنية معمارية سحابية قابلة للتوسع باستخدام PostgreSQL وخدمات الويب المصغرة.</text>
+          <text x="0" y="194" fill="#475569" font-family="system-ui" font-size="11.5">• تطوير دورة عمل الحجز والتسجيل الآلي وإصدار التذاكر المعتمدة برمز QR مشفر.</text>
+          <text x="0" y="210" fill="#475569" font-family="system-ui" font-size="11.5">• إنجاز اختبارات التحقق الشاملة (E2E Playwright) بنسبة نجاح 100% لكافة المسارات.</text>
 
-      <!-- Center Career Graphic: Briefcase & Structured CV -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <!-- Resume / CV Document (Tilted Slightly in Background) -->
-        <g transform="translate(-140, -145) rotate(-6)">
-          <rect width="170" height="230" rx="10" fill="#ffffff" stroke="#c7d2fe" stroke-width="3"/>
-          <circle cx="35" cy="40" r="16" fill="#818cf8"/>
-          <rect x="62" y="30" width="80" height="9" rx="4" fill="#4338ca"/>
-          <rect x="62" y="44" width="55" height="7" rx="3" fill="#a5b4fc"/>
-          <line x1="20" y1="70" x2="150" y2="70" stroke="#e0e7ff" stroke-width="2"/>
-          <rect x="20" y="85" width="130" height="7" rx="3" fill="#6366f1"/>
-          <rect x="20" y="99" width="105" height="6" rx="3" fill="#c7d2fe"/>
-          <rect x="20" y="112" width="120" height="6" rx="3" fill="#c7d2fe"/>
-          <rect x="20" y="132" width="130" height="7" rx="3" fill="#6366f1"/>
-          <rect x="20" y="146" width="95" height="6" rx="3" fill="#c7d2fe"/>
-          <rect x="20" y="159" width="110" height="6" rx="3" fill="#c7d2fe"/>
-          <circle cx="138" cy="195" r="14" fill="url(#gold-accent)"/>
-          <path d="M 132 195 L 136 199 L 145 190" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Section 3 -->
+          <text x="0" y="238" fill="#312e81" font-family="system-ui" font-size="13" font-weight="700">PROFESSIONAL ACCREDITATION &amp; HONORS</text>
+          <text x="0" y="258" fill="#1e1b4b" font-family="system-ui" font-size="12">• جائزة التميز في الابتكار التقني — كلية الحاسب الآلي 2026</text>
+          <text x="0" y="274" fill="#1e1b4b" font-family="system-ui" font-size="12">• 140 ساعة عمل تطوعي معتمدة في الدعم التقني والتطوير المؤسسي</text>
         </g>
 
-        <!-- Executive Professional Briefcase -->
-        <g transform="translate(15, -45)">
-          <path d="M 40 -12 C 40 -35, 120 -35, 120 -12" fill="none" stroke="#6366f1" stroke-width="10" stroke-linecap="round"/>
-          <path d="M 48 -12 C 48 -28, 112 -28, 112 -12" fill="none" stroke="url(#gold-accent)" stroke-width="3" stroke-linecap="round"/>
-          <rect x="-20" y="-10" width="200" height="150" rx="18" fill="url(#briefcase-body)" stroke="#818cf8" stroke-width="3.5"/>
-          <path d="M -20 -10 L 180 -10 L 160 65 L 0 65 Z" fill="#3730a3" stroke="#6366f1" stroke-width="2"/>
-          <rect x="68" y="52" width="24" height="28" rx="5" fill="url(#gold-accent)" stroke="#ffffff" stroke-width="1.5"/>
-          <circle cx="80" cy="66" r="3" fill="#1e1b4b"/>
-          <path d="M -16 115 L -16 136 C -16 142, -10 148, -4 148 L 18 148 Z" fill="#312e81" stroke="#6366f1" stroke-width="2"/>
-          <path d="M 176 115 L 176 136 C 176 142, 170 148, 164 148 L 142 148 Z" fill="#312e81" stroke="#6366f1" stroke-width="2"/>
+        <!-- Right: ATS Audit Scorecard -->
+        <g transform="translate(545, 0)">
+          <rect width="575" height="350" rx="8" fill="#1e1b4b" stroke="#4338ca" stroke-width="1.5"/>
+          <g transform="translate(24, 24)">
+            <text x="0" y="20" fill="#a5b4fc" font-family="system-ui" font-size="13" font-weight="700">ATS SCANNER COMPLIANCE RATING</text>
+            <text x="0" y="60" fill="#34d399" font-family="'Consolas', monospace" font-size="38" font-weight="800">98% [MATCH]</text>
+            <text x="0" y="85" fill="#c7d2fe" font-family="system-ui" font-size="13">درجة تطابق استثنائية مع معايير أنظمة الفرز الوظيفي الآلي</text>
+
+            <!-- Checklist -->
+            <g transform="translate(0, 110)" font-family="system-ui" font-size="13">
+              <text x="0" y="20" fill="#34d399">✓ صياغة واضحة للعناوين القياسية (Standard Section Headings)</text>
+              <text x="0" y="48" fill="#34d399">✓ استخدام الأفعال الإجرائية والنتائج الرقمية القابلة للقياس</text>
+              <text x="0" y="76" fill="#34d399">✓ التوافق الدلالي مع الكلمات المفتاحية في قطاع التوظيف التقني</text>
+              <text x="0" y="104" fill="#34d399">✓ خلو المستند من الجداول المعقدة أو الرموز المسببة لأخطاء الفرز</text>
+              <text x="0" y="132" fill="#fbbf24">● جاهزية المقابلات الشخصية (STAR Method Prepared)</text>
+            </g>
+
+            <!-- Bottom Target Roles -->
+            <rect y="260" width="527" height="42" rx="6" fill="#312e81"/>
+            <text x="16" y="286" fill="#e0e7ff" font-family="'Cairo', system-ui" font-size="13" font-weight="700">المسار المستهدف: مهندس برمجيات / مطور نظم سحابية / محلل حلول تقنية</text>
+          </g>
         </g>
-
-        <!-- Upward Career Growth Arrow -->
-        <path d="M -220 120 L -90 90 L 30 30 L 180 -70 L 260 -130" fill="none" stroke="url(#gold-accent)" stroke-width="4" stroke-linecap="round" stroke-dasharray="8,6"/>
-        <polygon points="275,-140 252,-138 266,-120" fill="#f59e0b"/>
-      </g>
-
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#a5b4fc" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
       </g>
     `,
   },
@@ -540,86 +444,86 @@ const COVERS = [
     key: 'student-volunteering',
     titleEn: 'Student Volunteering Initiative',
     titleAr: 'مبادرة التطوع الطلابي',
-    topicLabel: 'CIVIC ENGAGEMENT & COMMUNITY EMPOWERMENT',
-    bgStart: '#1d0610',
-    bgEnd: '#3a0d1e',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#280916"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="vol-glow" cx="50%" cy="44%" r="52%">
-          <stop offset="0%" stop-color="#fb7185" stop-opacity="0.32"/>
-          <stop offset="70%" stop-color="#e11d48" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#1d0610" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="heart-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fda4af"/>
-          <stop offset="40%" stop-color="#fb7185"/>
-          <stop offset="100%" stop-color="#e11d48"/>
-        </linearGradient>
-        <linearGradient id="hand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="100%" stop-color="#fecdd3"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#fb7185" flood-opacity="0.4"/>
-        </filter>
-      </defs>
+    topicLabel: 'CAMPUS CIVIC ENGAGEMENT & VOLUNTEERING PLATFORM',
+    bgStart: '#1a050e',
+    bgEnd: '#330a1b',
+    windowTitle: 'Student Volunteering Platform — Islamic University of Madinah',
+    accent: '#fb7185',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#200612" stroke="#4c0519" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#3b081e"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#fecdd3" font-family="'Cairo', system-ui" font-size="14" font-weight="700" text-anchor="middle">بوابة العمل التطوعي الجامعي — الجامعة الإسلامية بالمدينة المنورة</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="305" r="440" fill="url(#vol-glow)"/>
+      <!-- 3 Metrics Ribbon -->
+      <g transform="translate(526, 126)">
+        <rect width="360" height="66" rx="8" fill="#2c0818" stroke="#f43f5e" stroke-width="1.5"/>
+        <text x="20" y="25" fill="#fda4af" font-family="'Cairo', system-ui" font-size="12" font-weight="600">إجمالي الساعات التطوعية الموثقة</text>
+        <text x="20" y="52" fill="#ffffff" font-family="'Consolas', monospace" font-size="20" font-weight="800">4,850+ ساعة معتمدة</text>
 
-      <!-- Corner Framing Brackets -->
-      <g stroke="#fb7185" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
+        <rect x="380" width="360" height="66" rx="8" fill="#2c0818" stroke="#f43f5e" stroke-width="1.5"/>
+        <text x="400" y="25" fill="#fda4af" font-family="'Cairo', system-ui" font-size="12" font-weight="600">الطلبة المتطوعون النشطون</text>
+        <text x="400" y="52" fill="#ffffff" font-family="'Consolas', monospace" font-size="20" font-weight="800">420 طالباً مسجلاً</text>
+
+        <rect x="760" width="360" height="66" rx="8" fill="#2c0818" stroke="#fbbf24" stroke-width="1.5"/>
+        <text x="780" y="25" fill="#fde047" font-family="'Cairo', system-ui" font-size="12" font-weight="600">المبادرات والمشاريع المعتمدة</text>
+        <text x="780" y="52" fill="#ffffff" font-family="'Consolas', monospace" font-size="20" font-weight="800">18 مبادرة مجتمعية</text>
       </g>
 
-      <!-- Community Rings & Stars -->
-      <g stroke="#fb7185" stroke-opacity="0.15" stroke-width="1.5">
-        <circle cx="1086" cy="305" r="275" fill="none" stroke-dasharray="6,8"/>
-        <circle cx="1086" cy="305" r="225" fill="none" stroke-dasharray="10,12"/>
-      </g>
+      <!-- Active Volunteering Initiatives Table -->
+      <g transform="translate(526, 208)">
+        <rect width="1120" height="275" rx="8" fill="#17040d" stroke="#3b081e" stroke-width="1.5"/>
+        <rect width="1120" height="34" rx="8" fill="#290717"/>
+        <text x="24" y="22" fill="#fda4af" font-family="'Cairo', system-ui" font-size="13" font-weight="700">اسم الفرصة التطوعية</text>
+        <text x="420" y="22" fill="#fda4af" font-family="'Cairo', system-ui" font-size="13" font-weight="700">المجال / الجهة المنظمة</text>
+        <text x="700" y="22" fill="#fda4af" font-family="'Cairo', system-ui" font-size="13" font-weight="700">الساعات المعتمدة</text>
+        <text x="960" y="22" fill="#fda4af" font-family="'Cairo', system-ui" font-size="13" font-weight="700">الحالة</text>
 
-      <g fill="#fecdd3" opacity="0.6">
-        <circle cx="820" cy="270" r="5"/>
-        <circle cx="860" cy="190" r="4"/>
-        <circle cx="940" cy="140" r="6"/>
-        <circle cx="1232" cy="140" r="6"/>
-        <circle cx="1312" cy="190" r="4"/>
-        <circle cx="1352" cy="270" r="5"/>
-      </g>
-
-      <!-- Center Graphic: Supporting Hands & Heart -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <g transform="translate(0, -50)">
-          <path d="M 0 65 C -75 10, -110 -35, -70 -75 C -35 -110, 0 -60, 0 -35 C 0 -60, 35 -110, 70 -75 C 110 -35, 75 10, 0 65 Z"
-                fill="url(#heart-grad)" stroke="#ffffff" stroke-width="3"/>
-          <circle cx="-30" cy="-60" r="8" fill="#ffffff" opacity="0.6"/>
+        <!-- Row 1 -->
+        <g transform="translate(0, 34)" font-family="'Cairo', system-ui" font-size="13.5">
+          <text x="24" y="26" fill="#ffffff" font-weight="700">خدمة ضيوف الرحمن وزوار المسجد النبوي</text>
+          <text x="420" y="26" fill="#fecdd3">المسؤولية المجتمعية والخدمات الميدانية</text>
+          <text x="700" y="26" fill="#fde047" font-weight="700">120 ساعة</text>
+          <rect x="960" y="9" width="80" height="22" rx="4" fill="#065f46"/>
+          <text x="980" y="25" fill="#34d399" font-weight="700">جارية</text>
         </g>
+        <line x1="0" y1="70" x2="1120" y2="70" stroke="#290717"/>
 
-        <!-- Left Supporting Hand -->
-        <path d="M -140 100 C -120 70, -70 65, -30 85 C -20 90, 0 100, 0 100 C -25 110, -60 115, -90 120 C -120 125, -150 145, -165 170 L -195 140 C -180 120, -160 105, -140 100 Z"
-              fill="url(#hand-grad)" stroke="#fda4af" stroke-width="2.5"/>
+        <!-- Row 2 -->
+        <g transform="translate(0, 70)" font-family="'Cairo', system-ui" font-size="13.5">
+          <text x="24" y="26" fill="#ffffff" font-weight="700">برنامج الإرشاد الأكاديمي ودعم الطلاب الجدد</text>
+          <text x="420" y="26" fill="#fecdd3">عمادة شؤون الطلاب والأندية الطلابية</text>
+          <text x="700" y="26" fill="#fde047" font-weight="700">85 ساعة</text>
+          <rect x="960" y="9" width="80" height="22" rx="4" fill="#065f46"/>
+          <text x="975" y="25" fill="#34d399" font-weight="700">مكتملة</text>
+        </g>
+        <line x1="0" y1="106" x2="1120" y2="106" stroke="#290717"/>
 
-        <!-- Right Supporting Hand -->
-        <path d="M 140 100 C 120 70, 70 65, 30 85 C 20 90, 0 100, 0 100 C 25 110, 60 115, 90 120 C 120 125, 150 145, 165 170 L 195 140 C 180 120, 160 105, 140 100 Z"
-              fill="url(#hand-grad)" stroke="#fda4af" stroke-width="2.5"/>
+        <!-- Row 3 -->
+        <g transform="translate(0, 106)" font-family="'Cairo', system-ui" font-size="13.5">
+          <text x="24" y="26" fill="#ffffff" font-weight="700">مبادرة الحرم الجامعي الأخضر وحماية البيئة</text>
+          <text x="420" y="26" fill="#fecdd3">نادي أصدقاء البيئة والأنشطة الطلابية</text>
+          <text x="700" y="26" fill="#fde047" font-weight="700">60 ساعة</text>
+          <rect x="960" y="9" width="80" height="22" rx="4" fill="#065f46"/>
+          <text x="980" y="25" fill="#34d399" font-weight="700">جارية</text>
+        </g>
+        <line x1="0" y1="142" x2="1120" y2="142" stroke="#290717"/>
 
-        <!-- Unity Base Arc -->
-        <path d="M -120 170 C -60 190, 60 190, 120 170" fill="none" stroke="#fb7185" stroke-width="4" stroke-linecap="round"/>
-      </g>
+        <!-- Row 4 -->
+        <g transform="translate(0, 142)" font-family="'Cairo', system-ui" font-size="13.5">
+          <text x="24" y="26" fill="#ffffff" font-weight="700">التنظيم والدعم التقني للمؤتمرات الجامعية</text>
+          <text x="420" y="26" fill="#fecdd3">إدارة تقنية المعلومات وتنظيم الفعاليات</text>
+          <text x="700" y="26" fill="#fde047" font-weight="700">90 ساعة</text>
+          <rect x="960" y="9" width="80" height="22" rx="4" fill="#1e3a8a"/>
+          <text x="978" y="25" fill="#93c5fd" font-weight="700">معتمدة</text>
+        </g>
+        <line x1="0" y1="178" x2="1120" y2="178" stroke="#290717"/>
 
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#fda4af" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
+        <!-- Accreditation Footer Note -->
+        <rect y="215" width="1120" height="60" rx="8" fill="#200612"/>
+        <text x="24" y="250" fill="#34d399" font-family="'Cairo', system-ui" font-size="13" font-weight="700">✓ التوثيق المعتمد: تُسجل كافة الساعات والشهادات المكتسبة بصورة آلية وموثوقة ضمن السجل المهاري للطالب.</text>
       </g>
     `,
   },
@@ -627,92 +531,72 @@ const COVERS = [
     key: 'digital-forensics',
     titleEn: 'Digital Forensics Seminar',
     titleAr: 'ندوة الأدلة الجنائية الرقمية',
-    topicLabel: 'DIGITAL INVESTIGATION & EVIDENCE INTEGRITY',
-    bgStart: '#050c17',
-    bgEnd: '#0a1d31',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#071424"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="forensics-glow" cx="50%" cy="44%" r="52%">
-          <stop offset="0%" stop-color="#00f5d4" stop-opacity="0.32"/>
-          <stop offset="70%" stop-color="#0077b6" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#050c17" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="lens-rim" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00f5d4"/>
-          <stop offset="100%" stop-color="#0077b6"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#00f5d4" flood-opacity="0.4"/>
-        </filter>
-      </defs>
+    topicLabel: 'DIGITAL FORENSICS WORKBENCH & INTEGRITY HASH AUDIT',
+    bgStart: '#040914',
+    bgEnd: '#081728',
+    windowTitle: 'Digital Forensics Workbench — Disk Image Analysis & Cryptographic Integrity Suite',
+    accent: '#00f5d4',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#09131f" stroke="#1e293b" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#0f1f33"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#94a3b8" font-family="'Consolas', monospace" font-size="14" text-anchor="middle">Digital Forensics Workbench — Disk Image Analysis &amp; Chain of Custody Audit Suite</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="305" r="440" fill="url(#forensics-glow)"/>
+      <!-- Evidence Case Header -->
+      <g transform="translate(526, 126)">
+        <rect width="1120" height="66" rx="8" fill="#0d1b2a" stroke="#00f5d4" stroke-width="1.5"/>
+        <text x="24" y="26" fill="#94a3b8" font-family="'Consolas', monospace" font-size="12">CASE IDENTIFIER: IU-DF-2026-0814</text>
+        <text x="350" y="26" fill="#94a3b8" font-family="'Consolas', monospace" font-size="12">ACQUISITION: Bit-Stream Raw Image (/dev/nvme0n1)</text>
+        <text x="820" y="26" fill="#34d399" font-family="'Consolas', monospace" font-size="12" font-weight="700">WRITE-BLOCKER: HARDWARE ENFORCED</text>
 
-      <!-- Corner Framing Brackets -->
-      <g stroke="#00f5d4" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
+        <!-- Cryptographic Hashes -->
+        <text x="24" y="50" fill="#00f5d4" font-family="'Consolas', monospace" font-size="12.5" font-weight="700">SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 [VERIFIED MATCH ✓]</text>
+        <text x="820" y="50" fill="#34d399" font-family="'Consolas', monospace" font-size="12.5">MD5: d41d8cd98f00b204e9800998ecf8427e</text>
       </g>
 
-      <!-- Inspection Coordinates & Reticles -->
-      <g stroke="#00f5d4" stroke-opacity="0.1" stroke-width="1.5">
-        <circle cx="1086" cy="305" r="275" fill="none" stroke-dasharray="6,8"/>
-        <circle cx="1086" cy="305" r="235" fill="none" stroke-dasharray="14,14"/>
-      </g>
+      <!-- Forensic Analysis Panes (Hex View + Artifact Timeline) -->
+      <g transform="translate(526, 208)">
+        <!-- Left Hex Editor View -->
+        <rect width="640" height="275" rx="8" fill="#050c14" stroke="#1e293b" stroke-width="1.5"/>
+        <rect width="640" height="32" rx="8" fill="#0b1726"/>
+        <text x="20" y="21" fill="#64748b" font-family="'Consolas', monospace" font-size="12" font-weight="700">OFFSET (HEX)   00 01 02 03 04 05 06 07  08 09 0A 0B 0C 0D 0E 0F   DECODED TEXT</text>
 
-      <!-- Crosshairs -->
-      <g opacity="0.35" stroke="#00b4d8" stroke-width="2" fill="none">
-        <circle cx="440" cy="305" r="45"/>
-        <line x1="380" y1="305" x2="500" y2="305"/>
-        <line x1="440" y1="245" x2="440" y2="365"/>
-
-        <circle cx="1732" cy="305" r="45"/>
-        <line x1="1672" y1="305" x2="1792" y2="305"/>
-        <line x1="1732" y1="245" x2="1732" y2="365"/>
-      </g>
-
-      <!-- Center Biometric Fingerprint & Magnifier Reticle -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <g stroke="#00f5d4" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.85">
-          <path d="M 0 10 C 0 -15, -15 -25, -25 -25 C -35 -25, -45 -10, -45 15 C -45 40, -35 60, -25 75"/>
-          <path d="M 0 35 C -5 20, -15 0, -20 -15 C -25 -25, -20 -40, -5 -45 C 15 -50, 30 -35, 30 -15 C 30 20, 20 50, 0 75"/>
-          <path d="M -15 -65 C 10 -75, 45 -65, 55 -30 C 60 0, 50 40, 25 85"/>
-          <path d="M -40 -65 C -65 -45, -75 -15, -75 20 C -75 60, -55 90, -25 110"/>
-          <path d="M 5 -90 C 40 -90, 75 -65, 85 -20 C 90 25, 75 75, 40 120"/>
-          <path d="M -60 -80 C -95 -50, -100 -5, -100 35 C -100 85, -70 125, -35 140"/>
+        <g font-family="'Consolas', monospace" font-size="11.5" fill="#94a3b8" xml:space="preserve">
+          <text x="20" y="54"><tspan fill="#38bdf8">00000000: </tspan><tspan fill="#00f5d4">4D 5A </tspan>90 00 03 00 00 00  04 00 00 00 FF FF 00 00   <tspan fill="#34d399">MZ..............</tspan></text>
+          <text x="20" y="74"><tspan fill="#38bdf8">00000010: </tspan>B8 00 00 00 00 00 00 00  40 00 00 00 00 00 00 00   ........@.......</text>
+          <text x="20" y="94"><tspan fill="#38bdf8">00000020: </tspan>00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00   ................</text>
+          <text x="20" y="114"><tspan fill="#38bdf8">00000030: </tspan>00 00 00 00 00 00 00 00  00 00 00 00 80 00 00 00   ................</text>
+          <text x="20" y="134"><tspan fill="#38bdf8">00000040: </tspan>0E 1F BA 0E 00 B4 09 CD  21 B8 01 4C CD 21 <tspan fill="#fde047">54 68</tspan>   ........!..L!.<tspan fill="#fde047">Th</tspan></text>
+          <text x="20" y="154"><tspan fill="#38bdf8">00000050: </tspan><tspan fill="#fde047">69 73 20 70 72 6F 67 72  61 6D 20 63 61 6E 6E 6F</tspan>   <tspan fill="#fde047">is program canno</tspan></text>
+          <text x="20" y="174"><tspan fill="#38bdf8">00000060: </tspan><tspan fill="#fde047">74 20 62 65 20 72 75 6E  20 69 6E 20 44 4F 53 20</tspan>   <tspan fill="#fde047">t be run in DOS </tspan></text>
+          <text x="20" y="194"><tspan fill="#38bdf8">00000070: </tspan><tspan fill="#fde047">6D 6F 64 65 2E 0D 0D 0A  24 00 00 00 00 00 00 00</tspan>   <tspan fill="#fde047">mode....$.......</tspan></text>
+          <text x="20" y="214"><tspan fill="#38bdf8">00000080: </tspan>50 45 00 00 4C 01 04 00  E4 84 8E 67 00 00 00 00   <tspan fill="#34d399">PE..L......g....</tspan></text>
+          <text x="20" y="234"><tspan fill="#38bdf8">00000090: </tspan>00 00 00 00 E0 00 02 01  0B 01 0E 1E 00 30 01 00   .............0..</text>
+          <text x="20" y="254"><tspan fill="#38bdf8">000000A0: </tspan>00 20 00 00 00 00 00 00  10 12 00 00 00 10 00 00   . ..............</text>
         </g>
 
-        <!-- Precision Forensic Inspection Lens -->
-        <g transform="translate(-15, -20)">
-          <circle cx="0" cy="0" r="120" fill="#00f5d4" fill-opacity="0.08" stroke="url(#lens-rim)" stroke-width="6"/>
-          <path d="M -80 -60 C -40 -105, 40 -105, 80 -60" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+        <!-- Right Timeline & Artifacts Pane -->
+        <g transform="translate(660, 0)">
+          <rect width="460" height="275" rx="8" fill="#081422" stroke="#1e293b" stroke-width="1.5"/>
+          <rect width="460" height="32" rx="8" fill="#0f1f33"/>
+          <text x="20" y="21" fill="#00f5d4" font-family="'Consolas', monospace" font-size="12" font-weight="700">ARTIFACT TIMELINE ANALYSIS (MFT / USN)</text>
 
-          <line x1="-120" y1="0" x2="-80" y2="0" stroke="#00f5d4" stroke-width="2.5"/>
-          <line x1="80" y1="0" x2="120" y2="0" stroke="#00f5d4" stroke-width="2.5"/>
-          <line x1="0" y1="-120" x2="0" y2="-80" stroke="#00f5d4" stroke-width="2.5"/>
-          <line x1="0" y1="80" x2="0" y2="120" stroke="#00f5d4" stroke-width="2.5"/>
+          <g font-family="'Consolas', monospace" font-size="11.5" fill="#e2e8f0" transform="translate(16, 45)">
+            <text x="0" y="18" fill="#38bdf8">[08:14:02 UTC] File Created: \System32\svc_auth.dll</text>
+            <text x="0" y="38" fill="#fbbf24">• MFT Record 142088 Modified (RunKey Persistence)</text>
+            <text x="0" y="65" fill="#38bdf8">[08:14:18 UTC] Process Execution Event 4688</text>
+            <text x="0" y="85" fill="#e2e8f0">• Hash verified in NIST National Software Library</text>
+            <text x="0" y="112" fill="#38bdf8">[08:14:45 UTC] Network Connection Socket Bound</text>
+            <text x="0" y="132" fill="#f87171">• Outbound Connection Attempt Flagged &amp; Blocked</text>
 
-          <rect x="-35" y="-35" width="70" height="70" rx="6" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="6,4"/>
-          <circle cx="0" cy="0" r="4" fill="#00f5d4"/>
-
-          <path d="M 85 85 L 165 165" stroke="url(#lens-rim)" stroke-width="16" stroke-linecap="round"/>
-          <path d="M 115 115 L 175 175" stroke="#00f5d4" stroke-width="6" stroke-linecap="round"/>
+            <!-- Bottom Chain of Custody Stamp -->
+            <rect y="160" width="428" height="55" rx="6" fill="#07192b" stroke="#00f5d4" stroke-width="1"/>
+            <text x="12" y="182" fill="#34d399" font-weight="700">CHAIN OF CUSTODY VERIFIED INTACT</text>
+            <text x="12" y="202" fill="#94a3b8" font-size="11">Digital Evidence Handling Standard ISO/IEC 27037 Met</text>
+          </g>
         </g>
-      </g>
-
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#64dfdf" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
       </g>
     `,
   },
@@ -720,96 +604,77 @@ const COVERS = [
     key: 'entrepreneurship',
     titleEn: 'Entrepreneurship Forum',
     titleAr: 'ملتقى ريادة الأعمال',
-    topicLabel: 'VENTURE CREATION & SCALABLE INNOVATION',
-    bgStart: '#17082c',
-    bgEnd: '#300f52',
-    renderSvg: (c) => `
-      <defs>
-        <linearGradient id="bg-${c.key}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c.bgStart}"/>
-          <stop offset="50%" stop-color="#220b3c"/>
-          <stop offset="100%" stop-color="${c.bgEnd}"/>
-        </linearGradient>
-        <radialGradient id="rocket-glow" cx="50%" cy="44%" r="52%">
-          <stop offset="0%" stop-color="#f97316" stop-opacity="0.32"/>
-          <stop offset="65%" stop-color="#7c3aed" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#17082c" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="rocket-body" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="50%" stop-color="#f1f5f9"/>
-          <stop offset="100%" stop-color="#cbd5e1"/>
-        </linearGradient>
-        <linearGradient id="flame-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fef08a"/>
-          <stop offset="50%" stop-color="#f97316"/>
-          <stop offset="100%" stop-color="#ef4444"/>
-        </linearGradient>
-        <filter id="shadow-${c.key}" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="10" stdDeviation="20" flood-color="#f97316" flood-opacity="0.4"/>
-        </filter>
-      </defs>
+    topicLabel: 'BUSINESS MODEL CANVAS & VENTURE METRICS',
+    bgStart: '#110521',
+    bgEnd: '#240a45',
+    windowTitle: 'Startup Accelerator & Business Model Canvas Workbench (Seed Stage)',
+    accent: '#f97316',
+    renderWindow: () => `
+      <rect x="506" y="70" width="1160" height="495" rx="12" fill="#17072d" stroke="#3b0764" stroke-width="2"/>
+      <path d="M 506 82 A 12 12 0 0 1 518 70 L 1654 70 A 12 12 0 0 1 1666 82 L 1666 112 L 506 112 Z" fill="#2e0854"/>
+      <circle cx="530" cy="91" r="6" fill="#ef4444"/>
+      <circle cx="548" cy="91" r="6" fill="#f59e0b"/>
+      <circle cx="566" cy="91" r="6" fill="#10b981"/>
+      <text x="1086" y="96" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Startup Accelerator &amp; Business Model Canvas Workbench (Seed Stage)</text>
 
-      <!-- Background -->
-      <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${c.key})"/>
-      <circle cx="1086" cy="305" r="440" fill="url(#rocket-glow)"/>
-
-      <!-- Corner Framing Brackets -->
-      <g stroke="#f97316" stroke-opacity="0.3" stroke-width="2" fill="none">
-        <path d="M 60 100 L 60 60 L 100 60"/>
-        <path d="M 2112 100 L 2112 60 L 2072 60"/>
-        <path d="M 60 624 L 60 664 L 100 664"/>
-        <path d="M 2112 624 L 2112 664 L 2072 664"/>
-      </g>
-
-      <!-- Trajectory Arcs -->
-      <g stroke="#c084fc" stroke-opacity="0.15" stroke-width="1.5">
-        <path d="M 400 520 Q 800 170, 1400 120" fill="none" stroke-dasharray="8,8"/>
-        <path d="M 600 570 Q 1086 220, 1600 90" fill="none" stroke-dasharray="12,12"/>
-      </g>
-      <g fill="#fde047" opacity="0.6">
-        <polygon points="1350,120 1353,130 1363,133 1353,136 1350,146 1347,136 1337,133 1347,130"/>
-        <polygon points="850,190 852,197 859,199 852,201 850,208 848,201 841,199 848,197"/>
-      </g>
-
-      <!-- Center Startup Rocket & Growth Pillars -->
-      <g transform="translate(1086, 305)" filter="url(#shadow-${c.key})">
-        <!-- 3D Bar-Chart Growth Pillars -->
-        <g transform="translate(-160, 40)" opacity="0.75">
-          <rect x="0" y="30" width="35" height="70" rx="6" fill="#7c3aed" stroke="#a855f7" stroke-width="2"/>
-          <rect x="45" y="-10" width="35" height="110" rx="6" fill="#9333ea" stroke="#c084fc" stroke-width="2"/>
-          <rect x="90" y="-55" width="35" height="155" rx="6" fill="#a855f7" stroke="#e9d5ff" stroke-width="2"/>
+      <!-- Business Model Canvas 3-Block Grid -->
+      <g transform="translate(526, 126)">
+        <!-- Block 1: Value Proposition -->
+        <rect width="360" height="235" rx="8" fill="#220b3f" stroke="#a855f7" stroke-width="1.5"/>
+        <text x="20" y="32" fill="#facc15" font-family="'Cairo', system-ui" font-size="16" font-weight="800">1. القيمة المقترحة (Value Proposition)</text>
+        <g font-family="system-ui" font-size="12.5" fill="#f3e8ff" transform="translate(20, 52)">
+          <text x="0" y="18">• منصة موحدة لإدارة الفعاليات الجامعية والتذاكر الرقمية</text>
+          <text x="0" y="42">• أتمتة التحقق برمز الاستجابة السريعة (QR) في ثوانٍ</text>
+          <text x="0" y="66">• لوحة تحليلات لحظية لبيانات الحضور والإيرادات والتقارير</text>
+          <text x="0" y="90">• حماية قصوى للبيانات وسيادة معلوماتية كاملة محلياً</text>
+          <rect y="115" width="320" height="48" rx="6" fill="#3b0764"/>
+          <text x="12" y="145" fill="#fde047" font-weight="700">الميزة التنافسية: تجربة استخدام متكاملة باللغتين</text>
         </g>
 
-        <!-- Diagonal Startup Rocket (Rotated -42 deg) -->
-        <g transform="translate(20, -10) rotate(-42)">
-          <path d="M -18 80 C -30 130, 0 170, 0 170 C 0 170, 30 130, 18 80 Z" fill="url(#flame-grad)"/>
-          <path d="M -10 80 C -18 115, 0 140, 0 140 C 0 140, 18 115, 10 80 Z" fill="#ffffff"/>
+        <!-- Block 2: Customer Segments -->
+        <rect x="380" width="360" height="235" rx="8" fill="#220b3f" stroke="#a855f7" stroke-width="1.5"/>
+        <text x="400" y="32" fill="#facc15" font-family="'Cairo', system-ui" font-size="16" font-weight="800">2. شرائح العملاء (Customer Segments)</text>
+        <g font-family="system-ui" font-size="12.5" fill="#f3e8ff" transform="translate(400, 52)">
+          <text x="0" y="18">• الجامعات ومؤسسات التعليم العالي الحكومية والأهلية</text>
+          <text x="0" y="42">• الكليات والمعاهد ومراكز التدريب المهني المتخصصة</text>
+          <text x="0" y="66">• الأندية الطلابية والجمعيات العلمية والمجتمعية</text>
+          <text x="0" y="90">• منظمو المؤتمرات والمعارض الأكاديمية والمهنية</text>
+          <rect y="115" width="320" height="48" rx="6" fill="#3b0764"/>
+          <text x="12" y="145" fill="#fde047" font-weight="700">حجم السوق المستهدف: 65+ جامعة ومؤسسة تعليمية</text>
+        </g>
 
-          <path d="M -26 40 L -60 75 L -26 80 Z" fill="#ea580c" stroke="#f97316" stroke-width="2"/>
-          <path d="M 26 40 L 60 75 L 26 80 Z" fill="#ea580c" stroke="#f97316" stroke-width="2"/>
-          <path d="M 0 35 L -4 75 L 4 75 Z" fill="#c2410c"/>
-
-          <path d="M 0 -95 C -40 -35, -30 40, -26 80 L 26 80 C 30 40, 40 -35, 0 -95 Z"
-                fill="url(#rocket-body)" stroke="#ffffff" stroke-width="3"/>
-
-          <circle cx="0" cy="-20" r="15" fill="#0284c7" stroke="#ffffff" stroke-width="3.5"/>
-          <circle cx="-4" cy="-24" r="4" fill="#ffffff" opacity="0.8"/>
-          <path d="M 0 -95 C -15 -72, -18 -55, -20 -45 L 20 -45 C 18 -55, 15 -72, 0 -95 Z" fill="#ef4444"/>
+        <!-- Block 3: Revenue Streams -->
+        <rect x="760" width="360" height="235" rx="8" fill="#220b3f" stroke="#f97316" stroke-width="1.5"/>
+        <text x="780" y="32" fill="#f97316" font-family="'Cairo', system-ui" font-size="16" font-weight="800">3. مصادر الإيرادات (Revenue Streams)</text>
+        <g font-family="system-ui" font-size="12.5" fill="#f3e8ff" transform="translate(780, 52)">
+          <text x="0" y="18">• اشتراكات سنوية مرنة للجامعات (B2B SaaS)</text>
+          <text x="0" y="42">• رسوم رمزية على مبيعات التذاكر المدفوعة والملتقيات</text>
+          <text x="0" y="66">• باقات مخصصة للتكامل السحابي والربط البرمجي (API)</text>
+          <text x="0" y="90">• خدمات الدعم الفني وتخصيص البوابات المؤسسية</text>
+          <rect y="115" width="320" height="48" rx="6" fill="#4c0519"/>
+          <text x="12" y="145" fill="#fca5a5" font-weight="700">استدامة مالية: تدفق نقدي متكرر وهامش ربح 78%</text>
         </g>
       </g>
 
-      <!-- Titles -->
-      <g transform="translate(1086, 600)" text-anchor="middle">
-        <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${c.titleAr}</text>
-        <text y="38" fill="#fdba74" font-family="system-ui, -apple-system, sans-serif" font-size="19" font-weight="700" letter-spacing="4">${c.titleEn.toUpperCase()}</text>
+      <!-- Financial Unit Economics & Venture Metrics Bar -->
+      <g transform="translate(526, 380)">
+        <rect width="1120" height="95" rx="8" fill="#1b0733" stroke="#f97316" stroke-width="1.5"/>
+        <g font-family="'Consolas', monospace" font-size="13.5" font-weight="700">
+          <text x="30" y="35" fill="#facc15">CAC: 120 SAR</text>
+          <text x="210" y="35" fill="#34d399">LTV: 2,800 SAR</text>
+          <text x="410" y="35" fill="#38bdf8">LTV/CAC: 23.3x [SUPERIOR]</text>
+          <text x="690" y="35" fill="#f43f5e">MONTHLY RUNWAY: 18 MONTHS</text>
+          <text x="960" y="35" fill="#34d399">PITCH SCORE: 94/100</text>
+        </g>
+        <line x1="30" y1="52" x2="1090" y2="52" stroke="#3b0764"/>
+        <text x="30" y="77" fill="#f3e8ff" font-family="'Cairo', system-ui" font-size="13">خطة النمو: التوسع لـ 5 جامعات خلال المرحلة الأولى، واستهداف نقطة التعادل المالي (Break-even) بحلول الشهر 14.</text>
       </g>
     `,
   },
 ];
 
 async function main() {
-  console.log(`Starting generation of ${COVERS.length} academic vector covers at ${WIDTH}x${HEIGHT}...`);
+  console.log(`Starting generation of ${COVERS.length} authentic subject-specific covers at ${WIDTH}x${HEIGHT}...`);
   const outputDir = path.resolve(__dirname, '../backend/resources/demo/covers');
   fs.mkdirSync(outputDir, { recursive: true });
 
@@ -823,7 +688,38 @@ async function main() {
   for (const cover of COVERS) {
     const svgContent = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}">
-        ${cover.renderSvg(cover)}
+        <defs>
+          <linearGradient id="bg-${cover.key}" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${cover.bgStart}"/>
+            <stop offset="100%" stop-color="${cover.bgEnd}"/>
+          </linearGradient>
+          <radialGradient id="glow-${cover.key}" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="${cover.accent}" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="${cover.bgStart}" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Solid Background -->
+        <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#bg-${cover.key})"/>
+        <circle cx="1086" cy="320" r="500" fill="url(#glow-${cover.key})"/>
+
+        <!-- Grid Lines for Technical Texture -->
+        <g stroke="${cover.accent}" stroke-opacity="0.05" stroke-width="1.5">
+          <line x1="0" y1="181" x2="${WIDTH}" y2="181"/>
+          <line x1="0" y1="362" x2="${WIDTH}" y2="362"/>
+          <line x1="0" y1="543" x2="${WIDTH}" y2="543"/>
+          <line x1="506" y1="0" x2="506" y2="${HEIGHT}"/>
+          <line x1="1666" y1="0" x2="1666" y2="${HEIGHT}"/>
+        </g>
+
+        <!-- The Authentic Realistic UI Window / Code Editor / Dashboard -->
+        ${cover.renderWindow(cover)}
+
+        <!-- Bottom Academic Subtitle Branding -->
+        <g transform="translate(1086, 615)" text-anchor="middle">
+          <text y="0" fill="#ffffff" font-family="'Cairo', 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="800" letter-spacing="1.5">${cover.titleAr}</text>
+          <text y="38" fill="${cover.accent}" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" letter-spacing="3">${cover.titleEn.toUpperCase()}</text>
+        </g>
       </svg>
     `;
 
@@ -854,11 +750,11 @@ async function main() {
     });
 
     const stat = fs.statSync(targetPath);
-    console.log(`✓ Generated ${path.basename(targetPath)} (${stat.size.toLocaleString()} bytes)`);
+    console.log(`✓ Rendered ${path.basename(targetPath)} (${stat.size.toLocaleString()} bytes)`);
   }
 
   await browser.close();
-  console.log('All 8 covers successfully rendered and saved!');
+  console.log('All 8 subject-specific covers rendered and saved successfully!');
 }
 
 main().catch((err) => {

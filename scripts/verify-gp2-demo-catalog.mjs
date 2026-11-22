@@ -228,9 +228,13 @@ async function main() {
     const hasSar = pageText.includes('SAR') || pageText.includes('ر.س') || pageText.includes('مجاني');
     console.log(`- SAR/Free price indication: ${hasSar}`);
 
-    // Verify Demo Notice
-    const hasNotice = pageText.includes('فعالية افتراضية لأغراض العرض أمام لجنة المشروع');
-    console.log(`- Demo notice banner: ${hasNotice}`);
+    // Verify Demo Notice Removed (Must NOT be present)
+    const hasDemoDisclaimer = pageText.includes('فعالية افتراضية') || pageText.includes('لجنة المشروع');
+    console.log(`- Clean Description (No Demo Disclaimer): ${!hasDemoDisclaimer}`);
+
+    // Verify Professional Sections
+    const hasProfessionalStructure = pageText.includes('مقدمة') && (pageText.includes('أهداف') || pageText.includes('محاور'));
+    console.log(`- Professional Section Structure: ${hasProfessionalStructure}`);
 
     // Screenshot
     await page.screenshot({
@@ -246,7 +250,8 @@ async function main() {
       titleMatches,
       imgVisible: imgVisible && naturalWidth > 0,
       locationVerified,
-      hasNotice,
+      cleanNoDisclaimer: !hasDemoDisclaimer,
+      hasProfessionalStructure,
     });
   }
 

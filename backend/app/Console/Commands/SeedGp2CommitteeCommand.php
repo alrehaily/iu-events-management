@@ -27,15 +27,14 @@ class SeedGp2CommitteeCommand extends Command
 {
     private const string TIMEZONE = 'Asia/Riyadh';
 
-    private const string DEMO_NOTICE = 'فعالية افتراضية لأغراض العرض أمام لجنة المشروع.';
-
     protected $signature = 'gp2:seed-committee
         {--organizer-id= : Organizer to own the curated events}
         {--apply : Seed the demo and hide recognized test fixtures. Omit for a dry run}
         {--backup= : Verified PostgreSQL custom-format backup of iu_gp2_demo}
         {--manifest= : New JSON file for saving the original visibility of affected fixtures}
         {--restore-visibility= : Restore visibility using a recorded manifest}
-        {--update-covers : Re-upload and update cover images for existing curated events}';
+        {--update-covers : Re-upload and update cover images for existing curated events}
+        {--update-descriptions : Update descriptions and connection details of existing curated events}';
 
     protected $description = 'Prepare the eight fictional GP2 committee events on the isolated demo database';
 
@@ -137,12 +136,22 @@ class SeedGp2CommitteeCommand extends Command
             foreach ($events as $event) {
                 $existing = $connection->table('events')->where('organizer_id', $owner->organizer_id)
                     ->where('title', $event['title'])
-                    ->where('description', 'like', '%'.self::DEMO_NOTICE.'%')
                     ->whereNull('deleted_at')->value('id');
                 if ($existing) {
                     $connection->table('events')->where('id', $existing)->update(['status' => EventStatus::LIVE->name]);
                     if ($this->option('update-covers')) {
                         $context->uploadCover($existing, $owner->account_id, 'gp2-'.$event['key'].'.jpg');
+                    }
+                    if ($this->option('update-descriptions')) {
+                        $connection->table('events')->where('id', $existing)->update([
+                            'description' => $event['description'],
+                        ]);
+                        if (! $event['venue']) {
+                            $onlineDetails = '<p>يُعقد هذا اللقاء عبر القاعة الافتراضية لمنصة الفعاليات الجامعية. <a href="https://meet.iu.edu.sa/join" target="_blank" rel="noopener">رابط الانضمام للجلسة الافتراضية</a></p><p>يرجى الانضمام قبل موعد الجلسة بـ 10 دقائق للتأكد من إعدادات الصوت والاتصال.</p>';
+                            $connection->table('event_locations')->where('event_id', $existing)->update([
+                                'online_event_connection_details' => $onlineDetails,
+                            ]);
+                        }
                     }
                     $ids[$event['key']] = $existing;
                 } else {
@@ -215,13 +224,13 @@ class SeedGp2CommitteeCommand extends Command
             user_id: $owner->user_id,
             start_date: $start->utc()->toDateTimeString(),
             end_date: $start->addMinutes($fixture['minutes'])->utc()->toDateTimeString(),
-            description: '<p>'.self::DEMO_NOTICE.'</p><p>'.$fixture['description'].'</p>',
+            description: $fixture['description'],
             timezone: self::TIMEZONE,
             currency: 'SAR',
             category: EventCategory::from($fixture['category']),
             event_location: $location
                 ? new EventLocationData(type: LocationType::IN_PERSON, location_id: $location->getId())
-                : new EventLocationData(type: LocationType::ONLINE, online_event_connection_details: '<p>لقاء افتراضي لعرض تجربة الحجز. <a href="https://example.org/">رابط تجريبي للانضمام</a></p>'),
+                : new EventLocationData(type: LocationType::ONLINE, online_event_connection_details: '<p>يُعقد هذا اللقاء عبر القاعة الافتراضية لمنصة الفعاليات الجامعية. <a href="https://meet.iu.edu.sa/join" target="_blank" rel="noopener">رابط الانضمام للجلسة الافتراضية</a></p><p>يرجى الانضمام قبل موعد الجلسة بـ 10 دقائق للتأكد من إعدادات الصوت والاتصال.</p>'),
             status: EventStatus::LIVE->name,
         ));
         $eventId = $event->getId();
