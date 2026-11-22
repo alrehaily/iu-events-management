@@ -1,7 +1,9 @@
 import {t} from "@lingui/macro";
-import {Select, TextInput} from "@mantine/core";
+import {useLingui} from "@lingui/react";
+import {Box, Group, NumberInput, Paper, Select, Stack, Text, TextInput} from "@mantine/core";
 import {useForm} from "@mantine/form";
-import {useState} from "react";
+import {useMemo, useState} from "react";
+import {IconMapPin} from "@tabler/icons-react";
 import {Modal} from "../../common/Modal";
 import {Button} from "../../common/Button";
 import {InputGroup} from "../../common/InputGroup";
@@ -30,17 +32,32 @@ const hasAnyAddressField = (address: VenueAddress) => [
 ].some((value) => (value ?? '').trim().length > 0);
 
 export const LocationEditModal = ({onClose, organizerId, location}: LocationEditModalProps) => {
+    const {i18n} = useLingui();
+    const isArabic = i18n.locale === 'ar';
     const isEditing = !!location?.id;
     const createMutation = useCreateLocation();
     const updateMutation = useUpdateLocation();
     const formErrorHandle = useFormErrorResponseHandler();
     const isPending = createMutation.isPending || updateMutation.isPending;
-    const [latLng, setLatLng] = useState<{lat: number | null; lng: number | null; provider: string | null; placeId: string | null}>({
-        lat: location?.latitude ?? null,
-        lng: location?.longitude ?? null,
+    const [latLng, setLatLng] = useState<{lat: number | string; lng: number | string; provider: string | null; placeId: string | null}>({
+        lat: location?.latitude ?? "",
+        lng: location?.longitude ?? "",
         provider: location?.provider ?? null,
         placeId: location?.provider_place_id ?? null,
     });
+
+    const countryOptions = useMemo(() => {
+        return countries.map((c) => ({
+            value: c.value,
+            label: c.value === SAUDI_COUNTRY
+                ? (isArabic ? 'المملكة العربية السعودية (SA)' : 'Saudi Arabia (SA)')
+                : c.label,
+        })).sort((a, b) => {
+            if (a.value === SAUDI_COUNTRY) return -1;
+            if (b.value === SAUDI_COUNTRY) return 1;
+            return a.label.localeCompare(b.label);
+        });
+    }, [isArabic]);
 
     const form = useForm<{name: string; structured_address: VenueAddress}>({
         initialValues: {
@@ -79,8 +96,8 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
         });
         form.clearErrors();
         setLatLng({
-            lat: place.latitude ?? null,
-            lng: place.longitude ?? null,
+            lat: place.latitude ?? "",
+            lng: place.longitude ?? "",
             provider: place.provider,
             placeId: place.provider_place_id,
         });
@@ -90,8 +107,8 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
         const payload = {
             name: values.name || null,
             structured_address: values.structured_address,
-            latitude: latLng.lat,
-            longitude: latLng.lng,
+            latitude: typeof latLng.lat === "number" ? latLng.lat : null,
+            longitude: typeof latLng.lng === "number" ? latLng.lng : null,
             provider: latLng.provider,
             provider_place_id: latLng.placeId,
         };
@@ -122,46 +139,93 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
         }
     };
 
+    const mapEmbedUrl = typeof latLng.lat === 'number' && typeof latLng.lng === 'number'
+        && Math.abs(latLng.lat) <= 90 && Math.abs(latLng.lng) <= 180
+        ? `https://www.openstreetmap.org/export/embed.html?bbox=${latLng.lng - 0.006}%2C${latLng.lat - 0.004}%2C${latLng.lng + 0.006}%2C${latLng.lat + 0.004}&layer=mapnik&marker=${latLng.lat}%2C${latLng.lng}`
+        : null;
+
     return (
         <Modal opened onClose={onClose} heading={isEditing ? t`Edit Location` : t`Add Location`} size="lg">
             <form onSubmit={form.onSubmit(handleSubmit)}>
-                <AddressAutocomplete
-                    organizerId={organizerId}
-                    country={form.values.structured_address.country || undefined}
-                    onPlaceSelected={handlePlaceSelected}
-                />
-                <TextInput
-                    {...form.getInputProps("name")}
-                    label={t`Display name`}
-                    description={t`Optional nickname shown in pickers, e.g. "HQ Conference Room"`}
-                    placeholder={t`Main Office`}
-                />
-                <TextInput
-                    {...form.getInputProps("structured_address.venue_name")}
-                    label={t`Venue Name`}
-                    placeholder={t`Conference Center`}
-                />
-                <InputGroup>
-                    <TextInput {...form.getInputProps("structured_address.address_line_1")} label={t`Address Line 1`}/>
-                    <TextInput {...form.getInputProps("structured_address.address_line_2")} label={t`Address Line 2`}/>
-                </InputGroup>
-                <InputGroup>
-                    <TextInput {...form.getInputProps("structured_address.city")} label={t`City`}/>
-                    <TextInput {...form.getInputProps("structured_address.state_or_region")} label={t`State or Region`}/>
-                </InputGroup>
-                <InputGroup>
-                    <TextInput {...form.getInputProps("structured_address.zip_or_postal_code")} label={t`Zip or Postal Code`}/>
-                    <Select
-                        searchable
-                        data={countries}
-                        {...form.getInputProps("structured_address.country")}
-                        label={t`Country`}
-                        placeholder={t`Saudi Arabia`}
+                <Stack gap="md">
+                    <AddressAutocomplete
+                        organizerId={organizerId}
+                        country={form.values.structured_address.country || undefined}
+                        onPlaceSelected={handlePlaceSelected}
                     />
-                </InputGroup>
-                <Button type="submit" fullWidth mt="xl" loading={isPending}>
-                    {isEditing ? t`Save Changes` : t`Add Location`}
-                </Button>
+
+                    <Paper withBorder p="sm" radius="md" style={{backgroundColor: 'var(--iu-surface-alt, #f8faf9)'}}>
+                        <Group justify="space-between" mb="xs">
+                            <Group gap="xs">
+                                <IconMapPin size={16} color="var(--iu-green-secondary, #1b754b)"/>
+                                <Text size="sm" fw={600}>
+                                    {t`Coordinates & Map Preview`}
+                                </Text>
+                            </Group>
+                        </Group>
+                        <InputGroup>
+                            <NumberInput
+                                label={t`Latitude`}
+                                value={latLng.lat}
+                                min={-90}
+                                max={90}
+                                onChange={(lat) => setLatLng((prev) => ({...prev, lat, provider: null, placeId: null}))}
+                            />
+                            <NumberInput
+                                label={t`Longitude`}
+                                value={latLng.lng}
+                                min={-180}
+                                max={180}
+                                onChange={(lng) => setLatLng((prev) => ({...prev, lng, provider: null, placeId: null}))}
+                            />
+                        </InputGroup>
+                        {mapEmbedUrl && (
+                            <Box mt="xs" style={{borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--iu-border, #e5e7eb)'}}>
+                                <iframe
+                                    title={t`Venue Location Map`}
+                                    width="100%"
+                                    height="180"
+                                    loading="lazy"
+                                    src={mapEmbedUrl}
+                                    style={{display: 'block', border: 'none'}}
+                                />
+                            </Box>
+                        )}
+                    </Paper>
+
+                    <TextInput
+                        {...form.getInputProps("name")}
+                        label={t`Display name`}
+                        description={t`Optional nickname shown in pickers, e.g. "HQ Conference Room"`}
+                        placeholder={t`Main Office`}
+                    />
+                    <TextInput
+                        {...form.getInputProps("structured_address.venue_name")}
+                        label={t`Venue Name`}
+                        placeholder={t`Conference Center`}
+                    />
+                    <InputGroup>
+                        <TextInput {...form.getInputProps("structured_address.address_line_1")} label={t`Address Line 1`}/>
+                        <TextInput {...form.getInputProps("structured_address.address_line_2")} label={t`Address Line 2`}/>
+                    </InputGroup>
+                    <InputGroup>
+                        <TextInput {...form.getInputProps("structured_address.city")} label={t`City`}/>
+                        <TextInput {...form.getInputProps("structured_address.state_or_region")} label={t`State or Region`}/>
+                    </InputGroup>
+                    <InputGroup>
+                        <TextInput {...form.getInputProps("structured_address.zip_or_postal_code")} label={t`Zip or Postal Code`}/>
+                        <Select
+                            searchable
+                            data={countryOptions}
+                            {...form.getInputProps("structured_address.country")}
+                            label={t`Country`}
+                            placeholder={t`Saudi Arabia`}
+                        />
+                    </InputGroup>
+                    <Button type="submit" fullWidth mt="md" loading={isPending}>
+                        {isEditing ? t`Save Changes` : t`Add Location`}
+                    </Button>
+                </Stack>
             </form>
         </Modal>
     );

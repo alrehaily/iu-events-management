@@ -102,7 +102,11 @@ const Settings = () => {
                         />
                     </InputGroup>
 
-                    <Button loading={organizerMutation.isPending} type={'submit'}>
+                    <Button
+                        loading={organizerMutation.isPending}
+                        type={'submit'}
+                        style={{ minWidth: 160, width: 'fit-content' }}
+                    >
                         {t`Save`}
                     </Button>
                 </fieldset>

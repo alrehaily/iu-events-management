@@ -13982,3 +13982,18 @@ msgstr "Unable to start your session. Please try again."
 
 msgid "Saudi Arabia"
 msgstr "Saudi Arabia"
+
+msgid "Coordinates & Map Preview"
+msgstr "Coordinates & Map Preview"
+
+msgid "Latitude"
+msgstr "Latitude"
+
+msgid "Longitude"
+msgstr "Longitude"
+
+msgid "Organizer Homepage Preview"
+msgstr "Organizer Homepage Preview"
+
+msgid "Venue Location Map"
+msgstr "Venue Location Map"

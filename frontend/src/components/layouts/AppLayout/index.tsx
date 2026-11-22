@@ -60,13 +60,15 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     useEffect(() => {
         const mainElement = document.getElementById('app-manage-main');
         if (mainElement) {
+            mainElement.scrollTop = 0;
             const handleScroll = () => {
                 setTopBarShadow(mainElement.scrollTop > 10);
             };
+            handleScroll();
             mainElement.addEventListener('scroll', handleScroll);
             return () => mainElement.removeEventListener('scroll', handleScroll);
         }
-    }, []);
+    }, [location.pathname]);
 
     useEffect(() => {
         const handleResize = () => {

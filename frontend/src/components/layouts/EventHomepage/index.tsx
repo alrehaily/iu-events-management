@@ -38,31 +38,32 @@ import "../../../styles/iu/event-details.css";
 
 interface EventHomepageProps {
     event?: Event;
+    preview?: boolean;
     promoCodeValid?: boolean;
     promoCode?: string;
     initialOccurrenceId?: number | null;
 }
 
 export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
-    const {event, promoCodeValid, promoCode, initialOccurrenceId} = loaderData;
+    const {event, promoCodeValid, promoCode, initialOccurrenceId, preview = false} = loaderData;
     const {dir, locale, getCategoryLabel} = useIULanguage();
     const BackArrow = dir === "rtl" ? IconArrowRight : IconArrowLeft;
     const [contactModalOpen, setContactModalOpen] = useState(false);
     const [ticketsModalOpen, setTicketsModalOpen] = useState(false);
     const [selectedOccurrence, setSelectedOccurrence] = useState<EventOccurrence | undefined>();
     const {pixelsReady} = useOrganizerTrackingPixels(
-        event?.organizer?.settings?.tracking_pixels
+        preview ? undefined : event?.organizer?.settings?.tracking_pixels
     );
 
     useEffect(() => {
-        if (event && pixelsReady && hasActivePixels()) {
+        if (!preview && event && pixelsReady && hasActivePixels()) {
             trackPixelEvent({
                 eventName: 'ViewContent',
                 contentName: event.title,
                 contentId: event.id,
             });
         }
-    }, [event?.id, pixelsReady]);
+    }, [event?.id, pixelsReady, preview]);
 
     if (!event) {
         return <EventNotAvailable/>;
@@ -105,8 +106,8 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const topics = rawHighlights?.split('\n').map(topic => topic.trim()).filter(Boolean) ?? [];
 
     return (
-        <div className="iu-page iu-event-details-page" dir={dir}>
-            {event?.status && event?.id && (
+        <div className="iu-page iu-event-details-page" dir={dir} inert={preview || undefined}>
+            {!preview && event?.status && event?.id && (
                 <StatusToggle
                     entityType="event"
                     entityId={event.id}
@@ -277,11 +278,11 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                     >
                                         {t`Open in Maps`} <IconExternalLink size={11} />
                                     </a>
-                                    <iframe
+                                    {!preview && <iframe
                                         src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
                                         title={t`Event location map`}
                                         loading="lazy"
-                                    />
+                                    />}
                                 </div>}
                             </aside>
 
@@ -293,7 +294,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
 
             {/* Registration / Tickets Modal */}
             <Modal
-                opened={ticketsModalOpen}
+                opened={!preview && ticketsModalOpen}
                 onClose={() => setTicketsModalOpen(false)}
                 title={t`Event registration`}
                 size="lg"
@@ -326,6 +327,8 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                         promoCodeValid={promoCodeValid}
                         promoCode={promoCode}
                         showPoweredBy={false}
+                        requireAttendeeAuth
+                        widgetMode={preview ? "preview" : undefined}
                         initialOccurrenceId={initialOccurrenceId}
                         onSelectedOccurrenceChange={setSelectedOccurrence}
                     />
@@ -333,7 +336,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
             </Modal>
 
             {/* Contact Modal */}
-            {organizer && <ContactOrganizerModal
+            {!preview && organizer && <ContactOrganizerModal
                 opened={contactModalOpen}
                 onClose={() => setContactModalOpen(false)}
                 organizer={organizer}

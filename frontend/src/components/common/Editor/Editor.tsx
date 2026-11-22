@@ -100,7 +100,7 @@ export const Editor = ({
                                   onClick={() => editor?.commands.focus()}>{label}</InputLabel>}
             {description && (
                 <div style={{marginBottom: 5}}>
-                    <InputDescription size={size}>{description}</InputDescription>
+                    <InputDescription component="div" size={size}>{description}</InputDescription>
                 </div>
             )}
             <RichTextEditor variant={'subtle'} editor={editor}>

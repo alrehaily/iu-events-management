@@ -8,11 +8,27 @@
   transition: box-shadow 0.3s ease;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 50;
   border-inline-start: none;
   border-bottom: none;
   box-shadow: none;
   animation: iuBdsnPageFade 0.35s ease both;
+  overflow: visible;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/assets/iu/poly-bg.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
 
   :global([dir="ltr"]) & {
     background: linear-gradient(to right, #084b2f 0%, #156d43 55%, #1a7e4e 100%);
@@ -194,7 +210,7 @@
       background: rgba(255, 255, 255, 0.16) !important;
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
       color: #ffffff !important;
-      border-radius: var(--iu-radius-pill, 999px) !important;
+      border-radius: var(--iu-radius-sm, 8px) !important;
       font-family: var(--iu-font-family) !important;
       font-weight: 600 !important;
       font-size: 0.8125rem !important;

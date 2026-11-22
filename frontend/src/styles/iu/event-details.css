@@ -316,12 +316,9 @@
 }
 
 .iu-btn-register-main {
-  background: var(
-    --iu-green-gradient,
-    linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%)
-  );
+  background: var(--iu-green-secondary, #1b754b);
   color: #ffffff;
-  border-radius: 999px;
+  border-radius: var(--iu-radius-sm, 8px);
   width: 100%;
   max-width: 250px;
   margin-inline: auto;
@@ -333,8 +330,8 @@
   text-align: center;
   margin-top: 14px;
   margin-bottom: 22px;
-  box-shadow: 0 4px 14px rgba(27, 117, 75, 0.24);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(27, 117, 75, 0.2);
+  transition: transform var(--iu-transition-fast), background-color var(--iu-transition-fast), box-shadow var(--iu-transition-fast);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,12 +339,9 @@
 }
 
 .iu-btn-register-main:hover {
-  background: var(
-    --iu-green-gradient-hover,
-    linear-gradient(110deg, #063923 0%, #15623e 55%, #177545 100%)
-  );
+  background: var(--iu-green-800, #105f3c);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(27, 117, 75, 0.35);
+  box-shadow: 0 4px 12px rgba(27, 117, 75, 0.3);
 }
 
 #tickets .button-input input,

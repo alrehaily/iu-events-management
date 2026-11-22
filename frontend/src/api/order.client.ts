@@ -17,12 +17,13 @@ export interface OrderDetails {
 }
 
 export interface AttendeeDetails extends OrderDetails {
-    product_id: number,
+    product_id: IdParam,
+    product_price_id: IdParam,
 }
 
 export interface FinaliseOrderPayload {
     order: OrderDetails,
-    attendees: AttendeeDetails[],
+    products: AttendeeDetails[],
 }
 
 export interface EditOrderPayload {

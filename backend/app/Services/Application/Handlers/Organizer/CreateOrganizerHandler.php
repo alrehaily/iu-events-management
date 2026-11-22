@@ -4,6 +4,7 @@ namespace HiEvents\Services\Application\Handlers\Organizer;
 
 use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
+use HiEvents\DomainObjects\Status\OrganizerStatus;
 use HiEvents\Repository\Interfaces\AccountRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerConfigurationRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
@@ -38,6 +39,7 @@ class CreateOrganizerHandler
 
     private function createOrganizer(CreateOrganizerDTO $organizerData): OrganizerDomainObject
     {
+        $account = $this->accountRepository->findFirst($organizerData->account_id);
         $organizer = $this->organizerRepository->create([
             'name' => $organizerData->name,
             'email' => $organizerData->email,
@@ -47,7 +49,8 @@ class CreateOrganizerHandler
             'account_id' => $organizerData->account_id,
             'timezone' => $organizerData->timezone,
             'currency' => $organizerData->currency,
-            'organizer_configuration_id' => $this->resolveConfigurationId($organizerData->account_id),
+            'status' => $account?->getAccountVerifiedAt() !== null ? OrganizerStatus::LIVE->name : OrganizerStatus::DRAFT->name,
+            'organizer_configuration_id' => $this->resolveConfigurationId($account?->getAccountConfigurationId()),
         ]);
 
         $this->createDefaultOrganizerSettingsService->createOrganizerSettings($organizer);
@@ -57,10 +60,8 @@ class CreateOrganizerHandler
             ->findById($organizer->getId());
     }
 
-    private function resolveConfigurationId(int $accountId): ?int
+    private function resolveConfigurationId(?int $legacyAccountConfigurationId): ?int
     {
-        $account = $this->accountRepository->findFirst($accountId);
-        $legacyAccountConfigurationId = $account?->getAccountConfigurationId();
 
         if ($legacyAccountConfigurationId !== null) {
             $matched = $this->organizerConfigurationRepository->findFirstWhere([

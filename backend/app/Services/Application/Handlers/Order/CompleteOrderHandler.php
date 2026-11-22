@@ -47,6 +47,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use RuntimeException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Throwable;
 
 /**
  * @todo - Tidy this up
@@ -76,13 +77,17 @@ class CompleteOrderHandler
             'event_id' => $orderData->event_id,
         ]);
 
-        $updatedOrder = DB::transaction(function () use ($orderData, $orderShortId, $eventSettings) {
+        [$updatedOrder, $isReplay] = DB::transaction(function () use ($orderData, $orderShortId, $eventSettings) {
             $orderDTO = $orderData->order;
 
             DB::statement('SELECT pg_advisory_xact_lock(hashtext(?))', [$orderShortId]);
 
-            $order = $this->getOrder($orderShortId);
+            $order = $this->getOrder($orderShortId, $orderData->event_id);
+            if ($order->isOrderCompleted() && $order->getPaymentStatus() === OrderPaymentStatus::NO_PAYMENT_REQUIRED->name) {
+                return [$order, true];
+            }
 
+            $this->validateOrder($order);
             $this->occurrenceStatusValidator->assertOrderOccurrencesArePurchasable($order);
 
             $buyerEmail = strtolower($orderDTO->email ?? '');
@@ -118,22 +123,38 @@ class CompleteOrderHandler
                 $this->productQuantityUpdateService->updateQuantitiesFromOrder($updatedOrder);
             }
 
-            return $updatedOrder;
+            return [$updatedOrder, false];
         });
 
-        event(new OrderStatusChangedEvent(
-            order: $updatedOrder,
-            sendEmails: true,
-            createInvoice: $eventSettings->getEnableInvoicing(),
-        ));
+        if ($isReplay) {
+            return $updatedOrder;
+        }
+
+        try {
+            event(new OrderStatusChangedEvent(
+                order: $updatedOrder,
+                sendEmails: true,
+                createInvoice: $eventSettings->getEnableInvoicing(),
+            ));
+        } catch (Throwable $exception) {
+            if (! $updatedOrder->isOrderCompleted()) {
+                throw $exception;
+            }
+
+            report($exception);
+        }
 
         if ($updatedOrder->isOrderCompleted()) {
-            $this->domainEventDispatcherService->dispatch(
-                new OrderEvent(
-                    type: DomainEventType::ORDER_CREATED,
-                    orderId: $updatedOrder->getId(),
-                )
-            );
+            try {
+                $this->domainEventDispatcherService->dispatch(
+                    new OrderEvent(
+                        type: DomainEventType::ORDER_CREATED,
+                        orderId: $updatedOrder->getId(),
+                    )
+                );
+            } catch (Throwable $exception) {
+                report($exception);
+            }
         }
 
         return $updatedOrder;
@@ -322,7 +343,7 @@ class CompleteOrderHandler
     /**
      * @throws ResourceConflictException
      */
-    private function getOrder(string $orderShortId): OrderDomainObject
+    private function getOrder(string $orderShortId, int $eventId): OrderDomainObject
     {
         $order = $this->orderRepository
             ->loadRelation(
@@ -332,7 +353,7 @@ class CompleteOrderHandler
                 ))
             ->findByShortId($orderShortId);
 
-        if ($order === null) {
+        if ($order === null || $order->getEventId() !== $eventId) {
             throw new ResourceNotFoundException(__('Order not found'));
         }
 
@@ -342,8 +363,6 @@ class CompleteOrderHandler
                 __('Sorry, we could not verify your session. Please restart your order.')
             );
         }
-
-        $this->validateOrder($order);
 
         return $order;
     }

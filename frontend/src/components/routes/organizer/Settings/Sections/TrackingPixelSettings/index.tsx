@@ -21,50 +21,50 @@ import {TrackingPixelConfig} from "../../../../../../types.ts";
 
 interface ProviderDef {
     key: string;
-    label: string;
+    label: () => string;
     icon: any;
     placeholder: string;
-    description: string;
+    description: () => string;
     pattern: RegExp;
-    formatHint: string;
+    formatHint: () => string;
 }
 
 const PROVIDERS: ProviderDef[] = [
     {
         key: 'facebook_pixel',
-        label: t`Facebook Pixel`,
+        label: () => t`Facebook Pixel`,
         icon: IconBrandFacebook,
         placeholder: '1234567890',
-        description: t`Pixel ID (numeric)`,
+        description: () => t`Pixel ID (numeric)`,
         pattern: /^\d{9,20}$/,
-        formatHint: t`Must be 9-20 digits`,
+        formatHint: () => t`Must be 9-20 digits`,
     },
     {
         key: 'google_analytics_4',
-        label: t`Google Analytics 4`,
+        label: () => t`Google Analytics 4`,
         icon: IconBrandGoogle,
         placeholder: 'G-XXXXXXXXXX',
-        description: t`Measurement ID`,
+        description: () => t`Measurement ID`,
         pattern: /^G-[a-zA-Z0-9]{6,20}$/,
-        formatHint: t`Must start with G- followed by 6-20 characters`,
+        formatHint: () => t`Must start with G- followed by 6-20 characters`,
     },
     {
         key: 'google_tag_manager',
-        label: t`Google Tag Manager`,
+        label: () => t`Google Tag Manager`,
         icon: IconTag,
         placeholder: 'GTM-XXXXXXX',
-        description: t`Container ID`,
+        description: () => t`Container ID`,
         pattern: /^GTM-[a-zA-Z0-9]{4,20}$/,
-        formatHint: t`Must start with GTM- followed by 4-20 characters`,
+        formatHint: () => t`Must start with GTM- followed by 4-20 characters`,
     },
     {
         key: 'tiktok_pixel',
-        label: t`TikTok Pixel`,
+        label: () => t`TikTok Pixel`,
         icon: IconBrandTiktok,
         placeholder: 'CXXXXXXXXXX',
-        description: t`Pixel ID`,
+        description: () => t`Pixel ID`,
         pattern: /^[a-zA-Z0-9]{6,30}$/,
-        formatHint: t`Must be 6-30 alphanumeric characters`,
+        formatHint: () => t`Must be 6-30 alphanumeric characters`,
     },
 ];
 
@@ -131,7 +131,7 @@ export const TrackingPixelSettings = () => {
         for (const provider of availableProviders) {
             const pixelId = values.pixels[provider.key]?.pixel_id.trim();
             if (pixelId && !provider.pattern.test(pixelId)) {
-                form.setFieldError(`pixels.${provider.key}.pixel_id`, provider.formatHint);
+                form.setFieldError(`pixels.${provider.key}.pixel_id`, provider.formatHint());
                 hasErrors = true;
             }
         }
@@ -200,9 +200,9 @@ export const TrackingPixelSettings = () => {
                                         <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
                                             <Icon size={20} style={{opacity: 0.7}}/>
                                             <div>
-                                                <Text size="sm" fw={500}>{provider.label}</Text>
+                                                <Text size="sm" fw={500}>{provider.label()}</Text>
                                                 {!hasValue && (
-                                                    <Text size="xs" c="dimmed">{provider.description}</Text>
+                                                    <Text size="xs" c="dimmed">{provider.description()}</Text>
                                                 )}
                                             </div>
                                         </div>
@@ -221,7 +221,7 @@ export const TrackingPixelSettings = () => {
                                         {...form.getInputProps(`pixels.${provider.key}.pixel_id`)}
                                         placeholder={provider.placeholder}
                                         size="sm"
-                                        description={hasValue ? provider.description : undefined}
+                                        description={hasValue ? provider.description() : undefined}
                                         onChange={(e) => {
                                             form.setFieldValue(`pixels.${provider.key}.pixel_id`, e.currentTarget.value);
                                             if (e.currentTarget.value.trim() !== '' && !pixelState?.enabled) {

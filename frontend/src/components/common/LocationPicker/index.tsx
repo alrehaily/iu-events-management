@@ -1,7 +1,8 @@
 import {t} from "@lingui/macro";
+import {useLingui} from "@lingui/react";
 import {Badge, Button, Combobox, Group, Input, Loader, Select, Text, TextInput, ThemeIcon, useCombobox} from "@mantine/core";
 import {useDebouncedValue} from "@mantine/hooks";
-import {ReactNode, useEffect, useRef, useState} from "react";
+import {ReactNode, useEffect, useMemo, useRef, useState} from "react";
 import {IconArrowLeft, IconCheck, IconMapPin, IconPencil, IconSearch} from "@tabler/icons-react";
 import {SAUDI_COUNTRY} from "../../../constants/institution.ts";
 import countries from "../../../../data/countries.json";
@@ -82,11 +83,26 @@ const matchesQuery = (location: Location, query: string) => {
 };
 
 export const LocationPicker = ({organizerId, value, onChange, error, clearable = false}: LocationPickerProps) => {
+    const {i18n} = useLingui();
+    const isArabic = i18n.locale === 'ar';
     const [view, setView] = useState<'card' | 'search' | 'manual'>(value ? 'card' : 'search');
     const touchedRef = useRef(false);
     const [query, setQuery] = useState("");
     const [debouncedQuery] = useDebouncedValue(query, 250);
     const combobox = useCombobox();
+
+    const countryOptions = useMemo(() => {
+        return countries.map((c) => ({
+            value: c.value,
+            label: c.value === SAUDI_COUNTRY
+                ? (isArabic ? 'المملكة العربية السعودية (SA)' : 'Saudi Arabia (SA)')
+                : c.label,
+        })).sort((a, b) => {
+            if (a.value === SAUDI_COUNTRY) return -1;
+            if (b.value === SAUDI_COUNTRY) return 1;
+            return a.label.localeCompare(b.label);
+        });
+    }, [isArabic]);
 
     const geoStatus = useGeoStatus();
     const geoAvailable = geoStatus.data?.data?.available === true;
@@ -265,7 +281,7 @@ export const LocationPicker = ({organizerId, value, onChange, error, clearable =
                         />
                         <Select
                             searchable
-                            data={countries}
+                            data={countryOptions}
                             label={t`Country`}
                             placeholder={t`Saudi Arabia`}
                             value={value.address.country || null}

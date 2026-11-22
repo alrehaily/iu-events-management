@@ -4,7 +4,7 @@ import {createLiveEventWithProduct} from '../api/factory';
 import {CheckoutPage} from '../pages/checkout.page';
 import {uniqueEmail, uniqueName} from '../utils/unique';
 
-test('an attendee books a free event, receives confirmation and finds its localized ticket link', async ({page, account, api, publicApi, mailpit}) => {
+test('a guest signs in, recovers a completed free booking and finds its localized ticket link', async ({page, account, api, publicApi, mailpit}) => {
   test.setTimeout(110_000);
   await page.setViewportSize({width: 390, height: 844});
   const buyer = {firstName: 'GP2', lastName: 'Participant', email: uniqueEmail('gp2-mobile')};
@@ -18,25 +18,45 @@ test('an attendee books a free event, receives confirmation and finds its locali
     category: 'WORKSHOP',
     title: uniqueName('GP2 Booking'),
   });
-  await page.goto('/auth/login');
+  const checkout = new CheckoutPage(page);
+  await checkout.gotoPublicEvent(event.eventId, event.slug);
+  const eventUrl = page.url();
+  await checkout.setFirstProductQuantity(1);
+  await page.getByTestId('checkout-continue-button').click();
+  await expect(page).toHaveURL(/\/auth\/login\?redirect=/);
   await expect(page.locator('.ssr-loader')).toBeHidden();
   await page.getByRole('textbox', {name: /^Email\b/}).fill(buyer.email);
   await page.getByLabel('Password', {exact: true}).fill(password);
   await page.getByRole('button', {name: 'Log In', exact: true}).click();
   await expect(page.locator('header').getByRole('link', {name: 'My Bookings'})).toBeVisible();
 
-  const checkout = new CheckoutPage(page);
+  await expect(page).toHaveURL(eventUrl);
   await checkout.gotoPublicEvent(event.eventId, event.slug);
   await checkout.setFirstProductQuantity(1);
   await checkout.continueToCheckout();
-  await checkout.fillOrderDetails(buyer);
-  await checkout.fillFirstAttendee(buyer);
+  await expect(page.getByText(buyer.email, {exact: true})).toBeVisible();
+  await expect(page.getByRole('textbox', {name: 'First Name'})).toHaveCount(0);
+  let completedResponses = 0;
+  await page.route('**/public/events/*/order/*', async route => {
+    if (route.request().method() !== 'PUT') {
+      await route.continue();
+      return;
+    }
+    const completed = await route.fetch();
+    expect(completed.status()).toBe(200);
+    const replay = await route.fetch();
+    expect(replay.status()).toBe(200);
+    expect((await replay.json()).data.short_id).toBe((await completed.json()).data.short_id);
+    ++completedResponses;
+    await route.fulfill({response: completed, status: 500, json: {message: 'Simulated response failure after commit'}});
+  });
   await checkout.completeFreeOrder();
+  expect(completedResponses).toBe(1);
   await expect(page.getByText(`You're going to ${event.title}`)).toBeVisible();
   await mailpit.waitForMessage(buyer.email, {subjectContains: event.title});
 
   await page.goto('/my-registrations');
-  await expect(page.getByText(event.title, {exact: true})).toBeVisible();
+  await expect(page.getByText(event.title, {exact: true})).toHaveCount(1);
   await page.getByRole('button', {name: 'العربية', exact: true}).click();
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   await page.reload();

@@ -94,7 +94,7 @@ export const WebhookTable = ({webhooks, openCreateModal}: WebhookTableProps) => 
                 </Menu.Target>
 
                 <Menu.Dropdown>
-                    <Menu.Label>Manage</Menu.Label>
+                    <Menu.Label>{t`Manage`}</Menu.Label>
                     <Menu.Item
                         leftSection={<IconPencil size={14}/>}
                         onClick={() => {
@@ -147,7 +147,7 @@ export const WebhookTable = ({webhooks, openCreateModal}: WebhookTableProps) => 
 
         const isSuccess = (webhook.last_response_code >= 200 && webhook.last_response_code < 300) && webhook.last_response_code !== 0;
         const statusColor = isSuccess ? 'green' : 'red';
-        const statusText = isSuccess ? 'Success' : 'Error';
+        const statusText = isSuccess ? t`Success` : t`Error`;
 
         return (
             <Popover width={400} position="bottom" withArrow>
@@ -166,7 +166,7 @@ export const WebhookTable = ({webhooks, openCreateModal}: WebhookTableProps) => 
                 <Popover.Dropdown>
                     <Stack gap="md">
                         <Group justify="space-between" align="center">
-                            <Text fw={500} size="sm">Response Details</Text>
+                            <Text fw={500} size="sm">{t`Response Details`}</Text>
                             <Badge
                                 variant="light"
                                 color={statusColor}
@@ -256,7 +256,7 @@ export const WebhookTable = ({webhooks, openCreateModal}: WebhookTableProps) => 
                                     variant="light"
                                     color={webhook.status === 'ENABLED' ? 'green' : 'gray'}
                                 >
-                                    {webhook.status}
+                                    {webhook.status === 'ENABLED' ? t`Enabled` : t`Paused`}
                                 </Badge>
                             </MantineTable.Td>
                             <MantineTable.Td>

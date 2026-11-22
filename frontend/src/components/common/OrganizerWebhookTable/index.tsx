@@ -256,7 +256,7 @@ export const OrganizerWebhookTable = ({ webhooks, openCreateModal }: OrganizerWe
                                     variant="light"
                                     color={webhook.status === 'ENABLED' ? 'green' : 'gray'}
                                 >
-                                    {webhook.status}
+                                    {webhook.status === 'ENABLED' ? t`Enabled` : t`Paused`}
                                 </Badge>
                             </MantineTable.Td>
                             <MantineTable.Td>

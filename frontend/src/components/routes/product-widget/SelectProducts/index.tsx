@@ -1,4 +1,5 @@
 import {t, Trans} from "@lingui/macro";
+import {attendeeClient} from "../../../../api/attendee.client.ts";
 import {
     ActionIcon,
     Anchor,
@@ -100,6 +101,7 @@ interface SelectProductsProps {
     },
     padding?: string;
     continueButtonText?: string;
+    requireAttendeeAuth?: boolean;
     widgetMode?: 'preview' | 'normal' | 'embedded';
     checkoutMode?: 'modal' | 'new-tab';
     showPoweredBy?: boolean;
@@ -580,7 +582,7 @@ const SelectProducts = (props: SelectProductsProps) => {
 
     useEffect(populateFormValue, [productCategories]);
 
-    const handleProductSelection = (values: Omit<ProductFormPayload, "session_identifier">) => {
+    const handleProductSelection = async (values: Omit<ProductFormPayload, "session_identifier">) => {
         if (isRecurring && !selectedOccurrenceId) {
             showInfo(t`Please select a date and time`);
             return;
@@ -597,6 +599,15 @@ const SelectProducts = (props: SelectProductsProps) => {
             }
         }
         if (values && selectedProductQuantitySum > 0) {
+            if (props.requireAttendeeAuth && !await queryClient.fetchQuery({
+                queryKey: ['attendee-checkout-account'],
+                queryFn: () => attendeeClient.me(),
+            })) {
+                const returnPath = window.location.pathname + window.location.search;
+                navigate('/auth/login?' + new URLSearchParams({redirect: returnPath}));
+                return;
+            }
+
             const productsWithOccurrence = values.products?.map(product => ({
                 ...product,
                 event_occurrence_id: selectedOccurrenceId,

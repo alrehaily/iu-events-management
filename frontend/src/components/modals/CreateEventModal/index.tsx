@@ -248,6 +248,7 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                         valueFormat={getDateTimePickerFormat()}
                                         clearable
                                         dropdownType="modal"
+                                        modalProps={{ zIndex: 1100 }}
                                         timePickerProps={{
                                             format: '12h',
                                             withDropdown: true,
@@ -268,6 +269,7 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                         valueFormat={getDateTimePickerFormat()}
                                         clearable
                                         dropdownType="modal"
+                                        modalProps={{ zIndex: 1100 }}
                                         timePickerProps={{
                                             format: '12h',
                                             withDropdown: true,

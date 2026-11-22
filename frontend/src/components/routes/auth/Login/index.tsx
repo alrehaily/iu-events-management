@@ -74,7 +74,8 @@ export const Login = () => {
             await attendeeClient.login(values);
             const searchParams = new URLSearchParams(location.search);
             const redirectParam = searchParams.get('redirect');
-            const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
+            const redirectUrl = (redirectParam && /^\/(?![/\\])/.test(redirectParam) && new URL(redirectParam, window.location.origin).origin === window.location.origin && redirectParam !== '/my-registrations')
+            ? redirectParam : '/';
             navigate(redirectUrl);
         } catch (error: unknown) {
             setLoginError(isAxiosError(error) && error.response?.status === 401 ? "invalidCredentials" : "loginError");

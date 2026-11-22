@@ -1,4 +1,5 @@
-import {useMutation} from "@tanstack/react-query";
+import {attendeeClient} from "../../../../api/attendee.client.ts";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import {FinaliseOrderPayload, orderClientPublic} from "../../../../api/order.client.ts";
 import {useNavigate, useParams, useSearchParams} from "react-router";
 import {
@@ -60,6 +61,7 @@ export const CollectInformation = () => {
         data: {order_items: orderItems} = {},
         isError: isOrderError,
         error: orderError,
+        refetch: refetchOrder,
     } = useGetOrderPublic(eventId, orderShortId, ['event']);
     const orderOccurrenceIds = Array.from(new Set(
         (orderItems ?? []).map(item => item.event_occurrence_id).filter((id): id is number => id != null)
@@ -155,6 +157,13 @@ export const CollectInformation = () => {
     };
 
     const totalTicketAttendees = getTicketAttendeeIndices().length;
+    const [useAccountDetails, setUseAccountDetails] = useState(true);
+    const {data: account} = useQuery({
+        queryKey: ['attendee-checkout-account'],
+        queryFn: () => attendeeClient.me(),
+        enabled: typeof window !== 'undefined' && totalTicketAttendees === 1 && !lock,
+    });
+    const selfBooking = useAccountDetails && totalTicketAttendees === 1 && !lock ? account?.user : undefined;
 
     const areOrderDetailsComplete = () => {
         const {first_name, last_name, email} = form.values.order;
@@ -224,14 +233,23 @@ export const CollectInformation = () => {
         mutationFn: (orderData: FinaliseOrderPayload) => orderClientPublic.finaliseOrder(Number(eventId), String(orderShortId), orderData),
 
         onSuccess: (data) => {
-            const nextPage = order?.is_payment_required ? 'payment' : 'summary';
+            const nextPage = data.data.status === 'COMPLETED' ? 'summary' : 'payment';
             if (nextPage === 'summary') {
                 trackEvent(AnalyticsEvents.PURCHASE_COMPLETED_FREE);
             }
             navigate(eventCheckoutPath(eventId, data.data.short_id, nextPage));
         },
 
-        onError: (error: any) => {
+        onError: async (error: any) => {
+            const status = error?.response?.status;
+            if (!status || status === 409 || status >= 500) {
+                const {data: recoveredOrder} = await refetchOrder();
+                if (recoveredOrder?.status === 'COMPLETED') {
+                    navigate(eventCheckoutPath(eventId, recoveredOrder.short_id, 'summary'), {replace: true});
+                    return;
+                }
+            }
+
             if (error?.response?.data?.errors && Object.keys(error?.response?.data?.errors).length > 0) {
                 form.setErrors(error.response.data.errors);
             } else if (error?.response?.data?.message) {
@@ -302,7 +320,19 @@ export const CollectInformation = () => {
     }
 
     const handleSubmit = (values: any) => {
-        mutation.mutate(values);
+        if (!selfBooking) {
+            mutation.mutate(values);
+            return;
+        }
+
+        const {first_name, last_name, email} = selfBooking;
+        const accountDetails = {first_name, last_name, email, email_confirmation: email};
+        const attendeeIndex = getFirstTicketAttendeeIndex();
+        mutation.mutate({
+            order: {...values.order, ...accountDetails},
+            products: form.values.products.map((product, index) =>
+                index === attendeeIndex ? {...product, ...accountDetails} : product),
+        });
     };
 
     useEffect(() => {
@@ -342,7 +372,9 @@ export const CollectInformation = () => {
     }, [isEventFetched, isOrderFetched, isQuestionsFetched]);
 
     useEffect(() => {
-        if ((order && event) && order?.is_expired && getEmbedMode() !== 'modal') {
+        if (order?.status === 'COMPLETED') {
+            navigate(eventCheckoutPath(eventId, order.short_id, 'summary'), {replace: true});
+        } else if ((order && event) && order.is_expired && getEmbedMode() !== 'modal') {
             showInfo(t`This order has expired. Please start again.`);
             navigate(`/event/${eventId}/${event.slug}`);
         }
@@ -466,6 +498,15 @@ export const CollectInformation = () => {
                 </p>
 
                 <Card>
+                    {selfBooking ? (
+                        <div>
+                            <Text fw={600}>{selfBooking.first_name} {selfBooking.last_name}</Text>
+                            <Text size="sm">{selfBooking.email}</Text>
+                            <Button type="button" variant="subtle" onClick={() => setUseAccountDetails(false)}>
+                                {t`Edit`}
+                            </Button>
+                        </div>
+                    ) : <>
                     <InputGroup>
                         <TextInput
                             withAsterisk
@@ -549,6 +590,8 @@ export const CollectInformation = () => {
                         </div>
                     )}
 
+                    </>}
+
                     {requireBillingAddress && (
                         <>
                             <h3 style={{marginBottom: 5}}>
@@ -614,7 +657,7 @@ export const CollectInformation = () => {
 
                 {orderItems?.map(orderItem => {
                     const product = products?.find(product => product!.id === orderItem.product_id);
-                    const productRequiresDetails = product?.product_type === 'TICKET' && !isPerOrderCollection;
+                    const productRequiresDetails = product?.product_type === 'TICKET' && !isPerOrderCollection && !selfBooking;
                     const productHasQuestions = productQuestions?.some(question => question.product_ids?.includes(orderItem.product_id));
 
                     if (!product) {

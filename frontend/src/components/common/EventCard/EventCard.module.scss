@@ -609,6 +609,7 @@
   display: flex;
   gap: 16px;
   flex-shrink: 0;
+  align-items: center;
 
   @container (max-width: 460px) {
     gap: 0;
@@ -618,8 +619,12 @@
 .compactStat {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  min-width: 64px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-width: 76px;
+  gap: 2px;
+  font-family: var(--iu-font-family, 'Tajawal', sans-serif);
 
   @container (max-width: 460px) {
     min-width: 0;
@@ -631,21 +636,25 @@
 }
 
 .compactStatValue {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--hi-text);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--iu-heading, #0f172a);
   line-height: 1.2;
   letter-spacing: -0.01em;
   white-space: nowrap;
+  text-align: center;
+  font-family: var(--iu-font-family, 'Tajawal', sans-serif);
 }
 
 .compactStatLabel {
   font-size: 0.625rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--hi-color-text-muted);
+  color: var(--iu-text-muted, #64748b);
   margin-top: 2px;
+  text-align: center;
+  font-family: var(--iu-font-family, 'Tajawal', sans-serif);
 
   @container (max-width: 460px) {
     display: none;

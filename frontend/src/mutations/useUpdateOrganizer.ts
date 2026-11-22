@@ -4,6 +4,8 @@ import {organizerClient} from "../api/organizer.client.ts";
 import {GET_ORGANIZERS_QUERY_KEY} from "../queries/useGetOrganizers.ts";
 import {GET_ORGANIZER_QUERY_KEY} from "../queries/useGetOrganizer.ts";
 
+import {GET_ORGANIZER_PUBLIC_QUERY_KEY} from "../queries/useGetOrganizerPublic.ts";
+
 export const useUpdateOrganizer = () => {
     const queryClient = useQueryClient();
 
@@ -17,6 +19,9 @@ export const useUpdateOrganizer = () => {
             Promise.all([
                 queryClient.invalidateQueries({
                     queryKey: [GET_ORGANIZER_QUERY_KEY, variables.organizerId]
+                }),
+                queryClient.invalidateQueries({
+                    queryKey: [GET_ORGANIZER_PUBLIC_QUERY_KEY, variables.organizerId]
                 }),
                 queryClient.invalidateQueries({
                     queryKey: [GET_ORGANIZERS_QUERY_KEY]

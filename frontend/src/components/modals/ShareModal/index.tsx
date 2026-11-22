@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {Button, CopyButton, Modal, Paper, Stack, Tabs, Text, TextInput, Tooltip, UnstyledButton} from '@mantine/core';
+import {Button, CopyButton, Modal, Paper, Stack, Tabs, Text, TextInput, UnstyledButton} from '@mantine/core';
 import {
     IconBrandFacebook,
     IconBrandLinkedin,
@@ -232,33 +232,35 @@ export const ShareModal = ({
 
                     <Tabs.Panel value="url" pt="lg">
                         <div className={classes.urlSection}>
-                            <TextInput
-                                label={t`Page URL`}
-                                value={url}
-                                readOnly
-                                styles={{
-                                    input: {
-                                        paddingRight: '120px'
-                                    }
-                                }}
-                                rightSectionWidth={'auto'}
-                                rightSection={(
-                                    <CopyButton value={url} timeout={2000}>
-                                        {({copied, copy}) => (
-                                            <Tooltip label={copied ? t`Copied!` : t`Copy to clipboard`}>
-                                                <Button
-                                                    variant="light"
-                                                    color={copied ? 'teal' : 'gray'}
-                                                    onClick={copy}
-                                                    leftSection={copied ? <IconCheck size={16}/> : <IconCopy size={16}/>}
-                                                >
-                                                    {copied ? t`Copied` : t`Copy`}
-                                                </Button>
-                                            </Tooltip>
-                                        )}
-                                    </CopyButton>
-                                )}
-                            />
+                            <div style={{display: 'flex', gap: '8px', alignItems: 'flex-end'}}>
+                                <TextInput
+                                    label={t`Page URL`}
+                                    value={url}
+                                    readOnly
+                                    style={{flex: 1}}
+                                    styles={{
+                                        input: {
+                                            borderRadius: 'var(--iu-radius-sm, 8px)',
+                                            fontFamily: 'monospace',
+                                            fontSize: '0.85rem',
+                                            backgroundColor: 'var(--iu-bg, #f4f6f8)',
+                                            borderColor: 'var(--iu-border, #e5e7eb)',
+                                        }
+                                    }}
+                                />
+                                <CopyButton value={url} timeout={2000}>
+                                    {({copied, copy}) => (
+                                        <Button
+                                            color={copied ? 'teal' : 'green'}
+                                            onClick={copy}
+                                            leftSection={copied ? <IconCheck size={16}/> : <IconCopy size={16}/>}
+                                            style={{borderRadius: 'var(--iu-radius-sm, 8px)', flexShrink: 0}}
+                                        >
+                                            {copied ? t`Copied` : t`Copy`}
+                                        </Button>
+                                    )}
+                                </CopyButton>
+                            </div>
 
                             <Text className={classes.helperText} mt="md">
                                 {t`Copy this link to share it anywhere`}

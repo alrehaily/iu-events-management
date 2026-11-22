@@ -85,6 +85,12 @@ const OrganizerHomepageDesigner = () => {
             },
             {
                 onSuccess: () => {
+                    queryClient.invalidateQueries({
+                        queryKey: [GET_ORGANIZER_QUERY_KEY, organizerId],
+                    });
+                    queryClient.invalidateQueries({
+                        queryKey: [GET_ORGANIZER_PUBLIC_QUERY_KEY, organizerId],
+                    });
                     showSuccess(t`Successfully Updated Homepage Design`);
                 },
                 onError: (error) => {
@@ -146,7 +152,7 @@ const OrganizerHomepageDesigner = () => {
     };
 
     return (
-        <div className={classes.container}>
+        <div className={classes.container} data-homepage-designer>
             <div className={classes.sidebar}>
                 <div className={classes.sticky}>
                     <div className={classes.header}>

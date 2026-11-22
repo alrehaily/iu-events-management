@@ -8,9 +8,16 @@ const gotoLocations = async (page: Page, organizerId: number): Promise<void> => 
   await page.waitForLoadState('networkidle');
 };
 
-const createLocationViaUi = async (page: Page, venueName: string): Promise<void> => {
+const createLocationViaUi = async (page: Page, venueName: string, withMap = false): Promise<void> => {
   await page.getByRole('button', { name: 'Add Location' }).first().click();
   const dialog = page.getByRole('dialog');
+  await expect(dialog.getByLabel('Country')).toHaveValue(/Saudi Arabia/);
+  if (withMap) {
+    await page.route('https://www.openstreetmap.org/export/embed.html?**', route => route.fulfill({body: 'Map fixture'}));
+    await dialog.getByLabel('Latitude', {exact: true}).fill('24.5');
+    await dialog.getByLabel('Longitude', {exact: true}).fill('39.6');
+    await expect(dialog.locator('iframe[title="Venue Location Map"]')).toHaveAttribute('src', /marker=24\.5%2C39\.6/);
+  }
   await dialog.getByLabel('Venue Name').fill(venueName);
   await dialog.getByLabel('Address Line 1').fill('123 Test Street');
   await dialog.getByLabel('City').fill('Dublin');
@@ -24,7 +31,7 @@ test.describe('organizer locations', () => {
     const venueName = uniqueName('Venue');
 
     await gotoLocations(authedPage, organizer.id);
-    await createLocationViaUi(authedPage, venueName);
+    await createLocationViaUi(authedPage, venueName, true);
 
     const row = authedPage.getByRole('row').filter({ hasText: venueName });
     await expect(row).toBeVisible();

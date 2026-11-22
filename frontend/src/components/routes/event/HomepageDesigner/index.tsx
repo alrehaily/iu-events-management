@@ -173,7 +173,7 @@ const HomepageDesigner = () => {
     }, [iframeLoaded, form.values]);
 
     return (
-        <div className={classes.container}>
+        <div className={classes.container} data-homepage-designer>
             <div className={classes.sidebar}>
                 <div className={classes.sticky}>
                     <div className={classes.header}>
@@ -340,6 +340,7 @@ const HomepageDesigner = () => {
                             <iframe
                                 ref={iframeRef}
                                 src={iframeSrc}
+                                sandbox="allow-same-origin allow-scripts"
                                 title="Event Preview"
                                 onLoad={() => setIframeLoaded(true)}
                             />

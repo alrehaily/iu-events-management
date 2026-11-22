@@ -1,5 +1,13 @@
 # IU Events GP2 audit continuation
 
+## Antigravity integration continuation
+
+- Use the audit branch `fix/gp2-demo-readiness-i18n-20261120` and keep the original and Antigravity checkouts separate. The implementation was integrated from the reviewed source delta. Avoid merging the incoming launcher history, which contains a hard-coded local database credential. Coordinate replacement of that credential before any further sharing of the Antigravity branch.
+- To run the Windows launcher, start the existing isolated PostgreSQL and Mailpit services using the commands below, then run `& '.\Start All.cmd' -NoBrowser` from the audit root. With no arguments it opens the browser when Laravel and SSR return HTTP 200. It requires existing backend configuration, Composer and Node dependencies. It creates a missing frontend environment exclusively and uses the configured loopback ports. Startup and repeated startup preserved both existing environments. Provisioning and schema updates remain separate operations.
+- Keep browser runs sequential with `--workers=1` and run PHPUnit against the configured `iu_gp2_test` database. The final production retest uses `E2E_BASE_URL=http://127.0.0.1:5683` with the audit API still on port 8010. Logs are under `%TEMP%\iu-gp2-audit-20261120`, including `gp2-integration.log`, `gp2-integration-production.log`, `gp2-integration-production-retest.log`, `gp2-integration-controls.log`, and `phpunit-integration-final.log`.
+- The booking regression in `e2e/tests/gp2-workflows.spec.ts` performs guest login and return, checks the single-ticket account summary, replays the same completion request, substitutes a failed response, and checks confirmation and My Bookings. The original exception did not appear in retained logs. Check the backend startup error log for any further post-commit mail, invoice, stats or webhook failures.
+- Remaining manual verification includes the physical scanner, Excel reopening, tablet layout and committee rehearsal from the historical handoff below. Audit lower-traffic bilingual surfaces and integrations against the current branch before the demo.
+
 ## Current checkpoint
 
 - Phase F ran the built app on port 5680. The production matrix passed 15/15 and the extended set passed 6/6. Three check-in cases and public mobile localization also passed. Organizer localization failed at the Arabic dashboard heading. Twelve additional cases had no recorded result at the cutoff. Full PHPUnit passed with the existing skipped and risky counts. Both bundles, TypeScript and Lingui passed. ESLint reported 1,338 findings against the 1,419 baseline. The five-hour window reached 8% remaining, so verification stopped after the production run reached that cutoff.

@@ -25,7 +25,8 @@ const EventHomepagePreview = () => {
 
     useEffect(() => {
         const handleMessage = (messageEvent: MessageEvent) => {
-            if (messageEvent.data.type === "UPDATE_SETTINGS") {
+            if (messageEvent.origin === window.location.origin && messageEvent.source === window.parent
+                && messageEvent.data?.type === "UPDATE_SETTINGS") {
                 setPreviewSettings(messageEvent.data.settings);
             }
         };
@@ -39,7 +40,7 @@ const EventHomepagePreview = () => {
     }
 
     if (!event) {
-        return <EventNotAvailable />;
+        return <div inert><EventNotAvailable /></div>;
     }
 
     // Create a modified event with preview settings merged in
@@ -67,6 +68,7 @@ const EventHomepagePreview = () => {
     return (
         <EventHomepage
             event={previewEvent}
+            preview
             promoCodeValid={undefined}
             promoCode={undefined}
         />

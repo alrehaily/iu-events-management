@@ -1,22 +1,20 @@
 @use "../../../../styles/mixins.scss";
 
-@include mixins.respond-below(sm) {
-  :global(#organizer-manage-main) {
-    overflow: auto;
-  }
-}
-
 .container {
   display: flex;
   flex-direction: row;
-  margin: calc(var(--hi-spacing-lg) * -1);
+  height: 100%;
+  overflow: hidden;
 
   h2 {
     margin-bottom: 0;
   }
 
-  @include mixins.respond-below(sm) {
+  @include mixins.respond-below(lg) {
     flex-direction: column;
+    height: auto;
+    max-height: none;
+    overflow: visible;
   }
 
   .sidebar {
@@ -24,13 +22,17 @@
     max-width: 380px;
     background-color: #ffffff;
     padding: var(--hi-spacing-lg);
-    height: calc(100vh - 55px);
+    height: 100%;
     overflow-y: auto;
-    position: sticky;
-    top: 0;
+    position: relative;
     border-right: 1px solid var(--mantine-color-gray-2);
 
-    @include mixins.respond-below(sm) {
+    :global([dir="rtl"]) & {
+      border-right: none;
+      border-left: 1px solid var(--mantine-color-gray-2);
+    }
+
+    @include mixins.respond-below(lg) {
       width: 100%;
       min-width: unset;
       max-width: unset;
@@ -202,12 +204,10 @@
   }
 
   .previewContainer {
-    height: calc(100vh - 55px);
+    height: 100%;
     width: 100%;
     flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-width: 400px;
+    min-width: 0;
     background: radial-gradient(circle at 50% 25%, #ffffff 0%, #f4f7f6 100%);
     background-image: radial-gradient(rgba(8, 75, 47, 0.08) 1.2px, transparent 1.2px);
     background-size: 22px 22px;
@@ -218,7 +218,7 @@
     justify-content: flex-start;
     animation: iuBdsnPageBody 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 
-    @include mixins.respond-below(sm) {
+    @include mixins.respond-below(lg) {
       padding: 16px;
       height: auto;
       min-height: 480px;
@@ -228,6 +228,7 @@
     .browserMockup {
       width: 100%;
       max-width: 1050px;
+      height: min(100%, 766px);
       background: #ffffff;
       border-radius: 16px;
       box-shadow: 0 20px 50px -12px rgba(8, 75, 47, 0.14), 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
@@ -351,13 +352,13 @@
     .iframeContainer {
       position: relative;
       width: 100%;
-      height: 720px;
-      max-height: calc(100vh - 170px);
+      flex: 1;
+      min-height: 0;
       background: #ffffff;
       overflow: hidden;
 
-      @include mixins.respond-below(sm) {
-        height: 520px;
+      @include mixins.respond-below(lg) {
+        flex: 0 0 520px;
       }
 
       iframe {

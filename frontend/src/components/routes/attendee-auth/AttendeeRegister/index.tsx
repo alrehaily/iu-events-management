@@ -73,7 +73,8 @@ export const AttendeeRegister: React.FC = () => {
       });
       const searchParams = new URLSearchParams(location.search);
       const redirectParam = searchParams.get('redirect');
-      const redirectUrl = (redirectParam && redirectParam !== '/my-registrations') ? redirectParam : '/';
+      const redirectUrl = (redirectParam && /^\/(?![/\\])/.test(redirectParam) && new URL(redirectParam, window.location.origin).origin === window.location.origin && redirectParam !== '/my-registrations')
+            ? redirectParam : '/';
       navigate(redirectUrl);
     } catch (error: unknown) {
       setError(isAxiosError(error) && error.response?.status === 409 ? "duplicateEmail" : "error");

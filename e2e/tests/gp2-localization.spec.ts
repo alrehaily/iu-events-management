@@ -48,6 +48,7 @@ async function verifyScreens(page: Page, screens: readonly Screen[], locale: Loc
       await expect(page.locator('.ssr-loader')).toBeHidden();
       await expectLocale(page, locale);
       await expect(page.getByRole('heading', {name: locale === 'ar' ? arabic : english, exact: true}).first()).toBeVisible();
+      await page.waitForLoadState('networkidle');
     });
   }
 }
@@ -147,4 +148,40 @@ test('administration navigation and route headings render in both locales', asyn
   await expectLocale(page, 'ar');
   expect(await page.evaluate(() => performance.timeOrigin)).toBe(start);
   expect(errors).toEqual([]);
+});
+
+test('dashboard chrome stays green and scrolls after dismissing the date picker', async ({authedPage: page, account}) => {
+  await page.setViewportSize({width: 1100, height: 640});
+  const create = new EventCreatePage(page);
+  await create.gotoDashboard(account.organizerId);
+  const dashboard = page.locator('#organizer-manage-container');
+  const topbar = dashboard.locator('[class*="_topBar_"]').first();
+  const sidebar = dashboard.locator('[class*="_sidebar_"]').first();
+  await expect(topbar).toBeVisible();
+  await expect(sidebar).toBeVisible();
+  await expect(topbar).toHaveCSS('background-image', /linear-gradient.*rgb\(8, 75, 47\)/);
+  await expect(sidebar).toHaveCSS('background-image', /linear-gradient.*rgb\(8, 75, 47\)/);
+
+  await create.openCreateModal();
+  const startDate = page.getByRole('button', {name: /^Start Date & Time/});
+  const originalDate = await startDate.innerText();
+  await startDate.click();
+  const datePicker = page.getByRole('dialog').last();
+  await expect(datePicker).toBeVisible();
+  await expect(datePicker.locator('button[data-selected]').first()).toBeVisible();
+  await datePicker.locator('td button:not([data-selected]):not([data-outside]):not([disabled])').last().click();
+  await page.keyboard.press('Escape');
+  await expect(datePicker).toBeHidden();
+  await expect(startDate).not.toHaveText(originalDate);
+  await page.getByRole('button', {name: 'Close modal', exact: true}).click();
+  await page.getByRole('link', {name: 'Settings', exact: true}).click();
+  const main = page.locator('#app-manage-main');
+  await main.hover();
+  await page.mouse.wheel(0, 520);
+  await expect.poll(() => main.evaluate(element => element.scrollTop)).toBeGreaterThan(0);
+  expect(await page.evaluate(() => {
+    const root = document.documentElement;
+    return root.scrollHeight - root.clientHeight;
+  })).toBeLessThanOrEqual(1);
+  await expect(topbar).toBeVisible();
 });

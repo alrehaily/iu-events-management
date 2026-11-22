@@ -2026,19 +2026,19 @@ msgstr "إلغاء تغيير البريد الإلكتروني"
 
 #: src/hooks/useOrderActions.tsx:154
 msgid "Cancel order"
-msgstr "Cancel order"
+msgstr "إلغاء الطلب"
 
 #: src/components/modals/CancelOrderModal/index.tsx:82
 msgid "Cancel Order"
-msgstr "Cancel Order"
+msgstr "إلغاء الطلب"
 
 #: src/components/modals/CancelOrderModal/index.tsx:55
 msgid "Cancel Order {0}"
-msgstr "Cancel Order {0}"
+msgstr "إلغاء الطلب {0}"
 
 #: src/components/modals/CancelOrderModal/index.tsx:64
 msgid "Canceling will cancel all attendees associated with this order, and release the tickets back into the available pool."
-msgstr "Canceling will cancel all attendees associated with this order, and release the tickets back into the available pool."
+msgstr "سيؤدي الإلغاء إلى إلغاء جميع الحضور المرتبطين بهذا الطلب وإعادة التذاكر إلى المتاح."
 
 #: src/components/common/AttendeeStatusBadge/index.tsx:28
 #: src/components/common/AttendeeTable/index.tsx:272
@@ -2935,7 +2935,7 @@ msgstr "Copy Code"
 
 #: src/hooks/useOrderActions.tsx:140
 msgid "Copy customer link"
-msgstr "Copy customer link"
+msgstr "نسخ رابط العميل"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:519
 msgid "Copy details to first attendee"
@@ -3787,7 +3787,7 @@ msgstr "Different location"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:403
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:411
 msgid "Disabled"
-msgstr "معطل"
+msgstr "معطّل"
 
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:27
 msgid "Disabling this capacity will track sales but not stop them when the limit is reached"
@@ -4362,7 +4362,7 @@ msgstr "تفعيل قائمة الانتظار"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:402
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:410
 msgid "Enabled"
-msgstr "مفعل"
+msgstr "مفعّل"
 
 #: src/components/common/AdminEventsTable/index.tsx:109
 #: src/components/modals/DuplicateEventModal/index.tsx:133
@@ -4646,7 +4646,7 @@ msgstr "محاور الفعالية"
 
 #: src/components/common/PeriodSelector/index.tsx:124
 msgid "Event lifetime"
-msgstr "Event lifetime"
+msgstr "فترة الفعالية"
 
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:151
 msgid "Event location & venue details"
@@ -5497,7 +5497,7 @@ msgstr "from {start}, for {count} dates"
 
 #: src/components/common/PeriodSelector/index.tsx:46
 msgid "Full event"
-msgstr "مدة الفعالية كاملة"
+msgstr "كامل الفعالية"
 
 #: src/components/modals/RefundOrderModal/index.tsx:117
 msgid "Full refund"
@@ -6849,7 +6849,7 @@ msgstr "Message attendees with specific tickets"
 
 #: src/hooks/useOrderActions.tsx:112
 msgid "Message buyer"
-msgstr "Message buyer"
+msgstr "مراسلة المشتري"
 
 #: src/components/routes/event/messages.tsx:40
 msgid "Message cancelled"
@@ -9132,7 +9132,7 @@ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:61
 msgid "Provide at least one address field (venue, street, city, or country)."
-msgstr "أدخل حقلًا واحدًا على الأقل من حقول العنوان (المقر أو الشارع أو المدينة أو الدولة)."
+msgstr "يرجى إدخال حقل عنوان واحد على الأقل (المكان، الشارع، المدينة، أو الدولة)."
 
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:438
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
@@ -9294,7 +9294,7 @@ msgstr "Recent Account Signups"
 
 #: src/components/common/PeriodSelector/index.tsx:111
 msgid "Recent activity"
-msgstr "Recent activity"
+msgstr "النشاط الأخير"
 
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:59
 msgid "Recent Attendees"
@@ -9580,7 +9580,7 @@ msgstr "إعادة إرسال الدعوة"
 
 #: src/hooks/useOrderActions.tsx:119
 msgid "Resend order email"
-msgstr "Resend order email"
+msgstr "إعادة إرسال بريد الطلب"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:136
 msgid "Resend Ticket"
@@ -11115,7 +11115,7 @@ msgstr "تم تحديث الفعالية بنجاح"
 
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:62
 msgid "Successfully Updated Event Defaults"
-msgstr "Successfully Updated Event Defaults"
+msgstr "تم تحديث الإعدادات الافتراضية للفعاليات بنجاح"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:125
 #: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:88
@@ -13983,3 +13983,15 @@ msgstr "المملكة العربية السعودية"
 
 msgid "Organizer Homepage Preview"
 msgstr "معاينة الصفحة الرئيسية للمنظم"
+
+msgid "Coordinates & Map Preview"
+msgstr "الإحداثيات ومعاينة الخريطة"
+
+msgid "Latitude"
+msgstr "خط العرض"
+
+msgid "Longitude"
+msgstr "خط الطول"
+
+msgid "Venue Location Map"
+msgstr "خريطة موقع الفعالية"

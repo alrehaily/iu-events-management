@@ -13,7 +13,6 @@ import {ContactOrganizerModal} from "../../common/ContactOrganizerModal";
 import {formatAddress, getShortLocationDisplay} from "../../../utilites/addressUtilities.ts";
 import {organizerHomepagePath} from "../../../utilites/urlHelper.ts";
 import {removeTransparency} from "../../../utilites/colorHelper.ts";
-import {StatusToggle} from "../../common/StatusToggle";
 import {getConfig} from "../../../utilites/config.ts";
 import {Pagination} from "../../common/Pagination";
 import {computeThemeVariables, validateThemeSettings} from "../../../utilites/themeUtils.ts";
@@ -116,20 +115,7 @@ export const OrganizerHomepage = ({
 
     return (
         <>
-            <ScrollToTop/>
-            {organizer?.status && organizer?.id && (
-                <StatusToggle
-                    entityType="organizer"
-                    entityId={organizer.id}
-                    currentStatus={organizer.status as 'DRAFT' | 'LIVE'}
-                    entityName={organizer.name}
-                    onSuccess={() =>
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 1000)}
-                />
-            )}
-
+            {!preview && <ScrollToTop/>}
             {organizer && <OrganizerDocumentHead organizer={organizer}/>}
             <main inert={preview || undefined} className={classes.pageWrapper} style={themeStyles} data-mode={themeSettings.mode}>
                 <style>

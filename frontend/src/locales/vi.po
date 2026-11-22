@@ -13776,3 +13776,18 @@ msgstr ""
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:295
 msgid "يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة..."
 msgstr ""
+
+msgid "Coordinates & Map Preview"
+msgstr "Tọa độ và xem trước bản đồ"
+
+msgid "Latitude"
+msgstr "Vĩ độ"
+
+msgid "Longitude"
+msgstr "Kinh độ"
+
+msgid "Organizer Homepage Preview"
+msgstr "Xem trước trang của ban tổ chức"
+
+msgid "Venue Location Map"
+msgstr "Bản đồ địa điểm sự kiện"

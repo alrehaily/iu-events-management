@@ -19,7 +19,6 @@ import {
     IconShare,
     IconTicket,
     IconTrendingUp,
-    IconUserQuestion,
     IconUsers,
     IconUsersGroup,
     IconWebhook,
@@ -117,7 +116,6 @@ const EventLayout = () => {
         },
         {link: 'settings', label: t`Event Settings`, icon: IconSettings},
         {link: 'homepage-designer', label: t`Homepage Designer`, icon: IconPaint},
-        {link: 'questions', label: t`Registration Questions`, icon: IconUserQuestion},
 
         // 3. Ticketing & Sales
         {label: t`Ticketing & Sales`},
