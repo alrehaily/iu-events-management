@@ -3,6 +3,7 @@ import {Attendee, GenericDataResponse, GenericPaginatedResponse, IdParam, QueryF
 import {queryParamsHelper} from "../utilites/queryParamsHelper.ts";
 import {publicApi} from "./public-client.ts";
 import {SupportedLocales} from "../locales.ts";
+import {isAxiosError} from "axios";
 
 export interface EditAttendeeRequest {
     first_name: string;
@@ -178,11 +179,19 @@ export const attendeeClient = {
         headers: {Authorization: `Bearer ${token}`},
       });
       return response.data;
-    } catch {
+    } catch (error) {
+      if (!isAxiosError(error) || ![401, 403].includes(error.response?.status ?? 0)) throw error;
       localStorage.removeItem("iu_attendee_token");
       localStorage.removeItem("iu_attendee_user");
       return null;
     }
+  },
+
+  async updateName(data: {first_name: string; last_name: string}): Promise<void> {
+    const token = localStorage.getItem("iu_attendee_token");
+    await publicApi.patch("/attendee/me", data, {headers: {Authorization: `Bearer ${token}`}});
+    const user = this.getStoredUser();
+    if (user) localStorage.setItem("iu_attendee_user", JSON.stringify({...user, ...data}));
   },
 
   getStoredUser(): AttendeeUser | null {
@@ -204,7 +213,9 @@ export const attendeeClient = {
   },
 
   async getRegistrations(email?: string): Promise<{registrations: AttendeeRegistrationData[]}> {
-    const token = typeof localStorage !== "undefined" ? localStorage.getItem("iu_attendee_token") : null;
+    const token = typeof localStorage !== "undefined"
+      ? (localStorage.getItem("iu_attendee_token") || localStorage.getItem("token"))
+      : null;
     const headers: Record<string, string> = {};
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
@@ -223,7 +234,9 @@ export const attendeeClient = {
   },
 
   async cancelRegistration(orderShortId: string): Promise<{message: string}> {
-    const token = typeof localStorage !== "undefined" ? localStorage.getItem("iu_attendee_token") : null;
+    const token = typeof localStorage !== "undefined"
+      ? (localStorage.getItem("iu_attendee_token") || localStorage.getItem("token"))
+      : null;
     const headers: Record<string, string> = {};
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
@@ -238,7 +251,9 @@ export const attendeeClient = {
   },
 
   async getCertificate(attendeeIdentifier: string): Promise<CertificateData> {
-    const token = typeof localStorage !== "undefined" ? localStorage.getItem("iu_attendee_token") : null;
+    const token = typeof localStorage !== "undefined"
+      ? (localStorage.getItem("iu_attendee_token") || localStorage.getItem("token"))
+      : null;
     const headers: Record<string, string> = {};
     if (token) {
       headers["Authorization"] = `Bearer ${token}`;
