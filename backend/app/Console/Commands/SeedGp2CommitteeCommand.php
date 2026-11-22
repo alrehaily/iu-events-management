@@ -34,7 +34,8 @@ class SeedGp2CommitteeCommand extends Command
         {--apply : Seed the demo and hide recognized test fixtures. Omit for a dry run}
         {--backup= : Verified PostgreSQL custom-format backup of iu_gp2_demo}
         {--manifest= : New JSON file for saving the original visibility of affected fixtures}
-        {--restore-visibility= : Restore visibility using a recorded manifest}';
+        {--restore-visibility= : Restore visibility using a recorded manifest}
+        {--update-covers : Re-upload and update cover images for existing curated events}';
 
     protected $description = 'Prepare the eight fictional GP2 committee events on the isolated demo database';
 
@@ -140,6 +141,9 @@ class SeedGp2CommitteeCommand extends Command
                     ->whereNull('deleted_at')->value('id');
                 if ($existing) {
                     $connection->table('events')->where('id', $existing)->update(['status' => EventStatus::LIVE->name]);
+                    if ($this->option('update-covers')) {
+                        $context->uploadCover($existing, $owner->account_id, 'gp2-'.$event['key'].'.jpg');
+                    }
                     $ids[$event['key']] = $existing;
                 } else {
                     $ids[$event['key']] = $this->createEvent($connection, $context, $owner, $event);
