@@ -173,7 +173,7 @@
             const iframe = document.createElement('iframe');
             iframe.setAttribute('sandbox', SANDBOX);
             iframe.setAttribute('allow', ALLOW);
-            iframe.setAttribute('title', 'Hi.Events Checkout');
+            iframe.setAttribute('title', 'IU Events Checkout');
             const ifs = iframe.style;
             ifs.border = 'none';
             ifs.width = '100%';
@@ -357,7 +357,7 @@
             const iframe = document.createElement('iframe');
             iframe.setAttribute('sandbox', SANDBOX);
             iframe.setAttribute('allow', ALLOW);
-            iframe.setAttribute('title', 'Hi.Events Widget');
+            iframe.setAttribute('title', 'IU Events Widget');
             iframe.style.border = 'none';
             iframe.style.width = '100%';
 
