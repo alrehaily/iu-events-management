@@ -291,9 +291,17 @@
   font-family: var(--iu-font-family, 'Tajawal', sans-serif);
 }
 
-.eventsEmptyEmoji {
-  font-size: 32px;
-  line-height: 1;
+.eventsEmptyEmoji,
+.eventsEmptyIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--iu-green-light, #e8f5ee);
+  color: var(--iu-green-primary, #084b2f);
+  margin-bottom: 6px;
 }
 
 .eventsEmptyTitle {

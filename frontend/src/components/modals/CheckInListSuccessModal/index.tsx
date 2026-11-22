@@ -17,7 +17,7 @@ export const CheckInListSuccessModal = ({
     const checkInUrl = `${window.location.origin}/check-in/${checkInListShortId}`;
 
     return (
-        <Modal opened onClose={onClose} heading={t`Check-In List Created` + ' 🎉'} size="sm">
+        <Modal opened onClose={onClose} heading={t`Check-In List Created`} size="sm">
             <Stack gap="md">
                 <Text size="sm">
                     {t`Your check-in list has been created successfully. Share the link below with your check-in staff.`}

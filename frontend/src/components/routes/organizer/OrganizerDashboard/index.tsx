@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { NavLink, useParams } from "react-router";
 import { Button, Menu, SegmentedControl, Skeleton, UnstyledButton } from '@mantine/core';
 import { AreaChart } from "@mantine/charts";
-import { IconArrowDownRight, IconArrowUpRight, IconChevronDown, IconChevronRight, IconReceipt } from '@tabler/icons-react';
+import { IconArrowDownRight, IconArrowUpRight, IconChevronDown, IconChevronRight, IconReceipt, IconCalendarEvent } from '@tabler/icons-react';
 import { t, Trans } from '@lingui/macro';
 
 import { PageTitle } from "../../../common/PageTitle";
@@ -364,7 +364,9 @@ export const OrganizerDashboard = () => {
                             </div>
                         ) : (
                             <div className={classes.eventsEmptyState}>
-                                <div className={classes.eventsEmptyEmoji}>📦</div>
+                                <div className={classes.eventsEmptyIconWrap}>
+                                    <IconReceipt size={28} stroke={1.75} color="var(--iu-green-primary, #084b2f)" />
+                                </div>
                                 <h4 className={classes.eventsEmptyTitle}>
                                     <Trans>No orders yet</Trans>
                                 </h4>
@@ -393,7 +395,9 @@ export const OrganizerDashboard = () => {
                             </div>
                         ) : (
                             <div className={classes.eventsEmptyState}>
-                                <div className={classes.eventsEmptyEmoji}>🎉</div>
+                                <div className={classes.eventsEmptyIconWrap}>
+                                    <IconCalendarEvent size={28} stroke={1.75} color="var(--iu-green-primary, #084b2f)" />
+                                </div>
                                 <h4 className={classes.eventsEmptyTitle}>
                                     <Trans>No events yet</Trans>
                                 </h4>

@@ -1,4 +1,5 @@
 import {t, Trans} from "@lingui/macro";
+import {productCategoryDisplay} from "../../../utilites/productCategoryDisplay.ts";
 import {UseFormReturnType} from "@mantine/form";
 import {
     EventType,
@@ -255,7 +256,7 @@ export const ProductForm = ({form, product}: ProductFormProps) => {
                         placeholder={t`Select category...`}
                         data={event?.product_categories?.map((category) => ({
                             value: String(category.id),
-                            label: category.name,
+                            label: productCategoryDisplay(category).name,
                         }))}
                     />
                 </InputGroup>
@@ -583,8 +584,8 @@ export const ProductForm = ({form, product}: ProductFormProps) => {
                             mt={15}
                             {...form.getInputProps('highlight_message')}
                             label={t`Highlight Message`}
-                            description={t`An optional message to display on the highlighted product, e.g. "Selling fast 🔥" or "Best value"`}
-                            placeholder={t`Selling fast 🔥`}
+                            description={t`An optional message to display on the highlighted product, e.g. "Selling fast" or "Best value"`}
+                            placeholder={t`Selling fast`}
                             maxLength={255}
                         />
                     )}
