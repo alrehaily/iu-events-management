@@ -98,7 +98,9 @@ class Event extends BaseModel
         // todo - move into a domain service
         static::creating(
             static function (Event $event) {
-                $event->user_id = auth()->user()->id;
+                if ($event->user_id === null && auth()->check()) {
+                    $event->user_id = auth()->user()->id;
+                }
             }
         );
     }
