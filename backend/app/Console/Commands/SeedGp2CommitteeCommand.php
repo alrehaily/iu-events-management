@@ -134,11 +134,22 @@ class SeedGp2CommitteeCommand extends Command
 
             $ids = [];
             foreach ($events as $event) {
-                $existing = $connection->table('events')->where('organizer_id', $owner->organizer_id)
-                    ->where('title', $event['title'])
-                    ->whereNull('deleted_at')->value('id');
+                $existing = null;
+                if (! empty($event['id'])) {
+                    $existing = $connection->table('events')->where('organizer_id', $owner->organizer_id)
+                        ->where('id', (int) $event['id'])
+                        ->whereNull('deleted_at')->value('id');
+                }
+                if (! $existing) {
+                    $existing = $connection->table('events')->where('organizer_id', $owner->organizer_id)
+                        ->where('title', $event['title'])
+                        ->whereNull('deleted_at')->value('id');
+                }
                 if ($existing) {
-                    $connection->table('events')->where('id', $existing)->update(['status' => EventStatus::LIVE->name]);
+                    $connection->table('events')->where('id', $existing)->update([
+                        'title' => $event['title'],
+                        'status' => EventStatus::LIVE->name,
+                    ]);
                     if ($this->option('update-covers')) {
                         $context->uploadCover($existing, $owner->account_id, 'gp2-'.$event['key'].'.jpg');
                     }

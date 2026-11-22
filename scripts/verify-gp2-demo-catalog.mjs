@@ -18,7 +18,7 @@ const EXPECTED_EVENTS = [
   {
     id: 155,
     key: 'ai-applications',
-    title: 'تطبيقات الذكاء الاصطناعي',
+    title: 'Artificial Intelligence Applications',
     category: 'TECH',
     type: 'IN_PERSON',
     venue: 'قاعة كلية الحاسب الآلي',
@@ -28,7 +28,7 @@ const EXPECTED_EVENTS = [
   {
     id: 156,
     key: 'cyber-awareness',
-    title: 'ورشة التوعية بالأمن السيبراني',
+    title: 'Cybersecurity Awareness Workshop',
     category: 'WORKSHOP',
     type: 'IN_PERSON',
     venue: 'معمل التدريب بكلية الحاسب الآلي',
@@ -38,7 +38,7 @@ const EXPECTED_EVENTS = [
   {
     id: 157,
     key: 'research-innovation',
-    title: 'ملتقى الابتكار الجامعي',
+    title: 'University Innovation Forum',
     category: 'EDUCATION',
     type: 'IN_PERSON',
     venue: 'القاعة الرئيسة بمركز المؤتمرات',
@@ -48,7 +48,7 @@ const EXPECTED_EVENTS = [
   {
     id: 158,
     key: 'cloud-fundamentals',
-    title: 'ورشة الحوسبة السحابية',
+    title: 'Cloud Computing Workshop',
     category: 'TECH',
     type: 'ONLINE',
     venue: null,
@@ -58,7 +58,7 @@ const EXPECTED_EVENTS = [
   {
     id: 159,
     key: 'career-workshop',
-    title: 'ورشة الاستعداد لسوق العمل',
+    title: 'Career Preparation Workshop',
     category: 'WORKSHOP',
     type: 'IN_PERSON',
     venue: 'قاعة الإرشاد المهني',
@@ -68,7 +68,7 @@ const EXPECTED_EVENTS = [
   {
     id: 160,
     key: 'student-volunteering',
-    title: 'مبادرة التطوع الطلابي',
+    title: 'Student Volunteering Initiative',
     category: 'SOCIAL',
     type: 'IN_PERSON',
     venue: 'ساحة الأنشطة الطلابية',
@@ -78,7 +78,7 @@ const EXPECTED_EVENTS = [
   {
     id: 161,
     key: 'digital-forensics',
-    title: 'ندوة الأدلة الجنائية الرقمية',
+    title: 'Digital Forensics Seminar',
     category: 'TECH',
     type: 'ONLINE',
     venue: null,
@@ -88,7 +88,7 @@ const EXPECTED_EVENTS = [
   {
     id: 162,
     key: 'entrepreneurship',
-    title: 'ملتقى ريادة الأعمال',
+    title: 'Entrepreneurship Forum',
     category: 'BUSINESS',
     type: 'ONLINE',
     venue: null,
@@ -233,7 +233,11 @@ async function main() {
     console.log(`- Clean Description (No Demo Disclaimer): ${!hasDemoDisclaimer}`);
 
     // Verify Professional Sections
-    const hasProfessionalStructure = pageText.includes('مقدمة') && (pageText.includes('أهداف') || pageText.includes('محاور'));
+    const hasProfessionalStructure = (pageText.includes('نبذة') || pageText.includes('مقدمة')) &&
+      pageText.includes('أهداف') &&
+      pageText.includes('محاور') &&
+      (pageText.includes('المستهدفة') || pageText.includes('الفئة')) &&
+      pageText.includes('المخرجات');
     console.log(`- Professional Section Structure: ${hasProfessionalStructure}`);
 
     // Screenshot
@@ -384,8 +388,8 @@ async function main() {
   await page.goto(`${BASE_URL}/my-registrations`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
   const myRegistrationsText = await page.innerText('body');
-  const hasEvent155 = myRegistrationsText.includes('تطبيقات الذكاء الاصطناعي');
-  const hasEvent158 = myRegistrationsText.includes('ورشة الحوسبة السحابية');
+  const hasEvent155 = myRegistrationsText.includes('Artificial Intelligence Applications') || myRegistrationsText.includes('تطبيقات الذكاء الاصطناعي');
+  const hasEvent158 = myRegistrationsText.includes('Cloud Computing Workshop') || myRegistrationsText.includes('ورشة الحوسبة السحابية');
   console.log(`- My Registrations contains Event 155: ${hasEvent155}, Event 158: ${hasEvent158}`);
   results.myBookingsVerified = hasEvent155 || hasEvent158;
 
