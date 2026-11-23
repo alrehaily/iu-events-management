@@ -57,6 +57,7 @@ class CreateAccountHandler
         $passwordHash = $this->hashManager->make($accountData->password);
 
         return $this->databaseManager->transaction(function () use ($isSaasMode, $passwordHash, $accountData) {
+            $existingUser = $this->getExistingUser($accountData);
             $account = $this->accountRepository->create([
                 'timezone' => $this->config->get('app.default_timezone'),
                 'currency_code' => $this->config->get('app.default_currency_code'),
@@ -68,7 +69,7 @@ class CreateAccountHandler
                 'account_messaging_tier_id' => $this->getDefaultMessagingTierId(),
             ]);
 
-            $user = $this->getExistingUser($accountData) ?? $this->userRepository->create([
+            $user = $existingUser ?? $this->userRepository->create([
                 'password' => $passwordHash,
                 'email' => strtolower($accountData->email),
                 'first_name' => $accountData->first_name,
@@ -135,7 +136,11 @@ class CreateAccountHandler
             'is_account_owner' => true,
         ]);
 
-        if ($existingOwner !== null) {
+        $membership = $this->accountUserRepository->findFirstWhere([
+            'user_id' => $existingUser->getId(),
+        ]);
+        if ($existingOwner !== null || $membership === null
+            || ! $this->hashManager->check($accountData->password, $existingUser->getPassword())) {
             throw new EmailAlreadyExists(
                 __('There is already an account associated with this email. Please log in instead.')
             );

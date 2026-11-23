@@ -124,6 +124,33 @@ class RegisterTest extends TestCase
         $response2->assertJsonValidationErrors(['email']);
     }
 
+
+    public function test_attendee_identity_cannot_be_reused_to_register_an_organizer(): void
+    {
+        Config::set('app.disable_registration', false);
+        $password = fake()->password(16);
+        $attendee = [
+            'email' => fake()->unique()->safeEmail(),
+            'first_name' => 'GP2',
+            'last_name' => 'Attendee',
+            'password' => $password,
+        ];
+        $registration = $this->postJson('/public/attendee/register', $attendee);
+        $registration->assertCreated()->assertJsonPath('user.role', 'ATTENDEE');
+
+        $this->postJson(self::REGISTER_ROUTE, [
+            ...$attendee,
+            'password_confirmation' => $password,
+            'timezone' => 'Asia/Riyadh',
+            'currency_code' => 'SAR',
+            'locale' => 'en',
+        ])->assertUnprocessable()->assertJsonValidationErrors('email');
+
+        $this->assertDatabaseMissing('accounts', ['email' => $attendee['email']]);
+        $this->assertDatabaseMissing('account_users', ['user_id' => $registration->json('user.id')]);
+        $this->withToken($registration->json('token'))->getJson('/events')->assertForbidden();
+    }
+
     public function test_register_user_with_invalid_data(): void
     {
         $user = User::factory()->make();
