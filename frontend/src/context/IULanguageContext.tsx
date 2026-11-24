@@ -190,6 +190,25 @@ const IU_TRANSLATIONS: Record<SupportedLocales, Record<string, string>> = {
     cancel_btn: "إلغاء",
     confirm_danger_title: "تأكيد الإجراء",
     confirm_title: "تأكيد العملية",
+
+    // Auth - Forgot Password & Reset Password
+    forgot_password_title: "استعادة كلمة المرور",
+    forgot_password_desc: "أدخل بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور الخاصة بك.",
+    email_label: "البريد الإلكتروني",
+    send_reset_link: "إرسال رابط الاستعادة",
+    sending: "جاري الإرسال...",
+    back_to_login: "العودة لتسجيل الدخول",
+    forgot_success_title: "تحقق من بريدك الإلكتروني",
+    forgot_success_desc: "إذا كان لديك حساب مسجل لدينا، فستصلك رسالة تحتوي على تعليمات إعادة تعيين كلمة المرور.",
+    forgot_password_error: "حدث خطأ أثناء معالجة الطلب. يرجى المحاولة مرة أخرى.",
+    reset_title: "إنشاء كلمة مرور جديدة",
+    reset_desc: "يجب أن تتكون كلمة المرور الجديدة من 8 أحرف على الأقل.",
+    new_password_label: "كلمة المرور الجديدة",
+    confirm_password_label: "تأكيد كلمة المرور الجديدة",
+    reset_submit: "إعادة تعيين كلمة المرور",
+    resetting: "جاري إعادة التعيين...",
+    reset_success: "تمت إعادة تعيين كلمة المرور بنجاح. يرجى تسجيل الدخول بكلمة المرور الجديدة.",
+    reset_invalid_token: "رابط إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية.",
   },
   en: {
     // Navigation
@@ -366,6 +385,25 @@ const IU_TRANSLATIONS: Record<SupportedLocales, Record<string, string>> = {
     reg_err_match: "Passwords do not match.",
     reg_err_length: "Password must be at least 8 characters.",
     reg_footer_note: "Islamic University of Madinah — Towards an Integrated Digital University Experience",
+
+    // Auth - Forgot Password & Reset Password
+    forgot_password_title: "Forgot Password",
+    forgot_password_desc: "Enter your email address and we will send you a link to reset your password.",
+    email_label: "Email Address",
+    send_reset_link: "Send Reset Link",
+    sending: "Sending...",
+    back_to_login: "Back to login",
+    forgot_success_title: "Check your email",
+    forgot_success_desc: "If you have an account with us, you will receive an email with password reset instructions.",
+    forgot_password_error: "An error occurred while processing your request. Please try again.",
+    reset_title: "Create New Password",
+    reset_desc: "Your new password must be at least 8 characters long.",
+    new_password_label: "New Password",
+    confirm_password_label: "Confirm New Password",
+    reset_submit: "Reset Password",
+    resetting: "Resetting...",
+    reset_success: "Your password has been reset successfully. Please log in with your new password.",
+    reset_invalid_token: "This password reset link is invalid or expired.",
   }
 };
 
