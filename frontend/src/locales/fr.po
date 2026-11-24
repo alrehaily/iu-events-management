@@ -7363,7 +7363,7 @@ msgstr "Aucune date disponible ce mois-ci. Essayez un autre mois."
 msgid "No dates match the current filters."
 msgstr "Aucune date ne correspond aux filtres actuels."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Aucune date ne correspond à vos filtres"
 
@@ -7376,7 +7376,7 @@ msgstr "Aucune date ne correspond à votre recherche"
 msgid "No dates scheduled"
 msgstr "Aucune date planifiée"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Aucune date programmée pour le moment"
 
@@ -8064,7 +8064,7 @@ msgstr "Possibilités"
 msgid "or"
 msgstr "ou"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "ou ajouter une date unique"
 
@@ -10612,7 +10612,7 @@ msgstr "Définir le numéro de départ pour la numérotation des factures. Cela 
 msgid "Set to unlimited (remove limit)"
 msgstr "Passer en illimité (supprimer la limite)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Configurez un planning récurrent pour créer automatiquement les dates, ou ajoutez-les une par une."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Configurer le planning"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Configurer le planning"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "Affichage de {0} sur {totalRows} enregistrements"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "Affichage de {0}–{1} sur {2}"
 
@@ -12454,7 +12454,7 @@ msgstr "Suivi et analytique"
 msgid "Try a different search term or filter"
 msgstr "Essayez un autre terme de recherche ou un autre filtre"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Ajustez vos filtres pour voir plus de dates."
 

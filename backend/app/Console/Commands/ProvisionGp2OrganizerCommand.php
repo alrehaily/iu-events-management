@@ -32,11 +32,8 @@ class ProvisionGp2OrganizerCommand extends Command
         CreateOrganizerHandler $createOrganizer,
     ): int {
         $connection = $database->connection();
-        if (! app()->environment('local') || $connection->getDriverName() !== 'pgsql'
-            || $connection->getConfig('host') !== '127.0.0.1'
-            || (int) $connection->getConfig('port') !== 55432
-            || $connection->getDatabaseName() !== 'iu_gp2_demo') {
-            $this->error('Provisioning requires local PostgreSQL at 127.0.0.1:55432/iu_gp2_demo.');
+        if (! app()->environment('local', 'testing') || $connection->getDriverName() !== 'pgsql') {
+            $this->error('Provisioning requires a local or testing environment with PostgreSQL.');
 
             return self::FAILURE;
         }

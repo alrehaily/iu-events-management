@@ -7363,7 +7363,7 @@ msgstr "V tomto mesiaci nie sú dostupné žiadne termíny. Skúste iný mesiac.
 msgid "No dates match the current filters."
 msgstr "Aktuálnym filtrom nezodpovedajú žiadne termíny."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Vašim filtrom nezodpovedajú žiadne termíny"
 
@@ -7376,7 +7376,7 @@ msgstr "Vášmu hľadaniu nezodpovedajú žiadne termíny"
 msgid "No dates scheduled"
 msgstr "Žiadne naplánované termíny"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Zatiaľ nie sú naplánované žiadne termíny"
 
@@ -8064,7 +8064,7 @@ msgstr "Možnosti"
 msgid "or"
 msgstr "alebo"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "alebo pridajte jeden termín"
 
@@ -10612,7 +10612,7 @@ msgstr "Nastavte počiatočné číslo pre číslovanie faktúr. Toto nie je mo�
 msgid "Set to unlimited (remove limit)"
 msgstr "Nastaviť na neobmedzené (odstrániť limit)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Nastavte opakujúci sa rozvrh, aby sa termíny vytvárali automaticky, alebo ich pridávajte po jednom."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Nastaviť rozvrh"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Nastaviť rozvrh"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "Zobrazuje sa {0} z {totalRows} záznamov"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "Zobrazuje sa {0}–{1} z {2}"
 
@@ -12454,7 +12454,7 @@ msgstr "Sledovanie a analytika"
 msgid "Try a different search term or filter"
 msgstr "Skúste iný výraz alebo iný filter"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Upravte filtre, aby ste videli viac termínov."
 

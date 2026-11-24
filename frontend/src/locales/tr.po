@@ -7363,7 +7363,7 @@ msgstr "Bu ay uygun tarih yok. Başka bir aya geçmeyi deneyin."
 msgid "No dates match the current filters."
 msgstr "Geçerli filtrelerle eşleşen tarih yok."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Filtrelerinizle eşleşen tarih yok"
 
@@ -7376,7 +7376,7 @@ msgstr "Aramanızla eşleşen tarih yok"
 msgid "No dates scheduled"
 msgstr "Planlanmış tarih yok"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Henüz planlanmış tarih yok"
 
@@ -8064,7 +8064,7 @@ msgstr "Seçenekler"
 msgid "or"
 msgstr "veya"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "veya tek bir tarih ekleyin"
 
@@ -10612,7 +10612,7 @@ msgstr "Fatura numaralandırması için başlangıç numarasını ayarlayın. Fa
 msgid "Set to unlimited (remove limit)"
 msgstr "Sınırsız yap (sınırı kaldır)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Tarihlerin otomatik oluşturulması için yinelenen bir program kurun veya tarihleri tek tek ekleyin."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Programı kur"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Programı kur"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "{totalRows} kayıttan {0} tanesi gösteriliyor"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "{2} içinden {0}–{1} gösteriliyor"
 
@@ -12454,7 +12454,7 @@ msgstr "İzleme ve Analitik"
 msgid "Try a different search term or filter"
 msgstr "Farklı bir arama terimi veya filtre deneyin"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Daha fazla tarih görmek için filtrelerinizi ayarlayın."
 

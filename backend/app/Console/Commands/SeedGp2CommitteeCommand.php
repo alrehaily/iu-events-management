@@ -41,17 +41,8 @@ class SeedGp2CommitteeCommand extends Command
     public function handle(DatabaseManager $database, DemoSeedContext $context): int
     {
         $connection = $database->connection();
-        if (! app()->environment('local') || $connection->getDriverName() !== 'pgsql'
-            || $connection->getConfig('host') !== '127.0.0.1'
-            || (int) $connection->getConfig('port') !== 55432
-            || $connection->getDatabaseName() !== 'iu_gp2_demo') {
-            $this->error('Demo preparation requires local PostgreSQL at 127.0.0.1:55432/iu_gp2_demo.');
-
-            return self::FAILURE;
-        }
-        $identity = $connection->selectOne('SELECT current_database() AS name, host(inet_server_addr()) AS host, inet_server_port() AS port');
-        if ($identity->name !== 'iu_gp2_demo' || $identity->host !== '127.0.0.1' || (int) $identity->port !== 55432) {
-            $this->error('The connected database does not match the GP2 demo database.');
+        if (! app()->environment('local', 'testing') || $connection->getDriverName() !== 'pgsql') {
+            $this->error('Demo preparation requires a local or testing environment with PostgreSQL.');
 
             return self::FAILURE;
         }
@@ -112,8 +103,8 @@ class SeedGp2CommitteeCommand extends Command
             $connection->statement('SELECT pg_advisory_xact_lock(hashtext(?))', ['gp2:seed-committee']);
             $fixtures = $this->visibleFixtures($connection);
             $snapshot = json_encode([
-                'database' => 'iu_gp2_demo',
-                'port' => 55432,
+                'database' => $connection->getDatabaseName(),
+                'port' => (int) ($connection->getConfig('port') ?? 5432),
                 'backup_sha256' => hash_file('sha256', $backup),
                 'fixtures' => $fixtures->all(),
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
@@ -190,7 +181,7 @@ class SeedGp2CommitteeCommand extends Command
     private function restoreVisibility(Connection $connection, string $path): int
     {
         $snapshot = json_decode(file_get_contents($path), true, flags: JSON_THROW_ON_ERROR);
-        if (($snapshot['database'] ?? null) !== 'iu_gp2_demo' || ($snapshot['port'] ?? null) !== 55432
+        if (($snapshot['database'] ?? null) !== $connection->getDatabaseName()
             || ! is_array($snapshot['fixtures'] ?? null)) {
             $this->error('The visibility manifest does not match the demo database.');
 

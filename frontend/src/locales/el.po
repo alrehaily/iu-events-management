@@ -7363,7 +7363,7 @@ msgstr "Δεν υπάρχουν διαθέσιμες ημερομηνίες αυ
 msgid "No dates match the current filters."
 msgstr "Καμία ημερομηνία δεν ταιριάζει με τα τρέχοντα φίλτρα."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Καμία ημερομηνία δεν ταιριάζει με τα φίλτρα σας"
 
@@ -7376,7 +7376,7 @@ msgstr "Καμία ημερομηνία δεν ταιριάζει με την α
 msgid "No dates scheduled"
 msgstr "Δεν έχουν προγραμματιστεί ημερομηνίες"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Δεν έχουν προγραμματιστεί ακόμη ημερομηνίες"
 
@@ -8064,7 +8064,7 @@ msgstr "Επιλογές"
 msgid "or"
 msgstr "ή"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "ή προσθέστε μία ημερομηνία"
 
@@ -10612,7 +10612,7 @@ msgstr "Ορίστε τον αρχικό αριθμό για την αρίθμη
 msgid "Set to unlimited (remove limit)"
 msgstr "Ορισμός ως απεριόριστο (αφαίρεση ορίου)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Ρυθμίστε ένα επαναλαμβανόμενο πρόγραμμα για αυτόματη δημιουργία ημερομηνιών ή προσθέστε τις μία-μία."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Ρύθμιση προγράμματος"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Ρύθμιση προγράμματος"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "Εμφάνιση {0} από {totalRows} εγγραφές"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "Εμφάνιση {0}–{1} από {2}"
 
@@ -12454,7 +12454,7 @@ msgstr "Παρακολούθηση & Αναλυτικά"
 msgid "Try a different search term or filter"
 msgstr "Δοκιμάστε άλλον όρο αναζήτησης ή άλλο φίλτρο"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Προσαρμόστε τα φίλτρα για να δείτε περισσότερες ημερομηνίες."
 

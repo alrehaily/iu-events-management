@@ -7363,7 +7363,7 @@ msgstr "Inga datum tillgängliga den här månaden. Prova en annan månad."
 msgid "No dates match the current filters."
 msgstr "Inga datum matchar de aktuella filtren."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Inga datum matchar dina filter"
 
@@ -7376,7 +7376,7 @@ msgstr "Inga datum matchar din sökning"
 msgid "No dates scheduled"
 msgstr "Inga datum schemalagda"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Inga datum schemalagda ännu"
 
@@ -8064,7 +8064,7 @@ msgstr "Alternativ"
 msgid "or"
 msgstr "eller"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "eller lägg till ett enskilt datum"
 
@@ -10612,7 +10612,7 @@ msgstr "Ange startnummer för fakturanumrering. Detta kan inte ändras när fakt
 msgid "Set to unlimited (remove limit)"
 msgstr "Ange som obegränsat (ta bort gränsen)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Ställ in ett återkommande schema så att datum skapas automatiskt, eller lägg till dem ett i taget."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Ställ in schema"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Ställ in schema"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "Visar {0} av {totalRows} poster"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "Visar {0}–{1} av {2}"
 
@@ -12454,7 +12454,7 @@ msgstr "Spårning & Analys"
 msgid "Try a different search term or filter"
 msgstr "Prova en annan sökterm eller ett annat filter"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Justera filtren för att se fler datum."
 

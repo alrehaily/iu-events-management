@@ -7363,7 +7363,7 @@ msgstr "Ebben a hónapban nincs elérhető időpont. Váltson másik hónapra."
 msgid "No dates match the current filters."
 msgstr "Egy időpont sem felel meg a jelenlegi szűrőknek."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Egy időpont sem felel meg a szűrőknek"
 
@@ -7376,7 +7376,7 @@ msgstr "Egy időpont sem felel meg a keresésnek"
 msgid "No dates scheduled"
 msgstr "Nincsenek ütemezett időpontok"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Még nincs ütemezett időpont"
 
@@ -8064,7 +8064,7 @@ msgstr "Opciók"
 msgid "or"
 msgstr "vagy"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "vagy adjon hozzá egyetlen időpontot"
 
@@ -10612,7 +10612,7 @@ msgstr "Állítsa be a számlaszámozás kezdő számát. Ez nem módosítható,
 msgid "Set to unlimited (remove limit)"
 msgstr "Beállítás korlátlanra (korlát eltávolítása)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Állítson be ismétlődő ütemtervet az időpontok automatikus létrehozásához, vagy adja hozzá őket egyesével."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Ütemterv beállítása"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Ütemterv beállítása"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "{0} / {totalRows} rekord megjelenítése"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "{0}–{1} megjelenítve a következőből: {2}"
 
@@ -12454,7 +12454,7 @@ msgstr "Követés és elemzés"
 msgid "Try a different search term or filter"
 msgstr "Próbáljon meg más keresőkifejezést vagy szűrőt"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Módosítsa a szűrőket, hogy több időpontot lásson."
 

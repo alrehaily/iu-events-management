@@ -7363,7 +7363,7 @@ msgstr "Tháng này không có ngày nào khả dụng. Hãy thử chuyển sang
 msgid "No dates match the current filters."
 msgstr "Không có ngày nào khớp với bộ lọc hiện tại."
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "Không có ngày nào khớp với bộ lọc của bạn"
 
@@ -7376,7 +7376,7 @@ msgstr "Không có ngày nào khớp với tìm kiếm của bạn"
 msgid "No dates scheduled"
 msgstr "Chưa có ngày nào được lên lịch"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "Chưa lên lịch ngày nào"
 
@@ -8064,7 +8064,7 @@ msgstr "Tùy chọn"
 msgid "or"
 msgstr "Hoặc"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "hoặc thêm một ngày duy nhất"
 
@@ -10612,7 +10612,7 @@ msgstr "Đặt số bắt đầu cho hóa đơn. Sau khi hóa đơn được t�
 msgid "Set to unlimited (remove limit)"
 msgstr "Đặt thành không giới hạn (bỏ giới hạn)"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "Thiết lập lịch định kỳ để tự động tạo các ngày, hoặc thêm từng ngày một."
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "Thiết lập lịch"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "Thiết lập lịch"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "Hiển thị {0} trong {totalRows} bản ghi"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "Đang hiển thị {0}–{1} trong số {2}"
 
@@ -12454,7 +12454,7 @@ msgstr "Theo dõi & Phân tích"
 msgid "Try a different search term or filter"
 msgstr "Hãy thử từ khóa hoặc bộ lọc khác"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "Hãy điều chỉnh bộ lọc để thấy thêm ngày."
 

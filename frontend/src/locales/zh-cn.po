@@ -7363,7 +7363,7 @@ msgstr "本月没有可选日期，请切换到其他月份。"
 msgid "No dates match the current filters."
 msgstr "没有日期符合当前筛选条件。"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates match your filters"
 msgstr "没有日期符合你的筛选条件"
 
@@ -7376,7 +7376,7 @@ msgstr "没有日期符合你的搜索"
 msgid "No dates scheduled"
 msgstr "未安排日期"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:595
+#: src/components/routes/event/OccurrencesTab/index.tsx:603
 msgid "No dates scheduled yet"
 msgstr "还没有安排任何日期"
 
@@ -8064,7 +8064,7 @@ msgstr "选项"
 msgid "or"
 msgstr "或"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:618
+#: src/components/routes/event/OccurrencesTab/index.tsx:626
 msgid "or add a single date"
 msgstr "或添加单个日期"
 
@@ -10612,7 +10612,7 @@ msgstr "设置发票编号的起始编号。一旦发票生成，就无法更改
 msgid "Set to unlimited (remove limit)"
 msgstr "设为不限（移除限制）"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:600
+#: src/components/routes/event/OccurrencesTab/index.tsx:608
 msgid "Set up a recurring schedule to automatically create dates, or add them one at a time."
 msgstr "设置重复排期以自动创建日期，或逐个添加。"
 
@@ -10630,7 +10630,7 @@ msgid "Set up schedule"
 msgstr "设置排期"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:550
-#: src/components/routes/event/OccurrencesTab/index.tsx:611
+#: src/components/routes/event/OccurrencesTab/index.tsx:619
 msgid "Set Up Schedule"
 msgstr "设置排期"
 
@@ -10782,7 +10782,7 @@ msgstr ""
 msgid "Showing {0} of {totalRows} records"
 msgstr "显示 {0} / {totalRows} 条记录"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:639
+#: src/components/routes/event/OccurrencesTab/index.tsx:647
 msgid "Showing {0}–{1} of {2}"
 msgstr "正在显示第 {0}–{1} 个，共 {2} 个"
 
@@ -12454,7 +12454,7 @@ msgstr "跟踪与分析"
 msgid "Try a different search term or filter"
 msgstr "换个搜索词或筛选条件试试"
 
-#: src/components/routes/event/OccurrencesTab/index.tsx:599
+#: src/components/routes/event/OccurrencesTab/index.tsx:607
 msgid "Try adjusting your filters to see more dates."
 msgstr "调整筛选条件即可查看更多日期。"
 
