@@ -316,7 +316,7 @@ export const VerifyCertificate: React.FC = () => {
                     boxShadow: "0 2px 8px rgba(30, 58, 95, 0.25)",
                   }}
                 >
-                  <IconCertificate size={18} />
+                  <IconCertificate size={18} color="#ffffff" stroke={2} style={{ color: "#ffffff", stroke: "#ffffff" }} />
                   <span>{isRtl ? "عرض الشهادة الرسمية الكاملة" : "View Full Certificate"}</span>
                 </button>
               </div>

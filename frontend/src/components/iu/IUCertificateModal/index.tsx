@@ -188,8 +188,8 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                 transition: "background-color 0.2s ease",
               }}
             >
-              <IconPrinter size={18} />
-              <span>طباعة / حفظ PDF</span>
+              <IconPrinter size={18} color="#ffffff" stroke={2} style={{ color: "#ffffff", stroke: "#ffffff" }} />
+              <span style={{ color: "#ffffff" }}>طباعة / حفظ PDF</span>
             </button>
 
             {/* Close Button */}
