@@ -36,7 +36,7 @@ class CompleteOrderRequestTest extends TestCase
         $request = new CompleteOrderRequest;
         $request->setRouteResolver(static fn () => new Route(['PUT'], '/events/{event_id}/order/{order_short_id}', []));
 
-        $this->assertSame($validatorRules, $request->rules());
+        $this->assertSame(['use_attendee_profile' => ['sometimes', 'boolean'], ...$validatorRules], $request->rules());
     }
 
     public function test_messages_delegates_to_complete_order_validator(): void

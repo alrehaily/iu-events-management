@@ -1,10 +1,10 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import classes from './HomepageDesigner.module.scss';
 import {useParams} from "react-router";
 import {useGetEventSettings} from "../../../../queries/useGetEventSettings.ts";
 import {useUpdateEventSettings} from "../../../../mutations/useUpdateEventSettings.ts";
 import {useFormErrorResponseHandler} from "../../../../hooks/useFormErrorResponseHandler.tsx";
-import {EventSettings, HomepageThemeSettings, IdParam} from "../../../../types.ts";
+import {EventSettings, HomepageThemeSettings} from "../../../../types.ts";
 import {showSuccess} from "../../../../utilites/notifications.tsx";
 import {t} from "@lingui/macro";
 import {useForm} from "@mantine/form";
@@ -24,8 +24,11 @@ import {eventPreviewPath} from "../../../../utilites/urlHelper.ts";
 import {LoadingMask} from "../../../common/LoadingMask";
 import {ImageUploadDropzone} from "../../../common/ImageUploadDropzone";
 import {queryClient} from "../../../../utilites/queryClient.ts";
-import {GET_EVENT_PUBLIC_QUERY_KEY, useGetEventPublic} from "../../../../queries/useGetEventPublic.ts";
+import {GET_EVENT_PUBLIC_QUERY_KEY} from "../../../../queries/useGetEventPublic.ts";
 import {getDefaultThemeSettings, validateThemeSettings} from "../../../../utilites/themeUtils.ts";
+import {GET_EVENT_QUERY_KEY, useGetEvent} from "../../../../queries/useGetEvent.ts";
+import {useIULanguage} from "../../../../context/IULanguageContext.tsx";
+import {useHomepagePreviewFrame} from "../../../../hooks/useHomepagePreview.ts";
 
 interface FormValues {
     homepage_theme_settings: Partial<HomepageThemeSettings>;
@@ -41,21 +44,20 @@ const HomepageDesigner = () => {
     const {eventId} = useParams();
     const eventSettingsQuery = useGetEventSettings(eventId);
     const eventImagesQuery = useGetEventImages(eventId);
-    const eventPublicQuery = useGetEventPublic(eventId);
+    const eventQuery = useGetEvent(eventId);
     const updateMutation = useUpdateEventSettings();
+    const {locale} = useIULanguage();
 
     const [viewMode, setViewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
-    const iframeRef = useRef<HTMLIFrameElement>(null);
-    const lastSentSettings = useRef<string | null>(null);
-
-    const [iframeSrc, setIframeSrc] = useState<string | null>(null);
-    const [iframeLoaded, setIframeLoaded] = useState(false);
-    const [lastCoverId, setLastCoverId] = useState<IdParam | null>(null);
     const [accordionValue, setAccordionValue] = useState<string[]>(['images', 'details']);
 
     const existingCover = eventImagesQuery.data?.find((image) => image.type === 'EVENT_COVER');
-    const eventData = eventPublicQuery.data;
+    const eventData = eventQuery.data;
+    const iframeSrc = eventPreviewPath(eventId) + '?' + new URLSearchParams({
+        locale,
+        cover: String(existingCover?.id ?? ''),
+    });
 
     const form = useForm<FormValues>({
         initialValues: {
@@ -72,13 +74,13 @@ const HomepageDesigner = () => {
     const formErrorHandle = useFormErrorResponseHandler();
 
     useEffect(() => {
-        if (eventSettingsQuery?.isFetched && eventSettingsQuery?.data) {
+        if (eventSettingsQuery.data && eventData) {
             const settings = eventSettingsQuery.data;
             const themeSettings = validateThemeSettings(settings.homepage_theme_settings);
 
             form.setValues({
                 homepage_theme_settings: themeSettings,
-                is_certificate_eligible: Boolean(eventData?.is_certificate_eligible ?? false),
+                is_certificate_eligible: Boolean(eventData.is_certificate_eligible),
                 target_audience: settings.target_audience || '',
                 certificate_info: settings.certificate_info || '',
                 requirements_info: settings.requirements_info || '',
@@ -86,21 +88,7 @@ const HomepageDesigner = () => {
                 attendee_notice: settings.attendee_notice || '',
             });
         }
-    }, [eventSettingsQuery.isFetched, eventData?.is_certificate_eligible]);
-
-    useEffect(() => {
-        if (eventSettingsQuery.isFetched && eventImagesQuery.isFetched && !iframeSrc) {
-            setIframeSrc(eventPreviewPath(eventId));
-        }
-    }, [eventSettingsQuery.isFetched, eventImagesQuery.isFetched]);
-
-    useEffect(() => {
-        if (existingCover?.id !== lastCoverId && iframeSrc) {
-            setLastCoverId(existingCover?.id);
-            setIframeSrc(eventPreviewPath(eventId) + `?cover_image_id=${existingCover?.id}`);
-            setIframeLoaded(false);
-        }
-    }, [existingCover?.id]);
+    }, [eventSettingsQuery.data, eventData]);
 
     const handleSubmit = (values: FormValues) => {
         const validatedTheme = validateThemeSettings(values.homepage_theme_settings);
@@ -126,6 +114,7 @@ const HomepageDesigner = () => {
                     queryClient.invalidateQueries({
                         queryKey: [GET_EVENT_PUBLIC_QUERY_KEY, eventId]
                     });
+                    queryClient.invalidateQueries({queryKey: [GET_EVENT_QUERY_KEY, eventId]});
                 },
                 onError: (error) => {
                     formErrorHandle(form, error);
@@ -143,34 +132,10 @@ const HomepageDesigner = () => {
         });
     };
 
-    const sendSettingsToIframe = () => {
-        if (iframeRef.current?.contentWindow && iframeLoaded) {
-            const themeSettings = validateThemeSettings(form.values.homepage_theme_settings);
-
-            const settingsToSend = {
-                homepage_theme_settings: themeSettings,
-                is_certificate_eligible: form.values.is_certificate_eligible,
-                target_audience: form.values.target_audience,
-                certificate_info: form.values.certificate_info,
-                requirements_info: form.values.requirements_info,
-                event_highlights: form.values.event_highlights,
-                attendee_notice: form.values.attendee_notice,
-            };
-
-            const settingsJson = JSON.stringify(settingsToSend);
-            if (settingsJson !== lastSentSettings.current) {
-                iframeRef.current.contentWindow.postMessage(
-                    {type: "UPDATE_SETTINGS", settings: settingsToSend},
-                    "*"
-                );
-                lastSentSettings.current = settingsJson;
-            }
-        }
-    };
-
-    useEffect(() => {
-        sendSettingsToIframe();
-    }, [iframeLoaded, form.values]);
+    const iframeRef = useHomepagePreviewFrame("UPDATE_SETTINGS", {
+        ...form.values,
+        homepage_theme_settings: validateThemeSettings(form.values.homepage_theme_settings),
+    });
 
     return (
         <div className={classes.container} data-homepage-designer>
@@ -222,56 +187,56 @@ const HomepageDesigner = () => {
 
                             <Accordion.Item value="details" className={classes.accordionItem}>
                                 <Accordion.Control icon={<IconAdjustments size={20} />}>
-                                    <Text fw={500}>{t`تفاصيل ومعلومات الفعالية`}</Text>
+                                    <Text fw={500}>{t`Event Details`}</Text>
                                 </Accordion.Control>
                                 <Accordion.Panel>
-                                    <fieldset disabled={eventSettingsQuery.isLoading || updateMutation.isPending} className={classes.fieldset}>
+                                    <fieldset disabled={!eventSettingsQuery.data || !eventData || updateMutation.isPending} className={classes.fieldset}>
                                         <Stack gap="md">
                                             <Switch
-                                                label={t`هل تتضمن الفعالية شهادة حضور؟`}
-                                                description={t`عند تفعيل هذا الخيار، سيتم عرض بطاقة شهادة الحضور وشعار الاعتماد في صفحة الفعالية`}
+                                                label={t`Does this event offer a certificate of attendance?`}
+                                                description={t`Show the certificate of attendance and accreditation badge on the event page.`}
                                                 color="teal"
                                                 size="sm"
                                                 {...form.getInputProps('is_certificate_eligible', { type: 'checkbox' })}
                                             />
                                             <TextInput
-                                                label={t`الفئة المستهدفة`}
-                                                placeholder={t`كافة المستفيدين، الباحثون، والمهتمون`}
-                                                description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
+                                                label={t`Target Audience`}
+                                                placeholder={t`Students, researchers, and interested community members`}
+                                                description={t`Leave this field blank to use the default text.`}
                                                 size="sm"
                                                 {...form.getInputProps('target_audience')}
                                             />
 
                                             <TextInput
-                                                label={t`تفاصيل شهادة الحضور`}
-                                                placeholder={t`تمنح شهادة وفقاً لمعايير الحضور`}
-                                                description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
+                                                label={t`Certificate Details`}
+                                                placeholder={t`Certificates are issued to attendees who meet the attendance criteria.`}
+                                                description={t`Leave this field blank to use the default text.`}
                                                 size="sm"
                                                 {...form.getInputProps('certificate_info')}
                                             />
 
                                             <TextInput
-                                                label={t`متطلبات الفعالية`}
-                                                placeholder={t`التسجيل المسبق وتأكيد الحضور عبر المنصة`}
-                                                description={t`اترك الحقل فارغاً لاستخدام النص الافتراضي`}
+                                                label={t`Event Requirements`}
+                                                placeholder={t`Register in advance and confirm attendance through the platform.`}
+                                                description={t`Leave this field blank to use the default text.`}
                                                 size="sm"
                                                 {...form.getInputProps('requirements_info')}
                                             />
 
                                             <Textarea
-                                                label={t`محاور الفعالية وأهدافها (محور في كل سطر)`}
-                                                placeholder={`اكتساب المفاهيم والأسس العلمية والتطبيقية للموضوع المطروح.\nالتعرف على أفضل الممارسات والتطبيقات الحديثة في المجال.`}
+                                                label={t`Event Highlights (one per line)`}
+                                                placeholder={t`Explore core concepts and practical examples.`}
                                                 rows={4}
-                                                description={t`اترك الحقل فارغاً لاستخدام المحاور الافتراضية`}
+                                                description={t`Leave this field blank to use the default text.`}
                                                 size="sm"
                                                 {...form.getInputProps('event_highlights')}
                                             />
 
                                             <Textarea
-                                                label={t`ملاحظات وتنبيهات الحضور`}
-                                                placeholder={t`يرجى التكرم بالحضور قبل موعد بدء الفعالية بـ 15 دقيقة...`}
+                                                label={t`Attendee Notes`}
+                                                placeholder={t`Please arrive 15 minutes before the event starts.`}
                                                 rows={3}
-                                                description={t`اترك الحقل فارغاً لاستخدام الملاحظات الافتراضية`}
+                                                description={t`Leave this field blank to use the default text.`}
                                                 size="sm"
                                                 {...form.getInputProps('attendee_notice')}
                                             />
@@ -283,6 +248,7 @@ const HomepageDesigner = () => {
 
                         <Button
                             loading={updateMutation.isPending}
+                            disabled={!eventSettingsQuery.data || !eventData}
                             type="submit"
                             fullWidth
                             mt="md"
@@ -336,13 +302,13 @@ const HomepageDesigner = () => {
                         </div>
                     </div>
                     <div className={classes.iframeWrapper}>
-                        {iframeSrc ? (
+                        {eventImagesQuery.isFetched && eventSettingsQuery.isFetched ? (
                             <iframe
                                 ref={iframeRef}
+                                key={iframeSrc}
                                 src={iframeSrc}
                                 sandbox="allow-same-origin allow-scripts"
-                                title="Event Preview"
-                                onLoad={() => setIframeLoaded(true)}
+                                title={t`Event Preview`}
                             />
                         ) : (
                             <LoadingMask/>

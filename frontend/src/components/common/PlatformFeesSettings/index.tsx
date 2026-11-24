@@ -90,6 +90,7 @@ export interface PlatformFeesSettingsProps {
     feeHandlingDescription: string;
     feePreview?: PlatformFeePreview;
     onPriceChange?: (price: number) => void;
+    saveButtonClassName?: string;
 }
 
 export const PlatformFeesSettings = ({
@@ -104,6 +105,7 @@ export const PlatformFeesSettings = ({
     feeHandlingDescription,
     feePreview,
     onPriceChange,
+    saveButtonClassName,
 }: PlatformFeesSettingsProps) => {
     const [samplePrice, setSamplePrice] = useState<number | string>(50);
     const [selectedOption, setSelectedOption] = useState<'pass' | 'absorb'>(currentValue ? 'pass' : 'absorb');
@@ -245,7 +247,7 @@ export const PlatformFeesSettings = ({
                             </Grid.Col>
                         </Grid>
 
-                        <Button loading={isSaving} onClick={handleSave}>
+                        <Button className={saveButtonClassName} loading={isSaving} onClick={handleSave}>
                             {t`Save`}
                         </Button>
                     </fieldset>

@@ -1,13 +1,13 @@
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
-import {Box, Group, NumberInput, Paper, Select, Stack, Text, TextInput} from "@mantine/core";
+import {NumberInput, Paper, Select, Stack, Text, TextInput} from "@mantine/core";
 import {useForm} from "@mantine/form";
 import {useMemo, useState} from "react";
-import {IconMapPin} from "@tabler/icons-react";
 import {Modal} from "../../common/Modal";
 import {Button} from "../../common/Button";
 import {InputGroup} from "../../common/InputGroup";
 import {AddressAutocomplete} from "../../common/AddressAutocomplete";
+import {VenueMapPicker} from "../../common/VenueMapPicker";
 import {SAUDI_COUNTRY} from "../../../constants/institution.ts";
 import countries from "../../../../data/countries.json";
 import {GeoPlace, IdParam, Location, VenueAddress} from "../../../types.ts";
@@ -33,7 +33,7 @@ const hasAnyAddressField = (address: VenueAddress) => [
 
 export const LocationEditModal = ({onClose, organizerId, location}: LocationEditModalProps) => {
     const {i18n} = useLingui();
-    const isArabic = i18n.locale === 'ar';
+    const locale = i18n.locale;
     const isEditing = !!location?.id;
     const createMutation = useCreateLocation();
     const updateMutation = useUpdateLocation();
@@ -47,17 +47,23 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
     });
 
     const countryOptions = useMemo(() => {
+        const regions = new Intl.DisplayNames([locale], {type: 'region'});
         return countries.map((c) => ({
             value: c.value,
-            label: c.value === SAUDI_COUNTRY
-                ? (isArabic ? 'المملكة العربية السعودية (SA)' : 'Saudi Arabia (SA)')
-                : c.label,
+            label: `${regions.of(c.value) ?? c.label} (${c.value})`,
         })).sort((a, b) => {
             if (a.value === SAUDI_COUNTRY) return -1;
             if (b.value === SAUDI_COUNTRY) return 1;
             return a.label.localeCompare(b.label);
         });
-    }, [isArabic]);
+    }, [locale]);
+
+    const point = useMemo(() => (
+        typeof latLng.lat === 'number' && typeof latLng.lng === 'number'
+        && Math.abs(latLng.lat) <= 90 && Math.abs(latLng.lng) <= 180
+            ? {lat: latLng.lat, lng: latLng.lng} : null
+    ), [latLng.lat, latLng.lng]);
+    const [coordinateError, setCoordinateError] = useState(false);
 
     const form = useForm<{name: string; structured_address: VenueAddress}>({
         initialValues: {
@@ -104,11 +110,15 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
     };
 
     const handleSubmit = async (values: {name: string; structured_address: VenueAddress}) => {
+        if ((latLng.lat !== '' || latLng.lng !== '') && !point) {
+            setCoordinateError(true);
+            return;
+        }
         const payload = {
             name: values.name || null,
             structured_address: values.structured_address,
-            latitude: typeof latLng.lat === "number" ? latLng.lat : null,
-            longitude: typeof latLng.lng === "number" ? latLng.lng : null,
+            latitude: point?.lat ?? null,
+            longitude: point?.lng ?? null,
             provider: latLng.provider,
             provider_place_id: latLng.placeId,
         };
@@ -139,36 +149,26 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
         }
     };
 
-    const mapEmbedUrl = typeof latLng.lat === 'number' && typeof latLng.lng === 'number'
-        && Math.abs(latLng.lat) <= 90 && Math.abs(latLng.lng) <= 180
-        ? `https://www.openstreetmap.org/export/embed.html?bbox=${latLng.lng - 0.006}%2C${latLng.lat - 0.004}%2C${latLng.lng + 0.006}%2C${latLng.lat + 0.004}&layer=mapnik&marker=${latLng.lat}%2C${latLng.lng}`
-        : null;
-
     return (
         <Modal opened onClose={onClose} heading={isEditing ? t`Edit Location` : t`Add Location`} size="lg">
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <Stack gap="md">
-                    <AddressAutocomplete
-                        organizerId={organizerId}
-                        country={form.values.structured_address.country || undefined}
-                        onPlaceSelected={handlePlaceSelected}
-                    />
+                    <Paper withBorder p="sm" radius="md">
+                        <VenueMapPicker point={point} onSelect={selected => {
+                            setLatLng({...selected, provider: null, placeId: null});
+                            setCoordinateError(false);
+                        }}/>
+                    </Paper>
 
-                    <Paper withBorder p="sm" radius="md" style={{backgroundColor: 'var(--iu-surface-alt, #f8faf9)'}}>
-                        <Group justify="space-between" mb="xs">
-                            <Group gap="xs">
-                                <IconMapPin size={16} color="var(--iu-green-secondary, #1b754b)"/>
-                                <Text size="sm" fw={600}>
-                                    {t`Coordinates & Map Preview`}
-                                </Text>
-                            </Group>
-                        </Group>
+                    <details open={coordinateError || undefined}>
+                        <summary>{t`Advanced coordinates (optional)`}</summary>
                         <InputGroup>
                             <NumberInput
                                 label={t`Latitude`}
                                 value={latLng.lat}
                                 min={-90}
                                 max={90}
+                                decimalScale={7}
                                 onChange={(lat) => setLatLng((prev) => ({...prev, lat, provider: null, placeId: null}))}
                             />
                             <NumberInput
@@ -176,28 +176,26 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
                                 value={latLng.lng}
                                 min={-180}
                                 max={180}
+                                decimalScale={7}
                                 onChange={(lng) => setLatLng((prev) => ({...prev, lng, provider: null, placeId: null}))}
                             />
                         </InputGroup>
-                        {mapEmbedUrl && (
-                            <Box mt="xs" style={{borderRadius: '8px', overflow: 'hidden', border: '1px solid var(--iu-border, #e5e7eb)'}}>
-                                <iframe
-                                    title={t`Venue Location Map`}
-                                    width="100%"
-                                    height="180"
-                                    loading="lazy"
-                                    src={mapEmbedUrl}
-                                    style={{display: 'block', border: 'none'}}
-                                />
-                            </Box>
+                        {coordinateError && !point && (
+                            <Text role="alert" size="sm" c="red">{t`Enter a valid latitude and longitude, or leave both blank.`}</Text>
                         )}
-                    </Paper>
+                    </details>
+
+                    <AddressAutocomplete
+                        organizerId={organizerId}
+                        country={form.values.structured_address.country || undefined}
+                        onPlaceSelected={handlePlaceSelected}
+                    />
 
                     <TextInput
                         {...form.getInputProps("name")}
                         label={t`Display name`}
-                        description={t`Optional nickname shown in pickers, e.g. "HQ Conference Room"`}
-                        placeholder={t`Main Office`}
+                        description={t`Optional name shown when selecting a venue.`}
+                        placeholder={t`University conference hall`}
                     />
                     <TextInput
                         {...form.getInputProps("structured_address.venue_name")}

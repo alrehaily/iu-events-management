@@ -4,10 +4,9 @@ import {useGetOrderPublic} from "../../../queries/useGetOrderPublic.ts";
 import {t} from "@lingui/macro";
 import {Countdown} from "../../common/Countdown";
 import {ActionIcon, Button, Group, Modal, Tooltip} from "@mantine/core";
-import {IconArrowLeft, IconClock, IconPrinter, IconReceipt} from "@tabler/icons-react";
+import {IconArrowLeft, IconArrowRight, IconClock, IconReceipt} from "@tabler/icons-react";
 import {eventHomepagePath, eventHomepageUrl} from "../../../utilites/urlHelper.ts";
 import {ShareComponent} from "../../common/ShareIcon";
-import {AddToEventCalendarButton} from "../../common/AddEventToCalendarButton";
 import classNames from "classnames";
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {getEmbedMode, getParentOrigin} from "../../../utilites/iframeResize.ts";
@@ -20,17 +19,19 @@ import {showError, showInfo} from "../../../utilites/notifications.tsx";
 import {isDateInFuture, utcDateToEpochMs} from "../../../utilites/dates.ts";
 import {getCheckoutSessionIdentifier} from "../../../utilites/checkoutSession.ts";
 import {PoweredByFooter} from "../../common/PoweredByFooter";
-import {detectMode} from "../../../utilites/themeUtils.ts";
 import {CheckoutThemeProvider} from "./CheckoutThemeProvider.tsx";
 import {useOrganizerTrackingPixels} from "../../../hooks/useOrganizerTrackingPixels";
 import {trackPixelEvent, hasActivePixels} from "../../../utilites/trackingPixels";
 import {CookieSettingsLink} from "../../common/CookieSettingsLink";
 import {useGetEventPublic} from "../../../queries/useGetEventPublic.ts";
 import {IU_COLORS} from "../../../constants/iuTheme.ts";
+import {useIULanguage} from "../../../context/IULanguageContext.tsx";
 
 const DEFAULT_ACCENT = IU_COLORS.green900;
 
 const Checkout = () => {
+    const {dir} = useIULanguage();
+    const BackArrow = dir === 'rtl' ? IconArrowRight : IconArrowLeft;
     const {eventId, orderShortId} = useParams();
     const {data: order, isError: isOrderError} = useGetOrderPublic(eventId, orderShortId, ['event']);
     const event = order?.event;
@@ -51,7 +52,6 @@ const Checkout = () => {
     const orderIsReserved = order?.status === 'RESERVED';
     const orderIsAwaitingOfflinePayment = order?.status === 'AWAITING_OFFLINE_PAYMENT';
     const [isExpired, setIsExpired] = useState(false);
-    const orderHasAttendees = order?.attendees && order.attendees.length > 0;
     const [showAbandonDialog, setShowAbandonDialog] = useState(false);
     const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
     const [isAbandoning, setIsAbandoning] = useState(false);
@@ -286,20 +286,16 @@ const Checkout = () => {
         }
     }, [order?.status, order?.short_id, pixelsReady]);
 
-    const homepageSettings = event?.settings?.homepage_theme_settings;
-    const accentColor = homepageSettings?.accent || DEFAULT_ACCENT;
-    const checkoutMode = homepageSettings?.mode || detectMode(homepageSettings?.background || '#ffffff');
-
     return (
-        <CheckoutThemeProvider accentColor={accentColor} mode={checkoutMode}>
-            <div className={classes.container} data-mode={checkoutMode}>
+        <CheckoutThemeProvider accentColor={DEFAULT_ACCENT} mode="light">
+            <div className={classes.container} data-mode="light">
                 <div className={classes.mainContent}>
                     <header className={classes.header}>
                         {(event) && (
                             <>
                                 <div
                                     className={classNames(classes.headerRow, (orderIsCompleted || orderIsAwaitingOfflinePayment) && classes.headerRowComplete)}
-                                    style={isModal ? {paddingRight: '44px'} : undefined}
+                                    style={isModal ? {paddingInlineEnd: '44px'} : undefined}
                                 >
                                     {!isModal && (
                                         <>
@@ -310,7 +306,7 @@ const Checkout = () => {
                                                 aria-label={t`Back to event page`}
                                                 onClick={handleEventHomepageClick}
                                             >
-                                                <IconArrowLeft size={19}/>
+                                                <BackArrow size={19}/>
                                             </ActionIcon>
                                             <span className={classes.headerDivider}/>
                                         </>
@@ -358,19 +354,6 @@ const Checkout = () => {
                                                 url={eventHomepageUrl(event)}
                                                 hideShareButtonText
                                             />
-
-                                            <AddToEventCalendarButton event={event} occurrence={order?.order_items?.[0]?.event_occurrence}/>
-
-                                            {orderHasAttendees && (
-                                                <Tooltip label={t`Print Tickets`}>
-                                                    <ActionIcon
-                                                        variant="subtle"
-                                                        onClick={() => window?.open(`/order/${eventId}/${orderShortId}/print`, '_blank')}
-                                                    >
-                                                        <IconPrinter size={20}/>
-                                                    </ActionIcon>
-                                                </Tooltip>
-                                            )}
 
                                             {order.latest_invoice && (
                                                 <Tooltip

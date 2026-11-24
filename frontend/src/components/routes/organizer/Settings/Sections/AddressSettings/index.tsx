@@ -115,7 +115,7 @@ export const AddressSettings = () => {
                         />
                     )}
 
-                    <Button loading={createLocationMutation.isPending || updateOrganizerLocationMutation.isPending} type={'submit'}>
+                    <Button className="iu-settings-save-button" loading={createLocationMutation.isPending || updateOrganizerLocationMutation.isPending} type={'submit'}>
                         {t`Save`}
                     </Button>
                 </fieldset>

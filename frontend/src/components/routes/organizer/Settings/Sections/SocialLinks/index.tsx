@@ -262,6 +262,7 @@ export const SocialLinks = () => {
 
                     <Button
                         loading={updateMutation.isPending}
+                        className="iu-settings-save-button"
                         type={'submit'}
                         mt="xl"
                     >

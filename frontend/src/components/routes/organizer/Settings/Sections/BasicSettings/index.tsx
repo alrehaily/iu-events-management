@@ -105,7 +105,7 @@ const Settings = () => {
                     <Button
                         loading={organizerMutation.isPending}
                         type={'submit'}
-                        style={{ minWidth: 160, width: 'fit-content' }}
+                        className="iu-settings-save-button"
                     >
                         {t`Save`}
                     </Button>

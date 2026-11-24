@@ -91,6 +91,7 @@ class UpdateEventSettingsDTO extends BaseDTO
 
         public readonly ?string $get_tickets_button_text = null,
         public readonly ?bool $is_certificate_eligible = null,
+        public readonly array $homepage_content = [],
     ) {}
 
     public static function createWithDefaults(

@@ -4,6 +4,7 @@ import {UseFormReturnType} from "@mantine/form";
 import {IdParam, ProductCategory, ProductType} from "../../../types.ts";
 import React from "react";
 import {t} from "@lingui/macro";
+import {productCategoryDisplay} from "../../../utilites/productCategoryDisplay.ts";
 
 interface ProductSelectorProps {
     label: string;
@@ -36,7 +37,7 @@ export const ProductSelector = ({
                                 }: ProductSelectorProps) => {
     const excludedIds = excludedProductIds.map(String);
     const formattedData = productCategories?.map((category) => ({
-        group: category.name,
+        group: productCategoryDisplay(category).name,
         items:
             category.products
                 ?.filter((product) => includedProductTypes.includes(product.product_type)

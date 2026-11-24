@@ -51,10 +51,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     sidebarFooter = null,
 }) => {
     const location = useLocation();
-    const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
-        if (typeof window === 'undefined') return true; // SSR default
-        return window.innerWidth >= 768; // Desktop open, mobile closed
-    });
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [topBarShadow, setTopBarShadow] = useState<boolean>(false);
 
     useEffect(() => {
@@ -71,20 +68,15 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     }, [location.pathname]);
 
     useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 768) {
-                setSidebarOpen(true);
-            } else {
-                setSidebarOpen(false);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        const desktop = window.matchMedia('(min-width: 768px)');
+        const syncSidebar = () => setSidebarOpen(desktop.matches);
+        syncSidebar();
+        desktop.addEventListener('change', syncSidebar);
+        return () => desktop.removeEventListener('change', syncSidebar);
     }, []);
 
     return (
-        <>
+        <div className={classes.shell}>
             <ImpersonationBanner />
             <PendingDeletionBanner />
             <AnnouncementDisplay />
@@ -131,7 +123,7 @@ const AppLayout: React.FC<AppLayoutProps> = ({
                     />
                 )}
             </div>
-        </>
+        </div>
     );
 };
 

@@ -1,9 +1,17 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useLoaderData, useParams} from "react-router";
 import {useGetOrganizerSettings} from "../../../queries/useGetOrganizerSettings.ts";
 import {LoadingMask} from "../../common/LoadingMask";
 import OrganizerHomepage from "../OrganizerHomepage";
-import {Organizer} from "../../../types.ts";
+import {HomepageThemeSettings, Organizer} from "../../../types.ts";
+import {useHomepagePreviewSettings} from "../../../hooks/useHomepagePreview.ts";
+import {t} from "@lingui/macro";
+
+interface PreviewSettings {
+    logoUrl?: string;
+    coverUrl?: string;
+    homepage_theme_settings?: HomepageThemeSettings;
+}
 
 const OrganizerHomepagePreview = () => {
     const {organizerId} = useParams();
@@ -15,25 +23,15 @@ const OrganizerHomepagePreview = () => {
     };
 
     const organizerSettingsQuery = useGetOrganizerSettings(organizerId);
-    const [previewSettings, setPreviewSettings] = useState<any>(null);
+    const [previewSettings, setPreviewSettings] = useState<PreviewSettings | null>(null);
+    useHomepagePreviewSettings<PreviewSettings>("UPDATE_ORGANIZER_SETTINGS", setPreviewSettings);
 
-    useEffect(() => {
-        const handleMessage = (event: MessageEvent) => {
-            if (event.origin === window.location.origin && event.source === window.parent && event.data?.type === "UPDATE_ORGANIZER_SETTINGS") {
-                setPreviewSettings(event.data.settings);
-            }
-        };
-
-        window.addEventListener("message", handleMessage);
-        return () => window.removeEventListener("message", handleMessage);
-    }, []);
-
-    if (!organizer || organizerSettingsQuery.isLoading) {
+    if (organizer && organizerSettingsQuery.isLoading) {
         return <LoadingMask/>;
     }
 
     if (!organizer || !organizerSettingsQuery.data) {
-        return null;
+        return <p role="alert">{t`Organizer page not available`}</p>;
     }
 
     // Merge preview settings with actual data

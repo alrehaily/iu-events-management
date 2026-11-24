@@ -1,6 +1,7 @@
 import {expect, test} from '../fixtures';
 import {createCompletedOrder, createDraftEvent, createLiveEventWithProduct} from '../api/factory';
 import {uniqueEmail, uniqueName} from '../utils/unique';
+import {randomUUID} from 'node:crypto';
 
 const password = 'GP2-Extended-Fixture-123!';
 const user = () => ({first_name: 'Demo', last_name: 'Attendee', email: uniqueEmail('gp2-extra'), password});
@@ -161,4 +162,37 @@ test('the catalog distinguishes API failure from an empty search and can retry',
   await page.unroute('**/public/events?**');
   await page.getByRole('button', {name: 'Try again', exact: true}).click();
   await expect(page.getByText('Unable to load events', {exact: true})).toHaveCount(0);
+});
+test('local attendee signup cannot grant organizer access and organizer accounts stay isolated', async ({
+  api, account, freshAccount, publicApi,
+}) => {
+  test.skip(process.env.E2E_GP2_ORGANIZER_CLI !== 'true', 'Requires the isolated GP2 fixture database');
+  const privateEvent = await createDraftEvent(api, account.organizerId);
+  const email = uniqueEmail('gp2-no-organizer');
+  const password = `Gp2!${randomUUID()}`;
+  const attendeeSignup = await publicApi.post('public/attendee/register', {
+    data: {email, password, first_name: 'Demo', last_name: 'Attendee', role: 'SUPERADMIN', account_id: 1},
+  });
+  expect(attendeeSignup.status()).toBe(201);
+  const attendee = await attendeeSignup.json();
+  expect(attendee.user.role).toBe('ATTENDEE');
+  const organizerRequest = await publicApi.post('auth/register', {
+    data: {
+      email, password, password_confirmation: password, first_name: 'Demo', last_name: 'Attendee',
+      timezone: 'Asia/Riyadh', currency_code: 'SAR', locale: 'en',
+    },
+  });
+  expect(organizerRequest.status()).toBe(403);
+
+  const settingsPath = `events/${privateEvent.eventId}/settings`;
+  const asUser = (token: string) => ({headers: {Authorization: `Bearer ${token}`}});
+  const outsider = asUser(freshAccount.token);
+  expect((await publicApi.get(settingsPath, outsider)).status()).toBe(403);
+  expect((await publicApi.patch(settingsPath, {...outsider, data: {target_audience: 'Incorrect'}})).status()).toBe(403);
+  expect((await publicApi.get(settingsPath, asUser(attendee.token))).status()).toBe(403);
+  expect((await publicApi.get(`organizers/${account.organizerId}`, outsider)).status()).toBe(403);
+  expect((await publicApi.get('admin/accounts', outsider)).status()).toBe(403);
+  const saved = await publicApi.get(settingsPath, asUser(account.token));
+  expect(saved.status()).toBe(200);
+  expect((await saved.json()).data.target_audience).toBeUndefined();
 });

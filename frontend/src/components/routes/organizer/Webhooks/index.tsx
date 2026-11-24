@@ -20,9 +20,10 @@ export default function Webhooks() {
 
     const getWebhookCountText = () => {
         if (!webhooks) return t`Loading Webhooks`;
-        if (webhooks.length === 0) return t`No Active Webhooks`;
-        if (webhooks.length === 1) return t`1 Active Webhook`;
-        return t`${webhooks.length} Active Webhooks`;
+        const enabled = webhooks.filter(webhook => webhook.status === 'ENABLED').length;
+        if (enabled === 0) return t`No Active Webhooks`;
+        if (enabled === 1) return t`1 Active Webhook`;
+        return t`${enabled} Active Webhooks`;
     };
 
     return (
@@ -50,7 +51,6 @@ export default function Webhooks() {
 
                     {webhooks && (<OrganizerWebhookTable
                         webhooks={webhooks}
-                        openCreateModal={openCreateModal}
                     />)}
                 </div>
 

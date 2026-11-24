@@ -81,7 +81,7 @@ export const SeoSettings = () => {
                         description={t`Allow search engines to index this event`}
                         label={t`Allow search engine indexing`}
                     />
-                    <Button loading={updateMutation.isPending} type={'submit'}>
+                    <Button className="iu-settings-save-button" loading={updateMutation.isPending} type={'submit'}>
                         {t`Save`}
                     </Button>
 

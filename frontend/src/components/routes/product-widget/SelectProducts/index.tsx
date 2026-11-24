@@ -49,6 +49,7 @@ import {
     PromoCodeValidationResponse
 } from "../../../../types.ts";
 import {formatCurrency} from "../../../../utilites/currency.ts";
+import {productCategoryDisplay} from "../../../../utilites/productCategoryDisplay.ts";
 import {getDisplayPrice} from "../../../common/Currency";
 import {eventsClientPublic} from "../../../../api/event.client.ts";
 import {promoCodeClientPublic} from "../../../../api/promo-code.client.ts";
@@ -599,13 +600,22 @@ const SelectProducts = (props: SelectProductsProps) => {
             }
         }
         if (values && selectedProductQuantitySum > 0) {
-            if (props.requireAttendeeAuth && !await queryClient.fetchQuery({
-                queryKey: ['attendee-checkout-account'],
-                queryFn: () => attendeeClient.me(),
-            })) {
-                const returnPath = window.location.pathname + window.location.search;
-                navigate('/auth/login?' + new URLSearchParams({redirect: returnPath}));
-                return;
+            if (props.requireAttendeeAuth) {
+                try {
+                    const attendee = await queryClient.fetchQuery({
+                        queryKey: ['attendee-checkout-account'],
+                        queryFn: () => attendeeClient.me(),
+                        staleTime: 0,
+                    });
+                    if (!attendee) {
+                        const redirect = window.location.pathname + window.location.search;
+                        navigate('/auth/login?' + new URLSearchParams({redirect}));
+                        return;
+                    }
+                } catch {
+                    showError(t`Something went wrong. Please try again.`);
+                    return;
+                }
             }
 
             const productsWithOccurrence = values.products?.map(product => ({
@@ -668,7 +678,7 @@ const SelectProducts = (props: SelectProductsProps) => {
                             <h2 className={'hi-product-category-title'} style={category.description ? {
                                 marginBottom: '0px'
                             } : {}}>
-                                {category.name}
+                                {productCategoryDisplay(category).name}
                             </h2>
                             {category.description && (
                                 <div className={'hi-product-category-description'}>
@@ -681,7 +691,7 @@ const SelectProducts = (props: SelectProductsProps) => {
                                 {category.products?.length === 0 && (
                                     <div className={'hi-no-products'}>
                                         <p className={'hi-no-products-message'}>
-                                            {category.no_products_message || t`There are no products available in this category`}
+                                            {productCategoryDisplay(category).empty || t`There are no products available in this category`}
                                         </p>
                                     </div>
                                 )}

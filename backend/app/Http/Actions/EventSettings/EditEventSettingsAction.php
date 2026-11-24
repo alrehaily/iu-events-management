@@ -3,6 +3,7 @@
 namespace HiEvents\Http\Actions\EventSettings;
 
 use HiEvents\DomainObjects\EventDomainObject;
+use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\Http\Actions\BaseAction;
 use HiEvents\Http\Request\EventSettings\UpdateEventSettingsRequest;
 use HiEvents\Resources\Event\EventSettingsResource;
@@ -29,7 +30,10 @@ class EditEventSettingsAction extends BaseAction
         );
 
         $event = $this->updateEventSettingsHandler->handle(
-            UpdateEventSettingsDTO::fromArray($settings),
+            UpdateEventSettingsDTO::fromArray([
+                ...$settings,
+                'homepage_content' => array_intersect_key($settings, array_flip(EventSettingDomainObject::HOMEPAGE_CONTENT_FIELDS)),
+            ]),
         );
 
         return $this->resourceResponse(EventSettingsResource::class, $event);

@@ -3,6 +3,7 @@ import ErrorPage from "./error-page.tsx";
 import { publicEventRouteLoader } from "./routeLoaders/publicEventRouteLoader.ts";
 import { publicOrganizerRouteLoader } from "./routeLoaders/publicOrganizerRouteLoader.ts";
 import { organizerPreviewRouteLoader } from "./routeLoaders/organizerPreviewRouteLoader.ts";
+import { eventPreviewRouteLoader } from "./routeLoaders/eventPreviewRouteLoader.ts";
 
 const routes: RouteObject[] = [
     {
@@ -39,6 +40,13 @@ const routes: RouteObject[] = [
                 async lazy() {
                     const MyRegistrations = await import("./components/routes/my-registrations");
                     return { Component: MyRegistrations.default };
+                }
+            },
+            {
+                path: "attendee/profile",
+                async lazy() {
+                    const AttendeeProfile = await import("./components/routes/attendee-auth/AttendeeProfile");
+                    return { Component: AttendeeProfile.default };
                 }
             },
             {
@@ -600,10 +608,12 @@ const routes: RouteObject[] = [
     },
     {
         path: "/event/:eventId/preview",
+        loader: eventPreviewRouteLoader,
         async lazy() {
             const EventHomepagePreview = await import("./components/layouts/EventHomepagePreview");
             return { Component: EventHomepagePreview.default };
         },
+        errorElement: <div inert><ErrorPage /></div>,
     },
     {
         path: "/organizer/:organizerId/preview",
@@ -612,6 +622,7 @@ const routes: RouteObject[] = [
             const OrganizerHomepagePreview = await import("./components/layouts/OrganizerHomepagePreview");
             return { Component: OrganizerHomepagePreview.default };
         },
+        errorElement: <div inert><ErrorPage /></div>,
     },
     {
         path: "/event/:eventId",

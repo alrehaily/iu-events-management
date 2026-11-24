@@ -1,7 +1,8 @@
 import {Button} from "@mantine/core";
-import {IconArrowRight} from "@tabler/icons-react";
+import {IconAlertCircle, IconArrowLeft, IconArrowRight, IconBuildingBank, IconCircleCheck, IconCircleX, IconClock, IconCreditCard, IconInfoCircle, IconSearch} from "@tabler/icons-react";
 import classes from './HomepageInfoMessage.module.scss';
 import React from "react";
+import {useIULanguage} from "../../../context/IULanguageContext.tsx";
 
 type StatusType =
     | 'info'
@@ -15,20 +16,17 @@ type StatusType =
     | 'awaiting_payment'
     | 'offline_payment';
 
-const getStatusEmoji = (status: StatusType): string => {
-    const emojis: Record<StatusType, string> = {
-        info: '💬',
-        processing: '⏳',
-        success: '🎉',
-        warning: '⚠️',
-        error: '❌',
-        expired: '⏰',
-        cancelled: '😔',
-        not_found: '🔍',
-        awaiting_payment: '💳',
-        offline_payment: '🏦',
-    };
-    return emojis[status] || emojis.info;
+const statusIcons = {
+    info: IconInfoCircle,
+    processing: IconClock,
+    success: IconCircleCheck,
+    warning: IconAlertCircle,
+    error: IconAlertCircle,
+    expired: IconClock,
+    cancelled: IconCircleX,
+    not_found: IconSearch,
+    awaiting_payment: IconCreditCard,
+    offline_payment: IconBuildingBank,
 };
 
 interface HomepageInfoMessageProps {
@@ -46,13 +44,15 @@ export const HomepageInfoMessage = ({
                                         linkText,
                                         status = 'info',
                                     }: HomepageInfoMessageProps) => {
-    const emoji = getStatusEmoji(status);
+    const Icon = statusIcons[status];
+    const {dir} = useIULanguage();
+    const Arrow = dir === 'rtl' ? IconArrowLeft : IconArrowRight;
 
     return (
         <div className={classes.container}>
             <div className={classes.card}>
-                <div className={classes.emojiContainer}>
-                    <span className={classes.emoji}>{emoji}</span>
+                <div className={classes.statusIcon}>
+                    <Icon size={32} stroke={1.5} aria-hidden/>
                 </div>
 
                 <h2 className={classes.title}>{message}</h2>
@@ -65,7 +65,7 @@ export const HomepageInfoMessage = ({
                     <Button
                         component="a"
                         href={link}
-                        rightSection={<IconArrowRight size={16}/>}
+                        rightSection={<Arrow size={16}/>}
                         className={classes.button}
                     >
                         {linkText}

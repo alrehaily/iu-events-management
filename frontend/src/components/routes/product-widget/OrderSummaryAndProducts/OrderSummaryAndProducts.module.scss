@@ -1,10 +1,14 @@
 @use "../../../../styles/mixins";
 
-$font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-display: var(--iu-font-family, sans-serif);
 
 .welcomeHeader {
   margin-bottom: 24px;
   padding: 32px 20px 24px;
+  background: var(--checkout-surface);
+  border: 1px solid var(--checkout-border);
+  border-block-start: 4px solid var(--iu-green-primary, #084b2f);
+  border-radius: 12px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -15,35 +19,15 @@ $font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
 .confirmationIcon {
   margin-inline: auto;
   color: var(--iu-green-secondary);
+  background: var(--checkout-accent-soft);
+  display: grid;
+  place-items: center;
+  inline-size: 64px;
+  block-size: 64px;
+  border-radius: 50%;
 
   &[data-status="CANCELLED"] { color: var(--iu-danger); }
   &[data-status="AWAITING_OFFLINE_PAYMENT"] { color: var(--iu-warning); }
-}
-
-@keyframes bounceIn {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes subtleBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
 }
 
 .welcomeMessage {
@@ -51,10 +35,11 @@ $font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
   font-size: 24px;
   font-weight: 600;
   color: var(--checkout-text-primary, #111827);
-  margin-bottom: 4px;
+  margin: 0;
 }
 
 .confirmationText {
+  margin: 0;
   font-size: 15px;
   color: var(--checkout-text-secondary, #6B7280);
 
@@ -172,7 +157,7 @@ $font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
 .guestProduct {
   &::before {
     content: '•';
-    margin-right: 8px;
+    margin-inline-end: 8px;
     color: var(--checkout-text-tertiary, #9CA3AF);
   }
 

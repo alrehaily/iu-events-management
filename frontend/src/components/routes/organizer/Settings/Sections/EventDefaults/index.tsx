@@ -97,6 +97,7 @@ export const EventDefaults = () => {
                     />
 
                     <Button
+                        className="iu-settings-save-button"
                         loading={updateMutation.isPending}
                         type={'submit'}
                     >

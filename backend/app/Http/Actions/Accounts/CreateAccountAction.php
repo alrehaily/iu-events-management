@@ -18,6 +18,7 @@ use HiEvents\Services\Application\Handlers\Auth\DTO\LoginCredentialsDTO;
 use HiEvents\Services\Application\Handlers\Auth\LoginHandler;
 use HiEvents\Services\Application\Locale\LocaleService;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Database\DatabaseManager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -36,6 +37,13 @@ class CreateAccountAction extends BaseAuthAction
      */
     public function __invoke(CreateAccountRequest $request): JsonResponse
     {
+        if (app(DatabaseManager::class)->connection()->getDatabaseName() === 'iu_gp2_demo') {
+            return $this->errorResponse(
+                message: __('Account registration is disabled'),
+                statusCode: ResponseCodes::HTTP_FORBIDDEN,
+            );
+        }
+
         try {
             $accountData = $this->createAccountHandler->handle(CreateAccountDTO::fromArray([
                 'first_name' => $request->validated('first_name'),

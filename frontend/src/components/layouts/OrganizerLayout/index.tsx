@@ -173,12 +173,14 @@ const OrganizerLayout = () => {
         },
         {
             content: (
-                <span
+                <TopBarButton
+                    size="xs"
                     className={classes.createEventBreadcrumb}
+                    leftSection={<IconCalendarPlus size={16}/>}
                     onClick={() => setShowCreateEventModal(true)}
                 >
-                    <IconCalendarPlus size={16} /> {t`Create Event`}
-                </span>
+                    {t`Create Event`}
+                </TopBarButton>
             ),
         }
     ];

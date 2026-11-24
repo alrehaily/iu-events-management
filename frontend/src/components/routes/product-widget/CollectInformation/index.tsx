@@ -157,13 +157,19 @@ export const CollectInformation = () => {
     };
 
     const totalTicketAttendees = getTicketAttendeeIndices().length;
-    const [useAccountDetails, setUseAccountDetails] = useState(true);
-    const {data: account} = useQuery({
-        queryKey: ['attendee-checkout-account'],
+    const singleTicket = orderItems?.length === 1 && Number(orderItems[0].quantity) === 1 && !lock
+        && products?.some(product => product?.id === orderItems[0].product_id && product?.product_type === 'TICKET');
+    const {data: account, isPending: isAccountPending, isError: isAccountError} = useQuery({
+        queryKey: ['attendee-checkout-account', orderShortId],
         queryFn: () => attendeeClient.me(),
-        enabled: typeof window !== 'undefined' && totalTicketAttendees === 1 && !lock,
+        enabled: typeof window !== 'undefined' && !!singleTicket,
     });
-    const selfBooking = useAccountDetails && totalTicketAttendees === 1 && !lock ? account?.user : undefined;
+    const selfBooking = singleTicket ? account?.user : undefined;
+    const needsProfile = selfBooking && (
+        !selfBooking.first_name?.trim() || selfBooking.first_name.trim().length > 40
+        || !selfBooking.last_name?.trim() || selfBooking.last_name.trim().length > 40
+        || !isEmailValid(selfBooking.email)
+    );
 
     const areOrderDetailsComplete = () => {
         const {first_name, last_name, email} = form.values.order;
@@ -319,20 +325,9 @@ export const CollectInformation = () => {
         return formOrderQuestions;
     }
 
-    const handleSubmit = (values: any) => {
-        if (!selfBooking) {
-            mutation.mutate(values);
-            return;
-        }
-
-        const {first_name, last_name, email} = selfBooking;
-        const accountDetails = {first_name, last_name, email, email_confirmation: email};
-        const attendeeIndex = getFirstTicketAttendeeIndex();
-        mutation.mutate({
-            order: {...values.order, ...accountDetails},
-            products: form.values.products.map((product, index) =>
-                index === attendeeIndex ? {...product, ...accountDetails} : product),
-        });
+    const handleSubmit = (values: typeof form.values) => {
+        if (needsProfile) return;
+        mutation.mutate(selfBooking ? {...values, use_attendee_profile: true} : values);
     };
 
     useEffect(() => {
@@ -442,7 +437,7 @@ export const CollectInformation = () => {
         );
     }
 
-    if (isOrderError || isEventError || isQuestionsError) {
+    if (isOrderError || isEventError || isQuestionsError || isAccountError) {
         return (
             <HomepageInfoMessage
                 status="error"
@@ -450,6 +445,23 @@ export const CollectInformation = () => {
                 subtitle={t`We hit a snag loading this page. Please try again.`}
                 link={eventHomepagePath(event as Event)}
                 linkText={t`Back to Event`}
+            />
+        );
+    }
+
+    if (!isQuestionsFetched || (singleTicket && isAccountPending)) {
+        return <LoadingSkeleton/>;
+    }
+
+    if (needsProfile && event) {
+        const returnPath = eventCheckoutPath(eventId, orderShortId, 'details');
+        return (
+            <HomepageInfoMessage
+                status="error"
+                message={t`Complete your attendee profile`}
+                subtitle={t`Update your name before completing the booking.`}
+                link={'/attendee/profile?' + new URLSearchParams({returnTo: returnPath})}
+                linkText={t`Update profile`}
             />
         );
     }
@@ -463,12 +475,12 @@ export const CollectInformation = () => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
 
             <CheckoutContent>
-                <CheckoutStepTitle
+                {!selfBooking && <CheckoutStepTitle
                     title={t`Details`}
                     subtitle={order?.is_payment_required
                         ? t`Next: payment`
                         : t`Next: review your order`}
-                />
+                />}
 
                 {isFromWaitlist && (
                     <div className={classes.waitlistBanner}>
@@ -490,23 +502,13 @@ export const CollectInformation = () => {
                     <InlineOrderSummary event={event} order={order} defaultExpanded={true}/>
                 )}
 
-                <h2 className={classes.sectionHeading}>
-                    {t`Your Details`}
-                </h2>
-                <p className={classes.sectionHelper}>
-                    {t`We'll send your tickets to this email`}
-                </p>
+                {!selfBooking && <>
+                    <h2 className={classes.sectionHeading}>{t`Your Details`}</h2>
+                    <p className={classes.sectionHelper}>{t`We'll send your tickets to this email`}</p>
+                </>}
 
-                <Card>
-                    {selfBooking ? (
-                        <div>
-                            <Text fw={600}>{selfBooking.first_name} {selfBooking.last_name}</Text>
-                            <Text size="sm">{selfBooking.email}</Text>
-                            <Button type="button" variant="subtle" onClick={() => setUseAccountDetails(false)}>
-                                {t`Edit`}
-                            </Button>
-                        </div>
-                    ) : <>
+                {(!selfBooking || requireBillingAddress || !!orderQuestions?.length) && <Card>
+                    {!selfBooking && <>
                     <InputGroup>
                         <TextInput
                             withAsterisk
@@ -646,14 +648,14 @@ export const CollectInformation = () => {
 
                     {orderQuestions && <CheckoutOrderQuestions form={form} questions={orderQuestions}/>}
 
-                    {event?.settings?.show_marketing_opt_in && (
+                    {!selfBooking && event?.settings?.show_marketing_opt_in && (
                         <Checkbox
                             mt="md"
                             label={t`Keep me updated on news and events from ${event?.organizer?.name || t`this organizer`}`}
                             {...form.getInputProps('order.opted_into_marketing', {type: 'checkbox'})}
                         />
                     )}
-                </Card>
+                </Card>}
 
                 {orderItems?.map(orderItem => {
                     const product = products?.find(product => product!.id === orderItem.product_id);

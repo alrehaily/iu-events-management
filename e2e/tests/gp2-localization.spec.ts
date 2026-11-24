@@ -1,6 +1,6 @@
-import type {Page} from '@playwright/test';
+import type {Page, TestInfo} from '@playwright/test';
 import {expect, test} from '../fixtures';
-import {createDraftEvent, createLiveEventWithProduct} from '../api/factory';
+import {createCompletedOrder, createDraftEvent, createLiveEventWithProduct} from '../api/factory';
 import {EventCreatePage} from '../pages/event-create.page';
 import {uniqueName} from '../utils/unique';
 
@@ -41,7 +41,7 @@ async function switchManagementLocale(page: Page, locale: Locale) {
   expect(await page.evaluate(() => performance.timeOrigin)).toBe(navigationStart);
 }
 
-async function verifyScreens(page: Page, screens: readonly Screen[], locale: Locale) {
+async function verifyScreens(page: Page, screens: readonly Screen[], locale: Locale, testInfo?: TestInfo) {
   for (const [path, english, arabic] of screens) {
     await test.step(`${locale} ${path}`, async () => {
       expect((await page.goto(path))?.status()).toBe(200);
@@ -49,11 +49,12 @@ async function verifyScreens(page: Page, screens: readonly Screen[], locale: Loc
       await expectLocale(page, locale);
       await expect(page.getByRole('heading', {name: locale === 'ar' ? arabic : english, exact: true}).first()).toBeVisible();
       await page.waitForLoadState('networkidle');
+      if (testInfo) await page.screenshot({path: testInfo.outputPath(`${locale}-${path.replace(/[^\w-]+/g, '-').slice(1) || 'home'}.png`)});
     });
   }
 }
 
-test('public and attendee screens keep their locale on mobile and preserve event titles', async ({page, api, account}) => {
+test('public and attendee screens keep their locale on mobile and preserve event titles', async ({page, api, account}, testInfo) => {
   test.setTimeout(100_000);
   await page.setViewportSize({width: 390, height: 844});
   const errors = watchRuntimeErrors(page);
@@ -70,19 +71,19 @@ test('public and attendee screens keep their locale on mobile and preserve event
     ['/register', 'Create a New Attendee Account', 'إنشاء حساب مستفيد جديد'],
     [`/event/${event.eventId}/${event.slug}`, 'About the event', 'عن الفعالية'],
   ];
-  await verifyScreens(page, screens, 'en');
+  await verifyScreens(page, screens, 'en', testInfo);
   await expect(page.getByRole('heading', {name: event.title, exact: true, level: 1})).toBeVisible();
   await page.goto('/');
   await page.getByRole('button', {name: 'العربية', exact: true}).click();
   await expectLocale(page, 'ar');
-  await verifyScreens(page, screens, 'ar');
+  await verifyScreens(page, screens, 'ar', testInfo);
   await expect(page.getByRole('heading', {name: event.title, exact: true, level: 1})).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
   expect(errors).toEqual([]);
 });
 
-test('organizer forms and management screens render in Arabic and English', async ({authedPage: page, api, account}) => {
-  test.setTimeout(140_000);
+test('organizer forms and management screens render in Arabic and English', async ({authedPage: page, api, account}, testInfo) => {
+  test.setTimeout(220_000);
   const errors = watchRuntimeErrors(page);
   const draft = await createDraftEvent(api, account.organizerId, {title: uniqueName('GP2 Localized Event')});
   const organizer = `/manage/organizer/${account.organizerId}`;
@@ -91,18 +92,25 @@ test('organizer forms and management screens render in Arabic and English', asyn
     [`${organizer}/dashboard`, /Dashboard/, /لوحة التحكم/],
     [`${organizer}/settings`, 'Organizer Settings', 'إعدادات المنظم'],
     [`${organizer}/reports`, 'Reports', 'التقارير'],
+    [`${organizer}/locations`, 'Locations', /المواقع/],
+    [`${event}/dashboard`, 'Event Dashboard', /لوحة تحكم الفعالية/],
     [`${event}/settings`, 'Event Settings', 'إعدادات الفعالية'],
     [`${event}/products`, 'Tickets & Products', 'التذاكر والمنتجات'],
     [`${event}/attendees`, 'Attendees', 'الحضور'],
     [`${event}/orders`, 'Orders', 'الطلبات'],
     [`${event}/check-in`, 'Check-In Lists', 'قوائم تسجيل الحضور'],
     [`${event}/reports`, 'Reports', 'التقارير'],
+    [`${event}/capacity-assignments`, 'Capacity Management', 'إدارة السعة'],
     ['/manage/profile', 'Manage Profile', 'إدارة الملف الشخصي'],
     ['/account/settings', 'Account Settings', 'إعدادات الحساب'],
+    ['/account/taxes-and-fees', 'Taxes and Fees', /الضرائب والرسوم/],
+    ['/account/users', 'Users', /المستخدمون/],
+    ['/account/danger-zone', 'Danger Zone', /منطقة الخطر/],
+    ['/account/event-defaults', 'Event Defaults', /الإعدادات الافتراضية/],
   ];
-  await verifyScreens(page, screens, 'en');
+  await verifyScreens(page, screens, 'en', testInfo);
   await switchManagementLocale(page, 'ar');
-  await verifyScreens(page, screens, 'ar');
+  await verifyScreens(page, screens, 'ar', testInfo);
   await page.goto(`${event}/settings`);
   await expect(page.locator('#event-details').getByLabel(/^الاسم/)).toHaveValue(draft.title);
   await switchManagementLocale(page, 'en');
@@ -115,10 +123,82 @@ test('organizer forms and management screens render in Arabic and English', asyn
   await page.getByRole('button', {name: 'Close modal', exact: true}).click();
   await expect(page.getByRole('combobox', {name: 'Event Category'})).toBeHidden();
   await switchManagementLocale(page, 'ar');
-  await page.getByRole('link', {name: 'إنشاء فعالية', exact: true}).first().click();
+  await page.getByRole('button', {name: 'إنشاء فعالية', exact: true}).first().click();
   await expect(page.getByLabel(/^اسم الفعالية/)).toBeVisible();
   await expect(page.getByRole('combobox', {name: 'تصنيف الفعالية'})).toBeVisible();
   await expect(page.getByRole('button', {name: 'متابعة الإعداد'})).toBeVisible();
+  expect(errors).toEqual([]);
+});
+
+test('orders, waitlist, webhooks, messages, affiliates and promo controls use the active language', async ({
+  authedPage: page, api, account, publicApi,
+}, testInfo) => {
+  test.setTimeout(180_000);
+  const event = await createLiveEventWithProduct(api, {organizerId: account.organizerId, category: 'WORKSHOP'});
+  await createCompletedOrder(publicApi, event);
+  const eventPath = `/manage/event/${event.eventId}`;
+  const errors = watchRuntimeErrors(page);
+  const screenshot = (name: string) => page.screenshot({path: testInfo.outputPath(`${name}.png`)});
+  const sorts = [
+    ['Position ascending', 'الموضع تصاعديًا', 'position', 'asc'],
+    ['Position descending', 'الموضع تنازليًا', 'position', 'desc'],
+    ['Oldest first', 'الأقدم أولاً', 'created_at', 'asc'],
+    ['Newest first', 'الأحدث أولاً', 'created_at', 'desc'],
+    ['Status A-Z', 'الحالة من أ إلى ي', 'status', 'asc'],
+    ['Status Z-A', 'الحالة من ي إلى أ', 'status', 'desc'],
+  ] as const;
+  for (const locale of ['en', 'ar'] as const) {
+    const ar = locale === 'ar';
+    await page.goto(`${eventPath}/orders`);
+    if (ar) await switchManagementLocale(page, 'ar');
+    await page.getByRole('button', {name: ar ? 'الأعمدة' : 'Columns', exact: true}).click();
+    await screenshot(`${locale}-orders-columns`);
+    await page.keyboard.press('Escape');
+    await page.getByTestId('order-actions-trigger').click();
+    await expect(page.getByRole('menuitem').first()).toBeVisible();
+    await screenshot(`${locale}-orders-actions`);
+
+    await page.goto(`${eventPath}/sold-out-waitlist`);
+    const sort = page.getByRole('combobox', {name: ar ? 'الترتيب حسب' : 'Sort by'});
+    for (const [english, arabic, field, direction] of sorts) {
+      await sort.click();
+      await page.getByRole('option', {name: ar ? arabic : english, exact: true}).click();
+      await expect(sort).toHaveValue(ar ? arabic : english);
+      await expect(page).toHaveURL(url => url.searchParams.get('sortBy') === field && url.searchParams.get('sortDirection') === direction);
+      await page.waitForLoadState('networkidle');
+    }
+    await sort.click();
+    await screenshot(`${locale}-waitlist-sorts`);
+    await page.keyboard.press('Escape');
+
+    for (const [path, button] of [
+      ['webhooks', 'webhook-add-button'],
+      ['messages', 'message-compose-button'],
+      ['affiliates', 'affiliate-create-button'],
+      ['promo-codes', 'promo-code-create-button'],
+      ['products', 'product-create-button'],
+    ]) {
+      await page.goto(`${eventPath}/${path}`);
+      const action = page.getByTestId(button).first();
+      await expect(action).toBeVisible();
+      if (path === 'messages') {
+        await expect(action).toHaveText(ar ? 'إرسال أول رسالة' : 'Send First Message');
+        await expect(page.getByTestId(button)).toHaveCount(1);
+      }
+      if (path === 'webhooks') {
+        await expect(page.getByText(ar ? /ترسل خطافات الويب إشعارات فورية/ : /Webhooks instantly notify/)).toBeVisible();
+      }
+      await screenshot(`${locale}-${path}`);
+      await action.click();
+      await expect(page.getByRole('dialog').last()).toBeVisible();
+      if (path === 'webhooks') {
+        await page.getByTestId('webhook-event-types').click();
+        await expect(page.getByTestId('webhook-event-types-option-order.created')).toBeVisible();
+      }
+      await screenshot(`${locale}-${path}-dialog`);
+      await page.waitForLoadState('networkidle');
+    }
+  }
   expect(errors).toEqual([]);
 });
 

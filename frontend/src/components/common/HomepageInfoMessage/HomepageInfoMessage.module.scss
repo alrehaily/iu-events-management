@@ -1,7 +1,7 @@
 @use "../../../styles/mixins";
 
 // Design tokens
-$font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-display: var(--iu-font-family, sans-serif);
 $radius-lg: 20px;
 $radius-md: 14px;
 $radius-sm: 10px;
@@ -31,7 +31,7 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.emojiContainer {
+.statusIcon {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -39,20 +39,12 @@ $transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
   justify-content: center;
   margin: 0 auto 24px;
-  background: var(--accent-soft, var(--checkout-accent-soft, var(--mantine-primary-color-light)));
+  background: var(--iu-green-soft, #e5f3eb);
+  color: var(--iu-green-primary, #084b2f);
 
   @include mixins.respond-below(sm) {
     width: 64px;
     height: 64px;
-  }
-}
-
-.emoji {
-  font-size: 36px;
-  line-height: 1;
-
-  @include mixins.respond-below(sm) {
-    font-size: 28px;
   }
 }
 

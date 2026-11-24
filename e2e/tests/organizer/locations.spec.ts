@@ -8,16 +8,10 @@ const gotoLocations = async (page: Page, organizerId: number): Promise<void> => 
   await page.waitForLoadState('networkidle');
 };
 
-const createLocationViaUi = async (page: Page, venueName: string, withMap = false): Promise<void> => {
+const createLocationViaUi = async (page: Page, venueName: string): Promise<void> => {
   await page.getByRole('button', { name: 'Add Location' }).first().click();
   const dialog = page.getByRole('dialog');
   await expect(dialog.getByLabel('Country')).toHaveValue(/Saudi Arabia/);
-  if (withMap) {
-    await page.route('https://www.openstreetmap.org/export/embed.html?**', route => route.fulfill({body: 'Map fixture'}));
-    await dialog.getByLabel('Latitude', {exact: true}).fill('24.5');
-    await dialog.getByLabel('Longitude', {exact: true}).fill('39.6');
-    await expect(dialog.locator('iframe[title="Venue Location Map"]')).toHaveAttribute('src', /marker=24\.5%2C39\.6/);
-  }
   await dialog.getByLabel('Venue Name').fill(venueName);
   await dialog.getByLabel('Address Line 1').fill('123 Test Street');
   await dialog.getByLabel('City').fill('Dublin');
@@ -26,16 +20,60 @@ const createLocationViaUi = async (page: Page, venueName: string, withMap = fals
 };
 
 test.describe('organizer locations', () => {
-  test('an organizer creates a venue with a manual address', async ({ authedPage, api }) => {
+  test('an organizer places a pin, saves a venue and reopens the map in Arabic', async ({ authedPage, api }, testInfo) => {
     const organizer = await createFreshOrganizer(api);
     const venueName = uniqueName('Venue');
 
     await gotoLocations(authedPage, organizer.id);
-    await createLocationViaUi(authedPage, venueName, true);
+    if (process.env.E2E_REAL_MAP_TILES !== 'true') {
+      await authedPage.route('https://tile.openstreetmap.org/**', route => route.abort());
+    }
+    await authedPage.getByRole('button', {name: 'Add Location'}).first().click();
+    const dialog = authedPage.getByRole('dialog');
+    const map = dialog.getByTestId('venue-map');
+    await expect(map).toBeVisible();
+    if (process.env.E2E_REAL_MAP_TILES !== 'true') {
+      await expect(dialog.getByText('The map could not load. You can enter the address and coordinates manually.')).toBeVisible();
+    } else {
+      await expect(map.locator('.leaflet-tile-loaded').first()).toBeVisible();
+    }
+    await expect(dialog.getByLabel('Country')).toHaveValue(/Saudi Arabia/);
+    await dialog.getByRole('button', {name: 'Select map center'}).click();
+    await expect(map.locator('.leaflet-overlay-pane path')).toBeVisible();
+    await dialog.getByText('Advanced coordinates (optional)').click();
+    await expect(dialog.getByLabel('Latitude', {exact: true})).toHaveValue(/24\.484/);
+    await expect(dialog.getByLabel('Longitude', {exact: true})).toHaveValue(/39\.551/);
+    const bounds = (await map.boundingBox())!;
+    await map.click({position: {x: Math.round(bounds.width * 0.72), y: Math.round(bounds.height * 0.39)}});
+    const lat = Number(await dialog.getByLabel('Latitude', {exact: true}).inputValue());
+    const lng = Number(await dialog.getByLabel('Longitude', {exact: true}).inputValue());
+    expect(lat).toBeGreaterThan(24.4848);
+    expect(lng).toBeGreaterThan(39.5518);
+    await expect(dialog.getByLabel('City', {exact: true})).toHaveValue('');
+    await dialog.getByLabel('Venue Name').fill(venueName);
+    await dialog.getByLabel('Address Line 1').fill('GP2 Campus Road');
+    await dialog.getByLabel('City').fill('Madinah');
+    await authedPage.screenshot({path: testInfo.outputPath('venue-map-en.png')});
+    await dialog.getByRole('button', {name: 'Add Location'}).click();
 
     const row = authedPage.getByRole('row').filter({ hasText: venueName });
     await expect(row).toBeVisible();
-    await expect(row.getByText('123 Test Street', { exact: false })).toBeVisible();
+    await expect(row.getByText('GP2 Campus Road', {exact: false})).toBeVisible();
+    await row.getByRole('button').click();
+    await authedPage.getByRole('menuitem', {name: 'Edit location'}).click();
+    await expect(map.locator('.leaflet-overlay-pane path')).toBeVisible();
+    await dialog.getByText('Advanced coordinates (optional)').click();
+    expect(Number(await dialog.getByLabel('Latitude', {exact: true}).inputValue())).toBeCloseTo(lat, 5);
+    expect(Number(await dialog.getByLabel('Longitude', {exact: true}).inputValue())).toBeCloseTo(lng, 5);
+    await authedPage.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await authedPage.getByRole('combobox', {name: 'Language'}).click();
+    await authedPage.getByRole('option', {name: 'العربية', exact: true}).click();
+    await expect(authedPage.locator('html')).toHaveAttribute('dir', 'rtl');
+    await row.getByRole('button').click();
+    await authedPage.getByRole('menuitem', {name: /تعديل/}).click();
+    await expect(map.locator('.leaflet-overlay-pane path')).toBeVisible();
+    await authedPage.screenshot({path: testInfo.outputPath('venue-map-ar.png')});
   });
 
   test('an organizer renames a location', async ({ authedPage, api }) => {

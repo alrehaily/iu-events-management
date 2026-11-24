@@ -639,6 +639,8 @@ $router->prefix('/public')->group(
         $router->post('/attendee/login', \HiEvents\Http\Actions\Auth\AttendeeLoginActionPublic::class);
         $router->get('/attendee/me', \HiEvents\Http\Actions\Auth\GetAttendeeProfileActionPublic::class)
             ->middleware('auth:api');
+        $router->patch('/attendee/me', \HiEvents\Http\Actions\Auth\UpdateAttendeeNameActionPublic::class)
+            ->middleware('auth:api');
         $router->get('/attendee/registrations', \HiEvents\Http\Actions\Attendees\GetAttendeeRegistrationsActionPublic::class)
             ->middleware('auth:api');
         $router->post('/attendee/registrations/{order_short_id}/cancel', \HiEvents\Http\Actions\Attendees\CancelAttendeeRegistrationActionPublic::class)

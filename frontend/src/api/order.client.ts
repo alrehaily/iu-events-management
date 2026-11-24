@@ -24,6 +24,7 @@ export interface AttendeeDetails extends OrderDetails {
 export interface FinaliseOrderPayload {
     order: OrderDetails,
     products: AttendeeDetails[],
+    use_attendee_profile?: boolean,
 }
 
 export interface EditOrderPayload {
@@ -158,7 +159,10 @@ export const orderClientPublic = {
         orderShortId: string,
         payload: FinaliseOrderPayload
     ) => {
-        const response = await publicApi.put<GenericDataResponse<Order>>(`events/${eventId}/order/${orderShortId}`, payload);
+        const token = payload.use_attendee_profile ? localStorage.getItem('iu_attendee_token') : null;
+        const response = await publicApi.put<GenericDataResponse<Order>>(`events/${eventId}/order/${orderShortId}`, payload, {
+            headers: token ? {Authorization: `Bearer ${token}`} : undefined,
+        });
         return response.data;
     },
 

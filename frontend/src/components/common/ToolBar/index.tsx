@@ -2,6 +2,7 @@ import React from "react";
 import {Card} from "../Card";
 import classes from './ToolBar.module.scss';
 import {t} from "@lingui/macro";
+import {useLingui} from "@lingui/react";
 
 interface ToolBarProps {
     children?: React.ReactNode[] | React.ReactNode;
@@ -20,6 +21,7 @@ export const ToolBar: React.FC<ToolBarProps> = ({
     resultLabel,
     className,
 }) => {
+    const {i18n} = useLingui();
     return (
         <Card className={`${classes.toolbar} ${className || ''}`}>
             <div className={classes.rowPrimary}>
@@ -44,7 +46,8 @@ export const ToolBar: React.FC<ToolBarProps> = ({
                     )}
                     {resultCount !== undefined && (
                         <span className={classes.resultCount}>
-                            {resultCount.toLocaleString()} {resultLabel || t`results`}
+                            <bdi>{resultCount.toLocaleString(i18n.locale === 'ar' ? 'ar-SA' : i18n.locale)}</bdi>{' '}
+                            {resultLabel || t`results`}
                         </span>
                     )}
                 </div>

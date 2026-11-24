@@ -215,10 +215,28 @@ export const Messages = () => {
 
     const isLoading = !messages || !event;
     const totalMessages = pagination?.total;
+    const emptyMailbox = !isLoading && messages.length === 0 && !searchValue && !searchParams.query;
 
     return (
         <>
-            <div className={`${classes.mailLayout} ${mobileShowPreview ? classes.mobilePreviewActive : ''}`}>
+            {emptyMailbox ? (
+                <section>
+                    <h1 className={classes.listHeading}>{t`Messages`}</h1>
+                    <NoResultsSplash
+                        heading={t`No messages to show`}
+                        icon={IconMail}
+                        subHeading={t`Send emails to attendees, ticket holders, or order owners. Messages can be sent immediately or scheduled for later.`}
+                    >
+                        <Button
+                            onClick={openSendModal}
+                            leftSection={<IconSend size={16}/>}
+                            data-testid="message-compose-button"
+                        >
+                            {t`Send First Message`}
+                        </Button>
+                    </NoResultsSplash>
+                </section>
+            ) : <div className={`${classes.mailLayout} ${mobileShowPreview ? classes.mobilePreviewActive : ''}`}>
                 <div className={classes.listPanel}>
                     <div className={classes.listHeader}>
                         <div className={classes.listHeaderLeft}>
@@ -227,15 +245,15 @@ export const Messages = () => {
                                 <span className={classes.messageCount}>{totalMessages}</span>
                             )}
                         </div>
-                        <Button
+                        {!isLoading && messages.length > 0 && <Button
                             variant="filled"
                             size="compact-sm"
                             onClick={openSendModal}
                             leftSection={<IconSend size={14}/>}
                             data-testid="message-compose-button"
                         >
-                            {t`Compose`}
-                        </Button>
+                            {t`Create Message`}
+                        </Button>}
                     </div>
 
                     <div className={classes.searchBar}>
@@ -260,29 +278,7 @@ export const Messages = () => {
                         )}
 
                         {!isLoading && messages.length === 0 && (
-                            <div className={classes.ghostList}>
-                                {[...Array(5)].map((_, i) => (
-                                    <div key={i} className={classes.ghostRow}>
-                                        <div className={classes.ghostAvatar}/>
-                                        <div className={classes.ghostLines}>
-                                            <div className={classes.ghostLineShort}/>
-                                            <div className={classes.ghostLineLong}/>
-                                            <div className={classes.ghostLineMed}/>
-                                        </div>
-                                    </div>
-                                ))}
-                                <div className={classes.ghostCta}>
-                                    <p>{t`Your messages will appear here`}</p>
-                                    <Button
-                                        variant="light"
-                                        size="compact-sm"
-                                        onClick={openSendModal}
-                                        leftSection={<IconSend size={14}/>}
-                                    >
-                                        {t`Compose`}
-                                    </Button>
-                                </div>
-                            </div>
+                            <p className={classes.loadingState}>{t`No matching messages`}</p>
                         )}
 
                         {!isLoading && messages.length > 0 && (
@@ -317,34 +313,12 @@ export const Messages = () => {
                         />
                     ) : (
                         <div className={classes.previewEmpty}>
-                            {!isLoading && messages?.length === 0 ? (
-                                <NoResultsSplash
-                                    heading={t`No messages to show`}
-                                    icon={IconMail}
-                                    subHeading={
-                                        <p>{t`Send emails to attendees, ticket holders, or order owners. Messages can be sent immediately or scheduled for later.`}</p>
-                                    }
-                                >
-                                    <Button
-                                        variant="filled"
-                                        size="sm"
-                                        onClick={openSendModal}
-                                        leftSection={<IconSend size={16}/>}
-                                        mt={8}
-                                    >
-                                        {t`Send your first message`}
-                                    </Button>
-                                </NoResultsSplash>
-                            ) : (
-                                <>
-                                    <IconMail size={48} stroke={1.2}/>
-                                    <p>{t`Select a message to view its contents`}</p>
-                                </>
-                            )}
+                            <IconMail size={48} stroke={1.2}/>
+                            <p>{t`Select a message to view its contents`}</p>
                         </div>
                     )}
                 </div>
-            </div>
+            </div>}
 
             {sendModalOpen && <SendMessageModal messageType={MessageType.OrderOwner} onClose={closeSendModal}/>}
         </>

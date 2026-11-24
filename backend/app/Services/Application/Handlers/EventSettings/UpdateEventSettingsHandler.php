@@ -32,7 +32,19 @@ class UpdateEventSettingsHandler
 
         $wasAutoProcessEnabled = $existingSettings?->getWaitlistAutoProcess();
 
-        $result = $this->databaseManager->transaction(function () use ($settings) {
+        $homepageTheme = $settings->homepage_theme_settings;
+        $homepageContent = $existingSettings?->getHomepageContent() ?? [];
+        foreach ($settings->homepage_content as $field => $text) {
+            $homepageContent[$field] = $text === null
+                ? null
+                : html_entity_decode(strip_tags($this->purifier->purify($text)), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        }
+        unset($homepageTheme['content']);
+        if ($homepageContent !== []) {
+            $homepageTheme['content'] = $homepageContent;
+        }
+
+        $result = $this->databaseManager->transaction(function () use ($settings, $homepageTheme) {
             $this->eventSettingsRepository->updateWhere(
                 attributes: [
                     'post_checkout_message' => $this->purifier->purify($settings->post_checkout_message),
@@ -95,7 +107,7 @@ class UpdateEventSettingsHandler
                     'pass_platform_fee_to_buyer' => $settings->pass_platform_fee_to_buyer,
 
                     // Homepage theme settings
-                    'homepage_theme_settings' => $settings->homepage_theme_settings,
+                    'homepage_theme_settings' => $homepageTheme,
 
                     // Self-service settings
                     'allow_attendee_self_edit' => $settings->allow_attendee_self_edit,

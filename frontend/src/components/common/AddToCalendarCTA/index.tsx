@@ -17,8 +17,7 @@ export const AddToCalendarCTA = ({event, occurrence}: AddToCalendarCTAProps) => 
                 <IconCalendar size={24}/>
             </div>
             <div className={classes.content}>
-                <span className={classes.title}>{t`Don't forget!`}</span>
-                <span className={classes.subtitle}>{t`Add this event to your calendar`}</span>
+                <span className={classes.title}>{t`Add this event to your calendar`}</span>
             </div>
             <CalendarOptionsPopover event={event} occurrence={occurrence}>
                 <Button variant="filled" size="sm">

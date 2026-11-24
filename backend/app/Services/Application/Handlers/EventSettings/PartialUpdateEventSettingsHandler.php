@@ -34,6 +34,10 @@ class PartialUpdateEventSettingsHandler
                 'event_id' => $eventSettingsDTO->event_id,
                 'account_id' => $eventSettingsDTO->account_id,
                 'is_certificate_eligible' => $eventSettingsDTO->settings['is_certificate_eligible'] ?? null,
+                'homepage_content' => array_intersect_key(
+                    $eventSettingsDTO->settings,
+                    array_flip(EventSettingDomainObject::HOMEPAGE_CONTENT_FIELDS),
+                ),
                 'post_checkout_message' => array_key_exists('post_checkout_message', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['post_checkout_message']
                     : $existingSettings->getPostCheckoutMessage(),

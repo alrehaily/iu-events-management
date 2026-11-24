@@ -1,11 +1,10 @@
-import {useLingui} from "@lingui/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import classes from './OrganizerHomepageDesigner.module.scss';
 import { useParams } from "react-router";
 import { useGetOrganizerSettings } from "../../../../queries/useGetOrganizerSettings.ts";
 import { useUpdateOrganizerSettings } from "../../../../mutations/useUpdateOrganizerSettings.ts";
 import { useFormErrorResponseHandler } from "../../../../hooks/useFormErrorResponseHandler.tsx";
-import { HomepageThemeSettings, IdParam, OrganizerSettings } from "../../../../types.ts";
+import { HomepageThemeSettings, OrganizerSettings } from "../../../../types.ts";
 import { showSuccess } from "../../../../utilites/notifications.tsx";
 import { t } from "@lingui/macro";
 import { useForm } from "@mantine/form";
@@ -18,14 +17,16 @@ import { ImageUploadDropzone } from "../../../common/ImageUploadDropzone";
 import { organizerPreviewPath } from "../../../../utilites/urlHelper.ts";
 import { queryClient } from "../../../../utilites/queryClient.ts";
 import { GET_ORGANIZER_PUBLIC_QUERY_KEY } from "../../../../queries/useGetOrganizerPublic.ts";
-import { computeThemeVariables, getDefaultThemeSettings, validateThemeSettings } from "../../../../utilites/themeUtils.ts";
+import { getDefaultThemeSettings, validateThemeSettings } from "../../../../utilites/themeUtils.ts";
+import { useIULanguage } from "../../../../context/IULanguageContext.tsx";
+import { useHomepagePreviewFrame } from "../../../../hooks/useHomepagePreview.ts";
 
 interface FormValues {
     homepage_theme_settings: Partial<HomepageThemeSettings>;
 }
 
 const OrganizerHomepageDesigner = () => {
-    useLingui();
+    const {locale} = useIULanguage();
     const { organizerId } = useParams();
     const organizerSettingsQuery = useGetOrganizerSettings(organizerId);
     const organizerQuery = useGetOrganizer(organizerId);
@@ -33,18 +34,16 @@ const OrganizerHomepageDesigner = () => {
 
     const organizerData = organizerQuery.data;
 
-    const iframeRef = useRef<HTMLIFrameElement>(null);
-    const lastSentSettings = useRef<string | null>(null);
-
-    const [iframeSrc, setIframeSrc] = useState<string | null>(null);
-    const [iframeLoaded, setIframeLoaded] = useState(false);
     const [accordionValue, setAccordionValue] = useState<string[]>(['images']);
-    const [lastCoverId, setLastCoverId] = useState<IdParam | null>(null);
-    const [lastLogoId, setLastLogoId] = useState<IdParam | null>(null);
     const [viewMode, setViewMode] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
 
     const existingLogo = organizerData?.images?.find((image) => image.type === 'ORGANIZER_LOGO');
     const existingCover = organizerData?.images?.find((image) => image.type === 'ORGANIZER_COVER');
+    const iframeSrc = organizerPreviewPath(organizerId) + '?' + new URLSearchParams({
+        locale,
+        cover: String(existingCover?.id ?? ''),
+        logo: String(existingLogo?.id ?? ''),
+    });
 
     const form = useForm<FormValues>({
         initialValues: {
@@ -64,12 +63,6 @@ const OrganizerHomepageDesigner = () => {
             });
         }
     }, [organizerSettingsQuery.isFetched, organizerSettingsQuery.data]);
-
-    useEffect(() => {
-        if (organizerSettingsQuery.isFetched && organizerQuery.isFetched && !iframeSrc) {
-            setIframeSrc(organizerPreviewPath(organizerId));
-        }
-    }, [organizerSettingsQuery.isFetched, organizerQuery.isFetched, organizerId]);
 
     const handleSubmit = (values: FormValues) => {
         const validatedTheme = validateThemeSettings(values.homepage_theme_settings);
@@ -100,47 +93,11 @@ const OrganizerHomepageDesigner = () => {
         );
     };
 
-    const sendSettingsToIframe = () => {
-        if (iframeRef.current?.contentWindow && iframeLoaded) {
-            const themeSettings = validateThemeSettings(form.values.homepage_theme_settings);
-            const cssVars = computeThemeVariables(themeSettings);
-
-            const settingsToSend = {
-                homepage_theme_settings: themeSettings,
-                logoUrl: existingLogo?.url,
-                coverUrl: existingCover?.url,
-                homepage_background_color: themeSettings.background,
-                homepage_content_background_color: cssVars['--theme-surface'],
-                homepage_primary_color: themeSettings.accent,
-                homepage_primary_text_color: cssVars['--theme-text-primary'],
-                homepage_secondary_color: cssVars['--theme-text-secondary'],
-                homepage_secondary_text_color: cssVars['--theme-text-tertiary'],
-                homepage_background_type: themeSettings.background_type,
-            };
-
-            const settingsJson = JSON.stringify(settingsToSend);
-            if (settingsJson !== lastSentSettings.current) {
-                iframeRef.current.contentWindow.postMessage(
-                    { type: "UPDATE_ORGANIZER_SETTINGS", settings: settingsToSend },
-                    window.location.origin
-                );
-                lastSentSettings.current = settingsJson;
-            }
-        }
-    };
-
-    useEffect(() => {
-        sendSettingsToIframe();
-    }, [iframeLoaded, form.values, existingLogo?.url, existingCover?.url]);
-
-    useEffect(() => {
-        if (((existingCover?.id !== lastCoverId) || existingLogo?.id !== lastLogoId) && iframeSrc) {
-            setLastCoverId(existingCover?.id);
-            setLastLogoId(existingLogo?.id);
-            setIframeSrc(organizerPreviewPath(organizerId) + `?cover_image_id=${existingCover?.id}&logo_image_id=${existingLogo?.id}`);
-            setIframeLoaded(false);
-        }
-    }, [existingCover?.id, existingLogo?.id]);
+    const iframeRef = useHomepagePreviewFrame("UPDATE_ORGANIZER_SETTINGS", {
+        homepage_theme_settings: validateThemeSettings(form.values.homepage_theme_settings),
+        logoUrl: existingLogo?.url,
+        coverUrl: existingCover?.url,
+    });
 
     const handleImageChange = () => {
         queryClient.invalidateQueries({
@@ -222,6 +179,7 @@ const OrganizerHomepageDesigner = () => {
 
                     <Button
                         loading={updateMutation.isPending}
+                        disabled={!organizerSettingsQuery.data}
                         type={'submit'}
                         fullWidth
                         mt="md"
@@ -275,13 +233,13 @@ const OrganizerHomepageDesigner = () => {
                         </div>
                     </div>
                     <div className={classes.iframeWrapper}>
-                        {iframeSrc ? (
+                        {organizerSettingsQuery.isFetched && organizerQuery.isFetched ? (
                             <iframe
                                 ref={iframeRef}
+                                key={iframeSrc}
                                 src={iframeSrc}
                                 title={t`Organizer Homepage Preview`}
                                 sandbox="allow-scripts allow-same-origin"
-                                onLoad={() => setIframeLoaded(true)}
                             />
                         ) : (
                             <LoadingMask />

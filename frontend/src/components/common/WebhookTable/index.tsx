@@ -18,7 +18,6 @@ import {
     IconClockHour4,
     IconDotsVertical,
     IconPencil,
-    IconPlus,
     IconTrash
 } from '@tabler/icons-react';
 import {Table, TableHead} from '../Table';
@@ -39,10 +38,9 @@ import {WebhookLogsModal} from "../../modals/WebhookLogsModal";
 
 interface WebhookTableProps {
     webhooks: Webhook[];
-    openCreateModal: () => void;
 }
 
-export const WebhookTable = ({webhooks, openCreateModal}: WebhookTableProps) => {
+export const WebhookTable = ({webhooks}: WebhookTableProps) => {
     const {eventId} = useParams();
     const [editModalOpen, {open: openEditModal, close: closeEditModal}] = useDisclosure(false);
     const [logsModalOpen, {open: openLogsModal, close: closeLogsModal}] = useDisclosure(false);
@@ -216,13 +214,6 @@ export const WebhookTable = ({webhooks, openCreateModal}: WebhookTableProps) => 
                                 create custom workflows and automate tasks.
                             </p>
                         </Trans>
-                        <Button
-                            loading={deleteMutation.isPending}
-                            size={'xs'}
-                            leftSection={<IconPlus/>}
-                            color={'green'}
-                            onClick={() => openCreateModal()}>{t`Add Webhook`}
-                        </Button>
                     </>
                 )}
             />

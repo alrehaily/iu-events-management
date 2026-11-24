@@ -4,7 +4,6 @@ import {
     IconLogout,
     IconPlus,
     IconSettingsCog,
-    IconShield,
     IconUser,
     IconUsers,
 } from "@tabler/icons-react";
@@ -53,15 +52,6 @@ export const GlobalMenu = () => {
             link: `/account/users`
         })
     }
-
-    if (me?.role === 'SUPERADMIN') {
-        links.push({
-            label: t`Admin Dashboard`,
-            icon: IconShield,
-            link: `/admin`
-        })
-    }
-
 
     links.push({
         label: t`Create Organizer`,

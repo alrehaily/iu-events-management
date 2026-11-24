@@ -102,5 +102,20 @@
     "Congratulations! Your order for :eventTitle on :eventDate at :eventTime was successful. Please find your order details below.": "تم تأكيد حجزك لفعالية :eventTitle يوم :eventDate الساعة :eventTime. تجد تفاصيل الطلب أدناه.",
     ":date at :time": ":date الساعة :time",
     "Confirm email change": "تأكيد تغيير البريد الإلكتروني",
-    "Provide at least one address field (venue, street, city, or country).": "أدخل حقلًا واحدًا على الأقل من حقول العنوان (المقر أو الشارع أو المدينة أو الدولة)."
+    "Provide at least one address field (venue, street, city, or country).": "أدخل حقلًا واحدًا على الأقل من حقول العنوان (المقر أو الشارع أو المدينة أو الدولة).",
+    "Registration": "التسجيل",
+    "Classes": "الحصص",
+    "Passes": "تصاريح الحضور",
+    "There are no tickets available for this event": "لا توجد تذاكر متاحة لهذه الفعالية",
+    "There are no classes available for this event": "لا توجد حصص متاحة لهذه الفعالية",
+    "Registration is not open for this event": "التسجيل غير متاح لهذه الفعالية",
+    "There are no passes available for this event": "لا توجد تصاريح حضور متاحة لهذه الفعالية",
+    "Tickets": "التذاكر",
+    "A valid email is required": "أدخل عنوان بريد إلكتروني صالحًا.",
+    "First name is required": "الاسم الأول مطلوب.",
+    "Last name is required": "اسم العائلة مطلوب.",
+    "Please confirm your email address": "يرجى تأكيد البريد الإلكتروني.",
+    "Email addresses do not match": "عنوانا البريد الإلكتروني غير متطابقين.",
+    "Account registration is disabled": "يُنشئ مسؤول المنصة حسابات المنظمين.",
+    "Profile updated successfully.": "تم تحديث الملف الشخصي بنجاح."
 }

@@ -256,6 +256,7 @@ export const TrackingPixelSettings = () => {
 
                     <Button
                         loading={updateMutation.isPending}
+                        className="iu-settings-save-button"
                         type="submit"
                         mt="md"
                     >

@@ -1,6 +1,6 @@
 import { test, expect } from '../../fixtures';
 import { OrganizerPublicPage } from '../../pages/organizer.page';
-import { createFreshOrganizer, createLiveEventWithProduct } from '../../api/factory';
+import { createDraftEvent, createFreshOrganizer, createLiveEventWithProduct } from '../../api/factory';
 import { uniqueCode, uniqueEmail, uniqueName, uniqueShort } from '../../utils/unique';
 
 test.describe('organizer public page', () => {
@@ -50,15 +50,25 @@ test.describe('organizer public page', () => {
     expect(await authedPage.evaluate(() => navigator.clipboard.readText())).toBe(organizerUrl);
   });
 
-  test('the homepage designer shows its event card without a booking link', async ({ authedPage, api }) => {
+  test('the organizer homepage designer shows its event card without a booking link in both languages', async ({ authedPage, api }, testInfo) => {
     const organizer = await createFreshOrganizer(api, uniqueName('GP2 Preview'));
     const event = await createLiveEventWithProduct(api, { organizerId: organizer.id });
     await authedPage.goto(`/manage/organizer/${organizer.id}/organizer-homepage-designer`);
-    const preview = authedPage.frameLocator('iframe[title="Organizer Homepage Preview"]');
+    const preview = authedPage.frameLocator('iframe');
     const card = preview.locator('article').filter({hasText: event.title});
     await expect(card).toBeVisible();
     await expect(card.locator('a, button, form')).toHaveCount(0);
     await expect(preview.locator('main')).toHaveAttribute('inert', '');
+    await expect(preview.locator('html')).toHaveAttribute('dir', 'ltr');
+    await authedPage.getByRole('button', {name: 'Save Changes'}).click();
+    await expect(authedPage.getByText('Successfully Updated Homepage Design')).toBeVisible();
+    await authedPage.screenshot({path: testInfo.outputPath('organizer-designer-en.png')});
+    await authedPage.getByRole('combobox', {name: 'Language'}).click();
+    await authedPage.getByRole('option', {name: 'العربية', exact: true}).click();
+    await expect(preview.locator('html')).toHaveAttribute('dir', 'rtl');
+    await expect(card).toBeVisible();
+    await expect(preview.locator('main')).toHaveAttribute('inert', '');
+    await authedPage.screenshot({path: testInfo.outputPath('organizer-designer-ar.png')});
   });
 
   test('the event designer blocks links, registration and session actions in its preview', async ({ authedPage, api, account }) => {
@@ -74,6 +84,31 @@ test.describe('organizer public page', () => {
     await expect(preview.locator('[role="dialog"]')).toHaveCount(0);
     await expect(preview.locator('.iu-event-main-title')).toHaveText(event.title);
     await expect(authedPage).toHaveURL(path);
+  });
+
+  test('the event dashboard opens and saves a draft preview in both languages', async ({authedPage, api, account}, testInfo) => {
+    const event = await createDraftEvent(api, account.organizerId, {title: uniqueName('GP2 Draft Preview')});
+    await authedPage.goto(`/manage/event/${event.eventId}/dashboard`);
+    await authedPage.getByRole('link', {name: 'Homepage Designer'}).click();
+
+    const preview = authedPage.frameLocator('iframe');
+    await expect(preview.locator('.iu-event-main-title')).toHaveText(event.title);
+    await expect(preview.locator('html')).toHaveAttribute('dir', 'ltr');
+    const audience = authedPage.getByRole('textbox', {name: 'Target Audience'});
+    const description = 'GP2 guest researchers';
+    await audience.fill(description);
+    await expect(preview.getByText(description, {exact: true})).toBeVisible();
+    await authedPage.getByRole('button', {name: 'Save Changes'}).click();
+    await expect(authedPage.getByText('Successfully Updated Homepage Design')).toBeVisible();
+    await authedPage.screenshot({path: testInfo.outputPath('event-designer-en.png')});
+
+    await authedPage.getByRole('combobox', {name: 'Language'}).click();
+    await authedPage.getByRole('option', {name: 'العربية', exact: true}).click();
+    await expect(preview.locator('html')).toHaveAttribute('dir', 'rtl');
+    await expect(preview.getByText(description, {exact: true})).toBeVisible();
+    await authedPage.reload();
+    await expect(authedPage.getByRole('textbox', {name: 'الفئة المستهدفة'})).toHaveValue(description);
+    await authedPage.screenshot({path: testInfo.outputPath('event-designer-ar.png')});
   });
 
   test('a visitor contacts the organizer and the message arrives by email', async ({ page, api, mailpit }) => {

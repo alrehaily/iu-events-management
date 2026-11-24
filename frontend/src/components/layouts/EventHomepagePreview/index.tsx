@@ -1,8 +1,7 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router";
-import {LoadingOverlay} from "@mantine/core";
+import {useState} from "react";
+import {useLoaderData} from "react-router";
 import {Event, HomepageThemeSettings} from "../../../types.ts";
-import {useGetEventPublic} from "../../../queries/useGetEventPublic.ts";
+import {useHomepagePreviewSettings} from "../../../hooks/useHomepagePreview.ts";
 import {EventNotAvailable} from "../EventHomepage/EventNotAvailable";
 import EventHomepage from "../EventHomepage";
 
@@ -19,25 +18,9 @@ interface PreviewSettings {
 }
 
 const EventHomepagePreview = () => {
-    const {eventId} = useParams();
-    const {data: event, isFetched, isLoading} = useGetEventPublic(eventId);
+    const event = useLoaderData<Event | null>();
     const [previewSettings, setPreviewSettings] = useState<PreviewSettings | null>(null);
-
-    useEffect(() => {
-        const handleMessage = (messageEvent: MessageEvent) => {
-            if (messageEvent.origin === window.location.origin && messageEvent.source === window.parent
-                && messageEvent.data?.type === "UPDATE_SETTINGS") {
-                setPreviewSettings(messageEvent.data.settings);
-            }
-        };
-
-        window.addEventListener("message", handleMessage);
-        return () => window.removeEventListener("message", handleMessage);
-    }, []);
-
-    if (!isFetched || isLoading) {
-        return <LoadingOverlay visible />;
-    }
+    useHomepagePreviewSettings<PreviewSettings>("UPDATE_SETTINGS", setPreviewSettings);
 
     if (!event) {
         return <div inert><EventNotAvailable /></div>;

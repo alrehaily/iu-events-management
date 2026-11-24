@@ -39,6 +39,7 @@ export const PlatformFeesSettings = () => {
             onSave={handleSave}
             isLoading={organizerSettingsQuery.isLoading}
             isSaving={updateMutation.isPending}
+            saveButtonClassName="iu-settings-save-button"
             heading={t`Platform Fees`}
             description={t`Set default platform fee settings for new events created under this organizer.`}
             feeHandlingLabel={t`Default Fee Handling`}

@@ -1,0 +1,14 @@
+.map {
+  inline-size: 100%;
+  block-size: clamp(13rem, 40vh, 19rem);
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid var(--iu-border, #dce9e2);
+  border-radius: 8px;
+  background: var(--iu-surface-alt, #edf6f0);
+
+  &:focus-visible {
+    outline: 2px solid var(--iu-green-secondary, #1b754b);
+    outline-offset: 3px;
+  }
+}

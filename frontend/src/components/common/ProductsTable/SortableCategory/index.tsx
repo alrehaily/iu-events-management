@@ -13,6 +13,7 @@ import {showError, showSuccess} from "../../../../utilites/notifications.tsx";
 import {confirmationDialog} from "../../../../utilites/confirmationDialog.tsx";
 import {SortArrows} from "../../SortArrows";
 import {useSortProducts} from "../../../../mutations/useSortProducts.ts";
+import {productCategoryDisplay} from "../../../../utilites/productCategoryDisplay.ts";
 
 interface SortableCategoryProps {
     category: ProductCategory;
@@ -106,7 +107,7 @@ export const SortableCategory: React.FC<SortableCategoryProps> = ({
             <div className={classNames(classes.sortableCategory)}>
                 <div className={classes.categoryHeader}>
                     <h2 className={classes.categoryTitle}>
-                        {category.name}
+                        {productCategoryDisplay(category).name}
                         {category.is_hidden && (
                             <Popover>
                                 <Popover.Target>

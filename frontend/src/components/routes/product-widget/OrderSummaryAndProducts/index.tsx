@@ -41,7 +41,6 @@ import {OnlineEventDetails} from "../../../common/OnlineEventDetails";
 import {AddToCalendarCTA} from "../../../common/AddToCalendarCTA";
 import {InlineOrderSummary} from "../../../common/InlineOrderSummary";
 import {CheckoutContent} from "../../../layouts/Checkout/CheckoutContent";
-import {CheckoutStepTitle} from "../../../layouts/Checkout/CheckoutStepTitle";
 import {EditAttendeeModal} from "./EditAttendeeModal";
 import {EditOrderModal} from "./EditOrderModal";
 
@@ -111,6 +110,7 @@ const GuestListItem = ({
                 <Tooltip label={t`View Ticket`}>
                     <ActionIcon
                         variant="subtle"
+                        aria-label={t`View Ticket`}
                         onClick={() => window?.open(`/product/${event.id}/${attendee.short_id}`, '_blank')}
                     >
                         <IconExternalLink size={18}/>
@@ -119,6 +119,7 @@ const GuestListItem = ({
                 <Tooltip label={t`Print Ticket`}>
                     <ActionIcon
                         variant="subtle"
+                        aria-label={t`Print Ticket`}
                         onClick={() => window?.open(`/product/${event.id}/${attendee.short_id}/print`, '_blank')}
                     >
                         <IconPrinter size={18}/>
@@ -157,7 +158,7 @@ const DetailItem = ({icon: Icon, label, value}: { icon: any, label: string, valu
             <Icon size={20} style={{color: 'var(--checkout-accent, var(--mantine-color-gray-6))', flexShrink: 0}}/>
             <div className={classes.detailContent}>
                 <Text size="sm" c="dimmed" className={classes.label}>{label}</Text>
-                <Text className={classes.value}>{value}</Text>
+                <div className={classes.value}>{value}</div>
             </div>
         </Group>
     </div>
@@ -185,12 +186,8 @@ const WelcomeHeader = ({order, event}: { order: Order; event: Event }) => {
                     isAwaitingPayment ? <IconClock size={42} stroke={1.5}/> :
                         <IconCircleX size={42} stroke={1.5}/>}
             </div>
-            <div className={classes.welcomeMessage}>{message}</div>
-            {isCompleted && (
-                <div className={classes.confirmationText}>
-                    {t`Confirmation sent to`} <strong>{order.email}</strong>
-                </div>
-            )}
+            <h1 className={classes.welcomeMessage}>{message}</h1>
+            {isCompleted && <p className={classes.confirmationText}>{t`Your registration is confirmed.`}</p>}
             {isCancelled && (
                 <div className={classes.confirmationText}>
                     {t`A cancellation notice has been sent to`} <strong>{order.email}</strong>
@@ -211,7 +208,7 @@ const OrderDetails = ({
     onEditClick: () => void;
     onResendClick: () => void;
 }) => (
-    <Card style={{marginBottom: '40px'}}>
+    <Card>
         <SimpleGrid cols={{base: 1, sm: 2}} spacing="md">
             <DetailItem
                 icon={IconUser}
@@ -239,7 +236,7 @@ const OrderDetails = ({
                 label={t`Email`}
                 value={
                     <Group gap="xs" wrap="nowrap">
-                        <span style={{wordBreak: 'break-all'}}>{order.email}</span>
+                        <bdi style={{wordBreak: 'break-all'}}>{order.email}</bdi>
                         {allowSelfEdit && order.status !== 'CANCELLED' && (
                             <Tooltip label={t`Resend Confirmation`}>
                                 <ActionIcon size="xs" variant="subtle" data-testid="resend-confirmation-button" onClick={onResendClick}>
@@ -330,7 +327,7 @@ const EventDetails = ({event, order}: { event: Event; order: Order }) => {
                 <DetailItem
                     icon={IconClock}
                     label={t`Timezone`}
-                    value={SAUDI_TIMEZONE}
+                    value={t`Riyadh time`}
                 />
                 <DetailItem
                     icon={IconBuilding}
@@ -562,8 +559,6 @@ export const OrderSummaryAndProducts = () => {
     return (
         <>
             <CheckoutContent>
-                <CheckoutStepTitle title={t`Summary`}/>
-
                 <WelcomeHeader order={order} event={event}/>
 
                 {emailUpdated && (
@@ -592,7 +587,7 @@ export const OrderSummaryAndProducts = () => {
 
                 {order?.status === 'AWAITING_OFFLINE_PAYMENT' && <OfflinePaymentInstructions event={event}/>}
 
-                <h1 className={classes.heading}>{t`Order Details`}</h1>
+                <h2 className={classes.heading}>{t`Order Details`}</h2>
 
                 <OrderDetails
                     order={order}
@@ -605,7 +600,7 @@ export const OrderSummaryAndProducts = () => {
 
                 {!!event?.settings?.post_checkout_message && <PostCheckoutMessage message={event.settings.post_checkout_message}/>}
 
-                <h1 className={classes.heading}>{t`Event Details`}</h1>
+                <h2 className={classes.heading}>{t`Event Details`}</h2>
                 <EventDetails event={event} order={order}/>
 
                 {order.status === 'COMPLETED' && <AddToCalendarCTA event={event} occurrence={order.order_items?.[0]?.event_occurrence}/>}
@@ -613,12 +608,12 @@ export const OrderSummaryAndProducts = () => {
                 {(order?.attendees && order.attendees.length > 0) && (
                     <>
                         <Group justify="space-between" align="center">
-                            <h1 className={classes.heading}>
+                            <h2 className={classes.heading}>
                                 <Group gap="xs">
                                     <IconTicket size={20}/>
-                                    {t`Guests`}
+                                    {t`Tickets`}
                                 </Group>
-                            </h1>
+                            </h2>
                             <Button
                                 size="sm"
                                 variant="subtle"
