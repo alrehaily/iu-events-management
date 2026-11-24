@@ -17,7 +17,7 @@ const DefaultLayout = () => {
             <PendingDeletionBanner />
             <AnnouncementDisplay />
             <Header rightContent={
-                <Group gap="sm" wrap="nowrap">
+                <Group gap="sm" wrap="nowrap" align="center" style={{ height: '100%', alignItems: 'center' }}>
                     <LanguageSwitcher/>
                     <GlobalMenu/>
                 </Group>

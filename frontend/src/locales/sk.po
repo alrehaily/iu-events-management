@@ -518,7 +518,7 @@ msgstr "Informácie o účte"
 msgid "Account marked as verified"
 msgstr "Účet označený ako overený"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 

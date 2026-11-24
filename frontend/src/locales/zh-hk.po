@@ -518,7 +518,7 @@ msgstr "帳戶資訊"
 msgid "Account marked as verified"
 msgstr "帳戶已標記為已驗證"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 

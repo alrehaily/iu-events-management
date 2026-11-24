@@ -522,7 +522,7 @@ msgstr "Account Information"
 msgid "Account marked as verified"
 msgstr "Account marked as verified"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr "Account menu"
 

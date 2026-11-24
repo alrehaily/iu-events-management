@@ -518,7 +518,7 @@ msgstr "Thông tin tài khoản"
 msgid "Account marked as verified"
 msgstr "Đã đánh dấu tài khoản là đã xác minh"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 

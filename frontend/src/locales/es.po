@@ -518,7 +518,7 @@ msgstr "Información de la cuenta"
 msgid "Account marked as verified"
 msgstr "Cuenta marcada como verificada"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 

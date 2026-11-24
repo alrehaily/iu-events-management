@@ -492,4 +492,17 @@ button,
   }
 }
 
+/* Safeguard: Disable jumping / hover lift on main content cards, forms, and tabs */
+.card,
+.card:hover,
+.tabsCard,
+.tabsCard:hover,
+[class*="tabsCard"],
+[class*="tabsCard"]:hover,
+.container .card,
+.container .card:hover {
+  transform: none !important;
+}
+
+
 

@@ -518,7 +518,7 @@ msgstr "Hesap Bilgileri"
 msgid "Account marked as verified"
 msgstr "Hesap doğrulanmış olarak işaretlendi"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 
