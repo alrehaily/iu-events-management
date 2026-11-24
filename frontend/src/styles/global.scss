@@ -367,6 +367,8 @@ button.solid svg.tabler-icon,
 button.solid .tabler-icon,
 .btn-primary svg.tabler-icon,
 .btn-primary .tabler-icon,
+button[class*="contactButton"] svg.tabler-icon,
+button[class*="contactButton"] .tabler-icon,
 .mantine-Badge-root[data-variant="filled"] svg.tabler-icon,
 .mantine-Badge-root[data-variant="filled"] .tabler-icon {
   color: #ffffff !important;
