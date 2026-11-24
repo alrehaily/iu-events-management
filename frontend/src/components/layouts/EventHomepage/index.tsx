@@ -124,7 +124,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
             {event && <EventDocumentHead event={event}/>}
 
             {/* IU Navbar */}
-            <IUNavbar />
+            <IUNavbar preview={preview} />
 
             {/* IU Green Hero Backdrop (Pure green background without content) */}
             <IUHero />
@@ -262,7 +262,12 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
 
                                 {/* Register Button */}
                                 <button
-                                    onClick={() => setTicketsModalOpen(true)}
+                                    type="button"
+                                    onClick={() => {
+                                        if (!preview) {
+                                            setTicketsModalOpen(true);
+                                        }
+                                    }}
                                     className="iu-btn-register-main"
                                 >
                                     {t`Register now`}

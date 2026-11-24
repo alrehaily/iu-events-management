@@ -102,6 +102,8 @@
     flex: 1;
     min-width: 0;
     overflow-x: auto;
+    padding: 8px 4px 12px;
+    margin: -8px -4px -12px;
     white-space: nowrap;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -158,9 +160,11 @@
         max-width: 90px;
       }
 
-      &:last-child {
+      &:last-child,
+      &:has(:global(.mantine-Button-root)) {
         max-width: none;
         flex-shrink: 0;
+        overflow: visible;
       }
     }
 
