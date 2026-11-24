@@ -84,7 +84,7 @@ export const IUEventsCatalogPage: React.FC = () => {
         <h1 className={`${classes.sectionTitle} iu-reveal`}>
           <IconCalendarEvent size={26} stroke={1.8} className={classes.sectionIcon} />
           <span>{t("events_available_title", "كل الفعاليات المتاحة")}</span>
-          {eventsResponse?.meta?.total !== undefined && (
+          {!isLoading && eventsResponse?.meta?.total !== undefined && (
             <span style={{fontSize: "15px", fontWeight: 500, color: "var(--iu-text-muted)"}}>
               ({eventsResponse.meta.total} {t("events_count_suffix", "فعالية")})
             </span>

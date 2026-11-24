@@ -178,10 +178,26 @@
 .iu-page .iu-reveal {
   opacity: 1;
   transform: none;
-  transition: none !important;
+  transition-property: none;
+  transition-delay: 0ms;
   animation: iuSequenceEnter 0.78s cubic-bezier(0.16, 1, 0.3, 1) backwards !important;
   animation-delay: 0ms !important;
   will-change: opacity, transform;
+}
+
+.iu-page .iu-reveal.iu-hover-lift {
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0ms;
+}
+
+.iu-page .iu-reveal.iu-hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.iu-page .iu-reveal.iu-hover-lift:active {
+  transform: translateY(-1px);
 }
 
 .iu-page .iu-reveal.iu-stagger-1 {
