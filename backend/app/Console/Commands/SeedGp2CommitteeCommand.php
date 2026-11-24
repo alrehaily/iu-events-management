@@ -260,13 +260,12 @@ class SeedGp2CommitteeCommand extends Command
             'show_marketing_opt_in' => false,
             'homepage_theme_settings' => ['accent' => '#084b2f', 'background' => '#f5faf7', 'mode' => 'light'],
         ]);
-        $context->createCheckInList->handle(new UpsertCheckInListDTO(
-            name: 'تسجيل الحضور',
-            description: null,
-            eventId: $eventId,
-            productIds: [$ticket->getId()],
-            expiresAt: $start->addDay()->utc()->toDateTimeString(),
-        ));
+        $connection->table('check_in_lists')
+            ->where('event_id', $eventId)
+            ->where('is_system_default', true)
+            ->update([
+                'name' => 'تسجيل الحضور',
+            ]);
         $connection->table('events')->where('id', $eventId)->update([
             'is_certificate_eligible' => $fixture['key'] === 'ai-applications',
         ]);
