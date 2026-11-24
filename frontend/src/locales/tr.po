@@ -8960,8 +8960,8 @@ msgid "Post Checkout message"
 msgstr "Ödeme sonrası mesaj"
 
 #: src/components/common/PoweredByFooter/index.tsx:28
-msgid "Powered by"
-msgstr "Altyapı sağlayıcı"
+#~ msgid "Powered by"
+#~ msgstr "Altyapı sağlayıcı"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:90
 msgid "Pre Checkout message"

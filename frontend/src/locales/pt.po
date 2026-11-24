@@ -8960,8 +8960,8 @@ msgid "Post Checkout message"
 msgstr "Mensagem pós-check-out"
 
 #: src/components/common/PoweredByFooter/index.tsx:28
-msgid "Powered by"
-msgstr "Desenvolvido por"
+#~ msgid "Powered by"
+#~ msgstr "Desenvolvido por"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:90
 msgid "Pre Checkout message"

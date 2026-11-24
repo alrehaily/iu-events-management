@@ -8960,8 +8960,8 @@ msgid "Post Checkout message"
 msgstr "Správa po pokladni"
 
 #: src/components/common/PoweredByFooter/index.tsx:28
-msgid "Powered by"
-msgstr "Poháňané"
+#~ msgid "Powered by"
+#~ msgstr "Poháňané"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:90
 msgid "Pre Checkout message"

@@ -8961,8 +8961,8 @@ msgid "Post Checkout message"
 msgstr "Post Checkout-bericht"
 
 #: src/components/common/PoweredByFooter/index.tsx:28
-msgid "Powered by"
-msgstr "Mogelijk gemaakt door"
+#~ msgid "Powered by"
+#~ msgstr "Mogelijk gemaakt door"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:90
 msgid "Pre Checkout message"

@@ -8960,8 +8960,8 @@ msgid "Post Checkout message"
 msgstr "Meddelande efter checkout"
 
 #: src/components/common/PoweredByFooter/index.tsx:28
-msgid "Powered by"
-msgstr "Drivs av"
+#~ msgid "Powered by"
+#~ msgstr "Drivs av"
 
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:90
 msgid "Pre Checkout message"
