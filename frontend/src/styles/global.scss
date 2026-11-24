@@ -367,6 +367,8 @@ button.solid svg.tabler-icon,
 button.solid .tabler-icon,
 .btn-primary svg.tabler-icon,
 .btn-primary .tabler-icon,
+button[class*="contactButton"] svg.tabler-icon,
+button[class*="contactButton"] .tabler-icon,
 .mantine-Badge-root[data-variant="filled"] svg.tabler-icon,
 .mantine-Badge-root[data-variant="filled"] .tabler-icon {
   color: #ffffff !important;
@@ -475,5 +477,32 @@ button,
 .mantine-Notification-root {
   pointer-events: auto;
 }
+
+/* Safeguard: Topbar and Sidebar logo constraints against SSR paint shifts */
+[class*="topBar"] [class*="logoImg"],
+[class*="sidebar"] [class*="logoImg"] {
+  max-height: 46px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+@media (min-width: 768px) {
+  [class*="topBar"] [class*="logo"] {
+    display: none !important;
+  }
+}
+
+/* Safeguard: Disable jumping / hover lift on main content cards, forms, and tabs */
+.card,
+.card:hover,
+.tabsCard,
+.tabsCard:hover,
+[class*="tabsCard"],
+[class*="tabsCard"]:hover,
+.container .card,
+.container .card:hover {
+  transform: none !important;
+}
+
 
 

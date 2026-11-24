@@ -96,7 +96,34 @@ export const confirmationDialog = (
     modals.openConfirmModal({
         title: finalMessage,
         labels,
-        styles: checkoutStyles,
+        groupProps: {
+            justify: 'center',
+        },
+        confirmProps: {
+            radius: 'xl',
+            color: 'teal',
+            style: {
+                minWidth: 120,
+                fontWeight: 700,
+            },
+        },
+        cancelProps: {
+            radius: 'xl',
+            variant: 'outline',
+            color: 'teal',
+            style: {
+                minWidth: 120,
+                fontWeight: 600,
+            },
+        },
+        styles: {
+            ...checkoutStyles,
+            title: {
+                textAlign: 'center',
+                width: '100%',
+                fontWeight: 700,
+            },
+        },
         onConfirm: () => onConfirm(),
     });
 }

@@ -243,7 +243,7 @@ export const OrganizerHomepage = ({
                                                         onClick={() => setContactModalOpen(true)}
                                                         className={classes.contactButton}
                                                     >
-                                                        <IconMail size={14} style={{marginRight: 6}}/>
+                                                        <IconMail size={16} color="#ffffff" stroke={2}/>
                                                         {t`Contact`}
                                                     </button>
                                                 </div>

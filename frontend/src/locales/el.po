@@ -518,7 +518,7 @@ msgstr "Πληροφορίες Λογαριασμού"
 msgid "Account marked as verified"
 msgstr "Ο λογαριασμός επισημάνθηκε ως επαληθευμένος"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 
@@ -638,6 +638,10 @@ msgstr "Προσθήκη περιγραφής για αυτή τη λίστα ε
 msgid "Add a Single Date"
 msgstr "Προσθήκη μίας ημερομηνίας"
 
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Add address details manually (Street, City, Postal Code)"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:992
 msgid "Add another time"
 msgstr "Προσθήκη άλλης ώρας"
@@ -703,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "Προσθήκη οδηγιών για πληρωμές εκτός σύνδεσης (π.χ. στοιχεία τραπεζικής μεταφοράς, πού να στείλετε επιταγές, προθεσμίες πληρωμής)"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:153
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:194
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "Προσθήκη τοποθεσίας"
@@ -818,7 +822,7 @@ msgid "Address line 1"
 msgstr "Διεύθυνση γραμμή 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:206
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -829,7 +833,7 @@ msgid "Address line 2"
 msgstr "Διεύθυνση γραμμή 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:207
+#: src/components/modals/LocationEditModal/index.tsx:262
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -862,7 +866,7 @@ msgstr "Οι χρήστες διαχειριστές έχουν πλήρη πρ�
 msgid "Admits attendees to your event"
 msgstr "Δίνει είσοδο στους συμμετέχοντες στην εκδήλωσή σας"
 
-#: src/components/modals/LocationEditModal/index.tsx:164
+#: src/components/modals/LocationEditModal/index.tsx:280
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -1518,12 +1522,12 @@ msgid "Attendance certificate"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:354
-msgid "Attendance verified by the official platform"
-msgstr ""
+#~ msgid "Attendance verified by the official platform"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:254
-msgid "Attended and completed the requirements of the following event"
-msgstr ""
+#~ msgid "Attended and completed the requirements of the following event"
+#~ msgstr ""
 
 #: src/components/routes/event/EventDashboard/NextOccurrenceHero/index.tsx:194
 msgid "attendee"
@@ -2143,16 +2147,16 @@ msgid "Certificate Details"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:225
-msgid "Certificate of attendance and completion"
-msgstr ""
+#~ msgid "Certificate of attendance and completion"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:295
-msgid "Certificate verification code"
-msgstr ""
+#~ msgid "Certificate verification code"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:291
-msgid "Certificate verification QR code"
-msgstr ""
+#~ msgid "Certificate verification QR code"
+#~ msgstr ""
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:212
 msgid "Certificates are issued to attendees who meet the attendance criteria."
@@ -2166,7 +2170,7 @@ msgstr "Αλλαγή"
 msgid "Change duration"
 msgstr "Αλλαγή διάρκειας"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Αλλαγή κωδικού"
 
@@ -2233,7 +2237,7 @@ msgstr "Δείτε αυτή την εκδήλωση!"
 msgid "Check your email"
 msgstr "Ελέγξτε το email σας"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Ελέγξτε τα εισερχόμενά σας! Εάν υπάρχουν εισιτήρια συνδεδεμένα με αυτό το email, θα λάβετε σύνδεσμο για προβολή."
 
@@ -2435,7 +2439,7 @@ msgstr "Επιλέξτε ποιος πληρώνει το τέλος πλατφ�
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:210
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2470,6 +2474,10 @@ msgstr "Ο καθαρισμός αφαιρεί κάθε προσαρμογή α�
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
 msgstr ""
 
+#: src/components/modals/LocationEditModal/index.tsx:215
+msgid "Click the map to place a pin, or enter details below."
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:333
 msgid "Click to cancel"
 msgstr "Κάντε κλικ για ακύρωση"
@@ -2492,7 +2500,7 @@ msgstr "κλείσιμο"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:144
+#: src/components/iu/IUCertificateModal/index.tsx:276
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -2506,7 +2514,7 @@ msgstr "Κλείσιμο"
 msgid "Close modal"
 msgstr "Κλείσιμο παραθύρου"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:106
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:108
 msgid "Close sidebar"
 msgstr "Κλείσιμο πλαϊνής μπάρας"
 
@@ -2594,7 +2602,7 @@ msgstr "Έρχεται Σύντομα"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Λέξεις-κλειδιά χωρισμένες με κόμμα που περιγράφουν την εκδήλωση. Θα χρησιμοποιηθούν από μηχανές αναζήτησης για κατηγοριοποίηση και ευρετηρίαση"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Προτιμήσεις Επικοινωνίας"
 
@@ -2659,7 +2667,7 @@ msgstr "Ολοκληρωμένες Παραγγελίες"
 #~ msgstr "Σύνταξη"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:203
+#: src/components/modals/LocationEditModal/index.tsx:258
 msgid "Conference Center"
 msgstr "Συνεδριακό Κέντρο"
 
@@ -2737,7 +2745,7 @@ msgstr "Επιβεβαίωση Αλλαγής Email"
 #~ msgid "Confirm new password"
 #~ msgstr "Επιβεβαίωση νέου κωδικού"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Επιβεβαίωση Νέου Κωδικού"
 
@@ -3023,7 +3031,7 @@ msgstr "Δεν ήταν δυνατή η αποστολή του email επαλή
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:274
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "Χώρα"
@@ -3316,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Νόμισμα"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Τρέχων Κωδικός"
 
@@ -3888,8 +3896,8 @@ msgid "Display how many spots are left on each date in the ticket widget. You ca
 msgstr "Εμφανίζει πόσες θέσεις απομένουν για κάθε ημερομηνία στο widget εισιτηρίων. Μπορείτε να το παρακάμψετε για μεμονωμένες ημερομηνίες."
 
 #: src/components/modals/LocationEditModal/index.tsx:196
-msgid "Display name"
-msgstr "Εμφανιζόμενο όνομα"
+#~ msgid "Display name"
+#~ msgstr "Εμφανιζόμενο όνομα"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:200
 msgid "Document Label"
@@ -4041,6 +4049,10 @@ msgstr "π.χ. Προγραμματισμένη συντήρηση αυτό το
 msgid "e.g., Important update about your tickets"
 msgstr "π.χ., Σημαντική ενημέρωση για τα εισιτήριά σας"
 
+#: src/components/modals/LocationEditModal/index.tsx:230
+msgid "e.g., Main University Auditorium"
+msgstr ""
+
 #: src/components/routes/admin/Configurations/index.tsx:226
 msgid "e.g., Standard, Premium, Enterprise"
 msgstr "π.χ., Βασικό, Premium, Enterprise"
@@ -4140,7 +4152,7 @@ msgstr "Επεξεργασία ημερομηνίας"
 msgid "Edit location"
 msgstr "Επεξεργασία τοποθεσίας"
 
-#: src/components/modals/LocationEditModal/index.tsx:153
+#: src/components/modals/LocationEditModal/index.tsx:194
 msgid "Edit Location"
 msgstr "Επεξεργασία τοποθεσίας"
 
@@ -4261,7 +4273,7 @@ msgstr "Ρυθμίσεις Email & Ειδοποιήσεων"
 msgid "Email & Templates"
 msgstr "Email & Πρότυπα"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4439,7 +4451,7 @@ msgstr "Έληξε {0}"
 msgid "Ends {0}"
 msgstr "Λήγει {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Αγγλικά"
 
@@ -4459,7 +4471,7 @@ msgstr "Εισάγετε θέμα και σώμα για προεπισκόπη�
 msgid "Enter a time to shift by."
 msgstr "Δηλώστε πόσο θα μετατοπιστούν οι ώρες."
 
-#: src/components/modals/LocationEditModal/index.tsx:184
+#: src/components/modals/LocationEditModal/index.tsx:300
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -4523,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Εισάγετε μοναδικό κωδικό συνεργάτη"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Εισάγετε το email σας"
 
@@ -4645,7 +4657,7 @@ msgstr "Εκδήλωση Δημιουργήθηκε"
 msgid "Event custom template"
 msgstr "Προσαρμοσμένο πρότυπο εκδήλωσης"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5388,7 +5400,7 @@ msgstr "Πρώτος συμμετέχων"
 msgid "First Invoice Number"
 msgstr "Πρώτος Αριθμός Τιμολογίου"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5659,7 +5671,7 @@ msgstr "Μετάβαση στη Σελίδα Εκδήλωσης"
 msgid "Go to home page"
 msgstr "Μετάβαση στην αρχική σελίδα"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Μετάβαση στο πρόγραμμα"
 
@@ -5737,8 +5749,8 @@ msgid "Have a promo code?"
 msgstr "Έχετε κωδικό προσφοράς;"
 
 #: src/components/iu/IUCertificateModal/index.tsx:272
-msgid "Held at {0} on {eventDate}."
-msgstr ""
+#~ msgid "Held at {0} on {eventDate}."
+#~ msgstr ""
 
 #: src/components/routes/admin/Dashboard/index.tsx:76
 msgid "Hello {0}, manage your platform from here."
@@ -5757,7 +5769,7 @@ msgstr "Βοηθήστε μας να βελτιωθούμε λέγοντάς μ�
 msgid "Helps us understand how the site is used."
 msgstr "Μας βοηθά να κατανοήσουμε πώς χρησιμοποιείται ο ιστότοπος."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Εδώ είναι όλα τα εισιτήρια που σχετίζονται με τη διεύθυνση email σας."
 
@@ -5840,6 +5852,10 @@ msgstr "Απόκρυψη Απαντήσεων"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:310
 msgid "Hide details"
 msgstr "Απόκρυψη λεπτομερειών"
+
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Hide manual address details"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:495
 msgid "Hide Preview"
@@ -6277,18 +6293,16 @@ msgid "Islamic & Spiritual"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:335
-msgid "Islamic University"
-msgstr ""
+#~ msgid "Islamic University"
+#~ msgstr ""
 
 #: src/components/common/AttendeeTicket/index.tsx:71
-#: src/components/iu/IUCertificateModal/index.tsx:188
-#: src/components/iu/IUCertificateModal/index.tsx:195
 msgid "Islamic University of Madinah"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:310
-msgid "Issued on {formattedDate}"
-msgstr ""
+#~ msgid "Issued on {formattedDate}"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:422
 msgid "It happens on more than one date"
@@ -6348,7 +6362,7 @@ msgstr "Η εργασία τέθηκε σε ουρά για επανάληψη"
 msgid "John"
 msgstr "Γιώργης"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Παπαδόπουλος"
 
@@ -6411,8 +6425,8 @@ msgstr "Ενημερώστε με για νέα και εκδηλώσεις απ
 #~ msgstr "Κρατήστε το κέρδος."
 
 #: src/components/iu/IUCertificateModal/index.tsx:192
-msgid "Kingdom of Saudi Arabia"
-msgstr ""
+#~ msgid "Kingdom of Saudi Arabia"
+#~ msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:63
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:449
@@ -6431,7 +6445,7 @@ msgstr "ενημερώσεις ετικέτας"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6496,7 +6510,7 @@ msgstr "Τελευταίες 90 ημέρες"
 msgid "Last login"
 msgstr "Τελευταία σύνδεση"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6547,7 +6561,7 @@ msgstr "Αργότερα"
 msgid "Latest check-ins"
 msgstr "Πρόσφατα check-in"
 
-#: src/components/modals/LocationEditModal/index.tsx:167
+#: src/components/modals/LocationEditModal/index.tsx:283
 msgid "Latitude"
 msgstr "Γεωγραφικό πλάτος"
 
@@ -6595,7 +6609,7 @@ msgstr "Βιβλιοθήκη"
 msgid "Light"
 msgstr "Φωτεινό"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Ο Σύνδεσμος Έληξε ή Δεν Είναι Έγκυρος"
 
@@ -6673,20 +6687,28 @@ msgstr "Φόρτωση..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Τοποθεσία"
+
+#: src/components/modals/LocationEditModal/index.tsx:228
+msgid "Location / Venue Name"
+msgstr ""
 
 #: src/components/common/LocationsTable/index.tsx:39
 msgid "Location deleted"
 msgstr "Η τοποθεσία διαγράφηκε"
 
-#: src/components/modals/LocationEditModal/index.tsx:131
+#: src/components/modals/LocationEditModal/index.tsx:220
+msgid "Location pinned"
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:172
 msgid "Location saved"
 msgstr "Η τοποθεσία αποθηκεύτηκε"
 
-#: src/components/modals/LocationEditModal/index.tsx:128
+#: src/components/modals/LocationEditModal/index.tsx:169
 msgid "Location updated"
 msgstr "Η τοποθεσία ενημερώθηκε"
 
@@ -6740,7 +6762,7 @@ msgstr "Το λογότυπο θα εμφανίζεται στην κεφαλί�
 msgid "Logout"
 msgstr "Αποσύνδεση"
 
-#: src/components/modals/LocationEditModal/index.tsx:175
+#: src/components/modals/LocationEditModal/index.tsx:291
 msgid "Longitude"
 msgstr "Γεωγραφικό μήκος"
 
@@ -6828,7 +6850,7 @@ msgstr "Διαχείριση προγράμματος"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Διαχείριση φόρων και τελών που μπορούν να εφαρμοστούν στα προϊόντα σας"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Διαχείριση εισιτηρίων"
 
@@ -6856,9 +6878,9 @@ msgstr "Χειροκίνητη προσφορά"
 msgid "Manually add an Attendee"
 msgstr "Χειροκίνητη προσθήκη Συμμετέχοντα"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Χειροκίνητη Προσθήκη Συμμετέχοντα"
 
@@ -7132,7 +7154,7 @@ msgstr "Ο τίτλος της εκδήλωσής μου..."
 msgid "My Profile"
 msgstr "Το Προφίλ μου"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "Τα Εισιτήριά μου"
 
@@ -7167,6 +7189,10 @@ msgstr "Το όνομα είναι υποχρεωτικό"
 #: src/components/routes/admin/Configurations/index.tsx:168
 msgid "Name must be less than 255 characters"
 msgstr "Το όνομα πρέπει να έχει λιγότερους από 255 χαρακτήρες"
+
+#: src/components/modals/LocationEditModal/index.tsx:229
+msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
+msgstr ""
 
 #: src/components/common/QuestionAndAnswerList/index.tsx:202
 msgid "Navigate to Attendee"
@@ -7206,7 +7232,7 @@ msgstr "Νέα ετικέτα"
 msgid "New location"
 msgstr "Νέα τοποθεσία"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Νέος Κωδικός"
 
@@ -7457,7 +7483,7 @@ msgstr "Δεν βρέθηκαν μηνύματα"
 msgid "No messages to show"
 msgstr "Δεν υπάρχουν μηνύματα για εμφάνιση"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Δεν υπάρχουν διαθέσιμες ημερομηνίες"
 
@@ -7597,7 +7623,7 @@ msgstr "Καμία πρόταση"
 msgid "No Taxes or Fees have been added."
 msgstr "Δεν έχουν προστεθεί Φόροι ή Τέλη."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Δεν Βρέθηκαν Εισιτήρια"
 
@@ -7810,8 +7836,8 @@ msgid "Offers expire after {timeoutHours} hours."
 msgstr "Οι προσφορές λήγουν μετά από {timeoutHours} ώρες."
 
 #: src/components/iu/IUCertificateModal/index.tsx:336
-msgid "Officially certified"
-msgstr ""
+#~ msgid "Officially certified"
+#~ msgstr ""
 
 #: src/components/common/OrdersTable/index.tsx:301
 #: src/components/layouts/CheckIn/index.tsx:574
@@ -8037,8 +8063,8 @@ msgid "Optional call to action"
 msgstr "Προαιρετική παρότρυνση για δράση"
 
 #: src/components/modals/LocationEditModal/index.tsx:197
-msgid "Optional name shown when selecting a venue."
-msgstr ""
+#~ msgid "Optional name shown when selecting a venue."
+#~ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:135
 #~ msgid "Optional nickname shown in pickers, e.g. \"HQ Conference Room\""
@@ -8080,7 +8106,6 @@ msgstr "παραγγελία"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Παραγγελία"
 
@@ -8527,11 +8552,11 @@ msgstr "Παλαιότερες Εκδηλώσεις"
 msgid "Paste URL"
 msgstr "Επικόλληση URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Παναγιώτης"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "panagiotis@papademos.gr"
 
@@ -8880,6 +8905,10 @@ msgstr "Παρακαλώ εισάγετε τον αριθμό ΦΠΑ σας"
 msgid "Please Note"
 msgstr "Σημειώστε"
 
+#: src/components/modals/LocationEditModal/index.tsx:109
+msgid "Please provide a location name or pick a point on the map."
+msgstr ""
+
 #: src/components/common/Editor/Controls/InsertImageControl/index.tsx:36
 msgid "Please provide an image."
 msgstr "Παρακαλώ παρέχετε εικόνα."
@@ -9028,9 +9057,9 @@ msgstr "Τιμολόγηση"
 msgid "Print All Tickets"
 msgstr "Εκτύπωση Όλων των Εισιτηρίων"
 
-#: src/components/iu/IUCertificateModal/index.tsx:140
-msgid "Print or save as PDF"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:197
+#~ msgid "Print or save as PDF"
+#~ msgstr ""
 
 #: src/components/routes/event/TicketDesigner/index.tsx:223
 #~ msgid "Print Preview"
@@ -9041,7 +9070,7 @@ msgstr ""
 msgid "Print Ticket"
 msgstr "Εκτύπωση Εισιτηρίου"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Εκτύπωση Εισιτηρίων"
 
@@ -9245,7 +9274,7 @@ msgstr ""
 "Provide additional context or instructions for this question. Use this field to add terms\n"
 "and conditions, guidelines, or any important information that attendees need to know before answering."
 
-#: src/components/modals/LocationEditModal/index.tsx:85
+#: src/components/modals/LocationEditModal/index.tsx:116
 msgid "Provide at least one address field (venue, street, city, or country)."
 msgstr "Συμπληρώστε τουλάχιστον ένα πεδίο διεύθυνσης (χώρος, οδός, πόλη ή χώρα)."
 
@@ -9286,7 +9315,7 @@ msgstr "Με τη δημοσίευση, η σελίδα της εκδήλωσή�
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Αγοράστηκε"
 
@@ -9399,7 +9428,7 @@ msgstr "Λόγοι"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Λήψη ενημερώσεων προϊόντων από {0}."
 
@@ -9483,6 +9512,10 @@ msgstr "Reddit"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:88
 msgid "Redirecting to Stripe..."
 msgstr "Ανακατεύθυνση στο Stripe..."
+
+#: src/components/iu/IUCertificateModal/index.tsx:481
+#~ msgid "Ref:"
+#~ msgstr ""
 
 #: src/components/routes/admin/Attribution/index.tsx:88
 msgid "Referral Accounts"
@@ -9651,7 +9684,7 @@ msgstr "Η αναφορά δεν βρέθηκε"
 msgid "Reports"
 msgstr "Αναφορές"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Αίτημα νέου συνδέσμου"
 
@@ -9952,7 +9985,7 @@ msgid "Saturday"
 msgstr "Σάββατο"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:220
+#: src/components/modals/LocationEditModal/index.tsx:275
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -9979,7 +10012,7 @@ msgstr ""
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10437,6 +10470,10 @@ msgstr "επιλεγμένα"
 msgid "Selected"
 msgstr "Επιλεγμένο"
 
+#: src/components/modals/LocationEditModal/index.tsx:214
+msgid "Selected Coordinates:"
+msgstr ""
+
 #: src/components/layouts/AuthLayout/index.tsx:42
 #~ msgid "Sell out your event."
 #~ msgstr "Εξαντλήστε τα εισιτήρια της εκδήλωσής σας."
@@ -10453,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Πωλείται γρήγορα 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Αποστολή"
 
@@ -10951,7 +10988,7 @@ msgstr "Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξα
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -11060,7 +11097,7 @@ msgstr "Ξεκινά αύριο"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:211
+#: src/components/modals/LocationEditModal/index.tsx:266
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -11215,7 +11252,7 @@ msgstr "Επιτυχής επιβεβαίωση διεύθυνσης email"
 msgid "Successfully confirmed email change"
 msgstr "Επιτυχής επιβεβαίωση αλλαγής email"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Επιτυχής δημιουργία συμμετέχοντα"
 
@@ -11602,8 +11639,8 @@ msgstr "Το νόμισμα στο οποίο ορίζεται το σταθερ
 #~ msgstr "Το νόμισμα που χρησιμοποιείται για τις τιμές των εισιτηρίων αυτής της εκδήλωσης."
 
 #: src/components/iu/IUCertificateModal/index.tsx:230
-msgid "The Deanship of Continuing Education and Development certifies that"
-msgstr ""
+#~ msgid "The Deanship of Continuing Education and Development certifies that"
+#~ msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:75
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:118
@@ -11635,7 +11672,7 @@ msgstr "Η εκδήλωση που αναζητάτε δεν είναι διαθ
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Το πλήρες ποσό παραγγελίας θα επιστραφεί στην αρχική μέθοδο πληρωμής του πελάτη."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Η γλώσσα στην οποία θα λαμβάνει email ο συμμετέχων."
 
@@ -11970,7 +12007,7 @@ msgstr "Αυτή είναι η μοναδική φορά που θα εμφαν�
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Αυτό περιορίζει τις συνολικές πωλήσεις για όλες τις ημερομηνίες του προγράμματός σας συνολικά — δεν είναι όριο ανά ημερομηνία. Για να περιορίσετε τη συμμετοχή ανά ημερομηνία, ορίστε χωρητικότητα στη <0>σελίδα Προγράμματος ημερομηνιών</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Αυτός ο σύνδεσμος δεν είναι έγκυρος ή έχει λήξει."
 
@@ -12127,7 +12164,7 @@ msgstr "Πέμ"
 msgid "Thursday"
 msgstr "Πέμπτη"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "εισιτήριο"
@@ -12211,12 +12248,12 @@ msgstr "Τύπος Εισιτηρίου"
 msgid "Ticketing & Sales"
 msgstr "Εισιτήρια & Πωλήσεις"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "εισιτήρια"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12462,7 +12499,7 @@ msgstr "Προσαρμόστε τα φίλτρα για να δείτε περι
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Δοκιμάστε άλλο email"
 
@@ -12598,12 +12635,16 @@ msgid "Units Sold"
 msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:198
-msgid "University conference hall"
+#~ msgid "University conference hall"
+#~ msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:151
+msgid "University Venue"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
-msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
-msgstr ""
+#~ msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
+#~ msgstr ""
 
 #: src/components/common/MessageList/index.tsx:44
 #: src/components/common/MessageList/index.tsx:49
@@ -12732,7 +12773,7 @@ msgstr "Ενημέρωση τοποθεσίας"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Ενημέρωση προφίλ"
 
@@ -13011,7 +13052,7 @@ msgid "Venue Location Map"
 msgstr "Χάρτης χώρου εκδήλωσης"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:202
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Venue Name"
 msgstr "Όνομα Χώρου"
 
@@ -13037,9 +13078,9 @@ msgstr "Επαληθευμένο"
 msgid "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 msgstr "Οι επαληθευμένοι λογαριασμοί μπορούν να στέλνουν μηνύματα στους συμμετέχοντες και να διαχειρίζονται πρότυπα email. Η σύνδεση με το Stripe επαληθεύει αυτόματα έναν λογαριασμό."
 
-#: src/components/iu/IUCertificateModal/index.tsx:119
-msgid "Verified attendance certificate"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:162
+#~ msgid "Verified attendance certificate"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:189
 msgid "Verify Email"
@@ -13140,7 +13181,7 @@ msgstr "Προβολή Μηνύματος"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Προβολή Παραγγελίας"
 
@@ -13249,7 +13290,7 @@ msgstr "Δεν μπορέσαμε να διαγράψουμε την κατηγ�
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Δεν ήταν δυνατή η αποσύνδεση αυτού του λογαριασμού Stripe. Δοκιμάστε ξανά."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Δεν βρέθηκαν παραγγελίες συνδεδεμένες με αυτή τη διεύθυνση email."
 
@@ -13825,7 +13866,7 @@ msgstr "Πρέπει να συμφωνήσετε να λαμβάνετε μην�
 msgid "You must agree to the terms and conditions"
 msgstr "Πρέπει να συμφωνήσετε με τους όρους και προϋποθέσεις"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Πρέπει να δημιουργήσετε εισιτήριο πριν προσθέσετε χειροκίνητα συμμετέχοντα."
 
@@ -13837,7 +13878,7 @@ msgstr "Πρέπει να έχετε τουλάχιστον μία βαθμίδ�
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Πρέπει να επαληθεύσετε τη διεύθυνση email πριν ενημερώσετε την κατάσταση διοργανωτή."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Πρέπει να δημιουργήσετε τουλάχιστον μία ημερομηνία πριν προσθέσετε συμμετέχοντες σε αυτή την επαναλαμβανόμενη εκδήλωση."
 
@@ -14075,7 +14116,7 @@ msgstr "ΤΚ / Ταχυδρομικός Κωδικός"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:269
 msgid "Zip or Postal Code"
 msgstr "ΤΚ ή Ταχυδρομικός Κωδικός"
 

@@ -27,7 +27,12 @@ export const Topbar: React.FC<TopbarProps> = ({
                                                   actionGroupContent = null,
                                               }) => {
     return (
-        <div className={`${classes.topBar} ${topBarShadow ? classes.withShadow : ''}`}>
+        <div
+            className={`${classes.topBar} ${topBarShadow ? classes.withShadow : ''}`}
+            style={{
+                color: '#ffffff',
+            }}
+        >
             <div className={classes.topBarMain}>
                 <div className={classes.burger}>
                     <Burger
@@ -37,10 +42,23 @@ export const Topbar: React.FC<TopbarProps> = ({
                         size={'sm'}
                     />
                 </div>
-                <div className={classes.logo}>
+                <div
+                    className={classes.logo}
+                    style={{
+                        maxHeight: 46,
+                        maxWidth: 160,
+                        overflow: 'hidden',
+                    }}
+                >
                     <NavLink to={ `/manage/events` }>
-                        <div className={classes.logoBadge}>
-                            <img src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`} className={classes.logoImg}/>
+                        <div className={classes.logoBadge} style={{ maxHeight: 46 }}>
+                            <img
+                                src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")}
+                                alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`}
+                                className={classes.logoImg}
+                                style={{ maxHeight: 42, maxWidth: 140, width: 'auto', display: 'block', objectFit: 'contain' }}
+                                height={42}
+                            />
                         </div>
                     </NavLink>
                 </div>

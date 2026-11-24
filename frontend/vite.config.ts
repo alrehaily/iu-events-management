@@ -48,6 +48,20 @@ export default defineConfig({
         noExternal: ["react-helmet-async"],
     },
     css: {
+        modules: {
+            generateScopedName: (name: string, filename: string) => {
+                const normalized = filename.replace(/\\/g, "/");
+                const relativePath = normalized.includes("/src/")
+                    ? normalized.split("/src/")[1]
+                    : normalized;
+                let hash = 5381;
+                for (let i = relativePath.length - 1; i >= 0; i--) {
+                    hash = (hash * 33) ^ relativePath.charCodeAt(i);
+                }
+                const hashStr = (hash >>> 0).toString(36).substring(0, 5);
+                return `_${name}_${hashStr}`;
+            },
+        },
         preprocessorOptions: {
             scss: {
                 api: "modern-compiler",

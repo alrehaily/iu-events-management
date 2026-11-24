@@ -315,7 +315,7 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
   gap: 8px;
   background: var(--primary-color);
-  color: var(--accent-contrast);
+  color: var(--accent-contrast, #ffffff);
   font-weight: 600;
   border-radius: $radius-sm;
   font-size: 0.9rem;
@@ -323,6 +323,13 @@ $transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   cursor: pointer;
   transition: all $transition-fast;
+
+  svg,
+  svg.tabler-icon,
+  :global(.tabler-icon) {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+  }
 
   &:hover {
     transform: translateY(-2px);

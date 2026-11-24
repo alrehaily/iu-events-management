@@ -30,6 +30,17 @@ export const LanguageSwitcher = ({width = 120, variant = 'default'}: {width?: nu
             aria-label={t`Language`}
             placeholder={t`Language`}
             styles={{
+                root: {
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    margin: 0,
+                },
+                wrapper: {
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    margin: 0,
+                    width: '100%',
+                },
                 input: isTopbar ? {
                     height: '36px',
                     minHeight: '36px',
@@ -42,12 +53,16 @@ export const LanguageSwitcher = ({width = 120, variant = 'default'}: {width?: nu
                     backgroundColor: 'rgba(255, 255, 255, 0.16)',
                     boxShadow: '0 2px 6px rgba(0, 0, 0, 0.08)',
                 } : {
+                    height: '38px',
+                    minHeight: '38px',
+                    lineHeight: '36px',
                     borderRadius: 'var(--iu-radius-md, 12px)',
                     borderColor: 'var(--iu-border, #e5e7eb)',
                     fontWeight: 500,
                     fontSize: '0.8125rem',
                     color: 'var(--iu-heading, #0f172a)',
                     backgroundColor: 'var(--iu-surface, #ffffff)',
+                    boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
                 }
             }}
             onChange={(value) => {

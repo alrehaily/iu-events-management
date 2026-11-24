@@ -339,3 +339,23 @@
     font-size: 15px;
   }
 }
+
+/* ========================================================================= */
+/* Unified Confirmation Alerts & Modals Styling                              */
+/* ========================================================================= */
+.mantine-Modal-content {
+  border-radius: 24px !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden !important;
+}
+
+.mantine-Modal-title {
+  text-align: center !important;
+  font-weight: 700 !important;
+}
+
+/* Center confirmation modal action buttons */
+.mantine-Modal-content .mantine-Modal-body > div > .mantine-Group-root:last-child,
+.mantine-Modal-content .mantine-Modal-body > .mantine-Group-root:last-child {
+  justify-content: center !important;
+}

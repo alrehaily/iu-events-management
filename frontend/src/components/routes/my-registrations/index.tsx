@@ -13,6 +13,7 @@ import {
   IconCalendar,
   IconCheck,
   IconFileCertificate,
+  IconLoader2,
   IconMapPin,
   IconQrcode,
   IconTicket,
@@ -30,6 +31,7 @@ export const MyRegistrationsPage: React.FC = () => {
   const [selectedCert, setSelectedCert] = useState<CertificateData | null>(null);
   const [certModalOpen, setCertModalOpen] = useState(false);
   const [certLoading, setCertLoading] = useState(false);
+  const [loadingCertId, setLoadingCertId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"all" | "active" | "past">("all");
 
   const [cancelModalOpen, setCancelModalOpen] = useState(false);
@@ -103,6 +105,7 @@ export const MyRegistrationsPage: React.FC = () => {
   };
 
   const handleFetchCertificate = async (attendeeIdentifier: string) => {
+    setLoadingCertId(attendeeIdentifier);
     setCertLoading(true);
     try {
       const cert = await attendeeClient.getCertificate(attendeeIdentifier);
@@ -112,6 +115,7 @@ export const MyRegistrationsPage: React.FC = () => {
       showError(err.response?.data?.message || t("cert_not_eligible", "غير مؤهل للشهادة: يلزم تأكيد حضور الفعالية أولاً."));
     } finally {
       setCertLoading(false);
+      setLoadingCertId(null);
     }
   };
 
@@ -130,6 +134,32 @@ export const MyRegistrationsPage: React.FC = () => {
 
   return (
     <div>
+      <style>{`
+        .iu-cert-trigger-btn {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          will-change: transform, box-shadow;
+        }
+        .iu-cert-trigger-btn:not(:disabled):hover {
+          transform: translateY(-2px) !important;
+          box-shadow: 0 4px 14px rgba(8, 75, 47, 0.18) !important;
+          background-color: rgba(8, 75, 47, 0.05) !important;
+        }
+        .iu-cert-trigger-btn:not(:disabled):active {
+          transform: scale(0.93) translateY(0) !important;
+          box-shadow: 0 1px 4px rgba(8, 75, 47, 0.12) !important;
+        }
+        .iu-cert-trigger-btn.is-loading {
+          background-color: rgba(8, 75, 47, 0.08) !important;
+          transform: scale(0.97) !important;
+          opacity: 0.9;
+        }
+        @keyframes iuSpin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
       {/* 1. Hero Section */}
       <IUHero
         title={t("my_reg_hero_title", "تذاكري وحجوزاتي")}
@@ -335,10 +365,6 @@ export const MyRegistrationsPage: React.FC = () => {
                             {reg.event?.title || t("brand_title", "فعالية في الجامعة الإسلامية")}
                           </h3>
                         </div>
-
-                        <div style={{fontSize: 13, color: "var(--iu-text-muted, #64748b)"}}>
-                          {t("order_number", "رقم الطلب:")} <span style={{fontFamily: "monospace", fontWeight: 700}}>#{reg.short_id}</span>
-                        </div>
                       </div>
 
                       <div
@@ -386,7 +412,7 @@ export const MyRegistrationsPage: React.FC = () => {
                                 {attendee.first_name} {attendee.last_name}
                               </div>
                               <div style={{fontSize: 12, color: "#64748b", marginTop: 2}}>
-                                {attendee.product_title} — {t("ticket_code", "رمز التذكرة:")} {attendee.short_id}
+                                {attendee.product_title}
                               </div>
                               {attendee.checked_in ? (
                                 <span
@@ -417,7 +443,9 @@ export const MyRegistrationsPage: React.FC = () => {
                               {/* Certificate Button */}
                               <button
                                 onClick={() => handleFetchCertificate(attendee.public_id)}
-                                className="btn outline iu-interactive-pill"
+                                className={`btn outline iu-interactive-pill iu-cert-trigger-btn ${
+                                  loadingCertId === attendee.public_id ? "is-loading" : ""
+                                }`}
                                 disabled={certLoading || isCancelled || !attendee.checked_in}
                                 title={
                                   !attendee.checked_in
@@ -432,10 +460,22 @@ export const MyRegistrationsPage: React.FC = () => {
                                   gap: 6,
                                   borderColor: attendee.checked_in ? "var(--iu-green-secondary)" : "#e2e8f0",
                                   color: attendee.checked_in ? "var(--iu-green-secondary)" : "#94a3b8",
+                                  cursor: attendee.checked_in && !certLoading ? "pointer" : "default",
                                 }}
                               >
-                                <IconFileCertificate size={16} />
-                                {t("cert_btn", "شهادة الحضور")}
+                                {loadingCertId === attendee.public_id ? (
+                                  <IconLoader2
+                                    size={16}
+                                    style={{
+                                      animation: "iuSpin 0.75s linear infinite",
+                                    }}
+                                  />
+                                ) : (
+                                  <IconFileCertificate size={16} />
+                                )}
+                                {loadingCertId === attendee.public_id
+                                  ? (isArabic ? "جاري تحضير الشهادة..." : "Loading certificate...")
+                                  : t("cert_btn", "شهادة الحضور")}
                               </button>
 
                               {/* Print / QR Ticket */}
@@ -515,7 +555,7 @@ export const MyRegistrationsPage: React.FC = () => {
           onConfirm={handleConfirmCancel}
           loading={cancelling}
           title={t("confirm_cancel_msg", isArabic ? "هل أنت متأكد من رغبتك في إلغاء هذا الحجز والتذاكر؟" : "Are you sure you want to cancel this booking and tickets?")}
-          message={orderToCancel?.event?.title ? `${orderToCancel.event.title} (#${orderToCancel.short_id})` : undefined}
+          message={orderToCancel?.event?.title || undefined}
           confirmLabel={t("confirm_btn", isArabic ? "تأكيد" : "Confirm")}
           cancelLabel={t("cancel_btn", isArabic ? "إلغاء" : "Cancel")}
         />

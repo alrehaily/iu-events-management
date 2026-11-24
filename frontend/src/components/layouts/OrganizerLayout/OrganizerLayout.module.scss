@@ -51,11 +51,46 @@
     margin-inline-start: 8px;
   }
 
+  :global(.mantine-Button-root) {
+    background: rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: var(--iu-radius-md, 12px) !important;
+    font-family: var(--iu-font-family) !important;
+    font-weight: 600 !important;
+    font-size: 0.8125rem !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+    &:hover {
+      background: #ffffff !important;
+      color: var(--iu-green-primary, #084b2f) !important;
+      border-color: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+
+      .statusAction {
+        color: var(--iu-green-secondary, #1b754b) !important;
+      }
+
+      svg, :global(.tabler-icon) {
+        color: var(--iu-green-primary, #084b2f) !important;
+        stroke: currentColor !important;
+      }
+    }
+
+    svg, :global(.tabler-icon) {
+      color: #ffffff !important;
+      stroke: currentColor !important;
+      transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+  }
+
   .statusAction {
     margin-inline-start: 6px;
     font-weight: 500;
     font-size: 0.82em;
-    color: var(--iu-text-muted, #64748b);
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.25s ease;
 
     @include mixins.respond-below(md) {
       display: none;
@@ -64,16 +99,36 @@
 }
 
 .createEventBreadcrumb:global(.mantine-Button-root) {
-  color: #fff !important;
-  background: var(--iu-green-secondary, #1b754b) !important;
-  border-color: rgb(255 255 255 / 42%) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: var(--iu-radius-md, 12px) !important;
+  font-family: var(--iu-font-family) !important;
+  font-weight: 600 !important;
+  font-size: 0.8125rem !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 
   &:hover {
-    background: var(--iu-green-primary, #084b2f) !important;
+    background: #ffffff !important;
+    color: var(--iu-green-primary, #084b2f) !important;
+    border-color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+
+    svg, :global(.tabler-icon) {
+      color: var(--iu-green-primary, #084b2f) !important;
+      stroke: currentColor !important;
+    }
+  }
+
+  svg, :global(.tabler-icon) {
+    color: #ffffff !important;
+    stroke: currentColor !important;
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   &:focus-visible {
-    outline-color: #fff;
+    outline-color: #ffffff;
   }
 }
 

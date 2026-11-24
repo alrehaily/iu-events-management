@@ -187,11 +187,11 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
         {/* Footer Buttons Section */}
         <div
           style={{
-            padding: "16px 24px",
+            padding: "18px 24px 22px",
             display: "flex",
-            gap: 12,
+            gap: 16,
             alignItems: "center",
-            justifyContent: "flex-start",
+            justifyContent: "center",
           }}
         >
           {/* Confirm Button (Solid Green Pill) */}
@@ -200,7 +200,8 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
             onClick={onConfirm}
             disabled={loading}
             style={{
-              padding: "9px 28px",
+              padding: "10px 32px",
+              minWidth: 125,
               borderRadius: 999,
               border: "none",
               backgroundColor: "#10b981",
@@ -212,18 +213,32 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
               alignItems: "center",
               justifyContent: "center",
               gap: 8,
-              transition: "all 0.18s ease",
+              transition: "all 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
               opacity: loading ? 0.75 : 1,
-              boxShadow: "0 2px 8px rgba(16, 185, 129, 0.25)",
+              boxShadow: "0 2px 10px rgba(16, 185, 129, 0.25)",
             }}
             onMouseEnter={(e) => {
               if (!loading) {
                 e.currentTarget.style.backgroundColor = "#059669";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 6px 16px rgba(16, 185, 129, 0.35)";
               }
             }}
             onMouseLeave={(e) => {
               if (!loading) {
                 e.currentTarget.style.backgroundColor = "#10b981";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "0 2px 10px rgba(16, 185, 129, 0.25)";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (!loading) {
+                e.currentTarget.style.transform = "scale(0.95)";
+              }
+            }}
+            onMouseUp={(e) => {
+              if (!loading) {
+                e.currentTarget.style.transform = "translateY(-2px)";
               }
             }}
           >
@@ -246,7 +261,8 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
             onClick={onClose}
             disabled={loading}
             style={{
-              padding: "9px 28px",
+              padding: "10px 32px",
+              minWidth: 125,
               borderRadius: 999,
               border: "1.5px solid #10b981",
               backgroundColor: "#ffffff",
@@ -254,17 +270,35 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
               fontSize: "15px",
               fontWeight: 600,
               cursor: loading ? "not-allowed" : "pointer",
-              transition: "all 0.18s ease",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              transition: "all 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
               opacity: loading ? 0.6 : 1,
             }}
             onMouseEnter={(e) => {
               if (!loading) {
                 e.currentTarget.style.backgroundColor = "#ecfdf5";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 4px 12px rgba(16, 185, 129, 0.15)";
               }
             }}
             onMouseLeave={(e) => {
               if (!loading) {
                 e.currentTarget.style.backgroundColor = "#ffffff";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }
+            }}
+            onMouseDown={(e) => {
+              if (!loading) {
+                e.currentTarget.style.transform = "scale(0.95)";
+              }
+            }}
+            onMouseUp={(e) => {
+              if (!loading) {
+                e.currentTarget.style.transform = "translateY(-2px)";
               }
             }}
           >

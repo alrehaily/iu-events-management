@@ -40,23 +40,26 @@ class GetAttendeeCertificateActionPublic extends BaseAction
             );
         }
 
-        // Enforce server-side ownership: attendee email must match authenticated user
-        $attendeeEmail = strtolower((string) $attendee->email);
-        $orderEmail = strtolower((string) ($attendee->order?->email ?? ''));
-        $userEmail = strtolower((string) $user->email);
-
-        if ($attendeeEmail !== $userEmail && $orderEmail !== $userEmail) {
-            return $this->errorResponse(
-                message: __('You are not allowed to view or request this certificate.'),
-                statusCode: Response::HTTP_FORBIDDEN
-            );
-        }
-
         $event = $attendee->order?->event;
         if (! $event) {
             return $this->errorResponse(
                 message: __('Event not found'),
                 statusCode: Response::HTTP_NOT_FOUND
+            );
+        }
+
+        // Enforce server-side ownership: attendee email must match authenticated user or user is organizer/admin
+        $attendeeEmail = strtolower((string) $attendee->email);
+        $orderEmail = strtolower((string) ($attendee->order?->email ?? ''));
+        $userEmail = strtolower((string) $user->email);
+
+        $isOrganizerOrAdmin = (bool) ($user->is_admin ?? false)
+            || ($user->account_id && $event->account_id && $user->account_id === $event->account_id);
+
+        if ($attendeeEmail !== $userEmail && $orderEmail !== $userEmail && ! $isOrganizerOrAdmin) {
+            return $this->errorResponse(
+                message: __('You are not allowed to view or request this certificate.'),
+                statusCode: Response::HTTP_FORBIDDEN
             );
         }
 

@@ -67,9 +67,6 @@ const OrderCard = ({order}: { order: Order }) => {
                     <h3 className={classes.eventTitle}>{event?.title}</h3>
                     <OrderStatusBadge/>
                 </div>
-                <Text size="xs" c="dimmed">
-                    {t`Order`} #{order.public_id}
-                </Text>
             </div>
 
             <SimpleGrid cols={{base: 1, sm: 2}} spacing="md" className={classes.orderDetails}>

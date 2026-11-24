@@ -1,10 +1,8 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {createPortal} from "react-dom";
 import {t} from "@lingui/macro";
-import QRCode from "react-qr-code";
-import {useIULanguage} from "../../../context/IULanguageContext";
 import {CertificateData} from "../../../api/attendee.client";
-import {IconPrinter, IconX, IconCheck, IconShieldCheck, IconAward} from "@tabler/icons-react";
+import {IconPrinter, IconX, IconShieldCheck} from "@tabler/icons-react";
 
 interface IUCertificateModalProps {
   opened: boolean;
@@ -17,7 +15,24 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
   onClose,
   certificate,
 }) => {
-  const {dir, locale} = useIULanguage();
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && opened) {
+        onClose();
+      }
+    };
+
+    if (opened) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [opened, onClose]);
+
   if (!opened || !certificate || typeof document === "undefined") return null;
 
   const handlePrint = () => {
@@ -26,61 +41,142 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
     }
   };
 
-  const formatter = new Intl.DateTimeFormat(locale, {
+  // Format date in Arabic
+  const eventDateAr = new Intl.DateTimeFormat("ar-SA", {
     year: "numeric",
     month: "long",
     day: "numeric",
     timeZone: "Asia/Riyadh",
-  });
-  const formattedDate = formatter.format(new Date(certificate.issued_at || certificate.event_date));
-  const eventDate = formatter.format(new Date(certificate.event_date));
+  }).format(new Date(certificate.event_date));
 
   return createPortal(
     <div
       id="iu-certificate-overlay"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
       style={{
         position: "fixed",
         inset: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(15, 23, 42, 0.75)",
         backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
-        padding: 20,
+        padding: "16px",
+        animation: "iuCertOverlayFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       }}
-      dir={dir}
+      dir="rtl"
     >
       <style>{`
+        @keyframes iuCertOverlayFadeIn {
+          0% {
+            opacity: 0;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+          }
+        }
+        @keyframes iuCertModalPop {
+          0% {
+            opacity: 0;
+            transform: scale(0.90) translateY(24px);
+            filter: blur(4px);
+          }
+          70% {
+            opacity: 0.98;
+            transform: scale(1.008) translateY(-2px);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+          }
+        }
+        @keyframes iuCertParchmentIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.96) translateY(14px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
         @page {
           size: A4 landscape;
-          margin: 10mm;
+          margin: 0;
         }
         @media print {
+          html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #ffffff !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
           body > :not(#iu-certificate-overlay) {
             display: none !important;
           }
-          #iu-certificate-overlay, #iu-certificate-shell {
+          #iu-certificate-overlay {
             position: static !important;
             display: block !important;
-            max-width: none !important;
-            max-height: none !important;
-            overflow: visible !important;
             padding: 0 !important;
-            border-radius: 0 !important;
-            box-shadow: none !important;
+            margin: 0 !important;
             background: none !important;
             backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            animation: none !important;
           }
-          #iu-certificate-printable {
-            break-inside: avoid;
-            zoom: 0.75;
-            margin: 0 auto !important;
-            padding: 32px 40px !important;
-            print-color-adjust: exact !important;
+          #iu-certificate-shell {
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            max-width: none !important;
+            max-height: none !important;
+            width: 100% !important;
+            height: 100% !important;
+            padding: 0 !important;
+            background: none !important;
+            overflow: visible !important;
+            animation: none !important;
+            transform: none !important;
+            filter: none !important;
           }
           .iu-cert-modal-header {
             display: none !important;
+          }
+          .iu-cert-preview-wrapper {
+            padding: 0 !important;
+            background: none !important;
+          }
+          #iu-certificate-printable {
+            width: 297mm !important;
+            height: 210mm !important;
+            max-width: none !important;
+            max-height: none !important;
+            aspect-ratio: auto !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            margin: 0 auto !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            animation: none !important;
+            transform: none !important;
+          }
+          #iu-certificate-printable * {
+            animation: none !important;
+            transition: none !important;
           }
         }
       `}</style>
@@ -89,15 +185,18 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
         id="iu-certificate-shell"
         style={{
           backgroundColor: "#ffffff",
-          borderRadius: 24,
-          maxWidth: 900,
+          borderRadius: 20,
+          maxWidth: 1040,
           width: "100%",
           maxHeight: "94vh",
           overflowY: "auto",
-          boxShadow: "0 28px 75px rgba(0, 0, 0, 0.4)",
+          boxShadow: "0 25px 60px rgba(0, 0, 0, 0.4)",
           position: "relative",
           display: "flex",
           flexDirection: "column",
+          animation: "iuCertModalPop 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+          transformOrigin: "center center",
+          willChange: "transform, opacity, filter",
         }}
       >
         {/* Modal Controls Header */}
@@ -107,47 +206,86 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "16px 24px",
-            borderBottom: "1px solid #e5e7eb",
-            backgroundColor: "#f8faf9",
-            borderTopLeftRadius: 24,
-            borderTopRightRadius: 24,
+            flexWrap: "wrap",
+            gap: 12,
+            padding: "14px 24px",
+            borderBottom: "1px solid #e2e8f0",
+            backgroundColor: "#f8fafc",
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           }}
         >
-          <div style={{display: "flex", alignItems: "center", gap: 10, color: "var(--iu-green-primary, #084b2f)", fontWeight: 700, fontSize: 15}}>
+          {/* Certificate Badge and Verification Code */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              color: "#084b2f",
+              fontWeight: 700,
+              fontSize: 15,
+            }}
+          >
             <IconShieldCheck size={22} color="#084b2f" />
-            <span>{t`Verified attendance certificate`}</span>
+            <span>شهادة حضور معتمدة وموثقة إلكترونياً</span>
+            <span
+              style={{
+                fontSize: 12,
+                color: "#64748b",
+                fontFamily: "monospace",
+                fontWeight: 600,
+                padding: "2px 8px",
+                backgroundColor: "#e2e8f0",
+                borderRadius: 4,
+                direction: "ltr",
+              }}
+            >
+              #{certificate.certificate_code}
+            </span>
           </div>
-          <div style={{display: "flex", gap: 10}}>
+
+          {/* Actions */}
+          <div style={{display: "flex", alignItems: "center", gap: 10}}>
+            {/* Print / Save as PDF Button */}
             <button
               onClick={handlePrint}
-              className="btn solid"
+              type="button"
               style={{
-                padding: "8px 20px",
+                padding: "8px 22px",
                 fontSize: 14,
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
                 backgroundColor: "#084b2f",
-                color: "#fff",
-                borderRadius: 10,
+                color: "#ffffff",
+                borderRadius: 8,
                 border: "none",
                 cursor: "pointer",
                 fontWeight: 600,
+                boxShadow: "0 2px 6px rgba(8, 75, 47, 0.25)",
+                transition: "background-color 0.2s ease",
               }}
             >
-              <IconPrinter size={18} />
-              {t`Print or save as PDF`}
+              <IconPrinter size={18} color="#ffffff" stroke={2} style={{ color: "#ffffff", stroke: "#ffffff" }} />
+              <span style={{ color: "#ffffff" }}>طباعة / حفظ PDF</span>
             </button>
+
+            {/* Close Button */}
             <button
               onClick={onClose}
               aria-label={t`Close`}
-              className="btn outline"
+              type="button"
               style={{
-                padding: "8px 14px",
+                padding: "8px 12px",
                 fontSize: 14,
-                borderRadius: 10,
+                borderRadius: 8,
                 cursor: "pointer",
+                backgroundColor: "#f1f5f9",
+                border: "1px solid #cbd5e1",
+                color: "#475569",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <IconX size={18} />
@@ -155,205 +293,109 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
           </div>
         </div>
 
-        {/* The Printable Certificate Container */}
+        {/* Outer Padding wrapper for Preview */}
         <div
-          id="iu-certificate-printable"
+          className="iu-cert-preview-wrapper"
           style={{
-            padding: "48px 56px",
-            margin: "24px auto",
-            maxWidth: 820,
-            width: "100%",
-            backgroundColor: "#ffffff",
-            position: "relative",
-            textAlign: "center",
-            boxSizing: "border-box",
-            borderRadius: 20,
-            border: "4px solid #084b2f",
-            outline: "2px solid #d4af37",
-            outlineOffset: "-12px",
-            background: "linear-gradient(135deg, #ffffff 0%, #f7faf8 50%, #ffffff 100%)",
-            boxShadow: "0 10px 30px rgba(8, 75, 47, 0.08)",
+            padding: "24px",
+            backgroundColor: "#edf2f7",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            overflowX: "auto",
           }}
         >
-          {/* Corner Islamic Ornaments */}
-          <div style={{position: "absolute", top: 16, right: 20, color: "#d4af37", fontSize: 20, lineHeight: 1}}>❖</div>
-          <div style={{position: "absolute", top: 16, left: 20, color: "#d4af37", fontSize: 20, lineHeight: 1}}>❖</div>
-          <div style={{position: "absolute", bottom: 16, right: 20, color: "#d4af37", fontSize: 20, lineHeight: 1}}>❖</div>
-          <div style={{position: "absolute", bottom: 16, left: 20, color: "#d4af37", fontSize: 20, lineHeight: 1}}>❖</div>
-
-          {/* Certificate Header Section */}
-          <div style={{marginBottom: 24}}>
-            <img
-              src="/images/IUEvent2.png"
-              alt={t`Islamic University of Madinah`}
-              style={{height: 76, width: "auto", margin: "0 auto 12px", display: "block"}}
-            />
-            <div style={{fontSize: 15, fontWeight: 700, color: "#084b2f", letterSpacing: 0.5}}>
-              {t`Kingdom of Saudi Arabia`}
-            </div>
-            <div style={{fontSize: 20, fontWeight: 900, color: "#0f172a", marginTop: 2}}>
-              {t`Islamic University of Madinah`}
-            </div>
-            <div style={{fontSize: 13, color: "#475569", marginTop: 2, fontWeight: 600}}>
-              {t`University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development`}
-            </div>
-          </div>
-
-          {/* Decorative Divider Line */}
-          <div style={{display: "flex", alignItems: "center", justifyContent: "center", gap: 12, margin: "16px 0 24px"}}>
-            <div style={{flex: 1, height: 1, background: "linear-gradient(90deg, transparent, #d4af37)"}} />
-            <IconAward size={28} color="#d4af37" />
-            <div style={{flex: 1, height: 1, background: "linear-gradient(-90deg, transparent, #d4af37)"}} />
-          </div>
-
-          {/* Certificate Title Badge */}
+          {/* ========================================================================= */}
+          {/* Official Canva Certificate Canvas (A4 Landscape Format)                    */}
+          {/* ========================================================================= */}
           <div
+            id="iu-certificate-printable"
             style={{
-              fontSize: 28,
-              fontWeight: 900,
-              color: "#ffffff",
-              backgroundColor: "#084b2f",
-              padding: "10px 40px",
-              borderRadius: 50,
-              display: "inline-block",
-              letterSpacing: 1,
-              boxShadow: "0 6px 18px rgba(8, 75, 47, 0.25)",
-              border: "2px solid #d4af37",
-              marginBottom: 24,
+              width: "100%",
+              maxWidth: 960,
+              aspectRatio: "1024 / 723", // Matches the Canva A4 Landscape dimensions
+              backgroundColor: "#ffffff",
+              backgroundImage: "url('/assets/iu/iu-canva-certificate-base.jpg')",
+              backgroundSize: "100% 100%",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              position: "relative",
+              boxSizing: "border-box",
+              boxShadow: "0 14px 40px rgba(0, 0, 0, 0.16)",
+              textAlign: "center",
+              fontFamily: "'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif",
+              overflow: "hidden",
+              animation: "iuCertParchmentIn 0.44s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both",
+              transformOrigin: "center center",
+              willChange: "transform, opacity",
             }}
+            dir="rtl"
           >
-            {t`Certificate of attendance and completion`}
-          </div>
-
-          {/* Declaration Statement */}
-          <p style={{fontSize: 16, color: "#334155", margin: "16px 0 12px", lineHeight: 1.8}}>
-            {t`The Deanship of Continuing Education and Development certifies that`}
-          </p>
-
-          {/* Attendee Name Box */}
-          <div
-            style={{
-              fontSize: 30,
-              fontWeight: 900,
-              color: "#084b2f",
-              margin: "12px auto 24px",
-              padding: "12px 36px",
-              backgroundColor: "#f0f7f3",
-              borderRadius: 16,
-              display: "inline-block",
-              border: "2px dashed #084b2f",
-              boxShadow: "inset 0 2px 6px rgba(8, 75, 47, 0.06)",
-              minWidth: 320,
-            }}
-          >
-            {certificate.attendee_name}
-          </div>
-
-          {/* Detailed Statement */}
-          <p style={{fontSize: 16, color: "#334155", lineHeight: 2, margin: "0 auto 32px", maxWidth: 620}}>
-            {t`Attended and completed the requirements of the following event`}
-            <br />
-            <strong
+            {/* 1. Dynamic Attendee Name (Positioned above golden horizontal divider) */}
+            <div
               style={{
-                color: "#0f172a",
-                fontSize: 20,
+                position: "absolute",
+                top: "44%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "82%",
+                textAlign: "center",
+                fontFamily: "'Tajawal', 'Cairo', system-ui, sans-serif",
+                fontSize: "2.35rem",
                 fontWeight: 900,
-                display: "inline-block",
-                marginTop: 8,
-                padding: "4px 16px",
-                background: "rgba(212, 175, 55, 0.12)",
-                borderRadius: 8,
-                border: "1px solid rgba(212, 175, 55, 0.3)",
+                color: "#0f172a",
+                lineHeight: 1.25,
+                wordBreak: "break-word",
+                letterSpacing: "-0.5px",
+                zIndex: 3,
               }}
             >
-              « {certificate.event_title} »
-            </strong>
-            <br />
-            {t`Held at ${certificate.location} on ${eventDate}.`}
-          </p>
-
-          {/* Footer Seals & Verification Row */}
-          <div
-            style={{
-              marginTop: 36,
-              paddingTop: 24,
-              borderTop: "2px double #e2e8f0",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 24,
-              alignItems: "center",
-              textAlign: "right",
-            }}
-          >
-            {/* Left Column: Verification Code & QR */}
-            <div style={{display: "flex", alignItems: "center", gap: 16}}>
-              <div style={{background: "#fff", padding: 8, borderRadius: 10, border: "1px solid #cbd5e1"}}>
-                  <QRCode value={certificate.verification_url} size={72} fgColor="#084b2f" title={t`Certificate verification QR code`} />
-              </div>
-              <div>
-                <div style={{fontSize: 12, color: "#64748b", fontWeight: 600, marginBottom: 2}}>
-                  {t`Certificate verification code`}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "monospace",
-                    fontSize: 16,
-                    fontWeight: 900,
-                    color: "#084b2f",
-                    letterSpacing: 2,
-                    direction: "ltr",
-                  }}
-                >
-                  {certificate.certificate_code}
-                </div>
-                <div style={{fontSize: 11, color: "#94a3b8", marginTop: 4}}>
-                  {t`Issued on ${formattedDate}`}
-                </div>
-              </div>
+              {certificate.attendee_name}
             </div>
 
-            {/* Right Column: Seal & Official Signature */}
-            <div style={{textAlign: "left", display: "flex", flexDirection: "column", alignItems: "flex-end"}}>
-              <div
-                style={{
-                  width: 90,
-                  height: 90,
-                  borderRadius: "50%",
-                  border: "3px double #d4af37",
-                  backgroundColor: "#084b2f",
-                  color: "#fff",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 6px 16px rgba(8, 75, 47, 0.25)",
-                  padding: 6,
-                  textAlign: "center",
-                }}
-              >
-                <IconCheck size={22} color="#d4af37" />
-                <span style={{fontSize: 9, fontWeight: 900, marginTop: 2, letterSpacing: 0.5}}>{t`Islamic University`}</span>
-                <span style={{fontSize: 8, opacity: 0.9}}>{t`Officially certified`}</span>
-              </div>
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 4,
-                  fontSize: 11,
-                  color: "#166534",
-                  backgroundColor: "#f0fdf4",
-                  border: "1px solid #bbf7d0",
-                  padding: "4px 10px",
-                  borderRadius: 6,
-                  marginTop: 8,
-                  fontWeight: 700,
-                }}
-              >
-                <IconCheck size={14} />
-                {t`Attendance verified by the official platform`}
-              </div>
+            {/* 2. Dynamic Event Title & Date Participation Sentence (Matches typography of upper greeting) */}
+            <div
+              style={{
+                position: "absolute",
+                top: "58.8%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "78%",
+                textAlign: "center",
+                fontFamily: "'Tajawal', 'Cairo', system-ui, sans-serif",
+                fontSize: "0.92rem",
+                fontWeight: 400,
+                color: "#222222",
+                lineHeight: 1.8,
+                letterSpacing: 0,
+                zIndex: 3,
+              }}
+            >
+              <span>وذلك لمشاركته في ورشة العمل بعنوان: &quot;{certificate.event_title}&quot;</span>
+              <br />
+              <span>والتي أُقيمت بتاريخ {eventDateAr} في رحاب الجامعة الإسلامية بالمدينة المنورة.</span>
             </div>
+
+            {/* 3. Dynamic Date Centered Directly Over the "التاريخ" line */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "16.8%",
+                left: "70.0%",
+                transform: "translateX(-50%)",
+                textAlign: "center",
+                fontFamily: "'Tajawal', 'Cairo', system-ui, sans-serif",
+                fontSize: "0.86rem",
+                fontWeight: 500,
+                color: "#222222",
+                whiteSpace: "nowrap",
+                zIndex: 3,
+              }}
+            >
+              {eventDateAr}
+            </div>
+
+            {/* 4. Signature line is kept completely empty as requested */}
           </div>
         </div>
       </div>

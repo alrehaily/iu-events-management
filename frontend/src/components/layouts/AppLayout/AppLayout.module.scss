@@ -17,8 +17,30 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  background-color: var(--iu-page-bg, #ffffff);
   font-family: var(--iu-font-family);
+  position: relative;
+
+  /* Continuous unified gradient flowing seamlessly across sidebar and navbar */
+  background: linear-gradient(135deg, #063a24 0%, #084b2f 25%, #0c5636 60%, #157347 100%);
+
+  :global([dir="rtl"]) & {
+    background: linear-gradient(225deg, #063a24 0%, #084b2f 25%, #0c5636 60%, #157347 100%);
+  }
+
+  /* Single, uninterrupted 3D polygonal texture spanning the entire shell */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("/assets/iu/poly-bg.png");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.085;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+  }
 
   @media (min-width: 768px) {
     grid-template-areas:
@@ -48,6 +70,10 @@
     color: var(--iu-text, #0f172a);
     font-family: var(--iu-font-family);
     animation: iuBdsnPageBody 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+    position: relative;
+    z-index: 5;
+    border-start-start-radius: 16px;
+    box-shadow: -4px -4px 20px rgba(0, 0, 0, 0.04);
 
     @include mixins.scrollbar;
 

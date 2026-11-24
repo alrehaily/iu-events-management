@@ -518,7 +518,7 @@ msgstr "Informazioni sull'account"
 msgid "Account marked as verified"
 msgstr "Account contrassegnato come verificato"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 
@@ -638,6 +638,10 @@ msgstr "Aggiungi una descrizione per questa lista di check-in"
 msgid "Add a Single Date"
 msgstr "Aggiungi una singola data"
 
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Add address details manually (Street, City, Postal Code)"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:992
 msgid "Add another time"
 msgstr "Aggiungi un altro orario"
@@ -703,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "Aggiungi istruzioni per i pagamenti offline (es. dettagli del bonifico bancario, dove inviare gli assegni, scadenze di pagamento)"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:153
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:194
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "Aggiungi luogo"
@@ -818,7 +822,7 @@ msgid "Address line 1"
 msgstr "Indirizzo riga 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:206
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -829,7 +833,7 @@ msgid "Address line 2"
 msgstr "Indirizzo riga 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:207
+#: src/components/modals/LocationEditModal/index.tsx:262
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -862,7 +866,7 @@ msgstr "Gli amministratori hanno accesso completo agli eventi e alle impostazion
 msgid "Admits attendees to your event"
 msgstr "Dà accesso al tuo evento ai partecipanti"
 
-#: src/components/modals/LocationEditModal/index.tsx:164
+#: src/components/modals/LocationEditModal/index.tsx:280
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -1518,12 +1522,12 @@ msgid "Attendance certificate"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:354
-msgid "Attendance verified by the official platform"
-msgstr ""
+#~ msgid "Attendance verified by the official platform"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:254
-msgid "Attended and completed the requirements of the following event"
-msgstr ""
+#~ msgid "Attended and completed the requirements of the following event"
+#~ msgstr ""
 
 #: src/components/routes/event/EventDashboard/NextOccurrenceHero/index.tsx:194
 msgid "attendee"
@@ -2143,16 +2147,16 @@ msgid "Certificate Details"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:225
-msgid "Certificate of attendance and completion"
-msgstr ""
+#~ msgid "Certificate of attendance and completion"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:295
-msgid "Certificate verification code"
-msgstr ""
+#~ msgid "Certificate verification code"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:291
-msgid "Certificate verification QR code"
-msgstr ""
+#~ msgid "Certificate verification QR code"
+#~ msgstr ""
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:212
 msgid "Certificates are issued to attendees who meet the attendance criteria."
@@ -2166,7 +2170,7 @@ msgstr "Cambia"
 msgid "Change duration"
 msgstr "Cambia durata"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Cambia password"
 
@@ -2233,7 +2237,7 @@ msgstr "Dai un'occhiata a questo evento!"
 msgid "Check your email"
 msgstr "Controlla la tua email"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Controlla la tua casella di posta! Se ci sono biglietti associati a questa email, riceverai un link per visualizzarli."
 
@@ -2435,7 +2439,7 @@ msgstr "Scegli chi paga la commissione della piattaforma. Questo non influisce s
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:210
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2470,6 +2474,10 @@ msgstr "Cancellando si rimuove qualsiasi personalizzazione per singola data. Le 
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
 msgstr ""
 
+#: src/components/modals/LocationEditModal/index.tsx:215
+msgid "Click the map to place a pin, or enter details below."
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:333
 msgid "Click to cancel"
 msgstr "Clicca per annullare"
@@ -2492,7 +2500,7 @@ msgstr "chiudi"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:144
+#: src/components/iu/IUCertificateModal/index.tsx:276
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -2506,7 +2514,7 @@ msgstr "Chiudi"
 msgid "Close modal"
 msgstr "Chiudi la finestra"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:106
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:108
 msgid "Close sidebar"
 msgstr "Chiudi barra laterale"
 
@@ -2594,7 +2602,7 @@ msgstr "Prossimamente"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Parole chiave separate da virgole che descrivono l'evento. Queste saranno utilizzate dai motori di ricerca per aiutare a categorizzare e indicizzare l'evento"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Preferenze di comunicazione"
 
@@ -2659,7 +2667,7 @@ msgstr "Ordini Completati"
 #~ msgstr "Componi"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:203
+#: src/components/modals/LocationEditModal/index.tsx:258
 msgid "Conference Center"
 msgstr "Centro congressi"
 
@@ -2737,7 +2745,7 @@ msgstr "Conferma Cambio Email"
 #~ msgid "Confirm new password"
 #~ msgstr "Conferma la nuova password"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Conferma Nuova Password"
 
@@ -3023,7 +3031,7 @@ msgstr "Impossibile inviare l'email di verifica. Riprova."
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:274
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "Paese"
@@ -3316,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Valuta"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Password Attuale"
 
@@ -3888,8 +3896,8 @@ msgid "Display how many spots are left on each date in the ticket widget. You ca
 msgstr "Mostra quanti posti restano per ogni data nel widget dei biglietti. Puoi modificarlo per le singole date."
 
 #: src/components/modals/LocationEditModal/index.tsx:196
-msgid "Display name"
-msgstr "Nome visualizzato"
+#~ msgid "Display name"
+#~ msgstr "Nome visualizzato"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:200
 msgid "Document Label"
@@ -4041,6 +4049,10 @@ msgstr "es. Manutenzione programmata questo sabato dalle 2 alle 4 UTC"
 msgid "e.g., Important update about your tickets"
 msgstr "ad esempio, Aggiornamento importante sui tuoi biglietti"
 
+#: src/components/modals/LocationEditModal/index.tsx:230
+msgid "e.g., Main University Auditorium"
+msgstr ""
+
 #: src/components/routes/admin/Configurations/index.tsx:226
 msgid "e.g., Standard, Premium, Enterprise"
 msgstr "ad esempio, Standard, Premium, Enterprise"
@@ -4140,7 +4152,7 @@ msgstr "Modifica data"
 msgid "Edit location"
 msgstr "Modifica luogo"
 
-#: src/components/modals/LocationEditModal/index.tsx:153
+#: src/components/modals/LocationEditModal/index.tsx:194
 msgid "Edit Location"
 msgstr "Modifica luogo"
 
@@ -4261,7 +4273,7 @@ msgstr "Impostazioni Email e Notifiche"
 msgid "Email & Templates"
 msgstr "Email e Modelli"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4439,7 +4451,7 @@ msgstr "Terminato {0}"
 msgid "Ends {0}"
 msgstr "Termina {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Inglese"
 
@@ -4459,7 +4471,7 @@ msgstr "Inserisci un oggetto e un corpo per vedere l'anteprima"
 msgid "Enter a time to shift by."
 msgstr "Indica di quanto spostare gli orari."
 
-#: src/components/modals/LocationEditModal/index.tsx:184
+#: src/components/modals/LocationEditModal/index.tsx:300
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -4523,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Inserisci codice affiliato univoco"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Inserisci la tua email"
 
@@ -4645,7 +4657,7 @@ msgstr "Evento creato"
 msgid "Event custom template"
 msgstr "Modello personalizzato evento"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5388,7 +5400,7 @@ msgstr "Primo partecipante"
 msgid "First Invoice Number"
 msgstr "Primo Numero Fattura"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5659,7 +5671,7 @@ msgstr "Vai alla pagina dell'evento"
 msgid "Go to home page"
 msgstr "Vai alla pagina iniziale"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Vai alla programmazione"
 
@@ -5737,8 +5749,8 @@ msgid "Have a promo code?"
 msgstr "Hai un codice promozionale?"
 
 #: src/components/iu/IUCertificateModal/index.tsx:272
-msgid "Held at {0} on {eventDate}."
-msgstr ""
+#~ msgid "Held at {0} on {eventDate}."
+#~ msgstr ""
 
 #: src/components/routes/admin/Dashboard/index.tsx:76
 msgid "Hello {0}, manage your platform from here."
@@ -5757,7 +5769,7 @@ msgstr "Aiutaci a migliorare dicendoci perché te ne vai"
 msgid "Helps us understand how the site is used."
 msgstr "Ci aiuta a capire come viene usato il sito."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Ecco tutti i biglietti associati al tuo indirizzo email."
 
@@ -5840,6 +5852,10 @@ msgstr "Nascondi Risposte"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:310
 msgid "Hide details"
 msgstr "Nascondi dettagli"
+
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Hide manual address details"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:495
 msgid "Hide Preview"
@@ -6277,18 +6293,16 @@ msgid "Islamic & Spiritual"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:335
-msgid "Islamic University"
-msgstr ""
+#~ msgid "Islamic University"
+#~ msgstr ""
 
 #: src/components/common/AttendeeTicket/index.tsx:71
-#: src/components/iu/IUCertificateModal/index.tsx:188
-#: src/components/iu/IUCertificateModal/index.tsx:195
 msgid "Islamic University of Madinah"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:310
-msgid "Issued on {formattedDate}"
-msgstr ""
+#~ msgid "Issued on {formattedDate}"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:422
 msgid "It happens on more than one date"
@@ -6348,7 +6362,7 @@ msgstr "Lavoro in coda per il nuovo tentativo"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6411,8 +6425,8 @@ msgstr "Tienimi aggiornato sulle novità e gli eventi di {0}"
 #~ msgstr "Tieniti il guadagno."
 
 #: src/components/iu/IUCertificateModal/index.tsx:192
-msgid "Kingdom of Saudi Arabia"
-msgstr ""
+#~ msgid "Kingdom of Saudi Arabia"
+#~ msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:63
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:449
@@ -6431,7 +6445,7 @@ msgstr "aggiornamenti di etichetta"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6496,7 +6510,7 @@ msgstr "Ultimi 90 giorni"
 msgid "Last login"
 msgstr "Ultimo accesso"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6547,7 +6561,7 @@ msgstr "Dopo"
 msgid "Latest check-ins"
 msgstr "Ultimi check-in"
 
-#: src/components/modals/LocationEditModal/index.tsx:167
+#: src/components/modals/LocationEditModal/index.tsx:283
 msgid "Latitude"
 msgstr "Latitudine"
 
@@ -6595,7 +6609,7 @@ msgstr "Libreria"
 msgid "Light"
 msgstr "Chiaro"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Link scaduto o non valido"
 
@@ -6673,20 +6687,28 @@ msgstr "Caricamento..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Luogo"
+
+#: src/components/modals/LocationEditModal/index.tsx:228
+msgid "Location / Venue Name"
+msgstr ""
 
 #: src/components/common/LocationsTable/index.tsx:39
 msgid "Location deleted"
 msgstr "Luogo eliminato"
 
-#: src/components/modals/LocationEditModal/index.tsx:131
+#: src/components/modals/LocationEditModal/index.tsx:220
+msgid "Location pinned"
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:172
 msgid "Location saved"
 msgstr "Luogo salvato"
 
-#: src/components/modals/LocationEditModal/index.tsx:128
+#: src/components/modals/LocationEditModal/index.tsx:169
 msgid "Location updated"
 msgstr "Luogo aggiornato"
 
@@ -6740,7 +6762,7 @@ msgstr "Il logo verrà visualizzato nell'intestazione"
 msgid "Logout"
 msgstr "Esci"
 
-#: src/components/modals/LocationEditModal/index.tsx:175
+#: src/components/modals/LocationEditModal/index.tsx:291
 msgid "Longitude"
 msgstr "Longitudine"
 
@@ -6828,7 +6850,7 @@ msgstr "Gestisci programmazione"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Gestisci tasse e commissioni che possono essere applicate ai tuoi prodotti"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Gestisci biglietti"
 
@@ -6856,9 +6878,9 @@ msgstr "Offerta manuale"
 msgid "Manually add an Attendee"
 msgstr "Aggiungi manualmente un Partecipante"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Aggiungi Manualmente Partecipante"
 
@@ -7132,7 +7154,7 @@ msgstr "Il mio fantastico titolo dell'evento..."
 msgid "My Profile"
 msgstr "Il Mio Profilo"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "I Miei Biglietti"
 
@@ -7167,6 +7189,10 @@ msgstr "Il nome è obbligatorio"
 #: src/components/routes/admin/Configurations/index.tsx:168
 msgid "Name must be less than 255 characters"
 msgstr "Il nome deve contenere meno di 255 caratteri"
+
+#: src/components/modals/LocationEditModal/index.tsx:229
+msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
+msgstr ""
 
 #: src/components/common/QuestionAndAnswerList/index.tsx:202
 msgid "Navigate to Attendee"
@@ -7206,7 +7232,7 @@ msgstr "Nuova etichetta"
 msgid "New location"
 msgstr "Nuovo luogo"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Nuova Password"
 
@@ -7457,7 +7483,7 @@ msgstr "Nessun messaggio trovato"
 msgid "No messages to show"
 msgstr "Nessun messaggio da mostrare"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Nessuna data disponibile"
 
@@ -7597,7 +7623,7 @@ msgstr "Nessun suggerimento"
 msgid "No Taxes or Fees have been added."
 msgstr "Nessuna Tassa o Commissione è stata aggiunta."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Nessun biglietto trovato"
 
@@ -7810,8 +7836,8 @@ msgid "Offers expire after {timeoutHours} hours."
 msgstr "Le offerte scadono dopo {timeoutHours} ore."
 
 #: src/components/iu/IUCertificateModal/index.tsx:336
-msgid "Officially certified"
-msgstr ""
+#~ msgid "Officially certified"
+#~ msgstr ""
 
 #: src/components/common/OrdersTable/index.tsx:301
 #: src/components/layouts/CheckIn/index.tsx:574
@@ -8037,8 +8063,8 @@ msgid "Optional call to action"
 msgstr "Invito all'azione facoltativo"
 
 #: src/components/modals/LocationEditModal/index.tsx:197
-msgid "Optional name shown when selecting a venue."
-msgstr ""
+#~ msgid "Optional name shown when selecting a venue."
+#~ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:135
 #~ msgid "Optional nickname shown in pickers, e.g. \"HQ Conference Room\""
@@ -8080,7 +8106,6 @@ msgstr "ordine"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Ordine"
 
@@ -8527,11 +8552,11 @@ msgstr "Eventi passati"
 msgid "Paste URL"
 msgstr "Incolla URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -8880,6 +8905,10 @@ msgstr "Inserisci il tuo numero di partita IVA"
 msgid "Please Note"
 msgstr "Nota Bene"
 
+#: src/components/modals/LocationEditModal/index.tsx:109
+msgid "Please provide a location name or pick a point on the map."
+msgstr ""
+
 #: src/components/common/Editor/Controls/InsertImageControl/index.tsx:36
 msgid "Please provide an image."
 msgstr "Per favore, fornisci un'immagine."
@@ -9028,9 +9057,9 @@ msgstr "Prezzi"
 msgid "Print All Tickets"
 msgstr "Stampa Tutti i Biglietti"
 
-#: src/components/iu/IUCertificateModal/index.tsx:140
-msgid "Print or save as PDF"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:197
+#~ msgid "Print or save as PDF"
+#~ msgstr ""
 
 #: src/components/routes/event/TicketDesigner/index.tsx:223
 #~ msgid "Print Preview"
@@ -9041,7 +9070,7 @@ msgstr ""
 msgid "Print Ticket"
 msgstr "Stampa biglietto"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Stampa Biglietti"
 
@@ -9245,7 +9274,7 @@ msgstr ""
 "Fornisci ulteriori informazioni o istruzioni per questa domanda. Utilizza questo campo per aggiungere termini\n"
 "e condizioni, linee guida o qualsiasi altra informazione importante che i partecipanti debbano conoscere prima di rispondere."
 
-#: src/components/modals/LocationEditModal/index.tsx:85
+#: src/components/modals/LocationEditModal/index.tsx:116
 msgid "Provide at least one address field (venue, street, city, or country)."
 msgstr "Fornisci almeno un campo dell'indirizzo (sede, via, città o paese)."
 
@@ -9286,7 +9315,7 @@ msgstr "Con la pubblicazione la pagina del tuo evento diventa pubblica e si apro
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Acquistato"
 
@@ -9399,7 +9428,7 @@ msgstr "Motivi"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Ricevi aggiornamenti sui prodotti da {0}."
 
@@ -9483,6 +9512,10 @@ msgstr "Reddit"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:88
 msgid "Redirecting to Stripe..."
 msgstr "Reindirizzamento a Stripe..."
+
+#: src/components/iu/IUCertificateModal/index.tsx:481
+#~ msgid "Ref:"
+#~ msgstr ""
 
 #: src/components/routes/admin/Attribution/index.tsx:88
 msgid "Referral Accounts"
@@ -9651,7 +9684,7 @@ msgstr "Report non trovato"
 msgid "Reports"
 msgstr "Report"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Richiedi un nuovo link"
 
@@ -9952,7 +9985,7 @@ msgid "Saturday"
 msgstr "Sabato"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:220
+#: src/components/modals/LocationEditModal/index.tsx:275
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -9979,7 +10012,7 @@ msgstr ""
 msgid "Save"
 msgstr "Salva"
 
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10437,6 +10470,10 @@ msgstr "selezionato"
 msgid "Selected"
 msgstr "Selezionato"
 
+#: src/components/modals/LocationEditModal/index.tsx:214
+msgid "Selected Coordinates:"
+msgstr ""
+
 #: src/components/layouts/AuthLayout/index.tsx:42
 #~ msgid "Sell out your event."
 #~ msgstr "Fai il tutto esaurito."
@@ -10453,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Si vende velocemente 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Invia"
 
@@ -10951,7 +10988,7 @@ msgstr "Qualcosa è andato storto. Riprova più tardi."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -11060,7 +11097,7 @@ msgstr "Inizia domani"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:211
+#: src/components/modals/LocationEditModal/index.tsx:266
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -11215,7 +11252,7 @@ msgstr "Indirizzo email confermato con successo"
 msgid "Successfully confirmed email change"
 msgstr "Modifica email confermata con successo"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Partecipante creato con successo"
 
@@ -11602,8 +11639,8 @@ msgstr "La valuta in cui è definita la commissione fissa. Verrà convertita nel
 #~ msgstr "La valuta utilizzata per i prezzi dei biglietti di questo evento."
 
 #: src/components/iu/IUCertificateModal/index.tsx:230
-msgid "The Deanship of Continuing Education and Development certifies that"
-msgstr ""
+#~ msgid "The Deanship of Continuing Education and Development certifies that"
+#~ msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:75
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:118
@@ -11635,7 +11672,7 @@ msgstr "L'evento che stai cercando non è disponibile al momento. Potrebbe esser
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "L'importo completo dell'ordine sarà rimborsato al metodo di pagamento originale del cliente."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "La lingua in cui il partecipante riceverà le email."
 
@@ -11970,7 +12007,7 @@ msgstr "Questa è l'unica volta in cui il segreto di firma verrà mostrato. Copi
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Questo limita le vendite totali di tutte le date del programma nel loro insieme: non è un limite per data. Per limitare la partecipazione a ogni data, imposta una capacità nella <0>pagina Programmazione delle date</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Questo link non è valido o è scaduto."
 
@@ -12127,7 +12164,7 @@ msgstr "Gio"
 msgid "Thursday"
 msgstr "Giovedì"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "biglietto"
@@ -12211,12 +12248,12 @@ msgstr "Tipo di Biglietto"
 msgid "Ticketing & Sales"
 msgstr "Biglietteria e vendite"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "biglietti"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12462,7 +12499,7 @@ msgstr "Modifica i filtri per vedere altre date."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Prova un'altra email"
 
@@ -12598,12 +12635,16 @@ msgid "Units Sold"
 msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:198
-msgid "University conference hall"
+#~ msgid "University conference hall"
+#~ msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:151
+msgid "University Venue"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
-msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
-msgstr ""
+#~ msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
+#~ msgstr ""
 
 #: src/components/common/MessageList/index.tsx:44
 #: src/components/common/MessageList/index.tsx:49
@@ -12732,7 +12773,7 @@ msgstr "Aggiorna il luogo"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Aggiorna profilo"
 
@@ -13011,7 +13052,7 @@ msgid "Venue Location Map"
 msgstr "Mappa del luogo dell’evento"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:202
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Venue Name"
 msgstr "Nome della Sede"
 
@@ -13037,9 +13078,9 @@ msgstr "Verificato"
 msgid "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 msgstr "Gli account verificati possono inviare messaggi ai partecipanti e gestire i modelli di email. Collegare Stripe verifica automaticamente un account."
 
-#: src/components/iu/IUCertificateModal/index.tsx:119
-msgid "Verified attendance certificate"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:162
+#~ msgid "Verified attendance certificate"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:189
 msgid "Verify Email"
@@ -13140,7 +13181,7 @@ msgstr "Visualizza messaggio"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Visualizza Ordine"
 
@@ -13249,7 +13290,7 @@ msgstr "Non è stato possibile eliminare la categoria. Riprova."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Non siamo riusciti a scollegare questo account Stripe. Riprova."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Non abbiamo trovato ordini associati a questo indirizzo email."
 
@@ -13825,7 +13866,7 @@ msgstr "Devi accettare di ricevere messaggi"
 msgid "You must agree to the terms and conditions"
 msgstr "Devi accettare i termini e le condizioni"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Devi creare un biglietto prima di poter aggiungere manualmente un partecipante."
 
@@ -13837,7 +13878,7 @@ msgstr "Devi avere almeno un livello di prezzo"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Devi verificare il tuo indirizzo email prima di poter aggiornare lo stato dell'organizzatore."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Devi creare almeno una data prima di poter aggiungere partecipanti a questo evento ricorrente."
 
@@ -14075,7 +14116,7 @@ msgstr "CAP / Codice Postale"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:269
 msgid "Zip or Postal Code"
 msgstr "CAP o Codice Postale"
 

@@ -518,7 +518,7 @@ msgstr "Hesap Bilgileri"
 msgid "Account marked as verified"
 msgstr "Hesap doğrulanmış olarak işaretlendi"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 
@@ -638,6 +638,10 @@ msgstr "Bu check-in listesi için açıklama ekleyin"
 msgid "Add a Single Date"
 msgstr "Tek bir tarih ekle"
 
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Add address details manually (Street, City, Postal Code)"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:992
 msgid "Add another time"
 msgstr "Başka bir saat ekle"
@@ -703,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "Çevrimdışı ödemeler için talimatlar ekleyin (örn. banka havalesi detayları, çeklerin nereye gönderileceği, ödeme tarihleri)"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:153
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:194
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "Konum Ekle"
@@ -818,7 +822,7 @@ msgid "Address line 1"
 msgstr "Adres satırı 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:206
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -829,7 +833,7 @@ msgid "Address line 2"
 msgstr "Adres satırı 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:207
+#: src/components/modals/LocationEditModal/index.tsx:262
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -862,7 +866,7 @@ msgstr "Yönetici kullanıcılar etkinliklere ve hesap ayarlarına tam erişime 
 msgid "Admits attendees to your event"
 msgstr "Katılımcılara etkinliğinize giriş hakkı verir"
 
-#: src/components/modals/LocationEditModal/index.tsx:164
+#: src/components/modals/LocationEditModal/index.tsx:280
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -1518,12 +1522,12 @@ msgid "Attendance certificate"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:354
-msgid "Attendance verified by the official platform"
-msgstr ""
+#~ msgid "Attendance verified by the official platform"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:254
-msgid "Attended and completed the requirements of the following event"
-msgstr ""
+#~ msgid "Attended and completed the requirements of the following event"
+#~ msgstr ""
 
 #: src/components/routes/event/EventDashboard/NextOccurrenceHero/index.tsx:194
 msgid "attendee"
@@ -2143,16 +2147,16 @@ msgid "Certificate Details"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:225
-msgid "Certificate of attendance and completion"
-msgstr ""
+#~ msgid "Certificate of attendance and completion"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:295
-msgid "Certificate verification code"
-msgstr ""
+#~ msgid "Certificate verification code"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:291
-msgid "Certificate verification QR code"
-msgstr ""
+#~ msgid "Certificate verification QR code"
+#~ msgstr ""
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:212
 msgid "Certificates are issued to attendees who meet the attendance criteria."
@@ -2166,7 +2170,7 @@ msgstr "Değiştir"
 msgid "Change duration"
 msgstr "Süreyi değiştir"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Şifre değiştir"
 
@@ -2233,7 +2237,7 @@ msgstr "Bu etkinliğe göz atın!"
 msgid "Check your email"
 msgstr "E-postanızı kontrol edin"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Gelen kutunuzu kontrol edin! Bu e-postayla ilişkili biletler varsa, bunları görüntülemek için bir bağlantı alacaksınız."
 
@@ -2435,7 +2439,7 @@ msgstr "Platform ücretini kimin ödeyeceğini seçin. Bu, hesap ayarlarınızda
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:210
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2470,6 +2474,10 @@ msgstr "Temizlemek, tarihe özel tüm ayarları kaldırır. Etkilenen tarihler e
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
 msgstr ""
 
+#: src/components/modals/LocationEditModal/index.tsx:215
+msgid "Click the map to place a pin, or enter details below."
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:333
 msgid "Click to cancel"
 msgstr "İptal etmek için tıklayın"
@@ -2492,7 +2500,7 @@ msgstr "kapat"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:144
+#: src/components/iu/IUCertificateModal/index.tsx:276
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -2506,7 +2514,7 @@ msgstr "Kapat"
 msgid "Close modal"
 msgstr "Pencereyi kapat"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:106
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:108
 msgid "Close sidebar"
 msgstr "Kenar çubuğunu kapat"
 
@@ -2594,7 +2602,7 @@ msgstr "Yakında"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Etkinliği tanımlayan virgülle ayrılmış anahtar kelimeler. Bunlar arama motorları tarafından etkinliği kategorize etmek ve indekslemek için kullanılacaktır"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "İletişim Tercihleri"
 
@@ -2659,7 +2667,7 @@ msgstr "Tamamlanan Siparişler"
 #~ msgstr "Oluştur"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:203
+#: src/components/modals/LocationEditModal/index.tsx:258
 msgid "Conference Center"
 msgstr "Konferans Merkezi"
 
@@ -2737,7 +2745,7 @@ msgstr "E-posta Değişikliğini Onayla"
 #~ msgid "Confirm new password"
 #~ msgstr "Yeni şifreyi onayla"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Yeni Şifreyi Onayla"
 
@@ -3023,7 +3031,7 @@ msgstr "Doğrulama e-postası gönderilemedi. Lütfen tekrar deneyin."
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:274
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "Ülke"
@@ -3316,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Para Birimi"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Mevcut Şifre"
 
@@ -3888,8 +3896,8 @@ msgid "Display how many spots are left on each date in the ticket widget. You ca
 msgstr "Bilet aracında her tarih için kaç yer kaldığını gösterir. Bunu tek tek tarihler için değiştirebilirsiniz."
 
 #: src/components/modals/LocationEditModal/index.tsx:196
-msgid "Display name"
-msgstr "Görünen ad"
+#~ msgid "Display name"
+#~ msgstr "Görünen ad"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:200
 msgid "Document Label"
@@ -4041,6 +4049,10 @@ msgstr "örn. Bu cumartesi 02:00-04:00 UTC arası planlı bakım"
 msgid "e.g., Important update about your tickets"
 msgstr "örn., Biletleriniz hakkında önemli güncelleme"
 
+#: src/components/modals/LocationEditModal/index.tsx:230
+msgid "e.g., Main University Auditorium"
+msgstr ""
+
 #: src/components/routes/admin/Configurations/index.tsx:226
 msgid "e.g., Standard, Premium, Enterprise"
 msgstr "örn., Standart, Premium, Kurumsal"
@@ -4140,7 +4152,7 @@ msgstr "Tarihi düzenle"
 msgid "Edit location"
 msgstr "Konumu düzenle"
 
-#: src/components/modals/LocationEditModal/index.tsx:153
+#: src/components/modals/LocationEditModal/index.tsx:194
 msgid "Edit Location"
 msgstr "Konumu Düzenle"
 
@@ -4261,7 +4273,7 @@ msgstr "E-posta ve Bildirim Ayarları"
 msgid "Email & Templates"
 msgstr "E-posta ve Şablonlar"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4439,7 +4451,7 @@ msgstr "{0} sona erdi"
 msgid "Ends {0}"
 msgstr "{0} sona eriyor"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "İngilizce"
 
@@ -4459,7 +4471,7 @@ msgstr "Önizlemeyi görmek için bir konu ve gövde girin"
 msgid "Enter a time to shift by."
 msgstr "Ne kadar kaydırılacağını girin."
 
-#: src/components/modals/LocationEditModal/index.tsx:184
+#: src/components/modals/LocationEditModal/index.tsx:300
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -4523,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Benzersiz bağlı kuruluş kodunu girin"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "E-postanızı girin"
 
@@ -4645,7 +4657,7 @@ msgstr "Etkinlik oluşturuldu"
 msgid "Event custom template"
 msgstr "Etkinlik özel şablonu"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5388,7 +5400,7 @@ msgstr "İlk katılımcı"
 msgid "First Invoice Number"
 msgstr "İlk Fatura Numarası"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5659,7 +5671,7 @@ msgstr "Etkinlik Sayfasına Git"
 msgid "Go to home page"
 msgstr "Ana sayfaya git"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Programa git"
 
@@ -5737,8 +5749,8 @@ msgid "Have a promo code?"
 msgstr "Promosyon kodunuz var mı?"
 
 #: src/components/iu/IUCertificateModal/index.tsx:272
-msgid "Held at {0} on {eventDate}."
-msgstr ""
+#~ msgid "Held at {0} on {eventDate}."
+#~ msgstr ""
 
 #: src/components/routes/admin/Dashboard/index.tsx:76
 msgid "Hello {0}, manage your platform from here."
@@ -5757,7 +5769,7 @@ msgstr "Neden ayrıldığınızı söyleyerek gelişmemize yardımcı olun"
 msgid "Helps us understand how the site is used."
 msgstr "Sitenin nasıl kullanıldığını anlamamıza yardımcı olur."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "E-posta adresinizle ilişkili tüm biletler burada."
 
@@ -5840,6 +5852,10 @@ msgstr "Cevapları Gizle"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:310
 msgid "Hide details"
 msgstr "Ayrıntıları gizle"
+
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Hide manual address details"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:495
 msgid "Hide Preview"
@@ -6277,18 +6293,16 @@ msgid "Islamic & Spiritual"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:335
-msgid "Islamic University"
-msgstr ""
+#~ msgid "Islamic University"
+#~ msgstr ""
 
 #: src/components/common/AttendeeTicket/index.tsx:71
-#: src/components/iu/IUCertificateModal/index.tsx:188
-#: src/components/iu/IUCertificateModal/index.tsx:195
 msgid "Islamic University of Madinah"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:310
-msgid "Issued on {formattedDate}"
-msgstr ""
+#~ msgid "Issued on {formattedDate}"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:422
 msgid "It happens on more than one date"
@@ -6348,7 +6362,7 @@ msgstr "İş yeniden deneme için sıraya alındı"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6411,8 +6425,8 @@ msgstr "{0} adresinden haberler ve etkinlikler hakkında beni bilgilendirin"
 #~ msgstr "Kazanç sizde kalsın."
 
 #: src/components/iu/IUCertificateModal/index.tsx:192
-msgid "Kingdom of Saudi Arabia"
-msgstr ""
+#~ msgid "Kingdom of Saudi Arabia"
+#~ msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:63
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:449
@@ -6431,7 +6445,7 @@ msgstr "etiket güncellemeleri"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6496,7 +6510,7 @@ msgstr "Son 90 gün"
 msgid "Last login"
 msgstr "Son giriş"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6547,7 +6561,7 @@ msgstr "Daha sonra"
 msgid "Latest check-ins"
 msgstr "En son check-in'ler"
 
-#: src/components/modals/LocationEditModal/index.tsx:167
+#: src/components/modals/LocationEditModal/index.tsx:283
 msgid "Latitude"
 msgstr "Enlem"
 
@@ -6595,7 +6609,7 @@ msgstr "Kitaplık"
 msgid "Light"
 msgstr "Açık"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Bağlantı Süresi Doldu veya Geçersiz"
 
@@ -6673,20 +6687,28 @@ msgstr "Yükleniyor..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Konum"
+
+#: src/components/modals/LocationEditModal/index.tsx:228
+msgid "Location / Venue Name"
+msgstr ""
 
 #: src/components/common/LocationsTable/index.tsx:39
 msgid "Location deleted"
 msgstr "Konum silindi"
 
-#: src/components/modals/LocationEditModal/index.tsx:131
+#: src/components/modals/LocationEditModal/index.tsx:220
+msgid "Location pinned"
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:172
 msgid "Location saved"
 msgstr "Konum kaydedildi"
 
-#: src/components/modals/LocationEditModal/index.tsx:128
+#: src/components/modals/LocationEditModal/index.tsx:169
 msgid "Location updated"
 msgstr "Konum güncellendi"
 
@@ -6740,7 +6762,7 @@ msgstr "Logo başlıkta görüntülenecektir"
 msgid "Logout"
 msgstr "Çıkış"
 
-#: src/components/modals/LocationEditModal/index.tsx:175
+#: src/components/modals/LocationEditModal/index.tsx:291
 msgid "Longitude"
 msgstr "Boylam"
 
@@ -6828,7 +6850,7 @@ msgstr "Programı yönet"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Ürünlerinize uygulanabilecek vergi ve ücretleri yönetin"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Biletleri yönet"
 
@@ -6856,9 +6878,9 @@ msgstr "Manuel teklif"
 msgid "Manually add an Attendee"
 msgstr "Manuel olarak Katılımcı ekle"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Manuel Katılımcı Ekle"
 
@@ -7132,7 +7154,7 @@ msgstr "Harika etkinlik başlığım..."
 msgid "My Profile"
 msgstr "Profilim"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "Biletlerim"
 
@@ -7167,6 +7189,10 @@ msgstr "Ad gerekli"
 #: src/components/routes/admin/Configurations/index.tsx:168
 msgid "Name must be less than 255 characters"
 msgstr "İsim 255 karakterden az olmalıdır"
+
+#: src/components/modals/LocationEditModal/index.tsx:229
+msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
+msgstr ""
 
 #: src/components/common/QuestionAndAnswerList/index.tsx:202
 msgid "Navigate to Attendee"
@@ -7206,7 +7232,7 @@ msgstr "Yeni etiket"
 msgid "New location"
 msgstr "Yeni konum"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Yeni Şifre"
 
@@ -7457,7 +7483,7 @@ msgstr "Mesaj bulunamadı"
 msgid "No messages to show"
 msgstr "Gösterilecek mesaj yok"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Uygun tarih yok"
 
@@ -7597,7 +7623,7 @@ msgstr "Öneri yok"
 msgid "No Taxes or Fees have been added."
 msgstr "Hiçbir Vergi veya Ücret eklenmemiş."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Bilet Bulunamadı"
 
@@ -7810,8 +7836,8 @@ msgid "Offers expire after {timeoutHours} hours."
 msgstr "Teklifler {timeoutHours} saat sonra sona erer."
 
 #: src/components/iu/IUCertificateModal/index.tsx:336
-msgid "Officially certified"
-msgstr ""
+#~ msgid "Officially certified"
+#~ msgstr ""
 
 #: src/components/common/OrdersTable/index.tsx:301
 #: src/components/layouts/CheckIn/index.tsx:574
@@ -8037,8 +8063,8 @@ msgid "Optional call to action"
 msgstr "İsteğe bağlı eylem çağrısı"
 
 #: src/components/modals/LocationEditModal/index.tsx:197
-msgid "Optional name shown when selecting a venue."
-msgstr ""
+#~ msgid "Optional name shown when selecting a venue."
+#~ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:135
 #~ msgid "Optional nickname shown in pickers, e.g. \"HQ Conference Room\""
@@ -8080,7 +8106,6 @@ msgstr "sipariş"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Sipariş"
 
@@ -8527,11 +8552,11 @@ msgstr "Geçmiş Etkinlikler"
 msgid "Paste URL"
 msgstr "URL Yapıştır"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -8880,6 +8905,10 @@ msgstr "Lütfen KDV numaranızı girin"
 msgid "Please Note"
 msgstr "Lütfen Dikkat"
 
+#: src/components/modals/LocationEditModal/index.tsx:109
+msgid "Please provide a location name or pick a point on the map."
+msgstr ""
+
 #: src/components/common/Editor/Controls/InsertImageControl/index.tsx:36
 msgid "Please provide an image."
 msgstr "Lütfen bir görsel sağlayın."
@@ -9028,9 +9057,9 @@ msgstr "Fiyatlandırma"
 msgid "Print All Tickets"
 msgstr "Tüm Biletleri Yazdır"
 
-#: src/components/iu/IUCertificateModal/index.tsx:140
-msgid "Print or save as PDF"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:197
+#~ msgid "Print or save as PDF"
+#~ msgstr ""
 
 #: src/components/routes/event/TicketDesigner/index.tsx:223
 #~ msgid "Print Preview"
@@ -9041,7 +9070,7 @@ msgstr ""
 msgid "Print Ticket"
 msgstr "Bileti Yazdır"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Biletleri Yazdır"
 
@@ -9245,7 +9274,7 @@ msgstr ""
 "Bu soru için ek bağlam veya talimatlar sağlayın. Bu alanı şartlar\n"
 "ve koşullar, yönergeler veya katılımcıların yanıtlamadan önce bilmesi gereken önemli bilgileri eklemek için kullanın."
 
-#: src/components/modals/LocationEditModal/index.tsx:85
+#: src/components/modals/LocationEditModal/index.tsx:116
 msgid "Provide at least one address field (venue, street, city, or country)."
 msgstr "En az bir adres alanı girin (mekan, sokak, şehir veya ülke)."
 
@@ -9286,7 +9315,7 @@ msgstr "Yayınladığınızda etkinlik sayfanız herkese açık olur ve kayıtla
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Satın Alındı"
 
@@ -9399,7 +9428,7 @@ msgstr "Nedenler"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "{0}'ten ürün güncellemeleri alın."
 
@@ -9483,6 +9512,10 @@ msgstr "Reddit"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:88
 msgid "Redirecting to Stripe..."
 msgstr "Stripe'a yönlendiriliyor..."
+
+#: src/components/iu/IUCertificateModal/index.tsx:481
+#~ msgid "Ref:"
+#~ msgstr ""
 
 #: src/components/routes/admin/Attribution/index.tsx:88
 msgid "Referral Accounts"
@@ -9651,7 +9684,7 @@ msgstr "Rapor bulunamadı"
 msgid "Reports"
 msgstr "Raporlar"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Yeni bir bağlantı isteyin"
 
@@ -9952,7 +9985,7 @@ msgid "Saturday"
 msgstr "Cumartesi"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:220
+#: src/components/modals/LocationEditModal/index.tsx:275
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -9979,7 +10012,7 @@ msgstr ""
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10437,6 +10470,10 @@ msgstr "seçili"
 msgid "Selected"
 msgstr "Seçildi"
 
+#: src/components/modals/LocationEditModal/index.tsx:214
+msgid "Selected Coordinates:"
+msgstr ""
+
 #: src/components/layouts/AuthLayout/index.tsx:42
 #~ msgid "Sell out your event."
 #~ msgstr "Etkinliğinizi tüketin."
@@ -10453,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Hızlı satılıyor 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Gönder"
 
@@ -10951,7 +10988,7 @@ msgstr "Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -11060,7 +11097,7 @@ msgstr "Yarın başlıyor"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:211
+#: src/components/modals/LocationEditModal/index.tsx:266
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -11215,7 +11252,7 @@ msgstr "E-posta adresi başarıyla onaylandı"
 msgid "Successfully confirmed email change"
 msgstr "E-posta değişikliği başarıyla onaylandı"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Katılımcı başarıyla oluşturuldu"
 
@@ -11602,8 +11639,8 @@ msgstr "Sabit ücretin tanımlandığı para birimi. Ödeme sırasında sipariş
 #~ msgstr "Bu etkinliğin bilet fiyatları için kullanılan para birimi."
 
 #: src/components/iu/IUCertificateModal/index.tsx:230
-msgid "The Deanship of Continuing Education and Development certifies that"
-msgstr ""
+#~ msgid "The Deanship of Continuing Education and Development certifies that"
+#~ msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:75
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:118
@@ -11635,7 +11672,7 @@ msgstr "Aradığınız etkinlik şu anda mevcut değil. Kaldırılmış, süresi
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Tam sipariş tutarı müşterinin orijinal ödeme yöntemine iade edilecektir."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Katılımcının e-postaları alacağı dil."
 
@@ -11970,7 +12007,7 @@ msgstr "İmzalama anahtarı yalnızca bu kez gösterilecektir. Lütfen şimdi ko
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Bu, programınızdaki tüm tarihlerin toplam satışını sınırlar — tarih başına bir sınır değildir. Her tarihin katılımcı sayısını sınırlamak için <0>Tarih Programı sayfasında</0> kapasite belirleyin."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Bu bağlantı geçersiz veya süresi dolmuş."
 
@@ -12127,7 +12164,7 @@ msgstr "Per"
 msgid "Thursday"
 msgstr "Perşembe"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "bilet"
@@ -12211,12 +12248,12 @@ msgstr "Bilet Türü"
 msgid "Ticketing & Sales"
 msgstr "Biletleme ve Satış"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "bilet"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12462,7 +12499,7 @@ msgstr "Daha fazla tarih görmek için filtrelerinizi ayarlayın."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Başka bir e-posta deneyin"
 
@@ -12598,12 +12635,16 @@ msgid "Units Sold"
 msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:198
-msgid "University conference hall"
+#~ msgid "University conference hall"
+#~ msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:151
+msgid "University Venue"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
-msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
-msgstr ""
+#~ msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
+#~ msgstr ""
 
 #: src/components/common/MessageList/index.tsx:44
 #: src/components/common/MessageList/index.tsx:49
@@ -12732,7 +12773,7 @@ msgstr "Konumu güncelle"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Profili güncelle"
 
@@ -13011,7 +13052,7 @@ msgid "Venue Location Map"
 msgstr "Etkinlik mekânı haritası"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:202
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Venue Name"
 msgstr "Mekan Adı"
 
@@ -13037,9 +13078,9 @@ msgstr "Doğrulandı"
 msgid "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 msgstr "Doğrulanmış hesaplar katılımcılara mesaj gönderebilir ve e-posta şablonlarını yönetebilir. Stripe'ı bağlamak hesabı otomatik olarak doğrular."
 
-#: src/components/iu/IUCertificateModal/index.tsx:119
-msgid "Verified attendance certificate"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:162
+#~ msgid "Verified attendance certificate"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:189
 msgid "Verify Email"
@@ -13140,7 +13181,7 @@ msgstr "Mesajı görüntüle"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Siparişi Görüntüle"
 
@@ -13249,7 +13290,7 @@ msgstr "Kategoriyi silemedik. Lütfen tekrar deneyin."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Bu Stripe hesabının bağlantısını kesemedik. Lütfen tekrar deneyin."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Bu e-posta adresiyle ilişkili herhangi bir sipariş bulamadık."
 
@@ -13825,7 +13866,7 @@ msgstr "Mesaj almayı kabul etmelisiniz"
 msgid "You must agree to the terms and conditions"
 msgstr "Şartlar ve koşulları kabul etmelisiniz"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Elle katılımcı ekleyebilmek için önce bir bilet oluşturmalısınız."
 
@@ -13837,7 +13878,7 @@ msgstr "En az bir fiyat seviyeniz olmalı"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Organizatör durumunu güncelleyebilmek için e-posta adresinizi doğrulamanız gerekir."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Bu yinelenen etkinliğe katılımcı ekleyebilmek için en az bir tarih oluşturmanız gerekir."
 
@@ -14075,7 +14116,7 @@ msgstr "Posta Kodu"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:269
 msgid "Zip or Postal Code"
 msgstr "Posta Kodu"
 

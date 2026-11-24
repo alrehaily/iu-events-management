@@ -50,6 +50,13 @@ const routes: RouteObject[] = [
                 }
             },
             {
+                path: "certificates/verify/:certificateCode?",
+                async lazy() {
+                    const VerifyCertificate = await import("./components/routes/verify-certificate");
+                    return { Component: VerifyCertificate.default };
+                }
+            },
+            {
                 path: "login",
                 element: <Navigate to="/auth/login" replace />
             },

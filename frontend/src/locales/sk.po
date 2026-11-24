@@ -518,7 +518,7 @@ msgstr "Informácie o účte"
 msgid "Account marked as verified"
 msgstr "Účet označený ako overený"
 
-#: src/components/common/GlobalMenu/index.tsx:80
+#: src/components/common/GlobalMenu/index.tsx:81
 msgid "Account menu"
 msgstr ""
 
@@ -638,6 +638,10 @@ msgstr "Pridajte popis pre tento zoznam odbavenia"
 msgid "Add a Single Date"
 msgstr "Pridať jeden termín"
 
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Add address details manually (Street, City, Postal Code)"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:992
 msgid "Add another time"
 msgstr "Pridať ďalší čas"
@@ -703,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "Pridajte pokyny pre offline platby (napr. údaje bankového prevodu, kam posielať šeky, termíny platby)"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:153
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:194
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "Pridať miesto"
@@ -818,7 +822,7 @@ msgid "Address line 1"
 msgstr "Adresa riadok 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:206
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -829,7 +833,7 @@ msgid "Address line 2"
 msgstr "Adresa riadok 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:207
+#: src/components/modals/LocationEditModal/index.tsx:262
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -862,7 +866,7 @@ msgstr "Správcovia majú plný prístup k udalostiam a nastaveniam účtu."
 msgid "Admits attendees to your event"
 msgstr "Umožňuje účastníkom vstup na vaše podujatie"
 
-#: src/components/modals/LocationEditModal/index.tsx:164
+#: src/components/modals/LocationEditModal/index.tsx:280
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -1518,12 +1522,12 @@ msgid "Attendance certificate"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:354
-msgid "Attendance verified by the official platform"
-msgstr ""
+#~ msgid "Attendance verified by the official platform"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:254
-msgid "Attended and completed the requirements of the following event"
-msgstr ""
+#~ msgid "Attended and completed the requirements of the following event"
+#~ msgstr ""
 
 #: src/components/routes/event/EventDashboard/NextOccurrenceHero/index.tsx:194
 msgid "attendee"
@@ -2143,16 +2147,16 @@ msgid "Certificate Details"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:225
-msgid "Certificate of attendance and completion"
-msgstr ""
+#~ msgid "Certificate of attendance and completion"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:295
-msgid "Certificate verification code"
-msgstr ""
+#~ msgid "Certificate verification code"
+#~ msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:291
-msgid "Certificate verification QR code"
-msgstr ""
+#~ msgid "Certificate verification QR code"
+#~ msgstr ""
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:212
 msgid "Certificates are issued to attendees who meet the attendance criteria."
@@ -2166,7 +2170,7 @@ msgstr "Zmeniť"
 msgid "Change duration"
 msgstr "Zmeniť dĺžku"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Zmeniť heslo"
 
@@ -2233,7 +2237,7 @@ msgstr "Pozrite si túto udalosť!"
 msgid "Check your email"
 msgstr "Skontrolujte svoj e-mail"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Skontrolujte doručenú poštu! Ak sú s týmto e-mailom spojené lístky, dostanete odkaz na ich zobrazenie."
 
@@ -2435,7 +2439,7 @@ msgstr "Vyberte, kto platí poplatok platformy. Toto neovplyvňuje ďalšie popl
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:210
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2470,6 +2474,10 @@ msgstr "Vymazaním sa odstráni každé vlastné nastavenie pre termín. Dotknut
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
 msgstr ""
 
+#: src/components/modals/LocationEditModal/index.tsx:215
+msgid "Click the map to place a pin, or enter details below."
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:333
 msgid "Click to cancel"
 msgstr "Kliknutím zrušíte"
@@ -2492,7 +2500,7 @@ msgstr "zavrieť"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:144
+#: src/components/iu/IUCertificateModal/index.tsx:276
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -2506,7 +2514,7 @@ msgstr "Zavrieť"
 msgid "Close modal"
 msgstr "Zavrieť modálne okno"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:106
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:108
 msgid "Close sidebar"
 msgstr "Zavrieť bočný panel"
 
@@ -2594,7 +2602,7 @@ msgstr "Čoskoro"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Kľúčové slová oddelené čiarkou popisujúce udalosť. Tieto budú použité vyhľadávačmi na kategorizáciu a indexovanie udalosti"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Preferencie komunikácie"
 
@@ -2659,7 +2667,7 @@ msgstr "Dokončené objednávky"
 #~ msgstr "Vytvoriť"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:203
+#: src/components/modals/LocationEditModal/index.tsx:258
 msgid "Conference Center"
 msgstr "Konferenčné centrum"
 
@@ -2737,7 +2745,7 @@ msgstr "Potvrdiť zmenu e-mailu"
 #~ msgid "Confirm new password"
 #~ msgstr "Potvrdiť nové heslo"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Potvrdiť nové heslo"
 
@@ -3023,7 +3031,7 @@ msgstr "Overovací e-mail sa nepodarilo odoslať. Skúste to znova."
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:274
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "Krajina"
@@ -3316,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Mena"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Aktuálne heslo"
 
@@ -3888,8 +3896,8 @@ msgid "Display how many spots are left on each date in the ticket widget. You ca
 msgstr "Zobrazuje, koľko miest zostáva na jednotlivé dátumy vo widgete vstupeniek. Pre jednotlivé dátumy to môžete prepísať."
 
 #: src/components/modals/LocationEditModal/index.tsx:196
-msgid "Display name"
-msgstr "Zobrazovaný názov"
+#~ msgid "Display name"
+#~ msgstr "Zobrazovaný názov"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:200
 msgid "Document Label"
@@ -4041,6 +4049,10 @@ msgstr "napr. Plánovaná údržba túto sobotu od 2:00 do 4:00 UTC"
 msgid "e.g., Important update about your tickets"
 msgstr "napr. Dôležitá aktualizácia o vašich lístkoch"
 
+#: src/components/modals/LocationEditModal/index.tsx:230
+msgid "e.g., Main University Auditorium"
+msgstr ""
+
 #: src/components/routes/admin/Configurations/index.tsx:226
 msgid "e.g., Standard, Premium, Enterprise"
 msgstr "napr. Štandard, Prémiový, Enterprise"
@@ -4140,7 +4152,7 @@ msgstr "Upraviť termín"
 msgid "Edit location"
 msgstr "Upraviť miesto"
 
-#: src/components/modals/LocationEditModal/index.tsx:153
+#: src/components/modals/LocationEditModal/index.tsx:194
 msgid "Edit Location"
 msgstr "Upraviť miesto"
 
@@ -4261,7 +4273,7 @@ msgstr "Nastavenia e-mailu a notifikácií"
 msgid "Email & Templates"
 msgstr "E-mail a šablóny"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4439,7 +4451,7 @@ msgstr "Skončilo {0}"
 msgid "Ends {0}"
 msgstr "Končí {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Angličtina"
 
@@ -4459,7 +4471,7 @@ msgstr "Zadajte predmet a telo pre zobrazenie náhľadu"
 msgid "Enter a time to shift by."
 msgstr "Zadajte, o koľko sa má čas posunúť."
 
-#: src/components/modals/LocationEditModal/index.tsx:184
+#: src/components/modals/LocationEditModal/index.tsx:300
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -4523,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Zadajte jedinečný partnerský kód"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Zadajte svoj e-mail"
 
@@ -4645,7 +4657,7 @@ msgstr "Udalosť vytvorená"
 msgid "Event custom template"
 msgstr "Vlastná šablóna udalosti"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5388,7 +5400,7 @@ msgstr "Prvý účastník"
 msgid "First Invoice Number"
 msgstr "Číslo prvej faktúry"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5659,7 +5671,7 @@ msgstr "Prejsť na stránku udalosti"
 msgid "Go to home page"
 msgstr "Prejsť na domovskú stránku"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Prejsť na rozvrh"
 
@@ -5737,8 +5749,8 @@ msgid "Have a promo code?"
 msgstr "Máte promo kód?"
 
 #: src/components/iu/IUCertificateModal/index.tsx:272
-msgid "Held at {0} on {eventDate}."
-msgstr ""
+#~ msgid "Held at {0} on {eventDate}."
+#~ msgstr ""
 
 #: src/components/routes/admin/Dashboard/index.tsx:76
 msgid "Hello {0}, manage your platform from here."
@@ -5757,7 +5769,7 @@ msgstr "Pomôžte nám zlepšiť sa tým, že nám poviete, prečo odchádzate"
 msgid "Helps us understand how the site is used."
 msgstr "Pomáha nám pochopiť, ako sa stránka používa."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Tu sú všetky lístky spojené s vašou e-mailovou adresou."
 
@@ -5840,6 +5852,10 @@ msgstr "Skryť odpovede"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:310
 msgid "Hide details"
 msgstr "Skryť podrobnosti"
+
+#: src/components/modals/LocationEditModal/index.tsx:243
+msgid "Hide manual address details"
+msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:495
 msgid "Hide Preview"
@@ -6277,18 +6293,16 @@ msgid "Islamic & Spiritual"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:335
-msgid "Islamic University"
-msgstr ""
+#~ msgid "Islamic University"
+#~ msgstr ""
 
 #: src/components/common/AttendeeTicket/index.tsx:71
-#: src/components/iu/IUCertificateModal/index.tsx:188
-#: src/components/iu/IUCertificateModal/index.tsx:195
 msgid "Islamic University of Madinah"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:310
-msgid "Issued on {formattedDate}"
-msgstr ""
+#~ msgid "Issued on {formattedDate}"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:422
 msgid "It happens on more than one date"
@@ -6348,7 +6362,7 @@ msgstr "Úloha zaradená do frontu na opakovanie"
 msgid "John"
 msgstr "Ján"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Novák"
 
@@ -6411,8 +6425,8 @@ msgstr "Informujte ma o novinkách a udalostiach od {0}"
 #~ msgstr "Zisk zostáva vám."
 
 #: src/components/iu/IUCertificateModal/index.tsx:192
-msgid "Kingdom of Saudi Arabia"
-msgstr ""
+#~ msgid "Kingdom of Saudi Arabia"
+#~ msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:63
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:449
@@ -6431,7 +6445,7 @@ msgstr "zmeny označení"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6496,7 +6510,7 @@ msgstr "Posledných 90 dní"
 msgid "Last login"
 msgstr "Posledné prihlásenie"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6547,7 +6561,7 @@ msgstr "Neskôr"
 msgid "Latest check-ins"
 msgstr "Najnovšie check-iny"
 
-#: src/components/modals/LocationEditModal/index.tsx:167
+#: src/components/modals/LocationEditModal/index.tsx:283
 msgid "Latitude"
 msgstr "Zemepisná šírka"
 
@@ -6595,7 +6609,7 @@ msgstr "Knižnica"
 msgid "Light"
 msgstr "Svetlý"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Odkaz vypršal alebo je neplatný"
 
@@ -6673,20 +6687,28 @@ msgstr "Načítavanie..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Miesto"
+
+#: src/components/modals/LocationEditModal/index.tsx:228
+msgid "Location / Venue Name"
+msgstr ""
 
 #: src/components/common/LocationsTable/index.tsx:39
 msgid "Location deleted"
 msgstr "Miesto bolo vymazané"
 
-#: src/components/modals/LocationEditModal/index.tsx:131
+#: src/components/modals/LocationEditModal/index.tsx:220
+msgid "Location pinned"
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:172
 msgid "Location saved"
 msgstr "Miesto bolo uložené"
 
-#: src/components/modals/LocationEditModal/index.tsx:128
+#: src/components/modals/LocationEditModal/index.tsx:169
 msgid "Location updated"
 msgstr "Miesto bolo aktualizované"
 
@@ -6740,7 +6762,7 @@ msgstr "Logo sa zobrazí v hlavičke"
 msgid "Logout"
 msgstr "Odhlásiť sa"
 
-#: src/components/modals/LocationEditModal/index.tsx:175
+#: src/components/modals/LocationEditModal/index.tsx:291
 msgid "Longitude"
 msgstr "Zemepisná dĺžka"
 
@@ -6828,7 +6850,7 @@ msgstr "Spravovať rozvrh"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Spravovať dane a poplatky, ktoré možno uplatniť na vaše produkty"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Spravovať lístky"
 
@@ -6856,9 +6878,9 @@ msgstr "Manuálna ponuka"
 msgid "Manually add an Attendee"
 msgstr "Manuálne pridať účastníka"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Manuálne pridať účastníka"
 
@@ -7132,7 +7154,7 @@ msgstr "Názov mojej úžasnej udalosti..."
 msgid "My Profile"
 msgstr "Môj profil"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "Moje lístky"
 
@@ -7167,6 +7189,10 @@ msgstr "Meno je povinné"
 #: src/components/routes/admin/Configurations/index.tsx:168
 msgid "Name must be less than 255 characters"
 msgstr "Meno musí mať menej ako 255 znakov"
+
+#: src/components/modals/LocationEditModal/index.tsx:229
+msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
+msgstr ""
 
 #: src/components/common/QuestionAndAnswerList/index.tsx:202
 msgid "Navigate to Attendee"
@@ -7206,7 +7232,7 @@ msgstr "Nové označenie"
 msgid "New location"
 msgstr "Nové miesto"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Nové heslo"
 
@@ -7457,7 +7483,7 @@ msgstr "Nenašli sa žiadne správy"
 msgid "No messages to show"
 msgstr "Žiadne správy na zobrazenie"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Nie sú dostupné žiadne termíny"
 
@@ -7597,7 +7623,7 @@ msgstr "Žiadne návrhy"
 msgid "No Taxes or Fees have been added."
 msgstr "Neboli pridané žiadne dane ani poplatky."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Nenašli sa žiadne lístky"
 
@@ -7810,8 +7836,8 @@ msgid "Offers expire after {timeoutHours} hours."
 msgstr "Ponuky vyprší po {timeoutHours} hodinách."
 
 #: src/components/iu/IUCertificateModal/index.tsx:336
-msgid "Officially certified"
-msgstr ""
+#~ msgid "Officially certified"
+#~ msgstr ""
 
 #: src/components/common/OrdersTable/index.tsx:301
 #: src/components/layouts/CheckIn/index.tsx:574
@@ -8037,8 +8063,8 @@ msgid "Optional call to action"
 msgstr "Voliteľná výzva na akciu"
 
 #: src/components/modals/LocationEditModal/index.tsx:197
-msgid "Optional name shown when selecting a venue."
-msgstr ""
+#~ msgid "Optional name shown when selecting a venue."
+#~ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:135
 #~ msgid "Optional nickname shown in pickers, e.g. \"HQ Conference Room\""
@@ -8080,7 +8106,6 @@ msgstr "objednávka"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Objednávka"
 
@@ -8527,11 +8552,11 @@ msgstr "Minulé udalosti"
 msgid "Paste URL"
 msgstr "Vložiť URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrik"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrik@acme.com"
 
@@ -8880,6 +8905,10 @@ msgstr "Zadajte číslo DPH"
 msgid "Please Note"
 msgstr "Upozornenie"
 
+#: src/components/modals/LocationEditModal/index.tsx:109
+msgid "Please provide a location name or pick a point on the map."
+msgstr ""
+
 #: src/components/common/Editor/Controls/InsertImageControl/index.tsx:36
 msgid "Please provide an image."
 msgstr "Poskytnite obrázok."
@@ -9028,9 +9057,9 @@ msgstr "Ceny"
 msgid "Print All Tickets"
 msgstr "Vytlačiť všetky lístky"
 
-#: src/components/iu/IUCertificateModal/index.tsx:140
-msgid "Print or save as PDF"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:197
+#~ msgid "Print or save as PDF"
+#~ msgstr ""
 
 #: src/components/routes/event/TicketDesigner/index.tsx:223
 #~ msgid "Print Preview"
@@ -9041,7 +9070,7 @@ msgstr ""
 msgid "Print Ticket"
 msgstr "Vytlačiť lístok"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Vytlačiť lístky"
 
@@ -9245,7 +9274,7 @@ msgstr ""
 "Poskytnite ďalší kontext alebo pokyny pre túto otázku. Toto pole použite na pridanie podmienok,\n"
 "usmernení alebo dôležitých informácií, ktoré účastníci potrebujú vedieť pred zodpovedaním."
 
-#: src/components/modals/LocationEditModal/index.tsx:85
+#: src/components/modals/LocationEditModal/index.tsx:116
 msgid "Provide at least one address field (venue, street, city, or country)."
 msgstr "Zadajte aspoň jedno pole adresy (miesto, ulica, mesto alebo krajina)."
 
@@ -9286,7 +9315,7 @@ msgstr "Zverejnením sa stránka vašej udalosti stane verejnou a otvoria sa reg
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Zakúpené"
 
@@ -9399,7 +9428,7 @@ msgstr "Dôvody"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Dostávajte aktualizácie produktov od {0}."
 
@@ -9483,6 +9512,10 @@ msgstr "Reddit"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:88
 msgid "Redirecting to Stripe..."
 msgstr "Presmerovanie na Stripe..."
+
+#: src/components/iu/IUCertificateModal/index.tsx:481
+#~ msgid "Ref:"
+#~ msgstr ""
 
 #: src/components/routes/admin/Attribution/index.tsx:88
 msgid "Referral Accounts"
@@ -9651,7 +9684,7 @@ msgstr "Správa nenájdená"
 msgid "Reports"
 msgstr "Reporty"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Požiadať o nový odkaz"
 
@@ -9952,7 +9985,7 @@ msgid "Saturday"
 msgstr "Sobota"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:220
+#: src/components/modals/LocationEditModal/index.tsx:275
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -9979,7 +10012,7 @@ msgstr ""
 msgid "Save"
 msgstr "Uložiť"
 
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10437,6 +10470,10 @@ msgstr "vybrané"
 msgid "Selected"
 msgstr "Vybrané"
 
+#: src/components/modals/LocationEditModal/index.tsx:214
+msgid "Selected Coordinates:"
+msgstr ""
+
 #: src/components/layouts/AuthLayout/index.tsx:42
 #~ msgid "Sell out your event."
 #~ msgstr "Vypredajte svoje podujatie."
@@ -10453,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Rýchlo sa predáva 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Odoslať"
 
@@ -10951,7 +10988,7 @@ msgstr "Niečo sa pokazilo. Skúste to neskôr."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -11060,7 +11097,7 @@ msgstr "Začína zajtra"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:211
+#: src/components/modals/LocationEditModal/index.tsx:266
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -11215,7 +11252,7 @@ msgstr "E-mailová adresa bola úspešne potvrdená"
 msgid "Successfully confirmed email change"
 msgstr "Zmena e-mailu bola úspešne potvrdená"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Účastník bol úspešne vytvorený"
 
@@ -11602,8 +11639,8 @@ msgstr "Mena, v ktorej je definovaný pevný poplatok. Bude prevedená na menu o
 #~ msgstr "Mena používaná pre ceny vstupeniek tohto podujatia."
 
 #: src/components/iu/IUCertificateModal/index.tsx:230
-msgid "The Deanship of Continuing Education and Development certifies that"
-msgstr ""
+#~ msgid "The Deanship of Continuing Education and Development certifies that"
+#~ msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:75
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:118
@@ -11635,7 +11672,7 @@ msgstr "Udalosť, ktorú hľadáte, momentálne nie je dostupná. Mohla byť ods
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Celá suma objednávky bude vrátená na pôvodný platobný prostriedok zákazníka."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Jazyk, v ktorom bude účastník dostávať e-maily."
 
@@ -11970,7 +12007,7 @@ msgstr "Toto je jediný čas, kedy sa zobrazí podpisový tajný kľúč. Skopí
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Toto obmedzuje celkový predaj za všetky termíny vo vašom rozvrhu spolu — nejde o limit na termín. Ak chcete obmedziť účasť na jednotlivých termínoch, nastavte kapacitu na <0>stránke Rozvrh termínov</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Tento odkaz je neplatný alebo vypršal."
 
@@ -12127,7 +12164,7 @@ msgstr "Št"
 msgid "Thursday"
 msgstr "Štvrtok"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "lístok"
@@ -12211,12 +12248,12 @@ msgstr "Typ lístka"
 msgid "Ticketing & Sales"
 msgstr "Predaj lístkov"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "lístky"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12462,7 +12499,7 @@ msgstr "Upravte filtre, aby ste videli viac termínov."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Skúste iný e-mail"
 
@@ -12598,12 +12635,16 @@ msgid "Units Sold"
 msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:198
-msgid "University conference hall"
+#~ msgid "University conference hall"
+#~ msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:151
+msgid "University Venue"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
-msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
-msgstr ""
+#~ msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
+#~ msgstr ""
 
 #: src/components/common/MessageList/index.tsx:44
 #: src/components/common/MessageList/index.tsx:49
@@ -12732,7 +12773,7 @@ msgstr "Aktualizovať miesto"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Aktualizovať profil"
 
@@ -13011,7 +13052,7 @@ msgid "Venue Location Map"
 msgstr "Mapa miesta konania"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:202
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Venue Name"
 msgstr "Názov miesta konania"
 
@@ -13037,9 +13078,9 @@ msgstr "Overené"
 msgid "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 msgstr "Overené účty môžu posielať správy účastníkom a spravovať e-mailové šablóny. Pripojenie služby Stripe overí účet automaticky."
 
-#: src/components/iu/IUCertificateModal/index.tsx:119
-msgid "Verified attendance certificate"
-msgstr ""
+#: src/components/iu/IUCertificateModal/index.tsx:162
+#~ msgid "Verified attendance certificate"
+#~ msgstr ""
 
 #: src/components/routes/welcome/index.tsx:189
 msgid "Verify Email"
@@ -13140,7 +13181,7 @@ msgstr "Zobraziť správu"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Zobraziť objednávku"
 
@@ -13249,7 +13290,7 @@ msgstr "Nepodarilo sa odstrániť kategóriu. Skúste to znovu."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Tento účet Stripe sa nepodarilo odpojiť. Skúste to znova."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Nenašli sa žiadne objednávky spojené s touto e-mailovou adresou."
 
@@ -13825,7 +13866,7 @@ msgstr "Musíte súhlasiť s prijímaním správ"
 msgid "You must agree to the terms and conditions"
 msgstr "Musíte súhlasiť s podmienkami a ustanoveniami"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Pred manuálnym pridaním účastníka musíte vytvoriť lístok."
 
@@ -13837,7 +13878,7 @@ msgstr "Musíte mať aspoň jednu cenovú úroveň"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Pred aktualizáciou stavu organizátora musíte overiť e-mailovú adresu."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Skôr než pridáte účastníkov k tomuto opakujúcemu sa podujatiu, musíte vytvoriť aspoň jeden termín."
 
@@ -14075,7 +14116,7 @@ msgstr "PSČ"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:269
 msgid "Zip or Postal Code"
 msgstr "PSČ"
 
