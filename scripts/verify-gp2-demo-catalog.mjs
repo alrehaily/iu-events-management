@@ -10,16 +10,22 @@ const frontendUrl = process.env.GP2_FRONTEND_URL ?? 'http://127.0.0.1:5680';
 const backendUrl = process.env.GP2_BACKEND_URL ?? 'http://127.0.0.1:8010';
 const screenshotDir = process.env.GP2_CATALOG_EVIDENCE_DIR ?? join(tmpdir(), 'iu-gp2-catalog');
 const seeds = new URL('../backend/resources/demo/gp2-committee-events.json', import.meta.url);
-const events = JSON.parse(await readFile(seeds, 'utf8'));
+const fixtures = JSON.parse(await readFile(seeds, 'utf8'));
+let events = fixtures;
 
 async function verifyCatalog() {
   await mkdir(screenshotDir, {recursive: true});
-  assert.equal(events.length, 8, 'The fixture manifest must define exactly eight events');
+  assert.equal(fixtures.length, 8, 'The fixture manifest must define exactly eight events');
   const response = await fetch(new URL('/public/events', backendUrl));
   assert.equal(response.status, 200, 'Public catalog API');
   const {data, meta} = await response.json();
   assert.equal(meta.total, 8, 'Public catalog API must expose exactly eight events');
-  assert.deepEqual(data.map(({id}) => id).sort(), events.map(({id}) => id).sort());
+  // A fresh database assigns its own IDs, so match each fixture to its live event by title.
+  events = fixtures.map(fixture => {
+    const live = data.find(({title}) => title === fixture.title);
+    assert.ok(live, 'Public catalog API is missing ' + fixture.title);
+    return {...fixture, id: live.id};
+  });
 
   const browser = await chromium.launch();
   try {
