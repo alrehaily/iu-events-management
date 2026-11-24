@@ -1522,12 +1522,12 @@ msgid "Attendance certificate"
 msgstr "شهادة حضور"
 
 #: src/components/iu/IUCertificateModal/index.tsx:354
-msgid "Attendance verified by the official platform"
-msgstr "تم التحقق من الحضور عبر المنصة الرسمية"
+#~ msgid "Attendance verified by the official platform"
+#~ msgstr "تم التحقق من الحضور عبر المنصة الرسمية"
 
 #: src/components/iu/IUCertificateModal/index.tsx:254
-msgid "Attended and completed the requirements of the following event"
-msgstr "قد حضر/ت وأتم/ت بكفاءة واقتدار كافة متطلبات الفعالية العلمية المقامة بعنوان:"
+#~ msgid "Attended and completed the requirements of the following event"
+#~ msgstr "قد حضر/ت وأتم/ت بكفاءة واقتدار كافة متطلبات الفعالية العلمية المقامة بعنوان:"
 
 #: src/components/routes/event/EventDashboard/NextOccurrenceHero/index.tsx:194
 msgid "attendee"
@@ -2147,16 +2147,16 @@ msgid "Certificate Details"
 msgstr "تفاصيل شهادة الحضور"
 
 #: src/components/iu/IUCertificateModal/index.tsx:225
-msgid "Certificate of attendance and completion"
-msgstr "شهادة حضور واجتياز"
+#~ msgid "Certificate of attendance and completion"
+#~ msgstr "شهادة حضور واجتياز"
 
 #: src/components/iu/IUCertificateModal/index.tsx:295
-msgid "Certificate verification code"
-msgstr "رمز التوثيق الإلكتروني للشهادة:"
+#~ msgid "Certificate verification code"
+#~ msgstr "رمز التوثيق الإلكتروني للشهادة:"
 
 #: src/components/iu/IUCertificateModal/index.tsx:291
-msgid "Certificate verification QR code"
-msgstr "رمز الاستجابة السريعة للتحقق من الشهادة"
+#~ msgid "Certificate verification QR code"
+#~ msgstr "رمز الاستجابة السريعة للتحقق من الشهادة"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:212
 msgid "Certificates are issued to attendees who meet the attendance criteria."
@@ -2500,7 +2500,7 @@ msgstr "close"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:144
+#: src/components/iu/IUCertificateModal/index.tsx:201
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -5752,8 +5752,8 @@ msgstr "هل لديك رمز ترويجي؟"
 #~ msgstr "المنعقدة في {0} بتاريخ {1}."
 
 #: src/components/iu/IUCertificateModal/index.tsx:272
-msgid "Held at {0} on {eventDate}."
-msgstr "أُقيمت في {0} بتاريخ {eventDate}."
+#~ msgid "Held at {0} on {eventDate}."
+#~ msgstr "أُقيمت في {0} بتاريخ {eventDate}."
 
 #: src/components/routes/admin/Dashboard/index.tsx:76
 msgid "Hello {0}, manage your platform from here."
@@ -6292,12 +6292,10 @@ msgid "Islamic & Spiritual"
 msgstr "إسلامي وديني"
 
 #: src/components/iu/IUCertificateModal/index.tsx:335
-msgid "Islamic University"
-msgstr "الجامعة الإسلامية"
+#~ msgid "Islamic University"
+#~ msgstr "الجامعة الإسلامية"
 
 #: src/components/common/AttendeeTicket/index.tsx:71
-#: src/components/iu/IUCertificateModal/index.tsx:188
-#: src/components/iu/IUCertificateModal/index.tsx:195
 msgid "Islamic University of Madinah"
 msgstr "الجامعة الإسلامية بالمدينة المنورة"
 
@@ -6305,8 +6303,8 @@ msgstr "الجامعة الإسلامية بالمدينة المنورة"
 #~ msgstr "تاريخ الإصدار: {0}"
 
 #: src/components/iu/IUCertificateModal/index.tsx:310
-msgid "Issued on {formattedDate}"
-msgstr "تاريخ الإصدار {formattedDate}"
+#~ msgid "Issued on {formattedDate}"
+#~ msgstr "تاريخ الإصدار {formattedDate}"
 
 #: src/components/routes/welcome/index.tsx:422
 msgid "It happens on more than one date"
@@ -6429,8 +6427,8 @@ msgstr "أرسلوا إليّ أخبار وفعاليات {0}"
 #~ msgstr "Keep the profit."
 
 #: src/components/iu/IUCertificateModal/index.tsx:192
-msgid "Kingdom of Saudi Arabia"
-msgstr "المملكة العربية السعودية"
+#~ msgid "Kingdom of Saudi Arabia"
+#~ msgstr "المملكة العربية السعودية"
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:63
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:449
@@ -7840,8 +7838,8 @@ msgid "Offers expire after {timeoutHours} hours."
 msgstr "تنتهي صلاحية العروض بعد {timeoutHours} ساعة."
 
 #: src/components/iu/IUCertificateModal/index.tsx:336
-msgid "Officially certified"
-msgstr "معتمدة رسمياً"
+#~ msgid "Officially certified"
+#~ msgstr "معتمدة رسمياً"
 
 #: src/components/common/OrdersTable/index.tsx:301
 #: src/components/layouts/CheckIn/index.tsx:574
@@ -9062,7 +9060,7 @@ msgstr "التسعير"
 msgid "Print All Tickets"
 msgstr "طباعة جميع التذاكر"
 
-#: src/components/iu/IUCertificateModal/index.tsx:140
+#: src/components/iu/IUCertificateModal/index.tsx:197
 msgid "Print or save as PDF"
 msgstr "طباعة / حفظ PDF"
 
@@ -9517,6 +9515,10 @@ msgstr "ريديت"
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:88
 msgid "Redirecting to Stripe..."
 msgstr "Redirecting to Stripe..."
+
+#: src/components/iu/IUCertificateModal/index.tsx:481
+msgid "Ref:"
+msgstr ""
 
 #: src/components/routes/admin/Attribution/index.tsx:88
 msgid "Referral Accounts"
@@ -11636,8 +11638,8 @@ msgstr "The currency in which the fixed fee is defined. It will be converted to 
 #~ msgstr "العملة المستخدمة لأسعار تذاكر هذه الفعالية."
 
 #: src/components/iu/IUCertificateModal/index.tsx:230
-msgid "The Deanship of Continuing Education and Development certifies that"
-msgstr "تقر عمادة التطوير والتعليم المستمر بأن المشارك/ة:"
+#~ msgid "The Deanship of Continuing Education and Development certifies that"
+#~ msgstr "تقر عمادة التطوير والتعليم المستمر بأن المشارك/ة:"
 
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:75
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:118
@@ -12640,8 +12642,8 @@ msgid "University Venue"
 msgstr "مقر جامعي"
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
-msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
-msgstr "وكالة الجامعة للشؤون الأكاديمية والتطوير • عمادة التعليم المستمر والتطوير"
+#~ msgid "University Vice Presidency for Academic Affairs and Development · Deanship of Continuing Education and Development"
+#~ msgstr "وكالة الجامعة للشؤون الأكاديمية والتطوير • عمادة التعليم المستمر والتطوير"
 
 #: src/components/common/MessageList/index.tsx:44
 #: src/components/common/MessageList/index.tsx:49
@@ -13075,7 +13077,7 @@ msgstr "Verified"
 msgid "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 msgstr "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 
-#: src/components/iu/IUCertificateModal/index.tsx:119
+#: src/components/iu/IUCertificateModal/index.tsx:162
 msgid "Verified attendance certificate"
 msgstr "شهادة حضور معتمدة وموثقة إلكترونياً"
 
