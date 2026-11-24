@@ -638,6 +638,10 @@ msgstr "Dodaj opis dla tej listy odpraw"
 msgid "Add a Single Date"
 msgstr "Dodaj pojedynczy termin"
 
+#: src/components/modals/LocationEditModal/index.tsx:242
+msgid "Add address details manually (Street, City, Postal Code)"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:992
 msgid "Add another time"
 msgstr "Dodaj kolejną godzinę"
@@ -703,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "Dodaj instrukcje dla płatności offline (np. szczegóły przelewu bankowego, gdzie wysłać czeki, terminy płatności)"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:153
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:193
+#: src/components/modals/LocationEditModal/index.tsx:307
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "Dodaj lokalizację"
@@ -818,7 +822,7 @@ msgid "Address line 1"
 msgstr "Linia adresu 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:206
+#: src/components/modals/LocationEditModal/index.tsx:260
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -829,7 +833,7 @@ msgid "Address line 2"
 msgstr "Linia adresu 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:207
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -862,7 +866,7 @@ msgstr "Użytkownicy administratorzy mają pełny dostęp do wydarzeń i ustawie
 msgid "Admits attendees to your event"
 msgstr "Uprawnia uczestników do wejścia na Twoje wydarzenie"
 
-#: src/components/modals/LocationEditModal/index.tsx:164
+#: src/components/modals/LocationEditModal/index.tsx:279
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -2435,7 +2439,7 @@ msgstr "Wybierz, kto płaci opłatę platformy. Nie wpływa to na dodatkowe opł
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:210
+#: src/components/modals/LocationEditModal/index.tsx:264
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2468,6 +2472,10 @@ msgstr "Wyczyszczenie usuwa wszelkie ustawienia własne dla terminu. Terminy, kt
 
 #: src/components/common/VenueMapPicker/index.tsx:115
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:214
+msgid "Click the map to place a pin, or enter details below."
 msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:333
@@ -2506,7 +2514,7 @@ msgstr "Zamknij"
 msgid "Close modal"
 msgstr "Zamknij modal"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:106
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:108
 msgid "Close sidebar"
 msgstr "Zamknij pasek boczny"
 
@@ -2659,7 +2667,7 @@ msgstr "Zakończone zamówienia"
 #~ msgstr "Napisz"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:203
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Conference Center"
 msgstr "Centrum konferencyjne"
 
@@ -3023,7 +3031,7 @@ msgstr "Nie udało się wysłać e-maila weryfikacyjnego. Spróbuj ponownie."
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:273
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "Kraj"
@@ -3888,8 +3896,8 @@ msgid "Display how many spots are left on each date in the ticket widget. You ca
 msgstr "Wyświetla liczbę wolnych miejsc dla każdej daty w widżecie biletów. Możesz to zmienić dla poszczególnych dat."
 
 #: src/components/modals/LocationEditModal/index.tsx:196
-msgid "Display name"
-msgstr "Nazwa wyświetlana"
+#~ msgid "Display name"
+#~ msgstr "Nazwa wyświetlana"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:200
 msgid "Document Label"
@@ -4041,6 +4049,10 @@ msgstr "np. Planowana konserwacja w tę sobotę od 2:00 do 4:00 UTC"
 msgid "e.g., Important update about your tickets"
 msgstr "np. Ważna aktualizacja dotycząca Twoich biletów"
 
+#: src/components/modals/LocationEditModal/index.tsx:229
+msgid "e.g., Main University Auditorium"
+msgstr ""
+
 #: src/components/routes/admin/Configurations/index.tsx:226
 msgid "e.g., Standard, Premium, Enterprise"
 msgstr "np. Standard, Premium, Enterprise"
@@ -4140,7 +4152,7 @@ msgstr "Edytuj termin"
 msgid "Edit location"
 msgstr "Edytuj lokalizację"
 
-#: src/components/modals/LocationEditModal/index.tsx:153
+#: src/components/modals/LocationEditModal/index.tsx:193
 msgid "Edit Location"
 msgstr "Edytuj lokalizację"
 
@@ -4459,7 +4471,7 @@ msgstr "Wprowadź temat i treść, aby zobaczyć podgląd"
 msgid "Enter a time to shift by."
 msgstr "Podaj, o ile przesunąć godziny."
 
-#: src/components/modals/LocationEditModal/index.tsx:184
+#: src/components/modals/LocationEditModal/index.tsx:299
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -5841,6 +5853,10 @@ msgstr "Ukryj odpowiedzi"
 msgid "Hide details"
 msgstr "Ukryj szczegóły"
 
+#: src/components/modals/LocationEditModal/index.tsx:242
+msgid "Hide manual address details"
+msgstr ""
+
 #: src/components/routes/admin/Announcements/index.tsx:495
 msgid "Hide Preview"
 msgstr "Ukryj podgląd"
@@ -6547,7 +6563,7 @@ msgstr "Później"
 msgid "Latest check-ins"
 msgstr "Najnowsze check-iny"
 
-#: src/components/modals/LocationEditModal/index.tsx:167
+#: src/components/modals/LocationEditModal/index.tsx:282
 msgid "Latitude"
 msgstr "Szerokość geograficzna"
 
@@ -6678,15 +6694,23 @@ msgstr "Ładowanie..."
 msgid "Location"
 msgstr "Lokalizacja"
 
+#: src/components/modals/LocationEditModal/index.tsx:227
+msgid "Location / Venue Name"
+msgstr ""
+
 #: src/components/common/LocationsTable/index.tsx:39
 msgid "Location deleted"
 msgstr "Lokalizacja usunięta"
 
-#: src/components/modals/LocationEditModal/index.tsx:131
+#: src/components/modals/LocationEditModal/index.tsx:219
+msgid "Location pinned"
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:171
 msgid "Location saved"
 msgstr "Lokalizacja zapisana"
 
-#: src/components/modals/LocationEditModal/index.tsx:128
+#: src/components/modals/LocationEditModal/index.tsx:168
 msgid "Location updated"
 msgstr "Lokalizacja zaktualizowana"
 
@@ -6740,7 +6764,7 @@ msgstr "Logo będzie wyświetlane w nagłówku"
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: src/components/modals/LocationEditModal/index.tsx:175
+#: src/components/modals/LocationEditModal/index.tsx:290
 msgid "Longitude"
 msgstr "Długość geograficzna"
 
@@ -7167,6 +7191,10 @@ msgstr "Nazwa jest wymagana"
 #: src/components/routes/admin/Configurations/index.tsx:168
 msgid "Name must be less than 255 characters"
 msgstr "Nazwa musi mieć mniej niż 255 znaków"
+
+#: src/components/modals/LocationEditModal/index.tsx:228
+msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
+msgstr ""
 
 #: src/components/common/QuestionAndAnswerList/index.tsx:202
 msgid "Navigate to Attendee"
@@ -8037,8 +8065,8 @@ msgid "Optional call to action"
 msgstr "Opcjonalne wezwanie do działania"
 
 #: src/components/modals/LocationEditModal/index.tsx:197
-msgid "Optional name shown when selecting a venue."
-msgstr ""
+#~ msgid "Optional name shown when selecting a venue."
+#~ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:135
 #~ msgid "Optional nickname shown in pickers, e.g. \"HQ Conference Room\""
@@ -8880,6 +8908,10 @@ msgstr "Wprowadź swój numer VAT"
 msgid "Please Note"
 msgstr "Uwaga"
 
+#: src/components/modals/LocationEditModal/index.tsx:109
+msgid "Please provide a location name or pick a point on the map."
+msgstr ""
+
 #: src/components/common/Editor/Controls/InsertImageControl/index.tsx:36
 msgid "Please provide an image."
 msgstr "Podaj obraz."
@@ -9245,7 +9277,7 @@ msgstr ""
 "Podaj dodatkowy kontekst lub instrukcje dla tego pytania. Użyj tego pola, aby dodać warunki,\n"
 "wytyczne lub ważne informacje, które uczestnicy muszą znać przed udzieleniem odpowiedzi."
 
-#: src/components/modals/LocationEditModal/index.tsx:85
+#: src/components/modals/LocationEditModal/index.tsx:116
 msgid "Provide at least one address field (venue, street, city, or country)."
 msgstr "Podaj co najmniej jedno pole adresu (miejsce, ulica, miasto lub kraj)."
 
@@ -9952,7 +9984,7 @@ msgid "Saturday"
 msgstr "Sobota"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:220
+#: src/components/modals/LocationEditModal/index.tsx:274
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -9979,7 +10011,7 @@ msgstr ""
 msgid "Save"
 msgstr "Zapisz"
 
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:307
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10436,6 +10468,10 @@ msgstr "zaznaczono"
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:136
 msgid "Selected"
 msgstr "Wybrane"
+
+#: src/components/modals/LocationEditModal/index.tsx:213
+msgid "Selected Coordinates:"
+msgstr ""
 
 #: src/components/layouts/AuthLayout/index.tsx:42
 #~ msgid "Sell out your event."
@@ -11060,7 +11096,7 @@ msgstr "Zaczyna się jutro"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:211
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -12598,7 +12634,11 @@ msgid "Units Sold"
 msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:198
-msgid "University conference hall"
+#~ msgid "University conference hall"
+#~ msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:150
+msgid "University Venue"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
@@ -13011,7 +13051,7 @@ msgid "Venue Location Map"
 msgstr "Mapa miejsca wydarzenia"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:202
+#: src/components/modals/LocationEditModal/index.tsx:256
 msgid "Venue Name"
 msgstr "Nazwa miejsca"
 
@@ -14075,7 +14115,7 @@ msgstr "Kod pocztowy"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:268
 msgid "Zip or Postal Code"
 msgstr "Kod pocztowy"
 

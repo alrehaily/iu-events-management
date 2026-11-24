@@ -478,4 +478,18 @@ button,
   pointer-events: auto;
 }
 
+/* Safeguard: Topbar and Sidebar logo constraints against SSR paint shifts */
+[class*="topBar"] [class*="logoImg"],
+[class*="sidebar"] [class*="logoImg"] {
+  max-height: 46px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
+@media (min-width: 768px) {
+  [class*="topBar"] [class*="logo"] {
+    display: none !important;
+  }
+}
+
 

@@ -638,6 +638,10 @@ msgstr "为此签到列表添加描述"
 msgid "Add a Single Date"
 msgstr "添加单个日期"
 
+#: src/components/modals/LocationEditModal/index.tsx:242
+msgid "Add address details manually (Street, City, Postal Code)"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:992
 msgid "Add another time"
 msgstr "添加其他时间"
@@ -703,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "添加线下支付的说明（例如，银行转账详情、支票寄送地址、付款截止日期）"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:153
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:193
+#: src/components/modals/LocationEditModal/index.tsx:307
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "添加地点"
@@ -818,7 +822,7 @@ msgid "Address line 1"
 msgstr "地址第 1 行"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:206
+#: src/components/modals/LocationEditModal/index.tsx:260
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -829,7 +833,7 @@ msgid "Address line 2"
 msgstr "地址第 2 行"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:207
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -862,7 +866,7 @@ msgstr "管理员用户可以完全访问事件和账户设置。"
 msgid "Admits attendees to your event"
 msgstr "允许参与者进入你的活动"
 
-#: src/components/modals/LocationEditModal/index.tsx:164
+#: src/components/modals/LocationEditModal/index.tsx:279
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -2435,7 +2439,7 @@ msgstr "选择谁支付平台费用。这不会影响您在账户设置中配置
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:210
+#: src/components/modals/LocationEditModal/index.tsx:264
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2468,6 +2472,10 @@ msgstr "清除会移除按日期设置的所有单独配置，受影响的日期
 
 #: src/components/common/VenueMapPicker/index.tsx:115
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:214
+msgid "Click the map to place a pin, or enter details below."
 msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:333
@@ -2506,7 +2514,7 @@ msgstr "关闭"
 msgid "Close modal"
 msgstr "关闭弹窗"
 
-#: src/components/layouts/AppLayout/Sidebar/index.tsx:106
+#: src/components/layouts/AppLayout/Sidebar/index.tsx:108
 msgid "Close sidebar"
 msgstr "关闭侧边栏"
 
@@ -2659,7 +2667,7 @@ msgstr "已完成订单"
 #~ msgstr "撰写"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:203
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Conference Center"
 msgstr "会议中心"
 
@@ -3023,7 +3031,7 @@ msgstr "验证邮件发送失败，请重试。"
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:273
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "国家"
@@ -3888,8 +3896,8 @@ msgid "Display how many spots are left on each date in the ticket widget. You ca
 msgstr "在门票组件中显示每个日期的剩余名额。您可以为单个日期单独设置。"
 
 #: src/components/modals/LocationEditModal/index.tsx:196
-msgid "Display name"
-msgstr "显示名称"
+#~ msgid "Display name"
+#~ msgstr "显示名称"
 
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:200
 msgid "Document Label"
@@ -4041,6 +4049,10 @@ msgstr "例如：本周六 UTC 凌晨 2 点至 4 点计划维护"
 msgid "e.g., Important update about your tickets"
 msgstr "例如，关于您门票的重要更新"
 
+#: src/components/modals/LocationEditModal/index.tsx:229
+msgid "e.g., Main University Auditorium"
+msgstr ""
+
 #: src/components/routes/admin/Configurations/index.tsx:226
 msgid "e.g., Standard, Premium, Enterprise"
 msgstr "例如，标准版、高级版、企业版"
@@ -4140,7 +4152,7 @@ msgstr "编辑日期"
 msgid "Edit location"
 msgstr "编辑地点"
 
-#: src/components/modals/LocationEditModal/index.tsx:153
+#: src/components/modals/LocationEditModal/index.tsx:193
 msgid "Edit Location"
 msgstr "编辑地点"
 
@@ -4459,7 +4471,7 @@ msgstr "输入主题和正文以查看预览"
 msgid "Enter a time to shift by."
 msgstr "请输入要平移的时长。"
 
-#: src/components/modals/LocationEditModal/index.tsx:184
+#: src/components/modals/LocationEditModal/index.tsx:299
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -5841,6 +5853,10 @@ msgstr "隐藏答案"
 msgid "Hide details"
 msgstr "隐藏详情"
 
+#: src/components/modals/LocationEditModal/index.tsx:242
+msgid "Hide manual address details"
+msgstr ""
+
 #: src/components/routes/admin/Announcements/index.tsx:495
 msgid "Hide Preview"
 msgstr "隐藏预览"
@@ -6547,7 +6563,7 @@ msgstr "推迟"
 msgid "Latest check-ins"
 msgstr "最新签到"
 
-#: src/components/modals/LocationEditModal/index.tsx:167
+#: src/components/modals/LocationEditModal/index.tsx:282
 msgid "Latitude"
 msgstr "纬度"
 
@@ -6678,15 +6694,23 @@ msgstr "加载中..."
 msgid "Location"
 msgstr "地点"
 
+#: src/components/modals/LocationEditModal/index.tsx:227
+msgid "Location / Venue Name"
+msgstr ""
+
 #: src/components/common/LocationsTable/index.tsx:39
 msgid "Location deleted"
 msgstr "地点已删除"
 
-#: src/components/modals/LocationEditModal/index.tsx:131
+#: src/components/modals/LocationEditModal/index.tsx:219
+msgid "Location pinned"
+msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:171
 msgid "Location saved"
 msgstr "地点已保存"
 
-#: src/components/modals/LocationEditModal/index.tsx:128
+#: src/components/modals/LocationEditModal/index.tsx:168
 msgid "Location updated"
 msgstr "地点已更新"
 
@@ -6740,7 +6764,7 @@ msgstr "标志将显示在页面头部"
 msgid "Logout"
 msgstr "注销"
 
-#: src/components/modals/LocationEditModal/index.tsx:175
+#: src/components/modals/LocationEditModal/index.tsx:290
 msgid "Longitude"
 msgstr "经度"
 
@@ -7167,6 +7191,10 @@ msgstr "姓名为必填项"
 #: src/components/routes/admin/Configurations/index.tsx:168
 msgid "Name must be less than 255 characters"
 msgstr "名称长度必须少于255个字符"
+
+#: src/components/modals/LocationEditModal/index.tsx:228
+msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
+msgstr ""
 
 #: src/components/common/QuestionAndAnswerList/index.tsx:202
 msgid "Navigate to Attendee"
@@ -8037,8 +8065,8 @@ msgid "Optional call to action"
 msgstr "可选的行动号召"
 
 #: src/components/modals/LocationEditModal/index.tsx:197
-msgid "Optional name shown when selecting a venue."
-msgstr ""
+#~ msgid "Optional name shown when selecting a venue."
+#~ msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:135
 #~ msgid "Optional nickname shown in pickers, e.g. \"HQ Conference Room\""
@@ -8880,6 +8908,10 @@ msgstr "请输入您的增值税号码"
 msgid "Please Note"
 msgstr "请注意"
 
+#: src/components/modals/LocationEditModal/index.tsx:109
+msgid "Please provide a location name or pick a point on the map."
+msgstr ""
+
 #: src/components/common/Editor/Controls/InsertImageControl/index.tsx:36
 msgid "Please provide an image."
 msgstr "请提供一张图片。"
@@ -9245,7 +9277,7 @@ msgstr ""
 "为此问题提供额外的上下文或说明。使用此字段添加条款\n"
 "和条件、指南或参与者在回答前需要了解的任何重要信息。"
 
-#: src/components/modals/LocationEditModal/index.tsx:85
+#: src/components/modals/LocationEditModal/index.tsx:116
 msgid "Provide at least one address field (venue, street, city, or country)."
 msgstr "请至少填写一个地址字段（场地、街道、城市或国家）。"
 
@@ -9952,7 +9984,7 @@ msgid "Saturday"
 msgstr "星期六"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:220
+#: src/components/modals/LocationEditModal/index.tsx:274
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -9979,7 +10011,7 @@ msgstr ""
 msgid "Save"
 msgstr "节省"
 
-#: src/components/modals/LocationEditModal/index.tsx:224
+#: src/components/modals/LocationEditModal/index.tsx:307
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10436,6 +10468,10 @@ msgstr "已选"
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:136
 msgid "Selected"
 msgstr "已选择"
+
+#: src/components/modals/LocationEditModal/index.tsx:213
+msgid "Selected Coordinates:"
+msgstr ""
 
 #: src/components/layouts/AuthLayout/index.tsx:42
 #~ msgid "Sell out your event."
@@ -11060,7 +11096,7 @@ msgstr "明天开始"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:211
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -12598,7 +12634,11 @@ msgid "Units Sold"
 msgstr ""
 
 #: src/components/modals/LocationEditModal/index.tsx:198
-msgid "University conference hall"
+#~ msgid "University conference hall"
+#~ msgstr ""
+
+#: src/components/modals/LocationEditModal/index.tsx:150
+msgid "University Venue"
 msgstr ""
 
 #: src/components/iu/IUCertificateModal/index.tsx:198
@@ -13011,7 +13051,7 @@ msgid "Venue Location Map"
 msgstr "活动场地地图"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:202
+#: src/components/modals/LocationEditModal/index.tsx:256
 msgid "Venue Name"
 msgstr "地点名称"
 
@@ -14075,7 +14115,7 @@ msgstr "邮政编码"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:268
 msgid "Zip or Postal Code"
 msgstr "邮政编码"
 

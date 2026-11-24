@@ -27,7 +27,13 @@ export const Topbar: React.FC<TopbarProps> = ({
                                                   actionGroupContent = null,
                                               }) => {
     return (
-        <div className={`${classes.topBar} ${topBarShadow ? classes.withShadow : ''}`}>
+        <div
+            className={`${classes.topBar} ${topBarShadow ? classes.withShadow : ''}`}
+            style={{
+                background: 'linear-gradient(to right, #1a7e4e 0%, #156d43 45%, #084b2f 100%)',
+                color: '#ffffff',
+            }}
+        >
             <div className={classes.topBarMain}>
                 <div className={classes.burger}>
                     <Burger
@@ -39,8 +45,14 @@ export const Topbar: React.FC<TopbarProps> = ({
                 </div>
                 <div className={classes.logo}>
                     <NavLink to={ `/manage/events` }>
-                        <div className={classes.logoBadge}>
-                            <img src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")} alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`} className={classes.logoImg}/>
+                        <div className={classes.logoBadge} style={{ maxHeight: 46 }}>
+                            <img
+                                src={getConfig("VITE_APP_LOGO_LIGHT", "/images/IUEvent2.png")}
+                                alt={`${getConfig("VITE_APP_NAME", "الجامعة الإسلامية بالمدينة المنورة")}`}
+                                className={classes.logoImg}
+                                style={{ maxHeight: 42, width: 'auto', display: 'block' }}
+                                height={42}
+                            />
                         </div>
                     </NavLink>
                 </div>

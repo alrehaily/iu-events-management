@@ -284,7 +284,7 @@
     flex-shrink: 0;
 
     @include mixins.respond-above(md) {
-      display: none;
+      display: none !important;
     }
   }
 
@@ -331,7 +331,7 @@
     }
 
     @include mixins.respond-above(md) {
-      display: none;
+      display: none !important;
     }
   }
 
