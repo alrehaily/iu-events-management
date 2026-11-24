@@ -1972,7 +1972,7 @@ msgstr "Campagne"
 msgid "Can't check in"
 msgstr "Inchecken niet mogelijk"
 
-#: src/App.tsx:89
+#: src/App.tsx:104
 #: src/components/common/CheckIn/CheckInOptionsModal.tsx:57
 #: src/components/common/ContactOrganizerModal/index.tsx:104
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:131
@@ -2718,7 +2718,7 @@ msgstr "Stel in welke producten beschikbaar zijn voor deze datum en pas eventuee
 msgid "Configured Discount"
 msgstr "Geconfigureerde korting"
 
-#: src/App.tsx:89
+#: src/App.tsx:104
 msgid "Confirm"
 msgstr "Bevestig"
 
@@ -6316,7 +6316,7 @@ msgstr "artikel(en)"
 msgid "Items"
 msgstr "Artikelen"
 
-#: src/App.tsx:91
+#: src/App.tsx:106
 msgid "IU Events Management Platform"
 msgstr ""
 
@@ -12324,7 +12324,7 @@ msgstr "Vandaag"
 msgid "Toggle columns"
 msgstr "Kolommen schakelen"
 
-#: src/App.tsx:79
+#: src/App.tsx:94
 msgid "Toggle password visibility"
 msgstr ""
 

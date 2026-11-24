@@ -80,3 +80,20 @@ export const showSuccessWithUndo = (
         ),
     });
 };
+
+if (typeof window !== "undefined") {
+    (window as unknown as {
+        __iu_show_notification?: {
+            showSuccess: typeof showSuccess;
+            showError: typeof showError;
+            showInfo: typeof showInfo;
+            showSuccessWithUndo: typeof showSuccessWithUndo;
+        };
+    }).__iu_show_notification = {
+        showSuccess,
+        showError,
+        showInfo,
+        showSuccessWithUndo,
+    };
+}
+

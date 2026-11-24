@@ -1971,7 +1971,7 @@ msgstr "Campaign"
 msgid "Can't check in"
 msgstr "Can't check in"
 
-#: src/App.tsx:89
+#: src/App.tsx:104
 #: src/components/common/CheckIn/CheckInOptionsModal.tsx:57
 #: src/components/common/ContactOrganizerModal/index.tsx:104
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:131
@@ -2717,7 +2717,7 @@ msgstr "Configure which products are available for this occurrence and optionall
 msgid "Configured Discount"
 msgstr "الخصم المحدد"
 
-#: src/App.tsx:89
+#: src/App.tsx:104
 msgid "Confirm"
 msgstr "تأكيد"
 
@@ -6317,7 +6317,7 @@ msgstr "item(s)"
 msgid "Items"
 msgstr "العناصر"
 
-#: src/App.tsx:91
+#: src/App.tsx:106
 msgid "IU Events Management Platform"
 msgstr "منصة إدارة الفعاليات في الجامعة الإسلامية"
 
@@ -12321,7 +12321,7 @@ msgstr "اليوم"
 msgid "Toggle columns"
 msgstr "إظهار الأعمدة وإخفاؤها"
 
-#: src/App.tsx:79
+#: src/App.tsx:94
 msgid "Toggle password visibility"
 msgstr "إظهار كلمة المرور أو إخفاؤها"
 

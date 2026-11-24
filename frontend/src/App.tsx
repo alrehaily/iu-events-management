@@ -1,6 +1,6 @@
 import React, {FC, PropsWithChildren, useEffect} from "react";
 import {Button, defaultVariantColorsResolver, DirectionProvider, MantineProvider, PasswordInput, v8CssVariablesResolver} from "@mantine/core";
-import {Notifications} from "@mantine/notifications";
+import {Notifications, notifications} from "@mantine/notifications";
 import {i18n} from "@lingui/core";
 import {t} from "@lingui/macro";
 import {I18nProvider} from "@lingui/react";
@@ -31,7 +31,22 @@ import {localeDirection, type SupportedLocales} from "./locales.ts";
 declare global {
     interface Window {
         hievents: Record<string, string>;
+        __iu_show_notification?: {
+            show: typeof notifications.show;
+            showSuccess: (message: React.ReactNode) => void;
+        };
     }
+}
+
+if (typeof window !== "undefined") {
+    window.__iu_show_notification = {
+        show: (options) => notifications.show(options),
+        showSuccess: (message) => notifications.show({
+            message,
+            color: "primary.8",
+            position: "top-center",
+        }),
+    };
 }
 
 type AppProps = PropsWithChildren<{
@@ -93,7 +108,12 @@ const LocalizedProviders = (props: AppProps) => {
                                 </Helmet>
                                 {props.children}
                             </ModalsProvider>
-                            <Notifications pauseResetOnHover="notification"/>
+                            <Notifications
+                                position="top-center"
+                                zIndex={1000000}
+                                withinPortal={true}
+                                pauseResetOnHover="notification"
+                            />
                             {isConsentBannerEnabled() && <CookieConsentBanner/>}
                         </HydrationBoundary>
                     </QueryClientProvider>

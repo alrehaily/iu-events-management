@@ -1971,7 +1971,7 @@ msgstr "Campagne"
 msgid "Can't check in"
 msgstr "Enregistrement impossible"
 
-#: src/App.tsx:89
+#: src/App.tsx:104
 #: src/components/common/CheckIn/CheckInOptionsModal.tsx:57
 #: src/components/common/ContactOrganizerModal/index.tsx:104
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:131
@@ -2717,7 +2717,7 @@ msgstr "Choisissez les produits disponibles pour cette date et ajustez éventuel
 msgid "Configured Discount"
 msgstr "Réduction configurée"
 
-#: src/App.tsx:89
+#: src/App.tsx:104
 msgid "Confirm"
 msgstr "Confirmer"
 
@@ -6315,7 +6315,7 @@ msgstr "article(s)"
 msgid "Items"
 msgstr "Articles"
 
-#: src/App.tsx:91
+#: src/App.tsx:106
 msgid "IU Events Management Platform"
 msgstr ""
 
@@ -12323,7 +12323,7 @@ msgstr "Aujourd'hui"
 msgid "Toggle columns"
 msgstr "Basculer les colonnes"
 
-#: src/App.tsx:79
+#: src/App.tsx:94
 msgid "Toggle password visibility"
 msgstr ""
 

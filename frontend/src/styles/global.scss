@@ -462,3 +462,18 @@ button,
   }
 }
 
+/* Global Toast Notification and Alert Layering */
+:root {
+  --notifications-z-index: 1000000;
+}
+
+.mantine-Notifications-root {
+  z-index: 1000000 !important;
+  pointer-events: none;
+}
+
+.mantine-Notification-root {
+  pointer-events: auto;
+}
+
+
