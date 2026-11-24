@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import {createPortal} from "react-dom";
 import {IconLoader2, IconX} from "@tabler/icons-react";
 import {useIULanguage} from "../../../context/IULanguageContext";
 
@@ -46,13 +47,15 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
   }, [opened, loading, onClose]);
 
   if (!opened) return null;
+  if (typeof document === "undefined") return null;
 
-  const defaultConfirmText = confirmLabel || t("confirm_btn", "تأكيد");
-  const defaultCancelText = cancelLabel || t("cancel_btn", "إلغاء");
-  const modalText = title || message || t("confirm_default_msg", "هل أنت متأكد من رغبتك في إتمام هذا الإجراء؟");
+  const defaultConfirmText = confirmLabel || t("confirm_btn", isArabic ? "تأكيد" : "Confirm");
+  const defaultCancelText = cancelLabel || t("cancel_btn", isArabic ? "إلغاء" : "Cancel");
+  const modalText = title || message || t("confirm_default_msg", isArabic ? "هل أنت متأكد من رغبتك في إتمام هذا الإجراء؟" : "Are you sure you want to proceed with this action?");
 
-  return (
+  return createPortal(
     <div
+      id="iu-confirm-overlay"
       onClick={(e) => {
         if (e.target === e.currentTarget && !loading) {
           onClose();
@@ -269,7 +272,8 @@ export const IUConfirmModal: React.FC<IUConfirmModalProps> = ({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

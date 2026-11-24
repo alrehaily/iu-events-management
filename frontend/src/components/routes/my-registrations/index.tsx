@@ -23,7 +23,7 @@ import {useScrollReveal} from "../../../hooks/useScrollReveal";
 import {showError, showSuccess} from "../../../utilites/notifications.tsx";
 
 export const MyRegistrationsPage: React.FC = () => {
-  const {t, formatDate} = useIULanguage();
+  const {t, formatDate, isArabic} = useIULanguage();
   const [user, setUser] = useState<AttendeeUser | null>(null);
   const [registrations, setRegistrations] = useState<AttendeeRegistrationData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +33,7 @@ export const MyRegistrationsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"all" | "active" | "past">("all");
 
   const [cancelModalOpen, setCancelModalOpen] = useState(false);
-  const [orderToCancel, setOrderToCancel] = useState<string | null>(null);
+  const [orderToCancel, setOrderToCancel] = useState<AttendeeRegistrationData | null>(null);
   const [cancelling, setCancelling] = useState(false);
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -71,22 +71,32 @@ export const MyRegistrationsPage: React.FC = () => {
     }
   };
 
-  const promptCancelRegistration = (orderShortId: string) => {
-    setOrderToCancel(orderShortId);
+  const promptCancelRegistration = (reg: AttendeeRegistrationData) => {
+    setOrderToCancel(reg);
     setCancelModalOpen(true);
   };
 
   const handleConfirmCancel = async () => {
     if (!orderToCancel) return;
     setCancelling(true);
+    const shortId = orderToCancel.short_id;
     try {
-      await attendeeClient.cancelRegistration(orderToCancel);
-      showSuccess(t("cancel_success_msg", "تم إلغاء الحجز والتذاكر بنجاح."));
+      await attendeeClient.cancelRegistration(shortId);
+      showSuccess(t("cancel_success_msg", isArabic ? "تم إلغاء الحجز والتذاكر بنجاح." : "Booking and tickets cancelled successfully."));
       setCancelModalOpen(false);
       setOrderToCancel(null);
+
+      // Optimistically update status in local state so cards and counts update immediately without page refresh
+      setRegistrations((prev) =>
+        prev.map((reg) =>
+          reg.short_id === shortId ? {...reg, status: "CANCELLED"} : reg
+        )
+      );
+
+      // Sync fresh data from backend
       loadRegistrations(user?.email);
     } catch (err: any) {
-      showError(err.response?.data?.message || t("cancel_fail_msg", "تعذر إلغاء التسجيل. يرجى المحاولة لاحقاً."));
+      showError(err.response?.data?.message || t("cancel_fail_msg", isArabic ? "تعذر إلغاء الحجز. يرجى المحاولة لاحقاً." : "Unable to cancel booking. Please try again later."));
     } finally {
       setCancelling(false);
     }
@@ -104,6 +114,9 @@ export const MyRegistrationsPage: React.FC = () => {
       setCertLoading(false);
     }
   };
+
+  const activeCount = registrations.filter((r) => r.status !== "CANCELLED").length;
+  const cancelledCount = registrations.filter((r) => r.status === "CANCELLED").length;
 
   const filteredRegistrations = registrations.filter((reg) => {
     if (activeTab === "all") return true;
@@ -185,21 +198,21 @@ export const MyRegistrationsPage: React.FC = () => {
                 className={`btn ${activeTab === "all" ? "solid" : "outline"} iu-interactive-pill`}
                 style={{padding: "6px 20px", fontSize: 13, borderRadius: 999}}
               >
-                {t("tab_all", "الكل")} ({registrations.length})
+                {t("tab_all", isArabic ? "الكل" : "All")} ({registrations.length})
               </button>
               <button
                 onClick={() => setActiveTab("active")}
                 className={`btn ${activeTab === "active" ? "solid" : "outline"} iu-interactive-pill`}
                 style={{padding: "6px 20px", fontSize: 13, borderRadius: 999}}
               >
-                {t("tab_active", "الحجوزات النشطة")}
+                {t("tab_active", isArabic ? "الحجوزات النشطة" : "Active Bookings")} ({activeCount})
               </button>
               <button
                 onClick={() => setActiveTab("past")}
                 className={`btn ${activeTab === "past" ? "solid" : "outline"} iu-interactive-pill`}
                 style={{padding: "6px 20px", fontSize: 13, borderRadius: 999}}
               >
-                {t("tab_cancelled", "الملغية")}
+                {t("tab_cancelled", isArabic ? "الملغية" : "Cancelled")} ({cancelledCount})
               </button>
             </div>
 
@@ -279,7 +292,7 @@ export const MyRegistrationsPage: React.FC = () => {
 
                   return (
                     <div
-                      key={reg.order_id}
+                      key={reg.short_id || reg.order_id || idx}
                       className={`iu-reveal iu-stagger-${(idx % 4) + 1} iu-hover-lift`}
                       style={{
                         background: "#fff",
@@ -462,7 +475,7 @@ export const MyRegistrationsPage: React.FC = () => {
                           }}
                         >
                           <button
-                            onClick={() => promptCancelRegistration(reg.short_id)}
+                            onClick={() => promptCancelRegistration(reg)}
                             style={{
                               background: "none",
                               border: "none",
@@ -472,7 +485,7 @@ export const MyRegistrationsPage: React.FC = () => {
                               fontWeight: 600,
                             }}
                           >
-                            {t("cancel_booking_btn", "إلغاء هذا الحجز والتذاكر")}
+                            {t("cancel_booking_btn", isArabic ? "إلغاء هذا الحجز والتذاكر" : "Cancel this booking and tickets")}
                           </button>
                         </div>
                       )}
@@ -492,7 +505,7 @@ export const MyRegistrationsPage: React.FC = () => {
         />
 
         <IUConfirmModal
-          opened={cancelModalOpen}
+          opened={cancelModalOpen && Boolean(orderToCancel)}
           onClose={() => {
             if (!cancelling) {
               setCancelModalOpen(false);
@@ -501,9 +514,10 @@ export const MyRegistrationsPage: React.FC = () => {
           }}
           onConfirm={handleConfirmCancel}
           loading={cancelling}
-          title={t("confirm_cancel_msg", "هل أنت متأكد من رغبتك في إلغاء هذا التسجيل والتذكرة؟")}
-          confirmLabel={t("confirm_btn", "تأكيد")}
-          cancelLabel={t("cancel_btn", "إلغاء")}
+          title={t("confirm_cancel_msg", isArabic ? "هل أنت متأكد من رغبتك في إلغاء هذا الحجز والتذاكر؟" : "Are you sure you want to cancel this booking and tickets?")}
+          message={orderToCancel?.event?.title ? `${orderToCancel.event.title} (#${orderToCancel.short_id})` : undefined}
+          confirmLabel={t("confirm_btn", isArabic ? "تأكيد" : "Confirm")}
+          cancelLabel={t("cancel_btn", isArabic ? "إلغاء" : "Cancel")}
         />
       </div>
     </div>
