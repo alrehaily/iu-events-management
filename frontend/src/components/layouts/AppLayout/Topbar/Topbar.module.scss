@@ -207,10 +207,10 @@
     }
 
     :global(.mantine-Select-input) {
-      background: rgba(255, 255, 255, 0.16) !important;
+      background: rgba(255, 255, 255, 0.18) !important;
       border: 1px solid rgba(255, 255, 255, 0.3) !important;
       color: #ffffff !important;
-      border-radius: var(--iu-radius-sm, 8px) !important;
+      border-radius: var(--iu-radius-md, 12px) !important;
       font-family: var(--iu-font-family) !important;
       font-weight: 600 !important;
       font-size: 0.8125rem !important;
@@ -220,19 +220,29 @@
       padding-inline-start: 32px !important;
       padding-inline-end: 26px !important;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
-      transition: all 0.2s ease !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
       cursor: pointer !important;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.25) !important;
-        border-color: rgba(255, 255, 255, 0.5) !important;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12) !important;
+        background: #ffffff !important;
+        color: var(--iu-green-primary, #084b2f) !important;
+        border-color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
       }
+    }
+
+    &:hover :global(.mantine-Select-section) svg,
+    :global(.mantine-Select-input:hover) ~ :global(.mantine-Select-section) svg,
+    :global(.mantine-Select-wrapper:hover) :global(.mantine-Select-section) svg {
+      color: var(--iu-green-primary, #084b2f) !important;
+      stroke: currentColor !important;
     }
 
     :global(.mantine-Select-section) svg {
       color: #ffffff !important;
+      stroke: currentColor !important;
+      transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
     :global(.mantine-Select-dropdown) {
@@ -330,16 +340,30 @@
     align-items: center;
 
     :global(.mantine-Avatar-root) {
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      background: rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      background: rgba(255, 255, 255, 0.18) !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
       cursor: pointer;
 
       &:hover {
-        transform: scale(1.06);
-        border-color: #ffffff;
+        background: #ffffff !important;
+        color: var(--iu-green-primary, #084b2f) !important;
+        border-color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+
+        svg, :global(.tabler-icon) {
+          color: var(--iu-green-primary, #084b2f) !important;
+          stroke: currentColor !important;
+        }
+      }
+
+      svg, :global(.tabler-icon) {
+        color: inherit !important;
+        stroke: currentColor !important;
+        transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
     }
 
