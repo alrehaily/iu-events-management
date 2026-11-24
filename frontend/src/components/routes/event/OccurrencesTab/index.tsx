@@ -585,11 +585,19 @@ const OccurrencesTab = () => {
                 return (
                     <Paper className={classes.emptyState} p="xl" radius="md" withBorder>
                         <Stack align="center" gap="md">
-                            <img
-                                src="/blank-slate/occurrence-schedule.svg"
-                                alt=""
-                                style={{width: 200, height: 200}}
-                            />
+                            <div style={{
+                                width: 72,
+                                height: 72,
+                                borderRadius: '50%',
+                                background: 'var(--iu-green-light, #e8f5ee)',
+                                color: 'var(--iu-green-primary, #084b2f)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginBottom: 4,
+                            }}>
+                                <IconCalendarEvent size={36} stroke={1.75} />
+                            </div>
                             <Stack align="center" gap={4}>
                                 <Text fw={600} size="lg">
                                     {hasActiveFilters ? t`No dates match your filters` : t`No dates scheduled yet`}

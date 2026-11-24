@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-import { IconTicket, IconSchool, IconQrcode, IconCertificate, IconSearch } from "@tabler/icons-react";
+import { IconTicket, IconSchool, IconQrcode, IconCertificate, IconSearch, IconArrowRight, IconArrowLeft } from "@tabler/icons-react";
 import classes from "./Home.module.scss";
 import { IUHero } from "../../iu/IUHero";
 import { IUEventCard } from "../../iu/IUEventCard";
@@ -157,8 +157,11 @@ export const IUHomePage: React.FC = () => {
         <div className="container">
           <div className={`${classes.sectionHead} iu-reveal iu-stagger-11`}>
             <h2>{t("home_upcoming_title", "الفعاليات القادمة والمتاحة للتسجيل")}</h2>
-            <Link to="/events" className={`btn outline iu-interactive-pill ${classes.viewAllBtn}`}>
-              {t("home_view_all_events", "عرض كافة الفعاليات")}
+            <Link to="/events" className={classes.viewAllBtn}>
+              <span>{t("home_view_all_events", "عرض كافة الفعاليات")}</span>
+              <span className={classes.viewAllArrow} aria-hidden="true">
+                {locale === "en" ? <IconArrowRight size={18} stroke={2.2} /> : <IconArrowLeft size={18} stroke={2.2} />}
+              </span>
             </Link>
           </div>
 
