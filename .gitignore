@@ -35,3 +35,5 @@ test_results/
 # Composer binary (downloaded tool, not source)
 composer.phar
 backend/composer.phar
+/GP2_FINAL_FUNCTIONAL_AUDIT.md
+/backend/storage/gp2-phpunit.xml
