@@ -2170,7 +2170,7 @@ msgstr "Изменить"
 msgid "Change duration"
 msgstr ""
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr ""
 
@@ -2602,7 +2602,7 @@ msgstr ""
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr ""
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr ""
 
@@ -2745,7 +2745,7 @@ msgstr ""
 #~ msgid "Confirm new password"
 #~ msgstr ""
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr ""
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr ""
 
@@ -4271,7 +4271,7 @@ msgstr ""
 msgid "Email & Templates"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4449,7 +4449,7 @@ msgstr ""
 msgid "Ends {0}"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr ""
 
@@ -5398,7 +5398,7 @@ msgstr ""
 msgid "First Invoice Number"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5669,7 +5669,7 @@ msgstr ""
 msgid "Go to home page"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr ""
 
@@ -6360,7 +6360,7 @@ msgstr ""
 msgid "John"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr ""
 
@@ -6443,7 +6443,7 @@ msgstr ""
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6508,7 +6508,7 @@ msgstr ""
 msgid "Last login"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6848,7 +6848,7 @@ msgstr ""
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr ""
 
@@ -6876,9 +6876,9 @@ msgstr ""
 msgid "Manually add an Attendee"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr ""
 
@@ -7230,7 +7230,7 @@ msgstr ""
 msgid "New location"
 msgstr "Новая локация"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr ""
 
@@ -7481,7 +7481,7 @@ msgstr ""
 msgid "No messages to show"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr ""
 
@@ -8551,11 +8551,11 @@ msgstr ""
 msgid "Paste URL"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr ""
 
@@ -9425,7 +9425,7 @@ msgstr "Причины"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr ""
 
@@ -11249,7 +11249,7 @@ msgstr ""
 msgid "Successfully confirmed email change"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr ""
 
@@ -11669,7 +11669,7 @@ msgstr ""
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Полная сумма заказа будет возвращена на первоначальный способ оплаты клиента."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr ""
 
@@ -12770,7 +12770,7 @@ msgstr ""
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr ""
 
@@ -13863,7 +13863,7 @@ msgstr "Вы должны согласиться на получение соо�
 msgid "You must agree to the terms and conditions"
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr ""
 
@@ -13875,7 +13875,7 @@ msgstr ""
 msgid "You must verify your email address before you can update the organizer status."
 msgstr ""
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr ""
 

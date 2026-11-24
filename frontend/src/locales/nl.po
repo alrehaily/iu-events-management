@@ -2171,7 +2171,7 @@ msgstr "Wijzigen"
 msgid "Change duration"
 msgstr "Duur wijzigen"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Wachtwoord wijzigen"
 
@@ -2603,7 +2603,7 @@ msgstr "Binnenkort beschikbaar"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Door komma's gescheiden trefwoorden die het evenement beschrijven. Deze worden door zoekmachines gebruikt om het evenement te categoriseren en indexeren"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Communicatievoorkeuren"
 
@@ -2746,7 +2746,7 @@ msgstr "Bevestig e-mailwijziging"
 #~ msgid "Confirm new password"
 #~ msgstr "Bevestig nieuw wachtwoord"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Nieuw wachtwoord bevestigen"
 
@@ -3325,7 +3325,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Valuta"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Huidig wachtwoord"
 
@@ -4274,7 +4274,7 @@ msgstr "Instellingen voor e-mail en meldingen"
 msgid "Email & Templates"
 msgstr "E-mail & Sjablonen"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4452,7 +4452,7 @@ msgstr "Afgelopen {0}"
 msgid "Ends {0}"
 msgstr "Eindigt {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Engels"
 
@@ -5401,7 +5401,7 @@ msgstr "Eerste deelnemer"
 msgid "First Invoice Number"
 msgstr "Eerste factuurnummer"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5672,7 +5672,7 @@ msgstr "Ga naar evenementpagina"
 msgid "Go to home page"
 msgstr "Ga naar de startpagina"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Naar de planning"
 
@@ -6363,7 +6363,7 @@ msgstr "Taak in wachtrij voor opnieuw proberen"
 msgid "John"
 msgstr "Jan"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Jansen"
 
@@ -6446,7 +6446,7 @@ msgstr "labelupdates"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6511,7 +6511,7 @@ msgstr "Laatste 90 dagen"
 msgid "Last login"
 msgstr "Laatste login"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6851,7 +6851,7 @@ msgstr "Planning beheren"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Belastingen en toeslagen beheren die kunnen worden toegepast op je producten"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Tickets beheren"
 
@@ -6879,9 +6879,9 @@ msgstr "Handmatig aanbod"
 msgid "Manually add an Attendee"
 msgstr "Handmatig een genodigde toevoegen"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Deelnemer handmatig toevoegen"
 
@@ -7233,7 +7233,7 @@ msgstr "Nieuw label"
 msgid "New location"
 msgstr "Nieuwe locatie"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Nieuw wachtwoord"
 
@@ -7484,7 +7484,7 @@ msgstr "Geen berichten gevonden"
 msgid "No messages to show"
 msgstr "Geen berichten om te tonen"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Geen datums beschikbaar"
 
@@ -8554,11 +8554,11 @@ msgstr "Afgelopen evenementen"
 msgid "Paste URL"
 msgstr "Plak URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9430,7 +9430,7 @@ msgstr "Redenen"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Productupdates van {0} ontvangen."
 
@@ -11254,7 +11254,7 @@ msgstr "E-mailadres succesvol bevestigd"
 msgid "Successfully confirmed email change"
 msgstr "E-mailwijziging succesvol bevestigd"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Succesvol aangemaakte deelnemer"
 
@@ -11674,7 +11674,7 @@ msgstr "Het evenement dat je zoekt is momenteel niet beschikbaar. Mogelijk is he
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Het volledige bestellingsbedrag wordt terugbetaald naar de oorspronkelijke betalingsmethode van de klant."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "De taal waarin de deelnemer e-mails ontvangt."
 
@@ -12775,7 +12775,7 @@ msgstr "Locatie bijwerken"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Profiel bijwerken"
 
@@ -13868,7 +13868,7 @@ msgstr "U moet akkoord gaan met het ontvangen van berichten"
 msgid "You must agree to the terms and conditions"
 msgstr "U moet akkoord gaan met de algemene voorwaarden"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Je moet een ticket aanmaken voordat je handmatig een genodigde kunt toevoegen."
 
@@ -13880,7 +13880,7 @@ msgstr "Je moet minstens één prijsniveau hebben"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Je moet je e-mailadres verifiëren voordat je de status van de organisator kunt bijwerken."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Je moet minstens één datum aanmaken voordat je deelnemers aan dit terugkerende evenement kunt toevoegen."
 

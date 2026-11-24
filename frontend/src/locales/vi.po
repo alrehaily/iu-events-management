@@ -2170,7 +2170,7 @@ msgstr "Thay đổi"
 msgid "Change duration"
 msgstr "Đổi thời lượng"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Thay đổi mật khẩu"
 
@@ -2602,7 +2602,7 @@ msgstr "Sắp ra mắt"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Các từ khóa mô tả sự kiện, được phân tách bằng dấu phẩy. Chúng sẽ được công cụ tìm kiếm sử dụng để phân loại và lập chỉ mục sự kiện."
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Tùy chọn liên lạc"
 
@@ -2745,7 +2745,7 @@ msgstr "Xác nhận thay đổi email"
 #~ msgid "Confirm new password"
 #~ msgstr "Xác nhận mật khẩu mới"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Xác nhận mật khẩu mới"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Tiền tệ"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Mật khẩu hiện tại"
 
@@ -4273,7 +4273,7 @@ msgstr "Cài đặt email & thông báo"
 msgid "Email & Templates"
 msgstr "Email & Mẫu"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Đã kết thúc {0}"
 msgid "Ends {0}"
 msgstr "Kết thúc {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Tiếng Anh"
 
@@ -5400,7 +5400,7 @@ msgstr "Người tham dự đầu tiên"
 msgid "First Invoice Number"
 msgstr "Số hóa đơn đầu tiên"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "Đến trang sự kiện"
 msgid "Go to home page"
 msgstr "Đi đến trang chủ"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Đến lịch"
 
@@ -6362,7 +6362,7 @@ msgstr "Công việc đã được xếp hàng để thử lại"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6445,7 +6445,7 @@ msgstr "cập nhật nhãn"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "90 ngày qua"
 msgid "Last login"
 msgstr "Đăng nhập cuối cùng"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "Quản lý lịch"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Quản lý thuế và phí có thể được áp dụng cho sản phẩm của bạn"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Quản lý Vé"
 
@@ -6878,9 +6878,9 @@ msgstr "Ưu đãi thủ công"
 msgid "Manually add an Attendee"
 msgstr "Thêm một người tham dự theo cách thủ công"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Thêm người tham dự"
 
@@ -7232,7 +7232,7 @@ msgstr "Nhãn mới"
 msgid "New location"
 msgstr "Địa điểm mới"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Mật khẩu mới"
 
@@ -7483,7 +7483,7 @@ msgstr "Không tìm thấy tin nhắn"
 msgid "No messages to show"
 msgstr "Không có tin nhắn nào hiển thị"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Không có ngày nào khả dụng"
 
@@ -8553,11 +8553,11 @@ msgstr "Sự kiện đã qua"
 msgid "Paste URL"
 msgstr "Dán URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9429,7 +9429,7 @@ msgstr "Lý do"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Nhận cập nhật sản phẩm từ {0}."
 
@@ -11253,7 +11253,7 @@ msgstr "Địa chỉ email được xác nhận thành công"
 msgid "Successfully confirmed email change"
 msgstr "Thay đổi email được xác nhận thành công"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Người tham dự được tạo thành công"
 
@@ -11673,7 +11673,7 @@ msgstr "Sự kiện bạn đang tìm kiếm hiện không khả dụng. Nó có 
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Toàn bộ số tiền đơn hàng sẽ được hoàn lại phương thức thanh toán gốc của khách hàng."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Ngôn ngữ mà người tham dự sẽ nhận email."
 
@@ -12774,7 +12774,7 @@ msgstr "Cập nhật địa điểm"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Cập nhật hồ sơ"
 
@@ -13867,7 +13867,7 @@ msgstr "Bạn phải đồng ý nhận tin nhắn"
 msgid "You must agree to the terms and conditions"
 msgstr "Bạn phải đồng ý với các điều khoản và điều kiện"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Bạn phải tạo một vé trước khi bạn có thể thêm một người tham dự."
 
@@ -13879,7 +13879,7 @@ msgstr "Bạn phải có ít nhất một cấp giá"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Bạn phải xác minh địa chỉ email trước khi cập nhật trạng thái nhà tổ chức."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Bạn cần tạo ít nhất một ngày trước khi thêm người tham dự vào sự kiện định kỳ này."
 

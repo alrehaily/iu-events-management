@@ -2170,7 +2170,7 @@ msgstr "更改"
 msgid "Change duration"
 msgstr "修改时长"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "更改密码"
 
@@ -2602,7 +2602,7 @@ msgstr "即将推出"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "以逗号分隔的描述活动的关键字。搜索引擎将使用这些关键字来帮助对活动进行分类和索引"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "通信偏好"
 
@@ -2745,7 +2745,7 @@ msgstr "确认电子邮件更改"
 #~ msgid "Confirm new password"
 #~ msgstr "确认新密码"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "确认新密码"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "货币"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "当前密码"
 
@@ -4273,7 +4273,7 @@ msgstr "电子邮件和通知设置"
 msgid "Email & Templates"
 msgstr "电子邮件和模板"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "已于 {0} 结束"
 msgid "Ends {0}"
 msgstr "{0} 结束"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "英语"
 
@@ -5400,7 +5400,7 @@ msgstr "第一位参与者"
 msgid "First Invoice Number"
 msgstr "第一张发票号码"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "前往活动页面"
 msgid "Go to home page"
 msgstr "返回主页"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "前往排期"
 
@@ -6362,7 +6362,7 @@ msgstr "任务已排队等待重试"
 msgid "John"
 msgstr "约翰"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "约翰逊"
 
@@ -6445,7 +6445,7 @@ msgstr "标签更新"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "过去 90 天"
 msgid "Last login"
 msgstr "最后登录"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "管理排期"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "管理可以应用于您的产品的税费"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "管理机票"
 
@@ -6878,9 +6878,9 @@ msgstr "手动提供"
 msgid "Manually add an Attendee"
 msgstr "手动添加与会者"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "手动添加与会者"
 
@@ -7232,7 +7232,7 @@ msgstr "新标签"
 msgid "New location"
 msgstr "新地点"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "新密码"
 
@@ -7483,7 +7483,7 @@ msgstr "未找到消息"
 msgid "No messages to show"
 msgstr "无信息显示"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "没有可选场次"
 
@@ -8553,11 +8553,11 @@ msgstr "过去的活动"
 msgid "Paste URL"
 msgstr "粘贴链接"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "帕特里克"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9429,7 +9429,7 @@ msgstr "原因"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "接收 {0} 的产品更新。"
 
@@ -11253,7 +11253,7 @@ msgstr "成功确认电子邮件地址"
 msgid "Successfully confirmed email change"
 msgstr "成功确认电子邮件更改"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "成功创建与会者"
 
@@ -11673,7 +11673,7 @@ msgstr "您查找的活动目前不可用。它可能已被删除、过期或 UR
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "订单全额将退款至客户的原始付款方式。"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "与会者接收电子邮件的语言。"
 
@@ -12774,7 +12774,7 @@ msgstr "更新地点"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "更新个人资料"
 
@@ -13867,7 +13867,7 @@ msgstr "您必须同意接收消息"
 msgid "You must agree to the terms and conditions"
 msgstr "您必须同意条款和条件"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "必须先创建机票，然后才能手动添加与会者。"
 
@@ -13879,7 +13879,7 @@ msgstr "您必须至少有一个价格等级"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "您必须先验证电子邮箱地址，才能更新组织者状态。"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "你需要先创建至少一个场次，才能为这个重复活动添加参与者。"
 

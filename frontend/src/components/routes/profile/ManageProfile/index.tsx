@@ -1,7 +1,7 @@
 import {Card} from "../../../common/Card";
 import {useForm, UseFormReturnType} from "@mantine/form";
 import {useGetMe} from "../../../../queries/useGetMe.ts";
-import {Button, Checkbox, NativeSelect, PasswordInput, Select, Tabs, TextInput} from "@mantine/core";
+import {Button, Checkbox, PasswordInput, Select, Tabs, TextInput} from "@mantine/core";
 import classes from "./ManageProfile.module.scss";
 import {useEffect, useState} from "react";
 import {IconMail, IconPassword, IconUser, IconWorld} from "@tabler/icons-react";
@@ -14,15 +14,15 @@ import {useCancelEmailChange} from "../../../../mutations/useCancelEmailChange.t
 import {useFormErrorResponseHandler} from "../../../../hooks/useFormErrorResponseHandler.tsx";
 import {t, Trans} from "@lingui/macro";
 import {useResendEmailConfirmation} from "../../../../mutations/useResendEmailConfirmation.ts";
-import {getSupportedLocale, localeToFlagEmojiMap, localeToNameMap, SupportedLocales} from "../../../../locales.ts";
+import {availableLocales, getSupportedLocale, localeToNameMap, SupportedLocales} from "../../../../locales.ts";
 import {Fieldset} from "../../../common/Fieldset";
 import {InputGroup} from "../../../common/InputGroup";
 import {getConfig} from "../../../../utilites/config.ts";
 import {useIULanguage} from "../../../../context/IULanguageContext.tsx";
 
-const localeSelectData = Object.keys(localeToNameMap).map(locale => ({
+const localeSelectData = availableLocales.map(locale => ({
     value: locale,
-    label: `${localeToFlagEmojiMap[locale as SupportedLocales]} ${localeToNameMap[locale as SupportedLocales]}`,
+    label: localeToNameMap[locale],
 }));
 
 export const ManageProfile = () => {
@@ -189,12 +189,14 @@ export const ManageProfile = () => {
                                                 placeholder={t`UTC`}
                                             />
 
-                                            <NativeSelect
+                                            <Select
                                                 required
                                                 data={localeSelectData}
-                                                value={profileForm.values.locale || ''}
-                                                onChange={(e) => profileForm.setFieldValue('locale', e.target.value as SupportedLocales)}
+                                                value={profileForm.values.locale || 'ar'}
+                                                onChange={(val) => profileForm.setFieldValue('locale', (val as SupportedLocales) || 'ar')}
                                                 label={t`Language`}
+                                                allowDeselect={false}
+                                                checkIconPosition="right"
                                             />
                                         </InputGroup>
                                     </Fieldset>

@@ -2170,7 +2170,7 @@ msgstr "Zmeniť"
 msgid "Change duration"
 msgstr "Zmeniť dĺžku"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Zmeniť heslo"
 
@@ -2602,7 +2602,7 @@ msgstr "Čoskoro"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Kľúčové slová oddelené čiarkou popisujúce udalosť. Tieto budú použité vyhľadávačmi na kategorizáciu a indexovanie udalosti"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Preferencie komunikácie"
 
@@ -2745,7 +2745,7 @@ msgstr "Potvrdiť zmenu e-mailu"
 #~ msgid "Confirm new password"
 #~ msgstr "Potvrdiť nové heslo"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Potvrdiť nové heslo"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Mena"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Aktuálne heslo"
 
@@ -4273,7 +4273,7 @@ msgstr "Nastavenia e-mailu a notifikácií"
 msgid "Email & Templates"
 msgstr "E-mail a šablóny"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Skončilo {0}"
 msgid "Ends {0}"
 msgstr "Končí {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Angličtina"
 
@@ -5400,7 +5400,7 @@ msgstr "Prvý účastník"
 msgid "First Invoice Number"
 msgstr "Číslo prvej faktúry"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "Prejsť na stránku udalosti"
 msgid "Go to home page"
 msgstr "Prejsť na domovskú stránku"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Prejsť na rozvrh"
 
@@ -6362,7 +6362,7 @@ msgstr "Úloha zaradená do frontu na opakovanie"
 msgid "John"
 msgstr "Ján"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Novák"
 
@@ -6445,7 +6445,7 @@ msgstr "zmeny označení"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "Posledných 90 dní"
 msgid "Last login"
 msgstr "Posledné prihlásenie"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "Spravovať rozvrh"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Spravovať dane a poplatky, ktoré možno uplatniť na vaše produkty"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Spravovať lístky"
 
@@ -6878,9 +6878,9 @@ msgstr "Manuálna ponuka"
 msgid "Manually add an Attendee"
 msgstr "Manuálne pridať účastníka"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Manuálne pridať účastníka"
 
@@ -7232,7 +7232,7 @@ msgstr "Nové označenie"
 msgid "New location"
 msgstr "Nové miesto"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Nové heslo"
 
@@ -7483,7 +7483,7 @@ msgstr "Nenašli sa žiadne správy"
 msgid "No messages to show"
 msgstr "Žiadne správy na zobrazenie"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Nie sú dostupné žiadne termíny"
 
@@ -8553,11 +8553,11 @@ msgstr "Minulé udalosti"
 msgid "Paste URL"
 msgstr "Vložiť URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrik"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrik@acme.com"
 
@@ -9429,7 +9429,7 @@ msgstr "Dôvody"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Dostávajte aktualizácie produktov od {0}."
 
@@ -11253,7 +11253,7 @@ msgstr "E-mailová adresa bola úspešne potvrdená"
 msgid "Successfully confirmed email change"
 msgstr "Zmena e-mailu bola úspešne potvrdená"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Účastník bol úspešne vytvorený"
 
@@ -11673,7 +11673,7 @@ msgstr "Udalosť, ktorú hľadáte, momentálne nie je dostupná. Mohla byť ods
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Celá suma objednávky bude vrátená na pôvodný platobný prostriedok zákazníka."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Jazyk, v ktorom bude účastník dostávať e-maily."
 
@@ -12774,7 +12774,7 @@ msgstr "Aktualizovať miesto"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Aktualizovať profil"
 
@@ -13867,7 +13867,7 @@ msgstr "Musíte súhlasiť s prijímaním správ"
 msgid "You must agree to the terms and conditions"
 msgstr "Musíte súhlasiť s podmienkami a ustanoveniami"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Pred manuálnym pridaním účastníka musíte vytvoriť lístok."
 
@@ -13879,7 +13879,7 @@ msgstr "Musíte mať aspoň jednu cenovú úroveň"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Pred aktualizáciou stavu organizátora musíte overiť e-mailovú adresu."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Skôr než pridáte účastníkov k tomuto opakujúcemu sa podujatiu, musíte vytvoriť aspoň jeden termín."
 

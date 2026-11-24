@@ -2170,7 +2170,7 @@ msgstr "Alterar"
 msgid "Change duration"
 msgstr "Alterar duração"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Alterar a senha"
 
@@ -2602,7 +2602,7 @@ msgstr "Em breve"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Palavras-chave separadas por vírgulas que descrevem o evento. Eles serão usados pelos mecanismos de pesquisa para ajudar a categorizar e indexar o evento"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Preferências de comunicação"
 
@@ -2745,7 +2745,7 @@ msgstr "Confirmar alteração de e-mail"
 #~ msgid "Confirm new password"
 #~ msgstr "Confirmar nova senha"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Confirme a nova senha"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Moeda"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Senha atual"
 
@@ -4273,7 +4273,7 @@ msgstr "Configurações de e-mail e notificação"
 msgid "Email & Templates"
 msgstr "E-mail e Modelos"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Terminou {0}"
 msgid "Ends {0}"
 msgstr "Termina {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Inglês"
 
@@ -5400,7 +5400,7 @@ msgstr "Primeiro participante"
 msgid "First Invoice Number"
 msgstr "Primeiro número da fatura"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "Ir para a página do evento"
 msgid "Go to home page"
 msgstr "Ir para a página inicial"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Ir para o calendário"
 
@@ -6362,7 +6362,7 @@ msgstr "Trabalho em fila para nova tentativa"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6445,7 +6445,7 @@ msgstr "atualizações de etiqueta"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "Últimos 90 dias"
 msgid "Last login"
 msgstr "Último Login"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "Gerir calendário"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Gerencie impostos e taxas que podem ser aplicados aos seus produtos"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Gerenciar ingressos"
 
@@ -6878,9 +6878,9 @@ msgstr "Oferta manual"
 msgid "Manually add an Attendee"
 msgstr "Adicionar manualmente um participante"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Adicionar participante manualmente"
 
@@ -7232,7 +7232,7 @@ msgstr "Nova etiqueta"
 msgid "New location"
 msgstr "Nova localização"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Nova Senha"
 
@@ -7483,7 +7483,7 @@ msgstr "Nenhuma mensagem encontrada"
 msgid "No messages to show"
 msgstr "Nenhuma mensagem para mostrar"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Não há datas disponíveis"
 
@@ -8553,11 +8553,11 @@ msgstr "Eventos passados"
 msgid "Paste URL"
 msgstr "Cole a URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrício"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9429,7 +9429,7 @@ msgstr "Motivos"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Receber atualizações de produtos do {0}."
 
@@ -11253,7 +11253,7 @@ msgstr "Endereço de e-mail confirmado com sucesso"
 msgid "Successfully confirmed email change"
 msgstr "Alteração de e-mail confirmada com sucesso"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Participante criado com sucesso"
 
@@ -11673,7 +11673,7 @@ msgstr "O evento que você está procurando não está disponível no momento. E
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "O valor total do pedido será reembolsado para o método de pagamento original do cliente."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "A língua em que o participante receberá as mensagens de correio eletrónico."
 
@@ -12774,7 +12774,7 @@ msgstr "Atualizar local"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Atualizar perfil"
 
@@ -13867,7 +13867,7 @@ msgstr "Deve concordar em receber mensagens"
 msgid "You must agree to the terms and conditions"
 msgstr "Você deve concordar com os termos e condições"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Você deve criar um ticket antes de poder adicionar manualmente um participante."
 
@@ -13879,7 +13879,7 @@ msgstr "Você deve ter pelo menos uma faixa de preço"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Você precisa verificar seu e-mail antes de atualizar o status do organizador."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Tem de criar pelo menos uma data antes de poder adicionar participantes a este evento recorrente."
 

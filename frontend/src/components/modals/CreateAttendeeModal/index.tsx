@@ -16,8 +16,7 @@ import {InputGroup} from "../../common/InputGroup";
 import {
     getClientLocale,
     getLocaleName,
-    localeToFlagEmojiMap,
-    localeToNameMap,
+    availableLocales,
     SupportedLocales
 } from "../../../locales.ts";
 import {ProductSelector} from "../../common/ProductSelector";
@@ -215,14 +214,15 @@ export const CreateAttendeeModal = ({onClose}: GenericModalProps) => {
 
                 <Select
                     required
-                    data={Object.keys(localeToNameMap).map(locale => ({
+                    data={availableLocales.map(locale => ({
                         value: locale,
-                        label: localeToFlagEmojiMap[locale as SupportedLocales] + ' ' + getLocaleName(locale as SupportedLocales),
+                        label: getLocaleName(locale),
                     }))}
                     {...form.getInputProps('locale')}
                     label={t`Language`}
                     placeholder={t`English`}
                     description={t`The language the attendee will receive emails in.`}
+                    allowDeselect={false}
                 />
 
                 <ProductSelector

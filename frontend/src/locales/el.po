@@ -2170,7 +2170,7 @@ msgstr "Αλλαγή"
 msgid "Change duration"
 msgstr "Αλλαγή διάρκειας"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Αλλαγή κωδικού"
 
@@ -2602,7 +2602,7 @@ msgstr "Έρχεται Σύντομα"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Λέξεις-κλειδιά χωρισμένες με κόμμα που περιγράφουν την εκδήλωση. Θα χρησιμοποιηθούν από μηχανές αναζήτησης για κατηγοριοποίηση και ευρετηρίαση"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Προτιμήσεις Επικοινωνίας"
 
@@ -2745,7 +2745,7 @@ msgstr "Επιβεβαίωση Αλλαγής Email"
 #~ msgid "Confirm new password"
 #~ msgstr "Επιβεβαίωση νέου κωδικού"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Επιβεβαίωση Νέου Κωδικού"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Νόμισμα"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Τρέχων Κωδικός"
 
@@ -4273,7 +4273,7 @@ msgstr "Ρυθμίσεις Email & Ειδοποιήσεων"
 msgid "Email & Templates"
 msgstr "Email & Πρότυπα"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Έληξε {0}"
 msgid "Ends {0}"
 msgstr "Λήγει {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Αγγλικά"
 
@@ -5400,7 +5400,7 @@ msgstr "Πρώτος συμμετέχων"
 msgid "First Invoice Number"
 msgstr "Πρώτος Αριθμός Τιμολογίου"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "Μετάβαση στη Σελίδα Εκδήλωσης"
 msgid "Go to home page"
 msgstr "Μετάβαση στην αρχική σελίδα"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Μετάβαση στο πρόγραμμα"
 
@@ -6362,7 +6362,7 @@ msgstr "Η εργασία τέθηκε σε ουρά για επανάληψη"
 msgid "John"
 msgstr "Γιώργης"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Παπαδόπουλος"
 
@@ -6445,7 +6445,7 @@ msgstr "ενημερώσεις ετικέτας"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "Τελευταίες 90 ημέρες"
 msgid "Last login"
 msgstr "Τελευταία σύνδεση"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "Διαχείριση προγράμματος"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Διαχείριση φόρων και τελών που μπορούν να εφαρμοστούν στα προϊόντα σας"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Διαχείριση εισιτηρίων"
 
@@ -6878,9 +6878,9 @@ msgstr "Χειροκίνητη προσφορά"
 msgid "Manually add an Attendee"
 msgstr "Χειροκίνητη προσθήκη Συμμετέχοντα"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Χειροκίνητη Προσθήκη Συμμετέχοντα"
 
@@ -7232,7 +7232,7 @@ msgstr "Νέα ετικέτα"
 msgid "New location"
 msgstr "Νέα τοποθεσία"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Νέος Κωδικός"
 
@@ -7483,7 +7483,7 @@ msgstr "Δεν βρέθηκαν μηνύματα"
 msgid "No messages to show"
 msgstr "Δεν υπάρχουν μηνύματα για εμφάνιση"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Δεν υπάρχουν διαθέσιμες ημερομηνίες"
 
@@ -8553,11 +8553,11 @@ msgstr "Παλαιότερες Εκδηλώσεις"
 msgid "Paste URL"
 msgstr "Επικόλληση URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Παναγιώτης"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "panagiotis@papademos.gr"
 
@@ -9429,7 +9429,7 @@ msgstr "Λόγοι"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Λήψη ενημερώσεων προϊόντων από {0}."
 
@@ -11253,7 +11253,7 @@ msgstr "Επιτυχής επιβεβαίωση διεύθυνσης email"
 msgid "Successfully confirmed email change"
 msgstr "Επιτυχής επιβεβαίωση αλλαγής email"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Επιτυχής δημιουργία συμμετέχοντα"
 
@@ -11673,7 +11673,7 @@ msgstr "Η εκδήλωση που αναζητάτε δεν είναι διαθ
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Το πλήρες ποσό παραγγελίας θα επιστραφεί στην αρχική μέθοδο πληρωμής του πελάτη."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Η γλώσσα στην οποία θα λαμβάνει email ο συμμετέχων."
 
@@ -12774,7 +12774,7 @@ msgstr "Ενημέρωση τοποθεσίας"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Ενημέρωση προφίλ"
 
@@ -13867,7 +13867,7 @@ msgstr "Πρέπει να συμφωνήσετε να λαμβάνετε μην�
 msgid "You must agree to the terms and conditions"
 msgstr "Πρέπει να συμφωνήσετε με τους όρους και προϋποθέσεις"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Πρέπει να δημιουργήσετε εισιτήριο πριν προσθέσετε χειροκίνητα συμμετέχοντα."
 
@@ -13879,7 +13879,7 @@ msgstr "Πρέπει να έχετε τουλάχιστον μία βαθμίδ�
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Πρέπει να επαληθεύσετε τη διεύθυνση email πριν ενημερώσετε την κατάσταση διοργανωτή."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Πρέπει να δημιουργήσετε τουλάχιστον μία ημερομηνία πριν προσθέσετε συμμετέχοντες σε αυτή την επαναλαμβανόμενη εκδήλωση."
 

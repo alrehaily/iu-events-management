@@ -2170,7 +2170,7 @@ msgstr "تغيير"
 msgid "Change duration"
 msgstr "Change duration"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "تغيير كلمة المرور"
 
@@ -2602,7 +2602,7 @@ msgstr "قريباً"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "كلمات مفتاحية مفصولة بفواصل تساعد محركات البحث على تصنيف الصفحة وفهرستها."
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Communication Preferences"
 
@@ -2745,7 +2745,7 @@ msgstr "تأكيد تغيير البريد الإلكتروني"
 #~ msgid "Confirm new password"
 #~ msgstr "Confirm new password"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Confirm New Password"
 
@@ -3324,7 +3324,7 @@ msgstr "ثقافة ومعارض"
 msgid "Currency"
 msgstr "العملة"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Current Password"
 
@@ -4273,7 +4273,7 @@ msgstr "إعدادات البريد الإلكتروني والإشعارات"
 msgid "Email & Templates"
 msgstr "البريد الإلكتروني والقوالب"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Ended {0}"
 msgid "Ends {0}"
 msgstr "Ends {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "English"
 
@@ -5400,7 +5400,7 @@ msgstr "المشارك الأول"
 msgid "First Invoice Number"
 msgstr "أول رقم فاتورة"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "الذهاب إلى صفحة الفعالية"
 msgid "Go to home page"
 msgstr "الذهاب إلى الصفحة الرئيسية"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Go to Schedule"
 
@@ -6364,7 +6364,7 @@ msgstr "Job queued for retry"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6447,7 +6447,7 @@ msgstr "label updates"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6512,7 +6512,7 @@ msgstr "آخر 90 يومًا"
 msgid "Last login"
 msgstr "آخر تسجيل دخول"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6852,7 +6852,7 @@ msgstr "إدارة الجدول"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "إدارة الضرائب والرسوم المطبقة على المنتجات"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "إدارة التذاكر"
 
@@ -6880,9 +6880,9 @@ msgstr "عرض يدوي"
 msgid "Manually add an Attendee"
 msgstr "إضافة حاضر يدويًا"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "إضافة حاضر يدويًا"
 
@@ -7234,7 +7234,7 @@ msgstr "New label"
 msgid "New location"
 msgstr "موقع جديد"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "New Password"
 
@@ -7485,7 +7485,7 @@ msgstr "لم يتم العثور على رسائل"
 msgid "No messages to show"
 msgstr "لا توجد رسائل لعرضها"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "No occurrences available"
 
@@ -8555,11 +8555,11 @@ msgstr "الفعاليات السابقة"
 msgid "Paste URL"
 msgstr "Paste URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9431,7 +9431,7 @@ msgstr "Reasons"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Receive product updates from {0}."
 
@@ -11251,7 +11251,7 @@ msgstr "Successfully confirmed email address"
 msgid "Successfully confirmed email change"
 msgstr "تم تأكيد تغيير البريد الإلكتروني بنجاح."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Successfully created attendee"
 
@@ -11671,7 +11671,7 @@ msgstr "The event you're looking for is not available at the moment. It may have
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "The full order amount will be refunded to the customer's original payment method."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "The language the attendee will receive emails in."
 
@@ -12772,7 +12772,7 @@ msgstr "Update location"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "تحديث الملف الشخصي"
 
@@ -13861,7 +13861,7 @@ msgstr "You must agree to receive messages"
 msgid "You must agree to the terms and conditions"
 msgstr "You must agree to the terms and conditions"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "You must create a ticket before you can manually add an attendee."
 
@@ -13873,7 +13873,7 @@ msgstr "أضف فئة سعر واحدة على الأقل"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "يجب عليك التحقق من عنوان بريدك الإلكتروني قبل أن تتمكن من تحديث حالة المنظم."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "You need to create at least one occurrence before you can add attendees to this recurring event."
 

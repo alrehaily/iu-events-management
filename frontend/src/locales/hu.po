@@ -2170,7 +2170,7 @@ msgstr "Módosítás"
 msgid "Change duration"
 msgstr "Időtartam módosítása"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Jelszó módosítása"
 
@@ -2602,7 +2602,7 @@ msgstr "Hamarosan érkezik"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Vesszővel elválasztott kulcsszavak, amelyek leírják az eseményt. Ezeket a keresőmotorok használják az esemény kategorizálásához és indexeléséhez."
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Kommunikációs beállítások"
 
@@ -2745,7 +2745,7 @@ msgstr "E-mail cím módosításának megerősítése"
 #~ msgid "Confirm new password"
 #~ msgstr "Új jelszó megerősítése"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Új jelszó megerősítése"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Pénznem"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Jelenlegi jelszó"
 
@@ -4273,7 +4273,7 @@ msgstr "E-mail és értesítési beállítások"
 msgid "Email & Templates"
 msgstr "E-mail és sablonok"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Véget ért: {0}"
 msgid "Ends {0}"
 msgstr "Vége: {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Angol"
 
@@ -5400,7 +5400,7 @@ msgstr "Első résztvevő"
 msgid "First Invoice Number"
 msgstr "Első számla száma"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "Esemény oldalra"
 msgid "Go to home page"
 msgstr "Ugrás a főoldalra"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Ugrás az ütemtervhez"
 
@@ -6362,7 +6362,7 @@ msgstr "Feladat újrapróbálásra sorba állítva"
 msgid "John"
 msgstr "János"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6445,7 +6445,7 @@ msgstr "címkefrissítések"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "Utolsó 90 nap"
 msgid "Last login"
 msgstr "Utolsó bejelentkezés"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "Ütemterv kezelése"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Kezelje az adókat és díjakat, amelyek alkalmazhatók a termékeire."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Jegyek kezelése"
 
@@ -6878,9 +6878,9 @@ msgstr "Manuális ajánlat"
 msgid "Manually add an Attendee"
 msgstr "Résztvevő manuális hozzáadása"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Résztvevő manuális hozzáadása"
 
@@ -7232,7 +7232,7 @@ msgstr "Új címke"
 msgid "New location"
 msgstr "Új helyszín"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Új jelszó"
 
@@ -7483,7 +7483,7 @@ msgstr "Nem található üzenet"
 msgid "No messages to show"
 msgstr "Nincs megjeleníthető üzenet"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Nincs elérhető időpont"
 
@@ -8553,11 +8553,11 @@ msgstr "Múltbeli események"
 msgid "Paste URL"
 msgstr "URL beillesztése"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrik"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9429,7 +9429,7 @@ msgstr "Indokok"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Termékfrissítések fogadása a {0}-től."
 
@@ -11253,7 +11253,7 @@ msgstr "E-mail cím sikeresen megerősítve"
 msgid "Successfully confirmed email change"
 msgstr "E-mail cím módosítás sikeresen megerősítve"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Résztvevő sikeresen létrehozva"
 
@@ -11673,7 +11673,7 @@ msgstr "A keresett esemény jelenleg nem elérhető. Lehet, hogy eltávolított�
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "A teljes rendelési összeg visszatérítésre kerül a vásárló eredeti fizetési módjára."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Az a nyelv, amelyen a résztvevő e-maileket kap."
 
@@ -12774,7 +12774,7 @@ msgstr "Helyszín frissítése"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Profil frissítése"
 
@@ -13867,7 +13867,7 @@ msgstr "Hozzá kell járulnia az üzenetek fogadásához"
 msgid "You must agree to the terms and conditions"
 msgstr "El kell fogadnia a feltételeket."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Jegy létrehozása kötelező, mielőtt manuálisan hozzáadhatna egy résztvevőt."
 
@@ -13879,7 +13879,7 @@ msgstr "Legalább egy árszintre szüksége van."
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Megerősítenie kell e-mail címét, mielőtt frissítheti a szervezői státuszt."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Legalább egy időpontot létre kell hoznia, mielőtt résztvevőket adhat ehhez az ismétlődő eseményhez."
 

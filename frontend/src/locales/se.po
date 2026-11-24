@@ -2170,7 +2170,7 @@ msgstr "Ändra"
 msgid "Change duration"
 msgstr "Ändra längd"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:239
+#: src/components/routes/profile/ManageProfile/index.tsx:241
 msgid "Change password"
 msgstr "Ändra lösenord"
 
@@ -2602,7 +2602,7 @@ msgstr "Kommer snart"
 msgid "Comma seperated keywords that describe the event. These will be used by search engines to help categorize and index the event"
 msgstr "Kommaseparerade nyckelord som beskriver evenemanget. Dessa används av sökmotorer för att kategorisera och indexera evenemanget."
 
-#: src/components/routes/profile/ManageProfile/index.tsx:205
+#: src/components/routes/profile/ManageProfile/index.tsx:207
 msgid "Communication Preferences"
 msgstr "Kommunikationspreferens"
 
@@ -2745,7 +2745,7 @@ msgstr "Bekräfta ändring av e-postadress"
 #~ msgid "Confirm new password"
 #~ msgstr "Bekräfta nytt lösenord"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:237
+#: src/components/routes/profile/ManageProfile/index.tsx:239
 msgid "Confirm New Password"
 msgstr "Bekräfta nytt lösenord"
 
@@ -3324,7 +3324,7 @@ msgstr ""
 msgid "Currency"
 msgstr "Valuta"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:229
+#: src/components/routes/profile/ManageProfile/index.tsx:231
 msgid "Current Password"
 msgstr "Nuvarande lösenord"
 
@@ -4273,7 +4273,7 @@ msgstr "E-post- och aviseringsinställningar"
 msgid "Email & Templates"
 msgstr "E-post och mallar"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:211
+#: src/components/modals/CreateAttendeeModal/index.tsx:210
 #: src/components/modals/ManageAttendeeModal/index.tsx:208
 #: src/components/modals/ManageOrderModal/index.tsx:242
 msgid "Email address"
@@ -4451,7 +4451,7 @@ msgstr "Slutade {0}"
 msgid "Ends {0}"
 msgstr "Slutar {0}"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:224
+#: src/components/modals/CreateAttendeeModal/index.tsx:223
 msgid "English"
 msgstr "Engelska"
 
@@ -5400,7 +5400,7 @@ msgstr "Första deltagare"
 msgid "First Invoice Number"
 msgstr "Första fakturanummer"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:197
+#: src/components/modals/CreateAttendeeModal/index.tsx:196
 #: src/components/modals/ManageAttendeeModal/index.tsx:202
 #: src/components/modals/ManageOrderModal/index.tsx:229
 #: src/components/routes/product-widget/CollectInformation/index.tsx:516
@@ -5671,7 +5671,7 @@ msgstr "Gå till evenemangssidan"
 msgid "Go to home page"
 msgstr "Gå till startsidan"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:184
+#: src/components/modals/CreateAttendeeModal/index.tsx:183
 msgid "Go to Schedule"
 msgstr "Gå till schemat"
 
@@ -6362,7 +6362,7 @@ msgstr "Jobb köat för nytt försök"
 msgid "John"
 msgstr "John"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:205
+#: src/components/modals/CreateAttendeeModal/index.tsx:204
 msgid "Johnson"
 msgstr "Johnson"
 
@@ -6445,7 +6445,7 @@ msgstr "etikettuppdateringar"
 
 #: src/components/common/LanguageSwitcher/index.tsx:30
 #: src/components/common/LanguageSwitcher/index.tsx:31
-#: src/components/modals/CreateAttendeeModal/index.tsx:223
+#: src/components/modals/CreateAttendeeModal/index.tsx:222
 #: src/components/modals/ManageAttendeeModal/index.tsx:156
 #: src/components/routes/profile/ManageProfile/index.tsx:197
 msgid "Language"
@@ -6510,7 +6510,7 @@ msgstr "Senaste 90 dagarna"
 msgid "Last login"
 msgstr "Senaste inloggning"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:204
+#: src/components/modals/CreateAttendeeModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:204
 #: src/components/modals/ManageOrderModal/index.tsx:235
 msgid "Last name"
@@ -6850,7 +6850,7 @@ msgstr "Hantera schema"
 msgid "Manage taxes and fees which can be applied to your products"
 msgstr "Hantera skatter och avgifter som kan tillämpas på dina produkter"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:159
+#: src/components/modals/CreateAttendeeModal/index.tsx:158
 msgid "Manage tickets"
 msgstr "Hantera biljetter"
 
@@ -6878,9 +6878,9 @@ msgstr "Manuellt erbjudande"
 msgid "Manually add an Attendee"
 msgstr "Lägg till deltagare manuellt"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:150
-#: src/components/modals/CreateAttendeeModal/index.tsx:167
-#: src/components/modals/CreateAttendeeModal/index.tsx:192
+#: src/components/modals/CreateAttendeeModal/index.tsx:149
+#: src/components/modals/CreateAttendeeModal/index.tsx:166
+#: src/components/modals/CreateAttendeeModal/index.tsx:191
 msgid "Manually Add Attendee"
 msgstr "Lägg till deltagare manuellt"
 
@@ -7232,7 +7232,7 @@ msgstr "Ny etikett"
 msgid "New location"
 msgstr "Ny plats"
 
-#: src/components/routes/profile/ManageProfile/index.tsx:233
+#: src/components/routes/profile/ManageProfile/index.tsx:235
 msgid "New Password"
 msgstr "Nytt lösenord"
 
@@ -7483,7 +7483,7 @@ msgstr "Inga meddelanden hittades"
 msgid "No messages to show"
 msgstr "Inga meddelanden att visa"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:171
+#: src/components/modals/CreateAttendeeModal/index.tsx:170
 msgid "No occurrences available"
 msgstr "Inga datum tillgängliga"
 
@@ -8553,11 +8553,11 @@ msgstr "Tidigare evenemang"
 msgid "Paste URL"
 msgstr "Klistra in URL"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:198
+#: src/components/modals/CreateAttendeeModal/index.tsx:197
 msgid "Patrick"
 msgstr "Patrick"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:212
+#: src/components/modals/CreateAttendeeModal/index.tsx:211
 msgid "patrick@acme.com"
 msgstr "patrick@acme.com"
 
@@ -9429,7 +9429,7 @@ msgstr "Anledningar"
 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:157
 #: src/components/routes/auth/Register/index.tsx:137
-#: src/components/routes/profile/ManageProfile/index.tsx:210
+#: src/components/routes/profile/ManageProfile/index.tsx:212
 msgid "Receive product updates from {0}."
 msgstr "Ta emot produktuppdateringar från {0}."
 
@@ -11253,7 +11253,7 @@ msgstr "E-postadressen bekräftades"
 msgid "Successfully confirmed email change"
 msgstr "E-poständringen bekräftades"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:135
+#: src/components/modals/CreateAttendeeModal/index.tsx:134
 msgid "Successfully created attendee"
 msgstr "Deltagaren skapades"
 
@@ -11673,7 +11673,7 @@ msgstr "Evenemanget du letar efter är inte tillgängligt just nu. Det kan ha ta
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Hela orderbeloppet kommer att återbetalas till kundens ursprungliga betalningsmetod."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:225
+#: src/components/modals/CreateAttendeeModal/index.tsx:224
 msgid "The language the attendee will receive emails in."
 msgstr "Språket som deltagaren kommer att få e-post på."
 
@@ -12774,7 +12774,7 @@ msgstr "Uppdatera plats"
 
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:464
-#: src/components/routes/profile/ManageProfile/index.tsx:215
+#: src/components/routes/profile/ManageProfile/index.tsx:217
 msgid "Update profile"
 msgstr "Uppdatera profil"
 
@@ -13867,7 +13867,7 @@ msgstr "Du måste godkänna att ta emot meddelanden"
 msgid "You must agree to the terms and conditions"
 msgstr "Du måste godkänna villkoren"
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:151
+#: src/components/modals/CreateAttendeeModal/index.tsx:150
 msgid "You must create a ticket before you can manually add an attendee."
 msgstr "Du måste skapa en biljett innan du kan lägga till en deltagare manuellt."
 
@@ -13879,7 +13879,7 @@ msgstr "Du måste ha minst en prisnivå"
 msgid "You must verify your email address before you can update the organizer status."
 msgstr "Du måste verifiera din e-postadress innan du kan uppdatera arrangörsstatusen."
 
-#: src/components/modals/CreateAttendeeModal/index.tsx:174
+#: src/components/modals/CreateAttendeeModal/index.tsx:173
 msgid "You need to create at least one occurrence before you can add attendees to this recurring event."
 msgstr "Du behöver skapa minst ett datum innan du kan lägga till deltagare i det här återkommande evenemanget."
 
