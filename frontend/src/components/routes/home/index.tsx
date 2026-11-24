@@ -9,7 +9,7 @@ import { useIULanguage } from "../../../context/IULanguageContext";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
 
 export const IUHomePage: React.FC = () => {
-  const { t, dir, locale } = useIULanguage();
+  const { t, locale } = useIULanguage();
   const [languageMotion, setLanguageMotion] = useState<"ar" | "en" | null>(null);
   const previousLocaleRef = useRef(locale);
 
