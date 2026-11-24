@@ -27,12 +27,16 @@ class VerifyCertificateActionPublic extends BaseAction
         $attendee = $certificate->attendee;
         $event = $certificate->event;
 
+        $eventDate = $event?->start_date 
+            ? date('Y-m-d', strtotime((string)$event->start_date)) 
+            : ($certificate->issued_at ? date('Y-m-d', strtotime((string)$certificate->issued_at)) : date('Y-m-d'));
+
         return response()->json([
             'valid' => true,
             'certificate_code' => $certificate->certificate_code,
             'attendee_name' => $attendee ? trim($attendee->first_name . ' ' . $attendee->last_name) : 'المشارك',
             'event_title' => $event?->title ?? 'فعالية في الجامعة الإسلامية',
-            'event_date' => $event?->start_date ? date('Y-m-d', strtotime((string)$event->start_date)) : '',
+            'event_date' => $eventDate,
             'issued_at' => $certificate->issued_at ? date('c', strtotime((string)$certificate->issued_at)) : '',
             'issuer' => 'الجامعة الإسلامية بالمدينة المنورة',
             'verified' => true,

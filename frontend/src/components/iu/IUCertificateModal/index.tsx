@@ -365,6 +365,18 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               }}
             />
 
+            {/* Elegant Inner Geometric Hairline Border */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 10,
+                bottom: 14,
+                border: "1px solid rgba(197, 155, 39, 0.45)",
+                pointerEvents: "none",
+                zIndex: 2,
+              }}
+            />
+
             {/* Top Official Islamic University Sunburst Emblem */}
             <div
               style={{
@@ -587,7 +599,10 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                 }}
               >
                 {/* Bottom Left / Corner: Discreet Certificate Verification Code */}
-                <div
+                <a
+                  href={`/certificates/verify/${certificate.certificate_code}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     fontSize: 10,
                     color: "#94a3b8",
@@ -595,10 +610,12 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                     fontFamily: "monospace",
                     direction: "ltr",
                     paddingBottom: 2,
+                    textDecoration: "none",
                   }}
+                  title={isArabicTemplate ? "التحقق من صحة الشهادة" : "Verify Certificate Online"}
                 >
                   Ref: {certificate.certificate_code}
-                </div>
+                </a>
 
                 {/* Bottom Center: Pure Vector SVG Islamic Geometric Rosette resting on bottom navy bar */}
                 <div

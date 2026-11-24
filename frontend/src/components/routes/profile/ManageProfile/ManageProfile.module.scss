@@ -3,6 +3,13 @@
 
   .tabsCard {
     padding: 0;
+    transform: none !important;
+    transition: none !important;
+
+    &:hover {
+      transform: none !important;
+      box-shadow: 0 4px 18px var(--iu-shadow) !important;
+    }
   }
 
   .emailChangeAlert {
