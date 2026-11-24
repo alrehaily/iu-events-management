@@ -104,7 +104,11 @@ const LocalizedProviders = (props: AppProps) => {
                             <ModalsProvider labels={{confirm: t`Confirm`, cancel: t`Cancel`}}>
                                 <Helmet>
                                     <title>{getConfig("VITE_APP_NAME", t`IU Events Management Platform`)}</title>
-                                    <link rel="icon" type="image/png" href={getConfig("VITE_APP_FAVICON", "/images/IUEvent2.png")}/>
+                                    <link rel="icon" type="image/svg+xml" href={getConfig("VITE_APP_FAVICON_SVG", "/favicon.svg")}/>
+                                    <link rel="icon" type="image/png" sizes="32x32" href={getConfig("VITE_APP_FAVICON", "/manifest-icons/favicon-32x32.png")}/>
+                                    <link rel="icon" type="image/png" sizes="16x16" href="/manifest-icons/favicon-16x16.png"/>
+                                    <link rel="shortcut icon" href="/favicon.ico"/>
+                                    <link rel="apple-touch-icon" sizes="180x180" href="/manifest-icons/apple-touch-icon.png"/>
                                 </Helmet>
                                 {props.children}
                             </ModalsProvider>
