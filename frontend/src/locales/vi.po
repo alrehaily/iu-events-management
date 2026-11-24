@@ -2237,7 +2237,7 @@ msgstr "Xác nhận rời khỏi sự kiện này!"
 msgid "Check your email"
 msgstr "Kiểm tra email của bạn"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Kiểm tra hộp thư của bạn! Nếu có vé liên kết với email này, bạn sẽ nhận được liên kết để xem."
 
@@ -4535,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Nhập mã đối tác duy nhất"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Nhập email của bạn"
 
@@ -4657,7 +4657,7 @@ msgstr "Sự kiện đã tạo"
 msgid "Event custom template"
 msgstr "Mẫu tùy chỉnh sự kiện"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5769,7 +5769,7 @@ msgstr "Hãy giúp chúng tôi cải thiện bằng cách cho biết lý do bạ
 msgid "Helps us understand how the site is used."
 msgstr "Giúp chúng tôi hiểu cách trang web được sử dụng."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Đây là tất cả các vé liên kết với địa chỉ email của bạn."
 
@@ -6609,7 +6609,7 @@ msgstr "Thư viện"
 msgid "Light"
 msgstr "Sáng"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Liên kết hết hạn hoặc không hợp lệ"
 
@@ -6687,7 +6687,7 @@ msgstr "Đang tải ..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Vị trí"
@@ -7154,7 +7154,7 @@ msgstr "Tiêu đề sự kiện tuyệt vời của tôi ..."
 msgid "My Profile"
 msgstr "Hồ sơ của tôi"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "Vé Của Tôi"
 
@@ -7623,7 +7623,7 @@ msgstr "Không có gợi ý"
 msgid "No Taxes or Fees have been added."
 msgstr "Không có thuế hoặc phí đã được thêm vào."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Không tìm thấy vé"
 
@@ -8106,7 +8106,6 @@ msgstr "đơn hàng"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Đơn hàng"
 
@@ -9071,7 +9070,7 @@ msgstr "In tất cả vé"
 msgid "Print Ticket"
 msgstr "In vé"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "In vé"
 
@@ -9316,7 +9315,7 @@ msgstr "Khi xuất bản, trang sự kiện của bạn sẽ công khai và mở
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Đã mua"
 
@@ -9685,7 +9684,7 @@ msgstr "Không tìm thấy báo cáo"
 msgid "Reports"
 msgstr "Báo cáo"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Yêu cầu liên kết mới"
 
@@ -10491,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Bán chạy 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Gửi"
 
@@ -10989,7 +10988,7 @@ msgstr "Đã xảy ra lỗi. Vui lòng thử lại sau."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -12008,7 +12007,7 @@ msgstr "Đây là lần duy nhất khóa bí mật ký được hiển thị. Vu
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Giới hạn này áp dụng cho tổng số lượng bán ra của tất cả các ngày trong lịch cộng lại — không phải giới hạn theo từng ngày. Để giới hạn số người tham dự mỗi ngày, hãy đặt sức chứa trên <0>trang Lịch các buổi</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Liên kết này không hợp lệ hoặc đã hết hạn."
 
@@ -12165,7 +12164,7 @@ msgstr "T5"
 msgid "Thursday"
 msgstr "Thứ Năm"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "vé"
@@ -12249,12 +12248,12 @@ msgstr "Loại vé"
 msgid "Ticketing & Sales"
 msgstr "Bán vé"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "vé"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12500,7 +12499,7 @@ msgstr "Hãy điều chỉnh bộ lọc để thấy thêm ngày."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Thử email khác"
 
@@ -13182,7 +13181,7 @@ msgstr "Xem tin nhắn"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Xem đơn hàng"
 
@@ -13291,7 +13290,7 @@ msgstr "Chúng tôi không thể xóa danh mục. Vui lòng thử lại."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Không thể ngắt kết nối tài khoản Stripe này. Vui lòng thử lại."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Chúng tôi không tìm thấy đơn hàng nào liên kết với địa chỉ email này."
 

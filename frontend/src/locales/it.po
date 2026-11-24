@@ -2237,7 +2237,7 @@ msgstr "Dai un'occhiata a questo evento!"
 msgid "Check your email"
 msgstr "Controlla la tua email"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Controlla la tua casella di posta! Se ci sono biglietti associati a questa email, riceverai un link per visualizzarli."
 
@@ -4535,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Inserisci codice affiliato univoco"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Inserisci la tua email"
 
@@ -4657,7 +4657,7 @@ msgstr "Evento creato"
 msgid "Event custom template"
 msgstr "Modello personalizzato evento"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5769,7 +5769,7 @@ msgstr "Aiutaci a migliorare dicendoci perché te ne vai"
 msgid "Helps us understand how the site is used."
 msgstr "Ci aiuta a capire come viene usato il sito."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Ecco tutti i biglietti associati al tuo indirizzo email."
 
@@ -6609,7 +6609,7 @@ msgstr "Libreria"
 msgid "Light"
 msgstr "Chiaro"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Link scaduto o non valido"
 
@@ -6687,7 +6687,7 @@ msgstr "Caricamento..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Luogo"
@@ -7154,7 +7154,7 @@ msgstr "Il mio fantastico titolo dell'evento..."
 msgid "My Profile"
 msgstr "Il Mio Profilo"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "I Miei Biglietti"
 
@@ -7623,7 +7623,7 @@ msgstr "Nessun suggerimento"
 msgid "No Taxes or Fees have been added."
 msgstr "Nessuna Tassa o Commissione è stata aggiunta."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Nessun biglietto trovato"
 
@@ -8106,7 +8106,6 @@ msgstr "ordine"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Ordine"
 
@@ -9071,7 +9070,7 @@ msgstr "Stampa Tutti i Biglietti"
 msgid "Print Ticket"
 msgstr "Stampa biglietto"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Stampa Biglietti"
 
@@ -9316,7 +9315,7 @@ msgstr "Con la pubblicazione la pagina del tuo evento diventa pubblica e si apro
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Acquistato"
 
@@ -9685,7 +9684,7 @@ msgstr "Report non trovato"
 msgid "Reports"
 msgstr "Report"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Richiedi un nuovo link"
 
@@ -10491,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Si vende velocemente 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Invia"
 
@@ -10989,7 +10988,7 @@ msgstr "Qualcosa è andato storto. Riprova più tardi."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -12008,7 +12007,7 @@ msgstr "Questa è l'unica volta in cui il segreto di firma verrà mostrato. Copi
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Questo limita le vendite totali di tutte le date del programma nel loro insieme: non è un limite per data. Per limitare la partecipazione a ogni data, imposta una capacità nella <0>pagina Programmazione delle date</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Questo link non è valido o è scaduto."
 
@@ -12165,7 +12164,7 @@ msgstr "Gio"
 msgid "Thursday"
 msgstr "Giovedì"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "biglietto"
@@ -12249,12 +12248,12 @@ msgstr "Tipo di Biglietto"
 msgid "Ticketing & Sales"
 msgstr "Biglietteria e vendite"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "biglietti"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12500,7 +12499,7 @@ msgstr "Modifica i filtri per vedere altre date."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Prova un'altra email"
 
@@ -13182,7 +13181,7 @@ msgstr "Visualizza messaggio"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Visualizza Ordine"
 
@@ -13291,7 +13290,7 @@ msgstr "Non è stato possibile eliminare la categoria. Riprova."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Non siamo riusciti a scollegare questo account Stripe. Riprova."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Non abbiamo trovato ordini associati a questo indirizzo email."
 

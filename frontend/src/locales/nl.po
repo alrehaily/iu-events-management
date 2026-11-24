@@ -2238,7 +2238,7 @@ msgstr "Bekijk dit evenement!"
 msgid "Check your email"
 msgstr "Controleer je e-mail"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Controleer je inbox! Als er tickets gekoppeld zijn aan dit e-mailadres, ontvang je een link om ze te bekijken."
 
@@ -4536,7 +4536,7 @@ msgid "Enter unique affiliate code"
 msgstr "Voer unieke affiliatecode in"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Voer je e-mailadres in"
 
@@ -4658,7 +4658,7 @@ msgstr "Evenement aangemaakt"
 msgid "Event custom template"
 msgstr "Evenement aangepaste sjabloon"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5770,7 +5770,7 @@ msgstr "Help ons verbeteren door te vertellen waarom je vertrekt"
 msgid "Helps us understand how the site is used."
 msgstr "Helpt ons te begrijpen hoe de site wordt gebruikt."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Hier zijn alle tickets die gekoppeld zijn aan je e-mailadres."
 
@@ -6610,7 +6610,7 @@ msgstr "Bibliotheek"
 msgid "Light"
 msgstr "Licht"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Link verlopen of ongeldig"
 
@@ -6688,7 +6688,7 @@ msgstr "Aan het laden..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Locatie"
@@ -7155,7 +7155,7 @@ msgstr "Mijn verbazingwekkende evenementtitel..."
 msgid "My Profile"
 msgstr "Mijn profiel"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "Mijn Tickets"
 
@@ -7624,7 +7624,7 @@ msgstr "Geen suggesties"
 msgid "No Taxes or Fees have been added."
 msgstr "Er zijn geen belastingen of toeslagen toegevoegd."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Geen tickets gevonden"
 
@@ -8107,7 +8107,6 @@ msgstr "bestelling"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Bestel"
 
@@ -9072,7 +9071,7 @@ msgstr "Alle tickets afdrukken"
 msgid "Print Ticket"
 msgstr "Ticket afdrukken"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Tickets afdrukken"
 
@@ -9317,7 +9316,7 @@ msgstr "Door te publiceren wordt je evenementpagina openbaar en worden registrat
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Gekocht"
 
@@ -9686,7 +9685,7 @@ msgstr "Rapport niet gevonden"
 msgid "Reports"
 msgstr "Rapporten"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Nieuwe link aanvragen"
 
@@ -10492,7 +10491,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Verkoopt snel 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Stuur"
 
@@ -10990,7 +10989,7 @@ msgstr "Er is iets misgegaan. Probeer het later opnieuw."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -12009,7 +12008,7 @@ msgstr "Dit is de enige keer dat het ondertekeningsgeheim wordt getoond. Kopieer
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Dit beperkt de totale verkoop van alle datums in je schema samen — het is geen limiet per datum. Om het aantal deelnemers per datum te beperken, stel je een capaciteit in op de <0>pagina Datumschema</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Deze link is ongeldig of verlopen."
 
@@ -12166,7 +12165,7 @@ msgstr "Do"
 msgid "Thursday"
 msgstr "Donderdag"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "ticket"
@@ -12250,12 +12249,12 @@ msgstr "Tickettype"
 msgid "Ticketing & Sales"
 msgstr "Ticketing & verkoop"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "tickets"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12501,7 +12500,7 @@ msgstr "Pas je filters aan om meer datums te zien."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Probeer een ander e-mailadres"
 
@@ -13183,7 +13182,7 @@ msgstr "Bericht bekijken"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Bestelling Bekijken"
 
@@ -13292,7 +13291,7 @@ msgstr "We konden de categorie niet verwijderen. Probeer het opnieuw."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "We konden dit Stripe-account niet ontkoppelen. Probeer het opnieuw."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "We konden geen bestellingen vinden die gekoppeld zijn aan dit e-mailadres."
 

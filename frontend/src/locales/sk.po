@@ -2237,7 +2237,7 @@ msgstr "Pozrite si túto udalosť!"
 msgid "Check your email"
 msgstr "Skontrolujte svoj e-mail"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "Skontrolujte doručenú poštu! Ak sú s týmto e-mailom spojené lístky, dostanete odkaz na ich zobrazenie."
 
@@ -4535,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "Zadajte jedinečný partnerský kód"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "Zadajte svoj e-mail"
 
@@ -4657,7 +4657,7 @@ msgstr "Udalosť vytvorená"
 msgid "Event custom template"
 msgstr "Vlastná šablóna udalosti"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5769,7 +5769,7 @@ msgstr "Pomôžte nám zlepšiť sa tým, že nám poviete, prečo odchádzate"
 msgid "Helps us understand how the site is used."
 msgstr "Pomáha nám pochopiť, ako sa stránka používa."
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "Tu sú všetky lístky spojené s vašou e-mailovou adresou."
 
@@ -6609,7 +6609,7 @@ msgstr "Knižnica"
 msgid "Light"
 msgstr "Svetlý"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "Odkaz vypršal alebo je neplatný"
 
@@ -6687,7 +6687,7 @@ msgstr "Načítavanie..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "Miesto"
@@ -7154,7 +7154,7 @@ msgstr "Názov mojej úžasnej udalosti..."
 msgid "My Profile"
 msgstr "Môj profil"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "Moje lístky"
 
@@ -7623,7 +7623,7 @@ msgstr "Žiadne návrhy"
 msgid "No Taxes or Fees have been added."
 msgstr "Neboli pridané žiadne dane ani poplatky."
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "Nenašli sa žiadne lístky"
 
@@ -8106,7 +8106,6 @@ msgstr "objednávka"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "Objednávka"
 
@@ -9071,7 +9070,7 @@ msgstr "Vytlačiť všetky lístky"
 msgid "Print Ticket"
 msgstr "Vytlačiť lístok"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "Vytlačiť lístky"
 
@@ -9316,7 +9315,7 @@ msgstr "Zverejnením sa stránka vašej udalosti stane verejnou a otvoria sa reg
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "Zakúpené"
 
@@ -9685,7 +9684,7 @@ msgstr "Správa nenájdená"
 msgid "Reports"
 msgstr "Reporty"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "Požiadať o nový odkaz"
 
@@ -10491,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "Rýchlo sa predáva 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "Odoslať"
 
@@ -10989,7 +10988,7 @@ msgstr "Niečo sa pokazilo. Skúste to neskôr."
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -12008,7 +12007,7 @@ msgstr "Toto je jediný čas, kedy sa zobrazí podpisový tajný kľúč. Skopí
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "Toto obmedzuje celkový predaj za všetky termíny vo vašom rozvrhu spolu — nejde o limit na termín. Ak chcete obmedziť účasť na jednotlivých termínoch, nastavte kapacitu na <0>stránke Rozvrh termínov</0>."
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "Tento odkaz je neplatný alebo vypršal."
 
@@ -12165,7 +12164,7 @@ msgstr "Št"
 msgid "Thursday"
 msgstr "Štvrtok"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "lístok"
@@ -12249,12 +12248,12 @@ msgstr "Typ lístka"
 msgid "Ticketing & Sales"
 msgstr "Predaj lístkov"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "lístky"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12500,7 +12499,7 @@ msgstr "Upravte filtre, aby ste videli viac termínov."
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "Skúste iný e-mail"
 
@@ -13182,7 +13181,7 @@ msgstr "Zobraziť správu"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "Zobraziť objednávku"
 
@@ -13291,7 +13290,7 @@ msgstr "Nepodarilo sa odstrániť kategóriu. Skúste to znovu."
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "Tento účet Stripe sa nepodarilo odpojiť. Skúste to znova."
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "Nenašli sa žiadne objednávky spojené s touto e-mailovou adresou."
 

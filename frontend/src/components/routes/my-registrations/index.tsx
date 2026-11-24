@@ -412,7 +412,7 @@ export const MyRegistrationsPage: React.FC = () => {
                                 {attendee.first_name} {attendee.last_name}
                               </div>
                               <div style={{fontSize: 12, color: "#64748b", marginTop: 2}}>
-                                {attendee.product_title} — {t("ticket_code", "رمز التذكرة:")} {attendee.short_id}
+                                {attendee.product_title}
                               </div>
                               {attendee.checked_in ? (
                                 <span
@@ -555,7 +555,7 @@ export const MyRegistrationsPage: React.FC = () => {
           onConfirm={handleConfirmCancel}
           loading={cancelling}
           title={t("confirm_cancel_msg", isArabic ? "هل أنت متأكد من رغبتك في إلغاء هذا الحجز والتذاكر؟" : "Are you sure you want to cancel this booking and tickets?")}
-          message={orderToCancel?.event?.title ? `${orderToCancel.event.title} (#${orderToCancel.short_id})` : undefined}
+          message={orderToCancel?.event?.title || undefined}
           confirmLabel={t("confirm_btn", isArabic ? "تأكيد" : "Confirm")}
           cancelLabel={t("cancel_btn", isArabic ? "إلغاء" : "Cancel")}
         />

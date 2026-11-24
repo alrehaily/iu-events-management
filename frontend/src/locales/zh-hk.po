@@ -2237,7 +2237,7 @@ msgstr "看看這個活動吧！"
 msgid "Check your email"
 msgstr "查看你嘅電郵"
 
-#: src/components/routes/my-tickets/index.tsx:192
+#: src/components/routes/my-tickets/index.tsx:189
 msgid "Check your inbox! If tickets are associated with this email, you'll receive a link to view them."
 msgstr "請檢查您的收件箱！如果此郵箱有關聯的票，您將收到查看連結。"
 
@@ -4535,7 +4535,7 @@ msgid "Enter unique affiliate code"
 msgstr "輸入獨特推廣碼"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:80
-#: src/components/routes/my-tickets/index.tsx:210
+#: src/components/routes/my-tickets/index.tsx:207
 msgid "Enter your email"
 msgstr "輸入您的電郵地址"
 
@@ -4657,7 +4657,7 @@ msgstr "活動已建立"
 msgid "Event custom template"
 msgstr "活動自定義範本"
 
-#: src/components/routes/my-tickets/index.tsx:80
+#: src/components/routes/my-tickets/index.tsx:77
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:29
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:302
 msgid "Event Date"
@@ -5769,7 +5769,7 @@ msgstr "告訴我們您離開的原因，幫助我們改進"
 msgid "Helps us understand how the site is used."
 msgstr "幫助我們了解網站的使用情況。"
 
-#: src/components/routes/my-tickets/index.tsx:256
+#: src/components/routes/my-tickets/index.tsx:253
 msgid "Here are all the tickets associated with your email address."
 msgstr "以下是與您郵箱關聯的所有票。"
 
@@ -6609,7 +6609,7 @@ msgstr "圖庫"
 msgid "Light"
 msgstr "淺色"
 
-#: src/components/routes/my-tickets/index.tsx:178
+#: src/components/routes/my-tickets/index.tsx:175
 msgid "Link Expired or Invalid"
 msgstr "連結已過期或無效"
 
@@ -6687,7 +6687,7 @@ msgstr "加載中..."
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
 #: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
-#: src/components/routes/my-tickets/index.tsx:91
+#: src/components/routes/my-tickets/index.tsx:88
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:315
 msgid "Location"
 msgstr "地點"
@@ -7154,7 +7154,7 @@ msgstr "我的精彩活動標題..."
 msgid "My Profile"
 msgstr "我的簡介"
 
-#: src/components/routes/my-tickets/index.tsx:254
+#: src/components/routes/my-tickets/index.tsx:251
 msgid "My Tickets"
 msgstr "我的票"
 
@@ -7623,7 +7623,7 @@ msgstr "沒有建議"
 msgid "No Taxes or Fees have been added."
 msgstr "未加收任何税費。"
 
-#: src/components/routes/my-tickets/index.tsx:238
+#: src/components/routes/my-tickets/index.tsx:235
 msgid "No Tickets Found"
 msgstr "未找到票"
 
@@ -8106,7 +8106,6 @@ msgstr "張訂單"
 #: src/components/common/QuestionsTable/index.tsx:448
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:261
 #: src/components/modals/ManageAttendeeModal/index.tsx:141
-#: src/components/routes/my-tickets/index.tsx:71
 msgid "Order"
 msgstr "訂購"
 
@@ -9071,7 +9070,7 @@ msgstr "打印所有門票"
 msgid "Print Ticket"
 msgstr "列印門票"
 
-#: src/components/routes/my-tickets/index.tsx:137
+#: src/components/routes/my-tickets/index.tsx:134
 msgid "Print Tickets"
 msgstr "打印票"
 
@@ -9316,7 +9315,7 @@ msgstr "發布後，您的活動頁面將公開並開放報名。"
 #: src/components/common/WaitlistStats/index.tsx:14
 #: src/components/common/WaitlistTable/index.tsx:28
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:118
-#: src/components/routes/my-tickets/index.tsx:112
+#: src/components/routes/my-tickets/index.tsx:109
 msgid "Purchased"
 msgstr "已購買"
 
@@ -9685,7 +9684,7 @@ msgstr "未找到報告"
 msgid "Reports"
 msgstr "報告"
 
-#: src/components/routes/my-tickets/index.tsx:187
+#: src/components/routes/my-tickets/index.tsx:184
 msgid "Request a new link"
 msgstr "請求新連結"
 
@@ -10491,7 +10490,7 @@ msgstr ""
 #~ msgid "Selling fast 🔥"
 #~ msgstr "熱賣中 🔥"
 
-#: src/components/routes/my-tickets/index.tsx:220
+#: src/components/routes/my-tickets/index.tsx:217
 msgid "Send"
 msgstr "發送"
 
@@ -10989,7 +10988,7 @@ msgstr "出了點問題。請稍後再試。"
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:47
 #: src/components/routes/attendee-auth/AttendeeProfile/index.tsx:54
-#: src/components/routes/my-tickets/index.tsx:163
+#: src/components/routes/my-tickets/index.tsx:160
 #: src/components/routes/product-widget/SelectProducts/index.tsx:616
 #: src/components/routes/profile/ManageProfile/index.tsx:91
 #: src/components/routes/profile/ManageProfile/index.tsx:105
@@ -12008,7 +12007,7 @@ msgstr "簽名密鑰僅顯示一次。請立即複製並妥善保存。"
 msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
 msgstr "此設定限制的是整個日程所有場次的總銷量，而不是每場的限制。如需限制每場的人數，請在<0>場次安排頁面</0>設定容量。"
 
-#: src/components/routes/my-tickets/index.tsx:180
+#: src/components/routes/my-tickets/index.tsx:177
 msgid "This link is invalid or has expired."
 msgstr "此連結無效或已過期。"
 
@@ -12165,7 +12164,7 @@ msgstr "四"
 msgid "Thursday"
 msgstr "星期四"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 #: src/hooks/useAttendeeActions.tsx:104
 msgid "ticket"
 msgstr "入場券"
@@ -12249,12 +12248,12 @@ msgstr "門票類型"
 msgid "Ticketing & Sales"
 msgstr "票務與銷售"
 
-#: src/components/routes/my-tickets/index.tsx:103
+#: src/components/routes/my-tickets/index.tsx:100
 msgid "tickets"
 msgstr "門票"
 
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:131
-#: src/components/routes/my-tickets/index.tsx:102
+#: src/components/routes/my-tickets/index.tsx:99
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:614
 #: src/utilites/productCategoryDisplay.ts:6
 msgid "Tickets"
@@ -12500,7 +12499,7 @@ msgstr "調整篩選條件即可查看更多日期。"
 msgid "Try again"
 msgstr ""
 
-#: src/components/routes/my-tickets/index.tsx:201
+#: src/components/routes/my-tickets/index.tsx:198
 msgid "Try another email"
 msgstr "嘗試其他郵箱"
 
@@ -13182,7 +13181,7 @@ msgstr "查看訊息"
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:57
 #: src/components/common/EmailTemplateEditor/EmailTemplateEditor.tsx:72
 #: src/components/common/WaitlistTable/index.tsx:63
-#: src/components/routes/my-tickets/index.tsx:128
+#: src/components/routes/my-tickets/index.tsx:125
 msgid "View Order"
 msgstr "查看訂單"
 
@@ -13291,7 +13290,7 @@ msgstr "我們無法刪除該類別。請再試一次。"
 msgid "We couldn't disconnect this Stripe account. Please try again."
 msgstr "無法中斷此 Stripe 帳戶的連接。請重試。"
 
-#: src/components/routes/my-tickets/index.tsx:240
+#: src/components/routes/my-tickets/index.tsx:237
 msgid "We couldn't find any orders associated with this email address."
 msgstr "我們找不到與此郵箱關聯的訂單。"
 
