@@ -159,7 +159,7 @@ export const safeLocalStorageRemove = (key: string): void => {
  * If you wish to remove this notice, a commercial license is available at: https://hi.events/licensing
  */
 export const iHavePurchasedALicence = () => {
-    return true;
+    return getConfig('VITE_I_HAVE_PURCHASED_A_LICENCE');
 }
 
 export const isHiEvents = () => {

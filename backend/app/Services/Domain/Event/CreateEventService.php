@@ -207,7 +207,7 @@ class CreateEventService
         }
 
         $organizerSettings = $organizer->getOrganizerSettings();
-        $organizerThemeSettings = $organizerSettings->getHomepageThemeSettings() ?? [];
+        $organizerThemeSettings = $organizerSettings?->getHomepageThemeSettings() ?? [];
         $terminology = ProductTerminology::forCategory($event->getCategory());
 
         // Build the new homepage_theme_settings from organizer settings
@@ -257,11 +257,11 @@ class CreateEventService
 
             'attendee_details_collection_method' => $event->getType() === EventType::RECURRING->name
                 ? AttendeeDetailsCollectionMethod::PER_ORDER->value
-                : $organizerSettings->getDefaultAttendeeDetailsCollectionMethod(),
-            'show_marketing_opt_in' => $organizerSettings->getDefaultShowMarketingOptIn(),
+                : ($organizerSettings?->getDefaultAttendeeDetailsCollectionMethod() ?? AttendeeDetailsCollectionMethod::PER_TICKET->value),
+            'show_marketing_opt_in' => $organizerSettings?->getDefaultShowMarketingOptIn() ?? false,
             'allow_copy_details_to_all_attendees' => true,
-            'pass_platform_fee_to_buyer' => $organizerSettings->getDefaultPassPlatformFeeToBuyer(),
-            'allow_attendee_self_edit' => $organizerSettings->getDefaultAllowAttendeeSelfEdit() ?? false,
+            'pass_platform_fee_to_buyer' => $organizerSettings?->getDefaultPassPlatformFeeToBuyer() ?? false,
+            'allow_attendee_self_edit' => $organizerSettings?->getDefaultAllowAttendeeSelfEdit() ?? false,
             'ticket_design_settings' => [
                 'accent_color' => $homepageThemeSettings['accent'] ?? '#333',
             ],

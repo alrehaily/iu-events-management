@@ -1123,8 +1123,12 @@ msgid "An optional description of this category to display on the event page."
 msgstr "An optional description of this category to display on the event page."
 
 #: src/components/forms/ProductForm/index.tsx:587
-msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
-msgstr "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
+#~ msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
+#~ msgstr "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
+
+#: src/components/forms/ProductForm/index.tsx:587
+msgid "An optional message to display on the highlighted product, e.g. \"Selling fast\" or \"Best value\""
+msgstr "An optional message to display on the highlighted product, e.g. \"Selling fast\" or \"Best value\""
 
 #: src/components/forms/StripeCheckoutForm/index.tsx:71
 msgid "An unexpected error occurred."
@@ -1735,7 +1739,7 @@ msgstr "Awaiting pay"
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:117
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:225
 #: src/components/layouts/Checkout/index.tsx:319
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:440
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:444
 msgid "Awaiting payment"
 msgstr "Awaiting payment"
 
@@ -2064,7 +2068,7 @@ msgstr "Canceling will cancel all attendees associated with this order, and rele
 #: src/components/routes/event/orders.tsx:27
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:22
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:120
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:431
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:435
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:126
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:171
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:102
@@ -3181,7 +3185,7 @@ msgstr "Create Date"
 msgid "Create discounts, access codes for hidden tickets, and special offers."
 msgstr "Create discounts, access codes for hidden tickets, and special offers."
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:409
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:413
 msgid "Create event"
 msgstr "Create event"
 
@@ -3260,7 +3264,7 @@ msgstr "Create Your Event"
 msgid "Create your first event"
 msgstr "Create your first event"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:401
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:405
 msgid "Create your first event to start selling tickets and managing attendees."
 msgstr "Create your first event to start selling tickets and managing attendees."
 
@@ -5777,8 +5781,12 @@ msgid "Here is your affiliate link"
 msgstr "Here is your affiliate link"
 
 #: src/components/routes/event/EventDashboard/index.tsx:206
-msgid "Hi {0} 👋"
-msgstr "Hi {0} 👋"
+msgid "Hi {0}"
+msgstr "Hi {0}"
+
+#: src/components/routes/event/EventDashboard/index.tsx:206
+#~ msgid "Hi {0} 👋"
+#~ msgstr "Hi {0} 👋"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:51
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:74
@@ -7414,7 +7422,7 @@ msgstr "No events starting in the next 24 hours"
 msgid "No events to show"
 msgstr "No events to show"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:398
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:402
 msgid "No events yet"
 msgstr "No events yet"
 
@@ -7479,7 +7487,7 @@ msgstr "No orders found"
 msgid "No orders to show"
 msgstr "No orders to show"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:369
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:371
 msgid "No orders yet"
 msgstr "No orders yet"
 
@@ -8450,7 +8458,7 @@ msgid "paid"
 msgstr "paid"
 
 #: src/components/forms/ProductForm/index.tsx:275
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:437
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:441
 msgid "Paid"
 msgstr "Paid"
 
@@ -8634,7 +8642,7 @@ msgid "Payouts"
 msgstr "Payouts"
 
 #: src/components/routes/admin/DeletionRequests/index.tsx:85
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:443
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:447
 #: src/components/routes/organizer/Payments/CapabilityList.tsx:60
 msgid "Pending"
 msgstr "Pending"
@@ -9546,7 +9554,7 @@ msgstr "Refund Status"
 #: src/components/common/OrderSummary/index.tsx:92
 #: src/components/common/StatBoxes/index.tsx:87
 #: src/components/routes/event/orders.tsx:32
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:434
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:438
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:74
 msgid "Refunded"
 msgstr "Refunded"
@@ -10448,8 +10456,12 @@ msgid "Selling a physical product? Cap its quantity on the <0>products page</0> 
 msgstr "Selling a physical product? Cap its quantity on the <0>products page</0> instead."
 
 #: src/components/forms/ProductForm/index.tsx:588
-msgid "Selling fast 🔥"
-msgstr "Selling fast 🔥"
+msgid "Selling fast"
+msgstr "Selling fast"
+
+#: src/components/forms/ProductForm/index.tsx:588
+#~ msgid "Selling fast 🔥"
+#~ msgstr "Selling fast 🔥"
 
 #: src/components/routes/my-tickets/index.tsx:220
 msgid "Send"
@@ -12607,7 +12619,7 @@ msgstr "University Vice Presidency for Academic Affairs and Development · Deans
 #: src/components/common/MessageList/index.tsx:49
 #: src/components/routes/event/messages.tsx:27
 #: src/components/routes/event/messages.tsx:66
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:445
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:449
 msgid "Unknown"
 msgstr "Unknown"
 
@@ -12692,7 +12704,7 @@ msgstr "Up to {max} per order"
 msgid "Upcoming"
 msgstr "Upcoming"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:380
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:382
 msgid "Upcoming events"
 msgstr "Upcoming events"
 
@@ -13064,7 +13076,7 @@ msgstr "Verifying..."
 msgid "View All"
 msgstr "View All"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:385
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:387
 msgid "View all →"
 msgstr "View all →"
 
@@ -13441,8 +13453,12 @@ msgstr "Welcome aboard! Please login to continue."
 #~ msgstr "Welcome back"
 
 #: src/components/routes/event/EventDashboard/index.tsx:200
-msgid "Welcome back{0} 👋"
-msgstr "Welcome back{0} 👋"
+msgid "Welcome back{0}"
+msgstr "Welcome back{0}"
+
+#: src/components/routes/event/EventDashboard/index.tsx:200
+#~ msgid "Welcome back{0} 👋"
+#~ msgstr "Welcome back{0} 👋"
 
 #: src/components/routes/welcome/index.tsx:535
 #~ msgid "Welcome to {0}, {1} 👋"
@@ -13584,7 +13600,7 @@ msgstr "When check-in closes"
 msgid "When check-in opens"
 msgstr "When check-in opens"
 
-#: src/components/routes/organizer/OrganizerDashboard/index.tsx:372
+#: src/components/routes/organizer/OrganizerDashboard/index.tsx:374
 msgid "When customers purchase tickets, their orders will appear here."
 msgstr "When customers purchase tickets, their orders will appear here."
 

@@ -36,7 +36,8 @@ function Test-Listener($Port, $EntryPoint, $Executable, $ProcessId) {
             ($ProcessId -and $listener.OwningProcess -ne $ProcessId) -or
             ($Executable -and $owner.ExecutablePath -ne $Executable) -or
             ($EntryPoint -and (!$owner.CommandLine -or
-                $owner.CommandLine.IndexOf($EntryPoint, [StringComparison]::OrdinalIgnoreCase) -lt 0))) {
+                ($owner.CommandLine.IndexOf($EntryPoint, [StringComparison]::OrdinalIgnoreCase) -lt 0 -and
+                 $owner.CommandLine.IndexOf((Split-Path -Leaf $EntryPoint), [StringComparison]::OrdinalIgnoreCase) -lt 0)))) {
             throw "Port $Port is already in use by another service (PID $($listener.OwningProcess)). Free the port or fix the local configuration."
         }
     }
@@ -67,44 +68,98 @@ function Get-PostgresProcessId($DataDirectory, $Port) {
 }
 
 function Start-Postgres($DataDirectory, $Bin, $Port) {
-    $ctl = Join-Path $Bin 'pg_ctl.exe'
-    $ready = Join-Path $Bin 'pg_isready.exe'
-    $postgres = Join-Path $Bin 'postgres.exe'
-    foreach ($program in @($ctl, $ready, $postgres)) {
-        if (!(Test-Path -LiteralPath $program -PathType Leaf)) {
-            throw "PostgreSQL executable missing at $program. Set GP2_POSTGRES_BIN to the matching PostgreSQL bin directory."
-        }
-    }
-    $serverId = Get-PostgresProcessId $DataDirectory $Port
-    if ($serverId) {
-        if ((Get-Process -Id $serverId).Path -ne $postgres) {
-            throw "The PostgreSQL PID file points to a different process (PID $serverId). Inspect the configured cluster."
-        }
+    $ready = if ($Bin) { Join-Path $Bin 'pg_isready.exe' } else { (Get-Command pg_isready.exe -ErrorAction SilentlyContinue).Source }
+    
+    # Check if PostgreSQL is already active and accepting connections on this port
+    $alreadyAccepting = $false
+    if ($ready -and (Test-Path -LiteralPath $ready -PathType Leaf)) {
+        & $ready -h 127.0.0.1 -p $Port -t 2 -q
+        if ($LASTEXITCODE -eq 0) { $alreadyAccepting = $true }
     } else {
-        if (Test-Listener $Port) {
-            throw "PostgreSQL port $Port already has a listener. Verify the configured cluster and port before starting."
+        $tcp = New-Object System.Net.Sockets.TcpClient
+        try {
+            $tcp.Connect('127.0.0.1', $Port)
+            if ($tcp.Connected) { $alreadyAccepting = $true; $tcp.Close() }
+        } catch { }
+    }
+
+    if ($alreadyAccepting) {
+        Write-Host "PostgreSQL is active at 127.0.0.1:$Port"
+        return
+    }
+
+    # If not running and a local data directory with PG_VERSION exists, start it with pg_ctl
+    if ($DataDirectory -and (Test-Path -LiteralPath (Join-Path $DataDirectory 'PG_VERSION') -PathType Leaf)) {
+        if (!$Bin) { throw "PostgreSQL bin directory not found. Please set GP2_POSTGRES_BIN or ensure PostgreSQL is in PATH." }
+        $ctl = Join-Path $Bin 'pg_ctl.exe'
+        $postgres = Join-Path $Bin 'postgres.exe'
+        foreach ($program in @($ctl, $postgres)) {
+            if (!(Test-Path -LiteralPath $program -PathType Leaf)) {
+                throw "PostgreSQL executable missing at $program. Set GP2_POSTGRES_BIN to the matching PostgreSQL bin directory."
+            }
+        }
+        $serverId = Get-PostgresProcessId $DataDirectory $Port
+        if ($serverId) {
+            $runningProc = Get-Process -Id $serverId -ErrorAction SilentlyContinue
+            if (!$runningProc -or $runningProc.Path -ne $postgres) {
+                Remove-Item (Join-Path $DataDirectory 'postmaster.pid') -Force -ErrorAction SilentlyContinue
+            }
         }
         $postgresLog = Join-Path $logDir 'windows-postgres.log'
         $arguments = 'start -D "{0}" -l "{1}" -o "-h 127.0.0.1 -p {2}" -W' -f $DataDirectory, $postgresLog, $Port
         $null = Start-Server $ctl $arguments $DataDirectory 'pg-ctl'
+
+        $deadline = (Get-Date).AddSeconds(30)
+        do {
+            if ($ready -and (Test-Path -LiteralPath $ready -PathType Leaf)) {
+                & $ready -h 127.0.0.1 -p $Port -t 2 -q
+                if ($LASTEXITCODE -eq 0) { break }
+            } else {
+                $tcp = New-Object System.Net.Sockets.TcpClient
+                try {
+                    $tcp.Connect('127.0.0.1', $Port)
+                    if ($tcp.Connected) { $tcp.Close(); break }
+                } catch { }
+            }
+            Start-Sleep -Milliseconds 400
+        } while ((Get-Date) -lt $deadline)
+
+        $serverId = Get-PostgresProcessId $DataDirectory $Port
+        Write-Host "PostgreSQL 127.0.0.1:$Port (PID $serverId)"
+    } else {
+        # Check if a Windows PostgreSQL service is installed
+        $svc = Get-Service -Name "postgresql*" -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($svc) {
+            if ($svc.Status -ne 'Running') {
+                Write-Host "Starting PostgreSQL Windows service ($($svc.Name))..."
+                Start-Service $svc.Name
+                Start-Sleep -Seconds 3
+            }
+        }
+        $tcp = New-Object System.Net.Sockets.TcpClient
+        $connected = $false
+        try {
+            $tcp.Connect('127.0.0.1', $Port)
+            if ($tcp.Connected) { $connected = $true; $tcp.Close() }
+        } catch { }
+
+        if (!$connected) {
+            throw "PostgreSQL at 127.0.0.1:$Port is not accepting connections. Please start your PostgreSQL server or service."
+        }
+        Write-Host "PostgreSQL is active at 127.0.0.1:$Port"
     }
-    $deadline = (Get-Date).AddSeconds(30)
-    do {
-        & $ready -h 127.0.0.1 -p $Port -t 2 -q
-        if ($LASTEXITCODE -eq 0) { break }
-        Start-Sleep -Milliseconds 400
-    } while ((Get-Date) -lt $deadline)
-    if ($LASTEXITCODE -ne 0) {
-        throw "PostgreSQL at 127.0.0.1:$Port is not accepting connections. Check windows-postgres.log and windows-pg-ctl.err.log in $logDir."
-    }
-    $serverId = Get-PostgresProcessId $DataDirectory $Port
-    if (!$serverId -or !(Test-Listener $Port -Executable $postgres -ProcessId $serverId)) {
-        throw "The configured PostgreSQL cluster is not listening at 127.0.0.1:$Port."
-    }
-    Write-Host "PostgreSQL 127.0.0.1:$Port (PID $serverId)"
 }
 
 function Start-Mailpit($Executable, $SmtpPort) {
+    if (!$Executable) {
+        $uiRunning = Test-Listener $MailpitPort
+        if ($uiRunning) {
+            Write-Host "Mailpit is active at $mailpitUrl"
+            return
+        }
+        Write-Host "Mailpit was not found. Continuing without local email interception." -ForegroundColor Yellow
+        return
+    }
     $uiRunning = Test-Listener $MailpitPort -Executable $Executable
     $smtpRunning = Test-Listener $SmtpPort -Executable $Executable
     if ($uiRunning -ne $smtpRunning) {
@@ -163,7 +218,8 @@ try {
     Assert-Setting $backendEnv 'APP_ENV' 'local'
     Assert-Setting $backendEnv 'DB_CONNECTION' 'pgsql'
     Assert-Setting $backendEnv 'DB_HOST' '127.0.0.1'
-    Assert-Setting $backendEnv 'DB_DATABASE' 'iu_gp2_demo'
+    $dbDatabase = Read-Setting $backendEnv 'DB_DATABASE'
+    if (!$dbDatabase) { throw "Set DB_DATABASE in $backendEnv before starting." }
     Assert-Setting $backendEnv 'MAIL_MAILER' 'smtp'
     Assert-Setting $backendEnv 'MAIL_HOST' '127.0.0.1'
     $databasePort = Read-LocalPort $backendEnv 'DB_PORT'
@@ -181,26 +237,54 @@ try {
             throw "The shell overrides $name in backend/.env. Clear the shell override before starting the local stack."
         }
     }
-    if (!$RuntimeDirectory) { $RuntimeDirectory = Join-Path $env:TEMP 'iu-gp2-audit-20261120' }
+    if (!$RuntimeDirectory) {
+        if ($env:GP2_RUNTIME_DIR) {
+            $RuntimeDirectory = $env:GP2_RUNTIME_DIR
+        } elseif (Test-Path -LiteralPath (Join-Path $env:TEMP 'iu-gp2-audit-20261120')) {
+            $RuntimeDirectory = Join-Path $env:TEMP 'iu-gp2-audit-20261120'
+        } else {
+            $RuntimeDirectory = Join-Path $env:TEMP 'iu-events-runtime'
+        }
+    }
     $clusterDirectory = Join-Path $RuntimeDirectory 'pgdata'
     $clusterVersionFile = Join-Path $clusterDirectory 'PG_VERSION'
     if (!(Test-Path -LiteralPath $clusterVersionFile -PathType Leaf)) {
-        throw "The existing PostgreSQL cluster was not found at $clusterDirectory. Set GP2_RUNTIME_DIR to the provisioned demo runtime directory."
+        $clusterDirectory = $null
+    } else {
+        $clusterDirectory = (Get-Item -LiteralPath $clusterDirectory).FullName
     }
-    $clusterDirectory = (Get-Item -LiteralPath $clusterDirectory).FullName
+
     if (!$PostgresBin) {
-        $clusterVersion = (Get-Content -LiteralPath $clusterVersionFile -TotalCount 1).Trim()
-        $PostgresBin = Join-Path $env:ProgramFiles "PostgreSQL/$clusterVersion/bin"
+        if ($env:GP2_POSTGRES_BIN -and (Test-Path -LiteralPath $env:GP2_POSTGRES_BIN)) {
+            $PostgresBin = $env:GP2_POSTGRES_BIN
+        } elseif ($clusterDirectory) {
+            $clusterVersion = (Get-Content -LiteralPath $clusterVersionFile -TotalCount 1).Trim()
+            $candidate = Join-Path $env:ProgramFiles "PostgreSQL/$clusterVersion/bin"
+            if (Test-Path -LiteralPath $candidate) { $PostgresBin = $candidate }
+        }
+        if (!$PostgresBin) {
+            $psqlCmd = Get-Command psql.exe -ErrorAction SilentlyContinue
+            if ($psqlCmd) {
+                $PostgresBin = Split-Path -Parent $psqlCmd.Source
+            } else {
+                $pgBins = @(Get-ChildItem -Path (Join-Path $env:ProgramFiles "PostgreSQL") -Filter "bin" -Recurse -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName)
+                if ($pgBins.Count -gt 0) { $PostgresBin = $pgBins[-1] }
+            }
+        }
     }
-    if (!(Test-Path -LiteralPath $PostgresBin -PathType Container)) {
-        throw "PostgreSQL installation directory missing at $PostgresBin. Set GP2_POSTGRES_BIN to the matching bin directory."
-    }
-    $PostgresBin = (Resolve-Path -LiteralPath $PostgresBin).Path
-    $mailpit = Join-Path $RuntimeDirectory 'mailpit/mailpit.exe'
-    if (!(Test-Path -LiteralPath $mailpit -PathType Leaf)) {
-        throw "Mailpit was not found at $mailpit. Restore the local Mailpit executable in the demo runtime directory."
-    }
-    $mailpit = (Resolve-Path -LiteralPath $mailpit).Path
+    if ($PostgresBin) { $PostgresBin = (Resolve-Path -LiteralPath $PostgresBin).Path }
+
+    $mailpitCandidates = @(
+        $env:GP2_MAILPIT_PATH,
+        (Join-Path $RuntimeDirectory 'mailpit/mailpit.exe'),
+        (Join-Path $root 'tools/mailpit.exe'),
+        (Join-Path $root 'tools/mailpit/mailpit.exe'),
+        (Join-Path $env:TEMP 'iu-gp2-audit-20261120/mailpit/mailpit.exe'),
+        ((Get-Command mailpit.exe -ErrorAction SilentlyContinue).Source)
+    ) | Where-Object { $_ -and (Test-Path -LiteralPath $_ -PathType Leaf) }
+
+    $mailpit = if ($mailpitCandidates.Count -gt 0) { (Resolve-Path -LiteralPath $mailpitCandidates[0]).Path } else { $null }
+
     foreach ($setting in @('APP_KEY', 'JWT_SECRET')) {
         if (!(Read-Setting $backendEnv $setting)) { throw "Configure $setting in backend/.env before starting." }
     }
@@ -226,8 +310,13 @@ try {
     Assert-Setting $frontendEnv 'VITE_API_URL_SERVER' $backendUrl
     Assert-Setting $frontendEnv 'VITE_FRONTEND_URL' $frontendUrl
 
-    $php = (Get-Command php.exe).Source
-    $node = (Get-Command node.exe).Source
+    $phpCmd = Get-Command php.exe -ErrorAction SilentlyContinue
+    if (!$phpCmd) { throw "PHP is required but was not found in PATH. Install PHP >= 8.3 and ensure php.exe is in your PATH." }
+    $php = $phpCmd.Source
+
+    $nodeCmd = Get-Command node.exe -ErrorAction SilentlyContinue
+    if (!$nodeCmd) { throw "Node.js is required but was not found in PATH. Install Node.js >= 18 and ensure node.exe is in your PATH." }
+    $node = $nodeCmd.Source
     $router = Join-Path $backend 'vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php'
     $entryPoint = Join-Path $frontend 'server.js'
     if (!(Test-Path -LiteralPath $router)) { throw 'Run composer install in backend before starting.' }
