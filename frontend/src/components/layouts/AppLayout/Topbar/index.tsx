@@ -30,7 +30,6 @@ export const Topbar: React.FC<TopbarProps> = ({
         <div
             className={`${classes.topBar} ${topBarShadow ? classes.withShadow : ''}`}
             style={{
-                background: 'linear-gradient(to right, #1a7e4e 0%, #156d43 45%, #084b2f 100%)',
                 color: '#ffffff',
             }}
         >
