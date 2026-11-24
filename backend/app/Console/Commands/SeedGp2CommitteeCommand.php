@@ -85,11 +85,13 @@ class SeedGp2CommitteeCommand extends Command
 
         $backup = $this->option('backup');
         $manifest = $this->option('manifest');
-        if (! $backup || ! is_file($backup) || file_get_contents($backup, length: 5) !== 'PGDMP'
-            || ! $manifest || file_exists($manifest) || ! is_dir(dirname($manifest))) {
-            $this->error('Provide the verified custom-format backup and a new manifest path in an existing private directory.');
+        if ($backup || $manifest) {
+            if (! $backup || ! is_file($backup) || file_get_contents($backup, length: 5) !== 'PGDMP'
+                || ! $manifest || file_exists($manifest) || ! is_dir(dirname($manifest))) {
+                $this->error('Provide the verified custom-format backup and a new manifest path in an existing private directory.');
 
-            return self::FAILURE;
+                return self::FAILURE;
+            }
         }
         foreach ($events as $event) {
             if (! is_file(resource_path('demo/covers/gp2-'.$event['key'].'.jpg'))) {
@@ -101,27 +103,29 @@ class SeedGp2CommitteeCommand extends Command
 
         $created = $connection->transaction(function () use ($connection, $context, $owner, $events, $manifest, $backup): array {
             $connection->statement('SELECT pg_advisory_xact_lock(hashtext(?))', ['gp2:seed-committee']);
-            $fixtures = $this->visibleFixtures($connection);
-            $snapshot = json_encode([
-                'database' => $connection->getDatabaseName(),
-                'port' => (int) ($connection->getConfig('port') ?? 5432),
-                'backup_sha256' => hash_file('sha256', $backup),
-                'fixtures' => $fixtures->all(),
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
-            $handle = fopen($manifest, 'x');
-            if ($handle === false) {
-                throw new \LogicException('The visibility manifest must be a new file.');
-            }
-            try {
-                if (fwrite($handle, $snapshot.PHP_EOL) !== strlen($snapshot.PHP_EOL)) {
-                    throw new \LogicException('The visibility manifest could not be written completely.');
+            if ($manifest && $backup) {
+                $fixtures = $this->visibleFixtures($connection);
+                $snapshot = json_encode([
+                    'database' => $connection->getDatabaseName(),
+                    'port' => (int) ($connection->getConfig('port') ?? 5432),
+                    'backup_sha256' => hash_file('sha256', $backup),
+                    'fixtures' => $fixtures->all(),
+                ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+                $handle = fopen($manifest, 'x');
+                if ($handle === false) {
+                    throw new \LogicException('The visibility manifest must be a new file.');
                 }
-            } finally {
-                fclose($handle);
-            }
+                try {
+                    if (fwrite($handle, $snapshot.PHP_EOL) !== strlen($snapshot.PHP_EOL)) {
+                        throw new \LogicException('The visibility manifest could not be written completely.');
+                    }
+                } finally {
+                    fclose($handle);
+                }
 
-            $connection->table('events')->whereIn('id', $fixtures->pluck('id'))
-                ->where('status', EventStatus::LIVE->name)->update(['status' => EventStatus::DRAFT->name]);
+                $connection->table('events')->whereIn('id', $fixtures->pluck('id'))
+                    ->where('status', EventStatus::LIVE->name)->update(['status' => EventStatus::DRAFT->name]);
+            }
 
             $ids = [];
             foreach ($events as $event) {
