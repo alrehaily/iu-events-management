@@ -272,7 +272,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               {certificate.attendee_name}
             </div>
 
-            {/* 2. Dynamic Event Title & Date Participation Sentence */}
+            {/* 2. Dynamic Event Title & Date Participation Sentence (Matches typography of upper greeting) */}
             <div
               style={{
                 position: "absolute",
@@ -282,31 +282,31 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
                 width: "78%",
                 textAlign: "center",
                 fontFamily: "'Tajawal', 'Cairo', system-ui, sans-serif",
-                fontSize: "1.02rem",
-                fontWeight: 700,
-                color: "#1e293b",
-                lineHeight: 1.85,
+                fontSize: "0.92rem",
+                fontWeight: 400,
+                color: "#222222",
+                lineHeight: 1.8,
+                letterSpacing: 0,
                 zIndex: 3,
               }}
             >
-              <span>وذلك لمشاركته في ورشة العمل بعنوان: &quot;<strong>{certificate.event_title}</strong>&quot;</span>
+              <span>وذلك لمشاركته في ورشة العمل بعنوان: &quot;{certificate.event_title}&quot;</span>
               <br />
               <span>والتي أُقيمت بتاريخ {eventDateAr} في رحاب الجامعة الإسلامية بالمدينة المنورة.</span>
             </div>
 
-            {/* 3. Dynamic Date above the "التاريخ" line (Right side in RTL) */}
+            {/* 3. Dynamic Date Centered Directly Over the "التاريخ" line */}
             <div
               style={{
                 position: "absolute",
                 bottom: "16.8%",
-                right: "21.5%",
-                transform: "translateX(50%)",
+                left: "70.0%",
+                transform: "translateX(-50%)",
                 textAlign: "center",
                 fontFamily: "'Tajawal', 'Cairo', system-ui, sans-serif",
-                fontSize: "0.85rem",
-                fontWeight: 800,
-                color: "#334155",
-                direction: "rtl",
+                fontSize: "0.86rem",
+                fontWeight: 500,
+                color: "#222222",
                 whiteSpace: "nowrap",
                 zIndex: 3,
               }}
@@ -314,46 +314,7 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               {eventDateAr}
             </div>
 
-            {/* 4. Electronic Verification Seal above the "التوقيع" line (Left side in RTL) */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "16.2%",
-                left: "21.5%",
-                transform: "translateX(-50%)",
-                textAlign: "center",
-                direction: "ltr",
-                zIndex: 3,
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "0.72rem",
-                  fontWeight: 900,
-                  color: "#084b2f",
-                  letterSpacing: "0.5px",
-                  marginBottom: "1px",
-                }}
-              >
-                ✓ توثيق معتمد
-              </div>
-              <a
-                href={`/certificates/verify/${certificate.certificate_code}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "monospace",
-                  fontSize: "0.74rem",
-                  fontWeight: 700,
-                  color: "#475569",
-                  textDecoration: "none",
-                  display: "inline-block",
-                }}
-                title="التحقق من صحة الشهادة إلكترونياً"
-              >
-                #{certificate.certificate_code}
-              </a>
-            </div>
+            {/* 4. Signature line is kept completely empty as requested */}
           </div>
         </div>
       </div>
