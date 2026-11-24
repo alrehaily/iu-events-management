@@ -365,10 +365,6 @@ export const MyRegistrationsPage: React.FC = () => {
                             {reg.event?.title || t("brand_title", "فعالية في الجامعة الإسلامية")}
                           </h3>
                         </div>
-
-                        <div style={{fontSize: 13, color: "var(--iu-text-muted, #64748b)"}}>
-                          {t("order_number", "رقم الطلب:")} <span style={{fontFamily: "monospace", fontWeight: 700}}>#{reg.short_id}</span>
-                        </div>
                       </div>
 
                       <div
