@@ -9,9 +9,9 @@
   --hi-accent-contrast: var(--widget-secondary-text-color, #ffffff);
   --hi-outline-source: var(--widget-primary-color, var(--hi-text));
 
-  --hi-card-bg: var(--widget-card-bg-color, color-mix(in srgb, var(--hi-text) 2%, var(--hi-bg)));
-  --hi-border: var(--widget-border-color, color-mix(in srgb, var(--hi-outline-source) 30%, transparent));
-  --hi-border-strong: color-mix(in srgb, var(--hi-outline-source) 55%, transparent);
+  --hi-card-bg: var(--widget-card-bg-color, #f8faf9);
+  --hi-border: var(--widget-border-color, #e2e8f0);
+  --hi-border-strong: #cbd5e1;
   --hi-hairline: color-mix(in srgb, var(--hi-text) 10%, transparent);
   --hi-soft-accent: color-mix(in srgb, var(--hi-accent) 10%, var(--hi-card-bg));
   --hi-soft-accent-strong: color-mix(in srgb, var(--hi-accent) 18%, var(--hi-card-bg));
@@ -82,14 +82,32 @@
     padding: 15px 16px;
     position: relative;
     overflow: hidden;
-    transition: border-color 150ms var(--hi-ease);
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    transition: border-color 180ms var(--hi-ease), background-color 180ms var(--hi-ease), box-shadow 180ms var(--hi-ease);
 
     &:hover {
       border-color: var(--hi-border-strong);
     }
 
+    &.hi-product-selected {
+      background: #f4fbf7;
+      border-color: var(--iu-green-secondary, #1b754b);
+      box-shadow: 0 4px 16px rgba(27, 117, 75, 0.1);
+    }
+
     &.hi-product-highlighted {
       border-color: var(--hi-accent);
+    }
+
+    &[data-free='true'] .hi-product-header-pricing .hi-price-tier-price-amount {
+      display: inline-flex;
+      align-items: center;
+      background: #dff3e8;
+      color: #084b2f;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
     }
 
     &[data-availability='sold-out'] {
@@ -689,12 +707,13 @@
       background: var(--hi-accent);
       color: var(--hi-accent-contrast);
       border: none;
-      border-radius: 13px;
+      border-radius: 12px;
       font-size: 15px;
       font-weight: 700;
       height: auto;
-      padding: 15px 20px;
-      transition: filter 150ms var(--hi-ease), opacity 150ms var(--hi-ease);
+      padding: 14px 20px;
+      box-shadow: 0 4px 14px color-mix(in srgb, var(--hi-accent) 24%, transparent);
+      transition: transform 200ms var(--hi-ease), box-shadow 200ms var(--hi-ease), filter 180ms var(--hi-ease), opacity 150ms var(--hi-ease);
 
       .mantine-Button-label {
         font-weight: 700;
@@ -702,7 +721,9 @@
 
       &:hover:not(:disabled):not([data-disabled]) {
         background: var(--hi-accent);
-        filter: brightness(0.94);
+        filter: brightness(0.93);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px color-mix(in srgb, var(--hi-accent) 30%, transparent);
       }
 
       &:disabled,
@@ -710,6 +731,7 @@
         background: var(--hi-accent);
         color: var(--hi-accent-contrast);
         opacity: 0.45;
+        box-shadow: none;
       }
 
       &[data-loading] {

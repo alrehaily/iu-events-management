@@ -19,6 +19,7 @@ import {
     IconMapPin,
     IconReceipt,
     IconTag,
+    IconTicket,
     IconUsers,
 } from "@tabler/icons-react";
 import {Modal} from "@mantine/core";
@@ -301,18 +302,48 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
             <Modal
                 opened={!preview && ticketsModalOpen}
                 onClose={() => setTicketsModalOpen(false)}
-                title={t`Event registration`}
+                transitionProps={{transition: "pop", duration: 150, exitDuration: 120}}
+                overlayProps={{backgroundOpacity: 0.42}}
+                title={
+                    <div style={{display: "flex", alignItems: "center", gap: 10}}>
+                        <span
+                            style={{
+                                width: 34,
+                                height: 34,
+                                borderRadius: 10,
+                                background: "#dff3e8",
+                                color: "#084b2f",
+                                display: "inline-flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                flexShrink: 0,
+                            }}
+                        >
+                            <IconTicket size={18} stroke={2} />
+                        </span>
+                        <div style={{display: "flex", flexDirection: "column", gap: 2}}>
+                            <span style={{fontSize: 16, fontWeight: 700, color: "#0f172a", lineHeight: 1.25}}>
+                                {t`Event registration`}
+                            </span>
+                            {event?.title && (
+                                <span style={{fontSize: 12.5, fontWeight: 500, color: "#64748b", lineHeight: 1.3}}>
+                                    {event.title}
+                                </span>
+                            )}
+                        </div>
+                    </div>
+                }
                 size="lg"
                 centered
                 radius="lg"
                 styles={{
                     header: {
                         fontWeight: 700,
-                        borderBottom: "1px solid #f1f5f9",
-                        paddingBottom: 12,
+                        borderBottom: "1px solid #e2e8f0",
+                        paddingBottom: 14,
                     },
                     body: {
-                        paddingTop: 16,
+                        paddingTop: 18,
                     }
                 }}
             >
