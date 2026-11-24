@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {useParams, Link} from "react-router";
-import {t} from "@lingui/macro";
 import {
-  IconShieldCheck,
   IconAlertCircle,
   IconCertificate,
   IconCalendar,
   IconUser,
-  IconArrowRight,
   IconCheck,
 } from "@tabler/icons-react";
 import {useIULanguage} from "../../../context/IULanguageContext";
@@ -65,11 +62,17 @@ export const VerifyCertificate: React.FC = () => {
   }, [certificateCode]);
 
   const certificateForModal: CertificateData | null = result?.valid ? {
+    eligible: true,
     certificate_code: result.certificate_code || "",
     attendee_name: result.attendee_name || "",
+    attendee_email: "",
     event_title: result.event_title || "",
     event_date: result.event_date || "",
+    location: "الجامعة الإسلامية بالمدينة المنورة",
     issued_at: result.issued_at || "",
+    issuer: result.issuer || "الجامعة الإسلامية بالمدينة المنورة",
+    checked_in: true,
+    verification_url: typeof window !== "undefined" ? window.location.href : "",
   } : null;
 
   return (
@@ -301,6 +304,7 @@ export const VerifyCertificate: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setModalOpen(true)}
+                  className="iu-cert-view-btn"
                   style={{
                     padding: "10px 24px",
                     borderRadius: 10,
@@ -314,6 +318,21 @@ export const VerifyCertificate: React.FC = () => {
                     alignItems: "center",
                     gap: 8,
                     boxShadow: "0 2px 8px rgba(30, 58, 95, 0.25)",
+                    transition: "all 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = "0 6px 16px rgba(30, 58, 95, 0.35)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "0 2px 8px rgba(30, 58, 95, 0.25)";
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.transform = "scale(0.95)";
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = "translateY(-2px)";
                   }}
                 >
                   <IconCertificate size={18} color="#ffffff" stroke={2} style={{ color: "#ffffff", stroke: "#ffffff" }} />

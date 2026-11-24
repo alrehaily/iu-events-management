@@ -40,6 +40,14 @@ class GetAttendeeCertificateActionPublic extends BaseAction
             );
         }
 
+        $event = $attendee->order?->event;
+        if (! $event) {
+            return $this->errorResponse(
+                message: __('Event not found'),
+                statusCode: Response::HTTP_NOT_FOUND
+            );
+        }
+
         // Enforce server-side ownership: attendee email must match authenticated user or user is organizer/admin
         $attendeeEmail = strtolower((string) $attendee->email);
         $orderEmail = strtolower((string) ($attendee->order?->email ?? ''));
@@ -52,14 +60,6 @@ class GetAttendeeCertificateActionPublic extends BaseAction
             return $this->errorResponse(
                 message: __('You are not allowed to view or request this certificate.'),
                 statusCode: Response::HTTP_FORBIDDEN
-            );
-        }
-
-        $event = $attendee->order?->event;
-        if (! $event) {
-            return $this->errorResponse(
-                message: __('Event not found'),
-                statusCode: Response::HTTP_NOT_FOUND
             );
         }
 

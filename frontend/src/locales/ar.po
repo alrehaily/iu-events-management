@@ -642,7 +642,7 @@ msgstr "Add a description for this check-in list"
 msgid "Add a Single Date"
 msgstr "Add a Single Date"
 
-#: src/components/modals/LocationEditModal/index.tsx:242
+#: src/components/modals/LocationEditModal/index.tsx:243
 msgid "Add address details manually (Street, City, Postal Code)"
 msgstr "إضافة تفاصيل العنوان يدوياً (الشارع، المدينة، الرمز البريدي)"
 
@@ -711,8 +711,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "أضف تعليمات الدفع غير الإلكتروني مثل بيانات التحويل البنكي ومواعيد الدفع."
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:193
-#: src/components/modals/LocationEditModal/index.tsx:307
+#: src/components/modals/LocationEditModal/index.tsx:194
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "إضافة موقع"
@@ -826,7 +826,7 @@ msgid "Address line 1"
 msgstr "Address line 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:260
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -837,7 +837,7 @@ msgid "Address line 2"
 msgstr "Address line 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:261
+#: src/components/modals/LocationEditModal/index.tsx:262
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -870,7 +870,7 @@ msgstr "Admin users have full access to events and account settings."
 msgid "Admits attendees to your event"
 msgstr "تتيح للحضور الدخول إلى فعاليتك"
 
-#: src/components/modals/LocationEditModal/index.tsx:279
+#: src/components/modals/LocationEditModal/index.tsx:280
 msgid "Advanced coordinates (optional)"
 msgstr "الإحداثيات المتقدمة (اختياري)"
 
@@ -2439,7 +2439,7 @@ msgstr "Choose who pays the platform fee. This does not affect additional fees y
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:264
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2474,7 +2474,7 @@ msgstr "Clearing removes any per-date override. Affected dates will fall back to
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
 msgstr "اضغط على الخريطة لتثبيت علامة، أو حرّكها بمفاتيح الأسهم واختر مركزها."
 
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:215
 msgid "Click the map to place a pin, or enter details below."
 msgstr "انقر على الخريطة لتحديد الموقع، أو أدخل التفاصيل بالأسفل."
 
@@ -2500,7 +2500,7 @@ msgstr "close"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:198
+#: src/components/iu/IUCertificateModal/index.tsx:276
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -2667,7 +2667,7 @@ msgstr "الطلبات المكتملة"
 #~ msgstr "إنشاء رسالة"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:257
+#: src/components/modals/LocationEditModal/index.tsx:258
 msgid "Conference Center"
 msgstr "مركز المؤتمرات"
 
@@ -3031,7 +3031,7 @@ msgstr "Couldn't send verification email. Please try again."
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:273
+#: src/components/modals/LocationEditModal/index.tsx:274
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "الدولة"
@@ -4049,7 +4049,7 @@ msgstr "e.g. Scheduled maintenance this Saturday from 2-4am UTC"
 msgid "e.g., Important update about your tickets"
 msgstr "e.g., Important update about your tickets"
 
-#: src/components/modals/LocationEditModal/index.tsx:229
+#: src/components/modals/LocationEditModal/index.tsx:230
 msgid "e.g., Main University Auditorium"
 msgstr ""
 
@@ -4152,7 +4152,7 @@ msgstr "Edit Date"
 msgid "Edit location"
 msgstr "تعديل الموقع"
 
-#: src/components/modals/LocationEditModal/index.tsx:193
+#: src/components/modals/LocationEditModal/index.tsx:194
 msgid "Edit Location"
 msgstr "تعديل الموقع"
 
@@ -4471,7 +4471,7 @@ msgstr "Enter a subject and body to see the preview"
 msgid "Enter a time to shift by."
 msgstr "Enter a time to shift by."
 
-#: src/components/modals/LocationEditModal/index.tsx:299
+#: src/components/modals/LocationEditModal/index.tsx:300
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr "أدخل خط عرض وخط طول صالحين، أو اترك الحقلين فارغين."
 
@@ -5852,7 +5852,7 @@ msgstr "Hide Answers"
 msgid "Hide details"
 msgstr "Hide details"
 
-#: src/components/modals/LocationEditModal/index.tsx:242
+#: src/components/modals/LocationEditModal/index.tsx:243
 msgid "Hide manual address details"
 msgstr ""
 
@@ -6563,7 +6563,7 @@ msgstr "Later"
 msgid "Latest check-ins"
 msgstr "أحدث تسجيلات الحضور"
 
-#: src/components/modals/LocationEditModal/index.tsx:282
+#: src/components/modals/LocationEditModal/index.tsx:283
 msgid "Latitude"
 msgstr "خط العرض"
 
@@ -6694,7 +6694,7 @@ msgstr "جاري التحميل..."
 msgid "Location"
 msgstr "الموقع"
 
-#: src/components/modals/LocationEditModal/index.tsx:227
+#: src/components/modals/LocationEditModal/index.tsx:228
 msgid "Location / Venue Name"
 msgstr ""
 
@@ -6702,15 +6702,15 @@ msgstr ""
 msgid "Location deleted"
 msgstr "تم حذف الموقع"
 
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:220
 msgid "Location pinned"
 msgstr ""
 
-#: src/components/modals/LocationEditModal/index.tsx:171
+#: src/components/modals/LocationEditModal/index.tsx:172
 msgid "Location saved"
 msgstr "تم حفظ الموقع"
 
-#: src/components/modals/LocationEditModal/index.tsx:168
+#: src/components/modals/LocationEditModal/index.tsx:169
 msgid "Location updated"
 msgstr "تم تحديث الموقع"
 
@@ -6764,7 +6764,7 @@ msgstr "سيظهر الشعار في ترويسة الصفحة"
 msgid "Logout"
 msgstr "تسجيل الخروج"
 
-#: src/components/modals/LocationEditModal/index.tsx:290
+#: src/components/modals/LocationEditModal/index.tsx:291
 msgid "Longitude"
 msgstr "خط الطول"
 
@@ -7192,7 +7192,7 @@ msgstr "Name is required"
 msgid "Name must be less than 255 characters"
 msgstr "Name must be less than 255 characters"
 
-#: src/components/modals/LocationEditModal/index.tsx:228
+#: src/components/modals/LocationEditModal/index.tsx:229
 msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
 msgstr "اسم القاعة أو المركز أو المقر (مثال: مركز المؤتمرات، القاعة 1)."
 
@@ -9988,7 +9988,7 @@ msgid "Saturday"
 msgstr "Saturday"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:274
+#: src/components/modals/LocationEditModal/index.tsx:275
 msgid "Saudi Arabia"
 msgstr "المملكة العربية السعودية"
 
@@ -10015,7 +10015,7 @@ msgstr "المملكة العربية السعودية"
 msgid "Save"
 msgstr "حفظ"
 
-#: src/components/modals/LocationEditModal/index.tsx:307
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10473,7 +10473,7 @@ msgstr "selected"
 msgid "Selected"
 msgstr "Selected"
 
-#: src/components/modals/LocationEditModal/index.tsx:213
+#: src/components/modals/LocationEditModal/index.tsx:214
 msgid "Selected Coordinates:"
 msgstr "الإحداثيات المحددة:"
 
@@ -11096,7 +11096,7 @@ msgstr "Starts tomorrow"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:265
+#: src/components/modals/LocationEditModal/index.tsx:266
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -12637,7 +12637,7 @@ msgstr "الوحدات المباعة"
 #~ msgid "University conference hall"
 #~ msgstr "قاعة المؤتمرات الجامعية"
 
-#: src/components/modals/LocationEditModal/index.tsx:150
+#: src/components/modals/LocationEditModal/index.tsx:151
 msgid "University Venue"
 msgstr "مقر جامعي"
 
@@ -13051,7 +13051,7 @@ msgid "Venue Location Map"
 msgstr "خريطة موقع الفعالية"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:256
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Venue Name"
 msgstr "اسم المقر"
 
@@ -14111,7 +14111,7 @@ msgstr "الرمز البريدي"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:268
+#: src/components/modals/LocationEditModal/index.tsx:269
 msgid "Zip or Postal Code"
 msgstr "الرمز البريدي"
 

@@ -147,14 +147,15 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
             return;
         }
 
-        const fallbackName = values.name.trim() || values.structured_address.venue_name.trim() || t`University Venue`;
+        const venueName = values.structured_address?.venue_name?.trim() || "";
+        const fallbackName = values.name.trim() || venueName || t`University Venue`;
         const payload = {
             name: values.name.trim() || fallbackName,
             structured_address: {
                 ...values.structured_address,
-                venue_name: values.structured_address.venue_name.trim() || fallbackName,
-                city: values.structured_address.city.trim() || "المدينة المنورة",
-                country: values.structured_address.country.trim() || SAUDI_COUNTRY,
+                venue_name: venueName || fallbackName,
+                city: values.structured_address?.city?.trim() || "المدينة المنورة",
+                country: values.structured_address?.country?.trim() || SAUDI_COUNTRY,
             },
             latitude: point?.lat ?? null,
             longitude: point?.lng ?? null,
@@ -243,7 +244,7 @@ export const LocationEditModal = ({onClose, organizerId, location}: LocationEdit
                     </Button>
 
                     {/* 4. Collapsible manual fields */}
-                    <Collapse in={showManualDetails}>
+                    <Collapse expanded={showManualDetails}>
                         <Stack gap="sm" pt="xs">
                             <AddressAutocomplete
                                 organizerId={organizerId}

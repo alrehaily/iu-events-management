@@ -638,7 +638,7 @@ msgstr "Bu check-in listesi için açıklama ekleyin"
 msgid "Add a Single Date"
 msgstr "Tek bir tarih ekle"
 
-#: src/components/modals/LocationEditModal/index.tsx:242
+#: src/components/modals/LocationEditModal/index.tsx:243
 msgid "Add address details manually (Street, City, Postal Code)"
 msgstr ""
 
@@ -707,8 +707,8 @@ msgid "Add instructions for offline payments (e.g., bank transfer details, where
 msgstr "Çevrimdışı ödemeler için talimatlar ekleyin (örn. banka havalesi detayları, çeklerin nereye gönderileceği, ödeme tarihleri)"
 
 #: src/components/common/LocationsTable/index.tsx:96
-#: src/components/modals/LocationEditModal/index.tsx:193
-#: src/components/modals/LocationEditModal/index.tsx:307
+#: src/components/modals/LocationEditModal/index.tsx:194
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/routes/organizer/Locations/index.tsx:55
 msgid "Add Location"
 msgstr "Konum Ekle"
@@ -822,7 +822,7 @@ msgid "Address line 1"
 msgstr "Adres satırı 1"
 
 #: src/components/common/LocationPicker/index.tsx:254
-#: src/components/modals/LocationEditModal/index.tsx:260
+#: src/components/modals/LocationEditModal/index.tsx:261
 #: src/components/routes/product-widget/CollectInformation/index.tsx:606
 #: src/components/routes/product-widget/CollectInformation/index.tsx:607
 msgid "Address Line 1"
@@ -833,7 +833,7 @@ msgid "Address line 2"
 msgstr "Adres satırı 2"
 
 #: src/components/common/LocationPicker/index.tsx:259
-#: src/components/modals/LocationEditModal/index.tsx:261
+#: src/components/modals/LocationEditModal/index.tsx:262
 #: src/components/routes/product-widget/CollectInformation/index.tsx:611
 #: src/components/routes/product-widget/CollectInformation/index.tsx:612
 msgid "Address Line 2"
@@ -866,7 +866,7 @@ msgstr "Yönetici kullanıcılar etkinliklere ve hesap ayarlarına tam erişime 
 msgid "Admits attendees to your event"
 msgstr "Katılımcılara etkinliğinize giriş hakkı verir"
 
-#: src/components/modals/LocationEditModal/index.tsx:279
+#: src/components/modals/LocationEditModal/index.tsx:280
 msgid "Advanced coordinates (optional)"
 msgstr ""
 
@@ -2439,7 +2439,7 @@ msgstr "Platform ücretini kimin ödeyeceğini seçin. Bu, hesap ayarlarınızda
 
 #: src/components/common/CheckoutQuestion/index.tsx:162
 #: src/components/common/LocationPicker/index.tsx:266
-#: src/components/modals/LocationEditModal/index.tsx:264
+#: src/components/modals/LocationEditModal/index.tsx:265
 #: src/components/routes/product-widget/CollectInformation/index.tsx:620
 #: src/components/routes/product-widget/CollectInformation/index.tsx:621
 msgid "City"
@@ -2474,7 +2474,7 @@ msgstr "Temizlemek, tarihe özel tüm ayarları kaldırır. Etkilenen tarihler e
 msgid "Click the map to place a marker, or move the map with the arrow keys and select its center."
 msgstr ""
 
-#: src/components/modals/LocationEditModal/index.tsx:214
+#: src/components/modals/LocationEditModal/index.tsx:215
 msgid "Click the map to place a pin, or enter details below."
 msgstr ""
 
@@ -2500,7 +2500,7 @@ msgstr "kapat"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:198
+#: src/components/iu/IUCertificateModal/index.tsx:276
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -2667,7 +2667,7 @@ msgstr "Tamamlanan Siparişler"
 #~ msgstr "Oluştur"
 
 #: src/components/common/LocationPicker/index.tsx:248
-#: src/components/modals/LocationEditModal/index.tsx:257
+#: src/components/modals/LocationEditModal/index.tsx:258
 msgid "Conference Center"
 msgstr "Konferans Merkezi"
 
@@ -3031,7 +3031,7 @@ msgstr "Doğrulama e-postası gönderilemedi. Lütfen tekrar deneyin."
 
 #: src/components/common/CheckoutQuestion/index.tsx:174
 #: src/components/common/LocationPicker/index.tsx:285
-#: src/components/modals/LocationEditModal/index.tsx:273
+#: src/components/modals/LocationEditModal/index.tsx:274
 #: src/components/routes/product-widget/CollectInformation/index.tsx:641
 msgid "Country"
 msgstr "Ülke"
@@ -4049,7 +4049,7 @@ msgstr "örn. Bu cumartesi 02:00-04:00 UTC arası planlı bakım"
 msgid "e.g., Important update about your tickets"
 msgstr "örn., Biletleriniz hakkında önemli güncelleme"
 
-#: src/components/modals/LocationEditModal/index.tsx:229
+#: src/components/modals/LocationEditModal/index.tsx:230
 msgid "e.g., Main University Auditorium"
 msgstr ""
 
@@ -4152,7 +4152,7 @@ msgstr "Tarihi düzenle"
 msgid "Edit location"
 msgstr "Konumu düzenle"
 
-#: src/components/modals/LocationEditModal/index.tsx:193
+#: src/components/modals/LocationEditModal/index.tsx:194
 msgid "Edit Location"
 msgstr "Konumu Düzenle"
 
@@ -4471,7 +4471,7 @@ msgstr "Önizlemeyi görmek için bir konu ve gövde girin"
 msgid "Enter a time to shift by."
 msgstr "Ne kadar kaydırılacağını girin."
 
-#: src/components/modals/LocationEditModal/index.tsx:299
+#: src/components/modals/LocationEditModal/index.tsx:300
 msgid "Enter a valid latitude and longitude, or leave both blank."
 msgstr ""
 
@@ -5853,7 +5853,7 @@ msgstr "Cevapları Gizle"
 msgid "Hide details"
 msgstr "Ayrıntıları gizle"
 
-#: src/components/modals/LocationEditModal/index.tsx:242
+#: src/components/modals/LocationEditModal/index.tsx:243
 msgid "Hide manual address details"
 msgstr ""
 
@@ -6561,7 +6561,7 @@ msgstr "Daha sonra"
 msgid "Latest check-ins"
 msgstr "En son check-in'ler"
 
-#: src/components/modals/LocationEditModal/index.tsx:282
+#: src/components/modals/LocationEditModal/index.tsx:283
 msgid "Latitude"
 msgstr "Enlem"
 
@@ -6692,7 +6692,7 @@ msgstr "Yükleniyor..."
 msgid "Location"
 msgstr "Konum"
 
-#: src/components/modals/LocationEditModal/index.tsx:227
+#: src/components/modals/LocationEditModal/index.tsx:228
 msgid "Location / Venue Name"
 msgstr ""
 
@@ -6700,15 +6700,15 @@ msgstr ""
 msgid "Location deleted"
 msgstr "Konum silindi"
 
-#: src/components/modals/LocationEditModal/index.tsx:219
+#: src/components/modals/LocationEditModal/index.tsx:220
 msgid "Location pinned"
 msgstr ""
 
-#: src/components/modals/LocationEditModal/index.tsx:171
+#: src/components/modals/LocationEditModal/index.tsx:172
 msgid "Location saved"
 msgstr "Konum kaydedildi"
 
-#: src/components/modals/LocationEditModal/index.tsx:168
+#: src/components/modals/LocationEditModal/index.tsx:169
 msgid "Location updated"
 msgstr "Konum güncellendi"
 
@@ -6762,7 +6762,7 @@ msgstr "Logo başlıkta görüntülenecektir"
 msgid "Logout"
 msgstr "Çıkış"
 
-#: src/components/modals/LocationEditModal/index.tsx:290
+#: src/components/modals/LocationEditModal/index.tsx:291
 msgid "Longitude"
 msgstr "Boylam"
 
@@ -7190,7 +7190,7 @@ msgstr "Ad gerekli"
 msgid "Name must be less than 255 characters"
 msgstr "İsim 255 karakterden az olmalıdır"
 
-#: src/components/modals/LocationEditModal/index.tsx:228
+#: src/components/modals/LocationEditModal/index.tsx:229
 msgid "Name of the hall, auditorium, or location (e.g. Conference Center, Hall 1)."
 msgstr ""
 
@@ -9986,7 +9986,7 @@ msgid "Saturday"
 msgstr "Cumartesi"
 
 #: src/components/common/LocationPicker/index.tsx:286
-#: src/components/modals/LocationEditModal/index.tsx:274
+#: src/components/modals/LocationEditModal/index.tsx:275
 msgid "Saudi Arabia"
 msgstr ""
 
@@ -10013,7 +10013,7 @@ msgstr ""
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/components/modals/LocationEditModal/index.tsx:307
+#: src/components/modals/LocationEditModal/index.tsx:308
 #: src/components/modals/ManageAttendeeModal/index.tsx:187
 #: src/components/modals/ManageOrderModal/index.tsx:212
 #: src/components/routes/admin/Announcements/index.tsx:502
@@ -10471,7 +10471,7 @@ msgstr "seçili"
 msgid "Selected"
 msgstr "Seçildi"
 
-#: src/components/modals/LocationEditModal/index.tsx:213
+#: src/components/modals/LocationEditModal/index.tsx:214
 msgid "Selected Coordinates:"
 msgstr ""
 
@@ -11098,7 +11098,7 @@ msgstr "Yarın başlıyor"
 
 #: src/components/common/CheckoutQuestion/index.tsx:165
 #: src/components/common/LocationPicker/index.tsx:271
-#: src/components/modals/LocationEditModal/index.tsx:265
+#: src/components/modals/LocationEditModal/index.tsx:266
 #: src/components/routes/product-widget/CollectInformation/index.tsx:626
 #: src/components/routes/product-widget/CollectInformation/index.tsx:627
 msgid "State or Region"
@@ -12639,7 +12639,7 @@ msgstr ""
 #~ msgid "University conference hall"
 #~ msgstr ""
 
-#: src/components/modals/LocationEditModal/index.tsx:150
+#: src/components/modals/LocationEditModal/index.tsx:151
 msgid "University Venue"
 msgstr ""
 
@@ -13053,7 +13053,7 @@ msgid "Venue Location Map"
 msgstr "Etkinlik mekânı haritası"
 
 #: src/components/common/LocationPicker/index.tsx:247
-#: src/components/modals/LocationEditModal/index.tsx:256
+#: src/components/modals/LocationEditModal/index.tsx:257
 msgid "Venue Name"
 msgstr "Mekan Adı"
 
@@ -14117,7 +14117,7 @@ msgstr "Posta Kodu"
 
 #: src/components/common/CheckoutQuestion/index.tsx:170
 #: src/components/common/LocationPicker/index.tsx:278
-#: src/components/modals/LocationEditModal/index.tsx:268
+#: src/components/modals/LocationEditModal/index.tsx:269
 msgid "Zip or Postal Code"
 msgstr "Posta Kodu"
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {createPortal} from "react-dom";
 import {t} from "@lingui/macro";
 import {CertificateData} from "../../../api/attendee.client";
@@ -15,6 +15,24 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
   onClose,
   certificate,
 }) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && opened) {
+        onClose();
+      }
+    };
+
+    if (opened) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [opened, onClose]);
+
   if (!opened || !certificate || typeof document === "undefined") return null;
 
   const handlePrint = () => {
@@ -34,20 +52,66 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
   return createPortal(
     <div
       id="iu-certificate-overlay"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
       style={{
         position: "fixed",
         inset: 0,
         backgroundColor: "rgba(15, 23, 42, 0.75)",
-        backdropFilter: "blur(6px)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
         padding: "16px",
+        animation: "iuCertOverlayFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       }}
       dir="rtl"
     >
       <style>{`
+        @keyframes iuCertOverlayFadeIn {
+          0% {
+            opacity: 0;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+          }
+        }
+        @keyframes iuCertModalPop {
+          0% {
+            opacity: 0;
+            transform: scale(0.90) translateY(24px);
+            filter: blur(4px);
+          }
+          70% {
+            opacity: 0.98;
+            transform: scale(1.008) translateY(-2px);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+          }
+        }
+        @keyframes iuCertParchmentIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.96) translateY(14px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
         @page {
           size: A4 landscape;
           margin: 0;
@@ -70,6 +134,8 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             margin: 0 !important;
             background: none !important;
             backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            animation: none !important;
           }
           #iu-certificate-shell {
             box-shadow: none !important;
@@ -81,6 +147,9 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             padding: 0 !important;
             background: none !important;
             overflow: visible !important;
+            animation: none !important;
+            transform: none !important;
+            filter: none !important;
           }
           .iu-cert-modal-header {
             display: none !important;
@@ -102,6 +171,12 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
             break-inside: avoid !important;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            animation: none !important;
+            transform: none !important;
+          }
+          #iu-certificate-printable * {
+            animation: none !important;
+            transition: none !important;
           }
         }
       `}</style>
@@ -119,6 +194,9 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
           position: "relative",
           display: "flex",
           flexDirection: "column",
+          animation: "iuCertModalPop 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+          transformOrigin: "center center",
+          willChange: "transform, opacity, filter",
         }}
       >
         {/* Modal Controls Header */}
@@ -247,6 +325,9 @@ export const IUCertificateModal: React.FC<IUCertificateModalProps> = ({
               textAlign: "center",
               fontFamily: "'Cairo', 'Tajawal', system-ui, -apple-system, sans-serif",
               overflow: "hidden",
+              animation: "iuCertParchmentIn 0.44s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both",
+              transformOrigin: "center center",
+              willChange: "transform, opacity",
             }}
             dir="rtl"
           >
