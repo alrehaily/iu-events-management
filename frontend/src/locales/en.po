@@ -2504,7 +2504,7 @@ msgstr "close"
 
 #: src/components/common/SideDrawer/index.tsx:117
 #: src/components/forms/ProductForm/ProductDrawer.tsx:100
-#: src/components/iu/IUCertificateModal/index.tsx:201
+#: src/components/iu/IUCertificateModal/index.tsx:293
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:208
 #: src/components/modals/JoinWaitlistModal/index.tsx:117
 #: src/components/modals/JoinWaitlistModal/index.tsx:144
@@ -9069,8 +9069,8 @@ msgid "Print All Tickets"
 msgstr "Print All Tickets"
 
 #: src/components/iu/IUCertificateModal/index.tsx:197
-msgid "Print or save as PDF"
-msgstr "Print or save as PDF"
+#~ msgid "Print or save as PDF"
+#~ msgstr "Print or save as PDF"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:223
 #~ msgid "Print Preview"
@@ -9525,8 +9525,8 @@ msgid "Redirecting to Stripe..."
 msgstr "Redirecting to Stripe..."
 
 #: src/components/iu/IUCertificateModal/index.tsx:481
-msgid "Ref:"
-msgstr "Ref:"
+#~ msgid "Ref:"
+#~ msgstr "Ref:"
 
 #: src/components/routes/admin/Attribution/index.tsx:88
 msgid "Referral Accounts"
@@ -13090,8 +13090,8 @@ msgid "Verified accounts can send messages to attendees and manage email templat
 msgstr "Verified accounts can send messages to attendees and manage email templates. Connecting Stripe verifies an account automatically."
 
 #: src/components/iu/IUCertificateModal/index.tsx:162
-msgid "Verified attendance certificate"
-msgstr "Verified attendance certificate"
+#~ msgid "Verified attendance certificate"
+#~ msgstr "Verified attendance certificate"
 
 #: src/components/routes/welcome/index.tsx:189
 msgid "Verify Email"
