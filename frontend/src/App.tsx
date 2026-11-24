@@ -104,11 +104,11 @@ const LocalizedProviders = (props: AppProps) => {
                             <ModalsProvider labels={{confirm: t`Confirm`, cancel: t`Cancel`}}>
                                 <Helmet>
                                     <title>{getConfig("VITE_APP_NAME", t`IU Events Management Platform`)}</title>
-                                    <link rel="icon" type="image/svg+xml" href={getConfig("VITE_APP_FAVICON_SVG", "/favicon.svg")}/>
-                                    <link rel="icon" type="image/png" sizes="32x32" href={getConfig("VITE_APP_FAVICON", "/manifest-icons/favicon-32x32.png")}/>
-                                    <link rel="icon" type="image/png" sizes="16x16" href="/manifest-icons/favicon-16x16.png"/>
-                                    <link rel="shortcut icon" href="/favicon.ico"/>
-                                    <link rel="apple-touch-icon" sizes="180x180" href="/manifest-icons/apple-touch-icon.png"/>
+                                    <link rel="icon" type="image/svg+xml" href={getConfig("VITE_APP_FAVICON_SVG", "/favicon.svg") + "?v=iu-20261124"}/>
+                                    <link rel="icon" type="image/png" sizes="32x32" href={getConfig("VITE_APP_FAVICON", "/manifest-icons/favicon-32x32.png") + "?v=iu-20261124"}/>
+                                    <link rel="icon" type="image/png" sizes="16x16" href="/manifest-icons/favicon-16x16.png?v=iu-20261124"/>
+                                    <link rel="shortcut icon" href="/favicon.ico?v=iu-20261124"/>
+                                    <link rel="apple-touch-icon" sizes="180x180" href="/manifest-icons/apple-touch-icon.png?v=iu-20261124"/>
                                 </Helmet>
                                 {props.children}
                             </ModalsProvider>
