@@ -4,6 +4,7 @@ import {EventDetailsForm} from "./Sections/EventDetailsForm";
 import {LocationSettings} from "./Sections/LocationSettings";
 import {HomepageAndCheckoutSettings} from "./Sections/HomepageAndCheckoutSettings";
 import {EmailSettings} from "./Sections/EmailSettings";
+import {EventPagePreview} from "./Sections/EventPagePreview";
 import {PageTitle} from "../../../common/PageTitle";
 import {t} from "@lingui/macro";
 import {Box, Group, NavLink as MantineNavLink, Stack} from "@mantine/core";
@@ -11,6 +12,7 @@ import {
     IconAlertTriangle,
     IconAt,
     IconBuildingStore,
+    IconEye,
     IconHome,
     IconMapPin,
     IconPercentage,
@@ -38,6 +40,12 @@ export const Settings = () => {
 
     const SECTIONS = useMemo(() => {
         const baseSections = [
+            {
+                id: 'event-preview',
+                label: t`Preview Event page`,
+                icon: IconEye,
+                component: EventPagePreview
+            },
             {
                 id: 'event-details',
                 label: t`Event Details`,
@@ -91,9 +99,9 @@ export const Settings = () => {
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const [activeSection, setActiveSection] = useState(() => {
-        if (typeof window === 'undefined') return 'event-details';
+        if (typeof window === 'undefined') return 'event-preview';
         const hash = window.location.hash.replace('#', '');
-        return hash || 'event-details';
+        return hash || 'event-preview';
     });
 
     useEffect(() => {

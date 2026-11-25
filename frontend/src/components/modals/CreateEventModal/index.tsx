@@ -36,7 +36,6 @@ import {
     IconLink,
     IconMapPin,
     IconMapPinFilled,
-    IconPalette,
     IconListDetails,
     IconPhoto,
     IconSparkles,
@@ -61,8 +60,8 @@ interface CreateEventModalProps extends GenericModalProps {
 type Step = 1 | 2 | 3 | 4;
 
 // What happens after the event is saved: publish it, keep it as a draft,
-// or keep it as a draft and open the page with more details or design options.
-type SaveAction = 'publish' | 'draft' | 'details' | 'design';
+// or keep it as a draft and open the page with more details.
+type SaveAction = 'publish' | 'draft' | 'details';
 
 const MAX_COVER_SIZE = 5 * 1024 * 1024;
 
@@ -347,8 +346,6 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
 
         if (action === 'details') {
             navigate(`/manage/event/${eventId}/settings`);
-        } else if (action === 'design') {
-            navigate(`/manage/event/${eventId}/homepage-designer`);
         } else {
             navigate(`/manage/event/${eventId}/dashboard?new_event=true`);
         }
@@ -767,16 +764,6 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                                 onClick={() => handleCreate('details')}
                                             >
                                                 {t`More event details`}
-                                            </Button>
-                                            <Button
-                                                type="button"
-                                                variant="default"
-                                                leftSection={<IconPalette size={18}/>}
-                                                loading={savingAction === 'design'}
-                                                disabled={isSaving && savingAction !== 'design'}
-                                                onClick={() => handleCreate('design')}
-                                            >
-                                                {t`Images & design`}
                                             </Button>
                                         </div>
                                     </div>

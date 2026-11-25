@@ -2,17 +2,15 @@ import {Button} from "@mantine/core";
 import {IconCheck, IconCircle, IconCircleCheck, IconX} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
-import {Event, EventType, Image} from "../../../../types.ts";
+import {Event, EventType} from "../../../../types.ts";
 import classes from "./SetupChecklist.module.scss";
 
 interface SetupChecklistProps {
     event: Event;
     hasOccurrences: boolean;
-    eventImages: Image[] | undefined;
     onPublish: () => void;
     onEditDetails: () => void;
     onSetupSchedule: () => void;
-    onCustomizePage: () => void;
     onDismiss: () => void;
     isDismissed: boolean;
     showCongratsHeader?: boolean;
@@ -43,11 +41,9 @@ interface Step {
 export const SetupChecklist = ({
                                    event,
                                    hasOccurrences,
-                                   eventImages,
                                    onPublish,
                                    onEditDetails,
                                    onSetupSchedule,
-                                   onCustomizePage,
                                    onDismiss,
                                    isDismissed,
                                    showCongratsHeader = false,
@@ -55,7 +51,6 @@ export const SetupChecklist = ({
     const {i18n} = useLingui();
     const isArabic = i18n.locale === 'ar';
 
-    const hasCoverImage = (eventImages?.length ?? 0) > 0;
     const isRecurring = event.type === EventType.RECURRING;
 
     const steps: Step[] = [
@@ -88,17 +83,6 @@ export const SetupChecklist = ({
             actionLabel: t`Add details`,
             actionStyle: 'secondary',
             onAction: onEditDetails,
-            keepActionWhenComplete: true,
-        },
-        {
-            key: 'customize',
-            title: t`Customize your event page`,
-            helperIncomplete: t`Add a cover image and theme to match your brand`,
-            helperComplete: t`Cover image added`,
-            complete: hasCoverImage,
-            actionLabel: t`Customize page`,
-            actionStyle: 'secondary',
-            onAction: onCustomizePage,
             keepActionWhenComplete: true,
         },
     ];

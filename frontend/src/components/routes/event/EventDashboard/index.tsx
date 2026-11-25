@@ -19,7 +19,6 @@ import {EventLifecycleStatus, EventStatus, EventType} from "../../../../types.ts
 import {UpcomingOccurrences} from "./UpcomingOccurrences";
 import {NextOccurrenceHero} from "./NextOccurrenceHero";
 import {trackEvent, AnalyticsEvents} from "../../../../utilites/analytics.ts";
-import {useGetEventImages} from "../../../../queries/useGetEventImages.ts";
 import {useGetEventOccurrences} from "../../../../queries/useGetEventOccurrences.ts";
 import {PeriodSelector, PeriodPreset} from "../../../common/PeriodSelector";
 import {periodPresetToDateRange} from "../../../../utilites/periodPreset.ts";
@@ -73,7 +72,6 @@ export const EventDashboard = () => {
     const [isChecklistDismissed, setIsChecklistDismissed] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    const {data: eventImages} = useGetEventImages(eventId);
     const isRecurring = event?.type === EventType.RECURRING;
     const occurrencesQuery = useGetEventOccurrences(
         eventId,
@@ -128,13 +126,6 @@ export const EventDashboard = () => {
             return;
         }
         navigate(`/manage/event/${eventId}/occurrences`);
-    };
-
-    const handleCustomizePage = () => {
-        if (!eventId) {
-            return;
-        }
-        navigate(`/manage/event/${eventId}/homepage-designer`);
     };
 
     const dateRangeLabel = (() => {
@@ -196,11 +187,9 @@ export const EventDashboard = () => {
                     <SetupChecklist
                         event={event}
                         hasOccurrences={hasOccurrences}
-                        eventImages={eventImages}
                         onPublish={handlePublish}
                         onEditDetails={handleEditDetails}
                         onSetupSchedule={handleSetupSchedule}
-                        onCustomizePage={handleCustomizePage}
                         onDismiss={dismissChecklist}
                         isDismissed={isChecklistDismissed}
                         showCongratsHeader={isNewEvent}

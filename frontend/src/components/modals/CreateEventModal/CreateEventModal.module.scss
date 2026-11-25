@@ -458,12 +458,7 @@
 
 .moreOptionsButtons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-
-  @include mixins.respond-below(sm) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
 }
 
 .progressLabel {
