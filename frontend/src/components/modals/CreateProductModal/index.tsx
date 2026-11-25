@@ -1,10 +1,8 @@
-import {GenericModalProps, IdParam, Product, ProductPriceType, ProductType, TaxAndFee} from "../../../types.ts";
+import {GenericModalProps, IdParam, Product, ProductPriceType, ProductType} from "../../../types.ts";
 import {useForm} from "@mantine/form";
 import {useParams} from "react-router";
 import {ProductForm} from "../../forms/ProductForm";
 import {ProductDrawer} from "../../forms/ProductForm/ProductDrawer.tsx";
-import {useEffect} from "react";
-import {useGetTaxesAndFees} from "../../../queries/useGetTaxesAndFees.ts";
 import {useGetEvent} from "../../../queries/useGetEvent.ts";
 import {t} from "@lingui/macro";
 import {useCreateProduct} from "../../../mutations/useCreateProduct.ts";
@@ -17,13 +15,12 @@ interface CreateProductModalProps extends GenericModalProps {
 export const CreateProductModal = ({onClose, selectedCategoryId = undefined}: CreateProductModalProps) => {
     const {eventId} = useParams();
     const {data: event} = useGetEvent(eventId);
-    const {data: taxesAndFees, isFetched: taxesAndFeesLoaded} = useGetTaxesAndFees();
     const createProductMutation = useCreateProduct();
     const form = useForm<Product>({
         initialValues: {
             title: '',
             description: '',
-            max_per_order: 100,
+            max_per_order: 1,
             min_per_order: 1,
             sale_start_date: '',
             sale_end_date: '',
@@ -35,10 +32,10 @@ export const CreateProductModal = ({onClose, selectedCategoryId = undefined}: Cr
             is_hidden_without_promo_code: false,
             is_highlighted: false,
             highlight_message: undefined,
-            waitlist_enabled: null,
-            type: ProductPriceType.Paid,
+            waitlist_enabled: true,
+            type: ProductPriceType.Free,
             product_type: ProductType.Ticket,
-            tax_and_fee_ids: undefined,
+            tax_and_fee_ids: [],
             addon_product_ids: [],
             is_addon_only: false,
             product_category_id: selectedCategoryId ? String(selectedCategoryId) : undefined,
@@ -68,16 +65,6 @@ export const CreateProductModal = ({onClose, selectedCategoryId = undefined}: Cr
             }
         });
     }
-
-    useEffect(() => {
-        form.setFieldValue('tax_and_fee_ids', taxesAndFees
-            ?.data
-            ?.filter((item) => item.is_default)
-            .map((item: TaxAndFee) => {
-                return String(item.id);
-            }) || []);
-        form.resetDirty();
-    }, [taxesAndFeesLoaded]);
 
     return (
         <ProductDrawer

@@ -80,7 +80,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
             ? buildEventLocationDisplay(event, locationSummary.eventLocation, locationSummary.isEventDefault)
             : null;
     const venue = location?.venueName ?? location?.short ?? location?.full;
-    const mapQuery = location?.full ?? venue;
+    const mapQuery = location?.coordinates ?? location?.full ?? venue;
     const mapUrl = location?.mapsUrl ?? (mapQuery ? `https://maps.google.com/?q=${encodeURIComponent(mapQuery)}` : null);
     const locationLabel = location?.isOnline ? t`Online` : venue
         ?? (locationSummary.kind === 'varied' ? t`Varies by date` : t`Not specified`);
@@ -285,7 +285,7 @@ export const EventHomepage = ({...loaderData}: EventHomepageProps) => {
                                         {t`Open in Maps`} <IconExternalLink size={11} />
                                     </a>
                                     {!preview && <iframe
-                                        src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                                        src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&t=&z=${location?.coordinates ? 16 : 13}&ie=UTF8&iwloc=&output=embed`}
                                         title={t`Event location map`}
                                         loading="lazy"
                                     />}

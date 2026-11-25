@@ -9,7 +9,6 @@ import {showSuccess} from "../../../../../../utilites/notifications.tsx";
 import {useFormErrorResponseHandler} from "../../../../../../hooks/useFormErrorResponseHandler.tsx";
 import {useUpdateEventSettings} from "../../../../../../mutations/useUpdateEventSettings.ts";
 import {useGetEventSettings} from "../../../../../../queries/useGetEventSettings.ts";
-import {Editor} from "../../../../../common/Editor";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 
 export const GeneralEmailSettings = () => {
@@ -19,7 +18,6 @@ export const GeneralEmailSettings = () => {
     const form = useForm({
         initialValues: {
             support_email: '',
-            email_footer_message: '',
             notify_organizer_of_new_orders: true,
         }
     });
@@ -29,7 +27,6 @@ export const GeneralEmailSettings = () => {
         if (eventSettingsQuery?.isFetched && eventSettingsQuery?.data) {
             form.setValues({
                 support_email: eventSettingsQuery.data.support_email,
-                email_footer_message: eventSettingsQuery.data.email_footer_message,
                 notify_organizer_of_new_orders: eventSettingsQuery.data.notify_organizer_of_new_orders,
             });
         }
@@ -61,13 +58,6 @@ export const GeneralEmailSettings = () => {
                         {...form.getInputProps('support_email')}
                         description={t`Any queries from product holders will be sent to this email address. This will also be used as the "reply-to" address for all emails sent from this event`}
                         label={t`Support Email`}
-                    />
-
-                    <Editor
-                        label={t`Email footer message`}
-                        value={form.values.email_footer_message || ''}
-                        description={t`This message will be included in the footer of all emails sent from this event`}
-                        onChange={(value) => form.setFieldValue('email_footer_message', value)}
                     />
 
                     <h3>{t`Notification Settings`}</h3>

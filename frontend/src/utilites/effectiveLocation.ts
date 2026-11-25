@@ -11,6 +11,8 @@ export interface EventLocationDisplay {
     short: string | null;
     full: string | null;
     mapsUrl: string | null;
+    // "lat,lng" when the organizer picked an exact point, so the map shows that point.
+    coordinates?: string | null;
 }
 
 export type EventLocationSummary =
@@ -103,6 +105,9 @@ export const buildEventLocationDisplay = (
         short: short ?? venueName,
         full,
         mapsUrl: buildMapsUrl(event, allowCustomMapsUrl, eventLocation, full ? address : null),
+        coordinates: eventLocation.location?.latitude != null && eventLocation.location?.longitude != null
+            ? `${eventLocation.location.latitude},${eventLocation.location.longitude}`
+            : null,
     };
 };
 

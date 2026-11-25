@@ -2,26 +2,15 @@ import {Button} from "@mantine/core";
 import {IconCheck, IconCircle, IconCircleCheck, IconX} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import {useLingui} from "@lingui/react";
-import {Account, Event, EventType, Image, Organizer, User} from "../../../../types.ts";
-import {useResendEmailConfirmation} from "../../../../mutations/useResendEmailConfirmation.ts";
-import {showError, showSuccess} from "../../../../utilites/notifications.tsx";
+import {Event, EventType} from "../../../../types.ts";
 import classes from "./SetupChecklist.module.scss";
 
 interface SetupChecklistProps {
     event: Event;
-    organizer: Organizer | undefined;
-    isStripeConnected: boolean;
-    productCount: number;
     hasOccurrences: boolean;
-    eventImages: Image[] | undefined;
-    account: Account | undefined;
-    me: User | undefined;
     onPublish: () => void;
-    onConnectStripe: () => void;
-    onAddTickets: () => void;
     onEditDetails: () => void;
     onSetupSchedule: () => void;
-    onCustomizePage: () => void;
     onDismiss: () => void;
     isDismissed: boolean;
     showCongratsHeader?: boolean;
@@ -45,23 +34,16 @@ interface Step {
     actionStyle?: ActionStyle;
     onAction?: () => void;
     actionLoading?: boolean;
+    // Keep the button after the step is complete, so the organizer can come back and edit.
+    keepActionWhenComplete?: boolean;
 }
 
 export const SetupChecklist = ({
                                    event,
-                                   organizer,
-                                   isStripeConnected,
-                                   productCount,
                                    hasOccurrences,
-                                   eventImages,
-                                   account,
-                                   me,
                                    onPublish,
-                                   onConnectStripe,
-                                   onAddTickets,
                                    onEditDetails,
                                    onSetupSchedule,
-                                   onCustomizePage,
                                    onDismiss,
                                    isDismissed,
                                    showCongratsHeader = false,
@@ -69,38 +51,9 @@ export const SetupChecklist = ({
     const {i18n} = useLingui();
     const isArabic = i18n.locale === 'ar';
 
-    const payoutsButtonLabel = organizer?.stripe_account_id
-        ? t`Finish setup`
-        : t`Connect bank`;
-
-    const resendEmailConfirmation = useResendEmailConfirmation();
-    const handleResendEmail = () => {
-        if (!me?.id) return;
-        resendEmailConfirmation.mutate({userId: me.id}, {
-            onSuccess: () => showSuccess(t`Verification email sent. Check your inbox.`),
-            onError: () => showError(t`Couldn't send verification email. Please try again.`),
-        });
-    };
-
-    const hasCoverImage = (eventImages?.length ?? 0) > 0;
-    const isEmailVerified = !!account?.is_account_email_confirmed;
     const isRecurring = event.type === EventType.RECURRING;
-    const isSaasMode = !!account?.is_saas_mode_enabled;
-    const hasTickets = productCount > 0;
 
     const steps: Step[] = [
-        {
-            key: 'tickets',
-            title: t`Add tickets`,
-            helperIncomplete: t`Set up the tickets you'll sell and their prices`,
-            helperComplete: productCount === 1
-                ? t`1 ticket type configured`
-                : t`${productCount} ticket types configured`,
-            complete: productCount > 0,
-            actionLabel: t`Add tickets`,
-            actionStyle: 'primary',
-            onAction: onAddTickets,
-        },
         ...(isRecurring ? [{
             key: 'schedule',
             title: t`Set up your schedule`,
@@ -118,22 +71,9 @@ export const SetupChecklist = ({
             helperComplete: event.status === 'PENDING_MANUAL_REVIEW' ? t`Pending review` : t`Live`,
             complete: event.status === 'LIVE' || event.status === 'PENDING_MANUAL_REVIEW',
             actionLabel: t`Publish`,
-            actionStyle:
-                isRecurring
-                    ? (hasOccurrences && hasTickets ? 'primary' : 'secondary')
-                    : (!hasTickets ? 'secondary' : 'primary'),
+            actionStyle: isRecurring && !hasOccurrences ? 'secondary' : 'primary',
             onAction: onPublish,
         },
-        ...(isSaasMode ? [{
-            key: 'payouts',
-            title: t`Set up payouts`,
-            helperIncomplete: t`Connect your bank to receive ticket sales straight to your account`,
-            helperComplete: t`Bank account connected`,
-            complete: isStripeConnected,
-            actionLabel: payoutsButtonLabel,
-            actionStyle: 'primary',
-            onAction: onConnectStripe,
-        } as Step] : []),
         {
             key: 'details',
             title: t`Add event details`,
@@ -143,37 +83,14 @@ export const SetupChecklist = ({
             actionLabel: t`Add details`,
             actionStyle: 'secondary',
             onAction: onEditDetails,
+            keepActionWhenComplete: true,
         },
-        {
-            key: 'customize',
-            title: t`Customize your event page`,
-            helperIncomplete: t`Add a cover image and theme to match your brand`,
-            helperComplete: t`Cover image added`,
-            complete: hasCoverImage,
-            actionLabel: t`Customize page`,
-            actionStyle: 'secondary',
-            onAction: onCustomizePage,
-        },
-        ...(isSaasMode && me ? [{
-            key: 'verify_email',
-            title: t`Verify your email`,
-            helperIncomplete: me?.email
-                ? t`We sent a verification link to ${me.email}`
-                : t`Verify your email so attendees can receive tickets`,
-            helperComplete: t`Email verified`,
-            complete: isEmailVerified,
-            actionLabel: t`Resend email`,
-            actionStyle: 'secondary',
-            onAction: handleResendEmail,
-            actionLoading: resendEmailConfirmation.isPending,
-        } as Step] : []),
     ];
 
     const completedCount = steps.filter((s) => s.complete).length;
     const totalCount = steps.length;
-    const allComplete = completedCount === totalCount;
 
-    if (allComplete || isDismissed) {
+    if (isDismissed) {
         return null;
     }
 
@@ -252,7 +169,7 @@ export const SetupChecklist = ({
                             </div>
                         </div>
                         <div className={classes.rowRight}>
-                            {step.complete ? (
+                            {step.complete && !step.keepActionWhenComplete ? (
                                 <IconCheck size={15} className={classes.checkDone}/>
                             ) : step.actionLabel && step.onAction ? (
                                 step.actionStyle === 'primary' ? (

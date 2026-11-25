@@ -243,8 +243,9 @@ class CreateEventService
             'get_tickets_button_text' => $terminology->defaultGetTicketsButtonText(),
             'support_email' => $organizer->getEmail(),
 
-            'payment_providers' => [PaymentProviders::STRIPE->value],
-            'offline_payment_instructions' => null,
+            // Card payments are not set up, so paid tickets are paid offline and the organizer confirms them.
+            'payment_providers' => [PaymentProviders::OFFLINE->value],
+            'offline_payment_instructions' => '<p>يتم الدفع نقدًا عند الحضور أو عبر التحويل البنكي للجهة المنظّمة. تُفعَّل تذكرتك بعد أن يؤكد المنظّم استلام المبلغ.</p>',
 
             'enable_invoicing' => false,
             'invoice_label' => __('Invoice'),
@@ -255,9 +256,8 @@ class CreateEventService
             'organization_address' => null,
             'invoice_tax_details' => null,
 
-            'attendee_details_collection_method' => $event->getType() === EventType::RECURRING->name
-                ? AttendeeDetailsCollectionMethod::PER_ORDER->value
-                : ($organizerSettings?->getDefaultAttendeeDetailsCollectionMethod() ?? AttendeeDetailsCollectionMethod::PER_TICKET->value),
+            // One ticket per order, so the person who books is the attendee.
+            'attendee_details_collection_method' => AttendeeDetailsCollectionMethod::PER_ORDER->value,
             'show_marketing_opt_in' => $organizerSettings?->getDefaultShowMarketingOptIn() ?? false,
             'allow_copy_details_to_all_attendees' => true,
             'pass_platform_fee_to_buyer' => $organizerSettings?->getDefaultPassPlatformFeeToBuyer() ?? false,

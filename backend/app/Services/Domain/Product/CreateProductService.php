@@ -100,7 +100,8 @@ class CreateProductService
             'product_category_id' => $productsData->getProductCategoryId(),
             'is_highlighted' => $productsData->getIsHighlighted(),
             'highlight_message' => $productsData->getHighlightMessage(),
-            'waitlist_enabled' => $productsData->getWaitlistEnabled(),
+            // The waitlist is on for every ticket; it only shows once a ticket sells out.
+            'waitlist_enabled' => true,
             'is_addon_only' => $productsData->getIsAddonOnly(),
         ]);
     }

@@ -93,28 +93,35 @@ export const EventDetailsForm = () => {
             ...eventData
         } = values;
 
+        // Save the event first, then the extra details. Sent together, the event save
+        // could finish last and overwrite the certificate flag with its old value.
         updateMutation.mutate({
             eventData: {
                 ...eventData,
             },
             eventId: eventId,
-        });
-
-        updateSettingsMutation.mutate({
-            eventSettings: {
-                is_certificate_eligible,
-                target_audience,
-                certificate_info,
-                requirements_info,
-                event_highlights,
-                attendee_notice,
-            },
-            eventId: eventId,
         }, {
             onSuccess: () => {
-                showSuccess(t`Successfully Updated Event`);
-                queryClient.invalidateQueries({
-                    queryKey: [GET_EVENT_PUBLIC_QUERY_KEY, eventId]
+                updateSettingsMutation.mutate({
+                    eventSettings: {
+                        is_certificate_eligible,
+                        target_audience,
+                        certificate_info,
+                        requirements_info,
+                        event_highlights,
+                        attendee_notice,
+                    },
+                    eventId: eventId,
+                }, {
+                    onSuccess: () => {
+                        showSuccess(t`Successfully Updated Event`);
+                        queryClient.invalidateQueries({
+                            queryKey: [GET_EVENT_PUBLIC_QUERY_KEY, eventId]
+                        });
+                    },
+                    onError: (error) => {
+                        formErrorHandle(form, error);
+                    }
                 });
             },
             onError: (error) => {

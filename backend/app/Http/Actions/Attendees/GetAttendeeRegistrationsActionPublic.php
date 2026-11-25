@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HiEvents\Http\Actions\Attendees;
 
+use HiEvents\Services\Domain\Event\EventDisplayInfo;
 use HiEvents\Http\Actions\BaseAction;
 use HiEvents\Models\AttendeeCertificate;
 use HiEvents\Models\Order;
@@ -74,9 +75,9 @@ class GetAttendeeRegistrationsActionPublic extends BaseAction
                 'event' => $event ? [
                     'id' => $event->id,
                     'title' => $event->title,
-                    'start_date' => $event->start_date,
-                    'end_date' => $event->end_date,
-                    'location' => $event->location,
+                    'start_date' => EventDisplayInfo::startDate($event, $order->attendees->first()?->event_occurrence_id),
+                    'end_date' => EventDisplayInfo::endDate($event, $order->attendees->first()?->event_occurrence_id),
+                    'location' => EventDisplayInfo::location($event),
                     'short_id' => $event->short_id,
                     'status' => $event->status,
                     'is_certificate_eligible' => (bool) ($event->is_certificate_eligible ?? false),

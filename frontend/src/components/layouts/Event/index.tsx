@@ -11,7 +11,6 @@ import {
     IconEyeOff,
     IconMailCheck,
     IconMailForward,
-    IconPaint,
     IconQrcode,
     IconReceipt,
     IconSend,
@@ -115,7 +114,6 @@ const EventLayout = () => {
             showWhen: () => event?.type === EventType.RECURRING,
         },
         {link: 'settings', label: t`Event Settings`, icon: IconSettings},
-        {link: 'homepage-designer', label: t`Homepage Designer`, icon: IconPaint},
 
         // 3. Ticketing & Sales
         {label: t`Ticketing & Sales`},

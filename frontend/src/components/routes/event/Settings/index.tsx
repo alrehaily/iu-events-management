@@ -4,20 +4,16 @@ import {EventDetailsForm} from "./Sections/EventDetailsForm";
 import {LocationSettings} from "./Sections/LocationSettings";
 import {HomepageAndCheckoutSettings} from "./Sections/HomepageAndCheckoutSettings";
 import {EmailSettings} from "./Sections/EmailSettings";
+import {EventPagePreview} from "./Sections/EventPagePreview";
 import {PageTitle} from "../../../common/PageTitle";
 import {t} from "@lingui/macro";
-import {SeoSettings} from "./Sections/SeoSettings";
-import {MiscSettings} from "./Sections/MiscSettings";
 import {Box, Group, NavLink as MantineNavLink, Stack} from "@mantine/core";
 import {
-    IconAdjustments,
     IconAlertTriangle,
     IconAt,
-    IconBrandGoogleAnalytics,
     IconBuildingStore,
-    IconCreditCard,
+    IconEye,
     IconHome,
-    IconListCheck,
     IconMapPin,
     IconPercentage,
     IconRepeat,
@@ -25,9 +21,7 @@ import {
 import {useMediaQuery} from "@mantine/hooks";
 import {useEffect, useMemo, useState} from "react";
 import {Card} from "../../../common/Card";
-import {PaymentAndInvoicingSettings} from "./Sections/PaymentSettings";
 import {PlatformFeesSettings} from "./Sections/PlatformFeesSettings";
-import {WaitlistSettings} from "./Sections/WaitlistSettings";
 import {RecurringEventSettings} from "./Sections/RecurringEventSettings";
 import {DangerZoneSettings} from "./Sections/DangerZoneSettings";
 import {useGetAccount} from "../../../../queries/useGetAccount.ts";
@@ -47,6 +41,12 @@ export const Settings = () => {
     const SECTIONS = useMemo(() => {
         const baseSections = [
             {
+                id: 'event-preview',
+                label: t`Preview Event page`,
+                icon: IconEye,
+                component: EventPagePreview
+            },
+            {
                 id: 'event-details',
                 label: t`Event Details`,
                 icon: IconBuildingStore,
@@ -64,42 +64,18 @@ export const Settings = () => {
                 icon: IconHome,
                 component: HomepageAndCheckoutSettings
             },
+            {
+                id: 'email-settings',
+                label: t`Email`,
+                icon: IconAt,
+                component: EmailSettings
+            },
             ...(isRecurring ? [{
                 id: 'recurring-event-settings',
                 label: t`Recurring Event`,
                 icon: IconRepeat,
                 component: RecurringEventSettings,
             }] : []),
-            {
-                id: 'seo-settings',
-                label: t`SEO`,
-                icon: IconBrandGoogleAnalytics,
-                component: SeoSettings
-            },
-            {
-                id: 'email-settings',
-                label: t`Email & Templates`,
-                icon: IconAt,
-                component: EmailSettings
-            },
-            {
-                id: 'misc-settings',
-                label: t`Miscellaneous`,
-                icon: IconAdjustments,
-                component: MiscSettings
-            },
-            {
-                id: 'waitlist-settings',
-                label: t`Waitlist`,
-                icon: IconListCheck,
-                component: WaitlistSettings,
-            },
-            {
-                id: 'payment-settings',
-                label: t`Payment & Invoicing`,
-                icon: IconCreditCard,
-                component: PaymentAndInvoicingSettings,
-            },
             {
                 id: 'danger-zone',
                 label: t`Danger Zone`,
@@ -123,9 +99,9 @@ export const Settings = () => {
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const [activeSection, setActiveSection] = useState(() => {
-        if (typeof window === 'undefined') return 'event-details';
+        if (typeof window === 'undefined') return 'event-preview';
         const hash = window.location.hash.replace('#', '');
-        return hash || 'event-details';
+        return hash || 'event-preview';
     });
 
     useEffect(() => {
