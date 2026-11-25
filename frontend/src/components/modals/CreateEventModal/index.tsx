@@ -375,23 +375,22 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                     </div>
                 </div>
 
-                <div className={classes.progress} aria-label={`${step} / ${steps.length}`}>
-                    <div className={classes.progressTrack}>
-                        <div
-                            className={classes.progressFill}
-                            style={{width: `${(step / steps.length) * 100}%`}}
-                        />
-                    </div>
-                    <ol className={classes.progressSteps}>
+                <div className={classes.progress}>
+                    <ol className={classes.stepper} aria-label={`${step} / ${steps.length}`}>
                         {steps.map((label, index) => {
                             const number = index + 1;
                             const state = number < step ? 'done' : number === step ? 'active' : 'upcoming';
                             return (
-                                <li key={label} className={classes.progressStep} data-state={state}>
-                                    <span className={classes.progressDot}>
-                                        {state === 'done' ? <IconCheck size={14} stroke={3}/> : number}
+                                <li
+                                    key={label}
+                                    className={classes.stepperItem}
+                                    data-state={state}
+                                    aria-current={state === 'active' ? 'step' : undefined}
+                                >
+                                    <span className={classes.stepperDot}>
+                                        {state === 'done' ? <IconCheck size={15} stroke={3}/> : number}
                                     </span>
-                                    <span className={classes.progressLabel}>{label}</span>
+                                    <span className={classes.stepperLabel}>{label}</span>
                                 </li>
                             );
                         })}
@@ -758,7 +757,8 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                                             <Button
                                                 type="button"
                                                 variant="default"
-                                                leftSection={<IconListDetails size={18}/>}
+                                                size="sm"
+                                                leftSection={<IconListDetails size={16}/>}
                                                 loading={savingAction === 'details'}
                                                 disabled={isSaving && savingAction !== 'details'}
                                                 onClick={() => handleCreate('details')}
@@ -771,67 +771,73 @@ export const CreateEventModal = ({onClose, organizerId}: CreateEventModalProps) 
                             )}
 
                             <div className={classes.actions}>
-                                {step > 1 && (
-                                    <Button
-                                        type="button"
-                                        variant="default"
-                                        size="lg"
-                                        className={classes.backButton}
-                                        disabled={isSaving}
-                                        onClick={() => setStep((step - 1) as Step)}
-                                        leftSection={<IconArrowRight size={18} className={classes.directionalIcon}/>}
-                                    >
-                                        {t`Go back`}
-                                    </Button>
-                                )}
-
-                                {step === 3 && (
-                                    <Button
-                                        type="button"
-                                        variant="subtle"
-                                        size="lg"
-                                        className={classes.skipButton}
-                                        onClick={skipTicketStep}
-                                    >
-                                        {t`Skip`}
-                                    </Button>
-                                )}
-
-                                {step < 4 ? (
-                                    <Button
-                                        type="submit"
-                                        size="lg"
-                                        className={classes.createButton}
-                                        rightSection={<IconArrowLeft size={18} className={classes.directionalIcon}/>}
-                                    >
-                                        {t`Continue`}
-                                    </Button>
-                                ) : (
-                                    <>
+                                <div className={classes.actionsStart}>
+                                    {step > 1 && (
                                         <Button
                                             type="button"
-                                            variant="default"
-                                            size="lg"
-                                            className={classes.draftButton}
-                                            loading={savingAction === 'draft'}
-                                            disabled={isSaving && savingAction !== 'draft'}
-                                            onClick={() => handleCreate('draft')}
+                                            variant="subtle"
+                                            color="gray"
+                                            size="md"
+                                            className={classes.backButton}
+                                            disabled={isSaving}
+                                            onClick={() => setStep((step - 1) as Step)}
+                                            leftSection={<IconArrowRight size={18} className={classes.directionalIcon}/>}
                                         >
-                                            {t`Save as Draft`}
+                                            {t`Go back`}
                                         </Button>
+                                    )}
+                                </div>
+
+                                <div className={classes.actionsEnd}>
+                                    {step === 3 && (
                                         <Button
                                             type="button"
-                                            size="lg"
-                                            className={classes.createButton}
-                                            loading={savingAction === 'publish'}
-                                            disabled={isSaving && savingAction !== 'publish'}
-                                            onClick={() => handleCreate('publish')}
-                                            leftSection={<IconCalendarEvent size={20}/>}
+                                            variant="subtle"
+                                            color="gray"
+                                            size="md"
+                                            className={classes.secondaryButton}
+                                            onClick={skipTicketStep}
                                         >
-                                            {t`Publish Event`}
+                                            {t`Skip`}
                                         </Button>
-                                    </>
-                                )}
+                                    )}
+
+                                    {step < 4 ? (
+                                        <Button
+                                            type="submit"
+                                            size="md"
+                                            className={classes.primaryButton}
+                                            rightSection={<IconArrowLeft size={18} className={classes.directionalIcon}/>}
+                                        >
+                                            {t`Continue`}
+                                        </Button>
+                                    ) : (
+                                        <>
+                                            <Button
+                                                type="button"
+                                                variant="default"
+                                                size="md"
+                                                className={classes.secondaryButton}
+                                                loading={savingAction === 'draft'}
+                                                disabled={isSaving && savingAction !== 'draft'}
+                                                onClick={() => handleCreate('draft')}
+                                            >
+                                                {t`Save as Draft`}
+                                            </Button>
+                                            <Button
+                                                type="button"
+                                                size="md"
+                                                className={classes.primaryButton}
+                                                loading={savingAction === 'publish'}
+                                                disabled={isSaving && savingAction !== 'publish'}
+                                                onClick={() => handleCreate('publish')}
+                                                leftSection={<IconCalendarEvent size={18}/>}
+                                            >
+                                                {t`Publish Event`}
+                                            </Button>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </form>
                     </div>

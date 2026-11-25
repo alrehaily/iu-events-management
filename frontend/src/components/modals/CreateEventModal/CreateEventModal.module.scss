@@ -164,78 +164,127 @@
   }
 }
 
-// Progress bar
+// Step indicator
 .progress {
   flex-shrink: 0;
-  padding: 1rem 2rem 0;
+  padding: 1.1rem 2rem 0.9rem;
+  border-bottom: 1px solid var(--mantine-color-gray-2);
 
   @include mixins.respond-below(md) {
-    padding: 0.875rem 1rem 0;
+    padding: 0.9rem 1rem 0.75rem;
   }
 }
 
-.progressTrack {
-  height: 6px;
-  border-radius: 999px;
-  background: var(--mantine-color-gray-2);
-  overflow: hidden;
-}
-
-.progressFill {
-  height: 100%;
-  border-radius: inherit;
-  background: var(--iu-green-gradient, linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%));
-  transition: width 0.35s ease;
-}
-
-.progressSteps {
+.stepper {
   list-style: none;
-  margin: 0.75rem 0 0;
+  margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.progressStep {
+.stepperItem {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--mantine-color-gray-5);
+  gap: 0.4rem;
+  text-align: center;
 
-  &[data-state='active'] {
-    color: #084b2f;
+  // The line to the previous step, drawn from this circle back to the last one.
+  &:not(:first-child)::before,
+  &:not(:first-child)::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    inset-inline-end: calc(50% + 21px);
+    width: calc(100% - 42px);
+    height: 2px;
+    border-radius: 2px;
   }
 
-  &[data-state='done'] {
-    color: #1b754b;
+  &:not(:first-child)::before {
+    background: var(--mantine-color-gray-3);
+  }
+
+  &:not(:first-child)::after {
+    background: #1b754b;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s ease;
+  }
+
+  &[data-state='done']:not(:first-child)::after,
+  &[data-state='active']:not(:first-child)::after {
+    transform: scaleX(1);
   }
 }
 
-.progressDot {
-  width: 24px;
-  height: 24px;
+[dir='ltr'] .stepperItem:not(:first-child)::after {
+  transform-origin: left;
+}
+
+.stepperDot {
+  position: relative;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  border: 2px solid currentColor;
-  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #fff;
+  color: var(--mantine-color-gray-5);
+  border: 2px solid var(--mantine-color-gray-3);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 
-  .progressStep[data-state='active'] &,
-  .progressStep[data-state='done'] & {
+  .stepperItem[data-state='done'] & {
     background: #1b754b;
     border-color: #1b754b;
     color: #fff;
+
+    // The site colours every Tabler icon dark by default; the check mark here stays white.
+    :global(.tabler-icon) {
+      color: #fff !important;
+      stroke: #fff !important;
+    }
+  }
+
+  .stepperItem[data-state='active'] & {
+    background: #084b2f;
+    border-color: #084b2f;
+    color: #fff;
+    box-shadow: 0 0 0 5px rgba(27, 117, 75, 0.15);
+  }
+}
+
+.stepperLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--mantine-color-gray-6);
+
+  .stepperItem[data-state='done'] & {
+    color: #1b754b;
+  }
+
+  .stepperItem[data-state='active'] & {
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  @include mixins.respond-below(sm) {
+    .stepperItem:not([data-state='active']) & {
+      display: none;
+    }
   }
 }
 
 // Modal content
 .modalContent {
-  max-height: calc(90vh - 150px);
+  // The container caps the height (90vh); this part takes what is left and only scrolls if it must.
   overflow-y: auto;
   @include mixins.scrollbar();
   -webkit-overflow-scrolling: touch;
@@ -287,32 +336,58 @@
   }
 }
 
-// Back / Continue buttons
+// Footer buttons
 .actions {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mantine-color-gray-2);
+}
 
-  > * {
-    flex: 1;
-  }
+.actionsStart,
+.actionsEnd {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actionsStart {
+  min-width: 0;
 }
 
 .backButton {
-  height: 52px;
-  border-radius: 14px;
   font-weight: 600;
-  flex: 0 0 auto;
-  min-width: 120px;
+  padding-inline: 0.75rem;
 }
 
-.skipButton,
-.draftButton {
-  height: 52px;
-  border-radius: 14px;
+.secondaryButton {
   font-weight: 600;
-  flex: 0 0 auto;
-  min-width: 110px;
+  border-radius: 12px;
+}
+
+.primaryButton {
+  min-width: 170px;
+  height: 46px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--iu-green-gradient, linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%));
+  box-shadow: 0 6px 18px rgba(8, 75, 47, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(8, 75, 47, 0.28);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #1b754b;
+    outline-offset: 2px;
+  }
 }
 
 @include mixins.respond-below(sm) {
@@ -320,11 +395,17 @@
     flex-wrap: wrap;
   }
 
-  .backButton,
-  .skipButton,
-  .draftButton {
+  .actionsEnd {
+    flex: 1 1 100%;
+    order: -1;
+
+    > * {
+      flex: 1;
+    }
+  }
+
+  .primaryButton {
     min-width: 0;
-    flex: 1 1 auto;
   }
 }
 
@@ -443,28 +524,28 @@
 
 .moreOptions {
   display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.875rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.875rem;
   border: 1px solid var(--mantine-color-gray-2);
-  border-radius: 14px;
+  border-radius: 12px;
   background: var(--mantine-color-gray-0);
+
+  @include mixins.respond-below(sm) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .moreOptionsHint {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
   color: var(--mantine-color-gray-7);
 }
 
 .moreOptionsButtons {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.progressLabel {
-  @include mixins.respond-below(sm) {
-    display: none;
-  }
+  flex-shrink: 0;
 }
 
 // Arrow icons are drawn for right-to-left; mirror them in left-to-right.
@@ -526,58 +607,6 @@
   font-size: 0.8rem;
   color: var(--mantine-color-gray-7);
   line-height: 1.45;
-}
-
-// Create button
-.createButton {
-  height: 52px;
-  font-weight: 700;
-  font-size: 1.05rem;
-  background: var(--hi-gradient);
-  border: none;
-  border-radius: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
-  padding: 0 2rem;
-
-  @include mixins.respond-below(sm) {
-    height: 56px;
-    font-size: 1rem;
-    padding: 0 1.5rem;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
-  }
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(102, 126, 234, 0.4);
-
-    &::before {
-      left: 100%;
-    }
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-  
-  &:focus-visible {
-    outline: 2px solid var(--mantine-color-blue-5);
-    outline-offset: 2px;
-  }
 }
 
 // Organizer creation form
