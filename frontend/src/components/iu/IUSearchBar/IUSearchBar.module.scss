@@ -327,11 +327,17 @@
 
 .pillActive,
 .pillActiveDark {
-  background: var(--iu-green-primary, #084b2f) !important;
-  border-color: var(--iu-green-primary, #084b2f) !important;
+  background: var(--iu-green-secondary, #1b754b) !important;
+  border-color: var(--iu-green-secondary, #1b754b) !important;
   color: #ffffff !important;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(8, 75, 47, 0.22);
+  box-shadow: 0 2px 8px rgba(27, 117, 75, 0.22);
+
+  &:hover {
+    background: var(--iu-green-800, #105f3c) !important;
+    border-color: var(--iu-green-800, #105f3c) !important;
+    color: #ffffff !important;
+  }
 }
 
 @media (max-width: 900px) {

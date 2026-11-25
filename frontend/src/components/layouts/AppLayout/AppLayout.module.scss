@@ -20,12 +20,9 @@
   font-family: var(--iu-font-family);
   position: relative;
 
-  /* Continuous unified gradient flowing seamlessly across sidebar and navbar */
-  background: linear-gradient(135deg, #063a24 0%, #084b2f 25%, #0c5636 60%, #157347 100%);
-
-  :global([dir="rtl"]) & {
-    background: linear-gradient(225deg, #063a24 0%, #084b2f 25%, #0c5636 60%, #157347 100%);
-  }
+  /* Continuous unified gradient matching Homepage Hero colors, flowing from top-right to bottom-left */
+  background-color: var(--iu-green-900, #084b2f);
+  background-image: linear-gradient(225deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%);
 
   /* Single, uninterrupted 3D polygonal texture spanning the entire shell */
   &::before {
@@ -34,9 +31,9 @@
     inset: 0;
     background-image: url("/assets/iu/poly-bg.png");
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.085;
+    opacity: 0.10;
     mix-blend-mode: overlay;
     pointer-events: none;
     z-index: 0;

@@ -7,7 +7,7 @@ import {attendeeClient} from "../../../api/attendee.client";
 import {authClient} from "../../../api/auth.client";
 import {useIULanguage} from "../../../context/IULanguageContext";
 
-export const IUNavbar: React.FC = () => {
+export const IUNavbar: React.FC<{preview?: boolean}> = ({preview = false}) => {
   const me = useGetMe();
   const queryClient = useQueryClient();
   const {locale, toggleLanguage, t} = useIULanguage();
@@ -87,7 +87,7 @@ export const IUNavbar: React.FC = () => {
             >
               {t("nav_about", "عن المنصة")}
             </NavLink>
-            {isLoggedIn && (
+            {!preview && isLoggedIn && (
               <NavLink
                 to="/my-registrations"
                 className={({isActive}) =>
@@ -111,7 +111,7 @@ export const IUNavbar: React.FC = () => {
             {locale === "ar" ? "English" : "العربية"}
           </button>
 
-          {isLoggedIn ? (
+          {!preview && isLoggedIn ? (
             <div style={{display: "flex", gap: "8px", alignItems: "center"}}>
               {me.isSuccess && (
                 <Link

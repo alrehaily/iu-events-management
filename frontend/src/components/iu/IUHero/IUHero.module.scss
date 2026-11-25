@@ -1,10 +1,8 @@
 .hero {
   /* Keep every IU hero on the official green treatment at all times. */
   background-color: var(--iu-green-900, #084b2f);
-  background-image: var(
-    --iu-green-gradient,
-    linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%)
-  );
+  background-image: var(--iu-green-gradient,
+      linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%));
   color: #ffffff;
   min-height: var(--hero-height, 280px);
   height: var(--hero-height, 280px);
@@ -26,7 +24,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.08;
+    opacity: 0.10;
     mix-blend-mode: overlay;
     pointer-events: none;
     z-index: 0;
@@ -92,6 +90,7 @@
     opacity: 0.22;
     transform: translateY(12px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -99,6 +98,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .heroContent,
   .heroChildrenWrapper {
     animation: none !important;

@@ -47,7 +47,7 @@ import {SidebarCallout} from "../../common/SidebarCallout";
 import {useGetMe} from "../../../queries/useGetMe.ts";
 import {useResendEmailConfirmation} from "../../../mutations/useResendEmailConfirmation.ts";
 import {useMemo, useState} from "react";
-import {eventHomepageUrl} from "../../../utilites/urlHelper.ts";
+import {eventHomepageUrl, eventPreviewPath} from "../../../utilites/urlHelper.ts";
 import {EventType} from "../../../types.ts";
 import {useGetEventOccurrence} from "../../../queries/useGetEventOccurrence.ts";
 import {prettyDate} from "../../../utilites/dates.ts";
@@ -269,10 +269,12 @@ const EventLayout = () => {
             actionGroupContent={(
                 <Button
                     component={NavLink}
-                    to={`/event/${eventId}/${event?.slug}`}
+                    to={eventPreviewPath(eventId ?? '')}
                     target={'_blank'}
+                    rel={'noopener noreferrer'}
                     variant={'transparent'}
-                    leftSection={<IconExternalLink size={17}/>}
+                    size={'xs'}
+                    leftSection={<IconExternalLink size={15}/>}
                     className={classes.eventPageButton}
                     title={t`Preview Event page`}
                 >

@@ -553,7 +553,18 @@ const SelectProducts = (props: SelectProductsProps) => {
             const existingProduct = form.values.products?.find(p => p.product_id === product.id);
 
             product.prices?.forEach(priceQuantity => {
-                const existingQuantity = existingProduct?.quantities?.find(q => q.price_id === priceQuantity.id)?.quantity || 0;
+                const existingProductQuantity = existingProduct?.quantities?.find(q => q.price_id === priceQuantity.id);
+                const shouldAutoSelectFreeTicket = !form.values.products
+                    && topLevelProducts.length === 1
+                    && !product.is_addon_only
+                    && product.is_available
+                    && !product.is_sold_out
+                    && product.type !== 'DONATION'
+                    && (product.prices?.length ?? 0) === 1
+                    && priceQuantity.is_available
+                    && Number(priceQuantity.price || 0) === 0;
+                const existingQuantity = existingProductQuantity?.quantity
+                    ?? (shouldAutoSelectFreeTicket ? Math.max(1, product.min_per_order ?? 1) : 0);
 
                 quantitiesValues.push({
                     quantity: existingQuantity,
@@ -712,6 +723,11 @@ const SelectProducts = (props: SelectProductsProps) => {
                                     const isSimpleProduct = product.type !== 'TIERED'
                                         && product.type !== 'DONATION'
                                         && (product.prices?.length ?? 0) === 1;
+                                    const hasExpandableContent = !isSimpleProduct
+                                        || Boolean(product.description)
+                                        || addonIds.length > 0;
+                                    const isFreeSimple = isSimpleProduct
+                                        && Number(product.prices?.[0]?.price || 0) === 0;
 
                                     const availabilityState = product.is_sold_out
                                         ? 'sold-out'
@@ -735,7 +751,12 @@ const SelectProducts = (props: SelectProductsProps) => {
 
                                     return (
                                         <div key={product.id}
-                                             className={`hi-product-row ${product.is_highlighted ? 'hi-product-highlighted' : ''}`}
+                                             className={classNames(
+                                                 'hi-product-row',
+                                                 product.is_highlighted && 'hi-product-highlighted',
+                                                 parentQuantity > 0 && 'hi-product-selected',
+                                             )}
+                                             data-free={isFreeSimple ? 'true' : undefined}
                                              data-availability={availabilityState}>
                                             {product.is_highlighted && product.highlight_message && (
                                                 <div className={'hi-product-highlight-message'}>
@@ -744,7 +765,8 @@ const SelectProducts = (props: SelectProductsProps) => {
                                             )}
                                             <div className={'hi-title-row'}>
                                                 <UnstyledButton className={'hi-product-title'}
-                                                                onClick={toggleCollapse}
+                                                                style={!hasExpandableContent ? {cursor: 'default'} : undefined}
+                                                                onClick={hasExpandableContent ? toggleCollapse : undefined}
                                                 >
                                                     <h3>
                                                         {product.title}
@@ -778,10 +800,12 @@ const SelectProducts = (props: SelectProductsProps) => {
                                                             </span>
                                                         )}
 
-                                                        <span className={`hi-product-collapse-arrow`}>
-                                                        <IconChevronDown
-                                                            className={isProductCollapsed ? "" : "open"}/>
-                                                        </span>
+                                                        {hasExpandableContent && (
+                                                            <span className={`hi-product-collapse-arrow`}>
+                                                            <IconChevronDown
+                                                                className={isProductCollapsed ? "" : "open"}/>
+                                                            </span>
+                                                        )}
                                                     </div>
                                                 </UnstyledButton>
                                             </div>
@@ -915,7 +939,13 @@ const SelectProducts = (props: SelectProductsProps) => {
         </>
     );
 
-    const promoSection = (
+    const hasPaidProducts = topLevelProducts.some(
+        (product) =>
+            product.type === 'DONATION' ||
+            (product.prices || []).some((price) => Number(price.price || 0) > 0),
+    );
+
+    const promoSection = (hasPaidProducts || Boolean(form.values.promo_code) || showPromoCodeInput) ? (
         <div className={'hi-promo-code-row'}>
             {(!showPromoCodeInput && !form.values.promo_code) && (
                 <Anchor className={'hi-have-a-promo-code-link'} underline={'always'}
@@ -979,7 +1009,7 @@ const SelectProducts = (props: SelectProductsProps) => {
                 </Group>
             )}
         </div>
-    );
+    ) : null;
 
     const noProductsForOccurrence = (
         <div className={'hi-no-products'}>

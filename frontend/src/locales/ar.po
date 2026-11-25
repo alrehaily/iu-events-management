@@ -6912,7 +6912,7 @@ msgstr "Max Recipients / Message"
 
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:65
 msgid "Maximum {cap} per order"
-msgstr "Maximum {cap} per order"
+msgstr "الحد الأقصى {cap} لكل طلب"
 
 #: src/components/forms/ProductForm/index.tsx:526
 msgid "Maximum Per Order"
@@ -7968,7 +7968,7 @@ msgstr "Online Event Details"
 
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:65
 msgid "Only {cap} available"
-msgstr "Only {cap} available"
+msgstr "متبقي {cap} فقط"
 
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:91
 msgid "Only {capacity} left"
@@ -11688,7 +11688,7 @@ msgstr "تعذّر تحميل الخريطة. يمكنك إدخال العنوا
 
 #: src/components/routes/product-widget/SelectProducts/index.tsx:822
 msgid "The maximum number of products for {0}is {1}"
-msgstr "The maximum number of products for {0}is {1}"
+msgstr "الحد الأقصى لعدد التذاكر لـ {0} هو {1}"
 
 #: src/components/modals/CancelOrderModal/index.tsx:75
 msgid "The order will be marked as refunded. You will need to return the payment to the customer yourself."

@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Badge, UnstyledButton, VisuallyHidden} from '@mantine/core';
 import {IconChevronLeft} from "@tabler/icons-react";
 import {t} from "@lingui/macro";
 import classes from './Sidebar.module.scss';
 import {NavItem} from "../types";
-import {NavLink} from "react-router";
+import {NavLink, useLocation, useNavigation} from "react-router";
 import classNames from "classnames";
 import {useMediaQuery} from "@mantine/hooks";
 import {getConfig} from "../../../../utilites/config.ts";
@@ -23,6 +23,20 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                                     sidebarFooter,
                                                 }) => {
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const location = useLocation();
+    const navigation = useNavigation();
+    const [pendingLabel, setPendingLabel] = useState<string | null>(null);
+    const isSwitchingRoute = Boolean(navigation.location && navigation.location.pathname !== location.pathname);
+
+    useEffect(() => {
+        setPendingLabel(null);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        if (!pendingLabel) return;
+        const timer = window.setTimeout(() => setPendingLabel(null), 3000);
+        return () => window.clearTimeout(timer);
+    }, [pendingLabel]);
 
     const renderLinks = () => {
         return navItems.map((item) => {
@@ -47,17 +61,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 <NavLink
                     to={item.comingSoon ? '#' : (item.link ?? '#')}
                     key={item.label}
-                    onClick={() => {
+                    onClick={(event) => {
+                        if (
+                            !item.comingSoon &&
+                            item.link &&
+                            item.link !== '#' &&
+                            !event.currentTarget.classList.contains(classes.linkActive)
+                        ) {
+                            setPendingLabel(item.label);
+                        }
                         if (isMobile) {
                             setSidebarOpen(false);
                         }
                         if (item.onClick) item.onClick();
                     }}
-                    className={({isActive}) =>
-                        `${((item.isActive ? item.isActive(isActive) : isActive) && !item.comingSoon)
-                            ? classes.linkActive
-                            : ""} ${classes.link}`
-                    }
+                    className={({isActive, isPending}) => {
+                        const resolvedActive = item.isActive ? item.isActive(isActive) : isActive;
+                        const isOptimisticActive = !item.comingSoon && (
+                            isPending || pendingLabel === item.label
+                        );
+                        const hasPendingSwitch = isSwitchingRoute || pendingLabel !== null;
+                        const highlight = isOptimisticActive || (!hasPendingSwitch && !item.comingSoon && resolvedActive);
+                        return `${highlight ? classes.linkActive : ""} ${classes.link}`;
+                    }}
                 >
                     {item.icon && <item.icon size={20} className={classes.linkIcon} stroke={1.5}/>}
                     <span>{item.label}</span>
