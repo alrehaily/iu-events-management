@@ -243,8 +243,9 @@ class CreateEventService
             'get_tickets_button_text' => $terminology->defaultGetTicketsButtonText(),
             'support_email' => $organizer->getEmail(),
 
-            'payment_providers' => [PaymentProviders::STRIPE->value],
-            'offline_payment_instructions' => null,
+            // Card payments are not set up, so paid tickets are paid offline and the organizer confirms them.
+            'payment_providers' => [PaymentProviders::OFFLINE->value],
+            'offline_payment_instructions' => '<p>يتم الدفع نقدًا عند الحضور أو عبر التحويل البنكي للجهة المنظّمة. تُفعَّل تذكرتك بعد أن يؤكد المنظّم استلام المبلغ.</p>',
 
             'enable_invoicing' => false,
             'invoice_label' => __('Invoice'),

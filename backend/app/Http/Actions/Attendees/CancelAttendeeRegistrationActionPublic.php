@@ -4,17 +4,24 @@ declare(strict_types=1);
 
 namespace HiEvents\Http\Actions\Attendees;
 
-use HiEvents\DomainObjects\Status\AttendeeStatus;
+use HiEvents\DomainObjects\Generated\OrderDomainObjectAbstract;
 use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Http\Actions\BaseAction;
 use HiEvents\Models\Order;
 use HiEvents\Models\User;
+use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
+use HiEvents\Services\Domain\Order\OrderCancelService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class CancelAttendeeRegistrationActionPublic extends BaseAction
 {
+    public function __construct(
+        private readonly OrderRepositoryInterface $orderRepository,
+        private readonly OrderCancelService $orderCancelService,
+    ) {}
+
     public function __invoke(string $orderShortId, Request $request): JsonResponse
     {
         /** @var User|null $user */
@@ -61,17 +68,16 @@ class CancelAttendeeRegistrationActionPublic extends BaseAction
             ]);
         }
 
-        $order->status = OrderStatus::CANCELLED->name;
-        $order->save();
-
-        foreach ($order->attendees as $attendee) {
-            $attendee->status = AttendeeStatus::CANCELLED->name;
-            $attendee->save();
-        }
+        // Use the standard cancellation so the seat is returned, stats are updated,
+        // the waitlist is offered the free seat and the cancellation email is sent.
+        $orderDomainObject = $this->orderRepository->findFirstWhere([
+            OrderDomainObjectAbstract::ID => $order->id,
+        ]);
+        $this->orderCancelService->cancelOrder($orderDomainObject);
 
         return response()->json([
             'message' => 'تم إلغاء التسجيل والتذكرة بنجاح.',
-            'order_status' => $order->status,
+            'order_status' => OrderStatus::CANCELLED->name,
         ]);
     }
 }

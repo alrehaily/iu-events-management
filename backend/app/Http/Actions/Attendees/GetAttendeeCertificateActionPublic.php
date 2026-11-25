@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HiEvents\Http\Actions\Attendees;
 
+use HiEvents\Services\Domain\Event\EventDisplayInfo;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Http\Actions\BaseAction;
@@ -119,8 +120,10 @@ class GetAttendeeCertificateActionPublic extends BaseAction
             'attendee_name' => trim($attendee->first_name . ' ' . $attendee->last_name),
             'attendee_email' => $attendee->email,
             'event_title' => $event->title,
-            'event_date' => $event->start_date ? date('Y-m-d', strtotime((string)$event->start_date)) : date('Y-m-d'),
-            'location' => $event->location ?? __('Islamic University of Madinah'),
+            'event_date' => ($startDate = EventDisplayInfo::startDate($event, $attendee->event_occurrence_id))
+                ? date('Y-m-d', strtotime($startDate))
+                : date('Y-m-d'),
+            'location' => EventDisplayInfo::location($event) ?? __('Islamic University of Madinah'),
             'issued_at' => $certificate->issued_at ? date('c', strtotime((string)$certificate->issued_at)) : now()->toIso8601String(),
             'issuer' => __('Islamic University of Madinah'),
             'checked_in' => true,
