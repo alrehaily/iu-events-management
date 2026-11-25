@@ -1,5 +1,5 @@
 import {t} from "@lingui/macro";
-import {Button, NumberInput, Switch} from "@mantine/core";
+import {Button} from "@mantine/core";
 import {useForm} from "@mantine/form";
 import {useParams} from "react-router";
 import {useEffect} from "react";
@@ -12,8 +12,6 @@ import {useGetEventSettings} from "../../../../../../queries/useGetEventSettings
 import {Editor} from "../../../../../common/Editor";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 import {isEmptyHtml} from "../../../../../../utilites/helpers.ts";
-import {CustomSelect, ItemProps} from "../../../../../common/CustomSelect";
-import {IconUser, IconUsers} from "@tabler/icons-react";
 
 export const HomepageAndCheckoutSettings = () => {
     const {eventId} = useParams();
@@ -32,23 +30,11 @@ export const HomepageAndCheckoutSettings = () => {
             ...values,
             pre_checkout_message: isEmptyHtml(values.pre_checkout_message) ? null : values.pre_checkout_message,
             post_checkout_message: isEmptyHtml(values.post_checkout_message) ? null : values.post_checkout_message,
+            // One ticket per order, so the person who books is the attendee.
+            attendee_details_collection_method: 'PER_ORDER' as const,
         }),
     });
 
-    const attendeeCollectionOptions: ItemProps[] = [
-        {
-            icon: <IconUsers/>,
-            label: t`Per ticket`,
-            value: 'PER_TICKET',
-            description: t`Collect attendee details for each ticket purchased.`,
-        },
-        {
-            icon: <IconUser/>,
-            label: t`Per order`,
-            value: 'PER_ORDER',
-            description: t`Use order details for all attendees. Attendee names and emails will match the buyer's information.`,
-        },
-    ];
     const formErrorHandle = useFormErrorResponseHandler();
 
     useEffect(() => {
@@ -109,33 +95,6 @@ export const HomepageAndCheckoutSettings = () => {
                         onChange={(value) => form.setFieldValue('post_checkout_message', value)}
                     />
 
-                    <CustomSelect
-                        optionList={attendeeCollectionOptions}
-                        form={form}
-                        name={'attendee_details_collection_method'}
-                        label={t`Attendee information collection`}
-                        required
-                    />
-
-                    <NumberInput
-                        label={t`Order timeout`}
-                        description={t`How many minutes the customer has to complete their order. We recommend at least 15 minutes`}
-                        {...form.getInputProps('order_timeout_in_minutes')}
-                    />
-
-                    <Switch
-                        mt="md"
-                        label={t`Show marketing opt-in checkbox`}
-                        description={t`Display a checkbox allowing customers to opt-in to receive marketing communications from this event organizer.`}
-                        {...form.getInputProps('show_marketing_opt_in', {type: 'checkbox'})}
-                    />
-
-                    <Switch
-                        mt="md"
-                        label={t`Allow buyers to copy their details to all attendees`}
-                        description={t`When enabled, buyers can copy their own name and email onto all attendees at once. Turn this off to remove the "All attendees" option; buyers can still copy to the first attendee, and the rest must be entered individually.`}
-                        {...form.getInputProps('allow_copy_details_to_all_attendees', {type: 'checkbox'})}
-                    />
 
                     <Button loading={updateMutation.isPending} type={'submit'}>
                         {t`Save`}

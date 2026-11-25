@@ -2,7 +2,6 @@ import { SeoSettings } from "./Sections/SeoSettings";
 import BasicSettings from "./Sections/BasicSettings";
 import { SocialLinks } from "./Sections/SocialLinks";
 import { AddressSettings } from "./Sections/AddressSettings";
-import EmailTemplateSettings from "./Sections/EmailTemplateSettings";
 import { EventDefaults } from "./Sections/EventDefaults";
 import { PayoutsSettings } from "./Sections/PayoutsSettings";
 import { PlatformFeesSettings } from "./Sections/PlatformFeesSettings";
@@ -12,7 +11,7 @@ import { PageBody } from "../../../common/PageBody";
 import { PageTitle } from "../../../common/PageTitle";
 import { t } from "@lingui/macro";
 import { Box, Group, NavLink as MantineNavLink, Stack } from "@mantine/core";
-import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar } from "@tabler/icons-react";
+import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconCalendarEvent, IconPercentage, IconChartBar } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../../../common/Card";
@@ -61,12 +60,6 @@ const Settings = () => {
                 label: t`SEO`,
                 icon: IconBrandGoogleAnalytics,
                 component: SeoSettings
-            },
-            {
-                id: 'email-templates',
-                label: t`Email Templates`,
-                icon: IconMail,
-                component: () => <EmailTemplateSettings organizerId={organizerId!} />
             },
             {
                 id: 'tracking-pixels',

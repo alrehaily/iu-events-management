@@ -103,18 +103,15 @@
 // Modal header
 .modalHeader {
   background: var(--iu-green-gradient, linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%));
-  padding: 1.75rem 2rem 1.25rem;
-  text-align: center;
+  padding: 1.1rem 2rem;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   @include mixins.respond-below(md) {
-    padding: 1.25rem 1rem 1rem;
+    padding: 1rem;
   }
 }
 
@@ -122,19 +119,18 @@
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  gap: 0.9rem;
+  text-align: start;
 }
 
 .magicWand {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 0.6rem;
-  width: 52px;
-  height: 52px;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -143,7 +139,7 @@
 }
 
 .headerTitle {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: var(--iu-heading-weight, 700);
   color: white;
   margin: 0 0 0.125rem;
@@ -168,9 +164,78 @@
   }
 }
 
+// Progress bar
+.progress {
+  flex-shrink: 0;
+  padding: 1rem 2rem 0;
+
+  @include mixins.respond-below(md) {
+    padding: 0.875rem 1rem 0;
+  }
+}
+
+.progressTrack {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--mantine-color-gray-2);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--iu-green-gradient, linear-gradient(110deg, #084b2f 0%, #1b754b 55%, #1d8a51 100%));
+  transition: width 0.35s ease;
+}
+
+.progressSteps {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.progressStep {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--mantine-color-gray-5);
+
+  &[data-state='active'] {
+    color: #084b2f;
+  }
+
+  &[data-state='done'] {
+    color: #1b754b;
+  }
+}
+
+.progressDot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  border: 2px solid currentColor;
+  flex-shrink: 0;
+
+  .progressStep[data-state='active'] &,
+  .progressStep[data-state='done'] & {
+    background: #1b754b;
+    border-color: #1b754b;
+    color: #fff;
+  }
+}
+
 // Modal content
 .modalContent {
-  max-height: calc(90vh - 120px);
+  max-height: calc(90vh - 150px);
   overflow-y: auto;
   @include mixins.scrollbar();
   -webkit-overflow-scrolling: touch;
@@ -184,25 +249,232 @@
 }
 
 .formContainer {
-  padding: 2.5rem;
+  padding: 1.25rem 2rem 1.5rem;
 
   @include mixins.respond-below(md) {
-    padding: 1.5rem;
-    padding-bottom: 2.5rem;
+    padding: 1rem 1rem 1.5rem;
   }
+}
+
+// One step of the wizard
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  animation: stepIn 0.25s ease-out;
+}
+
+@keyframes stepIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Event name + category side by side
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 
   @include mixins.respond-below(sm) {
-    padding: 1rem;
-    padding-bottom: 2rem;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+}
+
+// Back / Continue buttons
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+.backButton {
+  height: 52px;
+  border-radius: 14px;
+  font-weight: 600;
+  flex: 0 0 auto;
+  min-width: 120px;
+}
+
+.skipButton,
+.draftButton {
+  height: 52px;
+  border-radius: 14px;
+  font-weight: 600;
+  flex: 0 0 auto;
+  min-width: 110px;
+}
+
+@include mixins.respond-below(sm) {
+  .actions {
+    flex-wrap: wrap;
   }
 
-  form > * + * {
-    margin-top: 1.5rem;
-
-    @include mixins.respond-below(sm) {
-      margin-top: 1rem;
-    }
+  .backButton,
+  .skipButton,
+  .draftButton {
+    min-width: 0;
+    flex: 1 1 auto;
   }
+}
+
+.segmentLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.sectionDivider {
+  height: 1px;
+  background: var(--mantine-color-gray-2);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.fieldGroupLabel {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 600;
+  color: var(--mantine-color-dark-7);
+}
+
+.stepHint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--mantine-color-gray-6);
+}
+
+.fieldError {
+  font-size: 0.8rem;
+  color: var(--mantine-color-red-6);
+}
+
+.coverDropzone {
+  border-radius: 14px;
+  border-width: 2px;
+}
+
+.coverDropzoneInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  color: var(--mantine-color-gray-6);
+  pointer-events: none;
+
+  span {
+    font-weight: 600;
+    color: var(--mantine-color-dark-6);
+  }
+
+  small {
+    font-size: 0.75rem;
+  }
+}
+
+.coverPreview {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 3 / 1;
+  background: var(--mantine-color-gray-1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.coverRemove {
+  position: absolute;
+  top: 0.5rem;
+  inset-inline-end: 0.5rem;
+}
+
+.venueRow {
+  display: flex;
+  gap: 0.5rem;
+
+  @include mixins.respond-below(sm) {
+    flex-direction: column;
+  }
+}
+
+.venueInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.mapButton {
+  flex-shrink: 0;
+}
+
+.mapModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.moreOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--mantine-color-gray-2);
+  border-radius: 14px;
+  background: var(--mantine-color-gray-0);
+}
+
+.moreOptionsHint {
+  font-size: 0.85rem;
+  color: var(--mantine-color-gray-7);
+}
+
+.moreOptionsButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  @include mixins.respond-below(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.progressLabel {
+  @include mixins.respond-below(sm) {
+    display: none;
+  }
+}
+
+// Arrow icons are drawn for right-to-left; mirror them in left-to-right.
+[dir='ltr'] .directionalIcon {
+  transform: scaleX(-1);
 }
 
 // Create organizer link
@@ -263,9 +535,9 @@
 
 // Create button
 .createButton {
-  height: 64px;
+  height: 52px;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   background: var(--hi-gradient);
   border: none;
   border-radius: 16px;

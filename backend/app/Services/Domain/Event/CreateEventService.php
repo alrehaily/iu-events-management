@@ -255,9 +255,8 @@ class CreateEventService
             'organization_address' => null,
             'invoice_tax_details' => null,
 
-            'attendee_details_collection_method' => $event->getType() === EventType::RECURRING->name
-                ? AttendeeDetailsCollectionMethod::PER_ORDER->value
-                : ($organizerSettings?->getDefaultAttendeeDetailsCollectionMethod() ?? AttendeeDetailsCollectionMethod::PER_TICKET->value),
+            // One ticket per order, so the person who books is the attendee.
+            'attendee_details_collection_method' => AttendeeDetailsCollectionMethod::PER_ORDER->value,
             'show_marketing_opt_in' => $organizerSettings?->getDefaultShowMarketingOptIn() ?? false,
             'allow_copy_details_to_all_attendees' => true,
             'pass_platform_fee_to_buyer' => $organizerSettings?->getDefaultPassPlatformFeeToBuyer() ?? false,

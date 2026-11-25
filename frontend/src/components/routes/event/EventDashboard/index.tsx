@@ -19,13 +19,11 @@ import {EventLifecycleStatus, EventStatus, EventType} from "../../../../types.ts
 import {UpcomingOccurrences} from "./UpcomingOccurrences";
 import {NextOccurrenceHero} from "./NextOccurrenceHero";
 import {trackEvent, AnalyticsEvents} from "../../../../utilites/analytics.ts";
-import {useGetOrganizer} from "../../../../queries/useGetOrganizer.ts";
-import {useGetEventProductCategories} from "../../../../queries/useGetProductCategories.ts";
 import {useGetEventImages} from "../../../../queries/useGetEventImages.ts";
 import {useGetEventOccurrences} from "../../../../queries/useGetEventOccurrences.ts";
 import {PeriodSelector, PeriodPreset} from "../../../common/PeriodSelector";
 import {periodPresetToDateRange} from "../../../../utilites/periodPreset.ts";
-import {hasEventDetails, SetupChecklist} from "./SetupChecklist";
+import {SetupChecklist} from "./SetupChecklist";
 import {PublishEventModal} from "../../../modals/PublishEventModal";
 import {EventLiveCelebrationModal} from "../../../modals/EventLiveCelebrationModal";
 import {eventHomepageUrl} from "../../../../utilites/urlHelper.ts";
@@ -68,21 +66,13 @@ export const EventDashboard = () => {
     });
     const {data: eventStats} = eventStatsQuery;
     const isMobile = useMediaQuery('(max-width: 768px)');
-    const {data: account, isFetched: accountIsFetched} = useGetAccount();
+    const {isFetched: accountIsFetched} = useGetAccount();
     const [publishModalOpened, {open: openPublishModal, close: closePublishModal}] = useDisclosure(false);
     const [celebrationOpened, {open: openCelebration, close: closeCelebration}] = useDisclosure(false);
 
     const [isChecklistDismissed, setIsChecklistDismissed] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
-    const organizerId = event?.organizer_id ?? event?.organizer?.id;
-    const {data: organizer} = useGetOrganizer(organizerId);
-    const isStripeConnected = !!organizer?.stripe_connect_setup_complete;
-    const {data: productCategoriesResponse} = useGetEventProductCategories(eventId);
-    const productCount = productCategoriesResponse?.data?.reduce(
-        (sum, category) => sum + (category.products?.length ?? 0),
-        0,
-    ) ?? 0;
     const {data: eventImages} = useGetEventImages(eventId);
     const isRecurring = event?.type === EventType.RECURRING;
     const occurrencesQuery = useGetEventOccurrences(
@@ -91,7 +81,6 @@ export const EventDashboard = () => {
         isRecurring,
     );
     const hasOccurrences = (occurrencesQuery?.data?.data?.length ?? 0) > 0;
-    const hasCoverImage = (eventImages?.length ?? 0) > 0;
 
     const isNewEvent = new URLSearchParams(location.search).get('new_event') === 'true';
 
@@ -127,20 +116,6 @@ export const EventDashboard = () => {
         openPublishModal();
     };
 
-    const handleConnectStripe = () => {
-        if (!organizerId) {
-            return;
-        }
-        navigate(`/manage/organizer/${organizerId}/settings#payouts`);
-    };
-
-    const handleAddTickets = () => {
-        if (!eventId) {
-            return;
-        }
-        navigate(`/manage/event/${eventId}/products#create-product`);
-    };
-
     const handleEditDetails = () => {
         if (!eventId) {
             return;
@@ -161,22 +136,6 @@ export const EventDashboard = () => {
         }
         navigate(`/manage/event/${eventId}/homepage-designer`);
     };
-
-    const isSaasMode = !!account?.is_saas_mode_enabled;
-    const allChecklistComplete = !!event
-        && (event.status === 'LIVE' || event.status === 'PENDING_MANUAL_REVIEW')
-        && (!isSaasMode || isStripeConnected)
-        && productCount > 0
-        && hasEventDetails(event)
-        && hasCoverImage
-        && (!isRecurring || hasOccurrences)
-        && (!isSaasMode || !!account?.is_account_email_confirmed);
-
-    useEffect(() => {
-        if (allChecklistComplete && isMounted && typeof window !== 'undefined' && eventId) {
-            window.localStorage.removeItem('setupChecklistDismissed-' + eventId);
-        }
-    }, [allChecklistComplete, isMounted, eventId]);
 
     const dateRangeLabel = (() => {
         if (!event) return '';
@@ -236,16 +195,9 @@ export const EventDashboard = () => {
                 {shouldShowChecklist && (
                     <SetupChecklist
                         event={event}
-                        organizer={organizer}
-                        isStripeConnected={isStripeConnected}
-                        productCount={productCount}
                         hasOccurrences={hasOccurrences}
                         eventImages={eventImages}
-                        account={account}
-                        me={me}
                         onPublish={handlePublish}
-                        onConnectStripe={handleConnectStripe}
-                        onAddTickets={handleAddTickets}
                         onEditDetails={handleEditDetails}
                         onSetupSchedule={handleSetupSchedule}
                         onCustomizePage={handleCustomizePage}

@@ -9,8 +9,6 @@ import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 import {Button, Switch} from "@mantine/core";
 import {useGetOrganizerSettings} from "../../../../../../queries/useGetOrganizerSettings.ts";
 import {useUpdateOrganizerSettings} from "../../../../../../mutations/useUpdateOrganizerSettings.ts";
-import {CustomSelect, ItemProps} from "../../../../../common/CustomSelect";
-import {IconUser, IconUsers} from "@tabler/icons-react";
 import {SelfServiceSettings} from "../../../../../common/SelfServiceSettings";
 
 export const EventDefaults = () => {
@@ -25,21 +23,6 @@ export const EventDefaults = () => {
             default_allow_attendee_self_edit: false,
         }
     });
-
-    const attendeeCollectionOptions: ItemProps[] = [
-        {
-            icon: <IconUsers/>,
-            label: t`Per ticket`,
-            value: 'PER_TICKET',
-            description: t`Collect attendee details for each ticket purchased.`,
-        },
-        {
-            icon: <IconUser/>,
-            label: t`Per order`,
-            value: 'PER_ORDER',
-            description: t`Use order details for all attendees. Attendee names and emails will match the buyer's information.`,
-        },
-    ];
 
     const formErrorHandle = useFormErrorResponseHandler();
 
@@ -75,16 +58,7 @@ export const EventDefaults = () => {
             />
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <fieldset disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}>
-                    <CustomSelect
-                        optionList={attendeeCollectionOptions}
-                        form={form}
-                        name={'default_attendee_details_collection_method'}
-                        label={t`Default attendee information collection`}
-                        required
-                    />
-
                     <Switch
-                        mt="md"
                         label={t`Show marketing opt-in checkbox by default`}
                         description={t`When enabled, new events will display a marketing opt-in checkbox during checkout. This can be overridden per event.`}
                         {...form.getInputProps('default_show_marketing_opt_in', {type: 'checkbox'})}

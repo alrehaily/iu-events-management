@@ -6,18 +6,12 @@ import {HomepageAndCheckoutSettings} from "./Sections/HomepageAndCheckoutSetting
 import {EmailSettings} from "./Sections/EmailSettings";
 import {PageTitle} from "../../../common/PageTitle";
 import {t} from "@lingui/macro";
-import {SeoSettings} from "./Sections/SeoSettings";
-import {MiscSettings} from "./Sections/MiscSettings";
 import {Box, Group, NavLink as MantineNavLink, Stack} from "@mantine/core";
 import {
-    IconAdjustments,
     IconAlertTriangle,
     IconAt,
-    IconBrandGoogleAnalytics,
     IconBuildingStore,
-    IconCreditCard,
     IconHome,
-    IconListCheck,
     IconMapPin,
     IconPercentage,
     IconRepeat,
@@ -25,9 +19,7 @@ import {
 import {useMediaQuery} from "@mantine/hooks";
 import {useEffect, useMemo, useState} from "react";
 import {Card} from "../../../common/Card";
-import {PaymentAndInvoicingSettings} from "./Sections/PaymentSettings";
 import {PlatformFeesSettings} from "./Sections/PlatformFeesSettings";
-import {WaitlistSettings} from "./Sections/WaitlistSettings";
 import {RecurringEventSettings} from "./Sections/RecurringEventSettings";
 import {DangerZoneSettings} from "./Sections/DangerZoneSettings";
 import {useGetAccount} from "../../../../queries/useGetAccount.ts";
@@ -64,42 +56,18 @@ export const Settings = () => {
                 icon: IconHome,
                 component: HomepageAndCheckoutSettings
             },
+            {
+                id: 'email-settings',
+                label: t`Email`,
+                icon: IconAt,
+                component: EmailSettings
+            },
             ...(isRecurring ? [{
                 id: 'recurring-event-settings',
                 label: t`Recurring Event`,
                 icon: IconRepeat,
                 component: RecurringEventSettings,
             }] : []),
-            {
-                id: 'seo-settings',
-                label: t`SEO`,
-                icon: IconBrandGoogleAnalytics,
-                component: SeoSettings
-            },
-            {
-                id: 'email-settings',
-                label: t`Email & Templates`,
-                icon: IconAt,
-                component: EmailSettings
-            },
-            {
-                id: 'misc-settings',
-                label: t`Miscellaneous`,
-                icon: IconAdjustments,
-                component: MiscSettings
-            },
-            {
-                id: 'waitlist-settings',
-                label: t`Waitlist`,
-                icon: IconListCheck,
-                component: WaitlistSettings,
-            },
-            {
-                id: 'payment-settings',
-                label: t`Payment & Invoicing`,
-                icon: IconCreditCard,
-                component: PaymentAndInvoicingSettings,
-            },
             {
                 id: 'danger-zone',
                 label: t`Danger Zone`,

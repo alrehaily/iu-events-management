@@ -4,7 +4,6 @@ import {Button, CloseButton, Drawer, Skeleton, Text} from "@mantine/core";
 import {UseFormReturnType} from "@mantine/form";
 import {modals} from "@mantine/modals";
 import {Event, Product} from "../../../types.ts";
-import {ProductPreview, ProductVisibilityStatusLine} from "./ProductPreview.tsx";
 import classes from "./ProductDrawer.module.scss";
 
 interface ProductDrawerProps {
@@ -76,7 +75,7 @@ export const ProductDrawer = ({
             opened
             onClose={handleClose}
             position="right"
-            size={900}
+            size={600}
             withCloseButton={false}
             closeOnClickOutside={false}
             overlayProps={{
@@ -110,19 +109,11 @@ export const ProductDrawer = ({
                     {loading
                         ? <FormPlaceholder/>
                         : (
-                            <>
-                                <form id={formId} onSubmit={form.onSubmit(onSubmit)}>
-                                    {children}
-                                </form>
-                                <div className={classes.statusBelowForm}>
-                                    <ProductVisibilityStatusLine form={form} event={event}/>
-                                </div>
-                            </>
+                            <form id={formId} onSubmit={form.onSubmit(onSubmit)}>
+                                {children}
+                            </form>
                         )}
                 </div>
-                <aside className={classes.previewColumn}>
-                    <ProductPreview form={form} event={event}/>
-                </aside>
             </div>
 
             <div className={classes.footer}>
